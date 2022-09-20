@@ -1,0 +1,22 @@
+[
+  {
+    "id": "forprofit",
+    "name": "For-profit"
+  },
+  {
+    "id": "foundation",
+    "name": "Foundation"
+  },
+  {
+    "id": "cooperative",
+    "name": "Cooperative"
+  },
+  {
+    "id": "nonprofit",
+    "name": "Non-profit"
+  },
+  {
+    "id": "other",
+    "name": "Other"
+  }
+]

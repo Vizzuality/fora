@@ -1,0 +1,46 @@
+[
+  {
+    "id": "black-or-african-american",
+    "name": "Black or African American"
+  },
+  {
+    "id": "indigenous/tribal-nations",
+    "name": "Indigenous/Tribal Nations "
+  },
+  {
+    "id": "women",
+    "name": "Women "
+  },
+  {
+    "id": "youth",
+    "name": "Youth "
+  },
+  {
+    "id": "asian",
+    "name": "Asian "
+  },
+  {
+    "id": "hispanic-or-latinx",
+    "name": "Hispanic or Latinx"
+  },
+  {
+    "id": "lgbtq",
+    "name": "LGBTQ"
+  },
+  {
+    "id": "white",
+    "name": "White "
+  },
+  {
+    "id": "no-specific-focus",
+    "name": "No Specific Focus"
+  },
+  {
+    "id": "other",
+    "name": "Other "
+  },
+  {
+    "id": "i-dont-know",
+    "name": "I don't know "
+  }
+]

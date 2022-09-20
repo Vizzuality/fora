@@ -1,0 +1,415 @@
+[
+  {
+      "state_id": "AL",
+      "state_name": "Alabama",
+      "region_id": "SE",
+      "region_name": "Southeast",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "AK",
+      "state_name": "Alaska",
+      "region_id": "AL",
+      "region_name": "Alaska",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "AZ",
+      "state_name": "Arizona",
+      "region_id": "SW",
+      "region_name": "Southwest",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "AR",
+      "state_name": "Arkansas",
+      "region_id": "SC",
+      "region_name": "South Central",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "CA",
+      "state_name": "California",
+      "region_id": "WC",
+      "region_name": "West Coast",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "CO",
+      "state_name": "Colorado",
+      "region_id": "MW",
+      "region_name": "Mountain West",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "CT",
+      "state_name": "Connecticut",
+      "region_id": "NE",
+      "region_name": "New England",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "DE",
+      "state_name": "Delaware",
+      "region_id": "MA",
+      "region_name": "Mid-Atlantic",
+      "country_id": "MEX",
+      "country_name": "Mexico"
+  },
+  {
+      "state_id": "DC",
+      "state_name": "District of Columbia",
+      "region_id": "MA",
+      "region_name": "Mid-Atlantic",
+      "country_id": "MEX",
+      "country_name": "Mexico"
+  },
+  {
+      "state_id": "FL",
+      "state_name": "Florida",
+      "region_id": "SE",
+      "region_name": "Southeast",
+      "country_id": "MEX",
+      "country_name": "Mexico"
+  },
+  {
+      "state_id": "GA",
+      "state_name": "Georgia",
+      "region_id": "SE",
+      "region_name": "Southeast",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "HI",
+      "state_name": "Hawaii",
+      "region_id": "PI",
+      "region_name": "Pacific Islands",
+      "country_id": "SPA",
+      "country_name": "Spain"
+  },
+  {
+      "state_id": "ID",
+      "state_name": "Idaho",
+      "region_id": "MW",
+      "region_name": "Mountain West",
+      "country_id": "SPA",
+      "country_name": "Spain"
+  },
+  {
+      "state_id": "IL",
+      "state_name": "Illinois",
+      "region_id": "GL",
+      "region_name": "Midwest- East North Central and Great Lakes",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "IN",
+      "state_name": "Indiana",
+      "region_id": "GL",
+      "region_name": "Midwest- East North Central and Great Lakes",
+      "country_id": "FRA",
+      "country_name": "France"
+  },
+  {
+      "state_id": "IA",
+      "state_name": "Iowa",
+      "region_id": "GP",
+      "region_name": "Midwest- West North Central and Great Plains",
+      "country_id": "FRA",
+      "country_name": "France"
+  },
+  {
+      "state_id": "KS",
+      "state_name": "Kansas",
+      "region_id": "GP",
+      "region_name": "Midwest- West North Central and Great Plains",
+      "country_id": "FRA",
+      "country_name": "France"
+  },
+  {
+      "state_id": "KY",
+      "state_name": "Kentucky",
+      "region_id": "SE",
+      "region_name": "Southeast",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "LA",
+      "state_name": "Louisiana",
+      "region_id": "SC",
+      "region_name": "South Central",
+      "country_id": "FRA",
+      "country_name": "France"
+
+  },
+  {
+      "state_id": "ME",
+      "state_name": "Maine",
+      "region_id": "NE",
+      "region_name": "New England",
+      "country_id": "FRA",
+      "country_name": "France"
+
+  },
+  {
+      "state_id": "MD",
+      "state_name": "Maryland",
+      "region_id": "MA",
+      "region_name": "Mid-Atlantic",
+      "country_id": "FRA",
+      "country_name": "France"
+  },
+  {
+      "state_id": "MA",
+      "state_name": "Massachusetts",
+      "region_id": "NE",
+      "region_name": "New England",
+      "country_id": "FRA",
+      "country_name": "France"
+  },
+  {
+      "state_id": "MI",
+      "state_name": "Michigan",
+      "region_id": "GL",
+      "region_name": "Midwest- East North Central and Great Lakes",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "MN",
+      "state_name": "Minnesota",
+      "region_id": "GL",
+      "region_name": "Midwest- East North Central and Great Lakes",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "MS",
+      "state_name": "Mississippi",
+      "region_id": "SC",
+      "region_name": "South Central",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "MO",
+      "state_name": "Missouri",
+      "region_id": "GP",
+      "region_name": "Midwest- West North Central and Great Plains",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "MT",
+      "state_name": "Montana",
+      "region_id": "MW",
+      "region_name": "Mountain West",
+      "country_id": "FRA",
+      "country_name": "France"
+
+  },
+  {
+      "state_id": "NE",
+      "state_name": "Nebraska",
+      "region_id": "GP",
+      "region_name": "Midwest- West North Central and Great Plains",
+      "country_id": "FRA",
+      "country_name": "France"
+
+  },
+  {
+      "state_id": "NV",
+      "state_name": "Nevada",
+      "region_id": "SW",
+      "region_name": "Southwest",
+      "country_id": "FRA",
+      "country_name": "France"
+
+  },
+  {
+      "state_id": "NH",
+      "state_name": "New Hampshire",
+      "region_id": "NE",
+      "region_name": "New England",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "NJ",
+      "state_name": "New Jersey",
+      "region_id": "MA",
+      "region_name": "Mid-Atlantic",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "NM",
+      "state_name": "New Mexico",
+      "region_id": "SW",
+      "region_name": "Southwest",
+      "country_id": "USA",
+      "country_name": "United States"
+  },
+  {
+      "state_id": "NY",
+      "state_name": "New York",
+      "region_id": "MA",
+      "region_name": "Mid-Atlantic",
+      "country_id": "SPA",
+      "country_name": "Spain"
+  },
+  {
+      "state_id": "NC",
+      "state_name": "North Carolina",
+      "region_id": "SE",
+      "region_name": "Southeast",
+      "country_id": "SPA",
+      "country_name": "Spain"
+  },
+  {
+      "state_id": "ND",
+      "state_name": "North Dakota",
+      "region_id": "GP",
+      "region_name": "Midwest- West North Central and Great Plains",
+      "country_id": "SPA",
+      "country_name": "Spain"
+  },
+  {
+      "state_id": "OH",
+      "state_name": "Ohio",
+      "region_id": "GL",
+      "region_name": "Midwest- East North Central and Great Lakes",
+      "country_id": "MEX",
+      "country_name": "Mexico"
+  },
+  {
+      "state_id": "OK",
+      "state_name": "Oklahoma",
+      "region_id": "SC",
+      "region_name": "South Central",
+      "country_id": "MEX",
+      "country_name": "Mexico"
+  },
+  {
+      "state_id": "OR",
+      "state_name": "Oregon",
+      "region_id": "WC",
+      "region_name": "West Coast",
+      "country_id": "MEX",
+      "country_name": "Mexico"
+  },
+  {
+      "state_id": "PA",
+      "state_name": "Pennsylvania",
+      "region_id": "MA",
+      "region_name": "Mid-Atlantic",
+      "country_id": "PER",
+      "country_name": "Perú"
+  },
+  {
+      "state_id": "RI",
+      "state_name": "Rhode Island",
+      "region_id": "NE",
+      "region_name": "New England",
+      "country_id": "PER",
+      "country_name": "Perú"
+  },
+  {
+      "state_id": "SC",
+      "state_name": "South Carolina",
+      "region_id": "SE",
+      "region_name": "Southeast",
+      "country_id": "PER",
+      "country_name": "Perú"
+  },
+  {
+      "state_id": "SD",
+      "state_name": "South Dakota",
+      "region_id": "GP",
+      "region_name": "Midwest- West North Central and Great Plains",
+      "country_id": "PER",
+      "country_name": "Perú"
+  },
+  {
+      "state_id": "TN",
+      "state_name": "Tennessee",
+      "region_id": "SE",
+      "region_name": "Southeast",
+      "country_id": "PER",
+      "country_name": "Perú"
+  },
+  {
+      "state_id": "TX",
+      "state_name": "Texas",
+      "region_id": "SC",
+      "region_name": "South Central",
+      "country_id": "PER",
+      "country_name": "Perú"
+  },
+  {
+      "state_id": "UT",
+      "state_name": "Utah",
+      "region_id": "SW",
+      "region_name": "Southwest",
+      "country_id": "PER",
+      "country_name": "Perú"
+  },
+  {
+      "state_id": "VT",
+      "state_name": "Vermont",
+      "region_id": "NE",
+      "region_name": "New England",
+      "country_id": "PER",
+      "country_name": "Perú"
+  },
+  {
+      "state_id": "VA",
+      "state_name": "Virginia",
+      "region_id": "MA",
+      "region_name": "Mid-Atlantic",
+      "country_id": "PER",
+      "country_name": "Perú"
+  },
+  {
+      "state_id": "WA",
+      "state_name": "Washington",
+      "region_id": "WC",
+      "region_name": "West Coast",
+      "country_id": "PER",
+      "country_name": "Perú"
+  },
+  {
+      "state_id": "WV",
+      "state_name": "West Virginia",
+      "region_id": "MA",
+      "region_name": "Mid-Atlantic",
+      "country_id": "PER",
+      "country_name": "Perú"
+  },
+  {
+      "state_id": "WI",
+      "state_name": "Wisconsin",
+      "region_id": "GL",
+      "region_name": "Midwest- East North Central and Great Lakes",
+      "country_id": "PER",
+      "country_name": "Perú"
+  },
+  {
+      "state_id": "WY",
+      "state_name": "Wyoming",
+      "region_id": "MW",
+      "region_name": "Mountain West",
+      "country_id": "PER",
+      "country_name": "Perú"
+  }
+]

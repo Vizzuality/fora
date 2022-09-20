@@ -1,0 +1,58 @@
+[
+  {
+    "id": "accelerator",
+    "name": "Accelerator"
+  },
+  {
+    "id": "advisory",
+    "name": "Advisory"
+  },
+  {
+    "id": "bank",
+    "name": "Bank"
+  },
+  {
+    "id": "educational-land-based",
+    "name": "Educational Land Based "
+  },
+  {
+    "id": "family-office",
+    "name": "Family Office"
+  },
+  {
+    "id": "funder-collaborative-or-network",
+    "name": "Funder Collaborative or Network "
+  },
+  {
+    "id": "individual",
+    "name": "Individual"
+  },
+  {
+    "id": "initiative",
+    "name": "Initiative"
+  },
+  {
+    "id": "loan-fund",
+    "name": "Loan Fund"
+  },
+  {
+    "id": "network-of-funders",
+    "name": "Network of funders"
+  },
+  {
+    "id": "private-foundation",
+    "name": "Private Foundation"
+  },
+  {
+    "id": "public-foundation",
+    "name": "Public Foundation"
+  },
+  {
+    "id": "regrantor",
+    "name": "Regrantor"
+  },
+  {
+    "id": "other",
+    "name": "Other"
+  }
+]

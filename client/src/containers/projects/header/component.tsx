@@ -1,0 +1,40 @@
+import React from 'react';
+
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { setSearch } from 'store/projects';
+
+import { useDebounceCallback } from '@react-hook/debounce';
+
+import Wrapper from 'containers/wrapper';
+
+import Search from 'components/search';
+
+const ProjectsHeader = () => {
+  const dispatch = useAppDispatch();
+
+  const { search } = useAppSelector((state) => state['/projects']);
+
+  const onChangeSearch = useDebounceCallback((value: string) => {
+    dispatch(setSearch(value));
+  }, 250);
+
+  return (
+    <header className="py-20 bg-green-0 text-grey-0">
+      <Wrapper>
+        <div className="space-y-5">
+          <h2 className="max-w-4xl text-4xl font-display">
+            Find FORA supported regenerative agriculture projects
+          </h2>
+          <h3 className="max-w-2xl text-2xl font-display">
+            Look into our database for projects in regenerative agriculture.
+          </h3>
+        </div>
+        <div className="w-2/3 mt-11">
+          <Search value={search} placeholder="Search" theme="green" onChange={onChangeSearch} />
+        </div>
+      </Wrapper>
+    </header>
+  );
+};
+
+export default ProjectsHeader;

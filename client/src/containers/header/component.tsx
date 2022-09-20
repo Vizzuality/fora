@@ -1,0 +1,83 @@
+import React, { useMemo } from 'react';
+
+import cx from 'classnames';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import Wrapper from 'containers/wrapper';
+
+import { NAV } from 'constants/nav';
+
+import LOGO_SVG from 'svgs/logo.svg';
+
+const Header = () => {
+  const { pathname } = useRouter();
+
+  const NAV_ITEMS = useMemo(() => {
+    return NAV.filter((n) => !n.footer);
+  }, []);
+
+  return (
+    <header
+      className={cx({
+        'py-6 bg-white': true,
+      })}
+    >
+      <Wrapper>
+        <div className="flex items-center justify-between">
+          {/* LOGO */}
+          <Link href="/">
+            <a>
+              <Image src={LOGO_SVG} alt="Logo" layout="fixed" width={156} height={72} priority />
+            </a>
+          </Link>
+
+          {/* NAV */}
+          <nav className="flex items-center justify-between">
+            <ul className="flex items-center justify-between space-x-3">
+              {NAV_ITEMS.map((item) => {
+                const { href, label, filled, target, rel } = item;
+
+                return (
+                  <li key={href}>
+                    {target === '_blank' && (
+                      <a
+                        href={href}
+                        target={target}
+                        rel={rel}
+                        className={cx({
+                          'text-base font-semibold py-2 px-7': true,
+                          'rounded-lg bg-green-0': pathname === href,
+                          'text-grey-0 hover:underline': !filled,
+                        })}
+                      >
+                        {label}
+                      </a>
+                    )}
+
+                    {!target && (
+                      <Link href={href}>
+                        <a
+                          className={cx({
+                            'text-base font-semibold py-2 px-7': true,
+                            'rounded-lg bg-green-0': pathname === href,
+                          })}
+                        >
+                          {label}
+                        </a>
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        </div>
+      </Wrapper>
+    </header>
+  );
+};
+
+export default Header;

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "forprofit",
+    "name": "For-profit"
+  },
+  {
+    "id": "government-organisation",
+    "name": "Government organisation"
+  },
+  {
+    "id": "individual",
+    "name": "Individual"
+  },
+  {
+    "id": "nonprofit",
+    "name": "Non-profit"
+  },
+  {
+    "id": "research-institution",
+    "name": "Research Institution  "
+  }
+]
