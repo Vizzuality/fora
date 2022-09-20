@@ -19,3 +19,7 @@ pre-commit:
       root: "client/"
       glob: "*.{js,ts,jsx,tsx}"
       run: yarn lint {staged_files}
+    types:
+      root: "client/"
+      glob: "*.{js,ts,jsx,tsx}"
+      run: yarn check-types
