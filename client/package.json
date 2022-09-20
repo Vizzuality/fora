@@ -12,8 +12,7 @@
     "storybook:dev": "start-storybook -p 6006 -c .storybook",
     "storybook:build": "build-storybook -c .storybook",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
-    "postinstall": "husky install"
+    "cypress:run": "cypress run"
   },
   "engines": {
     "node": "~16.14 || ~14"
