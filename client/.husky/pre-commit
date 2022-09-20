@@ -1,7 +1,0 @@
-#!/bin/sh
-cd client
-
-. "$(dirname "$0")/_/husky.sh"
-
-
-yarn lint
