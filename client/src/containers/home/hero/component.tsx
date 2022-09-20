@@ -27,6 +27,7 @@ const Hero = () => {
                 className="absolute left-0 -translate-x-1/2 translate-y-20 top-full"
                 xOptions={{ start: -200, end: -150 }}
                 yOptions={{ start: 80, end: 80 }}
+                cacaoOptions={{ start: 0, end: 1 }}
               >
                 <Image
                   priority
