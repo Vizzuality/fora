@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { MapProvider } from 'react-map-gl';
-
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
@@ -84,17 +82,15 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
           > */}
         {/* @ts-ignore: https://github.com/artsy/fresnel/issues/281 */}
         <MediaContextProvider>
-          <MapProvider>
-            <MetaIcons />
+          <MetaIcons />
 
-            <ThirdParty />
+          <ThirdParty />
 
-            <RouteLoading {...routeLoading} />
+          <RouteLoading {...routeLoading} />
 
-            <ApplicationLayout>
-              <Component {...pageProps} />
-            </ApplicationLayout>
-          </MapProvider>
+          <ApplicationLayout>
+            <Component {...pageProps} />
+          </ApplicationLayout>
         </MediaContextProvider>
         {/* </SessionProvider> */}
       </Hydrate>
