@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import LegendTypeGradient from 'components/map/legend/types/gradient';
+import LegendTypeGradient from 'components/legend/types/gradient';
 import { MAP_RAMP } from 'constants/colors';
 
 const MapLegend = () => {
