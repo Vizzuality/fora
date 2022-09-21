@@ -15,8 +15,10 @@ const ActionMap = () => {
 
       <Wrapper>
         <div className="py-5">
-          <div className="pb-5">
-            <Sentence />
+          <div className="grid grid-cols-12">
+            <div className="col-span-8 pb-5">
+              <Sentence />
+            </div>
           </div>
 
           <div className="grid grid-cols-12 gap-x-10">
