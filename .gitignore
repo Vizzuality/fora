@@ -5,3 +5,4 @@
 *.pem
 
 /infrastructure/.terraform/
+/client/log
