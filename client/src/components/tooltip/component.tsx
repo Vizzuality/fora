@@ -7,6 +7,7 @@ import {
   offset,
   flip,
   shift,
+  size,
   autoUpdate,
   useFloating,
   useInteractions,
@@ -57,6 +58,15 @@ export const Tooltip = ({
     middleware: [
       offset(5),
       flip(),
+      size({
+        apply({ availableWidth, availableHeight, elements }) {
+          // Do things with the data, e.g.
+          Object.assign(elements.floating.style, {
+            maxWidth: `${availableWidth - 50}px`,
+            maxHeight: `${availableHeight - 25}px`,
+          });
+        },
+      }),
       shift({ padding: 8 }),
       ...(arrowRef.current && arrowProps.enabled
         ? [
@@ -133,7 +143,7 @@ export const Tooltip = ({
                   },
                 }),
               }}
-              className="z-50 pointer-events-none"
+              className="z-50 flex pointer-events-none"
               {...getFloatingProps({
                 ref: floating,
                 style: {
