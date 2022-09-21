@@ -13,6 +13,11 @@ import FUNDERS from 'services/funders';
 import MOCK from './mock.json';
 import { UseFundersOptionsProps } from './types';
 
+/**
+****************************************
+  FUNDERS
+****************************************
+*/
 export function useFunders(options: UseFundersOptionsProps = {}) {
   const { filters = {}, search, sort } = options;
 
@@ -73,6 +78,12 @@ export function useFunders(options: UseFundersOptionsProps = {}) {
   }, [query, DATA]);
 }
 
+/**
+****************************************
+  FUNDERS FILTERED BY GEOGRAPHIC SCOPE
+****************************************
+*/
+
 export function useFundersByGeographicScope(view: View, options: UseFundersOptionsProps = {}) {
   const { data, ...query } = useFunders(options);
 
@@ -126,6 +137,12 @@ export function useFundersByGeographicScope(view: View, options: UseFundersOptio
     };
   }, [query, DATA]);
 }
+
+/**
+****************************************
+  FUNDERS INFINITY
+****************************************
+*/
 
 export function useFundersInfinity(options: AdapterOptionsProps = {}) {
   const {
@@ -198,4 +215,36 @@ export function useFundersInfinity(options: AdapterOptionsProps = {}) {
       data: DATA,
     };
   }, [DATA, query]);
+}
+
+/**
+****************************************
+  FUNDER [ID]
+****************************************
+*/
+
+export function useFunder(id) {
+  const fetchFunder = () =>
+    FUNDERS.request({
+      method: 'GET',
+      url: `/${id}`,
+    }).then((response) => response.data);
+
+  const query = useQuery(['funders', id], fetchFunder, {
+    enabled: !!id,
+    retry: false,
+    keepPreviousData: true,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    placeholderData: {},
+  });
+
+  const { data } = query;
+
+  return useMemo(() => {
+    return {
+      ...query,
+      data: data,
+    };
+  }, [query, data]);
 }
