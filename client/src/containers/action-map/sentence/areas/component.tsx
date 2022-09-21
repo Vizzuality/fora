@@ -1,5 +1,7 @@
 import React, { useMemo } from 'react';
 
+import cx from 'classnames';
+
 import { useAppSelector } from 'store/hooks';
 
 import { useAreas } from 'hooks/areas';
@@ -20,8 +22,8 @@ const AreasSentence = () => {
     if (!SELECTED_LIST.length) return null;
     const [first, ...rest] = SELECTED_LIST;
 
-    if (!rest.length) return ` ${first.name}`;
-    return ` ${first.name} +${rest.length}`;
+    if (!rest.length) return `${first.name}`;
+    return `${first.name} +${rest.length}`;
   }, [SELECTED_LIST]);
 
   if (!areas.length || !areasIsFetched) return null;
@@ -29,7 +31,7 @@ const AreasSentence = () => {
   return (
     <>
       {' '}
-      who invest in
+      who invest in{' '}
       <Tooltip
         trigger="click"
         placement="bottom"
@@ -50,7 +52,14 @@ const AreasSentence = () => {
           </div>
         }
       >
-        <span className="text-grey-0">{SELECTED_TEXT}</span>
+        <span
+          className={cx({
+            'text-grey-0': true,
+            'hover:underline cursor-pointer': SELECTED_LIST.length > 1,
+          })}
+        >
+          {SELECTED_TEXT}
+        </span>
       </Tooltip>
     </>
   );

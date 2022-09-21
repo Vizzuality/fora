@@ -1,5 +1,7 @@
 import React, { useMemo } from 'react';
 
+import cx from 'classnames';
+
 import { useAppSelector } from 'store/hooks';
 
 import { useGeographics, useSubGeographics } from 'hooks/geographics';
@@ -21,13 +23,13 @@ const GeographicsSentence = () => {
   const SELECTED_TEXT = useMemo(() => {
     if (!SELECTED_LIST.length) {
       const geo = geographicsData.find((g) => g.id === geographic);
-      return ` ${geo?.name}`;
+      return `${geo?.name}`;
     }
 
     const [first, ...rest] = SELECTED_LIST;
 
-    if (!rest.length) return ` ${first.name}`;
-    return ` ${first.name} +${rest.length}`;
+    if (!rest.length) return `${first.name}`;
+    return `${first.name} +${rest.length}`;
   }, [SELECTED_LIST, geographicsData, geographic]);
 
   if (!geographicsIsFetched || !subgeographicsIsFetched) return null;
@@ -35,7 +37,7 @@ const GeographicsSentence = () => {
   return (
     <>
       {' '}
-      from
+      from{' '}
       <Tooltip
         enabled={!!SELECTED_LIST.length}
         trigger="click"
@@ -57,7 +59,14 @@ const GeographicsSentence = () => {
           </div>
         }
       >
-        <span className="text-grey-0">{SELECTED_TEXT}</span>
+        <span
+          className={cx({
+            'text-grey-0': true,
+            'hover:underline cursor-pointer': SELECTED_LIST.length > 1,
+          })}
+        >
+          {SELECTED_TEXT}
+        </span>
       </Tooltip>
     </>
   );
