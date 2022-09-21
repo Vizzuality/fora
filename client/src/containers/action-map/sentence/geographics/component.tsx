@@ -2,35 +2,42 @@ import React, { useMemo } from 'react';
 
 import { useAppSelector } from 'store/hooks';
 
-import { useDemographics } from 'hooks/demographics';
+import { useGeographics, useSubGeographics } from 'hooks/geographics';
 
 import Tooltip from 'components/tooltip';
 
-const DemographicsSentence = () => {
+const GeographicsSentence = () => {
   const { filters } = useAppSelector((state) => state['/action-map']);
-  const { demographics } = filters;
+  const { geographic, subgeographics } = filters;
 
-  const { data: demographicsData, isFetched: demographicsIsFetched } = useDemographics();
+  const { data: geographicsData, isFetched: geographicsIsFetched } = useGeographics();
+  const { data: subgeographicsData, isFetched: subgeographicsIsFetched } =
+    useSubGeographics(geographic);
 
   const SELECTED_LIST = useMemo(() => {
-    return demographicsData.filter((demographic) => demographics.includes(demographic.id));
-  }, [demographicsData, demographics]);
+    return subgeographicsData.filter((sg) => subgeographics.includes(sg.id));
+  }, [subgeographicsData, subgeographics]);
 
   const SELECTED_TEXT = useMemo(() => {
-    if (!SELECTED_LIST.length) return null;
+    if (!SELECTED_LIST.length) {
+      const geo = geographicsData.find((g) => g.id === geographic);
+      return ` ${geo?.name}`;
+    }
+
     const [first, ...rest] = SELECTED_LIST;
 
     if (!rest.length) return ` ${first.name}`;
     return ` ${first.name} +${rest.length}`;
-  }, [SELECTED_LIST]);
+  }, [SELECTED_LIST, geographicsData, geographic]);
 
-  if (!demographics.length || !demographicsIsFetched) return null;
+  if (!geographicsIsFetched || !subgeographicsIsFetched) return null;
 
   return (
     <>
       {' '}
-      focused in
+      from
       <Tooltip
+        enabled={!!SELECTED_LIST.length}
         trigger="click"
         placement="bottom"
         arrowProps={{
@@ -42,8 +49,8 @@ const DemographicsSentence = () => {
           <div className="max-w-xs py-2.5 text-grey-20 rounded shadow-xl bg-grey-60 border border-grey-0/5 pointer-events-auto flex flex-col max-h-full">
             <div className="overflow-x-hidden overflow-y-auto pl-2.5 pr-5">
               <ul className="space-y-1">
-                {SELECTED_LIST.map((demographic) => (
-                  <li key={demographic.id}>{demographic.name}</li>
+                {SELECTED_LIST.map((subgeographic) => (
+                  <li key={subgeographic.id}>{subgeographic.name}</li>
                 ))}
               </ul>
             </div>
@@ -56,4 +63,4 @@ const DemographicsSentence = () => {
   );
 };
 
-export default DemographicsSentence;
+export default GeographicsSentence;

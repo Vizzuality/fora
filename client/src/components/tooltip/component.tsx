@@ -25,6 +25,7 @@ import { TooltipProps } from './types';
 export const Tooltip = ({
   children,
   content,
+  enabled = true,
   trigger = 'hover',
   placement = 'top',
   virtual = false,
@@ -81,11 +82,11 @@ export const Tooltip = ({
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
     useHover(context, {
-      enabled: trigger === 'hover' && !virtual,
+      enabled: trigger === 'hover' && !virtual && enabled,
       restMs: 40,
     }),
     useClick(context, {
-      enabled: trigger === 'click' && !virtual,
+      enabled: trigger === 'click' && !virtual && enabled,
     }),
     useFocus(context),
     useRole(context, { role: 'tooltip' }),

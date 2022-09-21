@@ -40,7 +40,7 @@ const AreasSentence = () => {
         }}
         content={
           <div className="max-w-xs py-2.5 text-grey-20 rounded shadow-xl bg-grey-60 border border-grey-0/5 pointer-events-auto flex flex-col max-h-full">
-            <div className="overflow-x-hidden overflow-y-auto px-2.5">
+            <div className="overflow-x-hidden overflow-y-auto pl-2.5 pr-5">
               <ul className="space-y-1">
                 {SELECTED_LIST.map((area) => (
                   <li key={area.id}>{area.name}</li>
