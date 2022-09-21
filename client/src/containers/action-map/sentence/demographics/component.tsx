@@ -2,19 +2,19 @@ import React, { useMemo } from 'react';
 
 import { useAppSelector } from 'store/hooks';
 
-import { useAreas } from 'hooks/areas';
+import { useDemographics } from 'hooks/demographics';
 
 import Tooltip from 'components/tooltip';
 
-const AreasSentence = () => {
+const DemographicsSentence = () => {
   const { filters } = useAppSelector((state) => state['/action-map']);
-  const { areas } = filters;
+  const { demographics } = filters;
 
-  const { data: areasData, isFetched: areasIsFetched } = useAreas();
+  const { data: demographicsData, isFetched: demographicsIsFetched } = useDemographics();
 
   const SELECTED_LIST = useMemo(() => {
-    return areasData.filter((area) => areas.includes(area.id));
-  }, [areasData, areas]);
+    return demographicsData.filter((demographic) => demographics.includes(demographic.id));
+  }, [demographicsData, demographics]);
 
   const SELECTED_TEXT = useMemo(() => {
     if (!SELECTED_LIST.length) return null;
@@ -24,12 +24,12 @@ const AreasSentence = () => {
     return ` ${first.name} +${rest.length}`;
   }, [SELECTED_LIST]);
 
-  if (!areas.length || !areasIsFetched) return null;
+  if (!demographics.length || !demographicsIsFetched) return null;
 
   return (
     <>
       {' '}
-      who invest in
+      focused in
       <Tooltip
         trigger="click"
         placement="bottom"
@@ -42,8 +42,8 @@ const AreasSentence = () => {
           <div className="max-w-xs py-2.5 text-grey-20 rounded shadow-xl bg-grey-60 border border-grey-0/5 pointer-events-auto flex flex-col max-h-full">
             <div className="overflow-x-hidden overflow-y-auto px-2.5">
               <ul className="space-y-1">
-                {SELECTED_LIST.map((area) => (
-                  <li key={area.id}>{area.name}</li>
+                {SELECTED_LIST.map((demographic) => (
+                  <li key={demographic.id}>{demographic.name}</li>
                 ))}
               </ul>
             </div>
@@ -56,4 +56,4 @@ const AreasSentence = () => {
   );
 };
 
-export default AreasSentence;
+export default DemographicsSentence;
