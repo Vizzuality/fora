@@ -7,7 +7,7 @@ SECRET_KEY_BASE (generated with rake secret)
 staging|production, NOT the same as RAILS_ENV as that is "production" in staging as well
 INSTANCE_ROLE=
 
-BACKEND_URL (without protocol)
+BACKEND_URL
 RAILS_RELATIVE_URL_ROOT (if running backend application in sub url, like /backend)
 
 DATABASE_NAME
@@ -17,3 +17,5 @@ DATABASE_HOST
 
 REDIS_URL
 REDIS_PASSWORD
+
+APPSIGNAL_PUSH_API_KEY
