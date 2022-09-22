@@ -29,6 +29,10 @@ On the project's root run `bundle install`.
 If you want to debug rails app, running it through foreman could be not the best idea. In that case you can run css and js bundling
 using foreman `bin/watch` and the server in the standard way in a separate terminal tab.
 
+### Run background jobs
+
+We use `sidekiq` gem to schedule ad-hoc background jobs. In development, you need `redis-server` running and a `sidekiq` process.
+
 ### Run the tests
 
 `bundle exec rspec`
