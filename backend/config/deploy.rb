@@ -26,3 +26,8 @@ set :passenger_restart_with_sudo, true
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_type, :user
 set :rbenv_ruby, '3.1.2'
+
+set :default_env, {
+  PATH: '$HOME/.nvm/versions/node/v16.14.2/bin/:$PATH',
+  NODE_ENVIRONMENT: 'production'
+}
