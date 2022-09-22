@@ -101,6 +101,7 @@ GEM
       xpath (~> 3.2)
     cliver (0.3.2)
     concurrent-ruby (1.1.10)
+    connection_pool (2.3.0)
     crack (0.4.5)
       rexml
     crass (1.0.6)
@@ -222,6 +223,10 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    redis (5.0.4)
+      redis-client (>= 0.7.4)
+    redis-client (0.9.0)
+      connection_pool
     regexp_parser (2.5.0)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -288,6 +293,10 @@ GEM
     ruby-progressbar (1.11.0)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
+    sidekiq (6.5.5)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.5.0)
     simplecov (0.21.2)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -361,6 +370,7 @@ DEPENDENCIES
   pg (~> 1.4)
   puma (~> 5.6)
   rails (~> 7.0.4)
+  redis
   rgeo
   rgeo-geojson
   rspec-collection_matchers
@@ -371,6 +381,7 @@ DEPENDENCIES
   rswag-specs
   rubocop
   rubocop-performance
+  sidekiq
   simplecov
   sprockets-rails
   standard
