@@ -19,3 +19,7 @@ test:
 production:
   <<: *default
   database: <%= ENV.fetch("DATABASE_NAME", "fora") %>
+
+staging:
+  <<: *default
+  database: <%= ENV.fetch("DATABASE_NAME", "fora") %>
