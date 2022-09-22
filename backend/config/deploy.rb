@@ -10,7 +10,7 @@ set :deploy_to, '/var/www/fora-backend'
 
 set :rvm_custom_path, '/usr/share/rvm'
 
-set :linked_files, %w{config/master.key}
+set :linked_files, %w{config/master.key .env}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 set :keep_releases, 3
