@@ -1,5 +1,5 @@
 default: &defaults
-  push_api_key: <%= ENV['APPSIGNAL_PUSH_API_KEY'] %>
+  push_api_key: <%= ENV["APPSIGNAL_PUSH_API_KEY"] %>
   name: "Fora"
 
   # Actions that should not be monitored by AppSignal

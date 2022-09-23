@@ -33,11 +33,11 @@ gem "bootsnap", require: false
 gem "image_processing", ">= 1.2"
 gem "sidekiq"
 gem "appsignal"
+gem "aws-sdk-s3"
 
 gem "rgeo"
 gem "rgeo-geojson"
 gem "standard"
-
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]
