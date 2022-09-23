@@ -25,7 +25,7 @@ const Footer = () => {
               <Link href="/">
                 <a>
                   <Image
-                    src={LOGO_MONOCHROME_SVG}
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}${LOGO_MONOCHROME_SVG}`}
                     alt="Logo"
                     layout="fixed"
                     width={122}

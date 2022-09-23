@@ -1,5 +1,7 @@
 import React, { useMemo } from 'react';
 
+import { NAV } from 'constants/nav';
+
 import cx from 'classnames';
 
 import Image from 'next/image';
@@ -7,8 +9,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import Wrapper from 'containers/wrapper';
-
-import { NAV } from 'constants/nav';
 
 import LOGO_SVG from 'svgs/logo.svg';
 
@@ -30,7 +30,14 @@ const Header = () => {
           {/* LOGO */}
           <Link href="/">
             <a>
-              <Image src={LOGO_SVG} alt="Logo" layout="fixed" width={156} height={72} priority />
+              <Image
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH}${LOGO_SVG}`}
+                alt="Logo"
+                layout="fixed"
+                width={156}
+                height={72}
+                priority
+              />
             </a>
           </Link>
 
