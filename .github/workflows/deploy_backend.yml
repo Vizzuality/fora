@@ -1,4 +1,4 @@
-name: Deploy backend app
+name: Deploy to server
 
 on:
   push:
@@ -30,7 +30,8 @@ jobs:
         echo "##[set-output name=branch-upper;]$(echo ${GITHUB_REF#refs/heads/} | tr a-z A-Z )"
       id: extract_branch
 
-    - uses: miloserdow/capistrano-deploy@master
+    - name: Deploy using capistrano
+      uses: miloserdow/capistrano-deploy@master
       with:
         working-directory: backend
         target: ${{ steps.extract_branch.outputs.branch == 'main' && 'production' || steps.extract_branch.outputs.branch }}
