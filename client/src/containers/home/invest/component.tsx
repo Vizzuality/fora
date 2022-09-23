@@ -117,8 +117,7 @@ const Invest = () => {
               <Image
                 priority
                 layout="fixed"
-                // src="/images/what/what-2.png"
-                src="/images/invest/invest-1.jpg"
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/invest/invest-1.jpg`}
                 alt="Invest 1"
                 width={408}
                 height={370}
