@@ -37,7 +37,7 @@ const How = () => {
                 >
                   <Image
                     priority
-                    src="/images/how/dashboard.png"
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/how/dashboard.png`}
                     alt="Dashboard"
                     width={369}
                     height={421}
@@ -303,7 +303,7 @@ const How = () => {
                 >
                   <Image
                     priority
-                    src="/images/how/map.png"
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/how/map.png`}
                     alt="Dashboard"
                     width={439}
                     height={280}

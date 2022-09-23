@@ -98,7 +98,7 @@ const What = () => {
               >
                 <Image
                   priority
-                  src="/images/what/what-1.png"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/what/what-1.png`}
                   alt="What 1"
                   width={238}
                   height={356}
@@ -111,7 +111,7 @@ const What = () => {
               >
                 <Image
                   priority
-                  src="/images/what/what-2.png"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/what/what-2.png`}
                   alt="What 2"
                   width={238}
                   height={356}

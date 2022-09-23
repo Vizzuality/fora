@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { NAV, POLICIES } from 'constants/nav';
+
 import cx from 'classnames';
 
 import Image from 'next/image';
@@ -8,7 +10,6 @@ import Link from 'next/link';
 import Wrapper from 'containers/wrapper';
 
 import Icon from 'components/icon';
-import { NAV, POLICIES } from 'constants/nav';
 
 import LOGO_MONOCHROME_SVG from 'svgs/logo-monochrome.svg';
 import LINKEDIN_SVG from 'svgs/social/linkedin.svg?sprite';

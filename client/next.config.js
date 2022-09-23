@@ -18,6 +18,8 @@ const nextConfig = {
   swcMinify: true,
   // ? https://nextjs.org/docs/advanced-features/output-file-tracing#automatically-copying-traced-files
   output: 'standalone',
+  // ? https://nextjs.org/docs/api-reference/next.config.js/basepath
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH,
 };
 
 module.exports = withPlugins(
