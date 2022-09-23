@@ -85,3 +85,50 @@ module "server" {
   site_server_instance_type = var.ec2_instance_type
 }
 
+module "s3_file_storage" {
+  source         = "../s3"
+  s3_bucket_name = "${var.project_name}-${var.environment}"
+  tags           = var.tags
+}
+
+resource "aws_iam_user" "backend_aws_user" {
+  name = "fora_${var.environment}_backend_user"
+
+  tags = var.tags
+}
+
+resource "aws_iam_policy" "fora_file_storage_s3_rw_access" {
+  name = "Fora${title(var.environment)}S3ReadWriteAccessPolicy"
+  path = "/"
+
+  policy = jsonencode({
+    Version : "2012-10-17",
+    Statement : [
+      {
+        Action : [
+          "s3:ListBucket"
+        ],
+        Effect : "Allow",
+        Resource : [
+          "arn:aws:s3:::${module.s3_file_storage.bucket_name}"
+        ]
+      },
+      {
+        Action : [
+          "s3:GetObject",
+          "s3:PutObject",
+          "s3:DeleteObject"
+        ],
+        Effect : "Allow",
+        Resource : [
+          "arn:aws:s3:::${module.s3_file_storage.bucket_name}/*"
+        ]
+      }
+    ]
+  })
+}
+
+resource "aws_iam_user_policy_attachment" "s3_access_for_fora" {
+  user       = aws_iam_user.backend_aws_user.name
+  policy_arn = aws_iam_policy.fora_file_storage_s3_rw_access.arn
+}

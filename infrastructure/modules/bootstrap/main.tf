@@ -3,35 +3,11 @@
 ##
 
 # Build an S3 bucket to store TF state
-resource "aws_s3_bucket" "state_bucket" {
-  bucket = var.s3_bucket
-
-  # Prevents Terraform from destroying or replacing this object - a great safety mechanism
-  lifecycle {
-    prevent_destroy = true
-  }
-
-  tags = merge({ Resource = "Terraform State" }, var.tags)
+module "s3" {
+  source         = "../s3"
+  s3_bucket_name = var.s3_bucket
+  tags           = var.tags
 }
-
-resource "aws_s3_bucket_server_side_encryption_configuration" "state_bucket_sse" {
-  bucket = aws_s3_bucket.state_bucket.bucket
-
-  rule {
-    apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
-    }
-  }
-}
-
-resource "aws_s3_bucket_versioning" "state_bucket_versioning" {
-  bucket = aws_s3_bucket.state_bucket.bucket
-
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
-
 
 # Build a DynamoDB to use for terraform state locking
 resource "aws_dynamodb_table" "tf_lock_state" {
@@ -52,6 +28,6 @@ resource "aws_dynamodb_table" "tf_lock_state" {
   tags = merge({
     Name     = var.dynamo_db_table_name
     Resource = "Terraform State"
-    },
-  var.tags)
+  },
+    var.tags)
 }
