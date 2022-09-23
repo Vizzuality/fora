@@ -18,6 +18,7 @@ jobs:
       with:
         ruby-version: 3.1.2
         bundler-cache: true
+        working-directory: backend
 
     - name: Extract branch name
       shell: bash
