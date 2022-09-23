@@ -36,4 +36,4 @@ jobs:
         working-directory: backend
         target: ${{ steps.extract_branch.outputs.branch == 'main' && 'production' || steps.extract_branch.outputs.branch }}
         deploy_key: ${{ secrets.DEPLOY_KEY_PASSWORD }}
-        enc_rsa_key_pth: ../deploy_key
+        enc_rsa_key_val: ${{ secrets.DEPLOY_KEY }}
