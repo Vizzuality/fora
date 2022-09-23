@@ -5,12 +5,12 @@
 - Ruby v3.1.2
 - Bundler v2.3.3
 - PostgreSQL v14
+- Sidekiq + Redis
+- AppSignal
 
 ## Local installation
 
 These are the steps to run the project locally:
-
-See ENV VARS documented in ENV_VARS.md
 
 ### Installing ruby dependencies
 
@@ -62,3 +62,25 @@ If you only need to add, remove or replace data without replacing the whole snap
 To fix linter issues
 
 `bin/rails standard:fix`
+
+## ENV variables
+
+| Variable name            | Description                                                                         |                          Default value |
+|--------------------------|-------------------------------------------------------------------------------------|---------------------------------------:|
+| RAILS_ENV                | Rails environment                                                                   |                            development |
+| RAILS_MAX_THREADS        | Number of Puma threads                                                              |                                      5 |
+| SECRET_KEY_BASE          | secret to the application's key generator                                           |                                        |
+| INSTANCE_ROLE            | staging or production, NOT the same as RAILS_ENV as that is "production" in staging as well |                                        |
+| BACKEND_URL              | Rails app url                                                                       | http://localhost:4000/sub-path/backend |
+| RAILS_RELATIVE_URL_ROOT  | if running backend application in sub url                                           |                      /sub-path/backend |
+| DATABASE_NAME            | db setup                                                                            |                                   fora |
+| DATABASE_USER            | db setup                                                                            |                               postgres |
+| DATABASE_PASSWORD        | db setup                                                                            |                                        |
+| DATABASE_HOST            | db setup                                                                            |                              localhost |
+| REDIS_URL                | url to redis used by sidekiq                                                        |                 redis://localhost:6379 |
+| REDIS_PASSWORD           |                                                                                     |                                        |
+| AWS_ACCESS_KEY_ID        | S3 storage                                                                          |                                        |
+| AWS_SECRET_ACCESS_KEY    | S3 storage                                                                          |                                        |
+| AWS_S3_BUCKET_NAME       | S3 storage                                                                          |                                        |
+| AWS_REGION               | S3 storage                                                                          |                                        |
+| APPSIGNAL_PUSH_API_KEY   | AppSignal API key                                                                   |                                        |
