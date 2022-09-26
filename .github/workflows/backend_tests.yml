@@ -44,13 +44,11 @@ jobs:
           working-directory: backend
 
       - name: Setup database
-        with:
-          working-directory: backend
+        working-directory: backend
         run: |
           bundle exec rails db:create
           bundler exec rails db:schema:load
 
       - name: Run tests 🔧
-        with:
-          working-directory: backend
+        working-directory: backend
         run: bundle exec rspec spec --fail-fast
