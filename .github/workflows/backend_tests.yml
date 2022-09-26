@@ -20,7 +20,6 @@ jobs:
         ports:
           - 5432:5432
         env:
-          POSTGRES_DB: ${{ env.DATABASE_NAME }}
           POSTGRES_USER: ${{ env.DATABASE_USER }}
           POSTGRES_PASSWORD: ${{ env.DATABASE_PASSWORD }}
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -50,6 +49,6 @@ jobs:
           bundle exec rails db:create
           bundler exec rails db:schema:load
 
-      - name: Run tests 🔧
+      - name: Run tests
         working-directory: backend
         run: bundle exec rspec spec --fail-fast
