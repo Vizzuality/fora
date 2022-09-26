@@ -1,0 +1,86 @@
+name: Backend CI/CD
+
+on: [push, workflow_dispatch]
+
+jobs:
+  tests:
+    name: Run backend tests
+    runs-on: ubuntu-20.04
+    env:
+      DATABASE_NAME: fora_test
+      DATABASE_PASSWORD: postgres
+      DATABASE_USER: postgres
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      RAILS_ENV: test
+
+    services:
+      postgres:
+        image: postgis/postgis:14-master
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: ${{ env.DATABASE_USER }}
+          POSTGRES_PASSWORD: ${{ env.DATABASE_PASSWORD }}
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - name: Checkout️
+        uses: actions/checkout@v2
+
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt update
+          sudo bash -c "echo deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main >> /etc/apt/sources.list.d/pgdg.list"
+          wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+          sudo apt-get update
+          sudo apt-get -yqq install libpq-dev postgresql-client-14
+
+      - name: Install ruby + gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.2
+          bundler-cache: true
+          working-directory: backend
+
+      - name: Setup database
+        working-directory: backend
+        run: |
+          bundle exec rails db:create
+          bundler exec rails db:schema:load
+
+      - name: Run tests
+        working-directory: backend
+        run: bundle exec rspec spec --fail-fast
+
+  deploy:
+    name: Deploy backend app
+#    if: (github.head_ref || github.ref_name) == 'main' || (github.head_ref || github.ref_name) == 'staging'
+    if: (github.head_ref || github.ref_name) == 'staging'
+    runs-on: ubuntu-20.04
+    needs: tests
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Install ruby + gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.2
+          bundler-cache: true
+          working-directory: backend
+
+      - name: Extract branch name
+        shell: bash
+        run: |
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+          echo "##[set-output name=branch-upper;]$(echo ${GITHUB_REF#refs/heads/} | tr a-z A-Z )"
+        id: extract_branch
+
+      - name: Deploy using capistrano
+        uses: miloserdow/capistrano-deploy@master
+        with:
+          working-directory: backend
+          target: ${{ steps.extract_branch.outputs.branch == 'main' && 'production' || steps.extract_branch.outputs.branch }}
+          deploy_key: ${{ secrets.DEPLOY_KEY_PASSWORD }}
+          enc_rsa_key_val: ${{ secrets.DEPLOY_ENC_KEY }}

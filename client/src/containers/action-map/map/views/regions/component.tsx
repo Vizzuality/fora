@@ -10,11 +10,11 @@ import CHROMA from 'chroma-js';
 import { geoCentroid } from 'd3-geo';
 import { max } from 'lodash';
 
+import { MAP_RAMP } from 'constants/colors';
+
 import Geography from 'containers/action-map/map/geography';
 import { getStyles } from 'containers/action-map/map/utils';
 import type { ViewProps } from 'containers/action-map/map/views/types';
-
-import { MAP_RAMP } from 'constants/colors';
 
 import DATA from './data.json';
 

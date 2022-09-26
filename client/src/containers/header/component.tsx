@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 
-import { NAV } from 'constants/nav';
-
 import cx from 'classnames';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
+import { NAV } from 'constants/nav';
 
 import Wrapper from 'containers/wrapper';
 
