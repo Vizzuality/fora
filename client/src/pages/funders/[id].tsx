@@ -2,6 +2,7 @@ import Head from 'next/head';
 
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 
+import Funder from 'containers/funder';
 import MetaTags from 'containers/meta-tags';
 
 import FUNDERS from 'services/funders';
@@ -14,10 +15,7 @@ const FundersDetailPage: React.FC = () => {
   return (
     <div>
       <MetaTags title={TITLE_TEXT} description={DESCRIPTION_TEXT} type="website" />
-      <Head>
-        <title>Funders detail</title>
-      </Head>
-      Funders detail
+      <Funder />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 
 import MetaTags from 'containers/meta-tags';
+import Project from 'containers/project';
 
 import PROJECTS from 'services/projects';
 
@@ -14,10 +15,7 @@ const ProjectsDetailPage: React.FC = () => {
   return (
     <div>
       <MetaTags title={TITLE_TEXT} description={DESCRIPTION_TEXT} type="website" />
-      <Head>
-        <title>Projects detail</title>
-      </Head>
-      Projects detail
+      <Project />
     </div>
   );
 };
