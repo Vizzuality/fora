@@ -62,7 +62,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v1
 
-      - name: Install ruby + gems 💎
+      - name: Install ruby + gems
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1.2
