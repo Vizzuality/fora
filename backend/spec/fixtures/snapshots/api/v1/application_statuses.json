@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "id": "does_not_provide_funding",
+      "type": "application_status",
+      "attributes": {
+        "name": "Does not provide funding"
+      }
+    },
+    {
+      "id": "invitation_only",
+      "type": "application_status",
+      "attributes": {
+        "name": "Invitation only"
+      }
+    },
+    {
+      "id": "open_invitations",
+      "type": "application_status",
+      "attributes": {
+        "name": "Open Invitations"
+      }
+    }
+  ]
+}

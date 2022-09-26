@@ -1,0 +1,13 @@
+# This file was generated with rails g enum <%= class_name %>
+
+module API
+  module V1
+    class <%= class_name.pluralize %>Controller < BaseController
+      load_and_authorize_resource
+
+      def index
+        render json: API::V1::Enums::<%= class_name %>Serializer.new(@<%= file_name.pluralize %>).serializable_hash
+      end
+    end
+  end
+end

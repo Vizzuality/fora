@@ -1,0 +1,102 @@
+{
+  "data": [
+    {
+      "id": "accelerator",
+      "type": "funder_type",
+      "attributes": {
+        "name": "Accelerator"
+      }
+    },
+    {
+      "id": "advisory",
+      "type": "funder_type",
+      "attributes": {
+        "name": "Advisory"
+      }
+    },
+    {
+      "id": "bank",
+      "type": "funder_type",
+      "attributes": {
+        "name": "Bank"
+      }
+    },
+    {
+      "id": "educational_land_based",
+      "type": "funder_type",
+      "attributes": {
+        "name": "Educational Land Based"
+      }
+    },
+    {
+      "id": "family_office",
+      "type": "funder_type",
+      "attributes": {
+        "name": "Family Office"
+      }
+    },
+    {
+      "id": "funder_collaborative_or_network",
+      "type": "funder_type",
+      "attributes": {
+        "name": "Funder Collaborative or Network"
+      }
+    },
+    {
+      "id": "individual",
+      "type": "funder_type",
+      "attributes": {
+        "name": "Individual"
+      }
+    },
+    {
+      "id": "initiative",
+      "type": "funder_type",
+      "attributes": {
+        "name": "Initiative"
+      }
+    },
+    {
+      "id": "loan_fund",
+      "type": "funder_type",
+      "attributes": {
+        "name": "Loan Fund"
+      }
+    },
+    {
+      "id": "network_of_funders",
+      "type": "funder_type",
+      "attributes": {
+        "name": "Network of funders"
+      }
+    },
+    {
+      "id": "private_foundation",
+      "type": "funder_type",
+      "attributes": {
+        "name": "Private Foundation"
+      }
+    },
+    {
+      "id": "public_foundation",
+      "type": "funder_type",
+      "attributes": {
+        "name": "Public Foundation"
+      }
+    },
+    {
+      "id": "regrantor",
+      "type": "funder_type",
+      "attributes": {
+        "name": "Regrantor"
+      }
+    },
+    {
+      "id": "other",
+      "type": "funder_type",
+      "attributes": {
+        "name": "Other"
+      }
+    }
+  ]
+}
