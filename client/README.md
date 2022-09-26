@@ -52,9 +52,7 @@ Check out the [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Deploying on AWS servers (staging + production)
 
-Deploying the application to staging or production is done using [Capistrano](https://capistranorb.com/), which is
-already configured.
-You will need SSH access to the server, which you can get from the server's admin.
+See [the root README.md file](../README.md#deploying-on-aws-servers-staging--production)
 
 
 ## Contribution rules
