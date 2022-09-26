@@ -76,7 +76,7 @@ jobs:
           echo "##[set-output name=branch-upper;]$(echo ${GITHUB_REF#refs/heads/} | tr a-z A-Z )"
         id: extract_branch
 
-      - name: Deploy using capistrano 🚀
+      - name: Deploy using capistrano
         uses: miloserdow/capistrano-deploy@master
         with:
           working-directory: backend
