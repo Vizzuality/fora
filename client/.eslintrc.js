@@ -96,6 +96,11 @@ module.exports = {
             position: 'before',
           },
           {
+            pattern: 'store',
+            group: 'external',
+            position: 'before',
+          },
+          {
             pattern: 'store/**',
             group: 'external',
             position: 'before',

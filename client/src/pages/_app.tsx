@@ -5,6 +5,8 @@ import { useRouter } from 'next/router';
 
 import { GAPage } from 'lib/analytics/ga';
 
+import { STORE_WRAPPER } from 'store';
+
 import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
 
 // import { SessionProvider } from 'next-auth/react';
@@ -16,7 +18,6 @@ import RouteLoading from 'containers/route-loading';
 import ThirdParty from 'containers/third-party';
 
 import { MediaContextProvider } from 'components/media-query';
-import { STORE_WRAPPER } from 'store';
 
 import 'styles/globals.css';
 import 'styles/flicking.css';
