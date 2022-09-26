@@ -10,7 +10,7 @@ export const MoreFiltersList = () => {
 
   return (
     <div className="relative flex flex-col py-px overflow-hidden grow">
-      <div className="absolute left-0 z-10 w-full h-5 pointer-events-none -top-1 bg-gradient-to-b from-white via-white" />
+      <div className="absolute left-0 z-10 w-full h-10 pointer-events-none -top-1 bg-gradient-to-b from-white via-white" />
 
       <div className="overflow-x-hidden overflow-y-auto divide-y divide-grey-40/50 grow">
         {type === 'funders' && (
@@ -28,7 +28,7 @@ export const MoreFiltersList = () => {
         )}
       </div>
 
-      <div className="absolute bottom-0 left-0 z-10 w-full h-5 pointer-events-none bg-gradient-to-t from-white via-white" />
+      <div className="absolute bottom-0 left-0 z-10 w-full h-10 pointer-events-none bg-gradient-to-t from-white via-white" />
     </div>
   );
 };
