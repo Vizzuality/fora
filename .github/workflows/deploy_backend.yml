@@ -13,6 +13,13 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
+    - name: Wait for backend tests
+      uses: fountainhead/action-wait-for-check@v1.0.0
+      with:
+        token: ${{ secrets.REPO_ACCESS_TOKEN }}
+        checkName: Backend tests
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
     - name: Checkout code
       uses: actions/checkout@v1
 
