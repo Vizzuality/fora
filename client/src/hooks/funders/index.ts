@@ -230,7 +230,7 @@ export function useFunder(id) {
       url: `/${id}`,
     }).then((response) => response.data);
 
-  const query = useQuery(['funders', id], fetchFunder, {
+  const query = useQuery(['funder', id], fetchFunder, {
     enabled: !!id,
     retry: false,
     keepPreviousData: true,

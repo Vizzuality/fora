@@ -197,3 +197,35 @@ export function useProjectsInfinity(options: AdapterOptionsProps = {}) {
     };
   }, [query, DATA]);
 }
+
+/**
+****************************************
+  FUNDER [ID]
+****************************************
+*/
+
+export function useProject(id) {
+  const fetchProject = () =>
+    PROJECTS.request({
+      method: 'GET',
+      url: `/${id}`,
+    }).then((response) => response.data);
+
+  const query = useQuery(['project', id], fetchProject, {
+    enabled: !!id,
+    retry: false,
+    keepPreviousData: true,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    placeholderData: {},
+  });
+
+  const { data } = query;
+
+  return useMemo(() => {
+    return {
+      ...query,
+      data: data,
+    };
+  }, [query, data]);
+}
