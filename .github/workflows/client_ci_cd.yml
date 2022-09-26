@@ -1,0 +1,61 @@
+name: Client CI/CD
+
+on: [push, workflow_dispatch]
+
+env:
+  NEXT_PUBLIC_BASE_PATH: ""
+
+jobs:
+  tests:
+    name: Run client tests
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout️
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 16.14
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.14'
+
+      - name: Install node modules
+        working-directory: client
+        run: yarn install
+
+      - name: Run tests
+        working-directory: client
+        run: yarn test
+
+  deploy:
+    name: Deploy client app
+#    if: (github.head_ref || github.ref_name) == 'main' || (github.head_ref || github.ref_name) == 'staging'
+    if: (github.head_ref || github.ref_name) == 'staging'
+    runs-on: ubuntu-20.04
+    needs: tests
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Install ruby + gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.2
+          bundler-cache: true
+          working-directory: client
+
+      - name: Extract branch name
+        shell: bash
+        run: |
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+          echo "##[set-output name=branch-upper;]$(echo ${GITHUB_REF#refs/heads/} | tr a-z A-Z )"
+        id: extract_branch
+
+      - name: Deploy using capistrano
+        uses: miloserdow/capistrano-deploy@master
+        with:
+          working-directory: client
+          target: ${{ steps.extract_branch.outputs.branch == 'main' && 'production' || steps.extract_branch.outputs.branch }}
+          deploy_key: ${{ secrets.DEPLOY_KEY_PASSWORD }}
+          enc_rsa_key_val: ${{ secrets.DEPLOY_ENC_KEY }}

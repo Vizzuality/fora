@@ -10,7 +10,7 @@ export interface InfoCardProps {
   data: {
     id: string;
     title: string;
-    description: string;
+    value: string;
     info: string;
     href?: string;
     areas?: {
@@ -20,7 +20,7 @@ export interface InfoCardProps {
   }[];
 }
 
-const infoCard = ({ data }: InfoCardProps) => {
+const InfoCard = ({ data }: InfoCardProps) => {
   return (
     <div className="p-12 space-y-8 bg-green-80">
       <div>
@@ -30,7 +30,7 @@ const infoCard = ({ data }: InfoCardProps) => {
       </div>
 
       <dl className="">
-        {data.map(({ id, title, info, description }) => (
+        {data.map(({ id, title, info, value }) => (
           <div key={id} className="py-4 border-t border-grey-40/40">
             <span className="inline-flex items-center text-base font-semibold uppercase">
               <dt className="pr-2 uppercase whitespace-nowrap">{title}</dt>
@@ -56,7 +56,7 @@ const infoCard = ({ data }: InfoCardProps) => {
                 </div>
               </Tooltip>
             </span>
-            <dd>{description}</dd>
+            <dd>{value}</dd>
           </div>
         ))}
       </dl>
@@ -64,4 +64,4 @@ const infoCard = ({ data }: InfoCardProps) => {
   );
 };
 
-export default infoCard;
+export default InfoCard;

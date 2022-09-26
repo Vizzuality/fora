@@ -5,10 +5,11 @@ import cx from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { NAV, POLICIES } from 'constants/nav';
+
 import Wrapper from 'containers/wrapper';
 
 import Icon from 'components/icon';
-import { NAV, POLICIES } from 'constants/nav';
 
 import LOGO_MONOCHROME_SVG from 'svgs/logo-monochrome.svg';
 import LINKEDIN_SVG from 'svgs/social/linkedin.svg?sprite';
@@ -24,7 +25,7 @@ const Footer = () => {
               <Link href="/">
                 <a>
                   <Image
-                    src={LOGO_MONOCHROME_SVG}
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}${LOGO_MONOCHROME_SVG}`}
                     alt="Logo"
                     layout="fixed"
                     width={122}

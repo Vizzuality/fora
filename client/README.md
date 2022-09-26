@@ -50,6 +50,11 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## Deploying on AWS servers (staging + production)
+
+See [the root README.md file](../README.md#deploying-on-aws-servers-staging--production)
+
+
 ## Contribution rules
 
 Please, **create a PR** for any improvement or feature you want to add. Try to not commit directly anything on the `main` branch.
@@ -87,6 +92,7 @@ Here's a step by step guide on how to address vulnerabilities found in productio
 | NEXT_PUBLIC_MAPBOX_API_TOKEN  | Mapbox token. |    |
 | STORYBOOK_MAPBOX_API_TOKEN  | Mapbox token for storybook. |    |
 | NEXT_PUBLIC_GA_TRACKING_ID  | Google Analytics tracking ID. If you're working with an Google Analytics 4 property, you have a Measurement ID instead of a Tracking ID. |    |
+| NEXT_PUBLIC_BASE_PATH  | As this project should live in a subpath of a domain, we need to specify a basePath inside the next.config.js. You may think this variable must be without the NEXT_PUBLIC but it also affects the images urls. That's why we need it at build and run time. We MUST leave it as an empty string for Vercel and local environments = "" [https://nextjs.org/docs/api-reference/next.config.js/basepath](https://nextjs.org/docs/api-reference/next.config.js/basepath)  |    |
 
 
 

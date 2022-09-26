@@ -3,37 +3,37 @@ export const PROJECT_CARD_INFO = [
     id: 'organization-type',
     title: 'Organization Type',
     info: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
-    description: 'Public Foundation',
+    value: 'Public Foundation',
   },
   {
     id: 'application-status',
     title: 'Application Status',
     info: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
-    description: 'Invite only',
+    value: 'Invite only',
   },
   {
     id: 'capital-acceptance',
     title: 'Capital Acceptance',
     info: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
-    description: 'Donations Accepted',
+    value: 'Donations Accepted',
   },
   {
     id: 'capital-type',
     title: 'Capital Type',
     info: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
-    description: 'Grant',
+    value: 'Grant',
   },
   {
     id: 'legal-status',
     title: 'Legal Status',
     info: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
-    description: 'Grant',
+    value: 'Grant',
   },
   {
     id: 'demographic-leadership',
     title: 'Demographic Leadership',
     info: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
-    description: 'Black or African American',
+    value: 'Black or African American',
   },
 ];
 

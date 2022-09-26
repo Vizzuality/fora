@@ -200,11 +200,11 @@ export function useProjectsInfinity(options: AdapterOptionsProps = {}) {
 
 /**
 ****************************************
-  FUNDER [ID]
+  PROJECT [ID]
 ****************************************
 */
 
-export function useProject(id) {
+export function useProject(id: string) {
   const fetchProject = () =>
     PROJECTS.request({
       method: 'GET',

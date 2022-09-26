@@ -33,7 +33,7 @@ const OverviewFunder = () => {
         </div>
 
         <div className="flex justify-between">
-          <div className="max-w-[50px]">
+          <div className="relative max-w-[50px] w-full shrink-0">
             <Image
               src="/images/avatar.png"
               alt={funderData.title}

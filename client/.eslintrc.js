@@ -106,6 +106,11 @@ module.exports = {
             position: 'before',
           },
           {
+            pattern: 'constants/**',
+            group: 'internal',
+            position: 'before',
+          },
+          {
             pattern: 'containers/**',
             group: 'internal',
             position: 'before',

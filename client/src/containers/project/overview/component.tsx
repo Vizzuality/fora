@@ -14,32 +14,32 @@ const PROJECT_CARD_INFO = [
     id: 'geographic-scope',
     title: 'Geographic Scope',
     info: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
-    description: 'Southeast',
+    value: 'Southeast',
   },
   {
     id: 'area-of-focus',
     title: 'Area of Focus',
     info: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
-    description: 'Invite only',
+    value: 'Invite only',
   },
   {
     id: 'demographic-scope',
     title: 'Demographic Scope',
     info: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
-    description: 'Donations Accepted',
+    value: 'Donations Accepted',
   },
   {
     id: 'demographic-leadership',
     title: 'Demographic Leadership',
     info: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
-    description: 'Grant',
+    value: 'Grant',
   },
 ];
 
 const OverviewProject = () => {
   const { query } = useRouter();
   const { id: projectId } = query;
-  const { data: projectData } = useProject(projectId);
+  const { data: projectData } = useProject(`${projectId}`);
 
   return (
     <div className="flex space-x-32">

@@ -31,7 +31,7 @@ const Hero = () => {
                 <Image
                   priority
                   layout="fixed"
-                  src="/images/hero/hero-2.png"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/hero/hero-2.png`}
                   alt="Hero 2"
                   width={406}
                   height={337}
@@ -46,7 +46,7 @@ const Hero = () => {
                 <Image
                   priority
                   layout="fixed"
-                  src="/images/hero/hero-1.png"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/hero/hero-1.png`}
                   alt="Hero 1"
                   width={389}
                   height={248}
@@ -61,7 +61,7 @@ const Hero = () => {
                 <Image
                   priority
                   layout="fixed"
-                  src="/images/hero/hero-3.png"
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/hero/hero-3.png`}
                   alt="Hero 3"
                   width={389}
                   height={597}

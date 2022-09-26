@@ -1,0 +1,17 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths: {}
+components:
+  securitySchemes: {}
+  schemas: {}
+servers:
+- url: "/backend"
+- url: "{scheme}://{host}"
+  variables:
+    scheme:
+      default: http
+    host:
+      default: localhost:4000

@@ -1,0 +1,82 @@
+source "https://rubygems.org"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby "3.1.2"
+
+
+gem "rails", "~> 7.0.4"
+gem "pg", "~> 1.4"
+gem "activerecord-postgis-adapter"
+gem "puma", "~> 5.6"
+gem "rswag"
+gem "rspec-rails", "6.0.0.rc1"
+gem "cancancan"
+gem "redis"
+
+gem "dotenv-rails"
+
+# BackOffice
+gem "tailwindcss-rails", "~> 2.0"
+gem "jsbundling-rails"
+gem "sprockets-rails"
+gem "stimulus-rails"
+gem "turbo-rails"
+
+# API
+gem "jsonapi-serializer"
+gem "pagy"
+
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+
+gem "bootsnap", require: false
+
+gem "image_processing", ">= 1.2"
+gem "sidekiq"
+gem "appsignal"
+gem "aws-sdk-s3"
+
+gem "rgeo"
+gem "rgeo-geojson"
+gem "standard"
+
+group :development, :test do
+  gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem "factory_bot_rails"
+  gem "faker"
+end
+
+group :development do
+  gem "brakeman", require: false
+  gem "bundler-audit", require: false
+  gem "rubocop"
+  gem "rubocop-performance"
+  gem "web-console"
+  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
+  # gem "rack-mini-profiler"
+  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
+  # gem "spring"
+
+  # Capistrano
+  gem "capistrano", "~> 3.17", require: false
+  gem "capistrano-bundler", "~> 2.1", require: false
+  gem "capistrano-passenger", "~> 0.2.1", require: false
+  gem "capistrano-rails", "~> 1.6", require: false
+  gem 'capistrano-rvm', "~> 0.1.2", require: false
+  gem "capistrano-yarn", "~> 2.0.2", require: false
+  gem "capistrano-db-tasks", "~> 0.6", require: false
+  gem "bcrypt_pbkdf"
+  gem "ed25519"
+end
+
+group :test do
+  gem "capybara", ">= 3.26"
+  gem "cuprite"
+  gem "rspec-collection_matchers"
+  gem "rspec-retry"
+  gem "rspec-request_snapshot", github: "tsubik/rspec-request_snapshot", branch: "fix/ignore-order"
+  gem "rswag-specs"
+  gem "simplecov", require: false
+  gem "super_diff"
+  gem "test-prof"
+  gem "webmock"
+end

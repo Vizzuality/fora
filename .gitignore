@@ -3,3 +3,6 @@
 # misc
 *.DS_Store
 *.pem
+
+/infrastructure/.terraform/
+/client/log
