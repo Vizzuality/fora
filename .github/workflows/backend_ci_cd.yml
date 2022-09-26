@@ -54,7 +54,8 @@ jobs:
 
   deploy:
     name: Deploy backend app
-    if: (github.head_ref || github.ref_name) == 'main' || (github.head_ref || github.ref_name) == 'staging'
+#    if: (github.head_ref || github.ref_name) == 'main' || (github.head_ref || github.ref_name) == 'staging'
+    if: (github.head_ref || github.ref_name) == 'staging'
     runs-on: ubuntu-20.04
     needs: tests
 
