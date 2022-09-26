@@ -28,8 +28,8 @@ export async function getStaticPaths() {
     url: '/',
   }).then((r) => r.data);
 
-  const paths = response.map((funder) => ({
-    params: { id: `${funder.id}` },
+  const paths = response.map((f) => ({
+    params: { id: `${f.id}` },
   }));
 
   // console.log('paths', paths);
@@ -44,14 +44,14 @@ export async function getStaticProps(ctx) {
   const { id } = ctx.params;
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(['projects', id], () => {
+  await queryClient.prefetchQuery(['funder', id], () => {
     return FUNDERS.request({
       method: 'GET',
       url: `/${id}`,
     }).then((r) => r.data);
   });
 
-  // console.log(queryClient.getQueriesData(['projects', id]));
+  // console.log(queryClient.getQueriesData(['funder', id]));
 
   // Props returned will be passed to the page component
   return {
