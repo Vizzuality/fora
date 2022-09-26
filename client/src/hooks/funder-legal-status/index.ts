@@ -1,28 +1,30 @@
 import { useMemo } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
 import FUNDERS_LEGAL_STATUS from 'services/funder-legal-status';
 
 import MOCK from './mock.json';
+import { ResponseData } from './types';
 
-export function useFunderLegalStatus() {
+export function useFunderLegalStatus<T = ResponseData>(
+  queryOptions: UseQueryOptions<ResponseData, unknown, T> = {}
+) {
   const fetchFundersLegalStatus = () =>
     FUNDERS_LEGAL_STATUS.request({
       method: 'GET',
       url: '/',
-    });
+    }).then((response) => response.data);
 
   const query = useQuery(['funders-legal-status'], fetchFundersLegalStatus, {
-    keepPreviousData: true,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+    placeholderData: [],
+    ...queryOptions,
   });
 
   const { data } = query;
 
   const DATA = useMemo(() => {
-    if (!data?.data) {
+    if (!data) {
       return [];
     }
 
