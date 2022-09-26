@@ -1,0 +1,52 @@
+env:
+  POSTGRES_DB: fora_test
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_USER: postgres
+  RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+  RAILS_ENV: test
+
+
+name: Backend tests
+
+on: [push, workflow_dispatch]
+
+jobs:
+  rspec:
+    name: Backend tests
+    runs-on: ubuntu-20.04
+    services:
+      postgres:
+        image: postgis/postgis:14-master
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+
+      - name: Install PostgreSQL client 🐘
+        run: |
+          sudo apt update
+          sudo bash -c "echo deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main >> /etc/apt/sources.list.d/pgdg.list"
+          wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+          sudo apt-get update
+          sudo apt-get -yqq install libpq-dev postgresql-client-14
+
+      - name: Install ruby + gems 💎
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.2
+          bundler-cache: true
+          working-directory: backend
+
+      - name: Setup database
+        run: |
+          bundle exec rails db:create
+          bundler exec rails db:schema:load
+
+      - name: Run tests 🔧
+        run: bundle exec rspec spec --fail-fast
