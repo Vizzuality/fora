@@ -4,10 +4,11 @@ import useCookie from 'react-use-cookie';
 
 import Script from 'next/script';
 
+import { GA_TRACKING_ID } from 'lib/analytics/ga';
+
 import { useModal } from 'hooks/modals';
 
 import Cookies from 'components/cookies';
-import { GA_TRACKING_ID } from 'lib/analytics/ga';
 
 const ThirdParty: React.FC = () => {
   const [consentCookie, setConsentCookie] = useCookie('consent', undefined);

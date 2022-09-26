@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 
+import { jsonPlaceholderAdapter } from 'lib/adapters/json-placeholder-adapter';
+import { AdapterOptionsProps } from 'lib/adapters/types';
+
 import { View } from 'store/action-map';
 
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { groupBy, orderBy } from 'lodash';
-
-import { jsonPlaceholderAdapter } from 'lib/adapters/json-placeholder-adapter';
-import { AdapterOptionsProps } from 'lib/adapters/types';
 
 import PROJECTS from 'services/projects';
 
