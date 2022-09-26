@@ -1,28 +1,30 @@
 import { useMemo } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
 import CAPITAL_TYPES from 'services/capital-types';
 
 import MOCK from './mock.json';
+import { ResponseData } from './types';
 
-export function useCapitalTypes() {
+export function useCapitalTypes<T = ResponseData>(
+  queryOptions: UseQueryOptions<ResponseData, unknown, T> = {}
+) {
   const fetchCapitalTypes = () =>
     CAPITAL_TYPES.request({
       method: 'GET',
       url: '/',
-    });
+    }).then((response) => response.data);
 
   const query = useQuery(['capital-types'], fetchCapitalTypes, {
-    keepPreviousData: true,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+    placeholderData: [],
+    ...queryOptions,
   });
 
   const { data } = query;
 
   const DATA = useMemo(() => {
-    if (!data?.data) {
+    if (!data) {
       return [];
     }
 
