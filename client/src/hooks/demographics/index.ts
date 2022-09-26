@@ -1,28 +1,30 @@
 import { useMemo } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
 import DEMOGRAPHICS from 'services/demographics';
 
 import MOCK from './mock.json';
+import { ResponseData } from './types';
 
-export function useDemographics() {
+export function useDemographics<T = ResponseData>(
+  queryOptions: UseQueryOptions<ResponseData, unknown, T> = {}
+) {
   const fetchDemographics = () =>
     DEMOGRAPHICS.request({
       method: 'GET',
       url: '/',
-    });
+    }).then((response) => response.data);
 
   const query = useQuery(['demographics'], fetchDemographics, {
-    keepPreviousData: true,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+    placeholderData: [],
+    ...queryOptions,
   });
 
   const { data } = query;
 
   const DATA = useMemo(() => {
-    if (!data?.data) {
+    if (!data) {
       return [];
     }
 

@@ -3,11 +3,13 @@ import { useCallback, useEffect, useState } from 'react';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
+import { GAPage } from 'lib/analytics/ga';
+
 import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
 // import { SessionProvider } from 'next-auth/react';
-import ApplicationLayout from 'layouts/application';
-import { GAPage } from 'lib/analytics/ga';
 import { STORE_WRAPPER } from 'store';
+
+import ApplicationLayout from 'layouts/application';
 
 import MetaIcons from 'containers/meta-icons';
 import RouteLoading from 'containers/route-loading';
