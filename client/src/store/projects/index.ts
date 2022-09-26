@@ -1,10 +1,10 @@
 import router from 'next/router';
 
+import { STORE_WRAPPER } from 'store';
+
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 import qs from 'query-string';
-
-import { STORE_WRAPPER } from 'store';
 
 export type Geographic = 'states' | 'regions' | 'national' | 'countries';
 export type Sort = {
