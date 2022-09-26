@@ -1,28 +1,30 @@
 import { useMemo } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
 import AREAS from 'services/areas';
 
 import MOCK from './mock.json';
+import { ResponseData } from './types';
 
-export function useAreas() {
+export function useAreas<T = ResponseData>(
+  queryOptions: UseQueryOptions<ResponseData, unknown, T> = {}
+) {
   const fetchAreas = () =>
     AREAS.request({
       method: 'GET',
       url: '/',
-    });
+    }).then((response) => response.data);
 
   const query = useQuery(['areas'], fetchAreas, {
-    keepPreviousData: true,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+    placeholderData: [],
+    ...queryOptions,
   });
 
   const { data } = query;
 
   const DATA = useMemo(() => {
-    if (!data?.data) {
+    if (!data) {
       return [];
     }
 
