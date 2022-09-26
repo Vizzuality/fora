@@ -54,7 +54,8 @@ jobs:
 
   deploy:
     name: Deploy backend app
-    if: (github.head_ref || github.ref_name) == 'main' || (github.head_ref || github.ref_name) == 'staging'
+#    if: (github.head_ref || github.ref_name) == 'main' || (github.head_ref || github.ref_name) == 'staging'
+    if: (github.head_ref || github.ref_name) == 'staging'
     runs-on: ubuntu-20.04
     needs: tests
 
@@ -76,7 +77,7 @@ jobs:
           echo "##[set-output name=branch-upper;]$(echo ${GITHUB_REF#refs/heads/} | tr a-z A-Z )"
         id: extract_branch
 
-      - name: Deploy using capistrano 🚀
+      - name: Deploy using capistrano
         uses: miloserdow/capistrano-deploy@master
         with:
           working-directory: backend
