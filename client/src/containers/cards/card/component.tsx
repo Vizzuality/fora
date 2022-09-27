@@ -15,10 +15,9 @@ export interface CardProps {
 }
 
 const Cards = ({
-  id,
   name,
   description,
-  href = `/funders/${id}`,
+  href = '',
   image = '/images/avatar.png',
   areas = [
     {
