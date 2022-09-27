@@ -20,7 +20,7 @@ import { PROJECT_CARD_INFO, PROJECT_INFO } from './constants';
 const OverviewFunder = () => {
   const { query } = useRouter();
   const { id: funderId } = query;
-  const { data: funderData } = useFunder(funderId);
+  const { data: funderData } = useFunder(`${funderId}`);
 
   return (
     <div className="flex space-x-32">

@@ -1,4 +1,8 @@
+import { useRouter } from 'next/router';
+
 import { dehydrate, QueryClient } from '@tanstack/react-query';
+
+import { useFunder } from 'hooks/funders';
 
 import Funder from 'containers/funder';
 import MetaTags from 'containers/meta-tags';
@@ -7,12 +11,19 @@ import FUNDERS from 'services/funders';
 
 const DESCRIPTION_TEXT =
   'FORA (Funders for Regenerative Agriculture) is a network of funders and funder initiatives aimed at informing, educating, organizing, providing collaborative opportunities, and recruiting new members in support of regenerative agricultural systems. ';
-const TITLE_TEXT = 'Funder detail - Funders for Regenerative Agriculture';
 
 const FundersDetailPage: React.FC = () => {
+  const { query } = useRouter();
+  const { id: funderId } = query;
+  const { data: funderData } = useFunder(`${funderId}`);
+
   return (
     <div>
-      <MetaTags title={TITLE_TEXT} description={DESCRIPTION_TEXT} type="website" />
+      <MetaTags
+        title={`${funderData.title} - Funders for Regenerative Agriculture`}
+        description={DESCRIPTION_TEXT}
+        type="website"
+      />
       <Funder />
     </div>
   );

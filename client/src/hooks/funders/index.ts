@@ -223,7 +223,7 @@ export function useFundersInfinity(options: AdapterOptionsProps = {}) {
 ****************************************
 */
 
-export function useFunder(id) {
+export function useFunder(id: string) {
   const fetchFunder = () =>
     FUNDERS.request({
       method: 'GET',
