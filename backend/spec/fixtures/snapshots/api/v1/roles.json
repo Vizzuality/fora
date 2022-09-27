@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "id": "funder",
+      "type": "role",
+      "attributes": {
+        "name": "Funder"
+      }
+    },
+    {
+      "id": "regrantor",
+      "type": "role",
+      "attributes": {
+        "name": "Regrantor"
+      }
+    },
+    {
+      "id": "intermediary",
+      "type": "role",
+      "attributes": {
+        "name": "Intermediary"
+      }
+    }
+  ]
+}

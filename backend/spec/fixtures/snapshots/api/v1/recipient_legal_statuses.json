@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "id": "for_profit",
+      "type": "recipient_legal_status",
+      "attributes": {
+        "name": "For-profit"
+      }
+    },
+    {
+      "id": "foundation",
+      "type": "recipient_legal_status",
+      "attributes": {
+        "name": "Foundation"
+      }
+    },
+    {
+      "id": "cooperative",
+      "type": "recipient_legal_status",
+      "attributes": {
+        "name": "Cooperative"
+      }
+    },
+    {
+      "id": "other",
+      "type": "recipient_legal_status",
+      "attributes": {
+        "name": "Other"
+      }
+    }
+  ]
+}

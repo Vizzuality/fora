@@ -1,0 +1,60 @@
+{
+  "data": [
+    {
+      "id": "grants",
+      "type": "capital_type",
+      "attributes": {
+        "name": "Grants"
+      }
+    },
+    {
+      "id": "debt",
+      "type": "capital_type",
+      "attributes": {
+        "name": "Debt"
+      }
+    },
+    {
+      "id": "equity",
+      "type": "capital_type",
+      "attributes": {
+        "name": "Equity"
+      }
+    },
+    {
+      "id": "pris",
+      "type": "capital_type",
+      "attributes": {
+        "name": "PRIs"
+      }
+    },
+    {
+      "id": "mris",
+      "type": "capital_type",
+      "attributes": {
+        "name": "MRIs"
+      }
+    },
+    {
+      "id": "re_grants",
+      "type": "capital_type",
+      "attributes": {
+        "name": "Re-grants"
+      }
+    },
+    {
+      "id": "forgivable_loans",
+      "type": "capital_type",
+      "attributes": {
+        "name": "Forgivable loans"
+      }
+    },
+    {
+      "id": "guarantees",
+      "type": "capital_type",
+      "attributes": {
+        "name": "Guarantees"
+      }
+    }
+  ]
+}

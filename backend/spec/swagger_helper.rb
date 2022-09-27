@@ -23,11 +23,26 @@ RSpec.configure do |config|
         securitySchemes: {
         },
         schemas: {
+          enum: {
+            type: :object,
+            properties: {
+              id: {type: :string},
+              type: {type: :string},
+              attributes: {
+                type: :object,
+                properties: {
+                  name: {type: :string}
+                },
+                required: %w[name]
+              }
+            },
+            required: %w[id type attributes]
+          }
         }
       },
       servers: [
         {
-          url: "/backend"
+          url: "/sub-path/backend"
         },
         {
           url: "{scheme}://{host}",

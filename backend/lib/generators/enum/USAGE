@@ -1,0 +1,13 @@
+Description:
+    This generator will prepare all main files and classes required by new Enum. Please take into account that individual TYPES and their localizations (I18n) needs to be filled manually.
+
+Example:
+    bin/rails generate enum Area
+
+    This will create:
+      create  app/models/area.rb
+      create  app/controllers/api/v1/areas_controller.rb
+      create  app/serializers/api/v1/enums/area_serializer.rb
+      create  spec/requests/api/v1/areas_spec.rb
+      insert  config/routes/api.rb
+      insert  app/models/ability.rb
