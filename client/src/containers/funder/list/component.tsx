@@ -43,7 +43,7 @@ const FundersList = () => {
     });
   }, [formatProjectsData]);
 
-  const randomProjects = useMemo(() => {
+  const randomFunders = useMemo(() => {
     const shuffled = projectsData.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 3);
   }, [projectsData]);
@@ -121,7 +121,7 @@ const FundersList = () => {
           <div className="font-semibold capitalize text-grey-20">By Geographic Scope</div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {randomProjects.map((project) => (
+            {randomFunders.map((project) => (
               <Card key={project.id} href={`/${pathname}/${project.id}`} {...project} />
             ))}
           </div>
@@ -131,7 +131,7 @@ const FundersList = () => {
           <div className="font-semibold capitalize text-grey-20">By Area of Focus</div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {randomProjects.map((project) => (
+            {randomFunders.map((project) => (
               <Card key={project.id} href={`/${pathname}/${project.id}`} {...project} />
             ))}
           </div>
