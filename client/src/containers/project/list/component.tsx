@@ -13,7 +13,7 @@ import Icon from 'components/icon';
 
 import CHEVRON_RIGHT_SVG from 'svgs/ui/chevron-right.svg?sprite';
 
-const FundersList = () => {
+const ProjectList = () => {
   const { data: projectsData } = useProjectsInfinity();
   const [slide, setSlide] = useState(0);
 
@@ -181,4 +181,4 @@ const FundersList = () => {
   );
 };
 
-export default FundersList;
+export default ProjectList;

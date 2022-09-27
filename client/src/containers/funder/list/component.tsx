@@ -40,6 +40,11 @@ const FundersList = () => {
     });
   }, [formatProjectsData]);
 
+  const randomProjects = useMemo(() => {
+    const shuffled = projectsData.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 3);
+  }, [projectsData]);
+
   return (
     <div className="space-y-20">
       <div className="space-y-9">
@@ -112,69 +117,21 @@ const FundersList = () => {
         <div className="space-y-3">
           <div className="font-semibold capitalize text-grey-20">By Geographic Scope</div>
 
-          {!!formatProjectsData.length && (
-            <div className="relative flex">
-              <Carousel
-                slide={slide}
-                slides={formatProjectsData}
-                options={{
-                  circular: true,
-                  align: 'prev',
-                  panelsPerView: 2,
-                }}
-                onChanged={(e) => {
-                  setSlide(() => {
-                    return e.index;
-                  });
-                }}
-              />
-
-              <div className="absolute top-0 right-0 z-10 h-full w-96 md:bg-gradient-to-l md:from-white" />
-
-              <button
-                type="button"
-                aria-label="arrow-right"
-                className="absolute top-0 right-0 z-10 h-full"
-                onClick={handleOnNextClick}
-              >
-                <Icon className="w-5 h-8" icon={CHEVRON_RIGHT_SVG} />
-              </button>
-            </div>
-          )}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {randomProjects.map((project) => (
+              <Card key={project.id} {...project} />
+            ))}
+          </div>
         </div>
 
         <div className="space-y-3">
           <div className="font-semibold capitalize text-grey-20">By Area of Focus</div>
 
-          {!!formatProjectsData.length && (
-            <div className="relative flex">
-              <Carousel
-                slide={slide}
-                slides={formatProjectsData}
-                options={{
-                  circular: true,
-                  align: 'prev',
-                  panelsPerView: 2,
-                }}
-                onChanged={(e) => {
-                  setSlide(() => {
-                    return e.index;
-                  });
-                }}
-              />
-
-              <div className="absolute top-0 right-0 z-10 h-full w-96 md:bg-gradient-to-l md:from-white" />
-
-              <button
-                type="button"
-                aria-label="arrow-right"
-                className="absolute top-0 right-0 z-10 h-full"
-                onClick={handleOnNextClick}
-              >
-                <Icon className="w-5 h-8" icon={CHEVRON_RIGHT_SVG} />
-              </button>
-            </div>
-          )}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {randomProjects.map((project) => (
+              <Card key={project.id} {...project} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

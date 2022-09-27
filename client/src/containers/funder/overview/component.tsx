@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 
 import { useFunder } from 'hooks/funders';
 
-import InfoCard from 'containers/funder/info-card';
+import InfoCard from 'containers/details/info-card';
 
 import Button from 'components/button';
 import Icon from 'components/icon';
@@ -17,7 +17,7 @@ import INFO_SVG from 'svgs/ui/info.svg?sprite';
 
 import { PROJECT_CARD_INFO, PROJECT_INFO } from './constants';
 
-const OverviewFunder = () => {
+const FunderOverview = () => {
   const { query } = useRouter();
   const { id: funderId } = query;
   const { data: funderData } = useFunder(`${funderId}`);
@@ -109,4 +109,4 @@ const OverviewFunder = () => {
   );
 };
 
-export default OverviewFunder;
+export default FunderOverview;

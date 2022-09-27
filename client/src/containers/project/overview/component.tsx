@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 
 import { useProject } from 'hooks/projects';
 
-import InfoCard from 'containers/funder/info-card';
+import InfoCard from 'containers/details/info-card';
 
 import Button from 'components/button';
 
@@ -36,7 +36,7 @@ const PROJECT_CARD_INFO = [
   },
 ];
 
-const OverviewProject = () => {
+const ProjectOverview = () => {
   const { query } = useRouter();
   const { id: projectId } = query;
   const { data: projectData } = useProject(`${projectId}`);
@@ -94,4 +94,4 @@ const OverviewProject = () => {
   );
 };
 
-export default OverviewProject;
+export default ProjectOverview;
