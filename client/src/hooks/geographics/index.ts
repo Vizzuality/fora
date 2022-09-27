@@ -2,30 +2,33 @@ import { useMemo } from 'react';
 
 import { Geographic } from 'store/action-map';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
+
+import { ParamsProps } from 'hooks/types';
 
 import GEOGRAPHICS from 'services/geographics';
 
 import { GREOGRAPHIC_SCOPES, SUBGEOGRAPHICS } from './mock';
-import { UseGeographicsOptionsProps } from './types';
+import { ResponseData } from './types';
 
-export function useGeographics() {
+export function useGeographics<T = ResponseData>(
+  queryOptions: UseQueryOptions<ResponseData, unknown, T> = {}
+) {
   const fetchGeographics = () =>
     GEOGRAPHICS.request({
       method: 'GET',
       url: '/',
-    });
+    }).then((response) => response.data);
 
   const query = useQuery(['geographics'], fetchGeographics, {
-    keepPreviousData: true,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+    placeholderData: [],
+    ...queryOptions,
   });
 
   const { data } = query;
 
   const DATA = useMemo(() => {
-    if (!data?.data) {
+    if (!data) {
       return [];
     }
 
@@ -40,11 +43,8 @@ export function useGeographics() {
   }, [query, DATA]);
 }
 
-export function useSubGeographics(
-  geographic: Geographic,
-  options: UseGeographicsOptionsProps = {}
-) {
-  const { filters = {}, search, sort } = options;
+export function useSubGeographics(geographic: Geographic, params: ParamsProps = {}) {
+  const { filters = {}, search, sort } = params;
 
   const parsedFilters = Object.keys(filters).reduce((acc, k) => {
     if (filters[k] && Array.isArray(filters[k]) && !filters[k].length) {
@@ -72,7 +72,7 @@ export function useSubGeographics(
       },
     });
 
-  const query = useQuery(['geographics', JSON.stringify(options)], fetchGeographics, {
+  const query = useQuery(['geographics', JSON.stringify(params)], fetchGeographics, {
     keepPreviousData: true,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
