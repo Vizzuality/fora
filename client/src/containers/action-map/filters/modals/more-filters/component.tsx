@@ -24,7 +24,7 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
   const dispatch = useAppDispatch();
 
   const { data: funderTypesData } = useFunderTypes();
-  const { data: funderLegalStatusData } = useFunderLegalStatuses();
+  const { data: funderLegalStatusesData } = useFunderLegalStatuses();
   const { data: capitalTypesData } = useCapitalTypes();
   const { data: projectLegalStatusesData } = useProjectLegalStatuses();
 
@@ -36,7 +36,7 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
           })
         : funderTypes,
       funderLegalStatuses: !funderLegalStatuses.length
-        ? funderLegalStatusData.map((s) => {
+        ? funderLegalStatusesData.map((s) => {
             return s.id;
           })
         : funderLegalStatuses,
@@ -55,7 +55,7 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
     funderTypes,
     funderTypesData,
     funderLegalStatuses,
-    funderLegalStatusData,
+    funderLegalStatusesData,
     capitalTypes,
     capitalTypesData,
     projectLegalStatuses,
@@ -66,7 +66,7 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
     (values) => {
       const {
         funderTypes: funderTypesValue,
-        funderLegalStatuses: funderLegalStatusValue,
+        funderLegalStatuses: funderLegalStatusesValue,
         capitalTypes: capitalTypesValue,
         projectLegalStatuses: projectLegalStatusesValue,
       } = values;
@@ -76,9 +76,9 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
           ...filters,
           funderTypes: funderTypesValue.length === funderTypesData.length ? [] : funderTypesValue,
           funderLegalStatuses:
-            funderLegalStatusValue.length === funderLegalStatusData.length
+            funderLegalStatusesValue.length === funderLegalStatusesData.length
               ? []
-              : funderLegalStatusValue,
+              : funderLegalStatusesValue,
           capitalTypes:
             capitalTypesValue.length === capitalTypesData.length ? [] : capitalTypesValue,
           projectLegalStatuses:
@@ -92,7 +92,7 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
     },
     [
       funderTypesData,
-      funderLegalStatusData,
+      funderLegalStatusesData,
       capitalTypesData,
       projectLegalStatusesData,
       filters,

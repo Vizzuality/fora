@@ -10,12 +10,12 @@ const FunderLegalStatusSentence = () => {
   const { type, filters } = useAppSelector((state) => state['/action-map']);
   const { funderLegalStatuses } = filters;
 
-  const { data: funderLegalStatusData, isFetched: funderLegalStatusIsFetched } =
+  const { data: funderLegalStatusesData, isFetched: funderLegalStatusIsFetched } =
     useFunderLegalStatuses();
 
   const SELECTED_LIST = useMemo(() => {
-    return funderLegalStatusData.filter((sg) => funderLegalStatuses.includes(sg.id));
-  }, [funderLegalStatusData, funderLegalStatuses]);
+    return funderLegalStatusesData.filter((sg) => funderLegalStatuses.includes(sg.id));
+  }, [funderLegalStatusesData, funderLegalStatuses]);
 
   const SELECTED_TEXT = useMemo(() => {
     if (!SELECTED_LIST.length) return null;

@@ -8,7 +8,7 @@ import FilterList from 'components/filters/list';
 import { arrayValidator, composeValidators } from 'components/forms/validations';
 
 export const FunderLegalStatus = () => {
-  const { data: funderLegalStatusData } = useFunderLegalStatuses();
+  const { data: funderLegalStatusesData } = useFunderLegalStatuses();
 
   const handleToogle = useCallback((id, input) => {
     const selection = [...input.value];
@@ -26,12 +26,12 @@ export const FunderLegalStatus = () => {
   const handleAll = useCallback(
     (id, input) => {
       if (id === 'select-all') {
-        input.onChange(funderLegalStatusData.map((s) => s.id));
+        input.onChange(funderLegalStatusesData.map((s) => s.id));
       } else {
         input.onChange([]);
       }
     },
-    [funderLegalStatusData]
+    [funderLegalStatusesData]
   );
 
   return (
@@ -42,7 +42,7 @@ export const FunderLegalStatus = () => {
             title="Funder legal status"
             name="funderLegalStatuses"
             columns={1}
-            data={funderLegalStatusData}
+            data={funderLegalStatusesData}
             selected={input.value}
             onChange={(id) => handleToogle(id, input)}
             onSelectAll={() => handleAll('select-all', input)}
