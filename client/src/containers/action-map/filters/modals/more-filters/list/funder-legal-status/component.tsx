@@ -35,12 +35,12 @@ export const FunderLegalStatus = () => {
   );
 
   return (
-    <FieldRFF name="funderLegalStatus" validate={composeValidators([arrayValidator])}>
+    <FieldRFF name="funderLegalStatuses" validate={composeValidators([arrayValidator])}>
       {({ input }) => {
         return (
           <FilterList
             title="Funder legal status"
-            name="funderLegalStatus"
+            name="funderLegalStatuses"
             columns={1}
             data={funderLegalStatusData}
             selected={input.value}

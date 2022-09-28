@@ -35,12 +35,12 @@ export const ProjectLegalStatus = () => {
   );
 
   return (
-    <FieldRFF name="projectLegalStatus" validate={composeValidators([arrayValidator])}>
+    <FieldRFF name="projectLegalStatuses" validate={composeValidators([arrayValidator])}>
       {({ input }) => {
         return (
           <FilterList
             title="Project legal status"
-            name="projectLegalStatus"
+            name="projectLegalStatuses"
             columns={1}
             data={projectLegalStatusesData}
             selected={input.value}

@@ -19,9 +19,9 @@ interface ActionMapState {
     areas?: string[];
     demographics?: string[];
     funderTypes?: string[];
-    funderLegalStatus?: string[];
+    funderLegalStatuses?: string[];
     capitalTypes?: string[];
-    projectLegalStatus?: string[];
+    projectLegalStatuses?: string[];
   };
 }
 
@@ -35,9 +35,9 @@ export const initialState: ActionMapState = {
     areas: [],
     demographics: [],
     funderTypes: [],
-    funderLegalStatus: [],
+    funderLegalStatuses: [],
     capitalTypes: [],
-    projectLegalStatus: [],
+    projectLegalStatuses: [],
   },
 };
 
@@ -89,9 +89,9 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
       demographics,
       subgeographics,
       funderTypes,
-      funderLegalStatus,
+      funderLegalStatuses,
       capitalTypes,
-      projectLegalStatus,
+      projectLegalStatuses,
     } = query;
 
     if (type) {
@@ -108,9 +108,9 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
       demographics ||
       subgeographics ||
       funderTypes ||
-      funderLegalStatus ||
+      funderLegalStatuses ||
       capitalTypes ||
-      projectLegalStatus
+      projectLegalStatuses
     ) {
       await store.dispatch(
         setFilters({
@@ -130,14 +130,14 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
           ...(funderTypes && {
             funderTypes: funderTypes as string[],
           }),
-          ...(funderLegalStatus && {
-            funderLegalStatus: funderLegalStatus as string[],
+          ...(funderLegalStatuses && {
+            funderLegalStatuses: funderLegalStatuses as string[],
           }),
           ...(capitalTypes && {
             capitalTypes: capitalTypes as string[],
           }),
-          ...(projectLegalStatus && {
-            projectLegalStatus: projectLegalStatus as string[],
+          ...(projectLegalStatuses && {
+            projectLegalStatuses: projectLegalStatuses as string[],
           }),
         })
       );
@@ -173,12 +173,12 @@ export const setQueryFromReduxState = (pathname: string, state: any) => {
         ...(!!filters.areas.length && { areas: filters.areas }),
         ...(!!filters.demographics.length && { demographics: filters.demographics }),
         ...(!!filters.funderTypes.length && { funderTypes: filters.funderTypes }),
-        ...(!!filters.funderLegalStatus.length && {
-          funderLegalStatus: filters.funderLegalStatus,
+        ...(!!filters.funderLegalStatuses.length && {
+          funderLegalStatuses: filters.funderLegalStatuses,
         }),
         ...(!!filters.capitalTypes.length && { capitalTypes: filters.capitalTypes }),
-        ...(!!filters.projectLegalStatus.length && {
-          projectLegalStatus: filters.projectLegalStatus,
+        ...(!!filters.projectLegalStatuses.length && {
+          projectLegalStatuses: filters.projectLegalStatuses,
         }),
       },
     },

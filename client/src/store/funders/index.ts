@@ -20,13 +20,13 @@ interface FundersState {
     areas?: string[];
     demographics?: string[];
     funderTypes?: string[];
-    funderLegalStatus?: string[];
+    funderLegalStatuses?: string[];
     funderRoles?: string[];
     fundingTypes?: string[];
     capitalTypes?: string[];
     capitalAcceptances?: string[];
     grantDurations?: string[];
-    projectLegalStatus?: string[];
+    projectLegalStatuses?: string[];
     applicationStatus?: string[];
   };
 }
@@ -45,12 +45,12 @@ export const initialState: FundersState = {
     demographics: [],
     funderTypes: [],
     fundingTypes: [],
-    funderLegalStatus: [],
+    funderLegalStatuses: [],
     funderRoles: [],
     capitalTypes: [],
     capitalAcceptances: [],
     grantDurations: [],
-    projectLegalStatus: [],
+    projectLegalStatuses: [],
     applicationStatus: [],
   },
 };
@@ -100,12 +100,12 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
       subgeographics,
       funderTypes,
       fundingTypes,
-      funderLegalStatus,
+      funderLegalStatuses,
       funderRoles,
       capitalTypes,
       capitalAcceptances,
       grantDurations,
-      projectLegalStatus,
+      projectLegalStatuses,
       applicationStatus,
       search,
       sortField,
@@ -124,12 +124,12 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
       subgeographics ||
       funderTypes ||
       fundingTypes ||
-      funderLegalStatus ||
+      funderLegalStatuses ||
       funderRoles ||
       capitalTypes ||
       capitalAcceptances ||
       grantDurations ||
-      projectLegalStatus ||
+      projectLegalStatuses ||
       applicationStatus
     ) {
       await store.dispatch(
@@ -153,8 +153,8 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
           ...(fundingTypes && {
             fundingTypes: fundingTypes as string[],
           }),
-          ...(funderLegalStatus && {
-            funderLegalStatus: funderLegalStatus as string[],
+          ...(funderLegalStatuses && {
+            funderLegalStatuses: funderLegalStatuses as string[],
           }),
           ...(funderRoles && {
             funderRoles: funderRoles as string[],
@@ -168,8 +168,8 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
           ...(grantDurations && {
             grantDurations: grantDurations as string[],
           }),
-          ...(projectLegalStatus && {
-            projectLegalStatus: projectLegalStatus as string[],
+          ...(projectLegalStatuses && {
+            projectLegalStatuses: projectLegalStatuses as string[],
           }),
           ...(applicationStatus && {
             applicationStatus: applicationStatus as string[],
@@ -207,8 +207,8 @@ export const setQueryFromReduxState = (pathname: string, state: any) => {
         ...(!!filters.demographics.length && { demographics: filters.demographics }),
         ...(!!filters.funderTypes.length && { funderTypes: filters.funderTypes }),
         ...(!!filters.fundingTypes.length && { fundingTypes: filters.fundingTypes }),
-        ...(!!filters.funderLegalStatus.length && {
-          funderLegalStatus: filters.funderLegalStatus,
+        ...(!!filters.funderLegalStatuses.length && {
+          funderLegalStatuses: filters.funderLegalStatuses,
         }),
         ...(!!filters.funderRoles.length && { funderRoles: filters.funderRoles }),
         ...(!!filters.capitalTypes.length && { capitalTypes: filters.capitalTypes }),
@@ -216,8 +216,8 @@ export const setQueryFromReduxState = (pathname: string, state: any) => {
           capitalAcceptances: filters.capitalAcceptances,
         }),
         ...(!!filters.grantDurations.length && { grantDurations: filters.grantDurations }),
-        ...(!!filters.projectLegalStatus.length && {
-          projectLegalStatus: filters.projectLegalStatus,
+        ...(!!filters.projectLegalStatuses.length && {
+          projectLegalStatuses: filters.projectLegalStatuses,
         }),
         ...(!!filters.applicationStatus.length && {
           applicationStatus: filters.applicationStatus,

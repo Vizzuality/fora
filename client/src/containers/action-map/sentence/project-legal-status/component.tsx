@@ -8,14 +8,14 @@ import SentenceTooltip from 'containers/action-map/sentence/common/tooltip';
 
 const ProjectLegalStatusSentence = () => {
   const { type, filters } = useAppSelector((state) => state['/action-map']);
-  const { projectLegalStatus } = filters;
+  const { projectLegalStatuses } = filters;
 
   const { data: projectLegalStatusesData, isFetched: projectLegalStatusIsFetched } =
     useProjectLegalStatuses();
 
   const SELECTED_LIST = useMemo(() => {
-    return projectLegalStatusesData.filter((sg) => projectLegalStatus.includes(sg.id));
-  }, [projectLegalStatusesData, projectLegalStatus]);
+    return projectLegalStatusesData.filter((sg) => projectLegalStatuses.includes(sg.id));
+  }, [projectLegalStatusesData, projectLegalStatuses]);
 
   const SELECTED_TEXT = useMemo(() => {
     if (!SELECTED_LIST.length) return null;
@@ -25,7 +25,7 @@ const ProjectLegalStatusSentence = () => {
     return `${first.name} +${rest.length}`;
   }, [SELECTED_LIST]);
 
-  if (!projectLegalStatus.length || !projectLegalStatusIsFetched || type !== 'projects')
+  if (!projectLegalStatuses.length || !projectLegalStatusIsFetched || type !== 'projects')
     return null;
 
   return <SentenceTooltip text={SELECTED_TEXT} list={SELECTED_LIST} prefix=" of legal status " />;

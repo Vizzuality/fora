@@ -20,7 +20,7 @@ interface MoreFiltersProps {
 
 const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) => {
   const { filters } = useAppSelector((state) => state['/action-map']);
-  const { funderTypes, funderLegalStatus, capitalTypes, projectLegalStatus } = filters;
+  const { funderTypes, funderLegalStatuses, capitalTypes, projectLegalStatuses } = filters;
   const dispatch = useAppDispatch();
 
   const { data: funderTypesData } = useFunderTypes();
@@ -35,30 +35,30 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
             return s.id;
           })
         : funderTypes,
-      funderLegalStatus: !funderLegalStatus.length
+      funderLegalStatuses: !funderLegalStatuses.length
         ? funderLegalStatusData.map((s) => {
             return s.id;
           })
-        : funderLegalStatus,
+        : funderLegalStatuses,
       capitalTypes: !capitalTypes.length
         ? capitalTypesData.map((s) => {
             return s.id;
           })
         : capitalTypes,
-      projectLegalStatus: !projectLegalStatus.length
+      projectLegalStatuses: !projectLegalStatuses.length
         ? projectLegalStatusesData.map((s) => {
             return s.id;
           })
-        : projectLegalStatus,
+        : projectLegalStatuses,
     };
   }, [
     funderTypes,
     funderTypesData,
-    funderLegalStatus,
+    funderLegalStatuses,
     funderLegalStatusData,
     capitalTypes,
     capitalTypesData,
-    projectLegalStatus,
+    projectLegalStatuses,
     projectLegalStatusesData,
   ]);
 
@@ -66,22 +66,22 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
     (values) => {
       const {
         funderTypes: funderTypesValue,
-        funderLegalStatus: funderLegalStatusValue,
+        funderLegalStatuses: funderLegalStatusValue,
         capitalTypes: capitalTypesValue,
-        projectLegalStatus: projectLegalStatusesValue,
+        projectLegalStatuses: projectLegalStatusesValue,
       } = values;
 
       dispatch(
         setFilters({
           ...filters,
           funderTypes: funderTypesValue.length === funderTypesData.length ? [] : funderTypesValue,
-          funderLegalStatus:
+          funderLegalStatuses:
             funderLegalStatusValue.length === funderLegalStatusData.length
               ? []
               : funderLegalStatusValue,
           capitalTypes:
             capitalTypesValue.length === capitalTypesData.length ? [] : capitalTypesValue,
-          projectLegalStatus:
+          projectLegalStatuses:
             projectLegalStatusesValue.length === projectLegalStatusesData.length
               ? []
               : projectLegalStatusesValue,
