@@ -6,9 +6,7 @@ import API from 'services/api';
 
 import { ResponseData } from './types';
 
-export function useCapitalTypes<T = ResponseData>(
-  queryOptions: UseQueryOptions<ResponseData, unknown, T> = {}
-) {
+export function useCapitalTypes(queryOptions: UseQueryOptions<ResponseData, unknown> = {}) {
   const fetchCapitalTypes = () =>
     API.request({
       method: 'GET',
@@ -16,22 +14,22 @@ export function useCapitalTypes<T = ResponseData>(
     }).then((response) => response.data);
 
   const query = useQuery(['capital-types'], fetchCapitalTypes, {
-    placeholderData: [],
+    placeholderData: {
+      data: [],
+    },
     ...queryOptions,
   });
 
   const { data } = query;
 
   const DATA = useMemo(() => {
-    if (!data) {
+    if (!data?.data) {
       return [];
     }
 
-    return data;
-
-    // return MOCK.sort((a, b) => {
-    //   return a.name > b.name ? 1 : -1;
-    // });
+    return data?.data.sort((a, b) => {
+      return a.name > b.name ? 1 : -1;
+    });
   }, [data]);
 
   return useMemo(() => {

@@ -6,9 +6,7 @@ import API from 'services/api';
 
 import { ResponseData } from './types';
 
-export function useAreas<T = ResponseData>(
-  queryOptions: UseQueryOptions<ResponseData, unknown, T> = {}
-) {
+export function useAreas(queryOptions: UseQueryOptions<ResponseData, unknown> = {}) {
   const fetchAreas = () =>
     API.request({
       method: 'GET',
@@ -29,11 +27,9 @@ export function useAreas<T = ResponseData>(
       return [];
     }
 
-    return data?.data;
-
-    // return MOCK.sort((a, b) => {
-    //   return a.name > b.name ? 1 : -1;
-    // });
+    return data?.data.sort((a, b) => {
+      return a.name > b.name ? 1 : -1;
+    });
   }, [data]);
 
   return useMemo(() => {

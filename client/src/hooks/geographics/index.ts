@@ -12,9 +12,7 @@ import API_FAKE from 'services/api-fake';
 import { SUBGEOGRAPHICS } from './mock';
 import { ResponseData } from './types';
 
-export function useGeographics<T = ResponseData>(
-  queryOptions: UseQueryOptions<ResponseData, unknown, T> = {}
-) {
+export function useGeographics(queryOptions: UseQueryOptions<ResponseData, unknown> = {}) {
   const fetchGeographics = () =>
     API.request({
       method: 'GET',
@@ -22,18 +20,20 @@ export function useGeographics<T = ResponseData>(
     }).then((response) => response.data);
 
   const query = useQuery(['geographics'], fetchGeographics, {
-    placeholderData: [],
+    placeholderData: {
+      data: [],
+    },
     ...queryOptions,
   });
 
   const { data } = query;
 
   const DATA = useMemo(() => {
-    if (!data) {
+    if (!data?.data) {
       return [];
     }
 
-    return data;
+    return data?.data;
   }, [data]);
 
   return useMemo(() => {

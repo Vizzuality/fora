@@ -6,9 +6,7 @@ import API from 'services/api';
 
 import { ResponseData } from './types';
 
-export function useFunderTypes<T = ResponseData>(
-  queryOptions: UseQueryOptions<ResponseData, unknown, T> = {}
-) {
+export function useFunderTypes(queryOptions: UseQueryOptions<ResponseData, unknown> = {}) {
   const fetchFunderTypes = () =>
     API.request({
       method: 'GET',
@@ -16,18 +14,22 @@ export function useFunderTypes<T = ResponseData>(
     }).then((response) => response.data);
 
   const query = useQuery(['funder-types'], fetchFunderTypes, {
-    placeholderData: [],
+    placeholderData: {
+      data: [],
+    },
     ...queryOptions,
   });
 
   const { data } = query;
 
   const DATA = useMemo(() => {
-    if (!data) {
+    if (!data?.data) {
       return [];
     }
 
-    return data;
+    return data?.data.sort((a, b) => {
+      return a.name > b.name ? 1 : -1;
+    });
   }, [data]);
 
   return useMemo(() => {
