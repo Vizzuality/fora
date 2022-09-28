@@ -2,13 +2,13 @@ import { useCallback } from 'react';
 
 import { Field as FieldRFF } from 'react-final-form';
 
-import { useProjectLegalStatus } from 'hooks/project-legal-status';
+import { useProjectLegalStatuses } from 'hooks/project-legal-statuses';
 
 import FilterList from 'components/filters/list';
 import { arrayValidator, composeValidators } from 'components/forms/validations';
 
 export const ProjectLegalStatus = () => {
-  const { data: projectLegalStatusData } = useProjectLegalStatus();
+  const { data: projectLegalStatusesData } = useProjectLegalStatuses();
 
   const handleToogle = useCallback((id, input) => {
     const selection = [...input.value];
@@ -26,12 +26,12 @@ export const ProjectLegalStatus = () => {
   const handleAll = useCallback(
     (id, input) => {
       if (id === 'select-all') {
-        input.onChange(projectLegalStatusData.map((s) => s.id));
+        input.onChange(projectLegalStatusesData.map((s) => s.id));
       } else {
         input.onChange([]);
       }
     },
-    [projectLegalStatusData]
+    [projectLegalStatusesData]
   );
 
   return (
@@ -42,7 +42,7 @@ export const ProjectLegalStatus = () => {
             title="Project legal status"
             name="projectLegalStatus"
             columns={1}
-            data={projectLegalStatusData}
+            data={projectLegalStatusesData}
             selected={input.value}
             onChange={(id) => handleToogle(id, input)}
             onSelectAll={() => handleAll('select-all', input)}

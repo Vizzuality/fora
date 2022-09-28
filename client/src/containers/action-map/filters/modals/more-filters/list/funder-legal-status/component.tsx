@@ -2,13 +2,13 @@ import { useCallback } from 'react';
 
 import { Field as FieldRFF } from 'react-final-form';
 
-import { useFunderLegalStatus } from 'hooks/funder-legal-status';
+import { useFunderLegalStatuses } from 'hooks/funder-legal-statuses';
 
 import FilterList from 'components/filters/list';
 import { arrayValidator, composeValidators } from 'components/forms/validations';
 
 export const FunderLegalStatus = () => {
-  const { data: funderLegalStatusData } = useFunderLegalStatus();
+  const { data: funderLegalStatusData } = useFunderLegalStatuses();
 
   const handleToogle = useCallback((id, input) => {
     const selection = [...input.value];

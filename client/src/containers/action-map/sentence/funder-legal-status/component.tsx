@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 import { useAppSelector } from 'store/hooks';
 
-import { useFunderLegalStatus } from 'hooks/funder-legal-status';
+import { useFunderLegalStatuses } from 'hooks/funder-legal-statuses';
 
 import SentenceTooltip from 'containers/action-map/sentence/common/tooltip';
 
@@ -11,7 +11,7 @@ const FunderLegalStatusSentence = () => {
   const { funderLegalStatus } = filters;
 
   const { data: funderLegalStatusData, isFetched: funderLegalStatusIsFetched } =
-    useFunderLegalStatus();
+    useFunderLegalStatuses();
 
   const SELECTED_LIST = useMemo(() => {
     return funderLegalStatusData.filter((sg) => funderLegalStatus.includes(sg.id));

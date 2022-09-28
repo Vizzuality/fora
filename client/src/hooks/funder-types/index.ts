@@ -2,18 +2,17 @@ import { useMemo } from 'react';
 
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
-import FUNDER_TYPES from 'services/funder-types';
+import API from 'services/api';
 
-import MOCK from './mock.json';
 import { ResponseData } from './types';
 
 export function useFunderTypes<T = ResponseData>(
   queryOptions: UseQueryOptions<ResponseData, unknown, T> = {}
 ) {
   const fetchFunderTypes = () =>
-    FUNDER_TYPES.request({
+    API.request({
       method: 'GET',
-      url: '/',
+      url: '/funder_types',
     }).then((response) => response.data);
 
   const query = useQuery(['funder-types'], fetchFunderTypes, {
@@ -28,9 +27,7 @@ export function useFunderTypes<T = ResponseData>(
       return [];
     }
 
-    return MOCK.sort((a, b) => {
-      return a.name > b.name ? 1 : -1;
-    });
+    return data;
   }, [data]);
 
   return useMemo(() => {

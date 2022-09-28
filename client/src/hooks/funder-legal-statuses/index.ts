@@ -2,21 +2,20 @@ import { useMemo } from 'react';
 
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
-import FUNDERS_LEGAL_STATUS from 'services/funder-legal-status';
+import API from 'services/api';
 
-import MOCK from './mock.json';
 import { ResponseData } from './types';
 
-export function useFunderLegalStatus<T = ResponseData>(
+export function useFunderLegalStatuses<T = ResponseData>(
   queryOptions: UseQueryOptions<ResponseData, unknown, T> = {}
 ) {
-  const fetchFundersLegalStatus = () =>
-    FUNDERS_LEGAL_STATUS.request({
+  const fetchFundersLegalStatuses = () =>
+    API.request({
       method: 'GET',
-      url: '/',
+      url: '/funder_legal_statuses',
     }).then((response) => response.data);
 
-  const query = useQuery(['funders-legal-status'], fetchFundersLegalStatus, {
+  const query = useQuery(['funders-legal-status'], fetchFundersLegalStatuses, {
     placeholderData: [],
     ...queryOptions,
   });
@@ -28,9 +27,7 @@ export function useFunderLegalStatus<T = ResponseData>(
       return [];
     }
 
-    return MOCK.sort((a, b) => {
-      return a.name > b.name ? 1 : -1;
-    });
+    return data;
   }, [data]);
 
   return useMemo(() => {

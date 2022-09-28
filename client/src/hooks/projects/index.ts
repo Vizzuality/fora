@@ -8,7 +8,7 @@ import { View } from 'store/action-map';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { groupBy, orderBy } from 'lodash';
 
-import PROJECTS from 'services/projects';
+import API_FAKE from 'services/api-fake';
 
 import MOCK from './mock.json';
 import { UseProjectsOptionsProps } from './types';
@@ -28,9 +28,9 @@ export function useProjects(options: UseProjectsOptionsProps = {}) {
   }, {});
 
   const fetchProjects = () =>
-    PROJECTS.request({
+    API_FAKE.request({
       method: 'GET',
-      url: '/',
+      url: '/todos',
       params: {
         ...parsedFilters,
         ...(search && {
@@ -138,9 +138,9 @@ export function useProjectsInfinity(options: AdapterOptionsProps = {}) {
   } = options;
 
   const fetchProjects = ({ pageParam = 1 }) =>
-    PROJECTS.request({
+    API_FAKE.request({
       method: 'GET',
-      url: '/',
+      url: '/todos',
       params: jsonPlaceholderAdapter({
         filters,
         search,

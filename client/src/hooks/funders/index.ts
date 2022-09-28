@@ -8,7 +8,7 @@ import { View } from 'store/action-map';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { groupBy, orderBy } from 'lodash';
 
-import FUNDERS from 'services/funders';
+import API_FAKE from 'services/api-fake';
 
 import MOCK from './mock.json';
 import { UseFundersOptionsProps } from './types';
@@ -28,9 +28,9 @@ export function useFunders(options: UseFundersOptionsProps = {}) {
   }, {});
 
   const fetchFunders = () =>
-    FUNDERS.request({
+    API_FAKE.request({
       method: 'GET',
-      url: '/',
+      url: '/posts',
       params: {
         ...parsedFilters,
         ...(search && {
@@ -138,9 +138,9 @@ export function useFundersInfinity(options: AdapterOptionsProps = {}) {
   } = options;
 
   const fetchFunders = ({ pageParam = 1 }) =>
-    FUNDERS.request({
+    API_FAKE.request({
       method: 'GET',
-      url: '/',
+      url: '/posts',
       params: jsonPlaceholderAdapter({
         filters,
         search,

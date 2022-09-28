@@ -2,18 +2,18 @@ import { useMemo } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
 
-import PROJECTS_LEGAL_STATUS from 'services/project-legal-status';
+import API from 'services/api';
 
 import MOCK from './mock.json';
 
-export function useProjectLegalStatus() {
-  const fetchProjectsLegalStatus = () =>
-    PROJECTS_LEGAL_STATUS.request({
+export function useProjectLegalStatuses() {
+  const fetchProjectLegalStatuses = () =>
+    API.request({
       method: 'GET',
-      url: '/',
+      url: '/recipient_legal_statuses',
     });
 
-  const query = useQuery(['projects-legal-status'], fetchProjectsLegalStatus, {
+  const query = useQuery(['projects-legal-status'], fetchProjectLegalStatuses, {
     keepPreviousData: true,
     refetchOnMount: false,
     refetchOnWindowFocus: false,

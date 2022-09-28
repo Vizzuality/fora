@@ -2,18 +2,17 @@ import { useMemo } from 'react';
 
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
-import DEMOGRAPHICS from 'services/demographics';
+import API from 'services/api';
 
-import MOCK from './mock.json';
 import { ResponseData } from './types';
 
 export function useDemographics<T = ResponseData>(
   queryOptions: UseQueryOptions<ResponseData, unknown, T> = {}
 ) {
   const fetchDemographics = () =>
-    DEMOGRAPHICS.request({
+    API.request({
       method: 'GET',
-      url: '/',
+      url: '/demographics',
     }).then((response) => response.data);
 
   const query = useQuery(['demographics'], fetchDemographics, {
@@ -28,9 +27,7 @@ export function useDemographics<T = ResponseData>(
       return [];
     }
 
-    return MOCK.sort((a, b) => {
-      return a.name > b.name ? 1 : -1;
-    });
+    return data;
   }, [data]);
 
   return useMemo(() => {
