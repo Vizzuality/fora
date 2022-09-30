@@ -1,0 +1,24 @@
+{
+  "data": [
+    {
+      "id": "9272c9a0-7d8d-4b32-92ee-3be3fc9c1b87",
+      "type": "subgeographic",
+      "attributes": {
+        "name": "Canada",
+        "code": "Canada"
+      },
+      "relationships": {
+      }
+    },
+    {
+      "id": "9b0220a7-8367-4855-8957-12e2a543a062",
+      "type": "subgeographic",
+      "attributes": {
+        "name": "Papua New Guinea",
+        "code": "Papua New Guinea"
+      },
+      "relationships": {
+      }
+    }
+  ]
+}
