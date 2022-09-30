@@ -71,6 +71,13 @@
       }
     },
     {
+      "id": "other",
+      "type": "funder_type",
+      "attributes": {
+        "name": "Other"
+      }
+    },
+    {
       "id": "private_foundation",
       "type": "funder_type",
       "attributes": {
@@ -89,13 +96,6 @@
       "type": "funder_type",
       "attributes": {
         "name": "Regrantor"
-      }
-    },
-    {
-      "id": "other",
-      "type": "funder_type",
-      "attributes": {
-        "name": "Other"
       }
     }
   ]

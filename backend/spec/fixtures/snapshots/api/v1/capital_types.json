@@ -1,13 +1,6 @@
 {
   "data": [
     {
-      "id": "grants",
-      "type": "capital_type",
-      "attributes": {
-        "name": "Grants"
-      }
-    },
-    {
       "id": "debt",
       "type": "capital_type",
       "attributes": {
@@ -22,10 +15,24 @@
       }
     },
     {
-      "id": "pris",
+      "id": "forgivable_loans",
       "type": "capital_type",
       "attributes": {
-        "name": "PRIs"
+        "name": "Forgivable loans"
+      }
+    },
+    {
+      "id": "grants",
+      "type": "capital_type",
+      "attributes": {
+        "name": "Grants"
+      }
+    },
+    {
+      "id": "guarantees",
+      "type": "capital_type",
+      "attributes": {
+        "name": "Guarantees"
       }
     },
     {
@@ -36,24 +43,17 @@
       }
     },
     {
+      "id": "pris",
+      "type": "capital_type",
+      "attributes": {
+        "name": "PRIs"
+      }
+    },
+    {
       "id": "re_grants",
       "type": "capital_type",
       "attributes": {
         "name": "Re-grants"
-      }
-    },
-    {
-      "id": "forgivable_loans",
-      "type": "capital_type",
-      "attributes": {
-        "name": "Forgivable loans"
-      }
-    },
-    {
-      "id": "guarantees",
-      "type": "capital_type",
-      "attributes": {
-        "name": "Guarantees"
       }
     }
   ]

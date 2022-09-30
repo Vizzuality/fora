@@ -6,7 +6,7 @@ module API
       load_and_authorize_resource
 
       def index
-        render json: API::V1::Enums::AreaSerializer.new(@areas).serializable_hash
+        render json: API::V1::Enums::AreaSerializer.new(@areas.sort_by(&:name)).serializable_hash
       end
     end
   end

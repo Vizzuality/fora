@@ -29,17 +29,17 @@
       }
     },
     {
-      "id": "research_institution",
-      "type": "funder_legal_status",
-      "attributes": {
-        "name": "Research Institution"
-      }
-    },
-    {
       "id": "other",
       "type": "funder_legal_status",
       "attributes": {
         "name": "Other"
+      }
+    },
+    {
+      "id": "research_institution",
+      "type": "funder_legal_status",
+      "attributes": {
+        "name": "Research Institution"
       }
     }
   ]

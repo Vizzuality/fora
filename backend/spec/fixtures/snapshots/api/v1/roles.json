@@ -8,17 +8,17 @@
       }
     },
     {
-      "id": "regrantor",
-      "type": "role",
-      "attributes": {
-        "name": "Regrantor"
-      }
-    },
-    {
       "id": "intermediary",
       "type": "role",
       "attributes": {
         "name": "Intermediary"
+      }
+    },
+    {
+      "id": "regrantor",
+      "type": "role",
+      "attributes": {
+        "name": "Regrantor"
       }
     }
   ]

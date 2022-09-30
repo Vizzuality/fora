@@ -1,94 +1,17 @@
 {
   "data": [
     {
-      "id": "equity_and_justice",
+      "id": "agroforestry",
       "type": "area",
       "attributes": {
-        "name": "Equity and Justice"
+        "name": "Agroforestry"
       }
     },
     {
-      "id": "food_sovereignty",
+      "id": "alternative_proteins",
       "type": "area",
       "attributes": {
-        "name": "Food Sovereignty"
-      }
-    },
-    {
-      "id": "rural_economic_health",
-      "type": "area",
-      "attributes": {
-        "name": "Rural Economic Health"
-      }
-    },
-    {
-      "id": "climate_change",
-      "type": "area",
-      "attributes": {
-        "name": "Climate Change"
-      }
-    },
-    {
-      "id": "grazing",
-      "type": "area",
-      "attributes": {
-        "name": "Grazing"
-      }
-    },
-    {
-      "id": "soil_health",
-      "type": "area",
-      "attributes": {
-        "name": "Soil Health"
-      }
-    },
-    {
-      "id": "water",
-      "type": "area",
-      "attributes": {
-        "name": "Water"
-      }
-    },
-    {
-      "id": "biodiversity",
-      "type": "area",
-      "attributes": {
-        "name": "Biodiversity"
-      }
-    },
-    {
-      "id": "land_access",
-      "type": "area",
-      "attributes": {
-        "name": "Land Access"
-      }
-    },
-    {
-      "id": "policy_advocacy",
-      "type": "area",
-      "attributes": {
-        "name": "Policy - Advocacy"
-      }
-    },
-    {
-      "id": "movement_building",
-      "type": "area",
-      "attributes": {
-        "name": "Movement Building"
-      }
-    },
-    {
-      "id": "nutrient_quality_density",
-      "type": "area",
-      "attributes": {
-        "name": "Nutrient Quality/Density"
-      }
-    },
-    {
-      "id": "research",
-      "type": "area",
-      "attributes": {
-        "name": "Research (Measuring and Validation of Regen Systems and/or Practices)"
+        "name": "Alternative Proteins"
       }
     },
     {
@@ -106,101 +29,31 @@
       }
     },
     {
-      "id": "soil_measurement_and_technology",
+      "id": "biodiversity",
       "type": "area",
       "attributes": {
-        "name": "Soil Measurement and Technology"
+        "name": "Biodiversity"
       }
     },
     {
-      "id": "middle_of_the_supply_chain_infrastructure",
+      "id": "consumer_packaged_goods",
       "type": "area",
       "attributes": {
-        "name": "Middle of the Supply Chain Infrastructure (processing, distribution, transportation)"
+        "name": "CPG (Consumer Packaged Goods)"
       }
     },
     {
-      "id": "fiber_systems",
+      "id": "capacity_building",
       "type": "area",
       "attributes": {
-        "name": "Fiber Systems"
+        "name": "Capacity Building"
       }
     },
     {
-      "id": "toxins_reduction",
+      "id": "climate_change",
       "type": "area",
       "attributes": {
-        "name": "Toxins Reduction (ie organics, pesticides, herbicides etc.)"
-      }
-    },
-    {
-      "id": "media_communications_narrative_building",
-      "type": "area",
-      "attributes": {
-        "name": "Media, Communications, Narrative Building"
-      }
-    },
-    {
-      "id": "technical_assistance_and_business_planning",
-      "type": "area",
-      "attributes": {
-        "name": "Technical Assistance and Business Planning (farmers)"
-      }
-    },
-    {
-      "id": "regenerative_ag_financing",
-      "type": "area",
-      "attributes": {
-        "name": "Regenerative Ag Financing"
-      }
-    },
-    {
-      "id": "true_cost_accounting",
-      "type": "area",
-      "attributes": {
-        "name": "True Cost Accounting"
-      }
-    },
-    {
-      "id": "education_youth",
-      "type": "area",
-      "attributes": {
-        "name": "Education - Youth"
-      }
-    },
-    {
-      "id": "education_future_farmers_young_farmers",
-      "type": "area",
-      "attributes": {
-        "name": "Education - Future Farmers, Young Farmers, etc"
-      }
-    },
-    {
-      "id": "healthy_food_access",
-      "type": "area",
-      "attributes": {
-        "name": "Healthy Food Access"
-      }
-    },
-    {
-      "id": "supply_chain_and_market_development",
-      "type": "area",
-      "attributes": {
-        "name": "Supply Chain and Market Development"
-      }
-    },
-    {
-      "id": "tribal_nations",
-      "type": "area",
-      "attributes": {
-        "name": "Tribal Nations"
-      }
-    },
-    {
-      "id": "leadership_development",
-      "type": "area",
-      "attributes": {
-        "name": "Leadership Development"
+        "name": "Climate Change"
       }
     },
     {
@@ -211,10 +64,31 @@
       }
     },
     {
-      "id": "policy_lobbying",
+      "id": "education_future_farmers_young_farmers",
       "type": "area",
       "attributes": {
-        "name": "Policy- Lobbying"
+        "name": "Education - Future Farmers, Young Farmers, etc"
+      }
+    },
+    {
+      "id": "education_youth",
+      "type": "area",
+      "attributes": {
+        "name": "Education - Youth"
+      }
+    },
+    {
+      "id": "equity_and_justice",
+      "type": "area",
+      "attributes": {
+        "name": "Equity and Justice"
+      }
+    },
+    {
+      "id": "farm_equipment",
+      "type": "area",
+      "attributes": {
+        "name": "Farm Equipment"
       }
     },
     {
@@ -225,38 +99,45 @@
       }
     },
     {
-      "id": "urban_farming",
+      "id": "fermentation",
       "type": "area",
       "attributes": {
-        "name": "Urban Farming"
+        "name": "Fermentation"
       }
     },
     {
-      "id": "regenerative_ag_organizing_networks_or_groups",
+      "id": "fiber_systems",
       "type": "area",
       "attributes": {
-        "name": "Regenerative Ag Organizing Networks or Groups"
+        "name": "Fiber Systems"
       }
     },
     {
-      "id": "sustainable_or_biological_inputs",
+      "id": "food_sovereignty",
       "type": "area",
       "attributes": {
-        "name": "Sustainable or Biological Inputs"
+        "name": "Food Sovereignty"
       }
     },
     {
-      "id": "on_farm_automation",
+      "id": "grazing",
       "type": "area",
       "attributes": {
-        "name": "On Farm Automation"
+        "name": "Grazing"
       }
     },
     {
-      "id": "farm_equipment",
+      "id": "healthy_food_access",
       "type": "area",
       "attributes": {
-        "name": "Farm Equipment"
+        "name": "Healthy Food Access"
+      }
+    },
+    {
+      "id": "land_access",
+      "type": "area",
+      "attributes": {
+        "name": "Land Access"
       }
     },
     {
@@ -281,38 +162,45 @@
       }
     },
     {
-      "id": "fermentation",
+      "id": "leadership_development",
       "type": "area",
       "attributes": {
-        "name": "Fermentation"
+        "name": "Leadership Development"
       }
     },
     {
-      "id": "alternative_proteins",
+      "id": "media_communications_narrative_building",
       "type": "area",
       "attributes": {
-        "name": "Alternative Proteins"
+        "name": "Media, Communications, Narrative Building"
       }
     },
     {
-      "id": "agroforestry",
+      "id": "middle_of_the_supply_chain_infrastructure",
       "type": "area",
       "attributes": {
-        "name": "Agroforestry"
+        "name": "Middle of the Supply Chain Infrastructure (processing, distribution, transportation)"
       }
     },
     {
-      "id": "consumer_packaged_goods",
+      "id": "movement_building",
       "type": "area",
       "attributes": {
-        "name": "CPG (Consumer Packaged Goods)"
+        "name": "Movement Building"
       }
     },
     {
-      "id": "capacity_building",
+      "id": "nutrient_quality_density",
       "type": "area",
       "attributes": {
-        "name": "Capacity Building"
+        "name": "Nutrient Quality/Density"
+      }
+    },
+    {
+      "id": "on_farm_automation",
+      "type": "area",
+      "attributes": {
+        "name": "On Farm Automation"
       }
     },
     {
@@ -320,6 +208,118 @@
       "type": "area",
       "attributes": {
         "name": "Other"
+      }
+    },
+    {
+      "id": "policy_advocacy",
+      "type": "area",
+      "attributes": {
+        "name": "Policy - Advocacy"
+      }
+    },
+    {
+      "id": "policy_lobbying",
+      "type": "area",
+      "attributes": {
+        "name": "Policy- Lobbying"
+      }
+    },
+    {
+      "id": "regenerative_ag_financing",
+      "type": "area",
+      "attributes": {
+        "name": "Regenerative Ag Financing"
+      }
+    },
+    {
+      "id": "regenerative_ag_organizing_networks_or_groups",
+      "type": "area",
+      "attributes": {
+        "name": "Regenerative Ag Organizing Networks or Groups"
+      }
+    },
+    {
+      "id": "research",
+      "type": "area",
+      "attributes": {
+        "name": "Research (Measuring and Validation of Regen Systems and/or Practices)"
+      }
+    },
+    {
+      "id": "rural_economic_health",
+      "type": "area",
+      "attributes": {
+        "name": "Rural Economic Health"
+      }
+    },
+    {
+      "id": "soil_health",
+      "type": "area",
+      "attributes": {
+        "name": "Soil Health"
+      }
+    },
+    {
+      "id": "soil_measurement_and_technology",
+      "type": "area",
+      "attributes": {
+        "name": "Soil Measurement and Technology"
+      }
+    },
+    {
+      "id": "supply_chain_and_market_development",
+      "type": "area",
+      "attributes": {
+        "name": "Supply Chain and Market Development"
+      }
+    },
+    {
+      "id": "sustainable_or_biological_inputs",
+      "type": "area",
+      "attributes": {
+        "name": "Sustainable or Biological Inputs"
+      }
+    },
+    {
+      "id": "technical_assistance_and_business_planning",
+      "type": "area",
+      "attributes": {
+        "name": "Technical Assistance and Business Planning (farmers)"
+      }
+    },
+    {
+      "id": "toxins_reduction",
+      "type": "area",
+      "attributes": {
+        "name": "Toxins Reduction (ie organics, pesticides, herbicides etc.)"
+      }
+    },
+    {
+      "id": "tribal_nations",
+      "type": "area",
+      "attributes": {
+        "name": "Tribal Nations"
+      }
+    },
+    {
+      "id": "true_cost_accounting",
+      "type": "area",
+      "attributes": {
+        "name": "True Cost Accounting"
+      }
+    },
+    {
+      "id": "urban_farming",
+      "type": "area",
+      "attributes": {
+        "name": "Urban Farming"
+      }
+    },
+    {
+      "id": "water",
+      "type": "area",
+      "attributes": {
+        "name": "Water"
       }
     }
   ]

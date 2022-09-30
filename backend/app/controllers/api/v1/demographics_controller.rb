@@ -6,7 +6,7 @@ module API
       load_and_authorize_resource
 
       def index
-        render json: API::V1::Enums::DemographicSerializer.new(@demographics).serializable_hash
+        render json: API::V1::Enums::DemographicSerializer.new(@demographics.sort_by(&:name)).serializable_hash
       end
     end
   end
