@@ -61,7 +61,7 @@ const Invest = () => {
       <Wrapper>
         <div className="relative grid grid-cols-12">
           <div className="col-span-9 col-start-4">
-            <div className="p-16 space-y-8 bg-blue-0 rounded-2xl">
+            <div className="p-16 space-y-8 bg-blue-0">
               <h3 className="relative z-10 text-3xl text-white font-display">
                 What can you invest in?
               </h3>
