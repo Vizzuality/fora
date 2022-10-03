@@ -2,20 +2,20 @@ import React, { useMemo } from 'react';
 
 import { useAppSelector } from 'store/hooks';
 
-import { useFunderLegalStatus } from 'hooks/funder-legal-status';
+import { useFunderLegalStatuses } from 'hooks/funder-legal-statuses';
 
 import SentenceTooltip from 'containers/action-map/sentence/common/tooltip';
 
 const FunderLegalStatusSentence = () => {
   const { type, filters } = useAppSelector((state) => state['/action-map']);
-  const { funderLegalStatus } = filters;
+  const { funderLegalStatuses } = filters;
 
-  const { data: funderLegalStatusData, isFetched: funderLegalStatusIsFetched } =
-    useFunderLegalStatus();
+  const { data: funderLegalStatusesData, isFetched: funderLegalStatusIsFetched } =
+    useFunderLegalStatuses();
 
   const SELECTED_LIST = useMemo(() => {
-    return funderLegalStatusData.filter((sg) => funderLegalStatus.includes(sg.id));
-  }, [funderLegalStatusData, funderLegalStatus]);
+    return funderLegalStatusesData.filter((sg) => funderLegalStatuses.includes(sg.id));
+  }, [funderLegalStatusesData, funderLegalStatuses]);
 
   const SELECTED_TEXT = useMemo(() => {
     if (!SELECTED_LIST.length) return null;
@@ -25,7 +25,7 @@ const FunderLegalStatusSentence = () => {
     return `${first.name} +${rest.length}`;
   }, [SELECTED_LIST]);
 
-  if (!funderLegalStatus.length || !funderLegalStatusIsFetched || type !== 'funders') return null;
+  if (!funderLegalStatuses.length || !funderLegalStatusIsFetched || type !== 'funders') return null;
 
   return <SentenceTooltip text={SELECTED_TEXT} list={SELECTED_LIST} prefix=" of legal status " />;
 };

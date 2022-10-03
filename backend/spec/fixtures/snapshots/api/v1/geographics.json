@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "id": "countries",
+      "type": "geographic",
+      "attributes": {
+        "name": "Countries"
+      }
+    },
+    {
+      "id": "national",
+      "type": "geographic",
+      "attributes": {
+        "name": "National"
+      }
+    },
+    {
+      "id": "regions",
+      "type": "geographic",
+      "attributes": {
+        "name": "Regions"
+      }
+    },
+    {
+      "id": "states",
+      "type": "geographic",
+      "attributes": {
+        "name": "States"
+      }
+    }
+  ]
+}

@@ -1,5 +1,8 @@
-export interface UseDemographicsOptionsProps {
-  search?: string;
-  sort?: string;
-  filters?: Record<string, any>;
+export interface Area {
+  id: string;
+  name: string;
+}
+
+export interface ResponseData {
+  data: Area[];
 }

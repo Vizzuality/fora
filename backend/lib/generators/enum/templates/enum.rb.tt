@@ -1,0 +1,7 @@
+# This file was generated with rails g enum <%= class_name %>
+
+class <%= class_name %>
+  include EnumModel
+
+  TYPES = %w[].freeze
+end

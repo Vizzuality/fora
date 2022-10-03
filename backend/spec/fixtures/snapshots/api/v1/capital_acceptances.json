@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "id": "advises_and_manages_capital",
+      "type": "capital_acceptance",
+      "attributes": {
+        "name": "Advises and Manages Capital"
+      }
+    },
+    {
+      "id": "does_not_provide_funding",
+      "type": "capital_acceptance",
+      "attributes": {
+        "name": "Does not Provide Funding"
+      }
+    },
+    {
+      "id": "donations_accepted",
+      "type": "capital_acceptance",
+      "attributes": {
+        "name": "Donations Accepted"
+      }
+    },
+    {
+      "id": "investments_accepted",
+      "type": "capital_acceptance",
+      "attributes": {
+        "name": "Investments Accepted"
+      }
+    },
+    {
+      "id": "private_capital",
+      "type": "capital_acceptance",
+      "attributes": {
+        "name": "Private Capital (closed)"
+      }
+    },
+    {
+      "id": "other",
+      "type": "capital_acceptance",
+      "attributes": {
+        "name": "Other"
+      }
+    }
+  ]
+}

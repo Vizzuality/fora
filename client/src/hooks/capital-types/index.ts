@@ -1,22 +1,23 @@
 import { useMemo } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
-import CAPITAL_TYPES from 'services/capital-types';
+import API from 'services/api';
 
-import MOCK from './mock.json';
+import { ResponseData } from './types';
 
-export function useCapitalTypes() {
+export function useCapitalTypes(queryOptions: UseQueryOptions<ResponseData, unknown> = {}) {
   const fetchCapitalTypes = () =>
-    CAPITAL_TYPES.request({
+    API.request({
       method: 'GET',
-      url: '/',
-    });
+      url: '/capital_types',
+    }).then((response) => response.data);
 
   const query = useQuery(['capital-types'], fetchCapitalTypes, {
-    keepPreviousData: true,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+    placeholderData: {
+      data: [],
+    },
+    ...queryOptions,
   });
 
   const { data } = query;
@@ -26,7 +27,7 @@ export function useCapitalTypes() {
       return [];
     }
 
-    return MOCK.sort((a, b) => {
+    return data?.data.sort((a, b) => {
       return a.name > b.name ? 1 : -1;
     });
   }, [data]);

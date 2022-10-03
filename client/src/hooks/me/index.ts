@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 
-import USERS from 'services/users';
+import API from 'services/api';
 
 import { UseSaveMeProps, SaveMeProps } from './types';
 
@@ -14,7 +14,7 @@ export default function useMe() {
   const query = useQuery(
     ['me'],
     () =>
-      USERS.request({
+      API.request({
         method: 'GET',
         url: '/me',
         headers: {
@@ -46,7 +46,7 @@ export function useSaveMe({
   const { data: session } = useSession();
 
   const saveMe = ({ data }: SaveMeProps) =>
-    USERS.request({
+    API.request({
       url: '/me',
       data,
       headers: {

@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "id": "black_or_african_american",
+      "type": "demographic",
+      "attributes": {
+        "name": "Black or African American"
+      }
+    },
+    {
+      "id": "indigenous_tribal_nations",
+      "type": "demographic",
+      "attributes": {
+        "name": "Indigenous/Tribal Nations"
+      }
+    },
+    {
+      "id": "women",
+      "type": "demographic",
+      "attributes": {
+        "name": "Women"
+      }
+    },
+    {
+      "id": "youth",
+      "type": "demographic",
+      "attributes": {
+        "name": "Youth"
+      }
+    },
+    {
+      "id": "asian",
+      "type": "demographic",
+      "attributes": {
+        "name": "Asian"
+      }
+    },
+    {
+      "id": "hispanic_or_latinx",
+      "type": "demographic",
+      "attributes": {
+        "name": "Hispanic or Latinx"
+      }
+    },
+    {
+      "id": "lgbtq",
+      "type": "demographic",
+      "attributes": {
+        "name": "LGBTQ"
+      }
+    },
+    {
+      "id": "white",
+      "type": "demographic",
+      "attributes": {
+        "name": "White"
+      }
+    },
+    {
+      "id": "no_specific_focus",
+      "type": "demographic",
+      "attributes": {
+        "name": "No Specific Focus"
+      }
+    },
+    {
+      "id": "other",
+      "type": "demographic",
+      "attributes": {
+        "name": "Other"
+      }
+    },
+    {
+      "id": "i_dont_know",
+      "type": "demographic",
+      "attributes": {
+        "name": "I don't know"
+      }
+    }
+  ]
+}

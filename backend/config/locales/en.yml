@@ -1,3 +1,231 @@
 en:
   "true": "yes"
   "false": "no"
+  enums:
+    area:
+      equity_and_justice:
+        name: Equity and Justice
+      food_sovereignty:
+        name: Food Sovereignty
+      rural_economic_health:
+        name: Rural Economic Health
+      climate_change:
+        name: Climate Change
+      grazing:
+        name: Grazing
+      soil_health:
+        name: Soil Health
+      water:
+        name: Water
+      biodiversity:
+        name: Biodiversity
+      land_access:
+        name: Land Access
+      policy_advocacy:
+        name: Policy - Advocacy
+      movement_building:
+        name: Movement Building
+      nutrient_quality_density:
+        name: Nutrient Quality/Density
+      research:
+        name: Research (Measuring and Validation of Regen Systems and/or Practices)
+      animal_welfare:
+        name: Animal Welfare
+      aquaculture:
+        name: Aquaculture
+      soil_measurement_and_technology:
+        name: Soil Measurement and Technology
+      middle_of_the_supply_chain_infrastructure:
+        name: Middle of the Supply Chain Infrastructure (processing, distribution, transportation)
+      fiber_systems:
+        name: Fiber Systems
+      toxins_reduction:
+        name: Toxins Reduction (ie organics, pesticides, herbicides etc.)
+      media_communications_narrative_building:
+        name: Media, Communications, Narrative Building
+      technical_assistance_and_business_planning:
+        name: Technical Assistance and Business Planning (farmers)
+      regenerative_ag_financing:
+        name: Regenerative Ag Financing
+      true_cost_accounting:
+        name: True Cost Accounting
+      education_youth:
+        name: Education - Youth
+      education_future_farmers_young_farmers:
+        name: Education - Future Farmers, Young Farmers, etc
+      healthy_food_access:
+        name: Healthy Food Access
+      supply_chain_and_market_development:
+        name: Supply Chain and Market Development
+      tribal_nations:
+        name: Tribal Nations
+      leadership_development:
+        name: Leadership Development
+      educating_legislators:
+        name: Educating Legislators
+      policy_lobbying:
+        name: Policy- Lobbying
+      farm_workers:
+        name: Farmworkers
+      urban_farming:
+        name: Urban Farming
+      regenerative_ag_organizing_networks_or_groups:
+        name: Regenerative Ag Organizing Networks or Groups
+      sustainable_or_biological_inputs:
+        name: Sustainable or Biological Inputs
+      on_farm_automation:
+        name: On Farm Automation
+      farm_equipment:
+        name: Farm Equipment
+      land_asset_financing:
+        name: Land Asset Financing
+      land_conservation:
+        name: Land Conservation
+      land_transition:
+        name: Land Transition
+      fermentation:
+        name: Fermentation
+      alternative_proteins:
+        name: Alternative Proteins
+      agroforestry:
+        name: Agroforestry
+      consumer_packaged_goods:
+        name: CPG (Consumer Packaged Goods)
+      capacity_building:
+        name: Capacity Building
+      other:
+        name: Other
+    geographic:
+      countries:
+        name: Countries
+      national:
+        name: National
+      regions:
+        name: Regions
+      states:
+        name: States
+    funder_type:
+      accelerator:
+        name: Accelerator
+      advisory:
+        name: Advisory
+      bank:
+        name: Bank
+      educational_land_based:
+        name: Educational Land Based
+      family_office:
+        name: Family Office
+      funder_collaborative_or_network:
+        name: Funder Collaborative or Network
+      individual:
+        name: Individual
+      initiative:
+        name: Initiative
+      loan_fund:
+        name: Loan Fund
+      network_of_funders:
+        name: Network of funders
+      private_foundation:
+        name: Private Foundation
+      public_foundation:
+        name: Public Foundation
+      regrantor:
+        name: Regrantor
+      other:
+        name: Other
+    funder_legal_status:
+      for_profit:
+        name: For-profit
+      government_organization:
+        name: Government organisation
+      individual:
+        name: Individual
+      non_profit:
+        name: Non-profit
+      research_institution:
+        name: Research Institution
+      other:
+        name: Other
+    recipient_legal_status:
+      for_profit:
+        name: For-profit
+      foundation:
+        name: Foundation
+      cooperative:
+        name: Cooperative
+      other:
+        name: Other
+    capital_type:
+      grants:
+        name: Grants
+      debt:
+        name: Debt
+      equity:
+        name: Equity
+      pris:
+        name: PRIs
+      mris:
+        name: MRIs
+      re_grants:
+        name: Re-grants
+      forgivable_loans:
+        name: Forgivable loans
+      guarantees:
+        name: Guarantees
+    demographic:
+      black_or_african_american:
+        name: Black or African American
+      indigenous_tribal_nations:
+        name: Indigenous/Tribal Nations
+      women:
+        name: Women
+      youth:
+        name: Youth
+      asian:
+        name: Asian
+      hispanic_or_latinx:
+        name: Hispanic or Latinx
+      lgbtq:
+        name: LGBTQ
+      white:
+        name: White
+      no_specific_focus:
+        name: No Specific Focus
+      other:
+        name: Other
+      i_dont_know:
+        name: I don't know
+    capital_acceptance:
+      advises_and_manages_capital:
+        name: Advises and Manages Capital
+      does_not_provide_funding:
+        name: Does not Provide Funding
+      donations_accepted:
+        name: Donations Accepted
+      investments_accepted:
+        name: Investments Accepted
+      private_capital:
+        name: Private Capital (closed)
+      other:
+        name: Other
+    role:
+      funder:
+        name: Funder
+      regrantor:
+        name: Regrantor
+      intermediary:
+        name: Intermediary
+    application_status:
+      does_not_provide_funding:
+        name: Does not provide funding
+      invitation_only:
+        name: Invitation only
+      open_invitations:
+        name: Open Invitations
+    grant_duration:
+      one_year:
+        name: One year
+      multi_year:
+        name: Multi-year
+      other:
+        name: Other

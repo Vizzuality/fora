@@ -1,5 +1,8 @@
-export interface UseGeographicsOptionsProps {
-  search?: string;
-  sort?: string;
-  filters?: Record<string, any>;
+export interface Geographic {
+  id: string;
+  name: string;
+}
+
+export interface ResponseData {
+  data: Geographic[];
 }

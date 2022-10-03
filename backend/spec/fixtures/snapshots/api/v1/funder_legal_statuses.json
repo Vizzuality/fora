@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "id": "for_profit",
+      "type": "funder_legal_status",
+      "attributes": {
+        "name": "For-profit"
+      }
+    },
+    {
+      "id": "government_organization",
+      "type": "funder_legal_status",
+      "attributes": {
+        "name": "Government organisation"
+      }
+    },
+    {
+      "id": "individual",
+      "type": "funder_legal_status",
+      "attributes": {
+        "name": "Individual"
+      }
+    },
+    {
+      "id": "non_profit",
+      "type": "funder_legal_status",
+      "attributes": {
+        "name": "Non-profit"
+      }
+    },
+    {
+      "id": "research_institution",
+      "type": "funder_legal_status",
+      "attributes": {
+        "name": "Research Institution"
+      }
+    },
+    {
+      "id": "other",
+      "type": "funder_legal_status",
+      "attributes": {
+        "name": "Other"
+      }
+    }
+  ]
+}
