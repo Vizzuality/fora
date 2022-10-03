@@ -2,24 +2,28 @@ import { useMemo } from 'react';
 
 import { Geographic } from 'store/action-map';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
-import GEOGRAPHICS from 'services/geographics';
+import { ParamsProps } from 'hooks/types';
 
-import { GREOGRAPHIC_SCOPES, SUBGEOGRAPHICS } from './mock';
-import { UseGeographicsOptionsProps } from './types';
+import API from 'services/api';
+import API_FAKE from 'services/api-fake';
 
-export function useGeographics() {
+import { SUBGEOGRAPHICS } from './mock';
+import { ResponseData } from './types';
+
+export function useGeographics(queryOptions: UseQueryOptions<ResponseData, unknown> = {}) {
   const fetchGeographics = () =>
-    GEOGRAPHICS.request({
+    API.request({
       method: 'GET',
-      url: '/',
-    });
+      url: '/geographics',
+    }).then((response) => response.data);
 
   const query = useQuery(['geographics'], fetchGeographics, {
-    keepPreviousData: true,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+    placeholderData: {
+      data: [],
+    },
+    ...queryOptions,
   });
 
   const { data } = query;
@@ -29,7 +33,7 @@ export function useGeographics() {
       return [];
     }
 
-    return GREOGRAPHIC_SCOPES;
+    return data?.data;
   }, [data]);
 
   return useMemo(() => {
@@ -40,11 +44,8 @@ export function useGeographics() {
   }, [query, DATA]);
 }
 
-export function useSubGeographics(
-  geographic: Geographic,
-  options: UseGeographicsOptionsProps = {}
-) {
-  const { filters = {}, search, sort } = options;
+export function useSubGeographics(geographic: Geographic, params: ParamsProps = {}) {
+  const { filters = {}, search, sort } = params;
 
   const parsedFilters = Object.keys(filters).reduce((acc, k) => {
     if (filters[k] && Array.isArray(filters[k]) && !filters[k].length) {
@@ -57,10 +58,10 @@ export function useSubGeographics(
     };
   }, {});
 
-  const fetchGeographics = () =>
-    GEOGRAPHICS.request({
+  const fetchSubgeographics = () =>
+    API_FAKE.request({
       method: 'GET',
-      url: '/',
+      url: '/users',
       params: {
         ...parsedFilters,
         ...(search && {
@@ -72,7 +73,7 @@ export function useSubGeographics(
       },
     });
 
-  const query = useQuery(['geographics', JSON.stringify(options)], fetchGeographics, {
+  const query = useQuery(['geographics', JSON.stringify(params)], fetchSubgeographics, {
     keepPreviousData: true,
     refetchOnMount: false,
     refetchOnWindowFocus: false,

@@ -17,19 +17,19 @@ const MoreFiltersSelected: React.FC<MoreFiltersSelectedProps> = () => {
   const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModal();
 
   const { type, filters } = useAppSelector((state) => state['/action-map']);
-  const { funderTypes, funderLegalStatus, capitalTypes, projectLegalStatus } = filters;
+  const { funderTypes, funderLegalStatuses, capitalTypes, projectLegalStatuses } = filters;
 
   const SELECTED = useMemo(() => {
     if (type === 'funders') {
-      const s = [!!funderTypes.length, !!funderLegalStatus.length, !!capitalTypes.length];
+      const s = [!!funderTypes.length, !!funderLegalStatuses.length, !!capitalTypes.length];
       return s.filter((v) => v).length;
     }
 
     if (type === 'projects') {
-      const s = [!!projectLegalStatus.length];
+      const s = [!!projectLegalStatuses.length];
       return s.filter((v) => v).length;
     }
-  }, [type, funderTypes, funderLegalStatus, capitalTypes, projectLegalStatus]);
+  }, [type, funderTypes, funderLegalStatuses, capitalTypes, projectLegalStatuses]);
 
   return (
     <>

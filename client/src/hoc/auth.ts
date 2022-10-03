@@ -2,7 +2,7 @@ import { QueryClient, dehydrate } from '@tanstack/react-query';
 import type { GetServerSidePropsContext } from 'next';
 import { getSession } from 'next-auth/react';
 
-import USERS from 'services/users';
+import API from 'services/api';
 
 type AuthProps = {
   // TODO: change to a better type definition using Next types
@@ -71,7 +71,7 @@ export function withUser(getServerSidePropsFunc?: AuthHOC) {
     const queryClient = new QueryClient();
 
     await queryClient.prefetchQuery(['me'], () =>
-      USERS.request({
+      API.request({
         method: 'GET',
         url: '/me',
         headers: {

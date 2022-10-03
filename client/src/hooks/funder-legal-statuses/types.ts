@@ -1,8 +1,8 @@
-export interface Area {
+export interface FunderLegalStatus {
   id: string;
   name: string;
 }
 
 export interface ResponseData {
-  data: Area[];
+  data: FunderLegalStatus[];
 }

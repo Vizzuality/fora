@@ -11,13 +11,13 @@ interface MoreFiltersProps {
 const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }) => {
   const form = useForm();
   const { values } = form.getState();
-  const { funderTypes, funderLegalStatus, capitalTypes, projectLegalStatus } = values;
+  const { funderTypes, funderLegalStatuses, capitalTypes, projectLegalStatuses } = values;
 
   const DISABLED =
     !funderTypes.length ||
-    !funderLegalStatus.length ||
+    !funderLegalStatuses.length ||
     !capitalTypes.length ||
-    !projectLegalStatus.length;
+    !projectLegalStatuses.length;
 
   return <FilterModalFooter disabled={DISABLED} onClose={onClose} />;
 };

@@ -4,7 +4,7 @@ import { dehydrate, QueryClient } from '@tanstack/react-query';
 
 import MetaTags from 'containers/meta-tags';
 
-import FUNDERS from 'services/funders';
+import API_FAKE from 'services/api-fake';
 
 const DESCRIPTION_TEXT =
   'FORA (Funders for Regenerative Agriculture) is a network of funders and funder initiatives aimed at informing, educating, organizing, providing collaborative opportunities, and recruiting new members in support of regenerative agricultural systems. ';
@@ -23,9 +23,9 @@ const FundersDetailPage: React.FC = () => {
 };
 
 export async function getStaticPaths() {
-  const response = await FUNDERS.request({
+  const response = await API_FAKE.request({
     method: 'GET',
-    url: '/',
+    url: '/posts',
   }).then((r) => r.data);
 
   const paths = response.map((f) => ({
@@ -45,9 +45,9 @@ export async function getStaticProps(ctx) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery(['funder', id], () => {
-    return FUNDERS.request({
+    return API_FAKE.request({
       method: 'GET',
-      url: `/${id}`,
+      url: `/posts/${id}`,
     }).then((r) => r.data);
   });
 

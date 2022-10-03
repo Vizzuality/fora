@@ -3,23 +3,38 @@ import { useCallback, useEffect, useState } from 'react';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
+import { GAPage } from 'lib/analytics/ga';
+
+import { STORE_WRAPPER } from 'store';
+
 import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
+
 // import { SessionProvider } from 'next-auth/react';
+
+import ApplicationLayout from 'layouts/application';
 
 import MetaIcons from 'containers/meta-icons';
 import RouteLoading from 'containers/route-loading';
 import ThirdParty from 'containers/third-party';
 
 import { MediaContextProvider } from 'components/media-query';
-import ApplicationLayout from 'layouts/application';
-import { GAPage } from 'lib/analytics/ga';
-import { STORE_WRAPPER } from 'store';
 
 import 'styles/globals.css';
 import 'styles/flicking.css';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            keepPreviousData: true,
+            refetchOnMount: false,
+            refetchOnWindowFocus: false,
+          },
+        },
+      })
+  );
   const router = useRouter();
   const { asPath } = router;
   const [routeLoading, setRouteLoading] = useState({
