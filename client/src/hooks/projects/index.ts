@@ -206,9 +206,9 @@ export function useProjectsInfinity(options: AdapterOptionsProps = {}) {
 
 export function useProject(id: string) {
   const fetchProject = () =>
-    PROJECTS.request({
+    API_FAKE.request({
       method: 'GET',
-      url: `/${id}`,
+      url: `/todos/${id}`,
     }).then((response) => response.data);
 
   const query = useQuery(['project', id], fetchProject, {

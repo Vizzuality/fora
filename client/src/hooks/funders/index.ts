@@ -225,9 +225,9 @@ export function useFundersInfinity(options: AdapterOptionsProps = {}) {
 
 export function useFunder(id: string) {
   const fetchFunder = () =>
-    FUNDERS.request({
+    API_FAKE.request({
       method: 'GET',
-      url: `/${id}`,
+      url: `/posts/${id}`,
     }).then((response) => response.data);
 
   const query = useQuery(['funder', id], fetchFunder, {
