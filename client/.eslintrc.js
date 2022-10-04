@@ -91,7 +91,12 @@ module.exports = {
             group: 'builtin',
           },
           {
-            pattern: 'hoc/**',
+            pattern: 'lib/**',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'store',
             group: 'external',
             position: 'before',
           },
@@ -107,6 +112,11 @@ module.exports = {
           },
           {
             pattern: 'constants/**',
+            group: 'internal',
+            position: 'before',
+          },
+          {
+            pattern: 'layouts/**',
             group: 'internal',
             position: 'before',
           },

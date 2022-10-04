@@ -6,14 +6,14 @@ import API from 'services/api';
 
 import { ResponseData } from './types';
 
-export function useCapitalTypes(queryOptions: UseQueryOptions<ResponseData, unknown> = {}) {
-  const fetchCapitalTypes = () =>
+export function useProjectLegalStatuses(queryOptions: UseQueryOptions<ResponseData, unknown> = {}) {
+  const fetchProjectLegalStatuses = () =>
     API.request({
       method: 'GET',
-      url: '/capital_types',
+      url: '/recipient_legal_statuses',
     }).then((response) => response.data);
 
-  const query = useQuery(['capital-types'], fetchCapitalTypes, {
+  const query = useQuery(['projects-legal-status'], fetchProjectLegalStatuses, {
     placeholderData: {
       data: [],
     },
