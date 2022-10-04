@@ -48,9 +48,9 @@ const Header = () => {
                         target={target}
                         rel={rel}
                         className={cx({
-                          'text-base font-semibold py-2 px-7 hover:rounded-lg hover:bg-grey-60/75':
-                            true,
-                          'rounded-lg bg-green-0': pathname === href,
+                          'text-base font-semibold py-2 px-7': true,
+                          'hover:rounded-lg hover:bg-grey-60/75': pathname !== href,
+                          'rounded-lg bg-green-0': href.includes(pathname) && pathname !== '/',
                           'text-grey-0 hover:underline': !filled,
                         })}
                       >
@@ -62,9 +62,9 @@ const Header = () => {
                       <Link href={href}>
                         <a
                           className={cx({
-                            'text-base font-semibold py-2 px-7 hover:rounded-lg hover:bg-grey-60/75':
-                              true,
-                            'rounded-lg bg-green-0': pathname === href,
+                            'text-base font-semibold py-2 px-7': true,
+                            'hover:rounded-lg hover:bg-grey-60/75': pathname !== href,
+                            'rounded-lg bg-green-0': href.includes(pathname) && pathname !== '/',
                           })}
                         >
                           {label}
