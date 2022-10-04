@@ -16,6 +16,10 @@ namespace :api, format: "json" do
     resources :geographics, only: %i[index]
     resources :areas, only: %i[index]
 
-    resources :subgeographics, only: %i[index]
+    resources :subgeographics, only: %i[index] do
+      collection do
+        get :geojson
+      end
+    end
   end
 end

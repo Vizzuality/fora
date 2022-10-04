@@ -655,10 +655,15 @@ paths:
       parameters:
       - name: filter[geographic]
         in: query
+        enum:
+        - countries
+        - national
+        - regions
+        - states
         description: Filter records by its geographic
         required: false
         schema:
-          type: boolean
+          type: enum
       - name: fields[subgeographic]
         in: query
         description: Get only required fields. Use comma to separate multiple fields
@@ -678,33 +683,33 @@ paths:
             application/json:
               example:
                 data:
-                - id: 6a5e2b3c-64ed-4f90-b376-0999856e96e1
+                - id: bfbd251c-ea14-46db-a1d3-f41dd2ee2f1c
                   type: subgeographic
                   attributes:
                     name: Canada
                     code: Canada
                     geographic: countries
-                    created_at: '2022-09-30T10:54:23.473Z'
-                    updated_at: '2022-09-30T10:54:23.473Z'
+                    created_at: '2022-10-04T18:07:28.957Z'
+                    updated_at: '2022-10-04T18:07:28.957Z'
                   relationships:
                     parent:
                       data:
                     subgeographics:
                       data:
-                      - id: 322c8842-ce86-49cc-89c3-b97c6342dddd
+                      - id: d98f26b6-0bae-4ca5-bf2c-b28f2c4b627b
                         type: subgeographic
-                - id: 322c8842-ce86-49cc-89c3-b97c6342dddd
+                - id: d98f26b6-0bae-4ca5-bf2c-b28f2c4b627b
                   type: subgeographic
                   attributes:
                     name: Papua New Guinea
                     code: Papua New Guinea
                     geographic: regions
-                    created_at: '2022-09-30T10:54:23.493Z'
-                    updated_at: '2022-09-30T10:54:23.493Z'
+                    created_at: '2022-10-04T18:07:28.979Z'
+                    updated_at: '2022-10-04T18:07:28.979Z'
                   relationships:
                     parent:
                       data:
-                        id: 6a5e2b3c-64ed-4f90-b376-0999856e96e1
+                        id: bfbd251c-ea14-46db-a1d3-f41dd2ee2f1c
                         type: subgeographic
                     subgeographics:
                       data: []
@@ -715,6 +720,83 @@ paths:
                     type: array
                     items:
                       "$ref": "#/components/schemas/subgeographic"
+  "/api/v1/subgeographics/geojson":
+    get:
+      summary: Returns geojson for appropriate geographic
+      tags:
+      - Subgeographics
+      parameters:
+      - name: filter[geographic]
+        in: query
+        enum:
+        - countries
+        - national
+        - regions
+        - states
+        description: Return geojson for specific geographic
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              example:
+                type: FeatureCollection
+                features:
+                - type: Feature
+                  geometry:
+                    type: Polygon
+                    coordinates:
+                    - - - 0
+                        - 0
+                      - - 1
+                        - 0
+                      - - 1
+                        - 1
+                      - - 0
+                        - 1
+                      - - 0
+                        - 0
+                  properties:
+                    id: 3d455863-daa3-4301-85d7-70544e7dd89f
+                    code: Papua New Guinea
+                    name: Papua New Guinea
+                    parent_id: 13448234-6397-4a91-9a59-16d2edd2ebff
+                - type: Feature
+                  geometry:
+                    type: Polygon
+                    coordinates:
+                    - - - 0
+                        - 0
+                      - - 1
+                        - 0
+                      - - 1
+                        - 1
+                      - - 0
+                        - 1
+                      - - 0
+                        - 0
+                  properties:
+                    id: e71b77d8-8509-430e-852c-c6ce99de133e
+                    code: Jamaica
+                    name: Jamaica
+                    parent_id: 13448234-6397-4a91-9a59-16d2edd2ebff
+              schema:
+                "$ref": "#/components/schemas/subgeographic_geojson"
+        '422':
+          description: Missing geographic param
+          content:
+            application/json:
+              example:
+                errors:
+                - title: Geographic param is mandatory!
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/errors"
 components:
   securitySchemes: {}
   schemas:
@@ -755,6 +837,52 @@ components:
       - id
       - type
       - attributes
+    subgeographic_geojson:
+      type: object
+      properties:
+        type:
+          type: string
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              geometry:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  coordinates:
+                    type: array
+                required:
+                - type
+                - coordinates
+              properties:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  code:
+                    type: string
+                  name:
+                    type: string
+                  parent_id:
+                    type: string
+                    nullable: true
+                required:
+                - id
+                - code
+                - name
+                - parent_id
+            required:
+            - type
+            - geometry
+            - properties
+      required:
+      - type
+      - features
     nullable_response_relation:
       type: object
       properties:

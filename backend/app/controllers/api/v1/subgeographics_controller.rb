@@ -15,6 +15,12 @@ module API
         ).serializable_hash
       end
 
+      def geojson
+        raise API::UnprocessableEntityError, I18n.t("api.errors.missing_geographic") if filter_params[:geographic].blank?
+
+        render json: Subgeographic.as_geojson(filter_params[:geographic])
+      end
+
       private
 
       def filter_params

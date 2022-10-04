@@ -49,6 +49,41 @@ RSpec.configure do |config|
             },
             required: %w[id type attributes]
           },
+          subgeographic_geojson: {
+            type: :object,
+            properties: {
+              type: {type: :string},
+              features: {
+                type: :array,
+                items: {
+                  type: :object,
+                  properties: {
+                    type: {type: :string},
+                    geometry: {
+                      type: :object,
+                      properties: {
+                        type: {type: :string},
+                        coordinates: {type: :array}
+                      },
+                      required: %w[type coordinates]
+                    },
+                    properties: {
+                      type: :object,
+                      properties: {
+                        id: {type: :string},
+                        code: {type: :string},
+                        name: {type: :string},
+                        parent_id: {type: :string, nullable: true}
+                      },
+                      required: %w[id code name parent_id]
+                    }
+                  },
+                  required: %w[type geometry properties]
+                }
+              }
+            },
+            required: %w[type features]
+          },
           nullable_response_relation: {
             type: :object,
             properties: {

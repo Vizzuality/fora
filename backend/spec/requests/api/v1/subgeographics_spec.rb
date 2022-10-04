@@ -8,7 +8,7 @@ RSpec.describe "API V1 Subgeographics", type: :request do
       tags "Subgeographics"
       consumes "application/json"
       produces "application/json"
-      parameter name: "filter[geographic]", in: :query, type: :boolean, description: "Filter records by its geographic", required: false
+      parameter name: "filter[geographic]", in: :query, type: :string, description: "Filter records by its geographic", required: false
       parameter name: "fields[subgeographic]", in: :query, type: :string, description: "Get only required fields. Use comma to separate multiple fields", required: false
       parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
 
@@ -49,6 +49,44 @@ RSpec.describe "API V1 Subgeographics", type: :request do
           it "contains just region subgeographic" do
             expect(response_json["data"].pluck("id")).to eq([region.id])
           end
+        end
+      end
+    end
+  end
+
+  path "/api/v1/subgeographics/geojson" do
+    get "Returns geojson for appropriate geographic" do
+      tags "Subgeographics"
+      consumes "application/json"
+      produces "application/json"
+      parameter name: "filter[geographic]", in: :query, type: :string, description: "Return geojson for specific geographic", required: true
+
+      let!(:country) { create :subgeographic, geographic: :countries }
+      let!(:region_1) { create :subgeographic, geographic: :regions, parent: country }
+      let!(:region_2) { create :subgeographic, geographic: :regions, parent: country }
+
+      let("filter[geographic]") { :regions }
+
+      response "200", :success do
+        schema "$ref" => "#/components/schemas/subgeographic_geojson"
+
+        run_test!
+
+        it "matches snapshot", generate_swagger_example: true do
+          expect(response.body).to match_snapshot("api/v1/subgeographics-geojson")
+        end
+      end
+
+      response "422", "Missing geographic param" do
+        schema type: :object, properties: {
+          data: {"$ref" => "#/components/schemas/errors"}
+        }
+        let("filter[geographic]") {}
+
+        run_test!
+
+        it "returns correct error", generate_swagger_example: true do
+          expect(response_json["errors"][0]["title"]).to eq(I18n.t("api.errors.missing_geographic"))
         end
       end
     end
