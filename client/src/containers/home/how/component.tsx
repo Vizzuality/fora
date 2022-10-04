@@ -25,7 +25,7 @@ const How = () => {
             <div className="grid grid-cols-12 gap-5">
               <div className="relative col-span-5">
                 <AnimatedScroll
-                  className="flex items-center justify-between w-full h-full p-16 mt-16 space-y-10 bg-green-0/10 rounded-2xl"
+                  className="flex items-center justify-between w-full h-full p-16 mt-16 space-y-10 bg-green-0/10"
                   xOptions={{
                     start: 0,
                     end: 0,
@@ -47,7 +47,7 @@ const How = () => {
 
               <div className="relative col-span-7">
                 <AnimatedScroll
-                  className="flex flex-col justify-between h-full p-16 space-y-10 bg-green-0/10 rounded-2xl"
+                  className="flex flex-col justify-between h-full p-16 space-y-10 bg-green-0/10"
                   xOptions={{
                     start: 0,
                     end: 0,
@@ -171,7 +171,7 @@ const How = () => {
             <div className="grid grid-cols-12 gap-5">
               <div className="relative col-span-7">
                 <AnimatedScroll
-                  className="flex flex-col justify-between h-full p-16 space-y-10 bg-green-0/10 rounded-2xl"
+                  className="flex flex-col justify-between h-full p-16 space-y-10 bg-green-0/10"
                   xOptions={{
                     start: 0,
                     end: 0,
@@ -291,7 +291,7 @@ const How = () => {
 
               <div className="relative col-span-5">
                 <AnimatedScroll
-                  className="flex items-center justify-between h-full p-5 mt-16 space-y-10 bg-green-0/10 rounded-2xl"
+                  className="flex items-center justify-between h-full p-5 mt-16 space-y-10 bg-green-0/10"
                   xOptions={{
                     start: 0,
                     end: 0,
