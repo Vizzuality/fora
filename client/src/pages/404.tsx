@@ -18,7 +18,7 @@ const Page404: React.FC = () => {
         <p className="underline">It looks like the link is broken or the pages has been removed.</p>
       </div>
 
-      <Button type="button" size="xl" theme="black" onClick={handleGoBack}>
+      <Button href="/" type="button" size="xl" theme="black">
         Go to Homepage
       </Button>
     </div>
