@@ -1,5 +1,7 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 
+import { fetchProject } from 'hooks/projects';
+
 import MetaTags from 'containers/meta-tags';
 import Project from 'containers/project';
 
@@ -40,12 +42,9 @@ export async function getStaticProps(ctx) {
   const { id } = ctx.params;
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(['project', id], () => {
-    return API_FAKE.request({
-      method: 'GET',
-      url: `/todos/${id}`,
-    }).then((r) => r.data);
-  });
+  const fetch = () => fetchProject(id);
+
+  await queryClient.prefetchQuery(['project', id], fetch);
 
   // console.log(queryClient.getQueriesData(['project', id]));
 

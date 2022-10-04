@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 
-import { useFunder } from 'hooks/funders';
+import { fetchFunder, useFunder } from 'hooks/funders';
 
 import Funder from 'containers/funder';
 import MetaTags from 'containers/meta-tags';
@@ -51,12 +51,9 @@ export async function getStaticProps(ctx) {
   const { id } = ctx.params;
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(['funder', id], () => {
-    return API_FAKE.request({
-      method: 'GET',
-      url: `/posts/${id}`,
-    }).then((r) => r.data);
-  });
+  const fetch = () => fetchFunder(id);
+
+  await queryClient.prefetchQuery(['funder', id], fetch);
 
   // console.log(queryClient.getQueriesData(['funder', id]));
 

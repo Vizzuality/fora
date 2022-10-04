@@ -13,6 +13,12 @@ import API_FAKE from 'services/api-fake';
 import MOCK from './mock.json';
 import { UseFundersOptionsProps } from './types';
 
+export const fetchFunder = (id: string) =>
+  API_FAKE.request({
+    method: 'GET',
+    url: `/posts/${id}`,
+  }).then((response) => response.data);
+
 /**
 ****************************************
   FUNDERS
@@ -224,13 +230,8 @@ export function useFundersInfinity(options: AdapterOptionsProps = {}) {
 */
 
 export function useFunder(id: string) {
-  const fetchFunder = () =>
-    API_FAKE.request({
-      method: 'GET',
-      url: `/posts/${id}`,
-    }).then((response) => response.data);
-
-  const query = useQuery(['funder', id], fetchFunder, {
+  const fetch = () => fetchFunder(id);
+  const query = useQuery(['funder', id], fetch, {
     enabled: !!id,
     retry: false,
     keepPreviousData: true,

@@ -13,6 +13,12 @@ import API_FAKE from 'services/api-fake';
 import MOCK from './mock.json';
 import { UseProjectsOptionsProps } from './types';
 
+export const fetchProject = (id: string) =>
+  API_FAKE.request({
+    method: 'GET',
+    url: `/todos/${id}`,
+  }).then((response) => response.data);
+
 export function useProjects(options: UseProjectsOptionsProps = {}) {
   const { filters = {}, search, sort } = options;
 
@@ -205,13 +211,9 @@ export function useProjectsInfinity(options: AdapterOptionsProps = {}) {
 */
 
 export function useProject(id: string) {
-  const fetchProject = () =>
-    API_FAKE.request({
-      method: 'GET',
-      url: `/todos/${id}`,
-    }).then((response) => response.data);
+  const fetch = () => fetchProject(id);
 
-  const query = useQuery(['project', id], fetchProject, {
+  const query = useQuery(['project', id], fetch, {
     enabled: !!id,
     retry: false,
     keepPreviousData: true,

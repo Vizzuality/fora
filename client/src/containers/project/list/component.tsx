@@ -3,7 +3,6 @@ import React, { useCallback, useMemo, useState } from 'react';
 import cx from 'classnames';
 
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 import { useProjectsInfinity } from 'hooks/projects';
 
@@ -18,15 +17,13 @@ const ProjectList = () => {
   const { data: projectsData } = useProjectsInfinity();
   const [slide, setSlide] = useState(0);
 
-  const { pathname } = useRouter();
-
   const formatProjectsData = useMemo(() => {
     return projectsData.map((project, i) => {
       return {
         id: `project-${i}`,
         content: (
           <div className="mr-4">
-            <Card key={project.id} {...project} />
+            <Card key={project.id} {...project} href={`/projects/${project.id}`} />
           </div>
         ),
       };
@@ -122,7 +119,7 @@ const ProjectList = () => {
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {randomProjects.map((project) => (
-              <Card key={project.id} href={`/${pathname}/${project.id}`} {...project} />
+              <Card key={project.id} href={`/projects/${project.id}`} {...project} />
             ))}
           </div>
         </div>
@@ -132,7 +129,7 @@ const ProjectList = () => {
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {randomProjects.map((project) => (
-              <Card key={project.id} href={`/${pathname}/${project.id}`} {...project} />
+              <Card key={project.id} href={`/projects/${project.id}`} {...project} />
             ))}
           </div>
         </div>
