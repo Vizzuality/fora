@@ -1,14 +1,10 @@
-import React, { useCallback } from 'react';
-
-import Router from 'next/router';
+import React from 'react';
 
 import Button from 'components/button';
 
 const Page500: React.FC = () => {
-  const handleGoBack = useCallback(() => Router.back(), []);
-
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen space-y-11">
+    <div className="flex flex-col items-center justify-center w-screen py-20 grow space-y-11">
       <div className="py-20">
         <h2 className="text-green-0 text-[200px] font-display font-normal">500</h2>
       </div>
@@ -18,7 +14,7 @@ const Page500: React.FC = () => {
         <p className="underline">Something went wrong. We are working on to fix the problem.</p>
       </div>
 
-      <Button type="button" size="xl" theme="black" onClick={handleGoBack}>
+      <Button href="/" type="button" size="xl" theme="black">
         Go to Homepage
       </Button>
     </div>
