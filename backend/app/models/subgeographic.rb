@@ -3,6 +3,10 @@ class Subgeographic < ApplicationRecord
   belongs_to :subgeographic_geometry, optional: true
 
   has_many :subgeographics, foreign_key: "parent_id", dependent: :destroy
+  has_many :funder_primary_office_states, class_name: "Funder", foreign_key: "primary_office_state_id", dependent: :destroy
+  has_many :funder_primary_office_countries, class_name: "Funder", foreign_key: "primary_office_country_id", dependent: :destroy
+  has_many :funder_subgeographics, dependent: :destroy
+  has_many :funders, through: :funder_subgeographics
 
   validates :geographic, inclusion: {in: Geographic::TYPES, allow_blank: true}, presence: true
   validates_uniqueness_of :name, scope: %i[geographic parent_id], case_sensitive: false, allow_blank: true
