@@ -17,7 +17,7 @@ const What = () => {
       <Wrapper>
         <div className="grid grid-cols-12">
           <div className="relative col-span-11 col-start-2">
-            <div className="p-16 space-y-8 bg-green-0 rounded-2xl">
+            <div className="p-16 space-y-8 bg-green-0">
               <h2 className="max-w-xl text-4xl font-display text-grey-0">
                 What is regenerative agriculture?
               </h2>
@@ -32,7 +32,7 @@ const What = () => {
             </div>
 
             <AnimatedScroll
-              className="absolute z-0 w-full h-full bg-green-0/10 rounded-2xl top-full -left-1/2"
+              className="absolute z-0 w-full h-full bg-green-0/10 top-full -left-1/2"
               xOptions={{ start: 150, end: 150 }}
               yOptions={{ start: -250, end: 0 }}
             />

@@ -14,7 +14,7 @@ const Why = () => {
           <div className="grid grid-cols-12 gap-5">
             <div className="relative col-span-6">
               <AnimatedScroll
-                className="flex flex-col justify-between h-full p-16 space-y-10 bg-blue-0/10 rounded-2xl"
+                className="flex flex-col justify-between h-full p-16 space-y-10 bg-blue-0/10"
                 xOptions={{
                   start: 0,
                   end: 0,
@@ -49,7 +49,7 @@ const Why = () => {
 
             <div className="relative col-span-6">
               <AnimatedScroll
-                className="flex flex-col justify-between h-full p-16 mt-16 space-y-10 bg-blue-0/10 rounded-2xl"
+                className="flex flex-col justify-between h-full p-16 mt-16 space-y-10 bg-blue-0/10"
                 xOptions={{
                   start: 0,
                   end: 0,
