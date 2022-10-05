@@ -6,7 +6,7 @@ module API
       load_and_authorize_resource
 
       def index
-        render json: API::V1::Enums::CapitalAcceptanceSerializer.new(@capital_acceptances).serializable_hash
+        render json: API::V1::Enums::CapitalAcceptanceSerializer.new(@capital_acceptances.sort_by(&:name)).serializable_hash
       end
     end
   end

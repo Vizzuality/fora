@@ -1,6 +1,9 @@
 en:
   "true": "yes"
   "false": "no"
+  api:
+    errors:
+      missing_geographic: "Geographic param is mandatory!"
   enums:
     area:
       equity_and_justice:

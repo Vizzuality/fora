@@ -23,6 +23,113 @@ RSpec.configure do |config|
         securitySchemes: {
         },
         schemas: {
+          subgeographic: {
+            type: :object,
+            properties: {
+              id: {type: :string},
+              type: {type: :string},
+              attributes: {
+                type: :object,
+                properties: {
+                  name: {type: :string},
+                  code: {type: :string},
+                  geographic: {type: :string},
+                  created_at: {type: :string},
+                  updated_at: {type: :string}
+                },
+                required: %w[name code geographic created_at updated_at]
+              },
+              relationships: {
+                type: :object,
+                properties: {
+                  parent: {"$ref" => "#/components/schemas/nullable_response_relation"},
+                  subgeographics: {"$ref" => "#/components/schemas/response_relations"}
+                }
+              }
+            },
+            required: %w[id type attributes]
+          },
+          subgeographic_geojson: {
+            type: :object,
+            properties: {
+              type: {type: :string},
+              features: {
+                type: :array,
+                items: {
+                  type: :object,
+                  properties: {
+                    type: {type: :string},
+                    geometry: {
+                      type: :object,
+                      properties: {
+                        type: {type: :string},
+                        coordinates: {type: :array}
+                      },
+                      required: %w[type coordinates]
+                    },
+                    properties: {
+                      type: :object,
+                      properties: {
+                        id: {type: :string},
+                        code: {type: :string},
+                        name: {type: :string},
+                        parent_id: {type: :string, nullable: true}
+                      },
+                      required: %w[id code name parent_id]
+                    }
+                  },
+                  required: %w[type geometry properties]
+                }
+              }
+            },
+            required: %w[type features]
+          },
+          nullable_response_relation: {
+            type: :object,
+            properties: {
+              data: {
+                type: :object,
+                nullable: true,
+                properties: {
+                  id: {type: :string},
+                  type: {type: :string}
+                },
+                required: %w[id type]
+              }
+            },
+            required: %w[data]
+          },
+          response_relation: {
+            type: :object,
+            properties: {
+              data: {
+                type: :object,
+                properties: {
+                  id: {type: :string},
+                  type: {type: :string}
+                },
+                required: %w[id type]
+              }
+            },
+            required: %w[data]
+          },
+          response_relations: {
+            type: :object,
+            properties: {
+              data: {
+                type: :array,
+                items: {
+                  object: :object,
+                  properties: {
+                    id: {type: :string},
+                    type: {type: :string}
+                  },
+                  required: %w[id type]
+                }
+              }
+            },
+            required: %w[data]
+          },
           enum: {
             type: :object,
             properties: {

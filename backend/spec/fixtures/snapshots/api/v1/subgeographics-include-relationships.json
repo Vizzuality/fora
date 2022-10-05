@@ -1,0 +1,45 @@
+{
+  "data": [
+    {
+      "id": "8926a039-c8c8-48eb-a8bc-95c358648c55",
+      "type": "subgeographic",
+      "attributes": {
+        "name": "Canada"
+      },
+      "relationships": {
+        "parent": {
+          "data": null
+        }
+      }
+    },
+    {
+      "id": "57826af7-3d7e-4273-b240-f999f9d9fda2",
+      "type": "subgeographic",
+      "attributes": {
+        "name": "Papua New Guinea"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "8926a039-c8c8-48eb-a8bc-95c358648c55",
+            "type": "subgeographic"
+          }
+        }
+      }
+    }
+  ],
+  "included": [
+    {
+      "id": "8926a039-c8c8-48eb-a8bc-95c358648c55",
+      "type": "subgeographic",
+      "attributes": {
+        "name": "Canada"
+      },
+      "relationships": {
+        "parent": {
+          "data": null
+        }
+      }
+    }
+  ]
+}

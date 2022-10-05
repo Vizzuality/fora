@@ -47,59 +47,14 @@ paths:
             application/json:
               example:
                 data:
-                - id: equity_and_justice
+                - id: agroforestry
                   type: area
                   attributes:
-                    name: Equity and Justice
-                - id: food_sovereignty
+                    name: Agroforestry
+                - id: alternative_proteins
                   type: area
                   attributes:
-                    name: Food Sovereignty
-                - id: rural_economic_health
-                  type: area
-                  attributes:
-                    name: Rural Economic Health
-                - id: climate_change
-                  type: area
-                  attributes:
-                    name: Climate Change
-                - id: grazing
-                  type: area
-                  attributes:
-                    name: Grazing
-                - id: soil_health
-                  type: area
-                  attributes:
-                    name: Soil Health
-                - id: water
-                  type: area
-                  attributes:
-                    name: Water
-                - id: biodiversity
-                  type: area
-                  attributes:
-                    name: Biodiversity
-                - id: land_access
-                  type: area
-                  attributes:
-                    name: Land Access
-                - id: policy_advocacy
-                  type: area
-                  attributes:
-                    name: Policy - Advocacy
-                - id: movement_building
-                  type: area
-                  attributes:
-                    name: Movement Building
-                - id: nutrient_quality_density
-                  type: area
-                  attributes:
-                    name: Nutrient Quality/Density
-                - id: research
-                  type: area
-                  attributes:
-                    name: Research (Measuring and Validation of Regen Systems and/or
-                      Practices)
+                    name: Alternative Proteins
                 - id: animal_welfare
                   type: area
                   attributes:
@@ -108,95 +63,70 @@ paths:
                   type: area
                   attributes:
                     name: Aquaculture
-                - id: soil_measurement_and_technology
+                - id: biodiversity
                   type: area
                   attributes:
-                    name: Soil Measurement and Technology
-                - id: middle_of_the_supply_chain_infrastructure
+                    name: Biodiversity
+                - id: consumer_packaged_goods
                   type: area
                   attributes:
-                    name: Middle of the Supply Chain Infrastructure (processing, distribution,
-                      transportation)
-                - id: fiber_systems
+                    name: CPG (Consumer Packaged Goods)
+                - id: capacity_building
                   type: area
                   attributes:
-                    name: Fiber Systems
-                - id: toxins_reduction
+                    name: Capacity Building
+                - id: climate_change
                   type: area
                   attributes:
-                    name: Toxins Reduction (ie organics, pesticides, herbicides etc.)
-                - id: media_communications_narrative_building
-                  type: area
-                  attributes:
-                    name: Media, Communications, Narrative Building
-                - id: technical_assistance_and_business_planning
-                  type: area
-                  attributes:
-                    name: Technical Assistance and Business Planning (farmers)
-                - id: regenerative_ag_financing
-                  type: area
-                  attributes:
-                    name: Regenerative Ag Financing
-                - id: true_cost_accounting
-                  type: area
-                  attributes:
-                    name: True Cost Accounting
-                - id: education_youth
-                  type: area
-                  attributes:
-                    name: Education - Youth
-                - id: education_future_farmers_young_farmers
-                  type: area
-                  attributes:
-                    name: Education - Future Farmers, Young Farmers, etc
-                - id: healthy_food_access
-                  type: area
-                  attributes:
-                    name: Healthy Food Access
-                - id: supply_chain_and_market_development
-                  type: area
-                  attributes:
-                    name: Supply Chain and Market Development
-                - id: tribal_nations
-                  type: area
-                  attributes:
-                    name: Tribal Nations
-                - id: leadership_development
-                  type: area
-                  attributes:
-                    name: Leadership Development
+                    name: Climate Change
                 - id: educating_legislators
                   type: area
                   attributes:
                     name: Educating Legislators
-                - id: policy_lobbying
+                - id: education_future_farmers_young_farmers
                   type: area
                   attributes:
-                    name: Policy- Lobbying
-                - id: farm_workers
+                    name: Education - Future Farmers, Young Farmers, etc
+                - id: education_youth
                   type: area
                   attributes:
-                    name: Farmworkers
-                - id: urban_farming
+                    name: Education - Youth
+                - id: equity_and_justice
                   type: area
                   attributes:
-                    name: Urban Farming
-                - id: regenerative_ag_organizing_networks_or_groups
-                  type: area
-                  attributes:
-                    name: Regenerative Ag Organizing Networks or Groups
-                - id: sustainable_or_biological_inputs
-                  type: area
-                  attributes:
-                    name: Sustainable or Biological Inputs
-                - id: on_farm_automation
-                  type: area
-                  attributes:
-                    name: On Farm Automation
+                    name: Equity and Justice
                 - id: farm_equipment
                   type: area
                   attributes:
                     name: Farm Equipment
+                - id: farm_workers
+                  type: area
+                  attributes:
+                    name: Farmworkers
+                - id: fermentation
+                  type: area
+                  attributes:
+                    name: Fermentation
+                - id: fiber_systems
+                  type: area
+                  attributes:
+                    name: Fiber Systems
+                - id: food_sovereignty
+                  type: area
+                  attributes:
+                    name: Food Sovereignty
+                - id: grazing
+                  type: area
+                  attributes:
+                    name: Grazing
+                - id: healthy_food_access
+                  type: area
+                  attributes:
+                    name: Healthy Food Access
+                - id: land_access
+                  type: area
+                  attributes:
+                    name: Land Access
                 - id: land_asset_financing
                   type: area
                   attributes:
@@ -209,30 +139,100 @@ paths:
                   type: area
                   attributes:
                     name: Land Transition
-                - id: fermentation
+                - id: leadership_development
                   type: area
                   attributes:
-                    name: Fermentation
-                - id: alternative_proteins
+                    name: Leadership Development
+                - id: media_communications_narrative_building
                   type: area
                   attributes:
-                    name: Alternative Proteins
-                - id: agroforestry
+                    name: Media, Communications, Narrative Building
+                - id: middle_of_the_supply_chain_infrastructure
                   type: area
                   attributes:
-                    name: Agroforestry
-                - id: consumer_packaged_goods
+                    name: Middle of the Supply Chain Infrastructure (processing, distribution,
+                      transportation)
+                - id: movement_building
                   type: area
                   attributes:
-                    name: CPG (Consumer Packaged Goods)
-                - id: capacity_building
+                    name: Movement Building
+                - id: nutrient_quality_density
                   type: area
                   attributes:
-                    name: Capacity Building
+                    name: Nutrient Quality/Density
+                - id: on_farm_automation
+                  type: area
+                  attributes:
+                    name: On Farm Automation
                 - id: other
                   type: area
                   attributes:
                     name: Other
+                - id: policy_advocacy
+                  type: area
+                  attributes:
+                    name: Policy - Advocacy
+                - id: policy_lobbying
+                  type: area
+                  attributes:
+                    name: Policy- Lobbying
+                - id: regenerative_ag_financing
+                  type: area
+                  attributes:
+                    name: Regenerative Ag Financing
+                - id: regenerative_ag_organizing_networks_or_groups
+                  type: area
+                  attributes:
+                    name: Regenerative Ag Organizing Networks or Groups
+                - id: research
+                  type: area
+                  attributes:
+                    name: Research (Measuring and Validation of Regen Systems and/or
+                      Practices)
+                - id: rural_economic_health
+                  type: area
+                  attributes:
+                    name: Rural Economic Health
+                - id: soil_health
+                  type: area
+                  attributes:
+                    name: Soil Health
+                - id: soil_measurement_and_technology
+                  type: area
+                  attributes:
+                    name: Soil Measurement and Technology
+                - id: supply_chain_and_market_development
+                  type: area
+                  attributes:
+                    name: Supply Chain and Market Development
+                - id: sustainable_or_biological_inputs
+                  type: area
+                  attributes:
+                    name: Sustainable or Biological Inputs
+                - id: technical_assistance_and_business_planning
+                  type: area
+                  attributes:
+                    name: Technical Assistance and Business Planning (farmers)
+                - id: toxins_reduction
+                  type: area
+                  attributes:
+                    name: Toxins Reduction (ie organics, pesticides, herbicides etc.)
+                - id: tribal_nations
+                  type: area
+                  attributes:
+                    name: Tribal Nations
+                - id: true_cost_accounting
+                  type: area
+                  attributes:
+                    name: True Cost Accounting
+                - id: urban_farming
+                  type: area
+                  attributes:
+                    name: Urban Farming
+                - id: water
+                  type: area
+                  attributes:
+                    name: Water
               schema:
                 type: object
                 properties:
@@ -268,14 +268,14 @@ paths:
                   type: capital_acceptance
                   attributes:
                     name: Investments Accepted
-                - id: private_capital
-                  type: capital_acceptance
-                  attributes:
-                    name: Private Capital (closed)
                 - id: other
                   type: capital_acceptance
                   attributes:
                     name: Other
+                - id: private_capital
+                  type: capital_acceptance
+                  attributes:
+                    name: Private Capital (closed)
               schema:
                 type: object
                 properties:
@@ -295,10 +295,6 @@ paths:
             application/json:
               example:
                 data:
-                - id: grants
-                  type: capital_type
-                  attributes:
-                    name: Grants
                 - id: debt
                   type: capital_type
                   attributes:
@@ -307,26 +303,30 @@ paths:
                   type: capital_type
                   attributes:
                     name: Equity
-                - id: pris
-                  type: capital_type
-                  attributes:
-                    name: PRIs
-                - id: mris
-                  type: capital_type
-                  attributes:
-                    name: MRIs
-                - id: re_grants
-                  type: capital_type
-                  attributes:
-                    name: Re-grants
                 - id: forgivable_loans
                   type: capital_type
                   attributes:
                     name: Forgivable loans
+                - id: grants
+                  type: capital_type
+                  attributes:
+                    name: Grants
                 - id: guarantees
                   type: capital_type
                   attributes:
                     name: Guarantees
+                - id: mris
+                  type: capital_type
+                  attributes:
+                    name: MRIs
+                - id: pris
+                  type: capital_type
+                  attributes:
+                    name: PRIs
+                - id: re_grants
+                  type: capital_type
+                  attributes:
+                    name: Re-grants
               schema:
                 type: object
                 properties:
@@ -346,38 +346,30 @@ paths:
             application/json:
               example:
                 data:
-                - id: black_or_african_american
-                  type: demographic
-                  attributes:
-                    name: Black or African American
-                - id: indigenous_tribal_nations
-                  type: demographic
-                  attributes:
-                    name: Indigenous/Tribal Nations
-                - id: women
-                  type: demographic
-                  attributes:
-                    name: Women
-                - id: youth
-                  type: demographic
-                  attributes:
-                    name: Youth
                 - id: asian
                   type: demographic
                   attributes:
                     name: Asian
+                - id: black_or_african_american
+                  type: demographic
+                  attributes:
+                    name: Black or African American
                 - id: hispanic_or_latinx
                   type: demographic
                   attributes:
                     name: Hispanic or Latinx
+                - id: i_dont_know
+                  type: demographic
+                  attributes:
+                    name: I don't know
+                - id: indigenous_tribal_nations
+                  type: demographic
+                  attributes:
+                    name: Indigenous/Tribal Nations
                 - id: lgbtq
                   type: demographic
                   attributes:
                     name: LGBTQ
-                - id: white
-                  type: demographic
-                  attributes:
-                    name: White
                 - id: no_specific_focus
                   type: demographic
                   attributes:
@@ -386,10 +378,18 @@ paths:
                   type: demographic
                   attributes:
                     name: Other
-                - id: i_dont_know
+                - id: white
                   type: demographic
                   attributes:
-                    name: I don't know
+                    name: White
+                - id: women
+                  type: demographic
+                  attributes:
+                    name: Women
+                - id: youth
+                  type: demographic
+                  attributes:
+                    name: Youth
               schema:
                 type: object
                 properties:
@@ -425,14 +425,14 @@ paths:
                   type: funder_legal_status
                   attributes:
                     name: Non-profit
-                - id: research_institution
-                  type: funder_legal_status
-                  attributes:
-                    name: Research Institution
                 - id: other
                   type: funder_legal_status
                   attributes:
                     name: Other
+                - id: research_institution
+                  type: funder_legal_status
+                  attributes:
+                    name: Research Institution
               schema:
                 type: object
                 properties:
@@ -492,6 +492,10 @@ paths:
                   type: funder_type
                   attributes:
                     name: Network of funders
+                - id: other
+                  type: funder_type
+                  attributes:
+                    name: Other
                 - id: private_foundation
                   type: funder_type
                   attributes:
@@ -504,10 +508,6 @@ paths:
                   type: funder_type
                   attributes:
                     name: Regrantor
-                - id: other
-                  type: funder_type
-                  attributes:
-                    name: Other
               schema:
                 type: object
                 properties:
@@ -562,14 +562,14 @@ paths:
             application/json:
               example:
                 data:
-                - id: one_year
-                  type: grant_duration
-                  attributes:
-                    name: One year
                 - id: multi_year
                   type: grant_duration
                   attributes:
                     name: Multi-year
+                - id: one_year
+                  type: grant_duration
+                  attributes:
+                    name: One year
                 - id: other
                   type: grant_duration
                   attributes:
@@ -593,6 +593,10 @@ paths:
             application/json:
               example:
                 data:
+                - id: cooperative
+                  type: recipient_legal_status
+                  attributes:
+                    name: Cooperative
                 - id: for_profit
                   type: recipient_legal_status
                   attributes:
@@ -601,10 +605,6 @@ paths:
                   type: recipient_legal_status
                   attributes:
                     name: Foundation
-                - id: cooperative
-                  type: recipient_legal_status
-                  attributes:
-                    name: Cooperative
                 - id: other
                   type: recipient_legal_status
                   attributes:
@@ -632,14 +632,14 @@ paths:
                   type: role
                   attributes:
                     name: Funder
-                - id: regrantor
-                  type: role
-                  attributes:
-                    name: Regrantor
                 - id: intermediary
                   type: role
                   attributes:
                     name: Intermediary
+                - id: regrantor
+                  type: role
+                  attributes:
+                    name: Regrantor
               schema:
                 type: object
                 properties:
@@ -647,9 +647,290 @@ paths:
                     type: array
                     items:
                       "$ref": "#/components/schemas/enum"
+  "/api/v1/subgeographics":
+    get:
+      summary: Returns list of the subgeographics
+      tags:
+      - Subgeographics
+      parameters:
+      - name: filter[geographic]
+        in: query
+        enum:
+        - countries
+        - national
+        - regions
+        - states
+        description: Filter records by its geographic
+        required: false
+        schema:
+          type: enum
+      - name: fields[subgeographic]
+        in: query
+        description: Get only required fields. Use comma to separate multiple fields
+        required: false
+        schema:
+          type: string
+      - name: includes
+        in: query
+        description: Include relationships. Use comma to separate multiple fields
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              example:
+                data:
+                - id: bfbd251c-ea14-46db-a1d3-f41dd2ee2f1c
+                  type: subgeographic
+                  attributes:
+                    name: Canada
+                    code: Canada
+                    geographic: countries
+                    created_at: '2022-10-04T18:07:28.957Z'
+                    updated_at: '2022-10-04T18:07:28.957Z'
+                  relationships:
+                    parent:
+                      data:
+                    subgeographics:
+                      data:
+                      - id: d98f26b6-0bae-4ca5-bf2c-b28f2c4b627b
+                        type: subgeographic
+                - id: d98f26b6-0bae-4ca5-bf2c-b28f2c4b627b
+                  type: subgeographic
+                  attributes:
+                    name: Papua New Guinea
+                    code: Papua New Guinea
+                    geographic: regions
+                    created_at: '2022-10-04T18:07:28.979Z'
+                    updated_at: '2022-10-04T18:07:28.979Z'
+                  relationships:
+                    parent:
+                      data:
+                        id: bfbd251c-ea14-46db-a1d3-f41dd2ee2f1c
+                        type: subgeographic
+                    subgeographics:
+                      data: []
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/subgeographic"
+  "/api/v1/subgeographics/geojson":
+    get:
+      summary: Returns geojson for appropriate geographic
+      tags:
+      - Subgeographics
+      parameters:
+      - name: filter[geographic]
+        in: query
+        enum:
+        - countries
+        - national
+        - regions
+        - states
+        description: Return geojson for specific geographic
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              example:
+                type: FeatureCollection
+                features:
+                - type: Feature
+                  geometry:
+                    type: Polygon
+                    coordinates:
+                    - - - 0
+                        - 0
+                      - - 1
+                        - 0
+                      - - 1
+                        - 1
+                      - - 0
+                        - 1
+                      - - 0
+                        - 0
+                  properties:
+                    id: 3d455863-daa3-4301-85d7-70544e7dd89f
+                    code: Papua New Guinea
+                    name: Papua New Guinea
+                    parent_id: 13448234-6397-4a91-9a59-16d2edd2ebff
+                - type: Feature
+                  geometry:
+                    type: Polygon
+                    coordinates:
+                    - - - 0
+                        - 0
+                      - - 1
+                        - 0
+                      - - 1
+                        - 1
+                      - - 0
+                        - 1
+                      - - 0
+                        - 0
+                  properties:
+                    id: e71b77d8-8509-430e-852c-c6ce99de133e
+                    code: Jamaica
+                    name: Jamaica
+                    parent_id: 13448234-6397-4a91-9a59-16d2edd2ebff
+              schema:
+                "$ref": "#/components/schemas/subgeographic_geojson"
+        '422':
+          description: Missing geographic param
+          content:
+            application/json:
+              example:
+                errors:
+                - title: Geographic param is mandatory!
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/errors"
 components:
   securitySchemes: {}
   schemas:
+    subgeographic:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            code:
+              type: string
+            geographic:
+              type: string
+            created_at:
+              type: string
+            updated_at:
+              type: string
+          required:
+          - name
+          - code
+          - geographic
+          - created_at
+          - updated_at
+        relationships:
+          type: object
+          properties:
+            parent:
+              "$ref": "#/components/schemas/nullable_response_relation"
+            subgeographics:
+              "$ref": "#/components/schemas/response_relations"
+      required:
+      - id
+      - type
+      - attributes
+    subgeographic_geojson:
+      type: object
+      properties:
+        type:
+          type: string
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              geometry:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  coordinates:
+                    type: array
+                required:
+                - type
+                - coordinates
+              properties:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  code:
+                    type: string
+                  name:
+                    type: string
+                  parent_id:
+                    type: string
+                    nullable: true
+                required:
+                - id
+                - code
+                - name
+                - parent_id
+            required:
+            - type
+            - geometry
+            - properties
+      required:
+      - type
+      - features
+    nullable_response_relation:
+      type: object
+      properties:
+        data:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+          required:
+          - id
+          - type
+      required:
+      - data
+    response_relation:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+          required:
+          - id
+          - type
+      required:
+      - data
+    response_relations:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            object: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+            required:
+            - id
+            - type
+      required:
+      - data
     enum:
       type: object
       properties:

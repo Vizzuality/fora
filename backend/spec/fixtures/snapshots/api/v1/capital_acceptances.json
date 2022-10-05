@@ -29,17 +29,17 @@
       }
     },
     {
-      "id": "private_capital",
-      "type": "capital_acceptance",
-      "attributes": {
-        "name": "Private Capital (closed)"
-      }
-    },
-    {
       "id": "other",
       "type": "capital_acceptance",
       "attributes": {
         "name": "Other"
+      }
+    },
+    {
+      "id": "private_capital",
+      "type": "capital_acceptance",
+      "attributes": {
+        "name": "Private Capital (closed)"
       }
     }
   ]

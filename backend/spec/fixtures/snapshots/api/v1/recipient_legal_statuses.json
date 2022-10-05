@@ -1,6 +1,13 @@
 {
   "data": [
     {
+      "id": "cooperative",
+      "type": "recipient_legal_status",
+      "attributes": {
+        "name": "Cooperative"
+      }
+    },
+    {
       "id": "for_profit",
       "type": "recipient_legal_status",
       "attributes": {
@@ -12,13 +19,6 @@
       "type": "recipient_legal_status",
       "attributes": {
         "name": "Foundation"
-      }
-    },
-    {
-      "id": "cooperative",
-      "type": "recipient_legal_status",
-      "attributes": {
-        "name": "Cooperative"
       }
     },
     {

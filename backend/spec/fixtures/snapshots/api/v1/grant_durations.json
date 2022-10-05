@@ -1,17 +1,17 @@
 {
   "data": [
     {
-      "id": "one_year",
-      "type": "grant_duration",
-      "attributes": {
-        "name": "One year"
-      }
-    },
-    {
       "id": "multi_year",
       "type": "grant_duration",
       "attributes": {
         "name": "Multi-year"
+      }
+    },
+    {
+      "id": "one_year",
+      "type": "grant_duration",
+      "attributes": {
+        "name": "One year"
       }
     },
     {
