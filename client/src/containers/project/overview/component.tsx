@@ -7,8 +7,6 @@ import { useProject } from 'hooks/projects';
 
 import InfoCard from 'containers/details/info-card';
 
-import Button from 'components/button';
-
 const PROJECT_CARD_INFO = [
   {
     id: 'geographic-scope',
@@ -43,7 +41,7 @@ const ProjectOverview = () => {
 
   return (
     <div className="flex space-x-32">
-      <div className="flex-1 space-y-9">
+      <div className="flex-1 space-y-14">
         <div className="space-y-1">
           <div className="text-base font-normal text-grey-20">Last updated: 30 March 2022</div>
           <h2 className="text-3xl font-normal capitalize line-clamp-2 text-ellipsis">
@@ -51,8 +49,8 @@ const ProjectOverview = () => {
           </h2>
         </div>
 
-        <div className="flex justify-between">
-          <div className="max-w-[50px]">
+        <div className="flex items-center justify-between">
+          <div className="relative max-w-[50px] w-full shrink-0">
             <Image
               src="/images/avatar.png"
               alt={projectData.title}
@@ -61,19 +59,8 @@ const ProjectOverview = () => {
               height={50}
             />
           </div>
-          <Button type="button" size="base" theme="black-alt">
-            Contact Funder
-          </Button>
-        </div>
-
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <p className="text-base font-semibold uppercase text-grey-20">Headquarters Adress</p>
-            <p>Washington, DC, United States</p>
-          </div>
-
           <p className="font-semibold underline">
-            <a href="www.funderwebsite.org">www.funderwebsite.org</a>
+            <a href="www.funderwebsite.org">www.projectwebsite.org</a>
           </p>
         </div>
 

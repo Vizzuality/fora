@@ -1,7 +1,11 @@
 import React from 'react';
 
+import cx from 'classnames';
+
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { THEME } from './constants';
 export interface CardProps {
   id: string;
   name: string;
@@ -12,6 +16,7 @@ export interface CardProps {
     id: string;
     name: string;
   }[];
+  theme: 'green' | 'grey';
 }
 
 const Cards = ({
@@ -33,9 +38,15 @@ const Cards = ({
       name: 'Area 3',
     },
   ],
+  theme = 'grey',
 }: CardProps) => {
   return (
-    <div className="flex flex-col justify-between p-8 space-y-10 bg-grey-60 text-grey-0">
+    <div
+      className={cx({
+        'flex flex-col justify-between p-8 space-y-10': true,
+        [THEME[theme]]: true,
+      })}
+    >
       <div className="space-y-5">
         <div className="relative max-w-[50px]">
           <Image src={image} alt={name} layout="responsive" width={50} height={50} />
