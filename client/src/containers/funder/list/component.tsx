@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 
 import cx from 'classnames';
 
@@ -6,39 +6,15 @@ import Link from 'next/link';
 
 import { useProjectsInfinity } from 'hooks/projects';
 
-import Card from 'containers/cards/card';
+import Cards from 'containers/cards';
 
-import Carousel from 'components/carousel';
+import Button from 'components/button';
 import Icon from 'components/icon';
 
 import CHEVRON_RIGHT_SVG from 'svgs/ui/chevron-right.svg?sprite';
 
 const FundersList = () => {
   const { data: projectsData } = useProjectsInfinity();
-  const [slide, setSlide] = useState(0);
-
-  const formatProjectsData = useMemo(() => {
-    return projectsData.map((project, i) => {
-      return {
-        id: `project-${i}`,
-        content: (
-          <div className="mr-4">
-            <Card key={project.id} {...project} href={`/projects/${project.id}`} />
-          </div>
-        ),
-      };
-    });
-  }, [projectsData]);
-
-  const handleOnNextClick = useCallback(() => {
-    const length = formatProjectsData?.length;
-    setSlide((prevState) => {
-      if (prevState + 1 === length) {
-        return 0;
-      }
-      return prevState + 1;
-    });
-  }, [formatProjectsData]);
 
   const randomFunders = useMemo(() => {
     const shuffled = projectsData.sort(() => 0.5 - Math.random());
@@ -48,90 +24,78 @@ const FundersList = () => {
   return (
     <div className="space-y-20">
       <div className="space-y-9">
-        <div className="flex items-center justify-between">
-          <h3 className="text-2xl font-display"> What projects is funding?</h3>
-          <div>
-            <Link href="/projects">
-              <a className="flex items-center space-x-3 font-semibold underline decoration-1">
-                <span>View all projects</span>
-                <Icon
-                  icon={CHEVRON_RIGHT_SVG}
-                  className={cx({
-                    'w-2 h-2 text-grey-0': true,
-                  })}
-                />
-              </a>
-            </Link>
-          </div>
+        <h3 className="text-2xl font-display"> What projects is funding?</h3>
+
+        <Cards theme="green" data={randomFunders} />
+
+        <div className="flex justify-between">
+          <Button type="button" theme="black-alt" size="xl">
+            Load more
+          </Button>
         </div>
-
-        {!!formatProjectsData.length && (
-          <div className="relative flex">
-            <Carousel
-              slide={slide}
-              slides={formatProjectsData}
-              options={{
-                circular: true,
-                align: 'prev',
-                panelsPerView: 2,
-              }}
-              onChanged={(e) => {
-                setSlide(() => {
-                  return e.index;
-                });
-              }}
-            />
-
-            <div className="absolute top-0 right-0 z-10 h-full w-96 md:bg-gradient-to-l md:from-white" />
-
-            <button
-              type="button"
-              aria-label="arrow-right"
-              className="absolute top-0 right-0 z-10 h-full"
-              onClick={handleOnNextClick}
-            >
-              <Icon className="w-5 h-8" icon={CHEVRON_RIGHT_SVG} />
-            </button>
-          </div>
-        )}
       </div>
 
       <div className="space-y-9">
-        <div className="flex items-center justify-between">
-          <h3 className="text-2xl font-display"> What are the similar funders?</h3>
-          <div>
-            <Link href="/funders">
-              <a className="flex items-center space-x-3 font-semibold underline decoration-1">
-                <span>View all funders</span>
-                <Icon
-                  icon={CHEVRON_RIGHT_SVG}
-                  className={cx({
-                    'w-2 h-2 text-grey-0': true,
-                  })}
-                />
-              </a>
-            </Link>
-          </div>
-        </div>
+        <h3 className="text-2xl font-display"> What are the similar funders?</h3>
 
         <div className="space-y-3">
           <div className="font-semibold capitalize text-grey-20">By Geographic Scope</div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {randomFunders.map((project) => (
-              <Card key={project.id} href={`/funders/${project.id}`} {...project} />
-            ))}
+          <div>
+            <Link href="/funders">
+              <a className="flex items-center space-x-3 font-semibold underline decoration-1">
+                <span>View all similar funders</span>
+                <Icon
+                  icon={CHEVRON_RIGHT_SVG}
+                  className={cx({
+                    'w-2 h-2 text-grey-0': true,
+                  })}
+                />
+              </a>
+            </Link>
           </div>
+
+          <Cards data={randomFunders} />
         </div>
 
         <div className="space-y-3">
           <div className="font-semibold capitalize text-grey-20">By Area of Focus</div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {randomFunders.map((project) => (
-              <Card key={project.id} href={`/funders/${project.id}`} {...project} />
-            ))}
+          <div>
+            <Link href="/funders">
+              <a className="flex items-center space-x-3 font-semibold underline decoration-1">
+                <span>View all similar funders</span>
+                <Icon
+                  icon={CHEVRON_RIGHT_SVG}
+                  className={cx({
+                    'w-2 h-2 text-grey-0': true,
+                  })}
+                />
+              </a>
+            </Link>
           </div>
+
+          <Cards data={randomFunders} />
+        </div>
+
+        <div className="space-y-3">
+          <div className="font-semibold capitalize text-grey-20">By Demographic Scope</div>
+
+          <div>
+            <Link href="/funders">
+              <a className="flex items-center space-x-3 font-semibold underline decoration-1">
+                <span>View all similar funders</span>
+                <Icon
+                  icon={CHEVRON_RIGHT_SVG}
+                  className={cx({
+                    'w-2 h-2 text-grey-0': true,
+                  })}
+                />
+              </a>
+            </Link>
+          </div>
+
+          <Cards data={randomFunders} />
         </div>
       </div>
     </div>
