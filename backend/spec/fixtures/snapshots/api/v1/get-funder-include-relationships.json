@@ -1,0 +1,40 @@
+{
+  "data": {
+    "id": "2b12afcf-6b6a-41ea-bb37-c9b9254ffd9f",
+    "type": "funder",
+    "attributes": {
+      "name": "Otha Kemmer"
+    },
+    "relationships": {
+      "primary_office_country": {
+        "data": {
+          "id": "84891836-e335-4f74-bce1-41547a10657d",
+          "type": "subgeographic"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "84891836-e335-4f74-bce1-41547a10657d",
+      "type": "subgeographic",
+      "attributes": {
+        "name": "Libyan Arab Jamahiriya",
+        "code": "Libyan Arab Jamahiriya",
+        "geographic": "countries",
+        "created_at": "2022-10-06T09:47:59.374Z",
+        "updated_at": "2022-10-06T09:47:59.374Z"
+      },
+      "relationships": {
+        "parent": {
+          "data": null
+        },
+        "subgeographics": {
+          "data": [
+
+          ]
+        }
+      }
+    }
+  ]
+}

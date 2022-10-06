@@ -1,5 +1,3 @@
-# This file was generated with rails g enum Role
-
 require "swagger_helper"
 
 RSpec.describe "API V1 Subgeographics", type: :request do
@@ -78,9 +76,8 @@ RSpec.describe "API V1 Subgeographics", type: :request do
       end
 
       response "422", "Missing geographic param" do
-        schema type: :object, properties: {
-          data: {"$ref" => "#/components/schemas/errors"}
-        }
+        schema "$ref" => "#/components/schemas/errors"
+
         let("filter[geographic]") {}
 
         run_test!
