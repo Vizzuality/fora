@@ -1,8 +1,6 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.17.0"
 
-require "capistrano-db-tasks"
-
 set :application, "fora-backend"
 set :repo_url, "https://github.com/Vizzuality/fora.git"
 set :repo_tree, "backend"
@@ -22,6 +20,7 @@ set :db_remote_clean, true
 set :init_system, :systemd
 
 set :passenger_restart_with_sudo, true
+set :passenger_roles, :web
 
 set :rbenv_map_bins, %w[rake gem bundle ruby rails]
 set :rbenv_type, :user
