@@ -21,5 +21,6 @@ namespace :api, format: "json" do
         get :geojson
       end
     end
+    resources :funders, only: %i[index show]
   end
 end

@@ -3,10 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
-
 gem "rails", "~> 7.0.4"
 gem "pg", "~> 1.4"
 gem "activerecord-postgis-adapter"
+gem "active_storage_validations"
 gem "puma", "~> 5.6"
 gem "rswag"
 gem "rspec-rails", "6.0.0.rc1"
@@ -61,7 +61,7 @@ group :development do
   gem "capistrano-bundler", "~> 2.1", require: false
   gem "capistrano-passenger", "~> 0.2.1", require: false
   gem "capistrano-rails", "~> 1.6", require: false
-  gem 'capistrano-rvm', "~> 0.1.2", require: false
+  gem "capistrano-rvm", "~> 0.1.2", require: false
   gem "capistrano-yarn", "~> 2.0.2", require: false
   gem "capistrano-db-tasks", "~> 0.6", require: false
   gem "bcrypt_pbkdf"

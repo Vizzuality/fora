@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :subgeographic do
-    geographic { "countries" }
+    sequence(:geographic) do |n|
+      Geographic::TYPES.sample random: Random.new(n)
+    end
     parent { nil }
     subgeographic_geometry
 
