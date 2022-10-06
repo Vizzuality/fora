@@ -1,0 +1,150 @@
+{
+  "data": [
+    {
+      "id": "d58c9508-6f4d-422f-a4bb-e14cfb392b96",
+      "type": "funder",
+      "attributes": {
+        "name": "Elbert Denesik"
+      },
+      "relationships": {
+        "primary_office_country": {
+          "data": {
+            "id": "22112c76-9ed1-4dcf-928d-0fac0cd399d1",
+            "type": "subgeographic"
+          }
+        }
+      }
+    },
+    {
+      "id": "2e77e8e7-b5c2-46c2-8319-f876022a88f4",
+      "type": "funder",
+      "attributes": {
+        "name": "Msgr. Genaro Cronin"
+      },
+      "relationships": {
+        "primary_office_country": {
+          "data": {
+            "id": "f168f31e-d2f9-4ed1-8a49-8188e45a3325",
+            "type": "subgeographic"
+          }
+        }
+      }
+    },
+    {
+      "id": "01fec609-e6a5-4c3a-adc9-066a88117412",
+      "type": "funder",
+      "attributes": {
+        "name": "Otha Kemmer"
+      },
+      "relationships": {
+        "primary_office_country": {
+          "data": {
+            "id": "733d3fb7-3265-4fb4-bbb7-3052e1468c51",
+            "type": "subgeographic"
+          }
+        }
+      }
+    },
+    {
+      "id": "d7cd30da-9db3-4810-a97d-8021fbca78e3",
+      "type": "funder",
+      "attributes": {
+        "name": "Raymon Wisoky"
+      },
+      "relationships": {
+        "primary_office_country": {
+          "data": {
+            "id": "d87cb7ad-55ef-4e6f-aac9-316db28e9355",
+            "type": "subgeographic"
+          }
+        }
+      }
+    }
+  ],
+  "included": [
+    {
+      "id": "22112c76-9ed1-4dcf-928d-0fac0cd399d1",
+      "type": "subgeographic",
+      "attributes": {
+        "name": "Argentina",
+        "code": "Argentina",
+        "geographic": "countries",
+        "created_at": "2022-10-06T09:41:12.659Z",
+        "updated_at": "2022-10-06T09:41:12.659Z"
+      },
+      "relationships": {
+        "parent": {
+          "data": null
+        },
+        "subgeographics": {
+          "data": [
+
+          ]
+        }
+      }
+    },
+    {
+      "id": "f168f31e-d2f9-4ed1-8a49-8188e45a3325",
+      "type": "subgeographic",
+      "attributes": {
+        "name": "Mayotte",
+        "code": "Mayotte",
+        "geographic": "countries",
+        "created_at": "2022-10-06T09:41:12.539Z",
+        "updated_at": "2022-10-06T09:41:12.539Z"
+      },
+      "relationships": {
+        "parent": {
+          "data": null
+        },
+        "subgeographics": {
+          "data": [
+
+          ]
+        }
+      }
+    },
+    {
+      "id": "733d3fb7-3265-4fb4-bbb7-3052e1468c51",
+      "type": "subgeographic",
+      "attributes": {
+        "name": "Libyan Arab Jamahiriya",
+        "code": "Libyan Arab Jamahiriya",
+        "geographic": "countries",
+        "created_at": "2022-10-06T09:41:12.469Z",
+        "updated_at": "2022-10-06T09:41:12.469Z"
+      },
+      "relationships": {
+        "parent": {
+          "data": null
+        },
+        "subgeographics": {
+          "data": [
+
+          ]
+        }
+      }
+    },
+    {
+      "id": "d87cb7ad-55ef-4e6f-aac9-316db28e9355",
+      "type": "subgeographic",
+      "attributes": {
+        "name": "Sierra Leone",
+        "code": "Sierra Leone",
+        "geographic": "countries",
+        "created_at": "2022-10-06T09:41:12.598Z",
+        "updated_at": "2022-10-06T09:41:12.598Z"
+      },
+      "relationships": {
+        "parent": {
+          "data": null
+        },
+        "subgeographics": {
+          "data": [
+
+          ]
+        }
+      }
+    }
+  ]
+}

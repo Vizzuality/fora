@@ -23,6 +23,58 @@ RSpec.configure do |config|
         securitySchemes: {
         },
         schemas: {
+          funder: {
+            type: :object,
+            properties: {
+              id: {type: :string},
+              type: {type: :string},
+              attributes: {
+                type: :object,
+                properties: {
+                  name: {type: :string},
+                  description: {type: :string},
+                  primary_office_city: {type: :string},
+                  primary_contact_first_name: {type: :string},
+                  primary_contact_last_name: {type: :string},
+                  primary_contact_phone: {type: :string},
+                  primary_contact_location: {type: :string},
+                  primary_contact_role: {type: :string, enum: Role::TYPES},
+                  website: {type: :string, nullable: true},
+                  date_joined_fora: {type: :string},
+                  funder_type: {type: :string, enum: FunderType::TYPES},
+                  funder_type_other: {type: :string},
+                  capital_acceptances: {type: :array, items: {type: :string, enum: CapitalAcceptance::TYPES}},
+                  capital_acceptances_other: {type: :string},
+                  leadership_demographics: {type: :array, items: {type: :string, enum: Demographic::TYPES}},
+                  leadership_demographics_other: {type: :string},
+                  number_staff_employees: {type: :number},
+                  application_status: {type: :string, enum: ApplicationStatus::TYPES},
+                  funder_legal_status: {type: :string, enum: FunderLegalStatus::TYPES},
+                  funder_legal_status_other: {type: :string},
+                  new_to_regenerative_ag: {type: :boolean},
+                  networks: {type: :string, nullable: true},
+                  capital_types: {type: :array, items: {type: :string, enum: CapitalType::TYPES}},
+                  capital_types_other: {type: :string},
+                  spend_down_strategy: {type: :boolean},
+                  areas: {type: :array, items: {type: :string, enum: Area::TYPES}},
+                  areas_other: {type: :string},
+                  demographics: {type: :array, items: {type: :string, enum: Demographic::TYPES}},
+                  demographics_other: {type: :string},
+                  contact_email: {type: :string},
+                  logo: {"$ref" => "#/components/schemas/image_blob", :nullable => true}
+                }
+              },
+              relationships: {
+                type: :object,
+                properties: {
+                  primary_office_state: {"$ref" => "#/components/schemas/nullable_response_relation"},
+                  primary_office_country: {"$ref" => "#/components/schemas/response_relation"},
+                  subgeographics: {"$ref" => "#/components/schemas/response_relations"}
+                }
+              }
+            },
+            required: %w[id type attributes relationships]
+          },
           subgeographic: {
             type: :object,
             properties: {
@@ -47,7 +99,7 @@ RSpec.configure do |config|
                 }
               }
             },
-            required: %w[id type attributes]
+            required: %w[id type attributes relationships]
           },
           subgeographic_geojson: {
             type: :object,
@@ -83,6 +135,15 @@ RSpec.configure do |config|
               }
             },
             required: %w[type features]
+          },
+          image_blob: {
+            type: :object,
+            properties: {
+              small: {type: :string, nullable: true},
+              medium: {type: :string, nullable: true},
+              original: {type: :string, nullable: true}
+            },
+            required: %w[small medium original]
           },
           nullable_response_relation: {
             type: :object,
@@ -144,6 +205,22 @@ RSpec.configure do |config|
               }
             },
             required: %w[id type attributes]
+          },
+          errors: {
+            type: :object,
+            properties: {
+              errors: {
+                type: :array,
+                items: {
+                  type: :object,
+                  properties: {
+                    title: {type: :string}
+                  },
+                  required: %w[title]
+                }
+              }
+            },
+            required: %w[errors]
           }
         }
       },

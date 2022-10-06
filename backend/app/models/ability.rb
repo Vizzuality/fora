@@ -27,5 +27,7 @@ class Ability
 
     can %i[index show geojson], Subgeographic
     can %i[index show], SubgeographicGeometry
+    can %i[index show], Funder
+    can %i[index show], FunderSubgeographic
   end
 end
