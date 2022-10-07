@@ -4,6 +4,7 @@ class Funder < ApplicationRecord
 
   has_many :funder_subgeographics, dependent: :destroy
   has_many :subgeographics, through: :funder_subgeographics
+  has_many :subgeographic_ancestors, through: :subgeographics, source: :subgeographic_ancestors
 
   has_one_attached :logo
 
@@ -32,4 +33,7 @@ class Funder < ApplicationRecord
     :primary_contact_location,
     :date_joined_fora,
     :number_staff_employees
+
+  scope :for_subgeographics, ->(ids) { joins(:subgeographic_ancestors).where(subgeographics: {id: ids}) }
+  scope :for_geographics, ->(geographics) { joins(:subgeographic_ancestors).where(subgeographics: {geographic: geographics}) }
 end

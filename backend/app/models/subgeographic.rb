@@ -1,8 +1,15 @@
 class Subgeographic < ApplicationRecord
+  has_closure_tree
+
   belongs_to :parent, class_name: "Subgeographic", optional: true
   belongs_to :subgeographic_geometry, optional: true
 
   has_many :subgeographics, foreign_key: "parent_id", dependent: :destroy
+  has_many :hierarchy_ancestors, class_name: "SubgeographicHierarchy", foreign_key: "descendant_id", dependent: :destroy
+  has_many :subgeographic_ancestors, class_name: "Subgeographic", through: :hierarchy_ancestors, source: :ancestor
+  has_many :hierarchy_descendants, class_name: "SubgeographicHierarchy", foreign_key: "ancestor_id", dependent: :destroy
+  has_many :subgeographic_descendants, class_name: "Subgeographic", through: :hierarchy_descendants, source: :descendant
+
   has_many :funder_primary_office_states, class_name: "Funder", foreign_key: "primary_office_state_id", dependent: :destroy
   has_many :funder_primary_office_countries, class_name: "Funder", foreign_key: "primary_office_country_id", dependent: :destroy
   has_many :funder_subgeographics, dependent: :destroy

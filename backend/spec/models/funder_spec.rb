@@ -90,4 +90,40 @@ RSpec.describe Funder, type: :model do
   include_examples :static_relation_validations, attribute: :capital_types, presence: true
   include_examples :static_relation_validations, attribute: :areas, presence: true
   include_examples :static_relation_validations, attribute: :demographics, presence: true
+
+  describe "scopes" do
+    describe ".for_subgeographics" do
+      let!(:country) { create :subgeographic, geographic: :countries }
+      let!(:region) { create :subgeographic, geographic: :regions, parent: country }
+
+      let!(:correct_funder) { create :funder, subgeographics: [region] }
+      let!(:ignored_funder) { create :funder }
+
+      it "returns correct result for current subgeographic" do
+        expect(Funder.for_subgeographics(region)).to eq([correct_funder])
+      end
+
+      it "returns correct result for ancestor subgeographic" do
+        expect(Funder.for_subgeographics(country)).to eq([correct_funder])
+      end
+    end
+
+    describe ".for_geographics" do
+      let!(:country) { create :subgeographic, geographic: :countries }
+      let!(:region) { create :subgeographic, geographic: :regions, parent: country }
+      let!(:national) { create :subgeographic, geographic: :national, parent: country }
+
+      let!(:funder_1) { create :funder, subgeographics: [region] }
+      let!(:funder_2) { create :funder, subgeographics: [national] }
+
+      it "returns correct result for current geographic" do
+        expect(Funder.for_geographics(:regions)).to eq([funder_1])
+        expect(Funder.for_geographics(:national)).to eq([funder_2])
+      end
+
+      it "returns correct result for ancestor geographic" do
+        expect(Funder.for_geographics(:countries)).to eq([funder_1, funder_2])
+      end
+    end
+  end
 end
