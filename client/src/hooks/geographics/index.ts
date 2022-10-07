@@ -1,18 +1,16 @@
 import { useMemo } from 'react';
 
-import { Geographic } from 'store/action-map';
-
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
 import { ParamsProps } from 'hooks/types';
 
 import API from 'services/api';
-import API_FAKE from 'services/api-fake';
 
-import { SUBGEOGRAPHICS } from './mock';
-import { ResponseData } from './types';
+import { GeographicsResponseData, SubGeographicsResponseData } from './types';
 
-export function useGeographics(queryOptions: UseQueryOptions<ResponseData, unknown> = {}) {
+export function useGeographics(
+  queryOptions: UseQueryOptions<GeographicsResponseData, unknown> = {}
+) {
   const fetchGeographics = () =>
     API.request({
       method: 'GET',
@@ -44,7 +42,10 @@ export function useGeographics(queryOptions: UseQueryOptions<ResponseData, unkno
   }, [query, DATA]);
 }
 
-export function useSubGeographics(geographic: Geographic, params: ParamsProps = {}) {
+export function useSubGeographics(
+  params: ParamsProps = {},
+  queryOptions: UseQueryOptions<SubGeographicsResponseData, unknown> = {}
+) {
   const { filters = {}, search, sort } = params;
 
   const parsedFilters = Object.keys(filters).reduce((acc, k) => {
@@ -59,9 +60,9 @@ export function useSubGeographics(geographic: Geographic, params: ParamsProps = 
   }, {});
 
   const fetchSubgeographics = () =>
-    API_FAKE.request({
+    API.request({
       method: 'GET',
-      url: '/users',
+      url: '/subgeographics',
       params: {
         ...parsedFilters,
         ...(search && {
@@ -71,12 +72,13 @@ export function useSubGeographics(geographic: Geographic, params: ParamsProps = 
           sort,
         }),
       },
-    });
+    }).then((response) => response.data);
 
   const query = useQuery(['geographics', JSON.stringify(params)], fetchSubgeographics, {
-    keepPreviousData: true,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+    placeholderData: {
+      data: [],
+    },
+    ...queryOptions,
   });
 
   const { data } = query;
@@ -86,16 +88,8 @@ export function useSubGeographics(geographic: Geographic, params: ParamsProps = 
       return [];
     }
 
-    return SUBGEOGRAPHICS[geographic] ?? [];
-
-    // return data?.data.map((d) => {
-    //   return {
-    //     id: d.id,
-    //     name: d.title,
-    //     info: d.body,
-    //   };
-    // });
-  }, [data, geographic]);
+    return data?.data;
+  }, [data]);
 
   return useMemo(() => {
     return {

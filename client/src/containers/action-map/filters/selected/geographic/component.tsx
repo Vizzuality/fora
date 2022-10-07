@@ -25,7 +25,7 @@ const GeographicSelected: React.FC<GeographicSelectedProps> = ({}: GeographicSel
     data: subgeographicsData,
     isFetching: subgeographicsIsFetching,
     isFetched: subgeographicsIsFetched,
-  } = useSubGeographics(geographic);
+  } = useSubGeographics({ filters: { geographic } });
 
   const SELECTED = useMemo(() => {
     if (

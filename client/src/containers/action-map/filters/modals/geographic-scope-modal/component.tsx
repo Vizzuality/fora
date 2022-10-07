@@ -21,7 +21,7 @@ const GeographicScopeModal: React.FC<GraphicScopeModaProps> = ({
   const { filters } = useAppSelector((state) => state['/action-map']);
   const { geographic, subgeographics } = filters;
 
-  const { data: subgeographicData } = useSubGeographics(geographic);
+  const { data: subgeographicData } = useSubGeographics({ filters: { geographic } });
 
   const dispatch = useAppDispatch();
 

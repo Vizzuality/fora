@@ -19,7 +19,7 @@ export const GeographicScopeList: React.FC<GeographicScopeListFooterProps> = ({}
 
   const { values } = form.getState();
   const { geographic } = values;
-  const { data: subgeographicData } = useSubGeographics(geographic);
+  const { data: subgeographicData } = useSubGeographics({ filters: { geographic } });
 
   const COLUMNS = useMemo(() => {
     switch (geographic) {

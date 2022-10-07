@@ -11,8 +11,9 @@ const GeographicsSentence = () => {
   const { geographic, subgeographics } = filters;
 
   const { data: geographicsData, isFetched: geographicsIsFetched } = useGeographics();
-  const { data: subgeographicsData, isFetched: subgeographicsIsFetched } =
-    useSubGeographics(geographic);
+  const { data: subgeographicsData, isFetched: subgeographicsIsFetched } = useSubGeographics({
+    filters: { geographic },
+  });
 
   const SELECTED_LIST = useMemo(() => {
     return subgeographicsData.filter((sg) => subgeographics.includes(sg.id));
