@@ -37,10 +37,10 @@ const How = () => {
                 >
                   <Image
                     priority
-                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/how/dashboard.png`}
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/how/dashboard@2x.png`}
                     alt="Dashboard"
-                    width={369}
-                    height={421}
+                    width={1281}
+                    height={1260}
                   />
                 </AnimatedScroll>
               </div>
@@ -303,10 +303,10 @@ const How = () => {
                 >
                   <Image
                     priority
-                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/how/map.png`}
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/how/map@2x.png`}
                     alt="Dashboard"
-                    width={439}
-                    height={280}
+                    width={1563}
+                    height={1047}
                   />
                 </AnimatedScroll>
               </div>
