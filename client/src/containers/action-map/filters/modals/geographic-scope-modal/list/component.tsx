@@ -19,7 +19,13 @@ export const GeographicScopeList: React.FC<GeographicScopeListFooterProps> = ({}
 
   const { values } = form.getState();
   const { geographic } = values;
-  const { data: subgeographicData } = useSubGeographics({ filters: { geographic } });
+  const {
+    data: subgeographicData,
+    isFetching: subgeographicIsFetching,
+    isFetched: subgeographicIsFetched,
+  } = useSubGeographics({
+    filters: { geographic },
+  });
 
   const COLUMNS = useMemo(() => {
     switch (geographic) {
@@ -89,6 +95,7 @@ export const GeographicScopeList: React.FC<GeographicScopeListFooterProps> = ({}
             return (
               <FilterList
                 data={subgeographicData}
+                loading={subgeographicIsFetching && !subgeographicIsFetched}
                 name="subgeographics"
                 columns={COLUMNS}
                 selected={input.value}

@@ -46,7 +46,7 @@ export function useSubGeographics(
   params: ParamsProps = {},
   queryOptions: UseQueryOptions<SubGeographicsResponseData, unknown> = {}
 ) {
-  const { filters = {}, search, sort } = params;
+  const { filters = {}, search, sort, includes } = params;
 
   const parsedFilters = Object.keys(filters).reduce((acc, k) => {
     if (filters[k] && Array.isArray(filters[k]) && !filters[k].length) {
@@ -65,6 +65,7 @@ export function useSubGeographics(
       url: '/subgeographics',
       params: {
         ...parsedFilters,
+        ...(includes && { includes }),
         ...(search && {
           q: search,
         }),
@@ -74,7 +75,7 @@ export function useSubGeographics(
       },
     }).then((response) => response.data);
 
-  const query = useQuery(['geographics', JSON.stringify(params)], fetchSubgeographics, {
+  const query = useQuery(['subgeographics', JSON.stringify(params)], fetchSubgeographics, {
     placeholderData: {
       data: [],
     },

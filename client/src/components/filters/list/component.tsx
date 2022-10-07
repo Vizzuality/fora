@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 
 import cx from 'classnames';
 
+import Loading from 'components/loading';
+
 import FilterItem from './item';
 import type { FilterListProps } from './types';
 
@@ -11,6 +13,7 @@ const FilterList: React.FC<FilterListProps> = ({
   data,
   columns = 4,
   selected,
+  loading,
   onChange,
   onSelectAll,
   onClearAll,
@@ -49,6 +52,10 @@ const FilterList: React.FC<FilterListProps> = ({
 
   return (
     <div className="relative flex flex-col py-px overflow-hidden grow">
+      <Loading
+        visible={loading}
+        className="absolute z-10 flex items-center justify-center w-full h-full bg-white/90"
+      />
       <div className="absolute left-0 z-10 w-full h-10 pointer-events-none -top-1 bg-gradient-to-b from-white via-white" />
       <div className="relative flex flex-col overflow-hidden grow">
         <div className="flex flex-col px-10 py-10 space-y-5 overflow-x-hidden overflow-y-auto grow">

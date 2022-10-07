@@ -21,7 +21,9 @@ const GeographicScopeModal: React.FC<GraphicScopeModaProps> = ({
   const { filters } = useAppSelector((state) => state['/action-map']);
   const { geographic, subgeographics } = filters;
 
-  const { data: subgeographicData } = useSubGeographics({ filters: { geographic } });
+  const { data: subgeographicsData } = useSubGeographics({
+    filters: { geographic },
+  });
 
   const dispatch = useAppDispatch();
 
@@ -29,13 +31,13 @@ const GeographicScopeModal: React.FC<GraphicScopeModaProps> = ({
     return {
       geographic,
       subgeographics: !subgeographics.length
-        ? subgeographicData.map((s) => {
+        ? subgeographicsData.map((s) => {
             return s.id;
           })
         : subgeographics,
-      allSubgeographics: subgeographicData.length === subgeographics.length,
+      allSubgeographics: subgeographicsData.length === subgeographics.length,
     };
-  }, [geographic, subgeographics, subgeographicData]);
+  }, [geographic, subgeographics, subgeographicsData]);
 
   const handleSubmit = useCallback(
     (values) => {
@@ -63,7 +65,7 @@ const GeographicScopeModal: React.FC<GraphicScopeModaProps> = ({
     <FormRFF onSubmit={handleSubmit} initialValues={INITIAL_VALUES}>
       {(fprops) => (
         <form
-          className="flex flex-col py-10 overflow-hidden grow"
+          className="relative flex flex-col py-10 overflow-hidden grow"
           onSubmit={fprops.handleSubmit}
           autoComplete="off"
         >

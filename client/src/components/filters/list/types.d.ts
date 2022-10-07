@@ -2,6 +2,7 @@ export interface FilterListProps {
   title?: string;
   name?: string;
   columns?: number;
+  loading?: boolean;
   /**
    * Data
    */
