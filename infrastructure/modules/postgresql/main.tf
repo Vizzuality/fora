@@ -18,6 +18,10 @@ resource "aws_db_instance" "postgresql" {
   backup_window      = "03:00-06:00"
 
   deletion_protection = true
+
+  vpc_security_group_ids = [
+    aws_security_group.postgresql.id
+  ]
 }
 
 resource "random_password" "postgresql_superuser" {
@@ -45,7 +49,6 @@ resource "aws_security_group" "postgresql" {
     var.tags
   )
 }
-
 
 resource "aws_security_group_rule" "postgresql_ingress" {
   type              = "ingress"
