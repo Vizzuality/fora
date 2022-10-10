@@ -35,7 +35,6 @@ staging:
   <<: *defaults
   active: true
   log_level: true
-  revision: <%= `cat #{Rails.root.join('REVISION')}` %>
 
 production:
   <<: *defaults
