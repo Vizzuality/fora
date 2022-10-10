@@ -42,7 +42,7 @@ export const MoreFiltersList = () => {
 
         <div className="overflow-x-hidden overflow-y-auto grow">
           {type === 'funders' && (
-            <div className="divide-y divide-grey-40/50">
+            <div className="px-10 divide-y divide-grey-40/50">
               <FunderTypes />
               <FunderLegalStatus />
               <CapitalTypes />

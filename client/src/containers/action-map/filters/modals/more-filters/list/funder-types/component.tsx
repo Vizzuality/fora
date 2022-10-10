@@ -44,6 +44,7 @@ export const FunderTypes = () => {
             columns={2}
             data={funderTypesData}
             selected={input.value}
+            overflow={false}
             onChange={(id) => handleToogle(id, input)}
             onSelectAll={() => handleAll('select-all', input)}
             onClearAll={() => handleAll('clear-all', input)}

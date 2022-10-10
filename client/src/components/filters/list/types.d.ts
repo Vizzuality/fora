@@ -3,6 +3,7 @@ export interface FilterListProps {
   name?: string;
   columns?: number;
   loading?: boolean;
+  overflow?: boolean;
   /**
    * Data
    */

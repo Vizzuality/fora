@@ -57,9 +57,7 @@ const DemographicSelected: React.FC<DemographicSelectedProps> = () => {
   return (
     <div
       className={cx({
-        'inline-block font-semibold max-w-full': true,
-        'text-grey-20': !demographics.length,
-        'text-grey-0': !!demographics.length,
+        'inline-block font-semibold max-w-full text-grey-0': true,
       })}
     >
       <Selection

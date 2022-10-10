@@ -35,7 +35,7 @@ const MoreFiltersSelected: React.FC<MoreFiltersSelectedProps> = () => {
     <>
       <button
         type="button"
-        className="relative flex items-center space-x-3 uppercase cursor-pointer px-7 text-grey-20 hover:bg-grey-40/5 whitespace-nowrap"
+        className="relative flex items-center space-x-3 uppercase cursor-pointer px-7 text-grey-0 hover:bg-grey-40/5 whitespace-nowrap"
         onClick={openModal}
       >
         <Icon icon={FILTERS_SVG} className="w-4 h-4" />
