@@ -57,10 +57,7 @@ export const slice = createSlice({
       ...state,
       filters: action.payload,
     }),
-    resetFilters: (state) => ({
-      ...state,
-      filters: initialState.filters,
-    }),
+    reset: () => initialState,
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {
@@ -72,7 +69,7 @@ export const slice = createSlice({
   },
 });
 
-export const { setType, setView, setFilters, resetFilters } = slice.actions;
+export const { setType, setView, setFilters, reset } = slice.actions;
 
 export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
   return STORE_WRAPPER.getServerSideProps((store) => async (ctx) => {

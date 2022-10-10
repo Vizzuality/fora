@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { resetFilters, initialState } from 'store/action-map';
+import { initialState, reset } from 'store/action-map';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 import { useFunders } from 'hooks/funders';
@@ -21,7 +21,7 @@ const Sentence: React.FC<SentenceProps> = () => {
   const { data: fundersData } = useFunders({ filters });
 
   const handleReset = useCallback(() => {
-    dispatch(resetFilters());
+    dispatch(reset());
   }, [dispatch]);
 
   return (
