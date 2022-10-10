@@ -33,19 +33,20 @@ export const MoreFiltersList = () => {
   return (
     <>
       <FilterWarning
-        text="Please, select at least one option frrom all filters before saving."
+        text="Please, select at least one option from all filters before saving."
         visible={VISIBLE}
       />
+
       <div className="relative flex flex-col py-px overflow-hidden grow">
         <div className="absolute left-0 z-10 w-full h-10 pointer-events-none -top-1 bg-gradient-to-b from-white via-white" />
 
-        <div className="overflow-x-hidden overflow-y-auto divide-y divide-grey-40/50 grow">
+        <div className="overflow-x-hidden overflow-y-auto grow">
           {type === 'funders' && (
-            <>
+            <div className="divide-y divide-grey-40/50">
               <FunderTypes />
               <FunderLegalStatus />
               <CapitalTypes />
-            </>
+            </div>
           )}
 
           {type === 'projects' && (
