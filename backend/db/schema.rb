@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_05_112244) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_06_111547) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -101,6 +101,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_112244) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "subgeographic_hierarchies", id: false, force: :cascade do |t|
+    t.uuid "ancestor_id", null: false
+    t.uuid "descendant_id", null: false
+    t.integer "generations", null: false
+    t.index ["ancestor_id", "descendant_id", "generations"], name: "subgeographic_anc_desc_idx", unique: true
+    t.index ["ancestor_id"], name: "index_subgeographic_hierarchies_on_ancestor_id"
+    t.index ["descendant_id"], name: "index_subgeographic_hierarchies_on_descendant_id"
+    t.index ["descendant_id"], name: "subgeographic_desc_idx"
+  end
+
   create_table "subgeographics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "subgeographic_geometry_id"
     t.uuid "parent_id"
@@ -121,6 +131,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_112244) do
   add_foreign_key "funder_subgeographics", "subgeographics", on_delete: :cascade
   add_foreign_key "funders", "subgeographics", column: "primary_office_country_id", on_delete: :cascade
   add_foreign_key "funders", "subgeographics", column: "primary_office_state_id", on_delete: :cascade
+  add_foreign_key "subgeographic_hierarchies", "subgeographics", column: "ancestor_id", on_delete: :cascade
+  add_foreign_key "subgeographic_hierarchies", "subgeographics", column: "descendant_id", on_delete: :cascade
   add_foreign_key "subgeographics", "subgeographic_geometries", on_delete: :cascade
   add_foreign_key "subgeographics", "subgeographics", column: "parent_id", on_delete: :cascade
 end

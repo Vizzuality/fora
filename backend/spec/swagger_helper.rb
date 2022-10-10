@@ -69,7 +69,8 @@ RSpec.configure do |config|
                 properties: {
                   primary_office_state: {"$ref" => "#/components/schemas/nullable_response_relation"},
                   primary_office_country: {"$ref" => "#/components/schemas/response_relation"},
-                  subgeographics: {"$ref" => "#/components/schemas/response_relations"}
+                  subgeographics: {"$ref" => "#/components/schemas/response_relations"},
+                  subgeographic_ancestors: {"$ref" => "#/components/schemas/response_relations"}
                 }
               }
             },

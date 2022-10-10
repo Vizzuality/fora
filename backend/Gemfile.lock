@@ -145,6 +145,9 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     cliver (0.3.2)
+    closure_tree (7.4.0)
+      activerecord (>= 4.2.10)
+      with_advisory_lock (>= 4.0.0)
     concurrent-ruby (1.1.10)
     connection_pool (2.3.0)
     crack (0.4.5)
@@ -401,6 +404,8 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    with_advisory_lock (4.6.0)
+      activerecord (>= 4.2)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.0)
@@ -428,6 +433,7 @@ DEPENDENCIES
   capistrano-rvm (~> 0.1.2)
   capistrano-yarn (~> 2.0.2)
   capybara (>= 3.26)
+  closure_tree
   cuprite
   debug
   dotenv-rails

@@ -38,6 +38,7 @@ module API
       belongs_to_restricted :primary_office_country, serializer: :subgeographic
 
       has_many_restricted :subgeographics
+      has_many_restricted :subgeographic_ancestors, serializer: :subgeographic
 
       attribute :contact_email do |object, _params|
         next object.secondary_email_which_can_be_shared unless object.show_primary_email?
