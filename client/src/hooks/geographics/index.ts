@@ -31,8 +31,11 @@ export function useGeographics(
     if (!data?.data) {
       return [];
     }
+    const ORDER = ['regions', 'states', 'national', 'countries'];
 
-    return data?.data;
+    return data?.data.sort((a, b) => {
+      return ORDER.indexOf(a.id) - ORDER.indexOf(b.id);
+    });
   }, [data]);
 
   return useMemo(() => {

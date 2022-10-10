@@ -21,7 +21,7 @@ const FilterSelection: React.FC<FilterSelectionProps> = ({
           <Loading visible={true} className="relative w-2 h-2" iconClassName="w-3 h-3" />
         )}
 
-        {!dataIsFetching && dataIsFetched && (
+        {dataIsFetched && (
           <>
             <span className="underline truncate grow">{text}</span>
 
