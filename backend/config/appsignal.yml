@@ -34,6 +34,8 @@ development:
 staging:
   <<: *defaults
   active: true
+  log_level: true
+  revision: <%= `cat REVISION` %>
 
 production:
   <<: *defaults
