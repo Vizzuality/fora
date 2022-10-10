@@ -58,8 +58,8 @@ const FilterList: React.FC<FilterListProps> = ({
       />
       <div className="absolute left-0 z-10 w-full h-10 pointer-events-none -top-1 bg-gradient-to-b from-white via-white" />
       <div className="relative flex flex-col overflow-hidden grow">
-        <div className="flex flex-col px-10 py-10 space-y-5 overflow-x-hidden overflow-y-auto grow">
-          <div>
+        <div className="flex flex-col px-10 space-y-5 overflow-x-hidden overflow-y-auto grow">
+          <div className="py-8">
             <div className="space-y-5">
               <div className="flex justify-between">
                 {title && <h3 className="font-semibold uppercase text-grey-20">{title}</h3>}
