@@ -3997,6 +3997,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/geojson@npm:^7946.0.10":
+  version: 7946.0.10
+  resolution: "@types/geojson@npm:7946.0.10"
+  checksum: 12c407c2dc93ecb26c08af533ee732f1506a9b29456616ba7ba1d525df96206c28ddf44a528f6a5415d7d22893e9d967420940a9c095ee5e539c1eba5fefc1f4
+  languageName: node
+  linkType: hard
+
 "@types/glob@npm:*, @types/glob@npm:^7.1.1":
   version: 7.2.0
   resolution: "@types/glob@npm:7.2.0"
@@ -8950,6 +8957,7 @@ __metadata:
     "@tailwindcss/typography": 0.5.7
     "@tanem/react-nprogress": 5.0.11
     "@tanstack/react-query": 4.0.10
+    "@types/geojson": ^7946.0.10
     "@types/gtag.js": 0.0.5
     "@types/react": 18.0.15
     "@types/react-dom": 18.0.6

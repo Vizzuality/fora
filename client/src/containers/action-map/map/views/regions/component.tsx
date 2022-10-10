@@ -8,6 +8,7 @@ import { useAppSelector } from 'store/hooks';
 
 import CHROMA from 'chroma-js';
 import { geoCentroid } from 'd3-geo';
+import { Feature, MultiPolygon, Polygon } from 'geojson';
 import { max } from 'lodash';
 
 import { MAP_RAMP } from 'constants/colors';
@@ -16,7 +17,7 @@ import Geography from 'containers/action-map/map/geography';
 import { getStyles } from 'containers/action-map/map/utils';
 import type { ViewProps } from 'containers/action-map/map/views/types';
 
-import DATA from './data.json';
+import GEOJSON_DATA from './data.json';
 
 const CUSTOM_CENTROIDS = {
   GP: [-96.62508365809394, 41.06310362209291],
@@ -35,7 +36,7 @@ const RegionsView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }:
       const COLOR_SCALE = CHROMA.scale(MAP_RAMP);
       const MAX = max(data.map((d) => d.count)) || 0;
 
-      return geos.map((geo) => {
+      return geos.map((geo: Feature<Polygon | MultiPolygon>) => {
         const { id } = geo.properties;
         const count = data.find((d) => d.id === id)?.count || 0;
         const COLOR = COLOR_SCALE(1 - count / MAX);
@@ -60,7 +61,7 @@ const RegionsView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }:
   );
 
   const { geographies } = useGeographies({
-    geography: DATA,
+    geography: GEOJSON_DATA,
     parseGeographies,
   });
 
@@ -80,8 +81,8 @@ const RegionsView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }:
       })}
 
       {geographies.map((geo) => {
-        const { id, label, luminance, selected } = geo.properties;
-        const centroid = CUSTOM_CENTROIDS[id] || geoCentroid(geo);
+        const { code, name, luminance, selected } = geo.properties;
+        const centroid = CUSTOM_CENTROIDS[code] || geoCentroid(geo);
 
         return (
           <g key={geo.rsmKey + '-name'}>
@@ -102,7 +103,7 @@ const RegionsView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }:
                       'text-black bg-white/25': !!selected && luminance >= 0.5,
                     })}
                   >
-                    {label}
+                    {name}
                   </div>
                 </div>
               </foreignObject>

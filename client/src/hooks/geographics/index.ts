@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
+import { FeatureCollection } from 'geojson';
 
 import { ParamsProps } from 'hooks/types';
 
@@ -90,6 +91,70 @@ export function useSubGeographics(
     }
 
     return data?.data;
+  }, [data]);
+
+  return useMemo(() => {
+    return {
+      ...query,
+      data: DATA,
+    };
+  }, [query, DATA]);
+}
+
+export function useSubGeographicsGeojson(
+  params: ParamsProps = {},
+  queryOptions: UseQueryOptions<FeatureCollection, unknown> = {}
+) {
+  const { filters = {}, search, sort, includes } = params;
+
+  const parsedFilters = Object.keys(filters).reduce((acc, k) => {
+    if (filters[k] && Array.isArray(filters[k]) && !filters[k].length) {
+      return acc;
+    }
+
+    return {
+      ...acc,
+      [`filter[${k}]`]: filters[k] && filters[k].toString ? filters[k].toString() : filters[k],
+    };
+  }, {});
+
+  const fetchSubgeographicsGeojson = () =>
+    API.request({
+      method: 'GET',
+      url: '/subgeographics/geojson',
+      transformResponse: (data) => JSON.parse(data),
+      params: {
+        ...parsedFilters,
+        ...(includes && { includes }),
+        ...(search && {
+          q: search,
+        }),
+        ...(sort && {
+          sort,
+        }),
+      },
+    }).then((response) => response.data);
+
+  const query = useQuery(
+    ['subgeographics-geojson', JSON.stringify(params)],
+    fetchSubgeographicsGeojson,
+    {
+      placeholderData: {
+        type: 'FeatureCollection',
+        features: [],
+      },
+      ...queryOptions,
+    }
+  );
+
+  const { data } = query;
+
+  const DATA = useMemo(() => {
+    if (!data) {
+      return {};
+    }
+
+    return data;
   }, [data]);
 
   return useMemo(() => {

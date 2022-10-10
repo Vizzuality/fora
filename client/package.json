@@ -34,6 +34,7 @@
     "@tailwindcss/typography": "0.5.7",
     "@tanem/react-nprogress": "5.0.11",
     "@tanstack/react-query": "4.0.10",
+    "@types/geojson": "^7946.0.10",
     "@visx/group": "^2.10.0",
     "@visx/responsive": "^2.10.0",
     "@visx/shape": "^2.12.2",
