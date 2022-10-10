@@ -16,7 +16,7 @@ import Geography from 'containers/action-map/map/geography';
 import { getStyles } from 'containers/action-map/map/utils';
 import type { ViewProps } from 'containers/action-map/map/views/types';
 
-import DATA from './data.json';
+import GEOJSON_DATA from './data.json';
 
 const OFFSETS = {
   VT: [50, -8],
@@ -64,7 +64,7 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
   );
 
   const { geographies } = useGeographies({
-    geography: DATA,
+    geography: GEOJSON_DATA,
     parseGeographies,
   });
 
@@ -85,11 +85,11 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
 
       {geographies.map((geo) => {
         const centroid = geoCentroid(geo);
-        const { id, label, luminance, selected } = geo.properties;
+        const { code, luminance, selected } = geo.properties;
 
         return (
           <g key={geo.rsmKey + '-name'}>
-            {!OFFSETS[id] && (
+            {!OFFSETS[code] && (
               <Marker coordinates={centroid}>
                 <foreignObject
                   x={-60}
@@ -107,18 +107,18 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
                         'text-black bg-white/25': !!selected && luminance >= 0.5,
                       })}
                     >
-                      {label}
+                      {code}
                     </div>
                   </div>
                 </foreignObject>
               </Marker>
             )}
 
-            {OFFSETS[id] && (
+            {OFFSETS[code] && (
               <Annotation
                 subject={centroid}
-                dx={OFFSETS[id][0]}
-                dy={OFFSETS[id][1]}
+                dx={OFFSETS[code][0]}
+                dy={OFFSETS[code][1]}
                 className="pointer-events-none"
               >
                 <foreignObject
@@ -134,7 +134,7 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
                         'py-0.5 px-2 text-black': true,
                       })}
                     >
-                      {id.replace('US-', '')}
+                      {code}
                     </div>
                   </div>
                 </foreignObject>

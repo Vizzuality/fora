@@ -44,6 +44,7 @@ export const CapitalTypes = () => {
             columns={1}
             data={capitalTypesData}
             selected={input.value}
+            overflow={false}
             onChange={(id) => handleToogle(id, input)}
             onSelectAll={() => handleAll('select-all', input)}
             onClearAll={() => handleAll('clear-all', input)}

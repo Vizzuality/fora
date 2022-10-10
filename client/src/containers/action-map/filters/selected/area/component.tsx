@@ -52,9 +52,7 @@ const AreaSelected: React.FC<AreaSelectedProps> = () => {
   return (
     <div
       className={cx({
-        'inline-block font-semibold max-w-full': true,
-        'text-grey-20': !areas.length,
-        'text-grey-0': !!areas.length,
+        'inline-block font-semibold max-w-full text-grey-0': true,
       })}
     >
       <Selection

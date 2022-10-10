@@ -44,6 +44,7 @@ export const ProjectLegalStatus = () => {
             columns={1}
             data={projectLegalStatusesData}
             selected={input.value}
+            overflow={false}
             onChange={(id) => handleToogle(id, input)}
             onSelectAll={() => handleAll('select-all', input)}
             onClearAll={() => handleAll('clear-all', input)}
