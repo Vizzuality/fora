@@ -30,3 +30,5 @@ set :default_env, {
   PATH: "$HOME/.nvm/versions/node/v16.14.2/bin/:$PATH",
   NODE_ENVIRONMENT: "production"
 }
+
+set :ssh_options, forward_agent: true
