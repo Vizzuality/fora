@@ -5,6 +5,7 @@ ruby "3.1.2"
 
 gem "rails", "~> 7.0.4"
 gem "pg", "~> 1.4"
+gem "pg_search"
 gem "activerecord-postgis-adapter"
 gem "active_storage_validations"
 gem "puma", "~> 5.6"

@@ -13,6 +13,7 @@ RSpec.describe "API V1 Funders", type: :request do
       parameter name: "filter[funder_types]", in: :query, type: :array, items: {type: :string, enum: FunderType::TYPES}, description: "Filter results only for specified funder types", required: false
       parameter name: "filter[capital_types]", in: :query, type: :array, items: {type: :string, enum: CapitalType::TYPES}, description: "Filter results only for specified capital types", required: false
       parameter name: "filter[funder_legal_status]", in: :query, type: :string, enum: FunderLegalStatus::TYPES, description: "Filter results only for specified funder legal status", required: false
+      parameter name: "filter[full_text]", in: :query, type: :string, description: "Filter records by provided text", required: false
       parameter name: "fields[funder]", in: :query, type: :string, description: "Get only required fields. Use comma to separate multiple fields", required: false
       parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
 
@@ -73,10 +74,19 @@ RSpec.describe "API V1 Funders", type: :request do
           end
         end
 
+        context "when filtered by full text search" do
+          let("filter[full_text]") { funder.name }
+
+          it "returns only funders at correct areas" do
+            expect(response_json["data"].pluck("id")).to eq([funder.id])
+          end
+        end
+
         context "when combining multiple filters" do
           let("filter[subgeographic_ids]") { [national.id] }
           let("filter[geographics]") { [:national] }
           let("filter[areas]") { ["food_sovereignty"] }
+          let("filter[full_text]") { funder.name }
 
           it "returns only funders which are true for all filters" do
             expect(response_json["data"].pluck("id")).to eq([funder.id])
