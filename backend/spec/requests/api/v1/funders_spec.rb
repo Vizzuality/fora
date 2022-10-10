@@ -14,6 +14,9 @@ RSpec.describe "API V1 Funders", type: :request do
       parameter name: "filter[capital_types]", in: :query, type: :array, items: {type: :string, enum: CapitalType::TYPES}, description: "Filter results only for specified capital types", required: false
       parameter name: "filter[funder_legal_status]", in: :query, type: :string, enum: FunderLegalStatus::TYPES, description: "Filter results only for specified funder legal status", required: false
       parameter name: "filter[full_text]", in: :query, type: :string, description: "Filter records by provided text", required: false
+      parameter name: "page[number]", in: :query, type: :integer, description: "Page number. Default: 1", required: false
+      parameter name: "page[size]", in: :query, type: :integer, description: "Per page items. Default: 10", required: false
+      parameter name: :disable_pagination, in: :query, type: :boolean, description: "Turn off pagination", required: false
       parameter name: "fields[funder]", in: :query, type: :string, description: "Get only required fields. Use comma to separate multiple fields", required: false
       parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
 
@@ -24,10 +27,14 @@ RSpec.describe "API V1 Funders", type: :request do
 
       response "200", :success do
         schema type: :object, properties: {
-          data: {type: :array, items: {"$ref" => "#/components/schemas/funder"}}
+          data: {type: :array, items: {"$ref" => "#/components/schemas/funder"}},
+          meta: {"$ref" => "#/components/schemas/pagination_meta", :nullable => true},
+          links: {"$ref" => "#/components/schemas/pagination_links", :nullable => true}
         }
 
         run_test!
+
+        it_behaves_like "with pagination", expected_total: 4
 
         it "matches snapshot", generate_swagger_example: true do
           expect(response.body).to match_snapshot("api/v1/funders")
@@ -47,6 +54,17 @@ RSpec.describe "API V1 Funders", type: :request do
 
           it "matches snapshot" do
             expect(response.body).to match_snapshot("api/v1/funders-include-relationships")
+          end
+        end
+
+        context "when disabling pagination" do
+          let("page[size]") { 1 }
+          let(:disable_pagination) { true }
+
+          it "shows all records" do
+            expect(response_json["data"].size).to eq(Funder.count)
+            expect(response_json["meta"]).to be_nil
+            expect(response_json["links"]).to be_nil
           end
         end
 

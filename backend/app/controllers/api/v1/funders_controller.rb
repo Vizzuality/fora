@@ -1,6 +1,8 @@
 module API
   module V1
     class FundersController < BaseController
+      include API::Pagination
+
       load_and_authorize_resource
 
       ENUM_FILTERS = %i[areas demographics funder_types capital_types funder_legal_status]
@@ -12,10 +14,13 @@ module API
         @funders = API::EnumFilter.new(@funders, filter_params.to_h.slice(*ENUM_FILTERS)).call
         @funders = Funder.where(id: @funders.pluck(:id)).order(:name)
           .includes :primary_office_state, :primary_office_country, :subgeographics, :subgeographic_ancestors
+        pagy_object, @funders = pagy @funders, page: current_page, items: per_page unless params[:disable_pagination].to_s == "true"
         render json: FunderSerializer.new(
           @funders,
           include: included_relationships,
           fields: sparse_fieldset,
+          links: pagy_object.present? ? pagination_links(:api_v1_funders_path, pagy_object) : nil,
+          meta: pagy_object.present? ? pagination_meta(pagy_object) : nil,
           params: {current_user: current_user, current_ability: current_ability}
         ).serializable_hash
       end
