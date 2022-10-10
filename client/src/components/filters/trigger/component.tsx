@@ -41,17 +41,17 @@ const FilterTrigger: React.FC<FilterTriggerProps> = ({
       >
         <div className="flex flex-col space-y-1">
           <span className="inline-flex items-center text-base font-semibold uppercase text-grey-20">
-            <label className="pr-2 whitespace-nowrap">{title}</label>
+            <label className="pr-2 cursor-pointer whitespace-nowrap">{title}</label>
 
             {info && (
               <Tooltip
                 arrowProps={{
                   enabled: true,
                   size: 6,
-                  className: 'bg-grey-60',
+                  className: 'bg-white',
                 }}
                 content={
-                  <div className="max-w-xs p-2.5 text-grey-20 rounded shadow-xl bg-grey-60 border border-grey-0/5">
+                  <div className="max-w-xs p-2.5 bg-white border rounded shadow-xl pointer-events-none text-grey-20 border-grey-0/5">
                     <span>{info}</span>
                   </div>
                 }

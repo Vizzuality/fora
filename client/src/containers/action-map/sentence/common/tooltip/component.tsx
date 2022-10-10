@@ -17,10 +17,10 @@ const SentenceTooltip: React.FC<SentenceTooltipProps> = ({ text, list = [], pref
         arrowProps={{
           enabled: true,
           size: 8,
-          className: 'bg-grey-60',
+          className: 'bg-white',
         }}
         content={
-          <div className="max-w-xs py-2.5 text-grey-20 rounded shadow-xl bg-grey-60 border border-grey-0/5 pointer-events-auto flex flex-col max-h-full">
+          <div className="max-w-xs py-2.5 bg-white border rounded shadow-xl pointer-events-auto text-grey-20 border-grey-0/5 flex flex-col max-h-full">
             <div className="overflow-x-hidden overflow-y-auto pl-2.5 pr-5">
               <ul className="space-y-2">
                 {list.map((i) => (
