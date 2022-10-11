@@ -13,6 +13,7 @@ class Ability
 
   def default_rights
     # enums
+    can %i[index show], FundingType
     can %i[index show], GrantDuration
     can %i[index show], ApplicationStatus
     can %i[index show], Role
