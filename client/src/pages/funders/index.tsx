@@ -7,16 +7,22 @@ import Url from 'containers/url';
 
 export const getServerSideProps = getReduxStateFromQuery();
 
+const TITLE_TEXT = 'FORA Funders | A diverse community supporting regenerative agriculture';
 const DESCRIPTION_TEXT =
-  'FORA (Funders for Regenerative Agriculture) is a network of funders and funder initiatives aimed at informing, educating, organizing, providing collaborative opportunities, and recruiting new members in support of regenerative agricultural systems. ';
-const TITLE_TEXT = 'Funders - Funders for Regenerative Agriculture';
+  'Discover diverse funders, investors, and partners deploying capital across varying issue and focus areas, strategies, and geographic scopes.';
+const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/funders.jpg`;
 
 const FundersPage: React.FC = () => {
   const fundersState = useAppSelector((state) => state['/funders']);
 
   return (
     <div>
-      <MetaTags title={TITLE_TEXT} description={DESCRIPTION_TEXT} type="website" />
+      <MetaTags
+        title={TITLE_TEXT}
+        description={DESCRIPTION_TEXT}
+        type="website"
+        imageURL={IMAGE_URL}
+      />
 
       <Funders />
 
