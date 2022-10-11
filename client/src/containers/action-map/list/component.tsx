@@ -17,6 +17,7 @@ const List: React.FC<ListProps> = () => {
   const { data: fundersData } = useFundersByGeographicScope(view, {
     filters: omit(filters, ['geographic', 'subgeographics']),
   });
+
   const { data: projectsData } = useProjectsByGeographicScope(view, {
     filters: omit(filters, ['geographic', 'subgeographics']),
   });

@@ -1,8 +1,9 @@
-import Head from 'next/head';
-
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 
+import { fetchProject } from 'hooks/projects';
+
 import MetaTags from 'containers/meta-tags';
+import Project from 'containers/project';
 
 import API_FAKE from 'services/api-fake';
 
@@ -14,10 +15,7 @@ const ProjectsDetailPage: React.FC = () => {
   return (
     <div>
       <MetaTags title={TITLE_TEXT} description={DESCRIPTION_TEXT} type="website" />
-      <Head>
-        <title>Projects detail</title>
-      </Head>
-      Projects detail
+      <Project />
     </div>
   );
 };
@@ -44,12 +42,9 @@ export async function getStaticProps(ctx) {
   const { id } = ctx.params;
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(['project', id], () => {
-    return API_FAKE.request({
-      method: 'GET',
-      url: `/todos/${id}`,
-    }).then((r) => r.data);
-  });
+  const fetch = () => fetchProject(id);
+
+  await queryClient.prefetchQuery(['project', id], fetch);
 
   // console.log(queryClient.getQueriesData(['project', id]));
 

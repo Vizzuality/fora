@@ -13,6 +13,17 @@ import API_FAKE from 'services/api-fake';
 import MOCK from './mock.json';
 import { UseFundersOptionsProps } from './types';
 
+export const fetchFunder = (id: string) =>
+  API_FAKE.request({
+    method: 'GET',
+    url: `/posts/${id}`,
+  }).then((response) => response.data);
+
+/**
+****************************************
+  FUNDERS
+****************************************
+*/
 export function useFunders(options: UseFundersOptionsProps = {}) {
   const { filters = {}, search, sort } = options;
 
@@ -73,6 +84,12 @@ export function useFunders(options: UseFundersOptionsProps = {}) {
   }, [query, DATA]);
 }
 
+/**
+****************************************
+  FUNDERS FILTERED BY GEOGRAPHIC SCOPE
+****************************************
+*/
+
 export function useFundersByGeographicScope(view: View, options: UseFundersOptionsProps = {}) {
   const { data, ...query } = useFunders(options);
 
@@ -127,6 +144,12 @@ export function useFundersByGeographicScope(view: View, options: UseFundersOptio
   }, [query, DATA]);
 }
 
+/**
+****************************************
+  FUNDERS INFINITY
+****************************************
+*/
+
 export function useFundersInfinity(options: AdapterOptionsProps = {}) {
   const {
     filters = {},
@@ -135,6 +158,7 @@ export function useFundersInfinity(options: AdapterOptionsProps = {}) {
       field: 'title',
       order: 'desc',
     },
+    perPage = 20,
   } = options;
 
   const fetchFunders = ({ pageParam = 1 }) =>
@@ -146,7 +170,7 @@ export function useFundersInfinity(options: AdapterOptionsProps = {}) {
         search,
         sort,
         page: pageParam,
-        perPage: 20,
+        perPage,
       }),
     });
 
@@ -198,4 +222,31 @@ export function useFundersInfinity(options: AdapterOptionsProps = {}) {
       data: DATA,
     };
   }, [DATA, query]);
+}
+
+/**
+****************************************
+  FUNDER [ID]
+****************************************
+*/
+
+export function useFunder(id: string) {
+  const fetch = () => fetchFunder(id);
+  const query = useQuery(['funder', id], fetch, {
+    enabled: !!id,
+    retry: false,
+    keepPreviousData: true,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    placeholderData: {},
+  });
+
+  const { data } = query;
+
+  return useMemo(() => {
+    return {
+      ...query,
+      data: data,
+    };
+  }, [query, data]);
 }
