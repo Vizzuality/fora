@@ -13,6 +13,12 @@ import API_FAKE from 'services/api-fake';
 import MOCK from './mock.json';
 import { UseProjectsOptionsProps } from './types';
 
+export const fetchProject = (id: string) =>
+  API_FAKE.request({
+    method: 'GET',
+    url: `/todos/${id}`,
+  }).then((response) => response.data);
+
 export function useProjects(options: UseProjectsOptionsProps = {}) {
   const { filters = {}, search, sort } = options;
 
@@ -135,6 +141,7 @@ export function useProjectsInfinity(options: AdapterOptionsProps = {}) {
       field: 'title',
       order: 'desc',
     },
+    perPage = 20,
   } = options;
 
   const fetchProjects = ({ pageParam = 1 }) =>
@@ -146,7 +153,7 @@ export function useProjectsInfinity(options: AdapterOptionsProps = {}) {
         search,
         sort,
         page: pageParam,
-        perPage: 20,
+        perPage,
       }),
     });
 
@@ -196,4 +203,32 @@ export function useProjectsInfinity(options: AdapterOptionsProps = {}) {
       data: DATA,
     };
   }, [query, DATA]);
+}
+
+/**
+****************************************
+  PROJECT [ID]
+****************************************
+*/
+
+export function useProject(id: string) {
+  const fetch = () => fetchProject(id);
+
+  const query = useQuery(['project', id], fetch, {
+    enabled: !!id,
+    retry: false,
+    keepPreviousData: true,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    placeholderData: {},
+  });
+
+  const { data } = query;
+
+  return useMemo(() => {
+    return {
+      ...query,
+      data: data,
+    };
+  }, [query, data]);
 }
