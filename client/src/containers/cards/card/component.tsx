@@ -19,7 +19,7 @@ export interface CardProps {
     id: string;
     name: string;
   }[];
-  theme: 'green' | 'white';
+  theme: 'green' | 'grey';
 }
 
 const Cards = ({
@@ -40,7 +40,7 @@ const Cards = ({
       name: 'Area 3',
     },
   ],
-  theme = 'white',
+  theme = 'grey',
 }: CardProps) => {
   const { pathname } = useRouter();
 
