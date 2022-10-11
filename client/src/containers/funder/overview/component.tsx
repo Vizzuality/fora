@@ -35,11 +35,11 @@ const FunderOverview = () => {
         <div className="flex justify-between">
           <div className="relative max-w-[50px] w-full shrink-0">
             <Image
-              src="/images/avatar.png"
+              src={funderData.image || '/images/avatar.jpg'}
               alt={funderData.title}
               layout="responsive"
               width={50}
-              height={50}
+              height={36}
             />
           </div>
           <Button type="button" size="base" theme="black-alt">

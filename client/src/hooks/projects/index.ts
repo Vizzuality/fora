@@ -141,6 +141,7 @@ export function useProjectsInfinity(options: AdapterOptionsProps = {}) {
       field: 'title',
       order: 'desc',
     },
+    perPage = 20,
   } = options;
 
   const fetchProjects = ({ pageParam = 1 }) =>
@@ -152,7 +153,7 @@ export function useProjectsInfinity(options: AdapterOptionsProps = {}) {
         search,
         sort,
         page: pageParam,
-        perPage: 20,
+        perPage,
       }),
     });
 

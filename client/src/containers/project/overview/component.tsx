@@ -52,15 +52,15 @@ const ProjectOverview = () => {
         <div className="flex items-center justify-between">
           <div className="relative max-w-[50px] w-full shrink-0">
             <Image
-              src="/images/avatar.png"
+              src={projectData.image || '/images/avatar.jpg'}
               alt={projectData.title}
               layout="responsive"
               width={50}
-              height={50}
+              height={36}
             />
           </div>
           <p className="font-semibold underline">
-            <a href="www.funderwebsite.org">www.projectwebsite.org</a>
+            <a href="www.projectwebsite.org">www.projectwebsite.org</a>
           </p>
         </div>
 

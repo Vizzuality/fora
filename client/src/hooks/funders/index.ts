@@ -158,6 +158,7 @@ export function useFundersInfinity(options: AdapterOptionsProps = {}) {
       field: 'title',
       order: 'desc',
     },
+    perPage = 20,
   } = options;
 
   const fetchFunders = ({ pageParam = 1 }) =>
@@ -169,7 +170,7 @@ export function useFundersInfinity(options: AdapterOptionsProps = {}) {
         search,
         sort,
         page: pageParam,
-        perPage: 20,
+        perPage,
       }),
     });
 
