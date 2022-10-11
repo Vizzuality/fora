@@ -146,6 +146,27 @@ RSpec.configure do |config|
             },
             required: %w[small medium original]
           },
+          pagination_meta: {
+            type: :object,
+            properties: {
+              page: {type: :integer},
+              per_page: {type: :integer},
+              from: {type: :integer},
+              to: {type: :integer},
+              total: {type: :integer},
+              pages: {type: :integer}
+            },
+            required: %w[page per_page from to total pages]
+          },
+          pagination_links: {
+            type: :object,
+            properties: {
+              first: {type: :string},
+              self: {type: :string},
+              last: {type: :string}
+            },
+            required: %w[first self last]
+          },
           nullable_response_relation: {
             type: :object,
             properties: {

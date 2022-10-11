@@ -1,4 +1,6 @@
 class Funder < ApplicationRecord
+  include PgSearch::Model
+
   belongs_to :primary_office_state, class_name: "Subgeographic", optional: true
   belongs_to :primary_office_country, class_name: "Subgeographic"
 
@@ -7,6 +9,8 @@ class Funder < ApplicationRecord
   has_many :subgeographic_ancestors, through: :subgeographics, source: :subgeographic_ancestors
 
   has_one_attached :logo
+
+  pg_search_scope :search, against: [:name, :description]
 
   validates :primary_contact_role, inclusion: {in: Role::TYPES, allow_blank: true}, presence: true
   validates :funder_type, inclusion: {in: FunderType::TYPES, allow_blank: true}, presence: true

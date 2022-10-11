@@ -1,6 +1,8 @@
 module API
   module V1
     class FundersController < BaseController
+      include API::Pagination
+
       load_and_authorize_resource
 
       ENUM_FILTERS = %i[areas demographics funder_types capital_types funder_legal_status]
@@ -8,13 +10,17 @@ module API
       def index
         @funders = @funders.for_subgeographics filter_params[:subgeographic_ids] if filter_params[:subgeographic_ids].present?
         @funders = @funders.for_geographics filter_params[:geographics] if filter_params[:geographics].present?
+        @funders = @funders.search filter_params[:full_text] if filter_params[:full_text].present?
         @funders = API::EnumFilter.new(@funders, filter_params.to_h.slice(*ENUM_FILTERS)).call
         @funders = Funder.where(id: @funders.pluck(:id)).order(:name)
           .includes :primary_office_state, :primary_office_country, :subgeographics, :subgeographic_ancestors
+        pagy_object, @funders = pagy @funders, page: current_page, items: per_page unless params[:disable_pagination].to_s == "true"
         render json: FunderSerializer.new(
           @funders,
           include: included_relationships,
           fields: sparse_fieldset,
+          links: pagy_object.present? ? pagination_links(:api_v1_funders_path, pagy_object) : nil,
+          meta: pagy_object.present? ? pagination_meta(pagy_object) : nil,
           params: {current_user: current_user, current_ability: current_ability}
         ).serializable_hash
       end
@@ -31,7 +37,7 @@ module API
       private
 
       def filter_params
-        params.fetch(:filter, {}).permit :geographics, :subgeographic_ids, *ENUM_FILTERS
+        params.fetch(:filter, {}).permit :geographics, :subgeographic_ids, :full_text, *ENUM_FILTERS
       end
     end
   end
