@@ -1,20 +1,29 @@
+import { useRouter } from 'next/router';
+
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 
-import { fetchProject } from 'hooks/projects';
+import { fetchProject, useProject } from 'hooks/projects';
 
 import MetaTags from 'containers/meta-tags';
 import Project from 'containers/project';
 
 import API_FAKE from 'services/api-fake';
 
-const DESCRIPTION_TEXT =
-  'FORA (Funders for Regenerative Agriculture) is a network of funders and funder initiatives aimed at informing, educating, organizing, providing collaborative opportunities, and recruiting new members in support of regenerative agricultural systems. ';
-const TITLE_TEXT = 'Project detail - Funders for Regenerative Agriculture';
+const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/projects.jpg`;
 
 const ProjectsDetailPage: React.FC = () => {
+  const { query } = useRouter();
+  const { id: projectId } = query;
+  const { data: projectData } = useProject(`${projectId}`);
+
   return (
     <div>
-      <MetaTags title={TITLE_TEXT} description={DESCRIPTION_TEXT} type="website" />
+      <MetaTags
+        title={`FORA Projects | ${projectData.title}`}
+        description={projectData.description}
+        type="website"
+        imageURL={IMAGE_URL}
+      />
       <Project />
     </div>
   );

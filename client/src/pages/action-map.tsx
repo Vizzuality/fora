@@ -7,16 +7,22 @@ import Url from 'containers/url';
 
 export const getServerSideProps = getReduxStateFromQuery();
 
+const TITLE_TEXT = 'FORA Action Map | An interactive and user-friendly tool';
 const DESCRIPTION_TEXT =
-  'FORA (Funders for Regenerative Agriculture) is a network of funders and funder initiatives aimed at informing, educating, organizing, providing collaborative opportunities, and recruiting new members in support of regenerative agricultural systems. ';
-const TITLE_TEXT = 'Action Map - Funders for Regenerative Agriculture';
+  'View and interact with various areas of interest across geographies, exploring where FORA members are funding.';
+const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/action-map.jpg`;
 
 const ActionMapPage: React.FC = () => {
   const actionMapState = useAppSelector((state) => state['/action-map']);
 
   return (
     <div>
-      <MetaTags title={TITLE_TEXT} description={DESCRIPTION_TEXT} type="website" />
+      <MetaTags
+        title={TITLE_TEXT}
+        description={DESCRIPTION_TEXT}
+        type="website"
+        imageURL={IMAGE_URL}
+      />
 
       <ActionMap />
 

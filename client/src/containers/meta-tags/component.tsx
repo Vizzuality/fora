@@ -13,7 +13,7 @@ export interface MetaTagsProps {
 const MetaTags: React.FC<MetaTagsProps> = ({
   title,
   description,
-  type,
+  type = 'website',
   imageURL,
 }: MetaTagsProps) => {
   const { asPath } = useRouter();

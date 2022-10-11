@@ -17,8 +17,8 @@ export const NAV = [
     href: '/action-map',
   },
   {
-    label: 'Dashboard',
-    href: '/dashboard',
+    label: 'Dashboards',
+    href: '/dashboards',
   },
   {
     label: 'About',

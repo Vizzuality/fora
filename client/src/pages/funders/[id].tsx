@@ -8,9 +8,7 @@ import Funder from 'containers/funder';
 import MetaTags from 'containers/meta-tags';
 
 import API_FAKE from 'services/api-fake';
-
-const DESCRIPTION_TEXT =
-  'FORA (Funders for Regenerative Agriculture) is a network of funders and funder initiatives aimed at informing, educating, organizing, providing collaborative opportunities, and recruiting new members in support of regenerative agricultural systems. ';
+const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/funders.jpg`;
 
 const FundersDetailPage: React.FC = () => {
   const { query } = useRouter();
@@ -20,9 +18,10 @@ const FundersDetailPage: React.FC = () => {
   return (
     <div>
       <MetaTags
-        title={`${funderData.title} - Funders for Regenerative Agriculture`}
-        description={DESCRIPTION_TEXT}
+        title={`FORA Funders | ${funderData.title}`}
+        description={funderData.description}
         type="website"
+        imageURL={IMAGE_URL}
       />
       <Funder />
     </div>
