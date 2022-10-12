@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "id": "general_operating_support",
+      "type": "funding_type",
+      "attributes": {
+        "name": "General operating support"
+      }
+    },
+    {
+      "id": "media_and_communications",
+      "type": "funding_type",
+      "attributes": {
+        "name": "Media and communications"
+      }
+    },
+    {
+      "id": "program_or_project_specific",
+      "type": "funding_type",
+      "attributes": {
+        "name": "Program or Project specific"
+      }
+    },
+    {
+      "id": "sponsorship",
+      "type": "funding_type",
+      "attributes": {
+        "name": "Sponsorship"
+      }
+    }
+  ]
+}

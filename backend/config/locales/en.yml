@@ -232,3 +232,12 @@ en:
         name: Multi-year
       other:
         name: Other
+    funding_type:
+      general_operating_support:
+        name: General operating support
+      program_or_project_specific:
+        name: Program or Project specific
+      media_and_communications:
+        name: Media and communications
+      sponsorship:
+        name: Sponsorship

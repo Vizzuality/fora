@@ -4,6 +4,7 @@ mount Rswag::Api::Engine => "/api-docs"
 namespace :api, format: "json" do
   namespace :v1 do
     # enums
+    resources :funding_types, only: %i[index]
     resources :grant_durations, only: %i[index]
     resources :application_statuses, only: %i[index]
     resources :roles, only: %i[index]
