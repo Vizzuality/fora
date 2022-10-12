@@ -67,10 +67,11 @@
       "type": "subgeographic",
       "attributes": {
         "name": "Argentina",
-        "code": "Argentina",
+        "code": "ARM",
         "geographic": "countries",
         "created_at": "2022-10-06T09:41:12.659Z",
-        "updated_at": "2022-10-06T09:41:12.659Z"
+        "updated_at": "2022-10-06T09:41:12.659Z",
+        "abbreviation": "C-ARM"
       },
       "relationships": {
         "parent": {
@@ -88,10 +89,11 @@
       "type": "subgeographic",
       "attributes": {
         "name": "Mayotte",
-        "code": "Mayotte",
+        "code": "MCO",
         "geographic": "countries",
         "created_at": "2022-10-06T09:41:12.539Z",
-        "updated_at": "2022-10-06T09:41:12.539Z"
+        "updated_at": "2022-10-06T09:41:12.539Z",
+        "abbreviation": "C-MCO"
       },
       "relationships": {
         "parent": {
@@ -109,10 +111,11 @@
       "type": "subgeographic",
       "attributes": {
         "name": "Libyan Arab Jamahiriya",
-        "code": "Libyan Arab Jamahiriya",
+        "code": "KOR",
         "geographic": "countries",
         "created_at": "2022-10-06T09:41:12.469Z",
-        "updated_at": "2022-10-06T09:41:12.469Z"
+        "updated_at": "2022-10-06T09:41:12.469Z",
+        "abbreviation": "C-KOR"
       },
       "relationships": {
         "parent": {
@@ -130,10 +133,11 @@
       "type": "subgeographic",
       "attributes": {
         "name": "Sierra Leone",
-        "code": "Sierra Leone",
+        "code": "SGS",
         "geographic": "countries",
         "created_at": "2022-10-06T09:41:12.598Z",
-        "updated_at": "2022-10-06T09:41:12.598Z"
+        "updated_at": "2022-10-06T09:41:12.598Z",
+        "abbreviation": "C-SGS"
       },
       "relationships": {
         "parent": {

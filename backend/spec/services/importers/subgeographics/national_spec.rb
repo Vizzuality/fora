@@ -24,6 +24,7 @@ RSpec.describe Importers::Subgeographics::National do
       it "creates correct national" do
         expect(national.name).to eq("United States")
         expect(national.code).to eq("USA")
+        expect(national.abbreviation).to eq("N-USA")
         expect(national.parent.code).to eq("USA")
       end
 

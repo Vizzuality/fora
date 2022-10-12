@@ -5,10 +5,11 @@
       "type": "subgeographic",
       "attributes": {
         "name": "Canada",
-        "code": "Canada",
+        "code": "BWA",
         "geographic": "countries",
         "created_at": "2022-09-30T10:34:31.522Z",
-        "updated_at": "2022-09-30T10:34:31.522Z"
+        "updated_at": "2022-09-30T10:34:31.522Z",
+        "abbreviation": "C-BWA"
       },
       "relationships": {
         "parent": {
@@ -29,10 +30,11 @@
       "type": "subgeographic",
       "attributes": {
         "name": "Papua New Guinea",
-        "code": "Papua New Guinea",
+        "code": "NPL",
         "geographic": "regions",
         "created_at": "2022-09-30T10:34:31.535Z",
-        "updated_at": "2022-09-30T10:34:31.535Z"
+        "updated_at": "2022-09-30T10:34:31.535Z",
+        "abbreviation": "R-NPL"
       },
       "relationships": {
         "parent": {
