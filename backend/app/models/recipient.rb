@@ -3,6 +3,7 @@ class Recipient < ApplicationRecord
   belongs_to :state, class_name: "Subgeographic", optional: true
 
   has_many :projects, dependent: :destroy
+  has_many :investments, through: :projects
   has_many :recipient_subgeographics, dependent: :destroy
   has_many :subgeographics, through: :recipient_subgeographics
   has_many :subgeographic_ancestors, through: :subgeographics, source: :subgeographic_ancestors
