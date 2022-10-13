@@ -10,7 +10,7 @@ import rewind from '@turf/rewind';
 import CHROMA from 'chroma-js';
 import { geoCentroid } from 'd3-geo';
 import { Feature, MultiPolygon, Polygon } from 'geojson';
-import { max } from 'lodash';
+import { max, min } from 'lodash';
 
 import { MAP_RAMP } from 'constants/colors';
 
@@ -35,13 +35,15 @@ const RegionsView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }:
   const parseGeographies = useCallback(
     (geos) => {
       const COLOR_SCALE = CHROMA.scale(MAP_RAMP);
+      const MIN = min(data.map((d) => d.count)) || 0;
       const MAX = max(data.map((d) => d.count)) || 0;
 
       return geos.map((geo: Feature<Polygon | MultiPolygon>) => {
         const { abbreviation } = geo.properties;
         const count = data.find((d) => d.id === abbreviation)?.count || 0;
 
-        const COLOR = COLOR_SCALE(1 - count / MAX);
+        const VALUE = MAX === MIN ? 0.6 : 1 - count / MAX;
+        const COLOR = COLOR_SCALE(VALUE);
         const luminance = COLOR.luminance();
         const selected = !subgeographics.length || subgeographics.includes(abbreviation);
 

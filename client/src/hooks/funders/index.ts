@@ -18,6 +18,11 @@ import API from 'services/api';
 import MOCK from './mock.json';
 import { FundersResponseData } from './types';
 
+/**
+****************************************
+  FETCH FUNCTIONS
+****************************************
+*/
 export const fetchFunder = (id: string) =>
   API.request({
     method: 'GET',
@@ -31,6 +36,7 @@ export const fetchFunders = (params: ParamsProps) => {
     params: jsonAPIAdapter(params),
   }).then((response) => response.data);
 };
+
 /**
 ****************************************
   FUNDERS
@@ -77,14 +83,7 @@ export function useFunders(
   FUNDERS FILTERED BY GEOGRAPHIC SCOPE
 ****************************************
 */
-
-export function useFundersByGeographicScope(
-  view: View,
-  params: ParamsProps = {},
-  queryOptions: UseQueryOptions<FundersResponseData, unknown> = {}
-) {
-  const { data, ...query } = useFunders(params, queryOptions);
-
+export function useFundersByGeographicScope(view: View, data: FundersResponseData['data'] = []) {
   const DATA = useMemo(() => {
     if (!data) {
       return [];
@@ -118,12 +117,7 @@ export function useFundersByGeographicScope(
     return SUBGEOGRAPHICS;
   }, [view, data]);
 
-  return useMemo(() => {
-    return {
-      ...query,
-      data: DATA,
-    };
-  }, [query, DATA]);
+  return DATA;
 }
 
 /**
@@ -131,7 +125,6 @@ export function useFundersByGeographicScope(
   FUNDERS INFINITY
 ****************************************
 */
-
 export function useFundersInfinity(
   params: ParamsProps = {},
   queryOptions: UseInfiniteQueryOptions<FundersResponseData, unknown> = {}

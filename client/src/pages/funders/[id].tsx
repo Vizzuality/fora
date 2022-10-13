@@ -2,12 +2,11 @@ import { useRouter } from 'next/router';
 
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 
-import { fetchFunder, useFunder } from 'hooks/funders';
+import { fetchFunder, fetchFunders, useFunder } from 'hooks/funders';
 
 import Funder from 'containers/funder';
 import MetaTags from 'containers/meta-tags';
 
-import API_FAKE from 'services/api-fake';
 const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/funders.jpg`;
 
 const FundersDetailPage: React.FC = () => {
@@ -29,12 +28,11 @@ const FundersDetailPage: React.FC = () => {
 };
 
 export async function getStaticPaths() {
-  const response = await API_FAKE.request({
-    method: 'GET',
-    url: '/posts',
-  }).then((r) => r.data);
+  const response = await fetchFunders({
+    disablePagination: true,
+  });
 
-  const paths = response.map((f) => ({
+  const paths = response.data.map((f) => ({
     params: { id: `${f.id}` },
   }));
 
@@ -54,12 +52,10 @@ export async function getStaticProps(ctx) {
 
   await queryClient.prefetchQuery(['funder', id], fetch);
 
-  // console.log(queryClient.getQueriesData(['funder', id]));
-
   // Props returned will be passed to the page component
   return {
     props: {
-      dehydratedState: dehydrate(queryClient),
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))) || null,
     },
   };
 }

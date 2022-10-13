@@ -34,7 +34,7 @@ const ActionMap = () => {
             </div>
             <div className="col-span-3 col-start-10 max-h-[500px]">
               <div className="flex flex-col justify-between h-full space-y-4">
-                <div className="flex flex-col h-full min-h-0 grow">
+                <div className="relative flex flex-col h-full min-h-0 grow">
                   <List />
                 </div>
                 <div className="shrink-0 grow">

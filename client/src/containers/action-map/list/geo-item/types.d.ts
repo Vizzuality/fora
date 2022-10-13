@@ -1,4 +1,4 @@
-export interface ListItemProps {
+export interface ListGeoItemProps {
   id: string;
   name: string;
   count: number;
