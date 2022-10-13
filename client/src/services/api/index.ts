@@ -19,7 +19,16 @@ const API = axios.create({
     }
   },
   paramsSerializer: (prms) => {
-    return qs.stringify(prms, { arrayFormat: 'comma' });
+    const parsedParams = Object.keys(prms).reduce((acc, key) => {
+      // Convert key to snake_case
+      const snakeKey = key.replace(/([A-Z])/g, '_$1').toLowerCase();
+
+      return {
+        ...acc,
+        [snakeKey]: prms[key],
+      };
+    }, {});
+    return qs.stringify(parsedParams, { arrayFormat: 'comma' });
   },
 });
 

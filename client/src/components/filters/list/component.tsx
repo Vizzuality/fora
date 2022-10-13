@@ -52,13 +52,28 @@ const FilterList: React.FC<FilterListProps> = ({
   }, [selected]);
 
   return (
-    <div className="relative flex flex-col py-px overflow-hidden grow">
+    <div
+      className={cx({
+        relative: true,
+        'py-px flex flex-col overflow-hidden grow': overflow,
+      })}
+    >
       <Loading
         visible={loading}
         className="absolute z-10 flex items-center justify-center w-full h-full bg-white/90"
       />
-      <div className="absolute left-0 z-10 w-full h-10 pointer-events-none -top-1 bg-gradient-to-b from-white via-white" />
-      <div className="relative flex flex-col overflow-hidden grow">
+      {/* GRADIENT TOP */}
+      {overflow && (
+        <div className="absolute left-0 z-10 w-full h-10 pointer-events-none -top-1 bg-gradient-to-b from-white via-white" />
+      )}
+
+      {/* LIST */}
+      <div
+        className={cx({
+          relative: true,
+          'flex flex-col grow overflow-hidden': overflow,
+        })}
+      >
         <div
           className={cx({
             'flex flex-col space-y-5 grow': true,
@@ -127,7 +142,10 @@ const FilterList: React.FC<FilterListProps> = ({
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 z-10 w-full h-10 pointer-events-none bg-gradient-to-t from-white via-white" />
+      {/* GRADIENT BOTTOM */}
+      {overflow && (
+        <div className="absolute bottom-0 left-0 z-10 w-full h-10 pointer-events-none bg-gradient-to-t from-white via-white" />
+      )}
     </div>
   );
 };
