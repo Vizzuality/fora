@@ -5,6 +5,7 @@ module API
 
       def index
         @subgeographics = @subgeographics.where geographic: filter_params[:geographic] if filter_params[:geographic].present?
+        @subgeographics = @subgeographics.only_active if filter_params[:only_active].to_s == "true"
         @subgeographics = @subgeographics.includes :parent, :subgeographics
         @subgeographics = @subgeographics.order :name
         render json: SubgeographicSerializer.new(
@@ -24,7 +25,7 @@ module API
       private
 
       def filter_params
-        params.fetch(:filter, {}).permit :geographic
+        params.fetch(:filter, {}).permit :geographic, :only_active
       end
     end
   end

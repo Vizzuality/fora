@@ -701,7 +701,7 @@ paths:
             application/json:
               example:
                 data:
-                - id: cc856812-a717-42d5-bc7f-6f225533474a
+                - id: da6aad76-17b6-4e98-a192-c7e624b823cf
                   type: funder
                   attributes:
                     name: Elbert Denesik
@@ -715,7 +715,7 @@ paths:
                     primary_contact_location: 851 Drusilla Lodge, Port Randy, VT 43075
                     primary_contact_role: intermediary
                     website: http://hilpert.biz/drusilla
-                    date_joined_fora: '2022-02-16T00:00:00.000Z'
+                    date_joined_fora: '2022-02-17T00:00:00.000Z'
                     funder_type: private_foundation
                     funder_type_other: Dolores fugiat nesciunt accusantium.
                     capital_acceptances:
@@ -747,29 +747,29 @@ paths:
                     demographics_other: Dolores fugiat nesciunt accusantium.
                     contact_email: lauren@ruecker.io
                     logo:
-                      small: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxqWWpjeE5URmxZeTAyWkdZNUxUUmhNbU10WVdNME15MHhZMlZsWVRnMk1UWXdPV1VHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--6481bccdbc1dc23acc38f3b46a3f812d6789e864/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERJd01IZ3lNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--8673702c2d856505736727890dcac6a632977811/picture.jpg
-                      medium: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxqWWpjeE5URmxZeTAyWkdZNUxUUmhNbU10WVdNME15MHhZMlZsWVRnMk1UWXdPV1VHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--6481bccdbc1dc23acc38f3b46a3f812d6789e864/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERnd01IZzRNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--e82a96c0eabd93d914de4ef37febd98c36e0e275/picture.jpg
-                      original: http://localhost:4000/sub-path/backend/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxqWWpjeE5URmxZeTAyWkdZNUxUUmhNbU10WVdNME15MHhZMlZsWVRnMk1UWXdPV1VHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--6481bccdbc1dc23acc38f3b46a3f812d6789e864/picture.jpg
+                      small: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxoT1RVek5tSmtOaTB3TnpZMExUUTFPVFV0WVRneFpTMDBNR0UwWlRVd1pXWmlaVElHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--5f87502d21645203a6f92aa5531639268e196d84/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERJd01IZ3lNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--8673702c2d856505736727890dcac6a632977811/picture.jpg
+                      medium: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxoT1RVek5tSmtOaTB3TnpZMExUUTFPVFV0WVRneFpTMDBNR0UwWlRVd1pXWmlaVElHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--5f87502d21645203a6f92aa5531639268e196d84/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERnd01IZzRNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--e82a96c0eabd93d914de4ef37febd98c36e0e275/picture.jpg
+                      original: http://localhost:4000/sub-path/backend/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxoT1RVek5tSmtOaTB3TnpZMExUUTFPVFV0WVRneFpTMDBNR0UwWlRVd1pXWmlaVElHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--5f87502d21645203a6f92aa5531639268e196d84/picture.jpg
                   relationships:
                     primary_office_state:
                       data:
-                        id: 8ffd1506-45cf-4fd7-836e-927aff83cd37
+                        id: 41b73c51-61a1-4a1d-b45a-bd901dc13f73
                         type: subgeographic
                     primary_office_country:
                       data:
-                        id: 45d13d8e-9b7e-4b80-8153-c40438158a5d
+                        id: ba9d2edf-0f29-4af0-9007-dd5eb8d7db36
                         type: subgeographic
                     subgeographics:
                       data:
-                      - id: 6f1fb034-3418-4d62-b860-90ba33cdca4f
+                      - id: ea248e3d-cf67-4ab9-b1f1-5c4ad6f1009f
                         type: subgeographic
                     subgeographic_ancestors:
                       data:
-                      - id: 6f1fb034-3418-4d62-b860-90ba33cdca4f
+                      - id: ea248e3d-cf67-4ab9-b1f1-5c4ad6f1009f
                         type: subgeographic
-                      - id: 7f880188-b968-4eda-8e4a-134b2317f0ba
+                      - id: 23a286b9-efad-4640-bab7-f5ebdaedee5e
                         type: subgeographic
-                - id: 15ca848c-dff1-4c0b-966c-1b79c0e04fe3
+                - id: e8aac4f6-488e-42a0-a11e-bcffc2566649
                   type: funder
                   attributes:
                     name: Msgr. Genaro Cronin
@@ -784,7 +784,7 @@ paths:
                       44573
                     primary_contact_role: funder
                     website: http://bartoletti.com/jeremiah_cronin
-                    date_joined_fora: '2022-04-03T00:00:00.000Z'
+                    date_joined_fora: '2022-04-04T00:00:00.000Z'
                     funder_type: loan_fund
                     funder_type_other: Placeat commodi libero et.
                     capital_acceptances:
@@ -816,23 +816,23 @@ paths:
                     demographics_other: Placeat commodi libero et.
                     contact_email: desmond_herzog@example.org
                     logo:
-                      small: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWszTXpkalpXTmlaQzA0TVRWaExUUTRZakV0WWpsbE55MDJNelpoTlRjd05qUXlaakFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--6a8f2162f257d49e1feea3480ce63d6545b757dc/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERJd01IZ3lNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--8673702c2d856505736727890dcac6a632977811/picture.jpg
-                      medium: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWszTXpkalpXTmlaQzA0TVRWaExUUTRZakV0WWpsbE55MDJNelpoTlRjd05qUXlaakFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--6a8f2162f257d49e1feea3480ce63d6545b757dc/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERnd01IZzRNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--e82a96c0eabd93d914de4ef37febd98c36e0e275/picture.jpg
-                      original: http://localhost:4000/sub-path/backend/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWszTXpkalpXTmlaQzA0TVRWaExUUTRZakV0WWpsbE55MDJNelpoTlRjd05qUXlaakFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--6a8f2162f257d49e1feea3480ce63d6545b757dc/picture.jpg
+                      small: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxqWm1JelpUUm1PUzAxWlRZeUxUUXdOVE10WWpGbVpTMWlaRFE0WXpWbU9Ua3dZMkVHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--9a170ab9dbd8546aa3c6f60c54e255cbf9c1664d/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERJd01IZ3lNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--8673702c2d856505736727890dcac6a632977811/picture.jpg
+                      medium: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxqWm1JelpUUm1PUzAxWlRZeUxUUXdOVE10WWpGbVpTMWlaRFE0WXpWbU9Ua3dZMkVHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--9a170ab9dbd8546aa3c6f60c54e255cbf9c1664d/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERnd01IZzRNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--e82a96c0eabd93d914de4ef37febd98c36e0e275/picture.jpg
+                      original: http://localhost:4000/sub-path/backend/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxqWm1JelpUUm1PUzAxWlRZeUxUUXdOVE10WWpGbVpTMWlaRFE0WXpWbU9Ua3dZMkVHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--9a170ab9dbd8546aa3c6f60c54e255cbf9c1664d/picture.jpg
                   relationships:
                     primary_office_state:
                       data:
-                        id: eb970c6f-025c-4fd8-a5cb-163674ca8406
+                        id: e623cc1b-057e-4742-86dd-7a77e8073073
                         type: subgeographic
                     primary_office_country:
                       data:
-                        id: dfc4cf2c-af94-4c9d-bc3b-6ee015a217e0
+                        id: 92c87883-81df-4686-b91e-dbb77beaf417
                         type: subgeographic
                     subgeographics:
                       data: []
                     subgeographic_ancestors:
                       data: []
-                - id: 5e57fbba-1325-42ed-8702-362279716fe9
+                - id: 03bf1304-bd6a-49d6-bd5a-8879e796c3ea
                   type: funder
                   attributes:
                     name: Otha Kemmer
@@ -847,7 +847,7 @@ paths:
                       WY 06997-6910
                     primary_contact_role: regrantor
                     website: http://kutch-spencer.com/moises
-                    date_joined_fora: '2021-11-23T00:00:00.000Z'
+                    date_joined_fora: '2021-11-24T00:00:00.000Z'
                     funder_type: funder_collaborative_or_network
                     funder_type_other: Enim repellat pariatur est.
                     capital_acceptances:
@@ -879,23 +879,23 @@ paths:
                     demographics_other: Enim repellat pariatur est.
                     contact_email: dawna.block@example.org
                     logo:
-                      small: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWs1WmpabU1qa3pPQzB6TjJNeUxUUXhPVFV0WVdSaE1DMWhNVGMyTlRVd1ltRXdZMlVHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--342685aeddabbc80f96b7aa2484c1961e319d0a1/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERJd01IZ3lNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--8673702c2d856505736727890dcac6a632977811/picture.jpg
-                      medium: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWs1WmpabU1qa3pPQzB6TjJNeUxUUXhPVFV0WVdSaE1DMWhNVGMyTlRVd1ltRXdZMlVHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--342685aeddabbc80f96b7aa2484c1961e319d0a1/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERnd01IZzRNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--e82a96c0eabd93d914de4ef37febd98c36e0e275/picture.jpg
-                      original: http://localhost:4000/sub-path/backend/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWs1WmpabU1qa3pPQzB6TjJNeUxUUXhPVFV0WVdSaE1DMWhNVGMyTlRVd1ltRXdZMlVHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--342685aeddabbc80f96b7aa2484c1961e319d0a1/picture.jpg
+                      small: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWs1WlRVd1pHUTRNUzB3WW1GbExUUmtaR0l0WVRkak1TMWlaalpoTW1Zd1lqazBOek1HT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--73246d41ca9047fbe78135d9a55721ab137219b5/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERJd01IZ3lNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--8673702c2d856505736727890dcac6a632977811/picture.jpg
+                      medium: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWs1WlRVd1pHUTRNUzB3WW1GbExUUmtaR0l0WVRkak1TMWlaalpoTW1Zd1lqazBOek1HT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--73246d41ca9047fbe78135d9a55721ab137219b5/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERnd01IZzRNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--e82a96c0eabd93d914de4ef37febd98c36e0e275/picture.jpg
+                      original: http://localhost:4000/sub-path/backend/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWs1WlRVd1pHUTRNUzB3WW1GbExUUmtaR0l0WVRkak1TMWlaalpoTW1Zd1lqazBOek1HT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--73246d41ca9047fbe78135d9a55721ab137219b5/picture.jpg
                   relationships:
                     primary_office_state:
                       data:
-                        id: e474133f-fc7f-4871-9daa-6e255f43fbfe
+                        id: df2c9242-8531-456e-a12b-bf50aec8ef21
                         type: subgeographic
                     primary_office_country:
                       data:
-                        id: 587e641b-3482-462b-8c08-cf19a430be23
+                        id: a3f47708-ab75-463b-8b60-82cee62bdbed
                         type: subgeographic
                     subgeographics:
                       data: []
                     subgeographic_ancestors:
                       data: []
-                - id: 7ce5c84e-d9cb-407a-abd8-d195fa8b7afb
+                - id: 82fa6bbd-8192-495f-bf48-5a45c7f73cfd
                   type: funder
                   attributes:
                     name: Raymon Wisoky
@@ -910,7 +910,7 @@ paths:
                       60478-1622
                     primary_contact_role: intermediary
                     website: http://hane.com/jules
-                    date_joined_fora: '2022-03-18T00:00:00.000Z'
+                    date_joined_fora: '2022-03-19T00:00:00.000Z'
                     funder_type: private_foundation
                     funder_type_other: Et quaerat omnis veniam.
                     capital_acceptances:
@@ -942,17 +942,17 @@ paths:
                     demographics_other: Et quaerat omnis veniam.
                     contact_email: jules_keeling@grimes-stokes.co
                     logo:
-                      small: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWt5WldZME5XUTJPQzFtWkRVd0xUUXhPVEl0WW1Wa09DMW1OR1ZoTW1FMk5EY3lOV0lHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--a182d08a96defb721d4addde8a0bab02940e2158/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERJd01IZ3lNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--8673702c2d856505736727890dcac6a632977811/picture.jpg
-                      medium: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWt5WldZME5XUTJPQzFtWkRVd0xUUXhPVEl0WW1Wa09DMW1OR1ZoTW1FMk5EY3lOV0lHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--a182d08a96defb721d4addde8a0bab02940e2158/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERnd01IZzRNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--e82a96c0eabd93d914de4ef37febd98c36e0e275/picture.jpg
-                      original: http://localhost:4000/sub-path/backend/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWt5WldZME5XUTJPQzFtWkRVd0xUUXhPVEl0WW1Wa09DMW1OR1ZoTW1FMk5EY3lOV0lHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--a182d08a96defb721d4addde8a0bab02940e2158/picture.jpg
+                      small: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxpWmpJeE1EazRNUzFsTURrM0xUUm1Nemt0T0RnNE1DMDJNMk0wTURObU1ERmlOelVHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--aec9d066f9a82b0cfb3d4fec713fc155dda8cca5/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERJd01IZ3lNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--8673702c2d856505736727890dcac6a632977811/picture.jpg
+                      medium: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxpWmpJeE1EazRNUzFsTURrM0xUUm1Nemt0T0RnNE1DMDJNMk0wTURObU1ERmlOelVHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--aec9d066f9a82b0cfb3d4fec713fc155dda8cca5/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERnd01IZzRNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--e82a96c0eabd93d914de4ef37febd98c36e0e275/picture.jpg
+                      original: http://localhost:4000/sub-path/backend/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxpWmpJeE1EazRNUzFsTURrM0xUUm1Nemt0T0RnNE1DMDJNMk0wTURObU1ERmlOelVHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--aec9d066f9a82b0cfb3d4fec713fc155dda8cca5/picture.jpg
                   relationships:
                     primary_office_state:
                       data:
-                        id: 33d37448-0c8a-445c-b599-9aa4e8069acc
+                        id: bfe8e416-ab58-49e7-b355-5c934bd2f324
                         type: subgeographic
                     primary_office_country:
                       data:
-                        id: 175bfe82-f409-4af2-8bb1-5ae07a060451
+                        id: 4463a9ad-de64-4481-9735-dddf0d4e8ce0
                         type: subgeographic
                     subgeographics:
                       data: []
@@ -1022,7 +1022,7 @@ paths:
             application/json:
               example:
                 data:
-                  id: b67d2aa9-2f6b-492b-a54c-d68ff16e6117
+                  id: fa490e2b-0bd7-4d5e-95bd-69c41aac0543
                   type: funder
                   attributes:
                     name: Otha Kemmer
@@ -1037,7 +1037,7 @@ paths:
                       WY 06997-6910
                     primary_contact_role: regrantor
                     website: http://kutch-spencer.com/moises
-                    date_joined_fora: '2021-11-23T00:00:00.000Z'
+                    date_joined_fora: '2021-11-24T00:00:00.000Z'
                     funder_type: funder_collaborative_or_network
                     funder_type_other: Enim repellat pariatur est.
                     capital_acceptances:
@@ -1070,27 +1070,27 @@ paths:
                     demographics_other: Enim repellat pariatur est.
                     contact_email: dawna.block@example.org
                     logo:
-                      small: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxoTnpFd056RmtPUzFpTmpBd0xUUmxaVFF0WW1ObFl5MHhPRFF6WldZeVptSXlaV0VHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--2302c8d8b5b387785bed658abf00d2406322aded/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERJd01IZ3lNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--8673702c2d856505736727890dcac6a632977811/picture.jpg
-                      medium: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxoTnpFd056RmtPUzFpTmpBd0xUUmxaVFF0WW1ObFl5MHhPRFF6WldZeVptSXlaV0VHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--2302c8d8b5b387785bed658abf00d2406322aded/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERnd01IZzRNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--e82a96c0eabd93d914de4ef37febd98c36e0e275/picture.jpg
-                      original: http://localhost:4000/sub-path/backend/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxoTnpFd056RmtPUzFpTmpBd0xUUmxaVFF0WW1ObFl5MHhPRFF6WldZeVptSXlaV0VHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--2302c8d8b5b387785bed658abf00d2406322aded/picture.jpg
+                      small: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWszWlRRNU5EWXhOeTFpWlRCaUxUUXlabUV0T0RFek1TMHhNREUxTnpnMFlqVXhNMlFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--389fce3f23d924890e54721626316aefdfed4347/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERJd01IZ3lNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--8673702c2d856505736727890dcac6a632977811/picture.jpg
+                      medium: http://localhost:4000/sub-path/backend/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWszWlRRNU5EWXhOeTFpWlRCaUxUUXlabUV0T0RFek1TMHhNREUxTnpnMFlqVXhNMlFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--389fce3f23d924890e54721626316aefdfed4347/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERnd01IZzRNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--e82a96c0eabd93d914de4ef37febd98c36e0e275/picture.jpg
+                      original: http://localhost:4000/sub-path/backend/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWszWlRRNU5EWXhOeTFpWlRCaUxUUXlabUV0T0RFek1TMHhNREUxTnpnMFlqVXhNMlFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--389fce3f23d924890e54721626316aefdfed4347/picture.jpg
                   relationships:
                     primary_office_state:
                       data:
-                        id: 244ec955-5cec-4bd1-8066-df1b80ee51db
+                        id: ee6fd046-d666-476d-9e5c-48772a8efa1f
                         type: subgeographic
                     primary_office_country:
                       data:
-                        id: 0b1411c2-81fd-41d4-8637-e7b50dafa39b
+                        id: bbd3910b-4ce0-4a46-a595-406266e37a6a
                         type: subgeographic
                     subgeographics:
                       data:
-                      - id: c9a92bc8-8f45-412e-9fed-b76b17203b26
+                      - id: 983266f9-1782-405d-b69e-eee04f8129ac
                         type: subgeographic
                     subgeographic_ancestors:
                       data:
-                      - id: c9a92bc8-8f45-412e-9fed-b76b17203b26
+                      - id: 983266f9-1782-405d-b69e-eee04f8129ac
                         type: subgeographic
-                      - id: 22ff8028-149f-49cb-a864-7ced6ee01fba
+                      - id: 275717ff-a421-4a96-945f-40c5342fd219
                         type: subgeographic
               schema:
                 type: object
@@ -1276,6 +1276,13 @@ paths:
         required: false
         schema:
           type: string
+      - name: filter[only_active]
+        in: query
+        description: Returns only subgeographics which are used by at least one funder
+          or recipient (project)
+        required: false
+        schema:
+          type: boolean
       - name: fields[subgeographic]
         in: query
         description: Get only required fields. Use comma to separate multiple fields
@@ -1295,35 +1302,35 @@ paths:
             application/json:
               example:
                 data:
-                - id: '08215538-09d1-4f7b-9057-925f4f9b01b1'
+                - id: eb880d90-7b64-4407-b40d-153230ad37a9
                   type: subgeographic
                   attributes:
                     name: Canada
                     code: BWA
                     geographic: countries
                     abbreviation: C-BWA
-                    created_at: '2022-10-12T08:30:09.860Z'
-                    updated_at: '2022-10-12T08:30:09.860Z'
+                    created_at: '2022-10-13T10:09:42.043Z'
+                    updated_at: '2022-10-13T10:09:42.043Z'
                   relationships:
                     parent:
                       data:
                     subgeographics:
                       data:
-                      - id: c9fbbbfc-a9a9-401f-82dc-c26199c5fe24
+                      - id: 69c634d2-c012-4a34-bcc1-b273058adad6
                         type: subgeographic
-                - id: c9fbbbfc-a9a9-401f-82dc-c26199c5fe24
+                - id: 69c634d2-c012-4a34-bcc1-b273058adad6
                   type: subgeographic
                   attributes:
                     name: Papua New Guinea
                     code: NPL
                     geographic: regions
                     abbreviation: R-NPL
-                    created_at: '2022-10-12T08:30:09.875Z'
-                    updated_at: '2022-10-12T08:30:09.875Z'
+                    created_at: '2022-10-13T10:09:42.068Z'
+                    updated_at: '2022-10-13T10:09:42.068Z'
                   relationships:
                     parent:
                       data:
-                        id: '08215538-09d1-4f7b-9057-925f4f9b01b1'
+                        id: eb880d90-7b64-4407-b40d-153230ad37a9
                         type: subgeographic
                     subgeographics:
                       data: []
@@ -1369,11 +1376,11 @@ paths:
                       - - 0
                         - 0
                   properties:
-                    id: b1fc187a-9328-4c80-9593-2632e582de19
+                    id: 2e8eb05e-1986-4d64-845d-926b63663583
                     code: NPL
                     name: Papua New Guinea
                     abbreviation: R-NPL
-                    parent_id: eefa8101-f31f-412e-9d74-781a5411d99a
+                    parent_id: 40fc85b9-e5a2-4d65-9321-eb088cb273dc
                 - type: Feature
                   geometry:
                     type: Polygon
@@ -1389,11 +1396,11 @@ paths:
                       - - 0
                         - 0
                   properties:
-                    id: '078d58d3-a870-4a4c-b59e-bba8c6674dac'
+                    id: a6573a0c-bc17-4eb5-b342-b08cd0a56f62
                     code: IRL
                     name: Jamaica
                     abbreviation: R-IRL
-                    parent_id: eefa8101-f31f-412e-9d74-781a5411d99a
+                    parent_id: 40fc85b9-e5a2-4d65-9321-eb088cb273dc
               schema:
                 "$ref": "#/components/schemas/subgeographic_geojson"
         '422':
