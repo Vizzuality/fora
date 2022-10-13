@@ -2,11 +2,17 @@ import React, { useCallback } from 'react';
 
 import { useGeographies, Geography } from 'react-simple-maps';
 
+import rewind from '@turf/rewind';
+
 import DATA from './data.json';
 
 const NationalView = () => {
   const parseGeographies = useCallback((geos) => {
-    return geos;
+    return geos.map((geo) => {
+      return {
+        ...rewind(geo, { reverse: true }),
+      };
+    });
   }, []);
 
   const { geographies } = useGeographies({

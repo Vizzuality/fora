@@ -11,7 +11,7 @@ import {
   useQuery,
   UseQueryOptions,
 } from '@tanstack/react-query';
-import { groupBy, orderBy } from 'lodash';
+import { orderBy, uniqBy } from 'lodash';
 
 import API from 'services/api';
 
@@ -41,7 +41,11 @@ export function useFunders(
   queryOptions: UseQueryOptions<FundersResponseData, unknown> = {}
 ) {
   const fetch = () =>
-    fetchFunders({ ...params, disablePagination: true, includes: 'subgeographics' });
+    fetchFunders({
+      ...params,
+      disablePagination: true,
+      includes: 'subgeographic_ancestors',
+    });
 
   const query = useQuery(['funders', JSON.stringify(params)], fetch, {
     placeholderData: {
@@ -81,48 +85,38 @@ export function useFundersByGeographicScope(
 ) {
   const { data, ...query } = useFunders(params, queryOptions);
 
-  const GROUP_BY_KEY = useMemo(() => {
-    switch (view) {
-      case 'regions':
-        return 'region_id';
-      case 'states':
-        return 'state_id';
-      case 'countries':
-        return 'country_id';
-    }
-  }, [view]);
-
-  const NAME_KEY = useMemo(() => {
-    switch (view) {
-      case 'regions':
-        return 'region_name';
-      case 'states':
-        return 'state_name';
-      case 'countries':
-        return 'country_name';
-    }
-  }, [view]);
-
   const DATA = useMemo(() => {
     if (!data) {
       return [];
     }
 
-    const groupedData = groupBy(data, GROUP_BY_KEY);
-
-    return orderBy(
-      Object.keys(groupedData).map((key) => {
-        return {
-          id: key,
-          name: groupedData[key][0][NAME_KEY],
-          count: groupedData[key].length,
-          items: groupedData[key],
-        };
-      }),
+    const SUBGEOGRAPHICS = orderBy(
+      // Extract subgeographics from funders
+      uniqBy(
+        data
+          .map((funder) => funder.subgeographic_ancestors.find((s) => s.geographic === view))
+          .filter((g) => g),
+        'id'
+      )
+        // Add funders to subgeographics
+        .map((sgeo) => {
+          const items = data.filter((funder) =>
+            funder.subgeographic_ancestors.find((s) => s.id === sgeo.id)
+          );
+          return {
+            ...sgeo,
+            id: sgeo.abbreviation,
+            items,
+            count: items.length,
+          };
+        }),
+      // Sort by count and name
       ['count', 'name'],
       ['desc', 'asc']
     );
-  }, [data, GROUP_BY_KEY, NAME_KEY]);
+
+    return SUBGEOGRAPHICS;
+  }, [view, data]);
 
   return useMemo(() => {
     return {

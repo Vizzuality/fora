@@ -1,18 +1,21 @@
+import { geoAlbersUsaTerritories } from 'geo-albers-usa-territories';
+
 import type { UseMapProjectionProps } from './types';
 
 export function useMapProjection({ view = 'regions' }: UseMapProjectionProps) {
+  const proj = geoAlbersUsaTerritories().scale(1000).translate([400, 250]);
   switch (view) {
     case 'regions':
       return {
-        projection: 'geoAlbersUsa',
+        projection: proj,
       };
     case 'states':
       return {
-        projection: 'geoAlbersUsa',
+        projection: proj,
       };
     case 'national':
       return {
-        projection: 'geoAlbersUsa',
+        projection: proj,
       };
     case 'countries':
       return {
@@ -24,7 +27,7 @@ export function useMapProjection({ view = 'regions' }: UseMapProjectionProps) {
       };
     default:
       return {
-        projection: 'geoAlbersUsa',
+        projection: proj,
       };
   }
 }

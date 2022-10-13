@@ -1,12 +1,15 @@
 import React from 'react';
 
+import dynamic from 'next/dynamic';
+
 import Wrapper from 'containers/wrapper';
 
 import Filters from './filters';
 import Legend from './legend';
 import List from './list';
-import Map from './map';
 import Sentence from './sentence';
+
+const Map = dynamic(() => import('./map'), { ssr: false });
 
 const ActionMap = () => {
   return (

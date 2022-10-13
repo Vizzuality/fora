@@ -6,6 +6,7 @@ import cx from 'classnames';
 
 import { useAppSelector } from 'store/hooks';
 
+import rewind from '@turf/rewind';
 import CHROMA from 'chroma-js';
 import { geoCentroid } from 'd3-geo';
 import { max } from 'lodash';
@@ -40,16 +41,17 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
       const MAX = max(data.map((d) => d.count)) || 0;
 
       return geos.map((geo) => {
-        const { id } = geo.properties;
-        const count = data.find((d) => d.id === id)?.count || 0;
+        const { abbreviation } = geo.properties;
+        const count = data.find((d) => d.id === abbreviation)?.count || 0;
+
         const COLOR = COLOR_SCALE(1 - count / MAX);
         const luminance = COLOR.luminance();
-        const selected = !subgeographics.length || subgeographics.includes(id);
+        const selected = !subgeographics.length || subgeographics.includes(abbreviation);
 
         const STYLES = getStyles(COLOR, selected, count);
 
         return {
-          ...geo,
+          ...rewind(geo, { reverse: true }),
           properties: {
             ...geo.properties,
             count,

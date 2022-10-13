@@ -72,7 +72,13 @@ export function useSubGeographics(
       return [];
     }
 
-    return data?.data;
+    // Work with abbreviations instead of ids
+    return data?.data.map((subgeographic) => {
+      return {
+        ...subgeographic,
+        id: subgeographic.abbreviation,
+      };
+    });
   }, [data]);
 
   return useMemo(() => {

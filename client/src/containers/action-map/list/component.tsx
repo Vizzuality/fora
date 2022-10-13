@@ -44,11 +44,11 @@ const List: React.FC<ListProps> = () => {
               <h4 className="font-semibold uppercase text-grey-20">{type}</h4>
             </div>
             <ul className="space-y-2">
-              {DATA.filter((d) => !subgeographics.length || subgeographics.includes(d.id)).map(
-                (d) => (
-                  <Item {...d} key={d.id} max={MAX} />
-                )
-              )}
+              {DATA.filter(
+                (d) => !subgeographics.length || subgeographics.includes(d.abbreviation)
+              ).map((d) => (
+                <Item {...d} key={d.id} max={MAX} />
+              ))}
             </ul>
           </div>
         </div>

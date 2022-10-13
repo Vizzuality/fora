@@ -52,7 +52,7 @@ const Map = () => {
         dispatch(
           setFilters({
             ...filters,
-            subgeographics: [properties.id],
+            subgeographics: [properties.abbreviation],
           })
         );
       },
