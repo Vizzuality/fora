@@ -29,10 +29,10 @@ const Map = () => {
   const dispatch = useAppDispatch();
 
   const { data: fundersData } = useFundersByGeographicScope(view, {
-    filters: omit(filters, ['geographic', 'subgeographics']),
+    filters: omit(filters, ['subgeographics']),
   });
   const { data: projectsData } = useProjectsByGeographicScope(view, {
-    filters: omit(filters, ['geographic', 'subgeographics']),
+    filters: omit(filters, ['subgeographics']),
   });
 
   const PROJECTION = useMapProjection({ view });

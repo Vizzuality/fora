@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Jsona from 'jsona';
+import qs from 'query-string';
 
 const dataFormatter = new Jsona();
 
@@ -16,6 +17,9 @@ const API = axios.create({
     } catch (error) {
       return data;
     }
+  },
+  paramsSerializer: (prms) => {
+    return qs.stringify(prms, { arrayFormat: 'comma' });
   },
 });
 

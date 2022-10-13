@@ -15,11 +15,11 @@ const List: React.FC<ListProps> = () => {
   const { subgeographics } = filters;
 
   const { data: fundersData } = useFundersByGeographicScope(view, {
-    filters: omit(filters, ['geographic', 'subgeographics']),
+    filters: omit(filters, ['subgeographics']),
   });
 
   const { data: projectsData } = useProjectsByGeographicScope(view, {
-    filters: omit(filters, ['geographic', 'subgeographics']),
+    filters: omit(filters, ['subgeographics']),
   });
 
   const DATA = useMemo(() => {

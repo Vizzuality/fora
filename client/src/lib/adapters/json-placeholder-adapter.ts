@@ -1,7 +1,7 @@
-import { AdapterOptionsProps } from './types';
+import { ParamsProps } from './types';
 
-export function jsonPlaceholderAdapter(options: AdapterOptionsProps) {
-  const { filters = {}, search, sort, page, perPage } = options;
+export function jsonPlaceholderAdapter(params: ParamsProps) {
+  const { filters = {}, search, sort, page, perPage } = params;
 
   return {
     // Filters

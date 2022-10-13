@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
 import { jsonPlaceholderAdapter } from 'lib/adapters/json-placeholder-adapter';
-import { AdapterOptionsProps } from 'lib/adapters/types';
+import { ParamsProps } from 'lib/adapters/types';
 
 import { View } from 'store/action-map';
 
@@ -133,7 +133,7 @@ export function useProjectsByGeographicScope(view: View, options: UseProjectsOpt
   }, [query, DATA]);
 }
 
-export function useProjectsInfinity(options: AdapterOptionsProps = {}) {
+export function useProjectsInfinity(options: ParamsProps = {}) {
   const {
     filters = {},
     search,

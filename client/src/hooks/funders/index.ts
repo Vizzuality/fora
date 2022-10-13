@@ -1,62 +1,53 @@
 import { useMemo } from 'react';
 
-import { jsonPlaceholderAdapter } from 'lib/adapters/json-placeholder-adapter';
-import { AdapterOptionsProps } from 'lib/adapters/types';
+import { jsonAPIAdapter } from 'lib/adapters/json-api-adapter';
+import { ParamsProps } from 'lib/adapters/types';
 
 import { View } from 'store/action-map';
 
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import {
+  useInfiniteQuery,
+  UseInfiniteQueryOptions,
+  useQuery,
+  UseQueryOptions,
+} from '@tanstack/react-query';
 import { groupBy, orderBy } from 'lodash';
 
-import API_FAKE from 'services/api-fake';
+import API from 'services/api';
 
 import MOCK from './mock.json';
-import { UseFundersOptionsProps } from './types';
+import { FundersResponseData } from './types';
 
 export const fetchFunder = (id: string) =>
-  API_FAKE.request({
+  API.request({
     method: 'GET',
-    url: `/posts/${id}`,
+    url: `/funders/${id}`,
   }).then((response) => response.data);
 
+export const fetchFunders = (params: ParamsProps) => {
+  return API.request({
+    method: 'GET',
+    url: '/funders',
+    params: jsonAPIAdapter(params),
+  }).then((response) => response.data);
+};
 /**
 ****************************************
   FUNDERS
 ****************************************
 */
-export function useFunders(options: UseFundersOptionsProps = {}) {
-  const { filters = {}, search, sort } = options;
+export function useFunders(
+  params: ParamsProps = {},
+  queryOptions: UseQueryOptions<FundersResponseData, unknown> = {}
+) {
+  const fetch = () =>
+    fetchFunders({ ...params, disablePagination: true, includes: 'subgeographics' });
 
-  const parsedFilters = Object.keys(filters).reduce((acc, k) => {
-    if (filters[k] && Array.isArray(filters[k]) && !filters[k].length) {
-      return acc;
-    }
-
-    return {
-      ...acc,
-      [`filter[${k}]`]: filters[k] && filters[k].toString ? filters[k].toString() : filters[k],
-    };
-  }, {});
-
-  const fetchFunders = () =>
-    API_FAKE.request({
-      method: 'GET',
-      url: '/posts',
-      params: {
-        ...parsedFilters,
-        ...(search && {
-          q: search,
-        }),
-        ...(sort && {
-          sort,
-        }),
-      },
-    });
-
-  const query = useQuery(['funders', JSON.stringify(options)], fetchFunders, {
-    keepPreviousData: true,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+  const query = useQuery(['funders', JSON.stringify(params)], fetch, {
+    placeholderData: {
+      data: [],
+    },
+    ...queryOptions,
   });
 
   const { data } = query;
@@ -66,14 +57,7 @@ export function useFunders(options: UseFundersOptionsProps = {}) {
       return [];
     }
 
-    return data.data.map((f) => {
-      const randomIndex = Math.floor(Math.random() * MOCK.length);
-
-      return {
-        ...f,
-        ...MOCK[randomIndex],
-      };
-    });
+    return data?.data;
   }, [data]);
 
   return useMemo(() => {
@@ -90,8 +74,12 @@ export function useFunders(options: UseFundersOptionsProps = {}) {
 ****************************************
 */
 
-export function useFundersByGeographicScope(view: View, options: UseFundersOptionsProps = {}) {
-  const { data, ...query } = useFunders(options);
+export function useFundersByGeographicScope(
+  view: View,
+  params: ParamsProps = {},
+  queryOptions: UseQueryOptions<FundersResponseData, unknown> = {}
+) {
+  const { data, ...query } = useFunders(params, queryOptions);
 
   const GROUP_BY_KEY = useMemo(() => {
     switch (view) {
@@ -150,35 +138,14 @@ export function useFundersByGeographicScope(view: View, options: UseFundersOptio
 ****************************************
 */
 
-export function useFundersInfinity(options: AdapterOptionsProps = {}) {
-  const {
-    filters = {},
-    search,
-    sort = {
-      field: 'title',
-      order: 'desc',
-    },
-    perPage = 20,
-  } = options;
+export function useFundersInfinity(
+  params: ParamsProps = {},
+  queryOptions: UseInfiniteQueryOptions<FundersResponseData, unknown> = {}
+) {
+  const fetch = ({ pageParam = 1 }) => fetchFunders({ ...params, page: pageParam });
 
-  const fetchFunders = ({ pageParam = 1 }) =>
-    API_FAKE.request({
-      method: 'GET',
-      url: '/posts',
-      params: jsonPlaceholderAdapter({
-        filters,
-        search,
-        sort,
-        page: pageParam,
-        perPage,
-      }),
-    });
-
-  const query = useInfiniteQuery(['infinite-funders', JSON.stringify(options)], fetchFunders, {
-    retry: false,
-    keepPreviousData: true,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+  const query = useInfiniteQuery(['infinite-funders', JSON.stringify(params)], fetch, {
+    ...queryOptions,
     getNextPageParam: (lastPage) => {
       const {
         data: { meta = {} },
@@ -208,8 +175,8 @@ export function useFundersInfinity(options: AdapterOptionsProps = {}) {
           return {
             ...f,
             ...MOCK[randomIndex],
-            name: f.name || f.title,
-            description: f.description || f.body,
+            name: f.name,
+            description: f.description,
           };
         });
       })

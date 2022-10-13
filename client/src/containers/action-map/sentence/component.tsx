@@ -18,7 +18,9 @@ const Sentence: React.FC<SentenceProps> = () => {
   const { type, filters } = useAppSelector((state) => state['/action-map']);
   const dispatch = useAppDispatch();
 
-  const { data: fundersData } = useFunders({ filters });
+  const { data: fundersData } = useFunders({
+    filters,
+  });
 
   const handleReset = useCallback(() => {
     dispatch(reset());

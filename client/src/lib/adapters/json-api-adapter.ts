@@ -1,16 +1,14 @@
-import { AdapterOptionsProps } from './types';
+import { ParamsProps } from './types';
 
-export function jsonAPIAdapter(options: AdapterOptionsProps) {
-  const { filters = {}, search, sort, page, perPage } = options;
+export function jsonAPIAdapter(params: ParamsProps) {
+  const { filters = {}, search, sort, includes, page, perPage, disablePagination } = params;
 
-  const parsedFilters = Object.keys(filters).reduce((acc, k) => {
-    if (filters[k] && Array.isArray(filters[k]) && !filters[k].length) {
-      return acc;
-    }
+  const parsedFilters = Object.keys(filters).reduce((acc, key) => {
+    const value = filters[key];
 
     return {
       ...acc,
-      [`filter[${k}]`]: filters[k] && filters[k].toString ? filters[k].toString() : filters[k],
+      [`filter[${key}]`]: value,
     };
   }, {});
 
@@ -23,12 +21,18 @@ export function jsonAPIAdapter(options: AdapterOptionsProps) {
     }),
     // Search
     ...(search && { q: search }),
+    // Includes
+    ...(includes && { includes }),
+
     // Pagination
     ...(!!page && {
       'page[number]': page,
     }),
     ...(!!perPage && {
       'page[size]': perPage,
+    }),
+    ...(disablePagination && {
+      disable_pagination: disablePagination,
     }),
   };
 }

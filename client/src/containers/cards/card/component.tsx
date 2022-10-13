@@ -13,13 +13,13 @@ import { THEME } from './constants';
 export interface CardProps {
   id: string;
   name: string;
-  location: string;
+  location?: string;
   href?: string;
   areas?: {
     id: string;
     name: string;
   }[];
-  theme: 'green' | 'grey';
+  theme?: 'green' | 'grey';
 }
 
 const Cards = ({
