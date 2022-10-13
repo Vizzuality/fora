@@ -100,11 +100,11 @@ RSpec.describe Funder, type: :model do
       let!(:ignored_funder) { create :funder }
 
       it "returns correct result for current subgeographic" do
-        expect(Funder.for_subgeographics(region)).to eq([correct_funder])
+        expect(Funder.for_subgeographics(region.reload.abbreviation)).to eq([correct_funder])
       end
 
       it "returns correct result for ancestor subgeographic" do
-        expect(Funder.for_subgeographics(country)).to eq([correct_funder])
+        expect(Funder.for_subgeographics(country.reload.abbreviation)).to eq([correct_funder])
       end
     end
 

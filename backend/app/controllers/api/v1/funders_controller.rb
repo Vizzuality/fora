@@ -9,8 +9,8 @@ module API
       SORTING_COLUMNS = %i[name projects_count]
 
       def index
-        @funders = @funders.for_subgeographics filter_params[:subgeographic_ids] if filter_params[:subgeographic_ids].present?
-        @funders = @funders.for_geographics filter_params[:geographics] if filter_params[:geographics].present?
+        @funders = @funders.for_subgeographics filter_params[:subgeographics].split(",") if filter_params[:subgeographics].present?
+        @funders = @funders.for_geographics filter_params[:geographic] if filter_params[:geographic].present?
         @funders = @funders.search filter_params[:full_text] if filter_params[:full_text].present?
         @funders = API::EnumFilter.new(@funders, filter_params.to_h.slice(*ENUM_FILTERS)).call
         @funders = Funder.with_projects_count.where(id: @funders.pluck(:id))
@@ -43,7 +43,7 @@ module API
       end
 
       def filter_params
-        params.fetch(:filter, {}).permit :geographics, :subgeographic_ids, :full_text, *ENUM_FILTERS
+        params.fetch(:filter, {}).permit :geographic, :subgeographics, :full_text, *ENUM_FILTERS
       end
     end
   end

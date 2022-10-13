@@ -38,6 +38,7 @@ RSpec.describe Subgeographic, type: :model do
       expect(subject[:features].first[:properties][:id]).to eq(region.id)
       expect(subject[:features].first[:properties][:code]).to eq(region.code)
       expect(subject[:features].first[:properties][:name]).to eq(region.name)
+      expect(subject[:features].first[:properties][:abbreviation]).to eq("R-#{region.code}")
       expect(subject[:features].first[:properties][:parent_id]).to eq(ignored_subgeographic.id)
     end
 

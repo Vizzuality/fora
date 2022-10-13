@@ -5,7 +5,7 @@
       "type": "subgeographic",
       "attributes": {
         "name": "Canada",
-        "code": "Canada"
+        "code": "BWA"
       },
       "relationships": {
       }
@@ -15,7 +15,7 @@
       "type": "subgeographic",
       "attributes": {
         "name": "Papua New Guinea",
-        "code": "Papua New Guinea"
+        "code": "NPL"
       },
       "relationships": {
       }

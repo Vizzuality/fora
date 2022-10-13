@@ -15,7 +15,7 @@ module API
 
     def build_enum_query
       pluralize_keys_in(filters).slice(*column_names).inject(query.klass.all) do |enum_query, (filter_key, filter_value)|
-        enum_query.where ActiveRecord::Base.sanitize_sql(["ARRAY[#{filter_key}]::text[] && ARRAY[?]::text[]", Array.wrap(filter_value)])
+        enum_query.where ActiveRecord::Base.sanitize_sql(["ARRAY[#{filter_key}]::text[] && ARRAY[?]::text[]", filter_value.split(",")])
       end
     end
 

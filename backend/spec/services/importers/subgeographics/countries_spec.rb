@@ -23,7 +23,9 @@ RSpec.describe Importers::Subgeographics::Countries do
 
       it "creates correct countries" do
         expect(country_aruba.code).to eq("ABW")
+        expect(country_aruba.abbreviation).to eq("C-ABW")
         expect(country_angola.code).to eq("AGO")
+        expect(country_angola.abbreviation).to eq("C-AGO")
       end
 
       it "creates geometries records" do

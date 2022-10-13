@@ -25,8 +25,10 @@ RSpec.describe Importers::Subgeographics::States do
 
       it "creates correct states" do
         expect(state_alaska.name).to eq("Alaska")
+        expect(state_alaska.abbreviation).to eq("S-AK")
         expect(state_alaska.parent.code).to eq("AL")
         expect(state_alabama.name).to eq("Alabama")
+        expect(state_alabama.abbreviation).to eq("S-AL")
         expect(state_alabama.parent.code).to eq("SE")
       end
 
