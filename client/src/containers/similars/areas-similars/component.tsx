@@ -41,10 +41,6 @@ const AreasSimilars = ({ type }: SimilarsSectionProps) => {
       return shuffled.slice(0, 3);
     }
   }, [fundersByArea]);
-
-  console.log('condition', projectsByArea.length || fundersByArea.length);
-  console.log('projectsByArea', projectsByArea);
-  console.log('fundersByArea', fundersByArea);
   return (
     <>
       {(projectsByArea.length || fundersByArea.length) && (
