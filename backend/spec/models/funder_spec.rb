@@ -125,5 +125,15 @@ RSpec.describe Funder, type: :model do
         expect(Funder.for_geographics(:countries)).to eq([funder_1, funder_2])
       end
     end
+
+    describe ".with_projects_count" do
+      let!(:funder) { create :funder }
+      let!(:investments) { create_list :investment, 2, funder: funder }
+      let!(:investment_for_same_project) { create :investment, funder: funder, project: investments.first.project }
+
+      it "shows counts correct number of projects" do
+        expect(Funder.with_projects_count.find(funder.id).projects_count).to eq(investments.count)
+      end
+    end
   end
 end
