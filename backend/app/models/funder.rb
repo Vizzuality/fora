@@ -39,6 +39,6 @@ class Funder < ApplicationRecord
     :date_joined_fora,
     :number_staff_employees
 
-  scope :for_subgeographics, ->(ids) { joins(:subgeographic_ancestors).where(subgeographics: {id: ids}) }
+  scope :for_subgeographics, ->(abbreviations) { joins(:subgeographic_ancestors).where(subgeographics: {abbreviation: abbreviations}) }
   scope :for_geographics, ->(geographics) { joins(:subgeographic_ancestors).where(subgeographics: {geographic: geographics}) }
 end

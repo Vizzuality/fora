@@ -4,6 +4,7 @@ module API
       attributes :name,
         :code,
         :geographic,
+        :abbreviation,
         :created_at,
         :updated_at
 

@@ -6,10 +6,10 @@ module Importers
       def attributes_of_record_for(feature)
         {
           name: feature.properties["name"],
-          code: feature.properties["id"],
+          code: feature.properties["code"],
           geographic: "national",
           geometry: feature.geometry,
-          parent_id: countries[feature.properties["id"]].first&.id
+          parent_id: countries[feature.properties["code"]].first&.id
         }
       end
 

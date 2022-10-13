@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_11_104905) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_12_071532) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -180,6 +180,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_104905) do
     t.string "code", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.virtual "abbreviation", type: :string, as: "((upper(\"left\"((geographic)::text, 1)) || '-'::text) || (code)::text)", stored: true
+    t.index ["code", "geographic"], name: "index_subgeographics_on_code_and_geographic", unique: true
     t.index ["geographic", "name"], name: "uniq_name_without_parent_id", unique: true, where: "(parent_id IS NULL)"
     t.index ["geographic", "parent_id", "name"], name: "uniq_name_with_parent_id", unique: true, where: "(parent_id IS NOT NULL)"
     t.index ["parent_id"], name: "index_subgeographics_on_parent_id"

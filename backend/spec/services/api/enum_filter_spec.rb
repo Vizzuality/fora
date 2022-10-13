@@ -20,7 +20,7 @@ RSpec.describe API::EnumFilter do
     let(:query) do
       Funder.where id: [correct_funder.id, different_areas_funder.id, different_demographics_funder.id]
     end
-    let(:filters) { {areas: %w[food_sovereignty], demographic: %w[black_or_african_american]} }
+    let(:filters) { {areas: "food_sovereignty,equity_and_justice", demographic: "black_or_african_american"} }
 
     it "returns correct funder" do
       expect(subject.call).to eq([correct_funder])

@@ -9,7 +9,7 @@ module Importers
 
       def call
         Subgeographic.transaction do
-          RGeo::GeoJSON.decode(File.read(path)).to_a.map do |feature|
+          geojson_features.map do |feature|
             attr = attributes_of_record_for(feature)
             Subgeographic.create! attr.except(:geometry).merge(subgeographic_geometry_attributes: attr.slice(:geometry))
           rescue ActiveRecord::RecordInvalid => e
@@ -21,6 +21,13 @@ module Importers
       end
 
       private
+
+      def geojson_features
+        data = RGeo::GeoJSON.decode File.read(path)
+        return data if data.is_a? RGeo::GeoJSON::FeatureCollection
+
+        Array.wrap data
+      end
 
       def attributes_of_record_for(feature)
         raise NotImplementedError
