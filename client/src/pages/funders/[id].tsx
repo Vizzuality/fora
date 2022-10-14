@@ -17,7 +17,7 @@ const FundersDetailPage: React.FC = () => {
   return (
     <div>
       <MetaTags
-        title={`FORA Funders | ${funderData.title}`}
+        title={`FORA Funders | ${funderData.name}`}
         description={funderData.description}
         type="website"
         imageURL={IMAGE_URL}

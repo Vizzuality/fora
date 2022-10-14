@@ -16,7 +16,7 @@ import { orderBy, uniqBy } from 'lodash';
 import API from 'services/api';
 
 import MOCK from './mock.json';
-import { FundersResponseData } from './types';
+import { FunderResponseData, FundersResponseData } from './types';
 
 /**
 ****************************************
@@ -182,15 +182,15 @@ export function useFundersInfinity(
 ****************************************
 */
 
-export function useFunder(id: string) {
+export function useFunder(
+  id: string,
+  queryOptions: UseQueryOptions<FunderResponseData, unknown> = {}
+) {
   const fetch = () => fetchFunder(id);
   const query = useQuery(['funder', id], fetch, {
     enabled: !!id,
-    retry: false,
-    keepPreviousData: true,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
     placeholderData: {},
+    ...queryOptions,
   });
 
   const { data } = query;
@@ -198,7 +198,7 @@ export function useFunder(id: string) {
   return useMemo(() => {
     return {
       ...query,
-      data: data,
+      data: data?.data,
     };
   }, [query, data]);
 }

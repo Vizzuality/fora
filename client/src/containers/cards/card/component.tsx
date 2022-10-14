@@ -15,10 +15,7 @@ export interface CardProps {
   name: string;
   location?: string;
   href?: string;
-  areas?: {
-    id: string;
-    name: string;
-  }[];
+  areas?: string[];
   theme?: 'green' | 'grey';
 }
 
@@ -26,20 +23,7 @@ const Cards = ({
   name,
   location,
   href = '',
-  areas = [
-    {
-      id: '1',
-      name: 'Area 1',
-    },
-    {
-      id: '2',
-      name: 'Area 2',
-    },
-    {
-      id: '3',
-      name: 'Area 3',
-    },
-  ],
+  areas = ['area', 'area2', 'area3'],
   theme = 'grey',
 }: CardProps) => {
   const { pathname } = useRouter();
@@ -74,7 +58,7 @@ const Cards = ({
       </div>
 
       <div className="border-t divide-y divide-grey-40/50 border-grey-40/50">
-        <div className="py-4">{areas.map((a) => a.name).join(' • ')}</div>
+        <div className="py-4">{areas.join(' • ')}</div>
 
         <div className="pt-4">
           <Link href={href}>
