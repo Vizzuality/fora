@@ -23,20 +23,20 @@ export function getStyles(color, selected: boolean, count: number) {
   return {
     default: {
       fill: getDefaultFill(),
-      stroke: '#FFF',
-      strokeWidth: 2,
+      stroke: '#CDCDCD',
+      strokeWidth: 1,
       outline: 'none',
     },
     hover: {
       fill: getHoverFill(),
-      stroke: '#FFF',
-      strokeWidth: 2,
+      stroke: '#CDCDCD',
+      strokeWidth: 1,
       outline: 'none',
     },
     pressed: {
       fill: getPressedFill(),
-      stroke: '#FFF',
-      strokeWidth: 2,
+      stroke: '#CDCDCD',
+      strokeWidth: 1,
       outline: 'none',
     },
   };
