@@ -43,7 +43,7 @@ class Funder < ApplicationRecord
   scope :for_subgeographics, ->(abbreviations) { joins(:subgeographic_ancestors).where(subgeographics: {abbreviation: abbreviations}) }
   scope :for_geographics, ->(geographics) { joins(:subgeographic_ancestors).where(subgeographics: {geographic: geographics}) }
   scope :with_projects_count, -> {
-    projects_count = Project.joins(:investments).where("investments.funder_id = funders.id").select("COUNT(DISTINCT investments.project_id)").to_sql
+    projects_count = Investment.where("investments.funder_id = funders.id").select("COUNT(DISTINCT investments.project_id)").to_sql
     select "funders.*, (#{projects_count}) AS projects_count"
   }
 end
