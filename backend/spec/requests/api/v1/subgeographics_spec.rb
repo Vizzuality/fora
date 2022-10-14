@@ -7,11 +7,13 @@ RSpec.describe "API V1 Subgeographics", type: :request do
       consumes "application/json"
       produces "application/json"
       parameter name: "filter[geographic]", in: :query, type: :string, description: "Filter records by its geographic", required: false
+      parameter name: "filter[only_active]", in: :query, type: :boolean, description: "Returns only subgeographics which are used by at least one funder or recipient (project)", required: false
       parameter name: "fields[subgeographic]", in: :query, type: :string, description: "Get only required fields. Use comma to separate multiple fields", required: false
       parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
 
       let!(:country) { create :subgeographic, geographic: :countries }
       let!(:region) { create :subgeographic, geographic: :regions, parent: country }
+      let!(:funder) { create :funder, subgeographics: [country], primary_office_country: country, primary_office_state: nil }
 
       response "200", :success do
         schema type: :object, properties: {
@@ -46,6 +48,23 @@ RSpec.describe "API V1 Subgeographics", type: :request do
 
           it "contains just region subgeographic" do
             expect(response_json["data"].pluck("id")).to eq([region.id])
+          end
+        end
+
+        context "with only active filter" do
+          let("filter[only_active]") { true }
+
+          it "contains just country subgeographic" do
+            expect(response_json["data"].pluck("id")).to eq([country.id])
+          end
+        end
+
+        context "when combining multiple filters" do
+          let("filter[geographic]") { "countries" }
+          let("filter[only_active]") { true }
+
+          it "contains just expected subgeographic" do
+            expect(response_json["data"].pluck("id")).to eq([country.id])
           end
         end
       end
