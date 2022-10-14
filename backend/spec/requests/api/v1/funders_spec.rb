@@ -16,6 +16,8 @@ RSpec.describe "API V1 Funders", type: :request do
       parameter name: "filter[full_text]", in: :query, type: :string, description: "Filter records by provided text", required: false
       parameter name: "page[number]", in: :query, type: :integer, description: "Page number. Default: 1", required: false
       parameter name: "page[size]", in: :query, type: :integer, description: "Per page items. Default: 10", required: false
+      parameter name: "sort[attribute]", in: :query, type: :string, enum: API::V1::FundersController::SORTING_COLUMNS, description: "Attributes usable for sorting. Default: created_at", required: false
+      parameter name: "sort[direction]", in: :query, type: :string, enum: API::Sorting::SORTING_DIRECTIONS, description: "Possible directions of sorting. Default: desc", required: false
       parameter name: :disable_pagination, in: :query, type: :boolean, description: "Turn off pagination", required: false
       parameter name: "fields[funder]", in: :query, type: :string, description: "Get only required fields. Use comma to separate multiple fields", required: false
       parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
@@ -31,6 +33,8 @@ RSpec.describe "API V1 Funders", type: :request do
           meta: {"$ref" => "#/components/schemas/pagination_meta", :nullable => true},
           links: {"$ref" => "#/components/schemas/pagination_links", :nullable => true}
         }
+        let("sort[attribute]") { "name" }
+        let("sort[direction]") { "asc" }
 
         run_test!
 
@@ -108,6 +112,26 @@ RSpec.describe "API V1 Funders", type: :request do
 
           it "returns only funders which are true for all filters" do
             expect(response_json["data"].pluck("id")).to eq([funder.id])
+          end
+        end
+
+        context "when sorting by projects count" do
+          let(:funder_1) { funders.second }
+          let(:funder_2) { funders.first }
+          let(:funder_3) { funder }
+          let!(:investments_1) { create_list :investment, 3, funder: funder_1 }
+          let!(:investments_2) { create_list :investment, 2, funder: funder_2 }
+          let!(:investments_3) { create_list :investment, 1, funder: funder_3 }
+
+          let("sort[attribute]") { "projects_count" }
+          let("sort[direction]") { "desc" }
+
+          run_test!
+
+          it "returns correctly sorted result" do
+            expect(response_json["data"].first["id"]).to eq(funder_1.id)
+            expect(response_json["data"].second["id"]).to eq(funder_2.id)
+            expect(response_json["data"].third["id"]).to eq(funder_3.id)
           end
         end
       end
