@@ -4,6 +4,8 @@ import { useAppSelector } from 'store/hooks';
 
 import { useFunders } from 'hooks/funders';
 
+import NoData from 'containers/action-map/list/no-data';
+
 import Loading from 'components/loading';
 
 import Item from './item';
@@ -22,6 +24,7 @@ const List = () => {
   });
 
   const LOADING = fundersIsFetching && !fundersIsFetched;
+  const NO_DATA = !fundersData.length && !LOADING;
 
   return (
     <>
@@ -40,6 +43,8 @@ const List = () => {
             fundersData
               //
               .map((d) => <Item {...d} key={d.id} />)}
+
+          {NO_DATA && <NoData />}
         </ul>
       </div>
     </>

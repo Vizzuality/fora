@@ -7,12 +7,15 @@ import { omit } from 'lodash';
 import { useFunders, useFundersByGeographicScope } from 'hooks/funders';
 import { useProjectsByGeographicScope } from 'hooks/projects';
 
+import NoData from 'containers/action-map/list/no-data';
+
 import Loading from 'components/loading';
 
 import Item from './item';
 
 const GeoList = () => {
   const { view, type, filters } = useAppSelector((state) => state['/action-map']);
+  const { subgeographics } = filters;
 
   // get funders grouped by geographic scope
   const {
@@ -36,14 +39,19 @@ const GeoList = () => {
 
   const DATA = useMemo(() => {
     const grouped = {
-      funders: fundersGroupedData,
-      projects: projectsGroupedData,
+      funders: fundersGroupedData.filter(
+        (d) => !subgeographics.length || subgeographics.includes(d.id)
+      ),
+      projects: projectsGroupedData.filter(
+        (d) => !subgeographics.length || subgeographics.includes(d.id)
+      ),
     };
 
     return grouped[type];
-  }, [type, fundersGroupedData, projectsGroupedData]);
+  }, [type, fundersGroupedData, projectsGroupedData, subgeographics]);
 
   const LOADING = fundersIsFetching && !fundersIsFetched;
+  const NO_DATA = !DATA.length && !LOADING;
 
   return (
     <>
@@ -59,9 +67,12 @@ const GeoList = () => {
         </div>
         <ul className="relative space-y-2">
           {!LOADING &&
+            !NO_DATA &&
             DATA
               //
               .map((d) => <Item {...d} key={d.id} data={DATA} />)}
+
+          {NO_DATA && <NoData />}
         </ul>
       </div>
     </>
