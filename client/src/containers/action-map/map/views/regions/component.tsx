@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { useGeographies, Marker } from 'react-simple-maps';
+import { useGeographies, Marker, Annotation } from 'react-simple-maps';
 
 import cx from 'classnames';
 
@@ -26,6 +26,10 @@ const CUSTOM_CENTROIDS = {
   MW: [-110.05535001248772, 44.76449685505863],
   SW: [-112.2815633433324, 36.66408688484569],
   WC: [-120.56771896954999, 44.34787224788226],
+};
+
+const OFFSETS = {
+  PR: [0, -25],
 };
 
 const RegionsView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: ViewProps) => {
@@ -93,28 +97,60 @@ const RegionsView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }:
 
         return (
           <g key={geo.rsmKey + '-name'}>
-            <Marker coordinates={centroid}>
-              <foreignObject
-                x={-60}
-                y={-75}
-                width={120}
-                height={150}
+            {!OFFSETS[code] && (
+              <Marker coordinates={centroid}>
+                <foreignObject
+                  x={-60}
+                  y={-75}
+                  width={120}
+                  height={150}
+                  className="pointer-events-none"
+                >
+                  <div className="relative flex items-center justify-center h-full text-sm text-center">
+                    <div
+                      className={cx({
+                        'py-0.5 px-2 shadow-md': true,
+                        'text-black bg-white/30': !selected,
+                        'text-white bg-black/25': !!selected && luminance < 0.5,
+                        'text-black bg-white/25': !!selected && luminance >= 0.5,
+                      })}
+                    >
+                      {name}
+                    </div>
+                  </div>
+                </foreignObject>
+              </Marker>
+            )}
+
+            {OFFSETS[code] && (
+              <Annotation
+                subject={centroid}
+                dx={OFFSETS[code][0]}
+                dy={OFFSETS[code][1]}
+                connectorProps={{
+                  strokeOpacity: 0,
+                }}
                 className="pointer-events-none"
               >
-                <div className="relative flex items-center justify-center h-full text-sm text-center">
-                  <div
-                    className={cx({
-                      'py-0.5 px-2 shadow-md': true,
-                      'text-black bg-white/30': !selected,
-                      'text-white bg-black/25': !!selected && luminance < 0.5,
-                      'text-black bg-white/25': !!selected && luminance >= 0.5,
-                    })}
-                  >
-                    {name}
+                <foreignObject
+                  x={-75}
+                  y={-75}
+                  width={150}
+                  height={150}
+                  className="pointer-events-none"
+                >
+                  <div className="relative flex items-center justify-center h-full text-sm text-center">
+                    <div
+                      className={cx({
+                        'py-0.5 px-2 text-black': true,
+                      })}
+                    >
+                      {name}
+                    </div>
                   </div>
-                </div>
-              </foreignObject>
-            </Marker>
+                </foreignObject>
+              </Annotation>
+            )}
           </g>
         );
       })}

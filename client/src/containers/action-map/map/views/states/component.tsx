@@ -29,6 +29,8 @@ const OFFSETS = {
   DE: [33, 0],
   MD: [47, 10],
   DC: [49, 21],
+  PRI: [10, -25],
+  VIR: [10, -10],
 };
 
 const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: ViewProps) => {
@@ -124,9 +126,12 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
                 dx={OFFSETS[code][0]}
                 dy={OFFSETS[code][1]}
                 className="pointer-events-none"
+                connectorProps={{
+                  stroke: 'rgba(0, 0, 0, 0.25)',
+                }}
               >
                 <foreignObject
-                  x={-62}
+                  x={-75}
                   y={-75}
                   width={150}
                   height={150}
@@ -135,7 +140,7 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
                   <div className="relative flex items-center justify-center h-full text-sm text-center">
                     <div
                       className={cx({
-                        'py-0.5 px-2 text-black': true,
+                        'py-0.5 px-2 text-black ml-5': true,
                       })}
                     >
                       {code}
