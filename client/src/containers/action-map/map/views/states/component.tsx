@@ -78,13 +78,11 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
     <g>
       {/* Polygons */}
       {geographies.map((geo) => {
-        const { count } = geo.properties;
-
         return (
           <Geography
             key={geo.rsmKey}
             geo={geo}
-            {...(!!count && { onClick, onMouseEnter, onMouseLeave, onMouseMove })}
+            {...{ onClick, onMouseEnter, onMouseLeave, onMouseMove }}
           />
         );
       })}
