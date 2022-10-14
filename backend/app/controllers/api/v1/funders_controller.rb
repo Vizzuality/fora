@@ -5,7 +5,7 @@ module API
 
       load_and_authorize_resource
 
-      ENUM_FILTERS = %i[areas demographics funder_types capital_types funder_legal_status]
+      ENUM_FILTERS = %i[areas demographics funder_types capital_types funder_legal_statuses]
       SORTING_COLUMNS = %i[name projects_count]
 
       def index
