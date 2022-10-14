@@ -25,7 +25,7 @@ const MapLegend = () => {
 
   return (
     <div className="w-full pt-3 space-y-2 border-t border-grey-40/50">
-      <h5 className="uppercase text-grey-20">Map legend</h5>
+      <h5 className="font-semibold uppercase text-grey-20">Map legend</h5>
       <LegendTypeGradient items={ITEMS} />
     </div>
   );
