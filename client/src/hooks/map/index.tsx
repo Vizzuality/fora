@@ -22,8 +22,8 @@ export function useMapProjection({ view = 'regions' }: UseMapProjectionProps) {
       return {
         projection: 'geoMercator',
         projectionConfig: {
-          scale: (800 / 600) * 100,
-          center: [0, 30],
+          scale: (800 / 725) * 100,
+          center: [0, 35],
         },
       };
     default:
