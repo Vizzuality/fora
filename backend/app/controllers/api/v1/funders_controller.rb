@@ -6,14 +6,16 @@ module API
       load_and_authorize_resource
 
       ENUM_FILTERS = %i[areas demographics funder_types capital_types funder_legal_status]
+      SORTING_COLUMNS = %i[name projects_count]
 
       def index
         @funders = @funders.for_subgeographics filter_params[:subgeographics].split(",") if filter_params[:subgeographics].present?
         @funders = @funders.for_geographics filter_params[:geographic] if filter_params[:geographic].present?
         @funders = @funders.search filter_params[:full_text] if filter_params[:full_text].present?
         @funders = API::EnumFilter.new(@funders, filter_params.to_h.slice(*ENUM_FILTERS)).call
-        @funders = Funder.where(id: @funders.pluck(:id)).order(:name)
+        @funders = Funder.with_projects_count.where(id: @funders.pluck(:id))
           .includes :primary_office_state, :primary_office_country, :subgeographics, :subgeographic_ancestors
+        @funders = API::Sorting.new(@funders, sorting_params, SORTING_COLUMNS).call.order :created_at
         pagy_object, @funders = pagy @funders, page: current_page, items: per_page unless params[:disable_pagination].to_s == "true"
         render json: FunderSerializer.new(
           @funders,
@@ -35,6 +37,10 @@ module API
       end
 
       private
+
+      def sorting_params
+        params.fetch(:sort, {}).permit :attribute, :direction
+      end
 
       def filter_params
         params.fetch(:filter, {}).permit :geographic, :subgeographics, :full_text, *ENUM_FILTERS
