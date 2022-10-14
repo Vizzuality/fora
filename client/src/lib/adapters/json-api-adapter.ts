@@ -17,10 +17,13 @@ export function jsonAPIAdapter(params: ParamsProps) {
     ...parsedFilters,
     // Sort
     ...(sort?.field && {
-      sort: `${sort.order === 'desc' ? '-' : ''}${sort.field}`,
+      'sort[attribute]': sort.field,
+    }),
+    ...(sort?.order && {
+      'sort[direction]': sort.order,
     }),
     // Search
-    ...(search && { q: search }),
+    ...(search && { 'filter[full_text]': search }),
     // Includes
     ...(includes && { includes }),
 

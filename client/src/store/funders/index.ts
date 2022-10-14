@@ -34,12 +34,12 @@ interface FundersState {
 // Define the initial state using that type
 export const initialState: FundersState = {
   sort: {
-    field: 'title',
+    field: 'name',
     order: 'asc',
   },
   search: '',
   filters: {
-    geographic: 'regions',
+    geographic: null,
     subgeographics: [],
     areas: [],
     demographics: [],

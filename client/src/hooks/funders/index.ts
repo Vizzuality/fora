@@ -134,12 +134,10 @@ export function useFundersInfinity(
   const query = useInfiniteQuery(['infinite-funders', JSON.stringify(params)], fetch, {
     ...queryOptions,
     getNextPageParam: (lastPage) => {
-      const {
-        data: { meta = {} },
-      } = lastPage;
-      const { page = 1, totalPages = 10 } = meta; // ! TODO: page and totalPages is not being returned from the API
+      const { meta = {} } = lastPage;
+      const { page = 1, pages = 10 } = meta;
 
-      const nextPage = page + 1 > totalPages ? null : page + 1;
+      const nextPage = page + 1 > pages ? null : page + 1;
       return nextPage;
     },
   });

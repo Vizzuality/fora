@@ -37,6 +37,7 @@ const FundersList = () => {
     filters,
     search,
     sort,
+    perPage: 12,
   });
 
   const handleSortFunders = useCallback(
