@@ -30,7 +30,7 @@ const OFFSETS = {
   MD: [47, 10],
   DC: [49, 21],
   PRI: [10, -25],
-  VIR: [10, -10],
+  VIR: [2, -10],
 };
 
 const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: ViewProps) => {
@@ -47,7 +47,7 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
         const { abbreviation } = geo.properties;
         const count = data.find((d) => d.id === abbreviation)?.count || 0;
 
-        const VALUE = MAX === MIN ? 0.6 : 1 - count / MAX;
+        const VALUE = MAX === MIN ? 0.75 : 1 - count / MAX;
         const COLOR = COLOR_SCALE(VALUE);
         const luminance = COLOR.luminance();
         const selected = !subgeographics.length || subgeographics.includes(abbreviation);

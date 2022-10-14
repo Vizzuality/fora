@@ -29,19 +29,19 @@ const NationalView = () => {
           geography={geo}
           style={{
             default: {
-              fill: '#DDD',
+              fill: '#e3ebc4',
               stroke: '#FFF',
               strokeWidth: 0.75,
               outline: 'none',
             },
             hover: {
-              fill: '#CCC',
+              fill: '#e3ebc4',
               stroke: '#FFF',
               strokeWidth: 0.75,
               outline: 'none',
             },
             pressed: {
-              fill: '#BBB',
+              fill: '#e3ebc4',
               stroke: '#FFF',
               strokeWidth: 0.75,
               outline: 'none',

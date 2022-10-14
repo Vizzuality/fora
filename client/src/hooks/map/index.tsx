@@ -2,9 +2,9 @@ import { geoAlbersUsaTerritories } from 'geo-albers-usa-territories';
 
 import type { UseMapProjectionProps } from './types';
 
-export function useMapProjection({ view = 'regions' }: UseMapProjectionProps) {
-  const proj = geoAlbersUsaTerritories().scale(1050).translate([400, 250]);
+const proj = geoAlbersUsaTerritories().scale(1050).translate([400, 250]);
 
+export function useMapProjection({ view = 'regions' }: UseMapProjectionProps) {
   switch (view) {
     case 'regions':
       return {

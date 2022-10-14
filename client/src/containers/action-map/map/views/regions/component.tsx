@@ -46,7 +46,7 @@ const RegionsView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }:
         const { abbreviation } = geo.properties;
         const count = data.find((d) => d.id === abbreviation)?.count || 0;
 
-        const VALUE = MAX === MIN ? 0.6 : 1 - count / MAX;
+        const VALUE = MAX === MIN ? 0.75 : 1 - count / MAX;
         const COLOR = COLOR_SCALE(VALUE);
         const luminance = COLOR.luminance();
         const selected = !subgeographics.length || subgeographics.includes(abbreviation);

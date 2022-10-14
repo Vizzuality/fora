@@ -16,7 +16,7 @@ const ListGeoItem: React.FC<ListGeoItemProps> = ({ id, name, count, data }) => {
 
   const MIN = min(data.map((d) => d.count)) || 0;
   const MAX = max(data.map((d) => d.count)) || 0;
-  const VALUE = MAX === MIN ? 0.5 : 1 - count / MAX;
+  const VALUE = MAX === MIN ? 0.75 : 1 - count / MAX;
 
   const COLOR_SCALE = CHROMA.scale(MAP_RAMP);
   const COLOR = COLOR_SCALE(VALUE);

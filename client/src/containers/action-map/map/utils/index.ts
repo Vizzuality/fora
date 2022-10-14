@@ -1,21 +1,21 @@
 export function getStyles(color, selected: boolean, count: number) {
   const getDefaultFill = () => {
-    if (!count) return '#efefef';
-    if (!selected) return '#efefef';
+    if (!count) return '#F1F1F1';
+    if (!selected) return '#F1F1F1';
 
     return color;
   };
 
   const getHoverFill = () => {
-    if (!count) return '#e9e9e9';
-    if (!selected) return '#e9e9e9';
+    if (!count) return '#efefef';
+    if (!selected) return '#efefef';
 
     return color.brighten(0.1);
   };
 
   const getPressedFill = () => {
-    if (!count) return '#e0e0e0';
-    if (!selected) return '#e0e0e0';
+    if (!count) return '#e9e9e9';
+    if (!selected) return '#e9e9e9';
 
     return color.brighten(0.2);
   };
