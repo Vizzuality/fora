@@ -36,7 +36,7 @@ const ListItem: React.FC<Funder> = ({ id, name }) => {
         />
         <span>{name}</span>
       </h5>
-      {/* <span className="block font-bold">{count}</span> */}
+      <span className="block font-bold">{Math.ceil(Math.random() * 20)}</span>
     </li>
   );
 };
