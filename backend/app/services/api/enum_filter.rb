@@ -21,7 +21,7 @@ module API
 
     def pluralize_keys_in(hash)
       hash.each_with_object({}) do |(key, value), res|
-        res[key.to_s] = value
+        res[key.to_s.singularize] = value
         res[key.to_s.pluralize] = value
       end
     end
