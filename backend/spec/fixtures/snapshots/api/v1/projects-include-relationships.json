@@ -14,6 +14,14 @@
               "type": "subgeographic"
             }
           ]
+        },
+        "investments": {
+          "data": [
+            {
+              "id": "c8ff1d98-f5ff-4d84-a254-186453141979",
+              "type": "investment"
+            }
+          ]
         }
       }
     },
@@ -25,6 +33,11 @@
       },
       "relationships": {
         "subgeographics": {
+          "data": [
+
+          ]
+        },
+        "investments": {
           "data": [
 
           ]
@@ -42,6 +55,14 @@
           "data": [
 
           ]
+        },
+        "investments": {
+          "data": [
+            {
+              "id": "0664da55-c1d2-4631-8987-67b9ff5fd05d",
+              "type": "investment"
+            }
+          ]
         }
       }
     },
@@ -53,6 +74,11 @@
       },
       "relationships": {
         "subgeographics": {
+          "data": [
+
+          ]
+        },
+        "investments": {
           "data": [
 
           ]
@@ -83,6 +109,78 @@
           "data": [
 
           ]
+        }
+      }
+    },
+    {
+      "id": "c8ff1d98-f5ff-4d84-a254-186453141979",
+      "type": "investment",
+      "attributes": {
+        "amount": "98.63",
+        "year_invested": 2021,
+        "initial_funded_year": 2021,
+        "funding_type": "general_operating_support",
+        "funding_type_other": "Placeat commodi libero et.",
+        "capital_types": [
+          "grants",
+          "forgivable_loans"
+        ],
+        "areas": [
+          "food_sovereignty"
+        ],
+        "areas_other": "Placeat commodi libero et.",
+        "grant_duration": "one_year",
+        "grant_duration_other": "Placeat commodi libero et.",
+        "number_of_grant_years": 1
+      },
+      "relationships": {
+        "funder": {
+          "data": {
+            "id": "570de809-8023-41fb-bf24-dd57c450cc3a",
+            "type": "funder"
+          }
+        },
+        "project": {
+          "data": {
+            "id": "773237c0-2c69-4829-9a2a-0694fd4e70ba",
+            "type": "project"
+          }
+        }
+      }
+    },
+    {
+      "id": "0664da55-c1d2-4631-8987-67b9ff5fd05d",
+      "type": "investment",
+      "attributes": {
+        "amount": "68.96",
+        "year_invested": 2020,
+        "initial_funded_year": 2020,
+        "funding_type": "program_or_project_specific",
+        "funding_type_other": "Enim repellat pariatur est.",
+        "capital_types": [
+          "re_grants",
+          "pris"
+        ],
+        "areas": [
+          "equity_and_justice"
+        ],
+        "areas_other": "Enim repellat pariatur est.",
+        "grant_duration": "multi_year",
+        "grant_duration_other": "Enim repellat pariatur est.",
+        "number_of_grant_years": 4
+      },
+      "relationships": {
+        "funder": {
+          "data": {
+            "id": "fa1a7bef-4f26-4ba2-991f-3e7b69d551f5",
+            "type": "funder"
+          }
+        },
+        "project": {
+          "data": {
+            "id": "3b3b29d0-bcd1-4f8e-988c-61be5d96acd6",
+            "type": "project"
+          }
         }
       }
     }

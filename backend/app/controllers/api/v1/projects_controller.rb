@@ -18,7 +18,7 @@ module API
           extra_models: [Recipient, Investment]
         ).call
         @projects = Project.with_funders_count.where(id: @projects.pluck(:id))
-          .includes recipient: [:state, :country, :subgeographics, :subgeographic_ancestors, logo_attachment: [:blob]]
+          .includes recipient: [:state, :country, :subgeographics, :subgeographic_ancestors, :investments, logo_attachment: [:blob]]
         @projects = API::Sorting.new(@projects, sorting_params, SORTING_COLUMNS).call.order :created_at
         pagy_object, @projects = pagy @projects, page: current_page, items: per_page unless params[:disable_pagination].to_s == "true"
         render json: ProjectSerializer.new(
