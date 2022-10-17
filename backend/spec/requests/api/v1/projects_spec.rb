@@ -11,6 +11,7 @@ RSpec.describe "API V1 Projects", type: :request do
       parameter name: "filter[areas]", in: :query, type: :string, enum: Area::TYPES, description: "Filter results only for specified areas. Use comma to separate multiple fields", required: false
       parameter name: "filter[demographics]", in: :query, type: :string, enum: Demographic::TYPES, description: "Filter results only for specified demographics. Use comma to separate multiple fields", required: false
       parameter name: "filter[recipient_legal_statuses]", in: :query, type: :string, enum: RecipientLegalStatus::TYPES, description: "Filter results only for specified recipient legal status. Use comma to separate multiple fields", required: false
+      parameter name: "filter[full_text]", in: :query, type: :string, description: "Filter records by provided text", required: false
       parameter name: "page[number]", in: :query, type: :integer, description: "Page number. Default: 1", required: false
       parameter name: "page[size]", in: :query, type: :integer, description: "Per page items. Default: 10", required: false
       parameter name: :disable_pagination, in: :query, type: :boolean, description: "Turn off pagination", required: false
@@ -105,11 +106,20 @@ RSpec.describe "API V1 Projects", type: :request do
           end
         end
 
+        context "when filtered by full text search" do
+          let("filter[full_text]") { project.name }
+
+          it "returns only projects with appropriate name" do
+            expect(response_json["data"].pluck("id")).to eq([project.id])
+          end
+        end
+
         context "when combining multiple filters" do
           let("filter[subgeographics]") { national.abbreviation }
           let("filter[geographic]") { :national }
           let("filter[areas]") { "food_sovereignty" }
           let("filter[recipient_legal_statuses]") { "foundation" }
+          let("filter[full_text]") { project.name }
 
           it "returns only projects which are true for all filters" do
             expect(response_json["data"].pluck("id")).to eq([project.id])

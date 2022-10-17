@@ -1,8 +1,12 @@
 class Project < ApplicationRecord
+  include PgSearch::Model
+
   belongs_to :recipient
 
   has_many :investments, dependent: :destroy
   has_many :funders, -> { distinct }, through: :investments
+
+  pg_search_scope :search, against: [:name, :description]
 
   validates_uniqueness_of :name, case_sensitive: false, allow_blank: true
 

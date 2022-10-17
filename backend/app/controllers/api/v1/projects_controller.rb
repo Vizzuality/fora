@@ -10,6 +10,7 @@ module API
       def index
         @projects = @projects.for_subgeographics filter_params[:subgeographics].split(",") if filter_params[:subgeographics].present?
         @projects = @projects.for_geographics filter_params[:geographic] if filter_params[:geographic].present?
+        @projects = @projects.search filter_params[:full_text] if filter_params[:full_text].present?
         @projects = API::EnumFilter.new(
           @projects.joins(:recipient).left_joins(:investments),
           filter_params.to_h.slice(*ENUM_FILTERS),
@@ -40,7 +41,7 @@ module API
       private
 
       def filter_params
-        params.fetch(:filter, {}).permit :geographic, :subgeographics, *ENUM_FILTERS
+        params.fetch(:filter, {}).permit :geographic, :subgeographics, :full_text, *ENUM_FILTERS
       end
     end
   end

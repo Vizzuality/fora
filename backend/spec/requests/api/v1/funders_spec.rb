@@ -109,7 +109,7 @@ RSpec.describe "API V1 Funders", type: :request do
         context "when filtered by full text search" do
           let("filter[full_text]") { funder.name }
 
-          it "returns only funders at correct areas" do
+          it "returns only funders with appropriate name" do
             expect(response_json["data"].pluck("id")).to eq([funder.id])
           end
         end
