@@ -17,7 +17,7 @@ const MAP_TABS: TabsType[] = [
   },
 ];
 
-const FilterTabs = () => {
+const MapFilterTabs = () => {
   const { type } = useAppSelector((state) => state['/action-map']);
   const dispatch = useAppDispatch();
 
@@ -34,4 +34,4 @@ const FilterTabs = () => {
   );
 };
 
-export default FilterTabs;
+export default MapFilterTabs;

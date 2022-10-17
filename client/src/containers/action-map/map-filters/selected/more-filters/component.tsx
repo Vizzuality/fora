@@ -4,7 +4,7 @@ import { useAppSelector } from 'store/hooks';
 
 import { useModal } from 'hooks/modals';
 
-import MoreFilters from 'containers/action-map/filters/modals/more-filters';
+import MoreFilters from 'containers/action-map/map-filters/modals/more-filters';
 
 import Icon from 'components/icon';
 import Modal from 'components/modal';

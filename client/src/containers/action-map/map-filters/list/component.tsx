@@ -2,7 +2,7 @@ import React from 'react';
 
 // import dynamic from 'next/dynamic';
 
-import MoreFiltersSelected from 'containers/action-map/filters/selected/more-filters';
+import MoreFiltersSelected from 'containers/action-map/map-filters/selected/more-filters';
 
 import Filter from 'components/filters/trigger';
 
@@ -10,7 +10,7 @@ import { FILTERS } from './constants';
 
 // const Filter = dynamic(() => import('components/filters/trigger'), { ssr: false });
 
-const FilterList = () => {
+const MapFilterList = () => {
   return (
     <div className="flex items-stretch justify-between divide-x divide-solid divide-grey-40/30">
       {FILTERS.map((filter) => {
@@ -23,4 +23,4 @@ const FilterList = () => {
   );
 };
 
-export default FilterList;
+export default MapFilterList;

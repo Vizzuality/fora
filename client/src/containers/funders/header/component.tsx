@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+
+import cx from 'classnames';
 
 import { setSearch } from 'store/funders';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
@@ -10,6 +12,8 @@ import { useFunders } from 'hooks/funders';
 import Wrapper from 'containers/wrapper';
 
 import Search from 'components/search';
+
+import Filters from '../filters';
 
 const FundersHeader = () => {
   const { data: fundersData } = useFunders();
@@ -33,6 +37,10 @@ const FundersHeader = () => {
         </div>
         <div className="w-2/3 mt-11">
           <Search value={search} placeholder="Search" theme="green" onChange={onChangeSearch} />
+        </div>
+
+        <div className="w-2/3 mt-14">
+          <Filters moreFilters />
         </div>
       </Wrapper>
     </header>

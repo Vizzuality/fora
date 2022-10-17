@@ -2,10 +2,10 @@ import React from 'react';
 
 import Wrapper from 'containers/wrapper';
 
-import Filters from './filters';
 import Legend from './legend';
 import List from './list';
 import Map from './map';
+import Filters from './map-filters';
 import Sentence from './sentence';
 
 const ActionMap = () => {

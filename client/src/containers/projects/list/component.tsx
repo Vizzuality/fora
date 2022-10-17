@@ -13,16 +13,14 @@ import Wrapper from 'containers/wrapper';
 import Button from 'components/button';
 import { Select } from 'components/forms';
 import { Option } from 'components/forms/select';
+import Select2 from 'components/forms/select2';
 import Icon from 'components/icon';
 import Loading from 'components/loading';
 
 import DOWNLOAD_SVG from 'svgs/ui/download.svg?sprite';
 import SHARE_SVG from 'svgs/ui/share.svg?sprite';
 
-const SORT_OPTIONS = [
-  { label: 'a-z', value: 'asc' },
-  { label: 'z-a', value: 'desc' },
-];
+const SORT_OPTIONS = ['a-z', 'z-a'];
 
 const ProjectsList = () => {
   const { filters, search, sort } = useAppSelector((state) => state['/projects']);
@@ -41,7 +39,8 @@ const ProjectsList = () => {
 
   const handleSortProjects = useCallback(
     (value) => {
-      dispatch(setSort({ field: 'title', order: value }));
+      const valueTranslator = value === 'z-a' ? 'desc' : 'asc';
+      dispatch(setSort({ field: 'title', order: valueTranslator }));
     },
     [dispatch]
   );
@@ -62,20 +61,15 @@ const ProjectsList = () => {
 
           <div className="flex justify-between">
             <div className="flex items-center w-1/12">
-              <Select
+              <Select2
+                id="sort-by-projects"
                 placeholder="Sort by"
                 theme="light"
-                size="sm"
-                render={(selected) => <div>{selected.label}</div>}
+                size="base"
+                options={SORT_OPTIONS}
                 value={sort.order}
-                onChange={handleSortProjects}
-              >
-                {SORT_OPTIONS.map(({ label, value }) => (
-                  <Option key={value} value={value} theme="light" label={label}>
-                    {label}
-                  </Option>
-                ))}
-              </Select>
+                onSelect={handleSortProjects}
+              />
             </div>
 
             <div className="flex m-3 border divide-x rounded-md divide-solid border-grey-20">
