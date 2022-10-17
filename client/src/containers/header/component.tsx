@@ -70,7 +70,7 @@ const Header = () => {
                         <a
                           className={cx({
                             'text-base font-semibold py-2 px-7': true,
-                            'hover:rounded-lg hover:bg-grey-60/75': pathname !== href,
+                            'hover:rounded-lg hover:bg-grey-60/75': !pathname.includes(href),
                             'rounded-lg bg-green-0': pathname.includes(href) && pathname !== '/',
                           })}
                         >

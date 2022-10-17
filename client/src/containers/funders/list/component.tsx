@@ -37,11 +37,12 @@ const FundersList = () => {
     filters,
     search,
     sort,
+    perPage: 12,
   });
 
   const handleSortFunders = useCallback(
     (value) => {
-      dispatch(setSort({ field: 'title', order: value }));
+      dispatch(setSort({ field: 'name', order: value }));
     },
     [dispatch]
   );
@@ -99,10 +100,12 @@ const FundersList = () => {
           </div>
         </div>
 
-        <Cards data={fundersData} />
+        <div className="pb-10">
+          <Cards data={fundersData} />
+        </div>
 
         {hasNextFundersPage && (
-          <div className="flex justify-center py-10">
+          <div className="flex justify-center pb-10">
             <Button
               type="button"
               theme="black-alt"

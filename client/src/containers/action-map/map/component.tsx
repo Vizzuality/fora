@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 import { omit } from 'lodash';
 
-import { useFundersByGeographicScope } from 'hooks/funders';
+import { useFunders, useFundersByGeographicScope } from 'hooks/funders';
 import { useMapProjection } from 'hooks/map';
 import { useProjectsByGeographicScope } from 'hooks/projects';
 
@@ -28,21 +28,25 @@ const Map = () => {
   const { view, type, filters } = useAppSelector((state) => state['/action-map']);
   const dispatch = useAppDispatch();
 
-  const { data: fundersData } = useFundersByGeographicScope(view, {
-    filters: omit(filters, ['geographic', 'subgeographics']),
+  // FUNDERS
+  const { data: fundersData } = useFunders({
+    filters: omit(filters, ['subgeographics']),
   });
+  const fundersGroupedData = useFundersByGeographicScope(view, fundersData);
+
+  // PROJECTS
   const { data: projectsData } = useProjectsByGeographicScope(view, {
-    filters: omit(filters, ['geographic', 'subgeographics']),
+    filters: omit(filters, ['subgeographics']),
   });
 
   const PROJECTION = useMapProjection({ view });
 
   const DATA = useMemo(() => {
     return {
-      funders: fundersData,
+      funders: fundersGroupedData,
       projects: projectsData,
     };
-  }, [fundersData, projectsData]);
+  }, [fundersGroupedData, projectsData]);
 
   const VIEW = useMemo(() => {
     return createElement(VIEWS[view], {
@@ -52,7 +56,7 @@ const Map = () => {
         dispatch(
           setFilters({
             ...filters,
-            subgeographics: [properties.id],
+            subgeographics: [properties.abbreviation],
           })
         );
       },

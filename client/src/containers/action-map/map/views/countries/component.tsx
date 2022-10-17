@@ -4,8 +4,9 @@ import { useGeographies } from 'react-simple-maps';
 
 import { useAppSelector } from 'store/hooks';
 
+import rewind from '@turf/rewind';
 import CHROMA from 'chroma-js';
-import { max } from 'lodash';
+import { max, min } from 'lodash';
 
 import { MAP_RAMP } from 'constants/colors';
 
@@ -22,19 +23,23 @@ const CountriesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove 
   const parseGeographies = useCallback(
     (geos) => {
       const COLOR_SCALE = CHROMA.scale(MAP_RAMP);
+
+      const MIN = min(data.map((d) => d.count)) || 0;
       const MAX = max(data.map((d) => d.count)) || 0;
 
       return geos.map((geo) => {
-        const { id } = geo.properties;
-        const count = data.find((d) => d.id === id)?.count || 0;
-        const COLOR = COLOR_SCALE(1 - count / MAX);
+        const { abbreviation } = geo.properties;
+        const count = data.find((d) => d.id === abbreviation)?.count || 0;
+
+        const VALUE = MAX === MIN ? 0.75 : 1 - count / MAX;
+        const COLOR = COLOR_SCALE(VALUE);
         const luminance = COLOR.luminance();
-        const selected = !subgeographics.length || subgeographics.includes(id);
+        const selected = !subgeographics.length || subgeographics.includes(abbreviation);
 
         const STYLES = getStyles(COLOR, selected, count);
 
         return {
-          ...geo,
+          ...rewind(geo, { reverse: true }),
           properties: {
             ...geo.properties,
             count,
@@ -56,13 +61,11 @@ const CountriesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove 
     <g>
       {/* Polygons */}
       {geographies.map((geo) => {
-        const { count } = geo.properties;
-
         return (
           <Geography
             key={geo.rsmKey}
             geo={geo}
-            {...(!!count && { onClick, onMouseEnter, onMouseLeave, onMouseMove })}
+            {...{ onClick, onMouseEnter, onMouseLeave, onMouseMove }}
           />
         );
       })}
