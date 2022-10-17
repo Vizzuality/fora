@@ -30,6 +30,10 @@ class Project < ApplicationRecord
 
   scope :for_subgeographics, ->(abbreviations) { joins(recipient: :subgeographic_ancestors).where(subgeographics: {abbreviation: abbreviations}) }
   scope :for_geographics, ->(geographics) { joins(recipient: :subgeographic_ancestors).where(subgeographics: {geographic: geographics}) }
+  scope :with_funders_count, -> {
+    funders_count = Investment.where("investments.project_id = projects.id").select("COUNT(DISTINCT investments.funder_id)").to_sql
+    select "projects.*, (#{funders_count}) AS funders_count"
+  }
 
   def recipient_name
     recipient.name

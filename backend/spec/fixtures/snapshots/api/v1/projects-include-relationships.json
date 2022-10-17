@@ -4,12 +4,15 @@
       "id": "c0411e15-9bcc-4a14-96fa-b261de63881f",
       "type": "project",
       "attributes": {
-        "name": "Otha Kemmer"
+        "name": "Elbert Denesik"
       },
       "relationships": {
         "subgeographics": {
           "data": [
-
+            {
+              "id": "97967246-5610-412d-bd9e-618457274e6d",
+              "type": "subgeographic"
+            }
           ]
         }
       }
@@ -32,7 +35,7 @@
       "id": "921482cd-2b78-4fb0-adde-9d9f25e324b5",
       "type": "project",
       "attributes": {
-        "name": "Raymon Wisoky"
+        "name": "Otha Kemmer"
       },
       "relationships": {
         "subgeographics": {
@@ -46,15 +49,12 @@
       "id": "3fd5c235-6ed1-43df-b806-d443e2c6702a",
       "type": "project",
       "attributes": {
-        "name": "Elbert Denesik"
+        "name": "Raymon Wisoky"
       },
       "relationships": {
         "subgeographics": {
           "data": [
-            {
-              "id": "208e4725-7028-4866-82c6-8f15f7aa836f",
-              "type": "subgeographic"
-            }
+
           ]
         }
       }

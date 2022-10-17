@@ -44,5 +44,17 @@ RSpec.describe Project, type: :model do
         expect(Project.for_geographics(:countries)).to match_array([project_1, project_2])
       end
     end
+
+    describe ".with_funders_count" do
+      let!(:project) { create :project }
+      let!(:project_without_funder) { create :project }
+      let!(:investments) { create_list :investment, 2, project: project }
+      let!(:investment_of_same_funder) { create :investment, project: project, funder: investments.first.funder }
+
+      it "shows counts correct number of projects" do
+        expect(Project.with_funders_count.find(project.id).funders_count).to eq(investments.count)
+        expect(Project.with_funders_count.find(project_without_funder.id).funders_count).to be_zero
+      end
+    end
   end
 end

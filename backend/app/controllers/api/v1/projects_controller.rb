@@ -6,6 +6,7 @@ module API
       load_and_authorize_resource
 
       ENUM_FILTERS = %i[areas demographics recipient_legal_statuses]
+      SORTING_COLUMNS = %i[name funders_count]
 
       def index
         @projects = @projects.for_subgeographics filter_params[:subgeographics].split(",") if filter_params[:subgeographics].present?
@@ -16,8 +17,9 @@ module API
           filter_params.to_h.slice(*ENUM_FILTERS),
           extra_models: [Recipient, Investment]
         ).call
-        @projects = Project.where(id: @projects.pluck(:id))
+        @projects = Project.with_funders_count.where(id: @projects.pluck(:id))
           .includes recipient: [:state, :country, :subgeographics, :subgeographic_ancestors, logo_attachment: [:blob]]
+        @projects = API::Sorting.new(@projects, sorting_params, SORTING_COLUMNS).call.order :created_at
         pagy_object, @projects = pagy @projects, page: current_page, items: per_page unless params[:disable_pagination].to_s == "true"
         render json: ProjectSerializer.new(
           @projects,
@@ -39,6 +41,10 @@ module API
       end
 
       private
+
+      def sorting_params
+        params.fetch(:sort, {}).permit :attribute, :direction
+      end
 
       def filter_params
         params.fetch(:filter, {}).permit :geographic, :subgeographics, :full_text, *ENUM_FILTERS

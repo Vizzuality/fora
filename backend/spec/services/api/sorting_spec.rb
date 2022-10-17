@@ -4,8 +4,8 @@ RSpec.describe API::Sorting do
   subject { described_class.new query, sorting, columns }
 
   describe "#call" do
-    let!(:funder_1) { create :funder, name: "BBBB", description: "BBBB", created_at: 1.day.ago, updated_at: 1.day.ago }
-    let!(:funder_2) { create :funder, name: "AAAA", description: "AAAA", created_at: Time.current, updated_at: Time.current }
+    let!(:funder_1) { create :funder, name: "BBBB", description: "BBBB", created_at: 1.day.ago }
+    let!(:funder_2) { create :funder, name: "AAAA", description: "AAAA", created_at: Time.current }
     let(:query) { Funder.all }
     let(:columns) { %i[name] }
 
@@ -13,7 +13,7 @@ RSpec.describe API::Sorting do
       let(:sorting) { {attribute: :description} }
 
       it "returns data for original query" do
-        expect(subject.call.to_a).to eq([funder_1, funder_2])
+        expect(subject.call.order(:created_at).to_a).to eq([funder_1, funder_2])
       end
     end
 
