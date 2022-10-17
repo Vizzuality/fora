@@ -1,7 +1,9 @@
 require "rails_helper"
 
 RSpec.describe API::EnumFilter do
-  subject { described_class.new query, filters }
+  subject { described_class.new query, filters, extra_models: extra_models }
+
+  let(:extra_models) { [] }
 
   describe "#call" do
     context "when using multiple filters on string attributes" do
@@ -43,6 +45,23 @@ RSpec.describe API::EnumFilter do
 
       it "returns correct funder" do
         expect(subject.call).to eq([correct_funder])
+      end
+    end
+
+    context "when filtering on enum attributes from different table" do
+      let!(:correct_project) do
+        create :project, recipient: create(:recipient, recipient_legal_status: "foundation")
+      end
+      let!(:different_recipient_legal_statuses_project) do
+        create :project, recipient: create(:recipient, recipient_legal_status: "for_profit")
+      end
+
+      let(:query) { Project.joins(:recipient) }
+      let(:filters) { {recipient_legal_statuses: "foundation"} }
+      let(:extra_models) { [Recipient] }
+
+      it "returns correct project" do
+        expect(subject.call).to eq([correct_project])
       end
     end
   end

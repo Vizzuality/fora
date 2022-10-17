@@ -6,13 +6,24 @@ RSpec.describe "API V1 Projects", type: :request do
       tags "Projects"
       consumes "application/json"
       produces "application/json"
+      parameter name: "filter[subgeographics]", in: :query, type: :string, description: "Filter results only for specified subgeographics. Use comma to separate multiple fields", required: false
+      parameter name: "filter[geographic]", in: :query, type: :string, description: "Filter results only for specified geographic", required: false
+      parameter name: "filter[areas]", in: :query, type: :string, enum: Area::TYPES, description: "Filter results only for specified areas. Use comma to separate multiple fields", required: false
+      parameter name: "filter[demographics]", in: :query, type: :string, enum: Demographic::TYPES, description: "Filter results only for specified demographics. Use comma to separate multiple fields", required: false
+      parameter name: "filter[recipient_legal_statuses]", in: :query, type: :string, enum: RecipientLegalStatus::TYPES, description: "Filter results only for specified recipient legal status. Use comma to separate multiple fields", required: false
       parameter name: "fields[project]", in: :query, type: :string, description: "Get only required fields. Use comma to separate multiple fields", required: false
       parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
 
       let(:country) { create :subgeographic, geographic: :countries }
       let!(:national) { create :subgeographic, geographic: :national, parent: country }
-      let!(:projects) { create_list :project, 3 }
-      let!(:project) { create :project, recipient: create(:recipient, subgeographics: [national]) }
+      let!(:projects) do
+        create_list :project, 3, recipient: create(:recipient, recipient_legal_status: "for_profit")
+      end
+      let!(:project) do
+        create :project, recipient: create(:recipient, subgeographics: [national], recipient_legal_status: "foundation")
+      end
+      let!(:investment_other) { create :investment, project: projects.first, areas: %w[equity_and_justice] }
+      let!(:investment_project) { create :investment, project: project, areas: %w[food_sovereignty] }
 
       response "200", :success do
         schema type: :object, properties: {
@@ -39,6 +50,51 @@ RSpec.describe "API V1 Projects", type: :request do
 
           it "matches snapshot" do
             expect(response.body).to match_snapshot("api/v1/projects-include-relationships")
+          end
+        end
+
+        context "when filtered for specific subgeographics" do
+          let("filter[subgeographics]") { national.reload.abbreviation }
+
+          it "returns only projects with correct subgeographics" do
+            expect(response_json["data"].pluck("id")).to eq([project.id])
+          end
+        end
+
+        context "when filtered for specific geographics" do
+          let("filter[geographic]") { :national }
+
+          it "returns only projects with correct geographics" do
+            expect(response_json["data"].pluck("id")).to eq([project.id])
+          end
+        end
+
+        context "when filtered for specified enums" do
+          context "when used with enum from recipient table" do
+            let("filter[recipient_legal_statuses]") { "foundation" }
+
+            it "returns only projects with correct recipient_legal_status" do
+              expect(response_json["data"].pluck("id")).to eq([project.id])
+            end
+          end
+
+          context "when used with enum from investment table" do
+            let("filter[areas]") { "food_sovereignty" }
+
+            it "returns only projects at correct areas" do
+              expect(response_json["data"].pluck("id")).to eq([project.id])
+            end
+          end
+        end
+
+        context "when combining multiple filters" do
+          let("filter[subgeographics]") { national.abbreviation }
+          let("filter[geographic]") { :national }
+          let("filter[areas]") { "food_sovereignty" }
+          let("filter[recipient_legal_statuses]") { "foundation" }
+
+          it "returns only projects which are true for all filters" do
+            expect(response_json["data"].pluck("id")).to eq([project.id])
           end
         end
       end

@@ -24,6 +24,9 @@ class Project < ApplicationRecord
     :logo,
     to: :recipient
 
+  scope :for_subgeographics, ->(abbreviations) { joins(recipient: :subgeographic_ancestors).where(subgeographics: {abbreviation: abbreviations}) }
+  scope :for_geographics, ->(geographics) { joins(recipient: :subgeographic_ancestors).where(subgeographics: {geographic: geographics}) }
+
   def recipient_name
     recipient.name
   end
