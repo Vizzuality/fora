@@ -1,5 +1,7 @@
+import { Demographic } from './demographic';
 import { SubGeographic } from './geographics';
 import { Investment } from './investment';
+import { ProjectLegalStatus } from './project-legal-status';
 
 export interface Project {
   id: string;
@@ -7,10 +9,9 @@ export interface Project {
   description: string;
   website: string;
   // Filters
-  areas: string[];
-  demographics: string[];
-  recipient_legal_status: string;
-  funder_type: string;
+  // areas: string[];
+  demographics: Demographic['id'][];
+  recipient_legal_status: ProjectLegalStatus;
   investments: Investment[];
   logo: {
     small: string;

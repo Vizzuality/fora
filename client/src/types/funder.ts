@@ -1,3 +1,8 @@
+import { Area } from './area';
+import { CapitalType } from './capital-type';
+import { Demographic } from './demographic';
+import { FunderLegalStatus } from './funder-legal-status';
+import { FunderType } from './funder-type';
 import { SubGeographic } from './geographics';
 import { Investment } from './investment';
 
@@ -11,14 +16,14 @@ export interface Funder {
   description: string;
   website: string;
   // Filters
-  areas: string[];
+  areas: Area['id'][];
   capital_acceptances: string[];
-  capital_types: string[];
+  capital_types: CapitalType['id'][];
   contact_email: string;
   date_joined_fora: string;
-  demographics: string[];
-  funder_legal_status: string;
-  funder_type: string;
+  demographics: Demographic['id'][];
+  funder_legal_status: FunderLegalStatus['id'];
+  funder_type: FunderType['id'];
   investments: Investment[];
   logo: {
     small: string;
