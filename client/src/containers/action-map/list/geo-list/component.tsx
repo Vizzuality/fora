@@ -5,7 +5,7 @@ import { useAppSelector } from 'store/hooks';
 import { omit } from 'lodash';
 
 import { useFunders, useFundersByGeographicScope } from 'hooks/funders';
-import { useProjectsByGeographicScope } from 'hooks/projects';
+import { useProjects, useProjectsByGeographicScope } from 'hooks/projects';
 
 import NoData from 'containers/action-map/list/no-data';
 
@@ -17,6 +17,7 @@ const GeoList = () => {
   const { view, type, filters } = useAppSelector((state) => state['/action-map']);
   const { subgeographics } = filters;
 
+  // FUNDERS
   // get funders grouped by geographic scope
   const {
     data: fundersData,
@@ -29,14 +30,13 @@ const GeoList = () => {
 
   // PROJECTS
   // get projects grouped by geographic scope
-  // const { data: projectsData } = useProjects({
-  //   filters: omit(filters, ['subgeographics']),
-  // });
-
-  const { data: projectsGroupedData } = useProjectsByGeographicScope(view, {
+  const { data: projectsData } = useProjects({
     filters: omit(filters, ['subgeographics']),
   });
+  const projectsGroupedData = useProjectsByGeographicScope(view, projectsData);
 
+  // DATA
+  // get data for the current type
   const DATA = useMemo(() => {
     const grouped = {
       funders: fundersGroupedData.filter(

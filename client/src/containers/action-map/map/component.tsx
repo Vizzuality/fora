@@ -9,7 +9,7 @@ import { omit } from 'lodash';
 
 import { useFunders, useFundersByGeographicScope } from 'hooks/funders';
 import { useMapProjection } from 'hooks/map';
-import { useProjectsByGeographicScope } from 'hooks/projects';
+import { useProjects, useProjectsByGeographicScope } from 'hooks/projects';
 
 import MapTooltip from './tooltip';
 import type { MapTooltipProps } from './tooltip';
@@ -35,18 +35,19 @@ const Map = () => {
   const fundersGroupedData = useFundersByGeographicScope(view, fundersData);
 
   // PROJECTS
-  const { data: projectsData } = useProjectsByGeographicScope(view, {
+  const { data: projectsData } = useProjects({
     filters: omit(filters, ['subgeographics']),
   });
+  const projectsGroupedData = useProjectsByGeographicScope(view, projectsData);
 
   const PROJECTION = useMapProjection({ view });
 
   const DATA = useMemo(() => {
     return {
       funders: fundersGroupedData,
-      projects: projectsData,
+      projects: projectsGroupedData,
     };
-  }, [fundersGroupedData, projectsData]);
+  }, [fundersGroupedData, projectsGroupedData]);
 
   const VIEW = useMemo(() => {
     return createElement(VIEWS[view], {

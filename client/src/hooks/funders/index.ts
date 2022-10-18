@@ -15,7 +15,6 @@ import { orderBy, uniqBy } from 'lodash';
 
 import API from 'services/api';
 
-import MOCK from './mock.json';
 import { FunderResponseData, FundersResponseData } from './types';
 
 /**
@@ -154,16 +153,7 @@ export function useFundersInfinity(
       .map((p) => {
         const { data: pageData } = p;
 
-        return pageData.map((f) => {
-          const randomIndex = Math.floor(Math.random() * MOCK.length);
-
-          return {
-            ...f,
-            ...MOCK[randomIndex],
-            name: f.name,
-            description: f.description,
-          };
-        });
+        return pageData;
       })
       .flat();
   }, [pages]);
