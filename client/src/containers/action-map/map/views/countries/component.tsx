@@ -8,6 +8,8 @@ import rewind from '@turf/rewind';
 import CHROMA from 'chroma-js';
 import { max, min } from 'lodash';
 
+import { useSubGeographics } from 'hooks/geographics';
+
 import { MAP_RAMP } from 'constants/colors';
 
 import Geography from 'containers/action-map/map/geography';
@@ -18,7 +20,11 @@ import DATA from './data.json';
 
 const CountriesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: ViewProps) => {
   const { filters } = useAppSelector((state) => state['/action-map']);
-  const { subgeographics } = filters;
+  const { geographic, subgeographics } = filters;
+
+  const { data: subgeographicData } = useSubGeographics({
+    filters: { geographic, only_active: true },
+  });
 
   const parseGeographies = useCallback(
     (geos) => {
@@ -61,11 +67,12 @@ const CountriesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove 
     <g>
       {/* Polygons */}
       {geographies.map((geo) => {
+        const active = !!subgeographicData.find((d) => d.id === geo.properties.abbreviation);
         return (
           <Geography
             key={geo.rsmKey}
             geo={geo}
-            {...{ onClick, onMouseEnter, onMouseLeave, onMouseMove }}
+            {...(active && { onClick, onMouseEnter, onMouseLeave, onMouseMove })}
           />
         );
       })}

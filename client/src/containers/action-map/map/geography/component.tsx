@@ -49,7 +49,8 @@ const Geography = ({ geo, onClick, onMouseEnter, onMouseLeave, onMouseMove }) =>
       geography={geo}
       style={style}
       className={cx({
-        'cursor-pointer': true,
+        'cursor-pointer': !!onClick,
+        'pointer-events-none': !onClick,
       })}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
