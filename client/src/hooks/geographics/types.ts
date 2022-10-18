@@ -1,16 +1,5 @@
-export interface Geographic {
-  id: string;
-  name: string;
-}
+import { Geographic, SubGeographic } from 'types/geographics';
 
-export interface SubGeographic {
-  id: string;
-  name: string;
-  geographic: Geographic['id'];
-  code: string;
-  abbreviation: string;
-  parent?: SubGeographic;
-}
 export interface GeographicsResponseData {
   data: Geographic[];
 }

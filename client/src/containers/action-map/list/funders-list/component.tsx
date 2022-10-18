@@ -21,6 +21,7 @@ const List = () => {
     isFetched: fundersIsFetched,
   } = useFunders({
     filters,
+    includes: 'investments',
   });
 
   const LOADING = fundersIsFetching && !fundersIsFetched;

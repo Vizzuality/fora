@@ -47,9 +47,9 @@ export function useFunders(
 ) {
   const fetch = () =>
     fetchFunders({
-      ...params,
       disablePagination: true,
       includes: 'subgeographic_ancestors',
+      ...params,
     });
 
   const query = useQuery(['funders', JSON.stringify(params)], fetch, {
