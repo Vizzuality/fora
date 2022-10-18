@@ -32,8 +32,8 @@ export async function getStaticPaths() {
     disablePagination: true,
   });
 
-  const paths = response.map((p) => ({
-    params: { id: `${p.id}` },
+  const paths = response.data.map((f) => ({
+    params: { id: `${f.id}` },
   }));
 
   return {

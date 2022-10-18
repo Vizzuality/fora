@@ -189,7 +189,7 @@ export function useProject(
   return useMemo(() => {
     return {
       ...query,
-      data: data,
+      data: data?.data,
     };
   }, [query, data]);
 }

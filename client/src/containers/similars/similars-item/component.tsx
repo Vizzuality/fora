@@ -53,7 +53,7 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
 
   return (
     <>
-      {projectsBySubgeogprahics.length && (
+      {!!projectsBySubgeogprahics.length && (
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-semibold capitalize text-grey-20">By Geographic Scope</div>
