@@ -1,10 +1,11 @@
 module API
   class EnumFilter
-    attr_accessor :query, :filters
+    attr_accessor :query, :filters, :extra_models
 
-    def initialize(query, filters)
+    def initialize(query, filters, extra_models: [])
       @query = query
       @filters = filters
+      @extra_models = extra_models
     end
 
     def call
@@ -27,7 +28,7 @@ module API
     end
 
     def column_names
-      @column_names ||= query.klass.column_names
+      @column_names ||= query.klass.column_names + extra_models.map { |m| m.column_names }.flatten
     end
   end
 end

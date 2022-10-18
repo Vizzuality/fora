@@ -14,7 +14,7 @@ module API
         @funders = @funders.search filter_params[:full_text] if filter_params[:full_text].present?
         @funders = API::EnumFilter.new(@funders, filter_params.to_h.slice(*ENUM_FILTERS)).call
         @funders = Funder.with_projects_count.where(id: @funders.pluck(:id))
-          .includes :primary_office_state, :primary_office_country, :subgeographics, :subgeographic_ancestors, logo_attachment: [:blob]
+          .includes :primary_office_state, :primary_office_country, :subgeographics, :subgeographic_ancestors, :investments, logo_attachment: [:blob]
         @funders = API::Sorting.new(@funders, sorting_params, SORTING_COLUMNS).call.order :created_at
         pagy_object, @funders = pagy @funders, page: current_page, items: per_page unless params[:disable_pagination].to_s == "true"
         render json: FunderSerializer.new(

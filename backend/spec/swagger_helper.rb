@@ -70,7 +70,8 @@ RSpec.configure do |config|
                   primary_office_state: {"$ref" => "#/components/schemas/nullable_response_relation"},
                   primary_office_country: {"$ref" => "#/components/schemas/response_relation"},
                   subgeographics: {"$ref" => "#/components/schemas/response_relations"},
-                  subgeographic_ancestors: {"$ref" => "#/components/schemas/response_relations"}
+                  subgeographic_ancestors: {"$ref" => "#/components/schemas/response_relations"},
+                  investments: {"$ref" => "#/components/schemas/response_relations"}
                 }
               }
             },
@@ -103,7 +104,8 @@ RSpec.configure do |config|
                   state: {"$ref" => "#/components/schemas/nullable_response_relation"},
                   country: {"$ref" => "#/components/schemas/response_relation"},
                   subgeographics: {"$ref" => "#/components/schemas/response_relations"},
-                  subgeographic_ancestors: {"$ref" => "#/components/schemas/response_relations"}
+                  subgeographic_ancestors: {"$ref" => "#/components/schemas/response_relations"},
+                  investments: {"$ref" => "#/components/schemas/response_relations"}
                 }
               }
             },

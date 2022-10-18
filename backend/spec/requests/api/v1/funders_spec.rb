@@ -109,7 +109,7 @@ RSpec.describe "API V1 Funders", type: :request do
         context "when filtered by full text search" do
           let("filter[full_text]") { funder.name }
 
-          it "returns only funders at correct areas" do
+          it "returns only funders with appropriate name" do
             expect(response_json["data"].pluck("id")).to eq([funder.id])
           end
         end
@@ -160,6 +160,7 @@ RSpec.describe "API V1 Funders", type: :request do
       let(:country) { create :subgeographic, geographic: :countries }
       let!(:national) { create :subgeographic, geographic: :national, parent: country }
       let!(:funder) { create :funder, subgeographics: [national] }
+      let!(:invisible_investment) { create :investment, funder: funder, visible: false }
       let(:id) { funder.id }
 
       it_behaves_like "with not found error"
@@ -171,6 +172,10 @@ RSpec.describe "API V1 Funders", type: :request do
 
         it "matches snapshot", generate_swagger_example: true do
           expect(response.body).to match_snapshot("api/v1/get-funder")
+        end
+
+        it "does not show invisible investment" do
+          expect(response_json["data"]["relationships"]["investments"]["data"].pluck("id")).not_to include(invisible_investment.id)
         end
 
         context "with sparse fieldset" do
