@@ -78,11 +78,11 @@ const FunderOverview = () => {
                       </div>
                     }
                   >
-                    <div>
+                    <div className="w-3.5 h-3.5 rounded-full bg-grey-20/30">
                       <Icon
                         icon={INFO_SVG}
                         className={cx({
-                          'w-3 h-3 text-grey-20/30': true,
+                          'w-3.5 h-3.5 text-grey-20': true,
                         })}
                       />
                     </div>

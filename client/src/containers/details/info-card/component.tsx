@@ -46,11 +46,11 @@ const InfoCard = ({ data }: InfoCardProps) => {
                   </div>
                 }
               >
-                <div>
+                <div className="w-3.5 h-3.5 rounded-full bg-grey-0">
                   <Icon
                     icon={INFO_SVG}
                     className={cx({
-                      'w-3 h-3': true,
+                      'w-3.5 h-3.5 text-green-80': true,
                     })}
                   />
                 </div>
