@@ -7,7 +7,6 @@ import { useAppSelector } from 'store/hooks';
 import { useSubGeographics } from 'hooks/geographics';
 
 import FilterList from 'components/filters/list';
-import FilterWarning from 'components/filters/warning';
 import { composeValidators, arrayValidator } from 'components/forms/validations';
 
 interface GeographicScopeListFooterProps {}
@@ -18,7 +17,7 @@ export const GeographicScopeList: React.FC<GeographicScopeListFooterProps> = ({}
 
   const form = useForm();
   const { values } = form.getState();
-  const { geographic, subgeographics } = values;
+  const { geographic } = values;
   const {
     data: subgeographicData,
     isFetching: subgeographicIsFetching,
@@ -89,11 +88,6 @@ export const GeographicScopeList: React.FC<GeographicScopeListFooterProps> = ({}
 
   return (
     <>
-      <FilterWarning
-        text="Please, select at least one option before saving."
-        visible={!subgeographics.length}
-      />
-
       {geographic !== 'national' && (
         <FieldRFF name="subgeographics" validate={composeValidators([arrayValidator])}>
           {({ input }) => {
