@@ -48,7 +48,6 @@ export function useFunders(
   const fetch = () =>
     fetchFunders({
       disablePagination: true,
-      includes: 'subgeographic_ancestors',
       ...params,
     });
 

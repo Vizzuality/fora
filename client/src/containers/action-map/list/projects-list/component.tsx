@@ -4,6 +4,8 @@ import { useAppSelector } from 'store/hooks';
 
 import { useProjects } from 'hooks/projects';
 
+import NoData from 'containers/action-map/list/no-data';
+
 import Loading from 'components/loading';
 
 import Item from './item';
@@ -19,9 +21,11 @@ const List = () => {
     isFetched: projectsIsFetched,
   } = useProjects({
     filters,
+    includes: 'subgeographic_ancestors,investments',
   });
 
   const LOADING = projectsIsFetching && !projectsIsFetched;
+  const NO_DATA = !projectsData.length && !LOADING;
 
   return (
     <>
@@ -40,6 +44,8 @@ const List = () => {
             projectsData
               //
               .map((d) => <Item {...d} key={d.id} />)}
+
+          {NO_DATA && <NoData />}
         </ul>
       </div>
     </>

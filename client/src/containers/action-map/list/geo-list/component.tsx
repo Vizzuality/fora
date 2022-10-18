@@ -25,6 +25,7 @@ const GeoList = () => {
     isFetched: fundersIsFetched,
   } = useFunders({
     filters: omit(filters, ['subgeographics']),
+    includes: 'subgeographic_ancestors',
   });
   const fundersGroupedData = useFundersByGeographicScope(view, fundersData);
 
@@ -32,12 +33,22 @@ const GeoList = () => {
   // get projects grouped by geographic scope
   const { data: projectsData } = useProjects({
     filters: omit(filters, ['subgeographics']),
+    includes: 'subgeographic_ancestors',
   });
   const projectsGroupedData = useProjectsByGeographicScope(view, projectsData);
 
+  const DATA = useMemo(() => {
+    const data = {
+      funders: fundersData,
+      projects: projectsData,
+    };
+
+    return data[type];
+  }, [type, fundersData, projectsData]);
+
   // DATA
   // get data for the current type
-  const DATA = useMemo(() => {
+  const GROUPED_DATA = useMemo(() => {
     const grouped = {
       funders: fundersGroupedData.filter(
         (d) => !subgeographics.length || subgeographics.includes(d.id)
@@ -68,9 +79,9 @@ const GeoList = () => {
         <ul className="relative space-y-2">
           {!LOADING &&
             !NO_DATA &&
-            DATA
+            GROUPED_DATA
               //
-              .map((d) => <Item {...d} key={d.id} data={DATA} />)}
+              .map((d) => <Item {...d} key={d.id} data={GROUPED_DATA} />)}
 
           {NO_DATA && <NoData />}
         </ul>

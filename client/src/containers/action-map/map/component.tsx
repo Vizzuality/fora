@@ -31,12 +31,14 @@ const Map = () => {
   // FUNDERS
   const { data: fundersData } = useFunders({
     filters: omit(filters, ['subgeographics']),
+    includes: 'subgeographic_ancestors',
   });
   const fundersGroupedData = useFundersByGeographicScope(view, fundersData);
 
   // PROJECTS
   const { data: projectsData } = useProjects({
     filters: omit(filters, ['subgeographics']),
+    includes: 'subgeographic_ancestors',
   });
   const projectsGroupedData = useProjectsByGeographicScope(view, projectsData);
 

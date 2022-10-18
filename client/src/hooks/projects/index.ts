@@ -49,7 +49,6 @@ export function useProjects(
     fetchProjects({
       ...params,
       disablePagination: true,
-      includes: 'subgeographic_ancestors',
     });
 
   const query = useQuery(['projects', JSON.stringify(params)], fetch, {
