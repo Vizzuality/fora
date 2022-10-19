@@ -9075,7 +9075,7 @@ __metadata:
     final-form: 4.20.2
     framer-motion: 7.0.0
     geo-albers-usa-territories: 0.1.0
-    jsona: 1.9.2
+    jsona: 1.10.1
     jsonwebtoken: 8.5.1
     lefthook: ^1.1.2
     lodash: 4.17.21
@@ -11245,10 +11245,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsona@npm:1.9.2":
-  version: 1.9.2
-  resolution: "jsona@npm:1.9.2"
-  checksum: 22f163e39f3a22ed715b81e13d9603f853b96cd4024a5199b7e1b6f5433ee208ef08ba25c147282269f05b853832d4f0270c94a755624e2957253beb3b966cd3
+"jsona@npm:1.10.1":
+  version: 1.10.1
+  resolution: "jsona@npm:1.10.1"
+  checksum: a3744178dbf23fa4a61bc50fbbf67a39cde126bf7d757d14d3e3f14d671bfc03526ede1065a8c2332fa9312c7bb0d70896831e60ad115ea63d8a5bd6a778e2fd
   languageName: node
   linkType: hard
 

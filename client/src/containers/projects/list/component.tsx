@@ -37,6 +37,7 @@ const ProjectsList = () => {
     filters,
     search,
     sort,
+    perPage: 12,
   });
 
   const handleSortProjects = useCallback(

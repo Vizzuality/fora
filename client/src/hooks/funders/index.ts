@@ -13,10 +13,9 @@ import {
 } from '@tanstack/react-query';
 import { orderBy, uniqBy } from 'lodash';
 
+import { Funder } from 'types/funder';
+
 import API from 'services/api';
-
-import { FunderResponseData, FundersResponseData } from './types';
-
 /**
 ****************************************
   FETCH FUNCTIONS
@@ -26,7 +25,7 @@ export const fetchFunder = (id: string) =>
   API.request({
     method: 'GET',
     url: `/funders/${id}`,
-    params: jsonAPIAdapter({ includes: 'primary_office_state,primary_office_country' }),
+    params: jsonAPIAdapter({ includes: 'primary_office_state,primary_office_country,projects' }),
   }).then((response) => response.data);
 
 export const fetchFunders = (params: ParamsProps) => {
@@ -44,7 +43,7 @@ export const fetchFunders = (params: ParamsProps) => {
 */
 export function useFunders(
   params: ParamsProps = {},
-  queryOptions: UseQueryOptions<FundersResponseData, unknown> = {}
+  queryOptions: UseQueryOptions<Funder[], unknown> = {}
 ) {
   const fetch = () =>
     fetchFunders({
@@ -59,22 +58,7 @@ export function useFunders(
     ...queryOptions,
   });
 
-  const { data } = query;
-
-  const DATA = useMemo(() => {
-    if (!data?.data) {
-      return [];
-    }
-
-    return data?.data;
-  }, [data]);
-
-  return useMemo(() => {
-    return {
-      ...query,
-      data: DATA,
-    };
-  }, [query, DATA]);
+  return query;
 }
 
 /**
@@ -82,7 +66,7 @@ export function useFunders(
   FUNDERS FILTERED BY GEOGRAPHIC SCOPE
 ****************************************
 */
-export function useFundersByGeographicScope(view: View, data: FundersResponseData['data'] = []) {
+export function useFundersByGeographicScope(view: View, data: Funder[] = []) {
   const DATA = useMemo(() => {
     if (!data) {
       return [];
@@ -126,7 +110,7 @@ export function useFundersByGeographicScope(view: View, data: FundersResponseDat
 */
 export function useFundersInfinity(
   params: ParamsProps = {},
-  queryOptions: UseInfiniteQueryOptions<FundersResponseData, unknown> = {}
+  queryOptions: UseInfiniteQueryOptions<Funder[], unknown> = {}
 ) {
   const fetch = ({ pageParam = 1 }) => fetchFunders({ ...params, page: pageParam });
 
@@ -149,13 +133,7 @@ export function useFundersInfinity(
       return [];
     }
 
-    return pages
-      .map((p) => {
-        const { data: pageData } = p;
-
-        return pageData;
-      })
-      .flat();
+    return pages.flat();
   }, [pages]);
 
   return useMemo(() => {
@@ -172,10 +150,7 @@ export function useFundersInfinity(
 ****************************************
 */
 
-export function useFunder(
-  id: string,
-  queryOptions: UseQueryOptions<FunderResponseData, unknown> = {}
-) {
+export function useFunder(id: string, queryOptions: UseQueryOptions<Funder, unknown> = {}) {
   const fetch = () => fetchFunder(id);
   const query = useQuery(['funder', id], fetch, {
     enabled: !!id,
@@ -183,12 +158,5 @@ export function useFunder(
     ...queryOptions,
   });
 
-  const { data } = query;
-
-  return useMemo(() => {
-    return {
-      ...query,
-      data: data?.data,
-    };
-  }, [query, data]);
+  return query;
 }

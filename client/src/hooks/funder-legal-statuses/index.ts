@@ -2,11 +2,13 @@ import { useMemo } from 'react';
 
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
+import { FunderLegalStatus } from 'types/funder-legal-status';
+
 import API from 'services/api';
 
-import { ResponseData } from './types';
-
-export function useFunderLegalStatuses(queryOptions: UseQueryOptions<ResponseData, unknown> = {}) {
+export function useFunderLegalStatuses(
+  queryOptions: UseQueryOptions<FunderLegalStatus[], unknown> = {}
+) {
   const fetchFundersLegalStatuses = () =>
     API.request({
       method: 'GET',
@@ -23,11 +25,11 @@ export function useFunderLegalStatuses(queryOptions: UseQueryOptions<ResponseDat
   const { data } = query;
 
   const DATA = useMemo(() => {
-    if (!data?.data) {
+    if (!data) {
       return [];
     }
 
-    return data?.data.sort((a, b) => {
+    return data.sort((a, b) => {
       return a.name > b.name ? 1 : -1;
     });
   }, [data]);

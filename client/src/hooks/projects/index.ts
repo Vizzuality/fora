@@ -13,9 +13,9 @@ import {
 } from '@tanstack/react-query';
 import { orderBy, uniqBy } from 'lodash';
 
-import API from 'services/api';
+import { Project } from 'types/project';
 
-import { ProjectResponseData, ProjectsResponseData } from './types';
+import API from 'services/api';
 
 /**
 ****************************************
@@ -43,7 +43,7 @@ export const fetchProjects = (params: ParamsProps) => {
 */
 export function useProjects(
   params: ParamsProps = {},
-  queryOptions: UseQueryOptions<ProjectsResponseData, unknown> = {}
+  queryOptions: UseQueryOptions<Project[], unknown> = {}
 ) {
   const fetch = () =>
     fetchProjects({
@@ -58,22 +58,7 @@ export function useProjects(
     ...queryOptions,
   });
 
-  const { data } = query;
-
-  const DATA = useMemo(() => {
-    if (!data?.data) {
-      return [];
-    }
-
-    return data.data;
-  }, [data]);
-
-  return useMemo(() => {
-    return {
-      ...query,
-      data: DATA,
-    };
-  }, [query, DATA]);
+  return query;
 }
 
 /**
@@ -81,7 +66,7 @@ export function useProjects(
   PROJECTS FILTERED BY GEOGRAPHIC SCOPE
 ****************************************
 */
-export function useProjectsByGeographicScope(view: View, data: ProjectsResponseData['data'] = []) {
+export function useProjectsByGeographicScope(view: View, data: Project[] = []) {
   const DATA = useMemo(() => {
     if (!data) {
       return [];
@@ -125,7 +110,7 @@ export function useProjectsByGeographicScope(view: View, data: ProjectsResponseD
 */
 export function useProjectsInfinity(
   params: ParamsProps = {},
-  queryOptions: UseInfiniteQueryOptions<ProjectsResponseData, unknown> = {}
+  queryOptions: UseInfiniteQueryOptions<Project[], unknown> = {}
 ) {
   const fetch = ({ pageParam = 1 }) => fetchProjects({ ...params, page: pageParam });
 
@@ -148,13 +133,7 @@ export function useProjectsInfinity(
       return [];
     }
 
-    return pages
-      .map((p) => {
-        const { data: pageData } = p;
-
-        return pageData;
-      })
-      .flat();
+    return pages.flat();
   }, [pages]);
 
   return useMemo(() => {
@@ -171,10 +150,7 @@ export function useProjectsInfinity(
 ****************************************
 */
 
-export function useProject(
-  id: string,
-  queryOptions: UseQueryOptions<ProjectResponseData, unknown> = {}
-) {
+export function useProject(id: string, queryOptions: UseQueryOptions<Project, unknown> = {}) {
   const fetch = () => fetchProject(id);
 
   const query = useQuery(['project', id], fetch, {
@@ -183,12 +159,5 @@ export function useProject(
     ...queryOptions,
   });
 
-  const { data } = query;
-
-  return useMemo(() => {
-    return {
-      ...query,
-      data: data?.data,
-    };
-  }, [query, data]);
+  return query;
 }

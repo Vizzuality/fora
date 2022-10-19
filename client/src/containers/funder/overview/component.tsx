@@ -121,7 +121,7 @@ const FunderOverview = () => {
                     </div>
                   </Tooltip>
                 </span>
-                <dd>{funderType.name}</dd>
+                <dd>{funderType?.name}</dd>
               </div>
 
               <div key="application-status">
@@ -149,7 +149,7 @@ const FunderOverview = () => {
                     </div>
                   </Tooltip>
                 </span>
-                <dd>{funderType.name}</dd>
+                <dd>{funderType?.name}</dd>
               </div>
 
               <div key="capital-acceptance">
@@ -177,7 +177,7 @@ const FunderOverview = () => {
                     </div>
                   </Tooltip>
                 </span>
-                <dd>{funderType.name}</dd>
+                <dd>{funderType?.name}</dd>
               </div>
 
               <div key="capital-type">
@@ -205,7 +205,7 @@ const FunderOverview = () => {
                     </div>
                   </Tooltip>
                 </span>
-                <dd>{capitalType.name}</dd>
+                <dd>{capitalType?.name}</dd>
               </div>
             </>
           </dl>

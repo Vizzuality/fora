@@ -53,7 +53,7 @@ export async function getStaticProps(ctx) {
   // Props returned will be passed to the page component
   return {
     props: {
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))) || null,
+      dehydratedState: dehydrate(queryClient) || null,
     },
   };
 }
