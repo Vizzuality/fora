@@ -36,8 +36,6 @@ export async function getStaticPaths() {
     params: { id: `${f.id}` },
   }));
 
-  // console.log('paths', paths);
-
   return {
     paths,
     fallback: false, // can also be true or 'blocking'

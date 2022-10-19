@@ -1,5 +1,8 @@
-export interface UseProjectsOptionsProps {
-  search?: string;
-  sort?: string;
-  filters?: Record<string, any>;
+import { Project } from 'types/project';
+export interface ProjectsResponseData {
+  data: Project[];
+}
+
+export interface ProjectResponseData {
+  data: Project;
 }

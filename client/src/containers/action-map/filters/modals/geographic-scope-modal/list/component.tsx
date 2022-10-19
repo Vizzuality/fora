@@ -23,7 +23,7 @@ export const GeographicScopeList: React.FC<GeographicScopeListFooterProps> = ({}
     isFetching: subgeographicIsFetching,
     isFetched: subgeographicIsFetched,
   } = useSubGeographics({
-    filters: { geographic },
+    filters: { geographic, only_active: geographic === 'countries' },
   });
 
   const COLUMNS = useMemo(() => {

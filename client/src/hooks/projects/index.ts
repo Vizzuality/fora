@@ -1,57 +1,61 @@
 import { useMemo } from 'react';
 
-import { jsonPlaceholderAdapter } from 'lib/adapters/json-placeholder-adapter';
+import { jsonAPIAdapter } from 'lib/adapters/json-api-adapter';
 import { ParamsProps } from 'lib/adapters/types';
 
 import { View } from 'store/action-map';
 
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
-import { groupBy, orderBy } from 'lodash';
+import {
+  useInfiniteQuery,
+  UseInfiniteQueryOptions,
+  useQuery,
+  UseQueryOptions,
+} from '@tanstack/react-query';
+import { orderBy, uniqBy } from 'lodash';
 
-import API_FAKE from 'services/api-fake';
+import API from 'services/api';
 
-import MOCK from './mock.json';
-import { UseProjectsOptionsProps } from './types';
+import { ProjectResponseData, ProjectsResponseData } from './types';
 
+/**
+****************************************
+  FETCH FUNCTIONS
+****************************************
+*/
 export const fetchProject = (id: string) =>
-  API_FAKE.request({
+  API.request({
     method: 'GET',
-    url: `/todos/${id}`,
+    url: `/projects/${id}`,
   }).then((response) => response.data);
 
-export function useProjects(options: UseProjectsOptionsProps = {}) {
-  const { filters = {}, search, sort } = options;
+export const fetchProjects = (params: ParamsProps) => {
+  return API.request({
+    method: 'GET',
+    url: '/projects',
+    params: jsonAPIAdapter(params),
+  }).then((response) => response.data);
+};
 
-  const parsedFilters = Object.keys(filters).reduce((acc, k) => {
-    if (filters[k] && Array.isArray(filters[k]) && !filters[k].length) {
-      return acc;
-    }
-
-    return {
-      ...acc,
-      [`filter[${k}]`]: filters[k] && filters[k].toString ? filters[k].toString() : filters[k],
-    };
-  }, {});
-
-  const fetchProjects = () =>
-    API_FAKE.request({
-      method: 'GET',
-      url: '/todos',
-      params: {
-        ...parsedFilters,
-        ...(search && {
-          q: search,
-        }),
-        ...(sort && {
-          sort,
-        }),
-      },
+/**
+****************************************
+  PROJECTS
+****************************************
+*/
+export function useProjects(
+  params: ParamsProps = {},
+  queryOptions: UseQueryOptions<ProjectsResponseData, unknown> = {}
+) {
+  const fetch = () =>
+    fetchProjects({
+      ...params,
+      disablePagination: true,
     });
 
-  const query = useQuery(['projects', JSON.stringify(options)], fetchProjects, {
-    keepPreviousData: true,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+  const query = useQuery(['projects', JSON.stringify(params)], fetch, {
+    placeholderData: {
+      data: [],
+    },
+    ...queryOptions,
   });
 
   const { data } = query;
@@ -61,14 +65,7 @@ export function useProjects(options: UseProjectsOptionsProps = {}) {
       return [];
     }
 
-    return data.data.map((f) => {
-      const randomIndex = Math.floor(Math.random() * MOCK.length);
-
-      return {
-        ...f,
-        ...MOCK[randomIndex],
-      };
-    });
+    return data.data;
   }, [data]);
 
   return useMemo(() => {
@@ -79,94 +76,66 @@ export function useProjects(options: UseProjectsOptionsProps = {}) {
   }, [query, DATA]);
 }
 
-export function useProjectsByGeographicScope(view: View, options: UseProjectsOptionsProps = {}) {
-  const { data, ...query } = useProjects(options);
-
-  const GROUP_BY_KEY = useMemo(() => {
-    switch (view) {
-      case 'regions':
-        return 'region_id';
-      case 'states':
-        return 'state_id';
-      case 'countries':
-        return 'country_id';
-    }
-  }, [view]);
-
-  const NAME_KEY = useMemo(() => {
-    switch (view) {
-      case 'regions':
-        return 'region_name';
-      case 'states':
-        return 'state_name';
-      case 'countries':
-        return 'country_name';
-    }
-  }, [view]);
-
+/**
+****************************************
+  PROJECTS FILTERED BY GEOGRAPHIC SCOPE
+****************************************
+*/
+export function useProjectsByGeographicScope(view: View, data: ProjectsResponseData['data'] = []) {
   const DATA = useMemo(() => {
     if (!data) {
       return [];
     }
 
-    const groupedData = groupBy(data, GROUP_BY_KEY);
-
-    return orderBy(
-      Object.keys(groupedData).map((key) => {
-        return {
-          id: key,
-          name: groupedData[key][0][NAME_KEY],
-          count: groupedData[key].length,
-          items: groupedData[key],
-        };
-      }),
+    const SUBGEOGRAPHICS = orderBy(
+      // Extract subgeographics from projects
+      uniqBy(
+        data
+          .map((project) => project.subgeographic_ancestors.find((s) => s.geographic === view))
+          .filter((g) => g),
+        'id'
+      )
+        // Add projects to subgeographics
+        .map((sgeo) => {
+          const items = data.filter((project) =>
+            project.subgeographic_ancestors.find((s) => s.id === sgeo.id)
+          );
+          return {
+            ...sgeo,
+            id: sgeo.abbreviation,
+            items,
+            count: items.length,
+          };
+        }),
+      // Sort by count and name
       ['count', 'name'],
       ['desc', 'asc']
     );
-  }, [data, GROUP_BY_KEY, NAME_KEY]);
 
-  return useMemo(() => {
-    return {
-      ...query,
-      data: DATA,
-    };
-  }, [query, DATA]);
+    return SUBGEOGRAPHICS;
+  }, [view, data]);
+
+  return DATA;
 }
 
-export function useProjectsInfinity(options: ParamsProps = {}) {
-  const {
-    filters = {},
-    search,
-    sort = {
-      field: 'title',
-      order: 'desc',
-    },
-    perPage = 20,
-  } = options;
+/**
+****************************************
+  PROJECTS INFINITY
+****************************************
+*/
+export function useProjectsInfinity(
+  params: ParamsProps = {},
+  queryOptions: UseInfiniteQueryOptions<ProjectsResponseData, unknown> = {}
+) {
+  const fetch = ({ pageParam = 1 }) => fetchProjects({ ...params, page: pageParam });
 
-  const fetchProjects = ({ pageParam = 1 }) =>
-    API_FAKE.request({
-      method: 'GET',
-      url: '/todos',
-      params: jsonPlaceholderAdapter({
-        filters,
-        search,
-        sort,
-        page: pageParam,
-        perPage,
-      }),
-    });
-
-  const query = useInfiniteQuery(['infinite-projects', JSON.stringify(options)], fetchProjects, {
-    retry: false,
-    keepPreviousData: true,
+  const query = useInfiniteQuery(['infinite-projects', JSON.stringify(params)], fetch, {
+    ...queryOptions,
     getNextPageParam: (lastPage) => {
-      const {
-        data: { meta = {} },
-      } = lastPage;
-      const { page = 1, totalPages = 10 } = meta;
+      const { meta = {} } = lastPage;
+      const { page = 1, pages = 10 } = meta;
 
-      const nextPage = page + 1 > totalPages ? null : page + 1;
+      const nextPage = page + 1 > pages ? null : page + 1;
       return nextPage;
     },
   });
@@ -183,16 +152,7 @@ export function useProjectsInfinity(options: ParamsProps = {}) {
       .map((p) => {
         const { data: pageData } = p;
 
-        return pageData.map((f) => {
-          const randomIndex = Math.floor(Math.random() * MOCK.length);
-
-          return {
-            ...f,
-            ...MOCK[randomIndex],
-            name: f.name || f.title,
-            description: f.description || f.body,
-          };
-        });
+        return pageData;
       })
       .flat();
   }, [pages]);
@@ -211,16 +171,16 @@ export function useProjectsInfinity(options: ParamsProps = {}) {
 ****************************************
 */
 
-export function useProject(id: string) {
+export function useProject(
+  id: string,
+  queryOptions: UseQueryOptions<ProjectResponseData, unknown> = {}
+) {
   const fetch = () => fetchProject(id);
 
   const query = useQuery(['project', id], fetch, {
     enabled: !!id,
-    retry: false,
-    keepPreviousData: true,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
     placeholderData: {},
+    ...queryOptions,
   });
 
   const { data } = query;
@@ -228,7 +188,7 @@ export function useProject(id: string) {
   return useMemo(() => {
     return {
       ...query,
-      data: data,
+      data: data?.data,
     };
   }, [query, data]);
 }

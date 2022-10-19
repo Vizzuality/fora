@@ -6,11 +6,11 @@ import { useAppSelector } from 'store/hooks';
 
 import CHROMA from 'chroma-js';
 
-// import type { Project } from 'hooks/projects/types';
-
 import { MAP_RAMP } from 'constants/colors';
 
-const ListItem = ({ id, title }) => {
+import { Project } from 'types/project';
+
+const ListItem: React.FC<Project> = ({ id, name, investments }) => {
   const { push } = useRouter();
   const { type } = useAppSelector((state) => state['/action-map']);
 
@@ -34,9 +34,9 @@ const ListItem = ({ id, title }) => {
           className="block w-3 h-3 mt-1 rounded-full shrink-0"
           style={{ backgroundColor: COLOR }}
         />
-        <span>{title}</span>
+        <span>{name}</span>
       </h5>
-      <span className="block font-bold">{Math.ceil(Math.random() * 20)}</span>
+      <span className="block font-bold">{investments.length}</span>
     </li>
   );
 };

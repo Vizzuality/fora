@@ -3,21 +3,21 @@ export function getStyles(color, selected: boolean, count: number) {
     if (!count) return '#F1F1F1';
     if (!selected) return '#F1F1F1';
 
-    return color;
+    return color.hex();
   };
 
   const getHoverFill = () => {
     if (!count) return '#efefef';
     if (!selected) return '#efefef';
 
-    return color.brighten(0.1);
+    return color.brighten(0.1).hex();
   };
 
   const getPressedFill = () => {
     if (!count) return '#e9e9e9';
     if (!selected) return '#e9e9e9';
 
-    return color.brighten(0.2);
+    return color.brighten(0.2).hex();
   };
 
   return {

@@ -22,9 +22,9 @@ export const MoreFiltersList = () => {
         )}
 
         {type === 'projects' && (
-          <>
+          <div className="px-10 divide-y divide-grey-40/50">
             <ProjectLegalStatus />
-          </>
+          </div>
         )}
       </div>
 
