@@ -17,11 +17,17 @@ class Subgeographic < ApplicationRecord
 
   validates :geographic, inclusion: {in: Geographic::TYPES, allow_blank: true}, presence: true
   validates_uniqueness_of :name, scope: %i[geographic parent_id], case_sensitive: false, allow_blank: true
+  validates_uniqueness_of :code, scope: :geographic
   validates_presence_of :name, :code
 
   Geographic::TYPES.each do |geographic|
     scope geographic, -> { where(geographic: geographic) }
   end
+  scope :only_active, -> {
+    recipients = RecipientSubgeographic.select("subgeographic_id").to_sql
+    funders = FunderSubgeographic.select("subgeographic_id").to_sql
+    where(id: SubgeographicHierarchy.where("descendant_id IN (#{recipients} UNION #{funders})").select(:ancestor_id))
+  }
 
   after_commit :invalidate_cache
 
@@ -31,9 +37,9 @@ class Subgeographic < ApplicationRecord
 
   def self.as_geojson(geographic)
     Rails.cache.fetch "geojson-#{geographic}", expires_in: 1.day do
-      features = select("subgeographics.id, name, code, parent_id, ST_AsGeoJSON(geometry)::json as geom")
+      features = select("subgeographics.id, name, code, abbreviation, parent_id, ST_AsGeoJSON(geometry)::json as geom")
         .joins(:subgeographic_geometry).where(geographic: geographic).map do |s|
-        {type: "Feature", geometry: s.geom, properties: {id: s.id, code: s.code, name: s.name, parent_id: s.parent_id}}
+        {type: "Feature", geometry: s.geom, properties: {id: s.id, code: s.code, name: s.name, abbreviation: s.abbreviation, parent_id: s.parent_id}}
       end
       {type: "FeatureCollection", features: features}
     end

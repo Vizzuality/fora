@@ -24,8 +24,10 @@ RSpec.describe Importers::Subgeographics::Regions do
 
       it "creates correct regions" do
         expect(region_alaska.name).to eq("Alaska")
+        expect(region_alaska.abbreviation).to eq("R-AL")
         expect(region_alaska.parent.code).to eq("USA")
         expect(region_mid_atlantic.name).to eq("Mid-Atlantic")
+        expect(region_mid_atlantic.abbreviation).to eq("R-MA")
         expect(region_mid_atlantic.parent.code).to eq("USA")
       end
 

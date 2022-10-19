@@ -1,1 +1,1 @@
-{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"USA","name":"United States","label":"United States"},"geometry":{"type":"Polygon","coordinates":[[[100.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]]}}]}
+{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"id":"N-USA","code":"USA","name":"United States","label":"United States"},"geometry":{"type":"Polygon","coordinates":[[[100.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]]]}}]}

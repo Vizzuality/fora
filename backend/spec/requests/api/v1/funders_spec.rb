@@ -6,24 +6,26 @@ RSpec.describe "API V1 Funders", type: :request do
       tags "Funders"
       consumes "application/json"
       produces "application/json"
-      parameter name: "filter[subgeographic_ids]", in: :query, type: :array, items: {type: :string}, description: "Filter results only for specified subgeographics", required: false
-      parameter name: "filter[geographics]", in: :query, type: :array, items: {type: :string}, description: "Filter results only for specified geographics", required: false
-      parameter name: "filter[areas]", in: :query, type: :array, items: {type: :string, enum: Area::TYPES}, description: "Filter results only for specified areas", required: false
-      parameter name: "filter[demographics]", in: :query, type: :array, items: {type: :string, enum: Demographic::TYPES}, description: "Filter results only for specified demographics", required: false
-      parameter name: "filter[funder_types]", in: :query, type: :array, items: {type: :string, enum: FunderType::TYPES}, description: "Filter results only for specified funder types", required: false
-      parameter name: "filter[capital_types]", in: :query, type: :array, items: {type: :string, enum: CapitalType::TYPES}, description: "Filter results only for specified capital types", required: false
-      parameter name: "filter[funder_legal_status]", in: :query, type: :string, enum: FunderLegalStatus::TYPES, description: "Filter results only for specified funder legal status", required: false
+      parameter name: "filter[subgeographics]", in: :query, type: :string, description: "Filter results only for specified subgeographics. Use comma to separate multiple fields", required: false
+      parameter name: "filter[geographic]", in: :query, type: :string, description: "Filter results only for specified geographic", required: false
+      parameter name: "filter[areas]", in: :query, type: :string, enum: Area::TYPES, description: "Filter results only for specified areas. Use comma to separate multiple fields", required: false
+      parameter name: "filter[demographics]", in: :query, type: :string, enum: Demographic::TYPES, description: "Filter results only for specified demographics. Use comma to separate multiple fields", required: false
+      parameter name: "filter[funder_types]", in: :query, type: :string, enum: FunderType::TYPES, description: "Filter results only for specified funder types. Use comma to separate multiple fields", required: false
+      parameter name: "filter[capital_types]", in: :query, type: :string, enum: CapitalType::TYPES, description: "Filter results only for specified capital types. Use comma to separate multiple fields", required: false
+      parameter name: "filter[funder_legal_statuses]", in: :query, type: :string, enum: FunderLegalStatus::TYPES, description: "Filter results only for specified funder legal status. Use comma to separate multiple fields", required: false
       parameter name: "filter[full_text]", in: :query, type: :string, description: "Filter records by provided text", required: false
       parameter name: "page[number]", in: :query, type: :integer, description: "Page number. Default: 1", required: false
       parameter name: "page[size]", in: :query, type: :integer, description: "Per page items. Default: 10", required: false
+      parameter name: "sort[attribute]", in: :query, type: :string, enum: API::V1::FundersController::SORTING_COLUMNS, description: "Attributes usable for sorting. Default: created_at", required: false
+      parameter name: "sort[direction]", in: :query, type: :string, enum: API::Sorting::SORTING_DIRECTIONS, description: "Possible directions of sorting. Default: desc", required: false
       parameter name: :disable_pagination, in: :query, type: :boolean, description: "Turn off pagination", required: false
       parameter name: "fields[funder]", in: :query, type: :string, description: "Get only required fields. Use comma to separate multiple fields", required: false
       parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
 
       let(:country) { create :subgeographic, geographic: :countries }
       let!(:national) { create :subgeographic, geographic: :national, parent: country }
-      let!(:funders) { create_list :funder, 3, areas: ["equity_and_justice"] }
-      let!(:funder) { create :funder, subgeographics: [national], areas: ["food_sovereignty"] }
+      let!(:funders) { create_list :funder, 3, areas: ["equity_and_justice"], funder_type: "advisory" }
+      let!(:funder) { create :funder, subgeographics: [national], areas: ["food_sovereignty"], funder_type: "accelerator" }
 
       response "200", :success do
         schema type: :object, properties: {
@@ -31,6 +33,8 @@ RSpec.describe "API V1 Funders", type: :request do
           meta: {"$ref" => "#/components/schemas/pagination_meta", :nullable => true},
           links: {"$ref" => "#/components/schemas/pagination_links", :nullable => true}
         }
+        let("sort[attribute]") { "name" }
+        let("sort[direction]") { "asc" }
 
         run_test!
 
@@ -69,7 +73,7 @@ RSpec.describe "API V1 Funders", type: :request do
         end
 
         context "when filtered for specific subgeographics" do
-          let("filter[subgeographic_ids]") { [national.id] }
+          let("filter[subgeographics]") { national.reload.abbreviation }
 
           it "returns only funders with correct subgeographics" do
             expect(response_json["data"].pluck("id")).to eq([funder.id])
@@ -77,7 +81,7 @@ RSpec.describe "API V1 Funders", type: :request do
         end
 
         context "when filtered for specific geographics" do
-          let("filter[geographics]") { [:national] }
+          let("filter[geographic]") { :national }
 
           it "returns only funders with correct geographics" do
             expect(response_json["data"].pluck("id")).to eq([funder.id])
@@ -85,29 +89,59 @@ RSpec.describe "API V1 Funders", type: :request do
         end
 
         context "when filtered for specified enums" do
-          let("filter[areas]") { ["food_sovereignty"] }
+          context "when used for array enums" do
+            let("filter[areas]") { "food_sovereignty" }
 
-          it "returns only funders at correct areas" do
-            expect(response_json["data"].pluck("id")).to eq([funder.id])
+            it "returns only funders at correct areas" do
+              expect(response_json["data"].pluck("id")).to eq([funder.id])
+            end
+          end
+
+          context "when used for string enums" do
+            let("filter[funder_types]") { "accelerator" }
+
+            it "returns only funders of correct funder type" do
+              expect(response_json["data"].pluck("id")).to eq([funder.id])
+            end
           end
         end
 
         context "when filtered by full text search" do
           let("filter[full_text]") { funder.name }
 
-          it "returns only funders at correct areas" do
+          it "returns only funders with appropriate name" do
             expect(response_json["data"].pluck("id")).to eq([funder.id])
           end
         end
 
         context "when combining multiple filters" do
-          let("filter[subgeographic_ids]") { [national.id] }
-          let("filter[geographics]") { [:national] }
-          let("filter[areas]") { ["food_sovereignty"] }
+          let("filter[subgeographics]") { national.abbreviation }
+          let("filter[geographic]") { :national }
+          let("filter[areas]") { "food_sovereignty" }
           let("filter[full_text]") { funder.name }
 
           it "returns only funders which are true for all filters" do
             expect(response_json["data"].pluck("id")).to eq([funder.id])
+          end
+        end
+
+        context "when sorting by projects count" do
+          let(:funder_1) { funders.second }
+          let(:funder_2) { funders.first }
+          let(:funder_3) { funder }
+          let!(:investments_1) { create_list :investment, 3, funder: funder_1 }
+          let!(:investments_2) { create_list :investment, 2, funder: funder_2 }
+          let!(:investments_3) { create_list :investment, 1, funder: funder_3 }
+
+          let("sort[attribute]") { "projects_count" }
+          let("sort[direction]") { "desc" }
+
+          run_test!
+
+          it "returns correctly sorted result" do
+            expect(response_json["data"].first["id"]).to eq(funder_1.id)
+            expect(response_json["data"].second["id"]).to eq(funder_2.id)
+            expect(response_json["data"].third["id"]).to eq(funder_3.id)
           end
         end
       end
@@ -126,6 +160,7 @@ RSpec.describe "API V1 Funders", type: :request do
       let(:country) { create :subgeographic, geographic: :countries }
       let!(:national) { create :subgeographic, geographic: :national, parent: country }
       let!(:funder) { create :funder, subgeographics: [national] }
+      let!(:invisible_investment) { create :investment, funder: funder, visible: false }
       let(:id) { funder.id }
 
       it_behaves_like "with not found error"
@@ -137,6 +172,10 @@ RSpec.describe "API V1 Funders", type: :request do
 
         it "matches snapshot", generate_swagger_example: true do
           expect(response.body).to match_snapshot("api/v1/get-funder")
+        end
+
+        it "does not show invisible investment" do
+          expect(response_json["data"]["relationships"]["investments"]["data"].pluck("id")).not_to include(invisible_investment.id)
         end
 
         context "with sparse fieldset" do

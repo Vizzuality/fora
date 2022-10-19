@@ -1,0 +1,201 @@
+{
+  "data": [
+    {
+      "id": "c0411e15-9bcc-4a14-96fa-b261de63881f",
+      "type": "project",
+      "attributes": {
+        "name": "Elbert Denesik"
+      },
+      "relationships": {
+        "subgeographics": {
+          "data": [
+            {
+              "id": "97967246-5610-412d-bd9e-618457274e6d",
+              "type": "subgeographic"
+            }
+          ]
+        },
+        "investments": {
+          "data": [
+            {
+              "id": "c8ff1d98-f5ff-4d84-a254-186453141979",
+              "type": "investment"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "fbba9bd8-9297-4a9e-8ed5-edfc7f6318b1",
+      "type": "project",
+      "attributes": {
+        "name": "Msgr. Genaro Cronin"
+      },
+      "relationships": {
+        "subgeographics": {
+          "data": [
+
+          ]
+        },
+        "investments": {
+          "data": [
+
+          ]
+        }
+      }
+    },
+    {
+      "id": "921482cd-2b78-4fb0-adde-9d9f25e324b5",
+      "type": "project",
+      "attributes": {
+        "name": "Otha Kemmer"
+      },
+      "relationships": {
+        "subgeographics": {
+          "data": [
+
+          ]
+        },
+        "investments": {
+          "data": [
+            {
+              "id": "0664da55-c1d2-4631-8987-67b9ff5fd05d",
+              "type": "investment"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "3fd5c235-6ed1-43df-b806-d443e2c6702a",
+      "type": "project",
+      "attributes": {
+        "name": "Raymon Wisoky"
+      },
+      "relationships": {
+        "subgeographics": {
+          "data": [
+
+          ]
+        },
+        "investments": {
+          "data": [
+
+          ]
+        }
+      }
+    }
+  ],
+  "included": [
+    {
+      "id": "208e4725-7028-4866-82c6-8f15f7aa836f",
+      "type": "subgeographic",
+      "attributes": {
+        "name": "Papua New Guinea",
+        "code": "NPL",
+        "geographic": "national",
+        "abbreviation": "N-NPL",
+        "created_at": "2022-10-14T08:17:12.363Z",
+        "updated_at": "2022-10-14T08:17:12.363Z"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "9652466e-6f30-436a-b3c2-7211a419e8d5",
+            "type": "subgeographic"
+          }
+        },
+        "subgeographics": {
+          "data": [
+
+          ]
+        }
+      }
+    },
+    {
+      "id": "c8ff1d98-f5ff-4d84-a254-186453141979",
+      "type": "investment",
+      "attributes": {
+        "amount": "98.63",
+        "year_invested": 2021,
+        "initial_funded_year": 2021,
+        "funding_type": "general_operating_support",
+        "funding_type_other": "Placeat commodi libero et.",
+        "capital_types": [
+          "grants",
+          "forgivable_loans"
+        ],
+        "areas": [
+          "food_sovereignty"
+        ],
+        "areas_other": "Placeat commodi libero et.",
+        "grant_duration": "one_year",
+        "grant_duration_other": "Placeat commodi libero et.",
+        "number_of_grant_years": 1
+      },
+      "relationships": {
+        "funder": {
+          "data": {
+            "id": "570de809-8023-41fb-bf24-dd57c450cc3a",
+            "type": "funder"
+          }
+        },
+        "project": {
+          "data": {
+            "id": "773237c0-2c69-4829-9a2a-0694fd4e70ba",
+            "type": "project"
+          }
+        }
+      }
+    },
+    {
+      "id": "0664da55-c1d2-4631-8987-67b9ff5fd05d",
+      "type": "investment",
+      "attributes": {
+        "amount": "68.96",
+        "year_invested": 2020,
+        "initial_funded_year": 2020,
+        "funding_type": "program_or_project_specific",
+        "funding_type_other": "Enim repellat pariatur est.",
+        "capital_types": [
+          "re_grants",
+          "pris"
+        ],
+        "areas": [
+          "equity_and_justice"
+        ],
+        "areas_other": "Enim repellat pariatur est.",
+        "grant_duration": "multi_year",
+        "grant_duration_other": "Enim repellat pariatur est.",
+        "number_of_grant_years": 4
+      },
+      "relationships": {
+        "funder": {
+          "data": {
+            "id": "fa1a7bef-4f26-4ba2-991f-3e7b69d551f5",
+            "type": "funder"
+          }
+        },
+        "project": {
+          "data": {
+            "id": "3b3b29d0-bcd1-4f8e-988c-61be5d96acd6",
+            "type": "project"
+          }
+        }
+      }
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "per_page": 10,
+    "from": 1,
+    "to": 4,
+    "total": 4,
+    "pages": 1
+  },
+  "links": {
+    "first": "/api/v1/projects?page%5Bsize%5D=10",
+    "self": "/api/v1/projects?page%5Bnumber%5D=1&page%5Bsize%5D=10",
+    "last": "/api/v1/projects?page%5Bnumber%5D=1&page%5Bsize%5D=10"
+  }
+}

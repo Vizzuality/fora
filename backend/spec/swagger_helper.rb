@@ -42,24 +42,24 @@ RSpec.configure do |config|
                   website: {type: :string, nullable: true},
                   date_joined_fora: {type: :string},
                   funder_type: {type: :string, enum: FunderType::TYPES},
-                  funder_type_other: {type: :string},
+                  funder_type_other: {type: :string, nullable: true},
                   capital_acceptances: {type: :array, items: {type: :string, enum: CapitalAcceptance::TYPES}},
-                  capital_acceptances_other: {type: :string},
+                  capital_acceptances_other: {type: :string, nullable: true},
                   leadership_demographics: {type: :array, items: {type: :string, enum: Demographic::TYPES}},
-                  leadership_demographics_other: {type: :string},
+                  leadership_demographics_other: {type: :string, nullable: true},
                   number_staff_employees: {type: :number},
                   application_status: {type: :string, enum: ApplicationStatus::TYPES},
                   funder_legal_status: {type: :string, enum: FunderLegalStatus::TYPES},
-                  funder_legal_status_other: {type: :string},
+                  funder_legal_status_other: {type: :string, nullable: true},
                   new_to_regenerative_ag: {type: :boolean},
                   networks: {type: :string, nullable: true},
                   capital_types: {type: :array, items: {type: :string, enum: CapitalType::TYPES}},
-                  capital_types_other: {type: :string},
+                  capital_types_other: {type: :string, nullable: true},
                   spend_down_strategy: {type: :boolean},
                   areas: {type: :array, items: {type: :string, enum: Area::TYPES}},
-                  areas_other: {type: :string},
+                  areas_other: {type: :string, nullable: true},
                   demographics: {type: :array, items: {type: :string, enum: Demographic::TYPES}},
-                  demographics_other: {type: :string},
+                  demographics_other: {type: :string, nullable: true},
                   contact_email: {type: :string},
                   logo: {"$ref" => "#/components/schemas/image_blob", :nullable => true}
                 }
@@ -70,7 +70,42 @@ RSpec.configure do |config|
                   primary_office_state: {"$ref" => "#/components/schemas/nullable_response_relation"},
                   primary_office_country: {"$ref" => "#/components/schemas/response_relation"},
                   subgeographics: {"$ref" => "#/components/schemas/response_relations"},
-                  subgeographic_ancestors: {"$ref" => "#/components/schemas/response_relations"}
+                  subgeographic_ancestors: {"$ref" => "#/components/schemas/response_relations"},
+                  investments: {"$ref" => "#/components/schemas/response_relations"}
+                }
+              }
+            },
+            required: %w[id type attributes relationships]
+          },
+          project: {
+            type: :object,
+            properties: {
+              id: {type: :string},
+              type: {type: :string},
+              attributes: {
+                type: :object,
+                properties: {
+                  name: {type: :string, nullable: true},
+                  description: {type: :string, nullable: true},
+                  recipient_name: {type: :string},
+                  website: {type: :string, nullable: true},
+                  leadership_demographics: {type: :array, items: {type: :string, enum: Demographic::TYPES}},
+                  leadership_demographics_other: {type: :string, nullable: true},
+                  demographics: {type: :array, items: {type: :string, enum: Demographic::TYPES}},
+                  demographics_other: {type: :string, nullable: true},
+                  recipient_legal_status: {type: :string, enum: RecipientLegalStatus::TYPES, nullable: true},
+                  recipient_legal_status_other: {type: :string, nullable: true},
+                  logo: {"$ref" => "#/components/schemas/image_blob", :nullable => true}
+                }
+              },
+              relationships: {
+                type: :object,
+                properties: {
+                  state: {"$ref" => "#/components/schemas/nullable_response_relation"},
+                  country: {"$ref" => "#/components/schemas/response_relation"},
+                  subgeographics: {"$ref" => "#/components/schemas/response_relations"},
+                  subgeographic_ancestors: {"$ref" => "#/components/schemas/response_relations"},
+                  investments: {"$ref" => "#/components/schemas/response_relations"}
                 }
               }
             },

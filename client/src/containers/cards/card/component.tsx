@@ -7,39 +7,23 @@ import { useRouter } from 'next/router';
 
 import Icon from 'components/icon';
 
-import INFO_SVG from 'svgs/ui/location.svg?sprite';
+import LOCATION_SVG from 'svgs/ui/location.svg?sprite';
 
 import { THEME } from './constants';
 export interface CardProps {
   id: string;
   name: string;
-  location: string;
+  location?: string;
   href?: string;
-  areas?: {
-    id: string;
-    name: string;
-  }[];
-  theme: 'green' | 'grey';
+  areas?: string[];
+  theme?: 'green' | 'grey';
 }
 
 const Cards = ({
   name,
   location,
   href = '',
-  areas = [
-    {
-      id: '1',
-      name: 'Area 1',
-    },
-    {
-      id: '2',
-      name: 'Area 2',
-    },
-    {
-      id: '3',
-      name: 'Area 3',
-    },
-  ],
+  areas = ['area', 'area2', 'area3'],
   theme = 'grey',
 }: CardProps) => {
   const { pathname } = useRouter();
@@ -64,7 +48,7 @@ const Cards = ({
 
         <div className="flex space-x-2">
           <Icon
-            icon={INFO_SVG}
+            icon={LOCATION_SVG}
             className={cx({
               'w-5 h-5 text-black': true,
             })}
@@ -74,7 +58,7 @@ const Cards = ({
       </div>
 
       <div className="border-t divide-y divide-grey-40/50 border-grey-40/50">
-        <div className="py-4">{areas.map((a) => a.name).join(' • ')}</div>
+        <div className="py-4">{areas.join(' • ')}</div>
 
         <div className="pt-4">
           <Link href={href}>

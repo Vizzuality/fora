@@ -32,9 +32,10 @@
       },
       "properties": {
         "id": "1c180583-dcc1-413a-b077-d9d9dea4043b",
-        "code": "Papua New Guinea",
+        "code": "NPL",
         "name": "Papua New Guinea",
-        "parent_id": "d4d77123-fcac-4505-a7fa-89c21ceb39a8"
+        "parent_id": "d4d77123-fcac-4505-a7fa-89c21ceb39a8",
+        "abbreviation": "R-NPL"
       }
     },
     {
@@ -68,9 +69,10 @@
       },
       "properties": {
         "id": "ab4f5dd6-b983-4bd8-bcab-a4f9e45a447d",
-        "code": "Jamaica",
+        "code": "IRL",
         "name": "Jamaica",
-        "parent_id": "d4d77123-fcac-4505-a7fa-89c21ceb39a8"
+        "parent_id": "d4d77123-fcac-4505-a7fa-89c21ceb39a8",
+        "abbreviation": "R-IRL"
       }
     }
   ]

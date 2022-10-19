@@ -87,11 +87,11 @@ const How = () => {
                               </div>
                             }
                           >
-                            <div>
+                            <div className="w-5 h-5 bg-black rounded-full">
                               <Icon
                                 icon={INFO_SVG}
                                 className={cx({
-                                  'w-5 h-5 text-black': true,
+                                  'w-5 h-5 text-white': true,
                                 })}
                               />
                             </div>
@@ -116,11 +116,11 @@ const How = () => {
                               </div>
                             }
                           >
-                            <div>
+                            <div className="w-5 h-5 bg-black rounded-full">
                               <Icon
                                 icon={INFO_SVG}
                                 className={cx({
-                                  'w-5 h-5 text-black': true,
+                                  'w-5 h-5 text-white': true,
                                 })}
                               />
                             </div>
@@ -145,11 +145,11 @@ const How = () => {
                               </div>
                             }
                           >
-                            <div>
+                            <div className="w-5 h-5 bg-black rounded-full">
                               <Icon
                                 icon={INFO_SVG}
                                 className={cx({
-                                  'w-5 h-5 text-black': true,
+                                  'w-5 h-5 text-white': true,
                                 })}
                               />
                             </div>
@@ -210,11 +210,11 @@ const How = () => {
                               </div>
                             }
                           >
-                            <div>
+                            <div className="w-5 h-5 bg-black rounded-full">
                               <Icon
                                 icon={INFO_SVG}
                                 className={cx({
-                                  'w-5 h-5 text-black': true,
+                                  'w-5 h-5 text-white': true,
                                 })}
                               />
                             </div>
@@ -239,11 +239,11 @@ const How = () => {
                               </div>
                             }
                           >
-                            <div>
+                            <div className="w-5 h-5 bg-black rounded-full">
                               <Icon
                                 icon={INFO_SVG}
                                 className={cx({
-                                  'w-5 h-5 text-black': true,
+                                  'w-5 h-5 text-white': true,
                                 })}
                               />
                             </div>
@@ -268,11 +268,11 @@ const How = () => {
                               </div>
                             }
                           >
-                            <div>
+                            <div className="w-5 h-5 bg-black rounded-full">
                               <Icon
                                 icon={INFO_SVG}
                                 className={cx({
-                                  'w-5 h-5 text-black': true,
+                                  'w-5 h-5 text-white': true,
                                 })}
                               />
                             </div>

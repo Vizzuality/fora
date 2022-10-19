@@ -1,0 +1,57 @@
+{
+  "data": [
+    {
+      "id": "63f2bbe6-cc4b-416c-a216-4506ead70560",
+      "type": "project",
+      "attributes": {
+        "name": "Elbert Denesik",
+        "description": "Dolores fugiat nesciunt. Ut laborum dolores. Sit neque eos. Expedita molestiae quia."
+      },
+      "relationships": {
+      }
+    },
+    {
+      "id": "99631b70-8731-4c60-81ad-a730f6520b66",
+      "type": "project",
+      "attributes": {
+        "name": "Msgr. Genaro Cronin",
+        "description": "Placeat commodi libero. Quo recusandae repellat. Sunt commodi tempore. Voluptatem et corrupti."
+      },
+      "relationships": {
+      }
+    },
+    {
+      "id": "fc8bdb79-4d60-4500-b404-be8130b295c1",
+      "type": "project",
+      "attributes": {
+        "name": "Otha Kemmer",
+        "description": "Enim repellat pariatur. Earum modi eos. Libero tempora exercitationem. Qui dolorem quo."
+      },
+      "relationships": {
+      }
+    },
+    {
+      "id": "2404467d-8685-4d1b-b8d1-5d9341797bab",
+      "type": "project",
+      "attributes": {
+        "name": "Raymon Wisoky",
+        "description": "Et quaerat omnis. Harum voluptas atque. Quo nesciunt voluptas. Suscipit ex cum."
+      },
+      "relationships": {
+      }
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "per_page": 10,
+    "from": 1,
+    "to": 4,
+    "total": 4,
+    "pages": 1
+  },
+  "links": {
+    "first": "/api/v1/projects?page%5Bsize%5D=10",
+    "self": "/api/v1/projects?page%5Bnumber%5D=1&page%5Bsize%5D=10",
+    "last": "/api/v1/projects?page%5Bnumber%5D=1&page%5Bsize%5D=10"
+  }
+}

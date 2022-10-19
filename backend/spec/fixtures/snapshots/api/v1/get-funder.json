@@ -87,6 +87,19 @@
             "type": "subgeographic"
           }
         ]
+      },
+      "investments": {
+        "data": [
+
+        ]
+      },
+      "projects": {
+        "data": [
+          {
+            "id": "3dc8491f-fb12-4561-89db-893aa079a24a",
+            "type": "project"
+          }
+        ]
       }
     }
   }

@@ -1,9 +1,10 @@
 import { useMemo } from 'react';
 
+import { jsonAPIAdapter } from 'lib/adapters/json-api-adapter';
+import { ParamsProps } from 'lib/adapters/types';
+
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { FeatureCollection } from 'geojson';
-
-import { ParamsProps } from 'hooks/types';
 
 import API from 'services/api';
 
@@ -50,33 +51,11 @@ export function useSubGeographics(
   params: ParamsProps = {},
   queryOptions: UseQueryOptions<SubGeographicsResponseData, unknown> = {}
 ) {
-  const { filters = {}, search, sort, includes } = params;
-
-  const parsedFilters = Object.keys(filters).reduce((acc, k) => {
-    if (filters[k] && Array.isArray(filters[k]) && !filters[k].length) {
-      return acc;
-    }
-
-    return {
-      ...acc,
-      [`filter[${k}]`]: filters[k] && filters[k].toString ? filters[k].toString() : filters[k],
-    };
-  }, {});
-
   const fetchSubgeographics = () =>
     API.request({
       method: 'GET',
       url: '/subgeographics',
-      params: {
-        ...parsedFilters,
-        ...(includes && { includes }),
-        ...(search && {
-          q: search,
-        }),
-        ...(sort && {
-          sort,
-        }),
-      },
+      params: jsonAPIAdapter(params),
     }).then((response) => response.data);
 
   const query = useQuery(['subgeographics', JSON.stringify(params)], fetchSubgeographics, {
@@ -93,7 +72,13 @@ export function useSubGeographics(
       return [];
     }
 
-    return data?.data;
+    // Work with abbreviations instead of ids
+    return data?.data.map((subgeographic) => {
+      return {
+        ...subgeographic,
+        id: subgeographic.abbreviation,
+      };
+    });
   }, [data]);
 
   return useMemo(() => {
@@ -108,34 +93,12 @@ export function useSubGeographicsGeojson(
   params: ParamsProps = {},
   queryOptions: UseQueryOptions<FeatureCollection, unknown> = {}
 ) {
-  const { filters = {}, search, sort, includes } = params;
-
-  const parsedFilters = Object.keys(filters).reduce((acc, k) => {
-    if (filters[k] && Array.isArray(filters[k]) && !filters[k].length) {
-      return acc;
-    }
-
-    return {
-      ...acc,
-      [`filter[${k}]`]: filters[k] && filters[k].toString ? filters[k].toString() : filters[k],
-    };
-  }, {});
-
   const fetchSubgeographicsGeojson = () =>
     API.request({
       method: 'GET',
       url: '/subgeographics/geojson',
       transformResponse: (data) => JSON.parse(data),
-      params: {
-        ...parsedFilters,
-        ...(includes && { includes }),
-        ...(search && {
-          q: search,
-        }),
-        ...(sort && {
-          sort,
-        }),
-      },
+      params: jsonAPIAdapter(params),
     }).then((response) => response.data);
 
   const query = useQuery(

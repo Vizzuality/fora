@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Jsona from 'jsona';
+import qs from 'query-string';
 
 const dataFormatter = new Jsona();
 
@@ -16,6 +17,18 @@ const API = axios.create({
     } catch (error) {
       return data;
     }
+  },
+  paramsSerializer: (prms) => {
+    const parsedParams = Object.keys(prms).reduce((acc, key) => {
+      // Convert key to snake_case
+      const snakeKey = key.replace(/([A-Z])/g, '_$1').toLowerCase();
+
+      return {
+        ...acc,
+        [snakeKey]: prms[key],
+      };
+    }, {});
+    return qs.stringify(parsedParams, { arrayFormat: 'comma' });
   },
 });
 

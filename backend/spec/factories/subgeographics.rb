@@ -13,7 +13,7 @@ FactoryBot.define do
 
     sequence(:code) do |n|
       Faker::Config.random = Random.new(n)
-      Faker::Address.country
+      Faker::Address.country_code_long
     end
   end
 end

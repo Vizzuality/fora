@@ -22,6 +22,41 @@ RSpec.describe Subgeographic, type: :model do
 
   include_examples :static_relation_validations, attribute: :geographic, presence: true
 
+  describe "scopes" do
+    describe ".only_active" do
+      let!(:country) { create :subgeographic, geographic: :countries }
+      let!(:region) { create :subgeographic, geographic: :regions, parent: country }
+
+      it "ignores subgeographics which are not part of funder or recipient" do
+        expect(Subgeographic.only_active).to be_empty
+      end
+
+      context "when subgeographic is used by funder" do
+        let!(:funder) { create :funder, subgeographics: [region] }
+
+        it "returns region subgeographic" do
+          expect(Subgeographic.only_active).to include(region)
+        end
+
+        it "returns parent of region subgeographic (its country)" do
+          expect(Subgeographic.only_active).to include(country)
+        end
+      end
+
+      context "when subgeographic is used by recipient" do
+        let!(:recipient) { create :recipient, subgeographics: [country] }
+
+        it "returns country subgeographic" do
+          expect(Subgeographic.only_active).to include(country)
+        end
+
+        it "ignores child of country subgeographic (its region)" do
+          expect(Subgeographic.only_active).not_to include(region)
+        end
+      end
+    end
+  end
+
   describe ".as_geojson" do
     subject { described_class.as_geojson :regions }
 
@@ -38,6 +73,7 @@ RSpec.describe Subgeographic, type: :model do
       expect(subject[:features].first[:properties][:id]).to eq(region.id)
       expect(subject[:features].first[:properties][:code]).to eq(region.code)
       expect(subject[:features].first[:properties][:name]).to eq(region.name)
+      expect(subject[:features].first[:properties][:abbreviation]).to eq("R-#{region.code}")
       expect(subject[:features].first[:properties][:parent_id]).to eq(ignored_subgeographic.id)
     end
 

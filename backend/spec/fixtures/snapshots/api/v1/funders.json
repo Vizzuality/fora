@@ -15,7 +15,7 @@
         "primary_contact_role": "intermediary",
         "website": "http://hilpert.biz/drusilla",
         "date_joined_fora": "2022-02-11T00:00:00.000Z",
-        "funder_type": "private_foundation",
+        "funder_type": "accelerator",
         "funder_type_other": "Dolores fugiat nesciunt accusantium.",
         "capital_acceptances": [
           "donations_accepted",
@@ -87,6 +87,16 @@
               "type": "subgeographic"
             }
           ]
+        },
+        "investments": {
+          "data": [
+
+          ]
+        },
+        "projects": {
+          "data": [
+
+          ]
         }
       }
     },
@@ -105,7 +115,7 @@
         "primary_contact_role": "funder",
         "website": "http://bartoletti.com/jeremiah_cronin",
         "date_joined_fora": "2022-03-29T00:00:00.000Z",
-        "funder_type": "loan_fund",
+        "funder_type": "advisory",
         "funder_type_other": "Placeat commodi libero et.",
         "capital_acceptances": [
           "advises_and_manages_capital",
@@ -167,6 +177,16 @@
           "data": [
 
           ]
+        },
+        "investments": {
+          "data": [
+
+          ]
+        },
+        "projects": {
+          "data": [
+
+          ]
         }
       }
     },
@@ -185,7 +205,7 @@
         "primary_contact_role": "regrantor",
         "website": "http://kutch-spencer.com/moises",
         "date_joined_fora": "2021-11-18T00:00:00.000Z",
-        "funder_type": "funder_collaborative_or_network",
+        "funder_type": "advisory",
         "funder_type_other": "Enim repellat pariatur est.",
         "capital_acceptances": [
           "other",
@@ -247,6 +267,16 @@
           "data": [
 
           ]
+        },
+        "investments": {
+          "data": [
+
+          ]
+        },
+        "projects": {
+          "data": [
+
+          ]
         }
       }
     },
@@ -265,7 +295,7 @@
         "primary_contact_role": "intermediary",
         "website": "http://hane.com/jules",
         "date_joined_fora": "2022-03-13T00:00:00.000Z",
-        "funder_type": "private_foundation",
+        "funder_type": "advisory",
         "funder_type_other": "Et quaerat omnis veniam.",
         "capital_acceptances": [
           "donations_accepted",
@@ -324,6 +354,16 @@
           ]
         },
         "subgeographic_ancestors": {
+          "data": [
+
+          ]
+        },
+        "investments": {
+          "data": [
+
+          ]
+        },
+        "projects": {
           "data": [
 
           ]
