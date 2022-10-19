@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
-import { useAppSelector } from 'store/hooks';
+import { setFilters } from 'store/action-map';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 import { omit } from 'lodash';
 
@@ -16,6 +17,7 @@ import Item from '../item';
 const GeoList = () => {
   const { view, type, filters } = useAppSelector((state) => state['/action-map']);
   const { subgeographics } = filters;
+  const dispatch = useAppDispatch();
 
   // FUNDERS
   // get funders grouped by geographic scope
@@ -61,8 +63,33 @@ const GeoList = () => {
     return grouped[type];
   }, [type, fundersGroupedData, projectsGroupedData, subgeographics]);
 
+  const MAX_MIN_DATA = useMemo(() => {
+    const raw = {
+      funders: fundersGroupedData,
+      projects: projectsGroupedData,
+    };
+
+    if (subgeographics.length) {
+      return raw[type];
+    }
+
+    return GROUPED_DATA;
+  }, [type, subgeographics, fundersGroupedData, projectsGroupedData, GROUPED_DATA]);
+
   const LOADING = fundersIsFetching && !fundersIsFetched;
   const NO_DATA = !DATA.length && !LOADING;
+
+  const handleClick = useCallback(
+    (id: string) => {
+      dispatch(
+        setFilters({
+          ...filters,
+          subgeographics: [id],
+        })
+      );
+    },
+    [filters, dispatch]
+  );
 
   return (
     <>
@@ -81,7 +108,9 @@ const GeoList = () => {
             !NO_DATA &&
             GROUPED_DATA
               //
-              .map((d) => <Item {...d} key={d.id} data={fundersGroupedData} />)}
+              .map((d) => (
+                <Item {...d} key={d.id} data={MAX_MIN_DATA} onClick={() => handleClick(d.id)} />
+              ))}
 
           {NO_DATA && <NoData />}
         </ul>

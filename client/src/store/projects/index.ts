@@ -19,7 +19,7 @@ interface FundersState {
     subgeographics?: string[];
     areas?: string[];
     demographics?: string[];
-    projectLegalStatuses?: string[];
+    recipientLegalStatuses?: string[];
   };
 }
 
@@ -35,7 +35,7 @@ export const initialState: FundersState = {
     subgeographics: [],
     areas: [],
     demographics: [],
-    projectLegalStatuses: [],
+    recipientLegalStatuses: [],
   },
 };
 
@@ -82,7 +82,7 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
       areas,
       demographics,
       subgeographics,
-      projectLegalStatuses,
+      recipientLegalStatuses,
       search,
       sortField,
       sortOrder,
@@ -96,7 +96,7 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
       await store.dispatch(setSort({ field: sortField, order: sortOrder } as Sort));
     }
 
-    if (geographic || areas || demographics || subgeographics || projectLegalStatuses || search) {
+    if (geographic || areas || demographics || subgeographics || recipientLegalStatuses || search) {
       await store.dispatch(
         setFilters({
           ...initialState.filters,
@@ -112,8 +112,8 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
           ...(demographics && {
             demographics: demographics as string[],
           }),
-          ...(projectLegalStatuses && {
-            projectLegalStatuses: projectLegalStatuses as string[],
+          ...(recipientLegalStatuses && {
+            recipientLegalStatuses: recipientLegalStatuses as string[],
           }),
         })
       );
@@ -146,8 +146,8 @@ export const setQueryFromReduxState = (pathname: string, state: any) => {
         ...(!!filters.subgeographics.length && { subgeographics: filters.subgeographics }),
         ...(!!filters.areas.length && { areas: filters.areas }),
         ...(!!filters.demographics.length && { demographics: filters.demographics }),
-        ...(!!filters.projectLegalStatuses.length && {
-          projectLegalStatuses: filters.projectLegalStatuses,
+        ...(!!filters.recipientLegalStatuses.length && {
+          recipientLegalStatuses: filters.recipientLegalStatuses,
         }),
         ...(!!search && { search: search }),
         ...(!!sort && {

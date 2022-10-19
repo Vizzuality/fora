@@ -3,4 +3,5 @@ export interface ListItemProps {
   name: string;
   count: number;
   data: any[];
+  onClick: () => void;
 }
