@@ -8,7 +8,7 @@ import FilterList from 'components/filters/list';
 import { arrayValidator, composeValidators } from 'components/forms/validations';
 
 export const ProjectLegalStatus = () => {
-  const { data: projectLegalStatusesData } = useProjectLegalStatuses();
+  const { data: recipientLegalStatusesData } = useProjectLegalStatuses();
 
   const handleToogle = useCallback((id, input) => {
     const selection = [...input.value];
@@ -26,23 +26,23 @@ export const ProjectLegalStatus = () => {
   const handleAll = useCallback(
     (id, input) => {
       if (id === 'select-all') {
-        input.onChange(projectLegalStatusesData.map((s) => s.id));
+        input.onChange(recipientLegalStatusesData.map((s) => s.id));
       } else {
         input.onChange([]);
       }
     },
-    [projectLegalStatusesData]
+    [recipientLegalStatusesData]
   );
 
   return (
-    <FieldRFF name="projectLegalStatuses" validate={composeValidators([arrayValidator])}>
+    <FieldRFF name="recipientLegalStatuses" validate={composeValidators([arrayValidator])}>
       {({ input }) => {
         return (
           <FilterList
             title="Project legal status"
-            name="projectLegalStatuses"
+            name="recipientLegalStatuses"
             columns={1}
-            data={projectLegalStatusesData}
+            data={recipientLegalStatusesData}
             selected={input.value}
             overflow={false}
             onChange={(id) => handleToogle(id, input)}

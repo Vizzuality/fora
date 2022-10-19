@@ -21,7 +21,7 @@ interface ActionMapState {
     funderTypes?: string[];
     funderLegalStatuses?: string[];
     capitalTypes?: string[];
-    projectLegalStatuses?: string[];
+    recipientLegalStatuses?: string[];
   };
 }
 
@@ -37,7 +37,7 @@ export const initialState: ActionMapState = {
     funderTypes: [],
     funderLegalStatuses: [],
     capitalTypes: [],
-    projectLegalStatuses: [],
+    recipientLegalStatuses: [],
   },
 };
 
@@ -92,7 +92,7 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
       funderTypes,
       funderLegalStatuses,
       capitalTypes,
-      projectLegalStatuses,
+      recipientLegalStatuses,
     } = query;
 
     if (type) {
@@ -111,7 +111,7 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
       funderTypes ||
       funderLegalStatuses ||
       capitalTypes ||
-      projectLegalStatuses
+      recipientLegalStatuses
     ) {
       await store.dispatch(
         setFilters({
@@ -137,8 +137,8 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
           ...(capitalTypes && {
             capitalTypes: capitalTypes as string[],
           }),
-          ...(projectLegalStatuses && {
-            projectLegalStatuses: projectLegalStatuses as string[],
+          ...(recipientLegalStatuses && {
+            recipientLegalStatuses: recipientLegalStatuses as string[],
           }),
         })
       );
@@ -178,8 +178,8 @@ export const setQueryFromReduxState = (pathname: string, state: any) => {
           funderLegalStatuses: filters.funderLegalStatuses,
         }),
         ...(!!filters.capitalTypes.length && { capitalTypes: filters.capitalTypes }),
-        ...(!!filters.projectLegalStatuses.length && {
-          projectLegalStatuses: filters.projectLegalStatuses,
+        ...(!!filters.recipientLegalStatuses.length && {
+          recipientLegalStatuses: filters.recipientLegalStatuses,
         }),
       },
     },

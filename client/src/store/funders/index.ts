@@ -26,7 +26,7 @@ interface FundersState {
     capitalTypes?: string[];
     capitalAcceptances?: string[];
     grantDurations?: string[];
-    projectLegalStatuses?: string[];
+    recipientLegalStatuses?: string[];
     applicationStatus?: string[];
   };
 }
@@ -50,7 +50,7 @@ export const initialState: FundersState = {
     capitalTypes: [],
     capitalAcceptances: [],
     grantDurations: [],
-    projectLegalStatuses: [],
+    recipientLegalStatuses: [],
     applicationStatus: [],
   },
 };
@@ -105,7 +105,7 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
       capitalTypes,
       capitalAcceptances,
       grantDurations,
-      projectLegalStatuses,
+      recipientLegalStatuses,
       applicationStatus,
       search,
       sortField,
@@ -129,7 +129,7 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
       capitalTypes ||
       capitalAcceptances ||
       grantDurations ||
-      projectLegalStatuses ||
+      recipientLegalStatuses ||
       applicationStatus
     ) {
       await store.dispatch(
@@ -168,8 +168,8 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
           ...(grantDurations && {
             grantDurations: grantDurations as string[],
           }),
-          ...(projectLegalStatuses && {
-            projectLegalStatuses: projectLegalStatuses as string[],
+          ...(recipientLegalStatuses && {
+            recipientLegalStatuses: recipientLegalStatuses as string[],
           }),
           ...(applicationStatus && {
             applicationStatus: applicationStatus as string[],
@@ -216,8 +216,8 @@ export const setQueryFromReduxState = (pathname: string, state: any) => {
           capitalAcceptances: filters.capitalAcceptances,
         }),
         ...(!!filters.grantDurations.length && { grantDurations: filters.grantDurations }),
-        ...(!!filters.projectLegalStatuses.length && {
-          projectLegalStatuses: filters.projectLegalStatuses,
+        ...(!!filters.recipientLegalStatuses.length && {
+          recipientLegalStatuses: filters.recipientLegalStatuses,
         }),
         ...(!!filters.applicationStatus.length && {
           applicationStatus: filters.applicationStatus,
