@@ -2,8 +2,6 @@ import React, { useMemo } from 'react';
 
 import { useAppSelector } from 'store/hooks';
 
-import { uniq } from 'lodash';
-
 import { useFunders } from 'hooks/funders';
 
 import NoData from 'containers/action-map/list/no-data';
@@ -30,13 +28,9 @@ const List = () => {
   const NO_DATA = !fundersData.length && !LOADING;
 
   const DATA = useMemo(() => {
-    if (!fundersData) return [];
-
     return fundersData
       .map((d) => {
-        const { investments } = d;
-
-        const projects = uniq(investments.map((i) => i.project.id));
+        const { projects } = d;
 
         return {
           ...d,

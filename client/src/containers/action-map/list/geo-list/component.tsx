@@ -81,7 +81,7 @@ const GeoList = () => {
             !NO_DATA &&
             GROUPED_DATA
               //
-              .map((d) => <Item {...d} key={d.id} data={GROUPED_DATA} />)}
+              .map((d) => <Item {...d} key={d.id} data={fundersGroupedData} />)}
 
           {NO_DATA && <NoData />}
         </ul>

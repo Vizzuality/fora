@@ -5,6 +5,7 @@ import { FunderLegalStatus } from './funder-legal-status';
 import { FunderType } from './funder-type';
 import { SubGeographic } from './geographics';
 import { Investment } from './investment';
+import { Project } from './project';
 
 /**
  * This is an example of a type/interface that's used in more than just
@@ -25,6 +26,7 @@ export interface Funder {
   funder_legal_status: FunderLegalStatus['id'];
   funder_type: FunderType['id'];
   investments: Investment[];
+  projects: Partial<Project>[];
   logo: {
     small: string;
     medium: string;
