@@ -31,9 +31,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
             keepPreviousData: true,
             refetchOnMount: false,
             refetchOnWindowFocus: false,
+            structuralSharing: false,
             select: (data: any) => {
               if (data.pages) {
                 return {
+                  ...data,
                   pages: data.pages.map((d) => dataFormatter.deserialize(d)),
                 };
               }

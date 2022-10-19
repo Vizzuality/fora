@@ -16,6 +16,7 @@ import { orderBy, uniqBy } from 'lodash';
 import { Funder } from 'types/funder';
 
 import API from 'services/api';
+
 /**
 ****************************************
   FETCH FUNCTIONS
