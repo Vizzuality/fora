@@ -11,7 +11,7 @@ import NoData from 'containers/action-map/list/no-data';
 
 import Loading from 'components/loading';
 
-import Item from './item';
+import Item from '../item';
 
 const GeoList = () => {
   const { view, type, filters } = useAppSelector((state) => state['/action-map']);

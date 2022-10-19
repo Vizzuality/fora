@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { useAppSelector } from 'store/hooks';
+
+import { uniq } from 'lodash';
 
 import { useFunders } from 'hooks/funders';
 
@@ -8,7 +10,7 @@ import NoData from 'containers/action-map/list/no-data';
 
 import Loading from 'components/loading';
 
-import Item from './item';
+import Item from '../item';
 
 const List = () => {
   const { filters } = useAppSelector((state) => state['/action-map']);
@@ -27,6 +29,23 @@ const List = () => {
   const LOADING = fundersIsFetching && !fundersIsFetched;
   const NO_DATA = !fundersData.length && !LOADING;
 
+  const DATA = useMemo(() => {
+    if (!fundersData) return [];
+
+    return fundersData
+      .map((d) => {
+        const { investments } = d;
+
+        const funders = uniq(investments.map((i) => i.funder.id));
+
+        return {
+          ...d,
+          count: funders.length,
+        };
+      })
+      .sort((a, b) => b.count - a.count);
+  }, [fundersData]);
+
   return (
     <>
       <Loading
@@ -41,9 +60,9 @@ const List = () => {
         </div>
         <ul className="relative space-y-2">
           {!LOADING &&
-            fundersData
+            DATA
               //
-              .map((d) => <Item {...d} key={d.id} />)}
+              .map((d) => <Item {...d} key={d.id} data={DATA} />)}
 
           {NO_DATA && <NoData />}
         </ul>
