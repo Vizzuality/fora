@@ -36,11 +36,11 @@ const List = () => {
       .map((d) => {
         const { investments } = d;
 
-        const funders = uniq(investments.map((i) => i.funder.id));
+        const projects = uniq(investments.map((i) => i.project.id));
 
         return {
           ...d,
-          count: funders.length,
+          count: projects.length,
         };
       })
       .sort((a, b) => b.count - a.count);
