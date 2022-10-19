@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
+import { useJsona } from 'hooks/query';
+
 import { CapitalType } from 'types/capital-type';
 
 import API from 'services/api';
@@ -22,15 +24,17 @@ export function useCapitalTypes(queryOptions: UseQueryOptions<CapitalType[], unk
 
   const { data } = query;
 
+  const JSON_API_DATA = useJsona<CapitalType[]>(data);
+
   const DATA = useMemo(() => {
-    if (!data) {
+    if (!JSON_API_DATA) {
       return [];
     }
 
-    return data.sort((a, b) => {
+    return JSON_API_DATA.sort((a, b) => {
       return a.name > b.name ? 1 : -1;
     });
-  }, [data]);
+  }, [JSON_API_DATA]);
 
   return useMemo(() => {
     return {

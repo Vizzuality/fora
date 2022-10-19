@@ -13,9 +13,12 @@ import {
 } from '@tanstack/react-query';
 import { orderBy, uniqBy } from 'lodash';
 
+import { useJsona } from 'hooks/query';
+
 import { Funder } from 'types/funder';
 
 import API from 'services/api';
+
 /**
 ****************************************
   FETCH FUNCTIONS
@@ -58,7 +61,14 @@ export function useFunders(
     ...queryOptions,
   });
 
-  return query;
+  const { data } = query;
+
+  const JSON_API_DATA = useJsona<Funder[]>(data);
+
+  return {
+    ...query,
+    data: JSON_API_DATA,
+  };
 }
 
 /**
@@ -126,22 +136,15 @@ export function useFundersInfinity(
   });
 
   const { data } = query;
-  const { pages } = data || {};
 
-  const DATA = useMemo(() => {
-    if (!pages) {
-      return [];
-    }
-
-    return pages.flat();
-  }, [pages]);
+  const JSON_API_DATA = useJsona<Funder[]>(data);
 
   return useMemo(() => {
     return {
       ...query,
-      data: DATA,
+      data: JSON_API_DATA,
     };
-  }, [DATA, query]);
+  }, [JSON_API_DATA, query]);
 }
 
 /**
@@ -157,6 +160,17 @@ export function useFunder(id: string, queryOptions: UseQueryOptions<Funder, unkn
     placeholderData: {},
     ...queryOptions,
   });
+
+  const { data } = query;
+
+  const JSON_API_DATA = useJsona<Funder>(data);
+
+  return useMemo(() => {
+    return {
+      ...query,
+      data: JSON_API_DATA,
+    };
+  }, [JSON_API_DATA, query]);
 
   return query;
 }

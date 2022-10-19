@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
+import { useJsona } from 'hooks/query';
+
 import { FunderLegalStatus } from 'types/funder-legal-status';
 
 import API from 'services/api';
@@ -24,15 +26,17 @@ export function useFunderLegalStatuses(
 
   const { data } = query;
 
+  const JSON_API_DATA = useJsona<FunderLegalStatus[]>(data);
+
   const DATA = useMemo(() => {
-    if (!data) {
+    if (!JSON_API_DATA) {
       return [];
     }
 
-    return data.sort((a, b) => {
+    return JSON_API_DATA.sort((a, b) => {
       return a.name > b.name ? 1 : -1;
     });
-  }, [data]);
+  }, [JSON_API_DATA]);
 
   return useMemo(() => {
     return {

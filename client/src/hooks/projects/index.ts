@@ -13,6 +13,8 @@ import {
 } from '@tanstack/react-query';
 import { orderBy, uniqBy } from 'lodash';
 
+import { useJsona } from 'hooks/query';
+
 import { Project } from 'types/project';
 
 import API from 'services/api';
@@ -58,7 +60,14 @@ export function useProjects(
     ...queryOptions,
   });
 
-  return query;
+  const { data } = query;
+
+  const JSON_API_DATA = useJsona<Project[]>(data);
+
+  return {
+    ...query,
+    data: JSON_API_DATA,
+  };
 }
 
 /**
@@ -126,22 +135,15 @@ export function useProjectsInfinity(
   });
 
   const { data } = query;
-  const { pages } = data || {};
 
-  const DATA = useMemo(() => {
-    if (!pages) {
-      return [];
-    }
-
-    return pages.flat();
-  }, [pages]);
+  const JSON_API_DATA = useJsona<Project[]>(data);
 
   return useMemo(() => {
     return {
       ...query,
-      data: DATA,
+      data: JSON_API_DATA,
     };
-  }, [query, DATA]);
+  }, [JSON_API_DATA, query]);
 }
 
 /**
@@ -159,5 +161,14 @@ export function useProject(id: string, queryOptions: UseQueryOptions<Project, un
     ...queryOptions,
   });
 
-  return query;
+  const { data } = query;
+
+  const JSON_API_DATA = useJsona<Project>(data);
+
+  return useMemo(() => {
+    return {
+      ...query,
+      data: JSON_API_DATA,
+    };
+  }, [JSON_API_DATA, query]);
 }
