@@ -107,7 +107,7 @@ const RegionsView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }:
                   <div className="relative flex items-center justify-center h-full text-sm text-center">
                     <div
                       className={cx({
-                        'py-0.5 px-2 shadow-md': true,
+                        'py-0.5 px-2 shadow-md transition-colors': true,
                         'text-black bg-white/30': !selected,
                         'text-white bg-black/25': !!selected && luminance < 0.5,
                         'text-black bg-white/25': !!selected && luminance >= 0.5,

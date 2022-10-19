@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 
-import { Geography as RSMGeography } from 'react-simple-maps';
-
 import cx from 'classnames';
+
+import AnimatedGeography from './animated-geography';
 
 export interface GeographyProps {
   geo: any;
@@ -45,7 +45,7 @@ const Geography = ({ geo, onClick, onMouseEnter, onMouseLeave, onMouseMove }) =>
   );
 
   return (
-    <RSMGeography
+    <AnimatedGeography
       geography={geo}
       style={style}
       className={cx({
