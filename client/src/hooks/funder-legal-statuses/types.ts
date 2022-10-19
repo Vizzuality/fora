@@ -1,7 +1,4 @@
-export interface FunderLegalStatus {
-  id: string;
-  name: string;
-}
+import { FunderLegalStatus } from 'types/funder-legal-status';
 
 export interface ResponseData {
   data: FunderLegalStatus[];

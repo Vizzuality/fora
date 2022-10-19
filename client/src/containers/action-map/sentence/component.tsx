@@ -1,9 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import { initialState, reset } from 'store/action-map';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 import { useFunders } from 'hooks/funders';
+import { useProjects } from 'hooks/projects';
 
 import Loading from 'components/loading';
 
@@ -28,6 +29,32 @@ const Sentence: React.FC<SentenceProps> = () => {
     filters,
   });
 
+  const {
+    data: projectsData,
+    isFetching: projectsIsFetching,
+    isFetched: projectsIsFetched,
+  } = useProjects({
+    filters,
+  });
+
+  const DATA = useMemo(() => {
+    const data = {
+      funders: fundersData,
+      projects: projectsData,
+    };
+
+    return data[type];
+  }, [fundersData, projectsData, type]);
+
+  const LOADING = useMemo(() => {
+    const loading = {
+      funders: fundersIsFetching && !fundersIsFetched,
+      projects: projectsIsFetching && !projectsIsFetched,
+    };
+
+    return loading[type];
+  }, [type, fundersIsFetching, fundersIsFetched, projectsIsFetching, projectsIsFetched]);
+
   const handleReset = useCallback(() => {
     dispatch(reset());
   }, [dispatch]);
@@ -35,15 +62,15 @@ const Sentence: React.FC<SentenceProps> = () => {
   return (
     <div className="relative text-sm font-semibold text-grey-20 min-h-[16px]">
       <Loading
-        visible={fundersIsFetching && !fundersIsFetched}
+        visible={LOADING}
         className="absolute top-0 bottom-0 left-0 right-0 z-10"
         iconClassName="w-4 h-4"
       />
 
-      {!!fundersData.length && (
+      {!!DATA.length && (
         <>
           <div className="inline mr-2">
-            You are viewing {fundersData.length} {type}
+            You are viewing {DATA.length} {type}
             <Geographics />
             <Areas />
             <Demographics />

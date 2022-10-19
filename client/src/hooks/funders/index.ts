@@ -15,7 +15,6 @@ import { orderBy, uniqBy } from 'lodash';
 
 import API from 'services/api';
 
-import MOCK from './mock.json';
 import { FunderResponseData, FundersResponseData } from './types';
 
 /**
@@ -48,9 +47,8 @@ export function useFunders(
 ) {
   const fetch = () =>
     fetchFunders({
-      ...params,
       disablePagination: true,
-      includes: 'subgeographic_ancestors',
+      ...params,
     });
 
   const query = useQuery(['funders', JSON.stringify(params)], fetch, {
@@ -154,16 +152,7 @@ export function useFundersInfinity(
       .map((p) => {
         const { data: pageData } = p;
 
-        return pageData.map((f) => {
-          const randomIndex = Math.floor(Math.random() * MOCK.length);
-
-          return {
-            ...f,
-            ...MOCK[randomIndex],
-            name: f.name,
-            description: f.description,
-          };
-        });
+        return pageData;
       })
       .flat();
   }, [pages]);

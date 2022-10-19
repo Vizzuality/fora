@@ -1,7 +1,4 @@
-export interface Area {
-  id: string;
-  name: string;
-}
+import { Area } from 'types/area';
 
 export interface ResponseData {
   data: Area[];

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { useAppSelector } from 'store/hooks';
 
@@ -8,7 +8,7 @@ import NoData from 'containers/action-map/list/no-data';
 
 import Loading from 'components/loading';
 
-import Item from './item';
+import Item from '../item';
 
 const List = () => {
   const { filters } = useAppSelector((state) => state['/action-map']);
@@ -21,10 +21,24 @@ const List = () => {
     isFetched: fundersIsFetched,
   } = useFunders({
     filters,
+    includes: 'subgeographic_ancestors,investments',
   });
 
   const LOADING = fundersIsFetching && !fundersIsFetched;
   const NO_DATA = !fundersData.length && !LOADING;
+
+  const DATA = useMemo(() => {
+    return fundersData
+      .map((d) => {
+        const { projects } = d;
+
+        return {
+          ...d,
+          count: projects.length,
+        };
+      })
+      .sort((a, b) => b.count - a.count);
+  }, [fundersData]);
 
   return (
     <>
@@ -40,9 +54,9 @@ const List = () => {
         </div>
         <ul className="relative space-y-2">
           {!LOADING &&
-            fundersData
+            DATA
               //
-              .map((d) => <Item {...d} key={d.id} />)}
+              .map((d) => <Item {...d} key={d.id} data={DATA} />)}
 
           {NO_DATA && <NoData />}
         </ul>

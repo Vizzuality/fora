@@ -5,18 +5,19 @@ import { useAppSelector } from 'store/hooks';
 import { omit } from 'lodash';
 
 import { useFunders, useFundersByGeographicScope } from 'hooks/funders';
-import { useProjectsByGeographicScope } from 'hooks/projects';
+import { useProjects, useProjectsByGeographicScope } from 'hooks/projects';
 
 import NoData from 'containers/action-map/list/no-data';
 
 import Loading from 'components/loading';
 
-import Item from './item';
+import Item from '../item';
 
 const GeoList = () => {
   const { view, type, filters } = useAppSelector((state) => state['/action-map']);
   const { subgeographics } = filters;
 
+  // FUNDERS
   // get funders grouped by geographic scope
   const {
     data: fundersData,
@@ -24,20 +25,30 @@ const GeoList = () => {
     isFetched: fundersIsFetched,
   } = useFunders({
     filters: omit(filters, ['subgeographics']),
+    includes: 'subgeographic_ancestors',
   });
   const fundersGroupedData = useFundersByGeographicScope(view, fundersData);
 
   // PROJECTS
   // get projects grouped by geographic scope
-  // const { data: projectsData } = useProjects({
-  //   filters: omit(filters, ['subgeographics']),
-  // });
-
-  const { data: projectsGroupedData } = useProjectsByGeographicScope(view, {
+  const { data: projectsData } = useProjects({
     filters: omit(filters, ['subgeographics']),
+    includes: 'subgeographic_ancestors',
   });
+  const projectsGroupedData = useProjectsByGeographicScope(view, projectsData);
 
   const DATA = useMemo(() => {
+    const data = {
+      funders: fundersData,
+      projects: projectsData,
+    };
+
+    return data[type];
+  }, [type, fundersData, projectsData]);
+
+  // DATA
+  // get data for the current type
+  const GROUPED_DATA = useMemo(() => {
     const grouped = {
       funders: fundersGroupedData.filter(
         (d) => !subgeographics.length || subgeographics.includes(d.id)
@@ -68,9 +79,9 @@ const GeoList = () => {
         <ul className="relative space-y-2">
           {!LOADING &&
             !NO_DATA &&
-            DATA
+            GROUPED_DATA
               //
-              .map((d) => <Item {...d} key={d.id} data={DATA} />)}
+              .map((d) => <Item {...d} key={d.id} data={fundersGroupedData} />)}
 
           {NO_DATA && <NoData />}
         </ul>
