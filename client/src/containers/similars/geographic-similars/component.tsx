@@ -43,6 +43,14 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
     }
   }, [fundersBySubgeogprahics]);
 
+  const data = useMemo(() => {
+    if (type === 'funders') {
+      return RANDOM_FUND_GEOGR;
+    } else {
+      return RANDOM_PROJ_GEOGR;
+    }
+  }, [RANDOM_FUND_GEOGR, RANDOM_PROJ_GEOGR, type]);
+
   return (
     <>
       {(projectsBySubgeogprahics.length || fundersBySubgeogprahics.length) && (
@@ -64,11 +72,7 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
             </div>
           </div>
 
-          {type === 'projects' ? (
-            <Cards data={RANDOM_PROJ_GEOGR} />
-          ) : (
-            <Cards data={RANDOM_FUND_GEOGR} />
-          )}
+          <Cards data={data} />
         </div>
       )}
     </>

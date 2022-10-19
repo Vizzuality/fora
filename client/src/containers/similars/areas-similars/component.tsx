@@ -41,6 +41,14 @@ const AreasSimilars = ({ type }: SimilarsSectionProps) => {
       return shuffled.slice(0, 3);
     }
   }, [fundersByArea]);
+
+  const data = useMemo(() => {
+    if (type === 'funders') {
+      return RANDOM_FUND_AREA;
+    } else {
+      return RANDOM_PROJ_AREA;
+    }
+  }, [RANDOM_FUND_AREA, RANDOM_PROJ_AREA, type]);
   return (
     <>
       {(projectsByArea.length || fundersByArea.length) && (
@@ -62,11 +70,7 @@ const AreasSimilars = ({ type }: SimilarsSectionProps) => {
             </div>
           </div>
 
-          {type === 'projects' ? (
-            <Cards data={RANDOM_PROJ_AREA} />
-          ) : (
-            <Cards data={RANDOM_FUND_AREA} />
-          )}
+          <Cards data={data} />
         </div>
       )}
     </>

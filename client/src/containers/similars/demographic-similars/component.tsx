@@ -43,6 +43,14 @@ const DemographicSimilars = ({ type }: SimilarsSectionProps) => {
     }
   }, [fundersByDemogprahics]);
 
+  const data = useMemo(() => {
+    if (type === 'funders') {
+      return RANDOM_FUND_DEMOGR;
+    } else {
+      return RANDOM_PROJ_DEMOGR;
+    }
+  }, [RANDOM_FUND_DEMOGR, RANDOM_PROJ_DEMOGR, type]);
+
   return (
     <>
       {(projectsByDemogprahics.length || fundersByDemogprahics.length) && (
@@ -64,11 +72,7 @@ const DemographicSimilars = ({ type }: SimilarsSectionProps) => {
             </div>
           </div>
 
-          {type === 'projects' ? (
-            <Cards data={RANDOM_PROJ_DEMOGR} />
-          ) : (
-            <Cards data={RANDOM_FUND_DEMOGR} />
-          )}
+          <Cards data={data} />
         </div>
       )}
     </>
