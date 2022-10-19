@@ -10,9 +10,9 @@ const List = () => {
   const { type, filters } = useAppSelector((state) => state['/action-map']);
   const { geographic, subgeographics } = filters;
 
-  const IS_NOT_GROUPING = geographic === 'national' || subgeographics.length === 1;
   const IS_GROUPING =
     geographic !== 'national' && (!subgeographics.length || subgeographics.length > 1);
+  const IS_NOT_GROUPING = geographic === 'national' || subgeographics.length === 1;
 
   return (
     <div className="relative flex flex-col h-full py-px overflow-hidden grow">

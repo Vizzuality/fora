@@ -1,4 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
+
+import { useRouter } from 'next/router';
 
 import { useAppSelector } from 'store/hooks';
 
@@ -11,6 +13,7 @@ import Loading from 'components/loading';
 import Item from '../item';
 
 const List = () => {
+  const { push } = useRouter();
   const { filters } = useAppSelector((state) => state['/action-map']);
 
   // FUNDERS
@@ -39,6 +42,16 @@ const List = () => {
   const LOADING = projectsIsFetching && !projectsIsFetched;
   const NO_DATA = !DATA.length && !LOADING;
 
+  const handleClick = useCallback(
+    (id: string) => {
+      push({
+        pathname: `/projects/[id]`,
+        query: { id },
+      });
+    },
+    [push]
+  );
+
   return (
     <>
       <Loading
@@ -55,7 +68,7 @@ const List = () => {
           {!LOADING &&
             DATA
               //
-              .map((d) => <Item {...d} key={d.id} data={DATA} />)}
+              .map((d) => <Item {...d} key={d.id} data={DATA} onClick={() => handleClick(d.id)} />)}
 
           {NO_DATA && <NoData />}
         </ul>
