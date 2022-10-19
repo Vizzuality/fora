@@ -8,6 +8,8 @@ export interface SubGeographic {
   name: string;
   geographic: Geographic['id'];
   code: string;
+  abbreviation: string;
+  parent?: SubGeographic;
 }
 export interface GeographicsResponseData {
   data: Geographic[];

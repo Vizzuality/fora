@@ -1,7 +1,5 @@
 import React, { useCallback } from 'react';
 
-import cx from 'classnames';
-
 import { setSearch } from 'store/funders';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
@@ -9,11 +7,10 @@ import { useDebounceCallback } from '@react-hook/debounce';
 
 import { useFunders } from 'hooks/funders';
 
+import Filters from 'containers/filters';
 import Wrapper from 'containers/wrapper';
 
 import Search from 'components/search';
-
-import Filters from '../filters';
 
 const FundersHeader = () => {
   const { data: fundersData } = useFunders();
@@ -27,7 +24,7 @@ const FundersHeader = () => {
   }, 250);
 
   return (
-    <header className="py-20 bg-green-0 text-grey-0">
+    <header className="py-16 bg-green-0 text-grey-0">
       <Wrapper>
         <div className="space-y-5">
           <h2 className="max-w-2xl text-4xl font-display">Explore the FORA community members</h2>

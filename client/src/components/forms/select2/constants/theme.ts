@@ -22,7 +22,7 @@ const THEME = {
     container: 'text-gray-600 text-sm',
     item: {
       base: 'text-sm',
-      active: 'opacity-70 text-black',
+      active: 'bg-grey-0/30 text-black',
     },
     menu: 'bg-white',
     open: {

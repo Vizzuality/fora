@@ -1,0 +1,90 @@
+{
+  "data": [
+    {
+      "id": "c0411e15-9bcc-4a14-96fa-b261de63881f",
+      "type": "project",
+      "attributes": {
+        "name": "Otha Kemmer"
+      },
+      "relationships": {
+        "subgeographics": {
+          "data": [
+
+          ]
+        }
+      }
+    },
+    {
+      "id": "fbba9bd8-9297-4a9e-8ed5-edfc7f6318b1",
+      "type": "project",
+      "attributes": {
+        "name": "Msgr. Genaro Cronin"
+      },
+      "relationships": {
+        "subgeographics": {
+          "data": [
+
+          ]
+        }
+      }
+    },
+    {
+      "id": "921482cd-2b78-4fb0-adde-9d9f25e324b5",
+      "type": "project",
+      "attributes": {
+        "name": "Raymon Wisoky"
+      },
+      "relationships": {
+        "subgeographics": {
+          "data": [
+
+          ]
+        }
+      }
+    },
+    {
+      "id": "3fd5c235-6ed1-43df-b806-d443e2c6702a",
+      "type": "project",
+      "attributes": {
+        "name": "Elbert Denesik"
+      },
+      "relationships": {
+        "subgeographics": {
+          "data": [
+            {
+              "id": "208e4725-7028-4866-82c6-8f15f7aa836f",
+              "type": "subgeographic"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "included": [
+    {
+      "id": "208e4725-7028-4866-82c6-8f15f7aa836f",
+      "type": "subgeographic",
+      "attributes": {
+        "name": "Papua New Guinea",
+        "code": "NPL",
+        "geographic": "national",
+        "abbreviation": "N-NPL",
+        "created_at": "2022-10-14T08:17:12.363Z",
+        "updated_at": "2022-10-14T08:17:12.363Z"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "9652466e-6f30-436a-b3c2-7211a419e8d5",
+            "type": "subgeographic"
+          }
+        },
+        "subgeographics": {
+          "data": [
+
+          ]
+        }
+      }
+    }
+  ]
+}

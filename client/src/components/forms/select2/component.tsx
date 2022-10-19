@@ -8,6 +8,9 @@ import THEME from 'components/forms/select2/constants/theme';
 import Icon from 'components/icon';
 
 import CHEVRON_DOWN_SVG from 'svgs/ui/chevron-down.svg?sprite';
+import CHEVRON_UP_SVG from 'svgs/ui/chevron-up.svg?sprite';
+
+import Checkbox from '../checkbox';
 
 import type { Select2Props } from './types';
 
@@ -16,7 +19,7 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
     batchSelectionActive = false,
     batchSelectionLabel = 'Select all',
     clearSelectionActive = false,
-    clearSelectionLabel = 'Clear selection',
+    clearSelectionLabel = 'Clear all',
     disabled = false,
     multiple = false,
     options,
@@ -55,7 +58,10 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
   };
 
   const handleSelect = (value) => {
-    if (!multiple) return setSelected(value);
+    if (!multiple) {
+      setIsOpen(!isOpen);
+      return setSelected(value);
+    }
     if (!isSelected(value) && multiple) {
       const selectedUpdated = [...selected, options.find((el) => el === value)];
       return setSelected(selectedUpdated);
@@ -78,7 +84,7 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
           className="space-y-1"
           disabled={disabled}
           value={selected}
-          onChange={(value) => handleSelect(value)}
+          onChange={handleSelect}
         >
           {() => (
             <>
@@ -94,18 +100,16 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                     onClick={() => setIsOpen(!isOpen)}
                   >
                     {multiple && (
-                      <span className="block ml-4 truncate">
-                        {selected.length < 1
-                          ? 'Select items'
-                          : `Selected items (${selected.length})`}
+                      <span className="block truncate">
+                        {selected.length < 1 && 'Select items'}
+                        {selected.length === 1 && selected[0].label}
+                        {selected.length >= 2 && `Selected items (${selected.length})`}
                       </span>
                     )}
-                    {!multiple && (
-                      <span className="block ml-4 truncate">{selected || placeholder}</span>
-                    )}
-                    <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                    {!multiple && <span className="block truncate">{selected || placeholder}</span>}
+                    <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                       <Icon
-                        icon={CHEVRON_DOWN_SVG}
+                        icon={isOpen ? CHEVRON_UP_SVG : CHEVRON_DOWN_SVG}
                         className={cx({
                           'w-3 h-3': true,
                         })}
@@ -121,7 +125,7 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                   className={cx({
-                    'z-10 absolute w-full overflow-y-auto rounded-lg shadow-lg': true,
+                    'z-10 absolute w-full overflow-y-auto rounded-lg shadow-lg min-w-[250px]': true,
                     [THEME[theme].button[size]]: true,
                   })}
                 >
@@ -132,10 +136,10 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                       [THEME[theme].menu]: true,
                     })}
                   >
-                    <div className="flex flex-col ml-4 text-sm">
+                    <div className="flex justify-between ml-2 text-sm">
                       {batchSelectionActive && multiple && (
                         <button
-                          className="px-4 py-2 text-left"
+                          className="px-4 py-2 text-left underline text-grey-20"
                           type="button"
                           onClick={() => setSelected(options)}
                         >
@@ -144,55 +148,46 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                       )}
                       {clearSelectionActive && multiple && (
                         <button
-                          className="px-4 py-2 text-left"
+                          className="px-4 py-2 text-left underline"
                           type="button"
                           onClick={() => setSelected(initialValue)}
                         >
-                          {clearSelectionLabel}
+                          {selected.length < 1 && clearSelectionLabel}
+                          {selected.length > 1 && `${clearSelectionLabel} (${selected.length})`}
+                          {selected.length === options.length &&
+                            `${clearSelectionLabel} (All selected)`}
                         </button>
                       )}
                     </div>
                     {options.map((opt) => {
-                      const selectedItem = isSelected(opt);
                       return (
-                        <Listbox.Option key={opt} value={opt}>
+                        <Listbox.Option key={opt.value} value={opt}>
                           {({ active }) => (
                             <div
                               className={cx({
-                                'cursor-pointer select-none relative py-2 pl-8 pr-4': true,
+                                'flex space-x-2 cursor-pointer select-none relative py-2 pl-5 pr-4':
+                                  true,
                                 [THEME[theme].item.base]: true,
                                 [THEME[theme].item.active]: active,
                               })}
                             >
+                              {multiple && (
+                                <>
+                                  <Checkbox
+                                    className="cursor-pointer focus:text-black focus:ring-black checked:bg-black"
+                                    checked={selected.includes(opt)}
+                                    readOnly
+                                  />
+                                </>
+                              )}
+
                               <span
                                 className={cx({
-                                  'font-normal block truncate': true,
-                                  'font-semibold': selectedItem,
+                                  'font-semibold block line-clamp-2': true,
                                 })}
                               >
-                                {opt}
+                                {opt.label}
                               </span>
-                              {selectedItem && (
-                                <span
-                                  className={cx({
-                                    'absolute inset-y-0 left-0 flex items-center pl-1.5': true,
-                                    'text-white': active,
-                                  })}
-                                >
-                                  <svg
-                                    className="w-5 h-5"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                  >
-                                    <path
-                                      fillRule="evenodd"
-                                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                      clipRule="evenodd"
-                                    />
-                                  </svg>
-                                </span>
-                              )}
                             </div>
                           )}
                         </Listbox.Option>
@@ -200,11 +195,6 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                     })}
                   </Listbox.Options>
                 </Transition>
-                <div className="pt-1 ml-4 text-sm">
-                  {!isOpen && multiple && selected.length > 0 && (
-                    <>Selected items: {selected.join(', ')}</>
-                  )}
-                </div>
               </div>
             </>
           )}

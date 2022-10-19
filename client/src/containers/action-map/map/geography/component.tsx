@@ -14,7 +14,7 @@ export interface GeographyProps {
 
 const Geography = ({ geo, onClick, onMouseEnter, onMouseLeave, onMouseMove }) => {
   const { id, properties } = geo;
-  const { style, count } = properties;
+  const { style } = properties;
   // CALLBACKS
   const handleClick = useCallback(
     (e) => {
@@ -49,8 +49,7 @@ const Geography = ({ geo, onClick, onMouseEnter, onMouseLeave, onMouseMove }) =>
       geography={geo}
       style={style}
       className={cx({
-        'cursor-pointer': count > 0,
-        'pointer-events-none': count === 0,
+        'cursor-pointer': true,
       })}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}

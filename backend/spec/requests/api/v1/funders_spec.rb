@@ -12,18 +12,20 @@ RSpec.describe "API V1 Funders", type: :request do
       parameter name: "filter[demographics]", in: :query, type: :string, enum: Demographic::TYPES, description: "Filter results only for specified demographics. Use comma to separate multiple fields", required: false
       parameter name: "filter[funder_types]", in: :query, type: :string, enum: FunderType::TYPES, description: "Filter results only for specified funder types. Use comma to separate multiple fields", required: false
       parameter name: "filter[capital_types]", in: :query, type: :string, enum: CapitalType::TYPES, description: "Filter results only for specified capital types. Use comma to separate multiple fields", required: false
-      parameter name: "filter[funder_legal_status]", in: :query, type: :string, enum: FunderLegalStatus::TYPES, description: "Filter results only for specified funder legal status", required: false
+      parameter name: "filter[funder_legal_statuses]", in: :query, type: :string, enum: FunderLegalStatus::TYPES, description: "Filter results only for specified funder legal status. Use comma to separate multiple fields", required: false
       parameter name: "filter[full_text]", in: :query, type: :string, description: "Filter records by provided text", required: false
       parameter name: "page[number]", in: :query, type: :integer, description: "Page number. Default: 1", required: false
       parameter name: "page[size]", in: :query, type: :integer, description: "Per page items. Default: 10", required: false
+      parameter name: "sort[attribute]", in: :query, type: :string, enum: API::V1::FundersController::SORTING_COLUMNS, description: "Attributes usable for sorting. Default: created_at", required: false
+      parameter name: "sort[direction]", in: :query, type: :string, enum: API::Sorting::SORTING_DIRECTIONS, description: "Possible directions of sorting. Default: desc", required: false
       parameter name: :disable_pagination, in: :query, type: :boolean, description: "Turn off pagination", required: false
       parameter name: "fields[funder]", in: :query, type: :string, description: "Get only required fields. Use comma to separate multiple fields", required: false
       parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
 
       let(:country) { create :subgeographic, geographic: :countries }
       let!(:national) { create :subgeographic, geographic: :national, parent: country }
-      let!(:funders) { create_list :funder, 3, areas: ["equity_and_justice"] }
-      let!(:funder) { create :funder, subgeographics: [national], areas: ["food_sovereignty"] }
+      let!(:funders) { create_list :funder, 3, areas: ["equity_and_justice"], funder_type: "advisory" }
+      let!(:funder) { create :funder, subgeographics: [national], areas: ["food_sovereignty"], funder_type: "accelerator" }
 
       response "200", :success do
         schema type: :object, properties: {
@@ -31,6 +33,8 @@ RSpec.describe "API V1 Funders", type: :request do
           meta: {"$ref" => "#/components/schemas/pagination_meta", :nullable => true},
           links: {"$ref" => "#/components/schemas/pagination_links", :nullable => true}
         }
+        let("sort[attribute]") { "name" }
+        let("sort[direction]") { "asc" }
 
         run_test!
 
@@ -85,10 +89,20 @@ RSpec.describe "API V1 Funders", type: :request do
         end
 
         context "when filtered for specified enums" do
-          let("filter[areas]") { "food_sovereignty" }
+          context "when used for array enums" do
+            let("filter[areas]") { "food_sovereignty" }
 
-          it "returns only funders at correct areas" do
-            expect(response_json["data"].pluck("id")).to eq([funder.id])
+            it "returns only funders at correct areas" do
+              expect(response_json["data"].pluck("id")).to eq([funder.id])
+            end
+          end
+
+          context "when used for string enums" do
+            let("filter[funder_types]") { "accelerator" }
+
+            it "returns only funders of correct funder type" do
+              expect(response_json["data"].pluck("id")).to eq([funder.id])
+            end
           end
         end
 
@@ -108,6 +122,26 @@ RSpec.describe "API V1 Funders", type: :request do
 
           it "returns only funders which are true for all filters" do
             expect(response_json["data"].pluck("id")).to eq([funder.id])
+          end
+        end
+
+        context "when sorting by projects count" do
+          let(:funder_1) { funders.second }
+          let(:funder_2) { funders.first }
+          let(:funder_3) { funder }
+          let!(:investments_1) { create_list :investment, 3, funder: funder_1 }
+          let!(:investments_2) { create_list :investment, 2, funder: funder_2 }
+          let!(:investments_3) { create_list :investment, 1, funder: funder_3 }
+
+          let("sort[attribute]") { "projects_count" }
+          let("sort[direction]") { "desc" }
+
+          run_test!
+
+          it "returns correctly sorted result" do
+            expect(response_json["data"].first["id"]).to eq(funder_1.id)
+            expect(response_json["data"].second["id"]).to eq(funder_2.id)
+            expect(response_json["data"].third["id"]).to eq(funder_3.id)
           end
         end
       end

@@ -10,7 +10,7 @@ export interface CardsProps {
   theme?: 'green' | 'grey';
 }
 
-const Cards = ({ data, theme = 'grey' }: CardsProps) => {
+const Cards = ({ data = [], theme = 'grey' }: CardsProps) => {
   const { pathname } = useRouter();
 
   return (

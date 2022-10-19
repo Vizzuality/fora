@@ -18,7 +18,10 @@ import Loading from 'components/loading';
 import DOWNLOAD_SVG from 'svgs/ui/download.svg?sprite';
 import SHARE_SVG from 'svgs/ui/share.svg?sprite';
 
-const SORT_OPTIONS = ['a-z', 'z-a'];
+const SORT_OPTIONS = [
+  { label: 'a-z', value: 'asc' },
+  { label: 'z-a', value: 'desc' },
+];
 
 const FundersList = () => {
   const { filters, search, sort } = useAppSelector((state) => state['/funders']);
@@ -33,12 +36,12 @@ const FundersList = () => {
     filters,
     search,
     sort,
+    perPage: 12,
   });
 
   const handleSortFunders = useCallback(
     (value) => {
-      const valueTranslator = value === 'z-a' ? 'desc' : 'asc';
-      dispatch(setSort({ field: 'title', order: valueTranslator }));
+      dispatch(setSort({ field: 'name', order: value }));
     },
     [dispatch]
   );
@@ -58,7 +61,7 @@ const FundersList = () => {
           </p>
 
           <div className="flex justify-between mt-10">
-            <div className="flex items-center w-1/12">
+            {/* <div className="flex items-center w-1/12">
               <Select2
                 id="sort-by-funders"
                 placeholder="Sort by"
@@ -68,7 +71,7 @@ const FundersList = () => {
                 value={sort.order}
                 onSelect={handleSortFunders}
               />
-            </div>
+            </div> */}
 
             <div className="flex m-3 border divide-x rounded-md divide-solid border-grey-20">
               <button type="button" className="px-3 py-3">
@@ -91,10 +94,12 @@ const FundersList = () => {
           </div>
         </div>
 
-        <Cards data={fundersData} />
+        <div className="pb-10">
+          <Cards data={fundersData} />
+        </div>
 
         {hasNextFundersPage && (
-          <div className="flex justify-center py-10">
+          <div className="flex justify-center pb-10">
             <Button
               type="button"
               theme="black-alt"

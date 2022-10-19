@@ -1,8 +1,12 @@
+import { useAppSelector } from 'store/hooks';
+
 export interface CountriesTooltipProps {
   properties: Record<string, any>;
 }
 
 const CountriesTooltip = ({ properties = {} }: CountriesTooltipProps) => {
+  const { type } = useAppSelector((state) => state['/action-map']);
+
   const { name, count } = properties ?? {};
 
   return (
@@ -12,7 +16,7 @@ const CountriesTooltip = ({ properties = {} }: CountriesTooltipProps) => {
         <p className="text-base">{name}</p>
       </li>
       <li className="font-semibold">
-        <h4 className="text-sm uppercase text-grey-40">Funders</h4>
+        <h4 className="text-sm uppercase text-grey-40">{type}</h4>
         <p className="text-base">{count}</p>
       </li>
     </ul>

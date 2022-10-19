@@ -11,8 +11,6 @@ import Cards from 'containers/cards';
 import Wrapper from 'containers/wrapper';
 
 import Button from 'components/button';
-import { Select } from 'components/forms';
-import { Option } from 'components/forms/select';
 import Select2 from 'components/forms/select2';
 import Icon from 'components/icon';
 import Loading from 'components/loading';
@@ -20,7 +18,10 @@ import Loading from 'components/loading';
 import DOWNLOAD_SVG from 'svgs/ui/download.svg?sprite';
 import SHARE_SVG from 'svgs/ui/share.svg?sprite';
 
-const SORT_OPTIONS = ['a-z', 'z-a'];
+const SORT_OPTIONS = [
+  { label: 'a-z', value: 'asc' },
+  { label: 'z-a', value: 'desc' },
+];
 
 const ProjectsList = () => {
   const { filters, search, sort } = useAppSelector((state) => state['/projects']);
@@ -39,8 +40,7 @@ const ProjectsList = () => {
 
   const handleSortProjects = useCallback(
     (value) => {
-      const valueTranslator = value === 'z-a' ? 'desc' : 'asc';
-      dispatch(setSort({ field: 'title', order: valueTranslator }));
+      dispatch(setSort({ field: 'title', order: value }));
     },
     [dispatch]
   );

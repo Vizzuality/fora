@@ -1,21 +1,21 @@
 export function getStyles(color, selected: boolean, count: number) {
   const getDefaultFill = () => {
-    if (!count) return '#ddd';
-    if (!selected) return '#bbb';
+    if (!count) return '#F1F1F1';
+    if (!selected) return '#F1F1F1';
 
     return color;
   };
 
   const getHoverFill = () => {
-    if (!count) return '#ddd';
-    if (!selected) return '#aaa';
+    if (!count) return '#efefef';
+    if (!selected) return '#efefef';
 
     return color.brighten(0.1);
   };
 
   const getPressedFill = () => {
-    if (!count) return '#ddd';
-    if (!selected) return '#aaa';
+    if (!count) return '#e9e9e9';
+    if (!selected) return '#e9e9e9';
 
     return color.brighten(0.2);
   };
@@ -23,20 +23,20 @@ export function getStyles(color, selected: boolean, count: number) {
   return {
     default: {
       fill: getDefaultFill(),
-      stroke: '#FFF',
-      strokeWidth: 2,
+      stroke: '#CDCDCD',
+      strokeWidth: 1,
       outline: 'none',
     },
     hover: {
       fill: getHoverFill(),
-      stroke: '#FFF',
-      strokeWidth: 2,
+      stroke: '#CDCDCD',
+      strokeWidth: 1,
       outline: 'none',
     },
     pressed: {
       fill: getPressedFill(),
-      stroke: '#FFF',
-      strokeWidth: 2,
+      stroke: '#CDCDCD',
+      strokeWidth: 1,
       outline: 'none',
     },
   };

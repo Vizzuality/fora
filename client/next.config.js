@@ -20,6 +20,10 @@ const nextConfig = {
   output: 'standalone',
   // ? https://nextjs.org/docs/api-reference/next.config.js/basepath
   basePath: process.env.NEXT_PUBLIC_BASE_PATH,
+
+  images: {
+    domains: ['staging.fora.dev-vizzuality.com'],
+  },
 };
 
 module.exports = withPlugins(

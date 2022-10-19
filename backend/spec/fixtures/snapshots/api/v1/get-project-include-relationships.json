@@ -1,0 +1,75 @@
+{
+  "data": {
+    "id": "539dc0d0-934d-42d7-881b-6a35762a7ad3",
+    "type": "project",
+    "attributes": {
+      "name": "Otha Kemmer"
+    },
+    "relationships": {
+      "subgeographic_ancestors": {
+        "data": [
+          {
+            "id": "d4e81de8-afec-44f3-ab0a-2f7fe7529c15",
+            "type": "subgeographic"
+          },
+          {
+            "id": "af98a692-7988-4ca1-b4b9-4d712dd28900",
+            "type": "subgeographic"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "d4e81de8-afec-44f3-ab0a-2f7fe7529c15",
+      "type": "subgeographic",
+      "attributes": {
+        "name": "Papua New Guinea",
+        "code": "NPL",
+        "geographic": "national",
+        "abbreviation": "N-NPL",
+        "created_at": "2022-10-14T08:25:15.221Z",
+        "updated_at": "2022-10-14T08:25:15.221Z"
+      },
+      "relationships": {
+        "parent": {
+          "data": {
+            "id": "af98a692-7988-4ca1-b4b9-4d712dd28900",
+            "type": "subgeographic"
+          }
+        },
+        "subgeographics": {
+          "data": [
+
+          ]
+        }
+      }
+    },
+    {
+      "id": "af98a692-7988-4ca1-b4b9-4d712dd28900",
+      "type": "subgeographic",
+      "attributes": {
+        "name": "Canada",
+        "code": "BWA",
+        "geographic": "countries",
+        "abbreviation": "C-BWA",
+        "created_at": "2022-10-14T08:25:15.203Z",
+        "updated_at": "2022-10-14T08:25:15.203Z"
+      },
+      "relationships": {
+        "parent": {
+          "data": null
+        },
+        "subgeographics": {
+          "data": [
+            {
+              "id": "d4e81de8-afec-44f3-ab0a-2f7fe7529c15",
+              "type": "subgeographic"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

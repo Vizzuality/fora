@@ -6,9 +6,10 @@ import cx from 'classnames';
 
 import { useAppSelector } from 'store/hooks';
 
+import rewind from '@turf/rewind';
 import CHROMA from 'chroma-js';
 import { geoCentroid } from 'd3-geo';
-import { max } from 'lodash';
+import { max, min } from 'lodash';
 
 import { MAP_RAMP } from 'constants/colors';
 
@@ -28,6 +29,8 @@ const OFFSETS = {
   DE: [33, 0],
   MD: [47, 10],
   DC: [49, 21],
+  PRI: [10, -25],
+  VIR: [2, -10],
 };
 
 const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: ViewProps) => {
@@ -37,19 +40,22 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
   const parseGeographies = useCallback(
     (geos) => {
       const COLOR_SCALE = CHROMA.scale(MAP_RAMP);
+      const MIN = min(data.map((d) => d.count)) || 0;
       const MAX = max(data.map((d) => d.count)) || 0;
 
       return geos.map((geo) => {
-        const { id } = geo.properties;
-        const count = data.find((d) => d.id === id)?.count || 0;
-        const COLOR = COLOR_SCALE(1 - count / MAX);
+        const { abbreviation } = geo.properties;
+        const count = data.find((d) => d.id === abbreviation)?.count || 0;
+
+        const VALUE = MAX === MIN ? 0.75 : 1 - count / MAX;
+        const COLOR = COLOR_SCALE(VALUE);
         const luminance = COLOR.luminance();
-        const selected = !subgeographics.length || subgeographics.includes(id);
+        const selected = !subgeographics.length || subgeographics.includes(abbreviation);
 
         const STYLES = getStyles(COLOR, selected, count);
 
         return {
-          ...geo,
+          ...rewind(geo, { reverse: true }),
           properties: {
             ...geo.properties,
             count,
@@ -72,13 +78,11 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
     <g>
       {/* Polygons */}
       {geographies.map((geo) => {
-        const { count } = geo.properties;
-
         return (
           <Geography
             key={geo.rsmKey}
             geo={geo}
-            {...(!!count && { onClick, onMouseEnter, onMouseLeave, onMouseMove })}
+            {...{ onClick, onMouseEnter, onMouseLeave, onMouseMove }}
           />
         );
       })}
@@ -120,9 +124,12 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
                 dx={OFFSETS[code][0]}
                 dy={OFFSETS[code][1]}
                 className="pointer-events-none"
+                connectorProps={{
+                  stroke: 'rgba(0, 0, 0, 0.25)',
+                }}
               >
                 <foreignObject
-                  x={-62}
+                  x={-75}
                   y={-75}
                   width={150}
                   height={150}
@@ -131,7 +138,7 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
                   <div className="relative flex items-center justify-center h-full text-sm text-center">
                     <div
                       className={cx({
-                        'py-0.5 px-2 text-black': true,
+                        'py-0.5 px-2 text-black ml-5': true,
                       })}
                     >
                       {code}
