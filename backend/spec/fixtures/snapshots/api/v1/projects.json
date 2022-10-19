@@ -66,6 +66,14 @@
               "type": "investment"
             }
           ]
+        },
+        "funders": {
+          "data": [
+            {
+              "id": "4cfd9825-4ae0-4d23-b7be-0aa78058a109",
+              "type": "funder"
+            }
+          ]
         }
       }
     },
@@ -119,6 +127,11 @@
           ]
         },
         "investments": {
+          "data": [
+
+          ]
+        },
+        "funders": {
           "data": [
 
           ]
@@ -181,6 +194,14 @@
               "type": "investment"
             }
           ]
+        },
+        "funders": {
+          "data": [
+            {
+              "id": "56ee1fbc-4767-4d77-9a4c-ae34217b767a",
+              "type": "funder"
+            }
+          ]
         }
       }
     },
@@ -234,6 +255,11 @@
           ]
         },
         "investments": {
+          "data": [
+
+          ]
+        },
+        "funders": {
           "data": [
 
           ]

@@ -40,6 +40,7 @@ module API
       has_many_restricted :subgeographics
       has_many_restricted :subgeographic_ancestors, serializer: :subgeographic
       has_many_restricted :investments
+      has_many_restricted :projects
 
       attribute :contact_email do |object, _params|
         next object.secondary_email_which_can_be_shared unless object.show_primary_email?
