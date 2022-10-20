@@ -80,6 +80,7 @@ const AnimatedGeography = forwardRef<SVGPathElement, GeographyProps>(
         onBlur={handleBlur}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
+        initial={false}
         animate={style[isPressed || isFocused ? (isPressed ? 'pressed' : 'hover') : 'default']}
         transition={{ duration: 0.25 }}
         {...restProps}

@@ -35,10 +35,15 @@ const Map = () => {
     data: fundersData,
     isFetching: fundersIsFetching,
     isFetched: fundersIsFetched,
-  } = useFunders({
-    filters: omit(filters, ['subgeographics']),
-    includes: 'subgeographic_ancestors',
-  });
+  } = useFunders(
+    {
+      filters: omit(filters, ['subgeographics']),
+      includes: 'subgeographic_ancestors',
+    },
+    {
+      keepPreviousData: false,
+    }
+  );
   const fundersGroupedData = useFundersByGeographicScope(view, fundersData);
 
   // PROJECTS
@@ -46,10 +51,15 @@ const Map = () => {
     data: projectsData,
     isFetching: projectsIsFetching,
     isFetched: projectsIsFetched,
-  } = useProjects({
-    filters: omit(filters, ['subgeographics']),
-    includes: 'subgeographic_ancestors',
-  });
+  } = useProjects(
+    {
+      filters: omit(filters, ['subgeographics']),
+      includes: 'subgeographic_ancestors',
+    },
+    {
+      keepPreviousData: false,
+    }
+  );
   const projectsGroupedData = useProjectsByGeographicScope(view, projectsData);
 
   const PROJECTION = useMapProjection({ view });
@@ -127,7 +137,7 @@ const Map = () => {
     <div className="relative w-full">
       <Loading
         visible={LOADING}
-        className="absolute top-0 left-0 flex items-center justify-center w-full h-full bg-white/90"
+        className="absolute top-0 left-0 flex items-center justify-center w-full h-full bg-white/10"
         iconClassName="w-10 h-10"
       />
 
