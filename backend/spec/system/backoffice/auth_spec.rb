@@ -22,7 +22,7 @@ RSpec.describe "Backoffice: Auth", type: :system do
 
         click_on t("backoffice.sign_in.sign_in")
 
-        expect(page).to have_text(t("devise.failure.invalid", authentication_keys: "Email"))
+        expect(page).to have_text(t("devise.failure.invalid", authentication_keys: "E-mail"))
       end
     end
   end
