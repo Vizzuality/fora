@@ -26,7 +26,10 @@ export const fetchFunder = (id: string) =>
   API.request({
     method: 'GET',
     url: `/funders/${id}`,
-    params: jsonAPIAdapter({ includes: 'primary_office_state,primary_office_country,projects' }),
+    params: jsonAPIAdapter({
+      includes:
+        'subgeographics,primary_office_state,primary_office_country,projects,projects.subgeographics',
+    }),
   }).then((response) => response.data);
 
 export const fetchFunders = (params: ParamsProps) => {

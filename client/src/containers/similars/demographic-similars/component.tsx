@@ -5,7 +5,7 @@ import cx from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { useFunders } from 'hooks/funders';
+import { useFunder, useFunders } from 'hooks/funders';
 import { useProjects } from 'hooks/projects';
 
 import Cards from 'containers/cards';
@@ -17,7 +17,7 @@ import CHEVRON_RIGHT_SVG from 'svgs/ui/chevron-right.svg?sprite';
 import type { SimilarsSectionProps } from '../component';
 
 const DemographicSimilars = ({ type }: SimilarsSectionProps) => {
-  const { pathname } = useRouter();
+  const { pathname, query } = useRouter();
 
   // Projects
   const { data: projectsByDemogprahics } = useProjects({
@@ -32,16 +32,22 @@ const DemographicSimilars = ({ type }: SimilarsSectionProps) => {
   }, [projectsByDemogprahics]);
 
   // Funders
+  const { id: funderId } = query;
+
+  const { data: funderData } = useFunder(`${funderId}`);
+  const { demographics } = funderData;
+
   const { data: fundersByDemogprahics } = useFunders({
-    filters: { demographics: 'women' },
+    filters: { demographics: demographics },
   });
 
   const RANDOM_FUND_DEMOGR = useMemo(() => {
     if (fundersByDemogprahics.length) {
-      const shuffled = fundersByDemogprahics.sort(() => 0.5 - Math.random());
+      const relevantFunders = fundersByDemogprahics.filter((f) => f.id !== funderId);
+      const shuffled = relevantFunders.sort(() => 0.5 - Math.random());
       return shuffled.slice(0, 3);
     }
-  }, [fundersByDemogprahics]);
+  }, [funderId, fundersByDemogprahics]);
 
   const data = useMemo(() => {
     if (type === 'funders') {
@@ -53,7 +59,7 @@ const DemographicSimilars = ({ type }: SimilarsSectionProps) => {
 
   return (
     <>
-      {(projectsByDemogprahics.length || fundersByDemogprahics.length) && (
+      {(!!projectsByDemogprahics.length || fundersByDemogprahics.length) && (
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-semibold capitalize text-grey-20">By Demographic Scope</div>

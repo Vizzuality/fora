@@ -5,7 +5,7 @@ import cx from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { useFunders } from 'hooks/funders';
+import { useFunder, useFunders } from 'hooks/funders';
 import { useProjects } from 'hooks/projects';
 
 import Cards from 'containers/cards';
@@ -17,7 +17,8 @@ import CHEVRON_RIGHT_SVG from 'svgs/ui/chevron-right.svg?sprite';
 import type { SimilarsSectionProps } from '../component';
 
 const AreasSimilars = ({ type }: SimilarsSectionProps) => {
-  const { pathname } = useRouter();
+  const { pathname, query } = useRouter();
+
   // Projects
   const { data: projectsByArea } = useProjects({
     filters: { area: 'biodiversity' },
@@ -31,16 +32,22 @@ const AreasSimilars = ({ type }: SimilarsSectionProps) => {
   }, [projectsByArea]);
 
   // Funders
+  const { id: funderId } = query;
+
+  const { data: funderData } = useFunder(`${funderId}`);
+  const { areas } = funderData;
+
   const { data: fundersByArea } = useFunders({
-    filters: { area: 'biodiversity' },
+    filters: { area: areas },
   });
 
   const RANDOM_FUND_AREA = useMemo(() => {
     if (fundersByArea.length) {
-      const shuffled = fundersByArea.sort(() => 0.5 - Math.random());
+      const relevantFunders = fundersByArea.filter((f) => f.id !== funderId);
+      const shuffled = relevantFunders.sort(() => 0.5 - Math.random());
       return shuffled.slice(0, 3);
     }
-  }, [fundersByArea]);
+  }, [funderId, fundersByArea]);
 
   const data = useMemo(() => {
     if (type === 'funders') {
@@ -51,7 +58,7 @@ const AreasSimilars = ({ type }: SimilarsSectionProps) => {
   }, [RANDOM_FUND_AREA, RANDOM_PROJ_AREA, type]);
   return (
     <>
-      {(projectsByArea.length || fundersByArea.length) && (
+      {(!!projectsByArea.length || fundersByArea.length) && (
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-semibold capitalize text-grey-20">By Area of Focus</div>

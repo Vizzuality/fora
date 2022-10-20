@@ -18,27 +18,28 @@ import INFO_SVG from 'svgs/ui/info.svg?sprite';
 const ATTRIBUTES = [
   {
     id: 'funder_type',
-    label: 'Funder type',
+    label: 'Organization type',
     value: '',
-    tooltip: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
+    tooltip: 'The type of organization a funder or project represents.',
   },
   {
     id: 'application_status',
     label: 'Application status',
     value: '',
-    tooltip: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
+    tooltip: 'The way in which a funder considers investing in a project.',
   },
   {
     id: 'capital_acceptances',
     label: 'Capital acceptances',
     value: '',
-    tooltip: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
+    tooltip:
+      'The status of a funder which indicates wheather a funder is open to donations/investments.',
   },
   {
     id: 'capital_types',
     label: 'Capital types',
     value: '',
-    tooltip: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
+    tooltip: 'The type of capital a funder invests with or a project is looking for.',
   },
 ];
 
@@ -106,12 +107,12 @@ const FunderAtributes = () => {
 
   return (
     <div className="py-4 border-y border-grey-40/40">
-      <dl className="grid grid-cols-2 grid-rows-2 gap-y-7">
+      <dl className="grid content-end grid-cols-2 grid-rows-2 gap-y-6 gap-x-11">
         {ATTRS.map((attr) => {
           const { id, label, tooltip, value } = attr;
 
           return (
-            <div key={id}>
+            <div className="space-y-2" key={id}>
               <span className="inline-flex items-center text-base font-semibold uppercase text-grey-20">
                 <dt className="pr-2 uppercase whitespace-nowrap">{label}</dt>
                 <Tooltip

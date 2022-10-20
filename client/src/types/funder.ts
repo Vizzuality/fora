@@ -38,4 +38,5 @@ export interface Funder {
     original: string;
   };
   subgeographic_ancestors: SubGeographic[];
+  subgeographics: SubGeographic[];
 }

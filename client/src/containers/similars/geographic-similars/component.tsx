@@ -5,7 +5,7 @@ import cx from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { useFunders } from 'hooks/funders';
+import { useFunder, useFunders } from 'hooks/funders';
 import { useProjects } from 'hooks/projects';
 
 import Cards from 'containers/cards';
@@ -17,7 +17,7 @@ import CHEVRON_RIGHT_SVG from 'svgs/ui/chevron-right.svg?sprite';
 import type { SimilarsSectionProps } from '../component';
 
 const SimilarsItem = ({ type }: SimilarsSectionProps) => {
-  const { pathname } = useRouter();
+  const { pathname, query } = useRouter();
 
   // Projects
   const { data: projectsBySubgeogprahics } = useProjects({
@@ -32,16 +32,26 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
   }, [projectsBySubgeogprahics]);
 
   // Funders
+  const { id: funderId } = query;
+
+  const { data: funderData } = useFunder(`${funderId}`);
+  const { subgeographics } = funderData;
+
+  const SUBGEOGRAPHICS = useMemo(() => {
+    return subgeographics?.map((sub) => sub.abbreviation);
+  }, [subgeographics]);
+
   const { data: fundersBySubgeogprahics } = useFunders({
-    filters: { subgeographics: 'USA' },
+    filters: { subgeographics: SUBGEOGRAPHICS },
   });
 
   const RANDOM_FUND_GEOGR = useMemo(() => {
     if (fundersBySubgeogprahics.length) {
-      const shuffled = fundersBySubgeogprahics.sort(() => 0.5 - Math.random());
+      const relevantFunders = fundersBySubgeogprahics.filter((f) => f.id !== funderId);
+      const shuffled = relevantFunders.sort(() => 0.5 - Math.random());
       return shuffled.slice(0, 3);
     }
-  }, [fundersBySubgeogprahics]);
+  }, [funderId, fundersBySubgeogprahics]);
 
   const data = useMemo(() => {
     if (type === 'funders') {
@@ -53,7 +63,7 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
 
   return (
     <>
-      {(projectsBySubgeogprahics.length || fundersBySubgeogprahics.length) && (
+      {(!!projectsBySubgeogprahics.length || !!fundersBySubgeogprahics.length) && (
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-semibold capitalize text-grey-20">By Geographic Scope</div>

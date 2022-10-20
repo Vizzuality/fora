@@ -9,6 +9,7 @@ import InfoCard from 'containers/details/info-card';
 
 import Button from 'components/button';
 
+import Address from './address';
 import Attributes from './attributes';
 import { PROJECT_CARD_INFO } from './constants';
 
@@ -18,22 +19,7 @@ const FunderOverview = () => {
 
   const { data: funderData } = useFunder(`${funderId}`);
 
-  const {
-    contact_email: email,
-    description,
-    logo,
-    name,
-    primary_office_city: officeCity,
-    primary_office_country: officeCountry,
-    primary_office_state: officeState,
-    website,
-  } = funderData;
-
-  const ADDRESS = [
-    officeCity,
-    ...(!!officeState.name ? [officeState.name] : []),
-    officeCountry.name,
-  ];
+  const { contact_email: email, description, logo, name } = funderData;
 
   return (
     <div className="flex space-x-32">
@@ -63,18 +49,7 @@ const FunderOverview = () => {
           </Button>
         </div>
 
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <p className="text-base font-semibold uppercase text-grey-20">Headquarters Adress</p>
-            <p className="capitalize">{ADDRESS.join(', ')}</p>
-          </div>
-
-          <p className="font-semibold underline">
-            <a href={website} target="_blank" rel="noopener noreferrer">
-              {website}
-            </a>
-          </p>
-        </div>
+        <Address />
 
         <Attributes />
 
