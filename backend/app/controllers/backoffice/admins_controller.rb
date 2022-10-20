@@ -1,7 +1,5 @@
 module Backoffice
   class AdminsController < BaseController
-    def index
-      # TODO
-    end
+    include AsResource
   end
 end

@@ -5,6 +5,14 @@ class Admin < ApplicationRecord
   validate :password_complexity
   validates_presence_of :first_name, :last_name
 
+  ransacker :full_name do
+    Arel.sql("CONCAT_WS(' ', admins.first_name, admins.last_name)")
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   private
 
   def password_complexity

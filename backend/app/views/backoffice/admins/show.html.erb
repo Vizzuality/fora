@@ -1,0 +1,28 @@
+<div class="w-full bg-white text-base rounded-xl p-3">
+  <h1 class="font-semibold text-xl text-black mb-6">
+    <%= t "backoffice.show.title", name: @resource.full_name %>
+  </h1>
+
+  <table>
+    <tr>
+      <td class="p-2"><%= @resource.class.human_attribute_name(:first_name) %>:</td>
+      <td><%= @resource.first_name %></td>
+    </tr>
+    <tr>
+      <td class="p-2"><%= @resource.class.human_attribute_name(:last_name) %>:</td>
+      <td><%= @resource.last_name %></td>
+    </tr>
+    <tr>
+      <td class="p-2"><%= @resource.class.human_attribute_name(:email) %>:</td>
+      <td><%= @resource.email %></td>
+    </tr>
+    <tr>
+      <td class="p-2"><%= @resource.class.human_attribute_name(:created_at) %>:</td>
+      <td><%= I18n.l @resource.created_at %></td>
+    </tr>
+    <tr>
+      <td class="p-2"><%= @resource.class.human_attribute_name(:updated_at) %>:</td>
+      <td><%= I18n.l @resource.updated_at %></td>
+    </tr>
+  </table>
+</div>
