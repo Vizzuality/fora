@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .button {
+    @apply relative flex items-center justify-center font-semibold rounded-lg border px-10 py-3
+  }
+
+  .button-primary-green {
+    @apply text-grey-0 border-green-40 hover:bg-green-60 active:bg-grey-0/10 text-base transition-colors bg-green-40
+  }
+}

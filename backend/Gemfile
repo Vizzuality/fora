@@ -13,6 +13,7 @@ gem "rswag"
 gem "rspec-rails", "6.0.0.rc1"
 gem "cancancan"
 gem "redis"
+gem "devise"
 
 gem "dotenv-rails"
 
@@ -22,6 +23,8 @@ gem "jsbundling-rails"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
+gem "simple_form"
+gem "simple_form-tailwind"
 
 # API
 gem "jsonapi-serializer"
