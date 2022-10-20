@@ -17,6 +17,7 @@ export interface Funder {
   description: string;
   website: string;
   // Filters
+  application_status: string;
   areas: Area['id'][];
   capital_acceptances: string[];
   capital_types: CapitalType['id'][];

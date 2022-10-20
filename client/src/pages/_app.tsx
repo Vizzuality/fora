@@ -20,6 +20,7 @@ import { MediaContextProvider } from 'components/media-query';
 
 import 'styles/globals.css';
 import 'styles/flicking.css';
+
 const dataFormatter = new Jsona();
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
