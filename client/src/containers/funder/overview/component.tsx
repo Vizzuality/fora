@@ -25,15 +25,13 @@ const FunderOverview = () => {
 
   const GEOGRPAHIC_SCOPE = useMemo(() => {
     const projSubgeographics = projects.map((proj) => proj.subgeographics);
-    const arraySubGeo = projSubgeographics
-      ?.reduce((c, v) => c.concat(v), [])
-      .map((subg) => subg.name);
+    const arraySubGeo = projSubgeographics?.flat().map((subg) => subg.name);
     return arraySubGeo;
   }, [projects]);
 
   const DEMOGRAPHIC_SCOPE = useMemo(() => {
     const projDemographics = projects.map((proj) => proj.demographics);
-    const arrayDemogr = projDemographics?.reduce((c, v) => c.concat(v), []).map((demogr) => demogr);
+    const arrayDemogr = projDemographics?.flat().map((demogr) => demogr);
 
     return demographicsData.filter((c) => arrayDemogr.includes(c.id));
   }, [demographicsData, projects]);
