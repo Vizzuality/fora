@@ -6,12 +6,6 @@ export const PROJECT_CARD_INFO = [
     value: '',
   },
   {
-    id: 'area-of-focus',
-    title: 'Area of Focus',
-    info: 'A regenerative agriculture related topic a project or funder focuses on working or investing in.',
-    value: '',
-  },
-  {
     id: 'demopgraphic-scope',
     title: 'Demographic Scope',
     info: 'Different demographic groups a project or funder focuses on working or investing in.',
@@ -21,18 +15,6 @@ export const PROJECT_CARD_INFO = [
     id: 'demographic-leadership',
     title: 'Demographic Leadership',
     info: 'Different demographic groups who lead a project.',
-    value: '',
-  },
-  {
-    id: 'legal-status',
-    title: 'Legal Status',
-    info: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
-    value: '',
-  },
-  {
-    id: 'capital_types',
-    title: 'Capital types',
-    info: 'The type of capital a funder invests with or a project is looking for.',
     value: '',
   },
 ];

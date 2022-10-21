@@ -3,10 +3,7 @@ import React, { useMemo } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { useAreas } from 'hooks/areas';
-import { useCapitalTypes } from 'hooks/capital-types';
 import { useDemographics } from 'hooks/demographics';
-import { useFunderLegalStatuses } from 'hooks/funder-legal-statuses';
 import { useFunder } from 'hooks/funders';
 
 import InfoCard from 'containers/details/info-card';
@@ -21,40 +18,25 @@ const FunderOverview = () => {
   const { query } = useRouter();
   const { id: funderId } = query;
 
-  const { data: areasData } = useAreas();
-  const { data: capitalTypesData } = useCapitalTypes();
   const { data: demographicsData } = useDemographics();
   const { data: funderData } = useFunder(`${funderId}`);
-  const { data: funderLegalStatusesData } = useFunderLegalStatuses();
 
-  const {
-    areas,
-    contact_email: email,
-    capital_types: capitalTypeIds,
-    demographics,
-    description,
-    funder_legal_status: legalStatus,
-    logo,
-    name,
-    projects,
-    subgeographics,
-  } = funderData;
+  const { contact_email: email, description, logo, name, projects } = funderData;
 
-  const AREAS = useMemo(() => {
-    return areasData.filter((a) => areas.includes(a.id));
-  }, [areas, areasData]);
-
-  const CAPITAL_TYPES = useMemo(() => {
-    return capitalTypesData.filter((c) => capitalTypeIds.includes(c.id));
-  }, [capitalTypeIds, capitalTypesData]);
+  const GEOGRPAHIC_SCOPE = useMemo(() => {
+    const projSubgeographics = projects.map((proj) => proj.subgeographics);
+    const arraySubGeo = projSubgeographics
+      ?.reduce((c, v) => c.concat(v), [])
+      .map((subg) => subg.name);
+    return arraySubGeo;
+  }, [projects]);
 
   const DEMOGRAPHIC_SCOPE = useMemo(() => {
-    return demographicsData.filter((d) => demographics.includes(d.id));
-  }, [demographics, demographicsData]);
+    const projDemographics = projects.map((proj) => proj.demographics);
+    const arrayDemogr = projDemographics?.reduce((c, v) => c.concat(v), []).map((demogr) => demogr);
 
-  const LEGAL_STATUS = useMemo(() => {
-    return funderLegalStatusesData.find((ls) => ls.id === legalStatus);
-  }, [funderLegalStatusesData, legalStatus]);
+    return demographicsData.filter((c) => arrayDemogr.includes(c.id));
+  }, [demographicsData, projects]);
 
   // TO_DO: demograpgic leadership
   const CARD_DATA = useMemo(() => {
@@ -63,12 +45,7 @@ const FunderOverview = () => {
         case 'geogpraphic-scope':
           return {
             ...attr,
-            value: subgeographics.map((c) => c.name).join(', '),
-          };
-        case 'area-of-focus':
-          return {
-            ...attr,
-            value: AREAS.map((a) => a.name).join(', '),
+            value: GEOGRPAHIC_SCOPE.join(', '),
           };
         case 'demopgraphic-scope':
           return {
@@ -80,21 +57,11 @@ const FunderOverview = () => {
             ...attr,
             value: DEMOGRAPHIC_SCOPE.map((d) => d.name).join(', '),
           };
-        case 'legal-status':
-          return {
-            ...attr,
-            value: LEGAL_STATUS?.name,
-          };
-        case 'capital_types':
-          return {
-            ...attr,
-            value: CAPITAL_TYPES.map((c) => c.name).join(', '),
-          };
         default:
           return attr;
       }
     });
-  }, [subgeographics, AREAS, DEMOGRAPHIC_SCOPE, LEGAL_STATUS?.name, CAPITAL_TYPES]);
+  }, [GEOGRPAHIC_SCOPE, DEMOGRAPHIC_SCOPE]);
 
   return (
     <div className="flex space-x-32">
