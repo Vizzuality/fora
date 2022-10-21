@@ -1,43 +1,75 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import { useAreas } from 'hooks/areas';
+import { useDemographics } from 'hooks/demographics';
 import { useProject } from 'hooks/projects';
 
 import InfoCard from 'containers/details/info-card';
 
-const PROJECT_CARD_INFO = [
-  {
-    id: 'geographic-scope',
-    title: 'Geographic Scope',
-    info: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
-    value: 'Southeast',
-  },
-  {
-    id: 'area-of-focus',
-    title: 'Area of Focus',
-    info: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
-    value: 'Invite only',
-  },
-  {
-    id: 'demographic-scope',
-    title: 'Demographic Scope',
-    info: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
-    value: 'Donations Accepted',
-  },
-  {
-    id: 'demographic-leadership',
-    title: 'Demographic Leadership',
-    info: 'EarthShare delivers the tools that businesses, individuals, and nonprofits need.',
-    value: 'Grant',
-  },
-];
+import { FUNDED_CARD_INFO } from './constants';
 
 const ProjectOverview = () => {
   const { query } = useRouter();
   const { id: projectId } = query;
+
+  const { data: areasData } = useAreas();
+  const { data: demographicsData } = useDemographics();
   const { data: projectData } = useProject(`${projectId}`);
+
+  const { funders } = projectData;
+
+  const GEOGRPAHIC_SCOPE = useMemo(() => {
+    const projSubgeographics = funders.map((proj) => proj.subgeographics);
+    const arraySubGeo = projSubgeographics?.flat().map((subg) => subg.name);
+    return arraySubGeo;
+  }, [funders]);
+
+  const DEMOGRAPHIC_SCOPE = useMemo(() => {
+    const projDemographics = funders.map((proj) => proj.demographics);
+    const arrayDemogr = projDemographics?.flat().map((demogr) => demogr);
+
+    return demographicsData.filter((c) => arrayDemogr.includes(c.id));
+  }, [demographicsData, funders]);
+
+  const AREAS_OF_FOCUS = useMemo(() => {
+    const projAreas = funders.map((proj) => proj.areas);
+    const arrayAreas = projAreas?.flat().map((area) => area);
+
+    return areasData.filter((c) => arrayAreas.includes(c.id));
+  }, [areasData, funders]);
+
+  // TO_DO: demograpgic leadership
+  const CARD_DATA = useMemo(() => {
+    return FUNDED_CARD_INFO.map((attr) => {
+      switch (attr.id) {
+        case 'geogpraphic-scope':
+          return {
+            ...attr,
+            value: GEOGRPAHIC_SCOPE.join(', '),
+          };
+        case 'area-of-focus':
+          return {
+            ...attr,
+            value: AREAS_OF_FOCUS.map((a) => a.name).join(' • '),
+          };
+        case 'demopgraphic-scope':
+          return {
+            ...attr,
+            value: DEMOGRAPHIC_SCOPE.map((d) => d.name).join(', '),
+          };
+        case 'demographic-leadership':
+          return {
+            ...attr,
+            value: DEMOGRAPHIC_SCOPE.map((d) => d.name).join(', '),
+          };
+        default:
+          return attr;
+      }
+    });
+  }, [GEOGRPAHIC_SCOPE, AREAS_OF_FOCUS, DEMOGRAPHIC_SCOPE]);
 
   return (
     <div className="flex space-x-32">
@@ -70,7 +102,7 @@ const ProjectOverview = () => {
         </div>
       </div>
       <div className="flex-1">
-        <InfoCard data={PROJECT_CARD_INFO} count={12} />
+        <InfoCard data={CARD_DATA} count={funders.length} />
       </div>
     </div>
   );

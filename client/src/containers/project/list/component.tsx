@@ -1,45 +1,26 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
-import { useFundersInfinity } from 'hooks/funders';
+import { useRouter } from 'next/router';
+
+import { useProject } from 'hooks/projects';
 
 import Cards from 'containers/cards';
 import Similars from 'containers/similars';
 
-import Button from 'components/button';
-import Loading from 'components/loading';
-
 const ProjectList = () => {
-  const {
-    data: fundersData,
-    fetchNextPage: fetchNextPageFunders,
-    hasNextPage: hasNextFundersPage,
-    isFetchingNextPage: isFetchingNextFundersPage,
-  } = useFundersInfinity({
-    perPage: 6,
-  });
+  const { query } = useRouter();
+  const { id: projectId } = query;
 
-  const handleOnLoadMore = useCallback(() => {
-    fetchNextPageFunders();
-  }, [fetchNextPageFunders]);
+  const { data: projectData } = useProject(`${projectId}`);
+
+  const { funders } = projectData;
 
   return (
     <div className="space-y-20">
       <div className="space-y-9">
         <h3 className="text-2xl font-display"> Who is funding this project?</h3>
 
-        {fundersData.length && <Cards pathname="/projects" theme="green" data={fundersData} />}
-
-        {hasNextFundersPage && (
-          <div className="flex justify-center">
-            <Button type="button" theme="black-alt" size="xl" onClick={handleOnLoadMore}>
-              Load more
-              <Loading
-                visible={isFetchingNextFundersPage}
-                className="absolute flex items-center justify-center w-full h-full bg-white"
-              />
-            </Button>
-          </div>
-        )}
+        {funders.length && <Cards pathname="/projects" theme="green" data={funders} />}
       </div>
 
       <div className="space-y-9">
