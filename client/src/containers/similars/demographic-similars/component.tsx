@@ -34,12 +34,17 @@ const DemographicSimilars = ({ type }: SimilarsSectionProps) => {
   // Funders
   const { id: funderId } = query;
 
-  const { data: funderData } = useFunder(`${funderId}`);
+  const { data: funderData } = useFunder(`${funderId}`, {
+    enabled: !!funderId && type === 'funders',
+  });
   const { demographics } = funderData;
 
-  const { data: fundersByDemogprahics } = useFunders({
-    filters: { demographics: demographics },
-  });
+  const { data: fundersByDemogprahics } = useFunders(
+    {
+      filters: { demographics: demographics },
+    },
+    { enabled: !!funderId && type === 'funders' }
+  );
 
   const RANDOM_FUND_DEMOGR = useMemo(() => {
     if (fundersByDemogprahics.length) {

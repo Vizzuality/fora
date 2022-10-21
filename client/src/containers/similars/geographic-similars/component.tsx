@@ -34,16 +34,21 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
   // Funders
   const { id: funderId } = query;
 
-  const { data: funderData } = useFunder(`${funderId}`);
+  const { data: funderData } = useFunder(`${funderId}`, {
+    enabled: !!funderId && type === 'funders',
+  });
   const { subgeographics } = funderData;
 
   const SUBGEOGRAPHICS = useMemo(() => {
     return subgeographics?.map((sub) => sub.abbreviation);
   }, [subgeographics]);
 
-  const { data: fundersBySubgeogprahics } = useFunders({
-    filters: { subgeographics: SUBGEOGRAPHICS },
-  });
+  const { data: fundersBySubgeogprahics } = useFunders(
+    {
+      filters: { subgeographics: SUBGEOGRAPHICS },
+    },
+    { enabled: !!funderId && type === 'funders' }
+  );
 
   const RANDOM_FUND_GEOGR = useMemo(() => {
     if (fundersBySubgeogprahics.length) {

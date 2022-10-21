@@ -34,12 +34,17 @@ const AreasSimilars = ({ type }: SimilarsSectionProps) => {
   // Funders
   const { id: funderId } = query;
 
-  const { data: funderData } = useFunder(`${funderId}`);
+  const { data: funderData } = useFunder(`${funderId}`, {
+    enabled: !!funderId && type === 'funders',
+  });
   const { areas } = funderData;
 
-  const { data: fundersByArea } = useFunders({
-    filters: { area: areas },
-  });
+  const { data: fundersByArea } = useFunders(
+    {
+      filters: { area: areas },
+    },
+    { enabled: !!funderId && type === 'funders' }
+  );
 
   const RANDOM_FUND_AREA = useMemo(() => {
     if (fundersByArea.length) {

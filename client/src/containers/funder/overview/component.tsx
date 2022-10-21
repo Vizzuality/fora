@@ -8,7 +8,6 @@ import { useCapitalTypes } from 'hooks/capital-types';
 import { useDemographics } from 'hooks/demographics';
 import { useFunderLegalStatuses } from 'hooks/funder-legal-statuses';
 import { useFunder } from 'hooks/funders';
-import { useSubGeographics } from 'hooks/geographics';
 
 import InfoCard from 'containers/details/info-card';
 
@@ -27,7 +26,6 @@ const FunderOverview = () => {
   const { data: demographicsData } = useDemographics();
   const { data: funderData } = useFunder(`${funderId}`);
   const { data: funderLegalStatusesData } = useFunderLegalStatuses();
-  const { data: subgeographicData } = useSubGeographics();
 
   const {
     areas,
@@ -50,11 +48,6 @@ const FunderOverview = () => {
     return capitalTypesData.filter((c) => capitalTypeIds.includes(c.id));
   }, [capitalTypeIds, capitalTypesData]);
 
-  const GEOGRAPHIC_SCOPE = useMemo(() => {
-    const subgeoArray = subgeographics?.map((sub) => sub.abbreviation);
-    return subgeographicData.filter((sg) => subgeoArray.includes(sg.id));
-  }, [subgeographicData, subgeographics]);
-
   const DEMOGRAPHIC_SCOPE = useMemo(() => {
     return demographicsData.filter((d) => demographics.includes(d.id));
   }, [demographics, demographicsData]);
@@ -70,7 +63,7 @@ const FunderOverview = () => {
         case 'geogpraphic-scope':
           return {
             ...attr,
-            value: GEOGRAPHIC_SCOPE.map((c) => c.name).join(', '),
+            value: subgeographics.map((c) => c.name).join(', '),
           };
         case 'area-of-focus':
           return {
@@ -101,7 +94,7 @@ const FunderOverview = () => {
           return attr;
       }
     });
-  }, [GEOGRAPHIC_SCOPE, AREAS, DEMOGRAPHIC_SCOPE, LEGAL_STATUS?.name, CAPITAL_TYPES]);
+  }, [subgeographics, AREAS, DEMOGRAPHIC_SCOPE, LEGAL_STATUS?.name, CAPITAL_TYPES]);
 
   return (
     <div className="flex space-x-32">
