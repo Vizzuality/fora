@@ -10,8 +10,8 @@ module.exports = {
   plugins: [],
   theme: {
     fontFamily: {
-      sans: ['Open\\ Sans', 'sans'],
-      display: ['Montserrat', 'display'],
+      sans: ['Open Sans'],
+      display: ['Montserrat'],
     },
     fontSize: {
       xxs: [

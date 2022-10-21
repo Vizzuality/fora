@@ -12,10 +12,15 @@
         </div>
       </div>
     </div>
+    <div class="container mx-auto">
+      <%= render "navigation" %>
+    </div>
   </header>
 
   <main class="container mx-auto py-6 mt-1 relative table">
+    <%= render "flash_messages" %>
     <%= yield %>
+    <%== render partial: "pagination", locals: {pagy: @pagy_object} if defined? @pagy_object %>
   </main>
 <% end %>
 
