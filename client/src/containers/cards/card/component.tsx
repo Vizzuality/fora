@@ -11,8 +11,8 @@ import LOCATION_SVG from 'svgs/ui/location.svg?sprite';
 
 import { THEME } from './constants';
 export interface CardProps {
-  id: string;
-  name: string;
+  id?: string;
+  name?: string;
   location?: string;
   href?: string;
   areas?: string[];

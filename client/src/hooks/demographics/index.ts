@@ -2,11 +2,11 @@ import { useMemo } from 'react';
 
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
+import { Demographic } from 'types/demographic';
+
 import API from 'services/api';
 
-import { ResponseData } from './types';
-
-export function useDemographics(queryOptions: UseQueryOptions<ResponseData, unknown> = {}) {
+export function useDemographics(queryOptions: UseQueryOptions<Demographic[], unknown> = {}) {
   const fetchDemographics = () =>
     API.request({
       method: 'GET',
@@ -23,11 +23,11 @@ export function useDemographics(queryOptions: UseQueryOptions<ResponseData, unkn
   const { data } = query;
 
   const DATA = useMemo(() => {
-    if (!data?.data) {
+    if (!data) {
       return [];
     }
 
-    return data?.data.sort((a, b) => {
+    return data.sort((a, b) => {
       return a.name > b.name ? 1 : -1;
     });
   }, [data]);

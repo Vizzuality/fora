@@ -2,11 +2,13 @@ import { useMemo } from 'react';
 
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
+import { ProjectLegalStatus } from 'types/project-legal-status';
+
 import API from 'services/api';
 
-import { ResponseData } from './types';
-
-export function useProjectLegalStatuses(queryOptions: UseQueryOptions<ResponseData, unknown> = {}) {
+export function useProjectLegalStatuses(
+  queryOptions: UseQueryOptions<ProjectLegalStatus[], unknown> = {}
+) {
   const fetchProjectLegalStatuses = () =>
     API.request({
       method: 'GET',
@@ -23,11 +25,11 @@ export function useProjectLegalStatuses(queryOptions: UseQueryOptions<ResponseDa
   const { data } = query;
 
   const DATA = useMemo(() => {
-    if (!data?.data) {
+    if (!data) {
       return [];
     }
 
-    return data?.data.sort((a, b) => {
+    return data.sort((a, b) => {
       return a.name > b.name ? 1 : -1;
     });
   }, [data]);

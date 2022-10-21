@@ -20,5 +20,6 @@ export interface Project {
     medium: string;
     original: string;
   };
+  subgeographics: SubGeographic[];
   subgeographic_ancestors: SubGeographic[];
 }

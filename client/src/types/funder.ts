@@ -17,6 +17,7 @@ export interface Funder {
   description: string;
   website: string;
   // Filters
+  application_status: string;
   areas: Area['id'][];
   capital_acceptances: string[];
   capital_types: CapitalType['id'][];
@@ -26,6 +27,11 @@ export interface Funder {
   funder_legal_status: FunderLegalStatus['id'];
   funder_type: FunderType['id'];
   investments: Investment[];
+  leadership_demographics: Demographic['id'][];
+  primary_office_address: string;
+  primary_office_city: string;
+  primary_office_state: SubGeographic;
+  primary_office_country: SubGeographic;
   projects: Partial<Project>[];
   logo: {
     small: string;
@@ -33,4 +39,5 @@ export interface Funder {
     original: string;
   };
   subgeographic_ancestors: SubGeographic[];
+  subgeographics: SubGeographic[];
 }

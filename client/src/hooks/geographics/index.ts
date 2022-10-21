@@ -6,13 +6,11 @@ import { ParamsProps } from 'lib/adapters/types';
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 import { FeatureCollection } from 'geojson';
 
+import { Geographic, SubGeographic } from 'types/geographics';
+
 import API from 'services/api';
 
-import { GeographicsResponseData, SubGeographicsResponseData } from './types';
-
-export function useGeographics(
-  queryOptions: UseQueryOptions<GeographicsResponseData, unknown> = {}
-) {
+export function useGeographics(queryOptions: UseQueryOptions<Geographic[], unknown> = {}) {
   const fetchGeographics = () =>
     API.request({
       method: 'GET',
@@ -29,12 +27,12 @@ export function useGeographics(
   const { data } = query;
 
   const DATA = useMemo(() => {
-    if (!data?.data) {
+    if (!data) {
       return [];
     }
     const ORDER = ['regions', 'states', 'national', 'countries'];
 
-    return data?.data.sort((a, b) => {
+    return data.sort((a, b) => {
       return ORDER.indexOf(a.id) - ORDER.indexOf(b.id);
     });
   }, [data]);
@@ -49,7 +47,7 @@ export function useGeographics(
 
 export function useSubGeographics(
   params: ParamsProps = {},
-  queryOptions: UseQueryOptions<SubGeographicsResponseData, unknown> = {}
+  queryOptions: UseQueryOptions<SubGeographic[], unknown> = {}
 ) {
   const fetchSubgeographics = () =>
     API.request({
@@ -68,12 +66,12 @@ export function useSubGeographics(
   const { data } = query;
 
   const DATA = useMemo(() => {
-    if (!data?.data) {
+    if (!data) {
       return [];
     }
 
     // Work with abbreviations instead of ids
-    return data?.data.map((subgeographic) => {
+    return data.map((subgeographic) => {
       return {
         ...subgeographic,
         id: subgeographic.abbreviation,

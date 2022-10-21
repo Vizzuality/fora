@@ -70,7 +70,7 @@ const ProjectOverview = () => {
         </div>
       </div>
       <div className="flex-1">
-        <InfoCard data={PROJECT_CARD_INFO} />
+        <InfoCard data={PROJECT_CARD_INFO} count={12} />
       </div>
     </div>
   );

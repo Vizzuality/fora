@@ -2,18 +2,20 @@ import { useMemo } from 'react';
 
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
-import { FunderType } from 'types/funder-type';
+import { ApplicationStatus } from 'types/application-status';
 
 import API from 'services/api';
 
-export function useFunderTypes(queryOptions: UseQueryOptions<FunderType[], unknown> = {}) {
-  const fetchFunderTypes = () =>
+export function useApplicationStatuses(
+  queryOptions: UseQueryOptions<ApplicationStatus[], unknown> = {}
+) {
+  const fetchApplicationStatuses = () =>
     API.request({
       method: 'GET',
-      url: '/funder_types',
+      url: '/application_statuses',
     }).then((response) => response.data);
 
-  const query = useQuery(['funder-types'], fetchFunderTypes, {
+  const query = useQuery(['application-statuses'], fetchApplicationStatuses, {
     placeholderData: {
       data: [],
     },
