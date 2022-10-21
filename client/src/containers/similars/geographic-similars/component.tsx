@@ -6,74 +6,83 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { useFunder, useFunders } from 'hooks/funders';
-import { useProjects } from 'hooks/projects';
+import { useProject, useProjects } from 'hooks/projects';
 
 import Cards from 'containers/cards';
 
 import Icon from 'components/icon';
+import { Funder } from 'types/funder';
+import { Project } from 'types/project';
 
 import CHEVRON_RIGHT_SVG from 'svgs/ui/chevron-right.svg?sprite';
 
 import type { SimilarsSectionProps } from '../component';
 
 const SimilarsItem = ({ type }: SimilarsSectionProps) => {
-  const { pathname, query } = useRouter();
-
-  // Projects
-  const { data: projectsBySubgeogprahics } = useProjects({
-    filters: { subgeographics: 'USA' },
-  });
-
-  const RANDOM_PROJ_GEOGR = useMemo(() => {
-    if (projectsBySubgeogprahics.length) {
-      const shuffled = projectsBySubgeogprahics.sort(() => 0.5 - Math.random());
-      return shuffled.slice(0, 3);
-    }
-  }, [projectsBySubgeogprahics]);
+  const { query } = useRouter();
+  const { id } = query;
 
   // Funders
-  const { id: funderId } = query;
-
-  const { data: funderData } = useFunder(`${funderId}`, {
-    enabled: !!funderId && type === 'funders',
+  const { data: funderData } = useFunder(`${id}`, {
+    enabled: !!id && type === 'funders',
   });
-  const { subgeographics } = funderData;
+  const { data: projectData } = useProject(`${id}`, {
+    enabled: !!id && type === 'projects',
+  });
 
+  const DATA = useMemo(() => {
+    const data = {
+      funders: funderData,
+      projects: projectData,
+    };
+
+    return data[type];
+  }, [type, funderData, projectData]);
+
+  const { subgeographics } = DATA;
+
+  // Subgeographics
   const SUBGEOGRAPHICS = useMemo(() => {
     return subgeographics?.map((sub) => sub.abbreviation);
   }, [subgeographics]);
 
-  const { data: fundersBySubgeogprahics } = useFunders(
+  // Funders
+  const { data: fundersData } = useFunders(
     {
       filters: { subgeographics: SUBGEOGRAPHICS },
     },
-    { enabled: !!funderId && type === 'funders' }
+    { enabled: !!id && type === 'funders' }
   );
 
-  const RANDOM_FUND_GEOGR = useMemo(() => {
-    if (fundersBySubgeogprahics.length) {
-      const relevantFunders = fundersBySubgeogprahics.filter((f) => f.id !== funderId);
-      const shuffled = relevantFunders.sort(() => 0.5 - Math.random());
-      return shuffled.slice(0, 3);
-    }
-  }, [funderId, fundersBySubgeogprahics]);
+  // Projects
+  const { data: projectsData } = useProjects(
+    {
+      filters: { subgeographics: SUBGEOGRAPHICS },
+    },
+    { enabled: !!id && type === 'projects' }
+  );
 
-  const data = useMemo(() => {
-    if (type === 'funders') {
-      return RANDOM_FUND_GEOGR;
-    } else {
-      return RANDOM_PROJ_GEOGR;
-    }
-  }, [RANDOM_FUND_GEOGR, RANDOM_PROJ_GEOGR, type]);
+  const DATA_BY_GEO = useMemo(() => {
+    const data = {
+      funders: fundersData,
+      projects: projectsData,
+    };
+
+    const d: Array<Funder | Project> = data[type];
+
+    const relevant = d.filter((f) => f.id !== id);
+    const shuffled = relevant.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 3);
+  }, [id, type, fundersData, projectsData]);
 
   return (
     <>
-      {(!!projectsBySubgeogprahics.length || !!fundersBySubgeogprahics.length) && (
+      {!!DATA_BY_GEO.length && (
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-semibold capitalize text-grey-20">By Geographic Scope</div>
             <div>
-              <Link href={`${pathname}`}>
+              <Link href={`/${type}?subgeographics=${SUBGEOGRAPHICS.join(',')}`}>
                 <a className="flex items-center space-x-3 font-semibold underline decoration-1">
                   <span>{`View all similar ${type}`}</span>
                   <Icon
@@ -87,7 +96,7 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
             </div>
           </div>
 
-          <Cards data={data} />
+          <Cards pathname={`/${type}`} data={DATA_BY_GEO} />
         </div>
       )}
     </>

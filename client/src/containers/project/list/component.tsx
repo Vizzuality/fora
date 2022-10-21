@@ -27,7 +27,7 @@ const ProjectList = () => {
       <div className="space-y-9">
         <h3 className="text-2xl font-display"> Who is funding this project?</h3>
 
-        {fundersData.length && <Cards theme="green" data={fundersData} />}
+        {fundersData.length && <Cards pathname="/projects" theme="green" data={fundersData} />}
 
         {hasNextFundersPage && (
           <div className="flex justify-center">

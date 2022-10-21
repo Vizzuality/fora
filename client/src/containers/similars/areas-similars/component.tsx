@@ -11,64 +11,74 @@ import { useProjects } from 'hooks/projects';
 import Cards from 'containers/cards';
 
 import Icon from 'components/icon';
+import { Funder } from 'types/funder';
+import { Project } from 'types/project';
 
 import CHEVRON_RIGHT_SVG from 'svgs/ui/chevron-right.svg?sprite';
 
 import type { SimilarsSectionProps } from '../component';
 
 const AreasSimilars = ({ type }: SimilarsSectionProps) => {
-  const { pathname, query } = useRouter();
+  const { query } = useRouter();
 
-  // Projects
-  const { data: projectsByArea } = useProjects({
-    filters: { area: 'biodiversity' },
-  });
-
-  const RANDOM_PROJ_AREA = useMemo(() => {
-    if (projectsByArea.length) {
-      const shuffled = projectsByArea.sort(() => 0.5 - Math.random());
-      return shuffled.slice(0, 3);
-    }
-  }, [projectsByArea]);
+  const { id } = query;
 
   // Funders
-  const { id: funderId } = query;
-
-  const { data: funderData } = useFunder(`${funderId}`, {
-    enabled: !!funderId && type === 'funders',
+  const { data: funderData } = useFunder(`${id}`, {
+    enabled: !!id && type === 'funders',
   });
-  const { areas } = funderData;
+  // const { data: projectData } = useProject(`${id}`, {
+  //   enabled: !!id && type === 'projects',
+  // });
 
-  const { data: fundersByArea } = useFunders(
+  const DATA = useMemo(() => {
+    const data = {
+      funders: funderData,
+      projects: funderData,
+    };
+
+    return data[type];
+  }, [type, funderData]);
+
+  const { areas } = DATA;
+
+  // Funders
+  const { data: fundersData } = useFunders(
     {
-      filters: { area: areas },
+      filters: { areas },
     },
-    { enabled: !!funderId && type === 'funders' }
+    { enabled: !!id && type === 'funders' }
   );
 
-  const RANDOM_FUND_AREA = useMemo(() => {
-    if (fundersByArea.length) {
-      const relevantFunders = fundersByArea.filter((f) => f.id !== funderId);
-      const shuffled = relevantFunders.sort(() => 0.5 - Math.random());
-      return shuffled.slice(0, 3);
-    }
-  }, [funderId, fundersByArea]);
+  // Projects
+  const { data: projectsData } = useProjects(
+    {
+      filters: { areas },
+    },
+    { enabled: !!id && type === 'projects' }
+  );
 
-  const data = useMemo(() => {
-    if (type === 'funders') {
-      return RANDOM_FUND_AREA;
-    } else {
-      return RANDOM_PROJ_AREA;
-    }
-  }, [RANDOM_FUND_AREA, RANDOM_PROJ_AREA, type]);
+  const DATA_BY_AREA = useMemo(() => {
+    const data = {
+      funders: fundersData,
+      projects: projectsData,
+    };
+
+    const d: Array<Funder | Project> = data[type];
+
+    const relevant = d.filter((f) => f.id !== id);
+    const shuffled = relevant.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 3);
+  }, [id, type, fundersData, projectsData]);
+
   return (
     <>
-      {(!!projectsByArea.length || fundersByArea.length) && (
+      {!!DATA_BY_AREA.length && (
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <div className="font-semibold capitalize text-grey-20">By Area of Focus</div>
             <div>
-              <Link href={`${pathname}`}>
+              <Link href={`/${type}?areas=${areas.join(',')}`}>
                 <a className="flex items-center space-x-3 font-semibold underline decoration-1">
                   <span>{`View all similar ${type}`}</span>
                   <Icon
@@ -82,7 +92,7 @@ const AreasSimilars = ({ type }: SimilarsSectionProps) => {
             </div>
           </div>
 
-          <Cards data={data} />
+          <Cards pathname={`/${type}`} data={DATA_BY_AREA} />
         </div>
       )}
     </>

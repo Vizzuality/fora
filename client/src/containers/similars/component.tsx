@@ -14,7 +14,7 @@ const SimilarsSection = ({ type }: SimilarsSectionProps) => {
       <h3 className="text-2xl font-display"> {`What are the similar ${type}?`}</h3>
 
       <GeographicSimilars type={type} />
-      <AreasSimilars type={type} />
+      {type === 'funders' && <AreasSimilars type={type} />}
       <DemographicSimilars type={type} />
     </div>
   );

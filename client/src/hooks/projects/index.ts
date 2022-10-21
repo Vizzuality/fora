@@ -26,6 +26,9 @@ export const fetchProject = (id: string) =>
   API.request({
     method: 'GET',
     url: `/projects/${id}`,
+    params: jsonAPIAdapter({
+      includes: 'subgeographics,funders,funders.subgeographics',
+    }),
   }).then((response) => response.data);
 
 export const fetchProjects = (params: ParamsProps) => {
