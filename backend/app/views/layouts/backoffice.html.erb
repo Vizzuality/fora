@@ -13,7 +13,11 @@
       </div>
     </div>
     <div class="container mx-auto">
-      <%= render "navigation" %>
+      <% if @breadcrumbs&.present? %>
+        <%= render "breadcrumbs" %>
+      <% else %>
+        <%= render "navigation" %>
+      <% end %>
     </div>
   </header>
 

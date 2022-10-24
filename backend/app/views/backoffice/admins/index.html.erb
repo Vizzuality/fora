@@ -1,3 +1,5 @@
+<%= render "new_record", text: t("backoffice.messages.create_new_record", model: resource_class.model_name.human), url: new_backoffice_admin_path %>
+
 <table class="backoffice-table">
   <thead>
     <tr>
@@ -12,6 +14,9 @@
       </th>
       <th>
       </th>
+      <th class="opacity-25">
+        <%= svg "menu" %>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -21,6 +26,20 @@
         <td><%= resource.email %></td>
         <td><%= I18n.l resource.created_at.to_date %></td>
         <td><%= link_to t("backoffice.actions.show"), backoffice_admin_path(resource), class: "link-button" %></td>
+        <td>
+          <%= render "menu" do %>
+            <%= render "backoffice/base/menu/item" do %>
+              <%= link_to t("backoffice.actions.edit"), edit_backoffice_admin_path(resource) %>
+            <% end %>
+            <%= render "backoffice/base/menu/item" do %>
+              <%= link_to t("backoffice.actions.delete"), backoffice_admin_path(resource),
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: t("backoffice.messages.delete_confirmation", model: resource_class.model_name.human.downcase)
+                } %>
+            <% end %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

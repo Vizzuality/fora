@@ -47,9 +47,9 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: "block", error_class: "text-red-50"
-    b.use :input, class: "block w-full px-4 py-2 text-base text-black placeholder-grey-20 placeholder-opacity-100 border border-solid border-black hover:shadow-sm focus:shadow-sm focus:border-green-0 outline-none bg-white rounded-lg disabled:opacity-60 transition", error_class: "invalid:border-red-50", valid_class: "border-green-40"
-    b.use :full_error, wrap_with: {tag: "p", class: "mt-2 text-red-50 text-xs italic"}
+    b.use :label, class: "block", error_class: "text-red-0"
+    b.use :input, class: "block w-full px-4 py-2 text-base text-black placeholder-grey-20 placeholder-opacity-100 border border-solid border-black hover:shadow-sm focus:shadow-sm focus:border-green-0 outline-none bg-white rounded-lg disabled:opacity-60 transition"
+    b.use :full_error, wrap_with: {tag: "p", class: "mt-2 text-red-0 text-xs italic"}
     b.use :hint, wrap_with: {tag: "p", class: "mt-2 text-black text-xs italic"}
   end
 
@@ -61,9 +61,9 @@ SimpleForm.setup do |config|
       ba.use :input, class: checkbox_class
     end
     b.wrapper tag: "div", class: "ml-3 text-sm" do |bb|
-      bb.use :label, class: "block", error_class: "text-red-50"
+      bb.use :label, class: "block", error_class: "text-red-0"
       bb.use :hint, wrap_with: {tag: "p", class: "block text-black text-xs italic"}
-      bb.use :full_error, wrap_with: {tag: "p", class: "block text-red-50 text-xs italic"}
+      bb.use :full_error, wrap_with: {tag: "p", class: "block text-red-0 text-xs italic"}
     end
   end
 
@@ -71,15 +71,15 @@ SimpleForm.setup do |config|
   config.wrappers :horizontal_collection, item_wrapper_class: "flex items-center", item_label_class: "font-sans text-black text-base", tag: "div", class: "my-4" do |b|
     b.use :html5
     b.optional :readonly
-    b.wrapper :legend_tag, tag: "legend", class: "font-sans text-black font-semibold text-sm", error_class: "text-red-50" do |ba|
+    b.wrapper :legend_tag, tag: "legend", class: "font-sans text-black font-semibold text-sm", error_class: "text-red-0" do |ba|
       ba.use :label_text
     end
     b.wrapper tag: "div", class: "flex flex-wrap gap-4.5 mt-2" do |bb|
       bb.use :input,
         class: checkbox_class,
-        error_class: "invalid:border-red-50",
+        error_class: "invalid:border-red-0",
         valid_class: "text-green-40"
-      bb.use :full_error, wrap_with: {tag: "p", class: "block mt-2 text-red-50 text-xs italic"}
+      bb.use :full_error, wrap_with: {tag: "p", class: "block mt-2 text-red-0 text-xs italic"}
       bb.use :hint, wrap_with: {tag: "p", class: "mt-2 text-black text-xs italic"}
     end
   end
@@ -91,9 +91,9 @@ SimpleForm.setup do |config|
     b.optional :maxlength
     b.optional :minlength
     b.optional :readonly
-    b.use :label, class: "font-sans text-black font-semibold text-sm", error_class: "text-red-50"
-    b.use :input, class: "w-full text-black px-3 py-2 border rounded", error_class: "text-red-50 border-red-50", valid_class: "text-green-40"
-    b.use :full_error, wrap_with: {tag: "p", class: "mt-2 text-red-50 text-xs italic"}
+    b.use :label, class: "font-sans text-black font-semibold text-sm", error_class: "text-red-0"
+    b.use :input, class: "w-full text-black px-3 py-2 border rounded"
+    b.use :full_error, wrap_with: {tag: "p", class: "mt-2 text-red-0 text-xs italic"}
     b.use :hint, wrap_with: {tag: "p", class: "mt-2 text-black text-xs italic"}
   end
 
@@ -101,27 +101,27 @@ SimpleForm.setup do |config|
   config.wrappers :vertical_multi_select, tag: "div", class: "my-4", error_class: "f", valid_class: "" do |b|
     b.use :html5
     b.optional :readonly
-    b.wrapper :legend_tag, tag: "legend", class: "font-sans text-black font-semibold text-sm", error_class: "text-red-50" do |ba|
+    b.wrapper :legend_tag, tag: "legend", class: "font-sans text-black font-semibold text-sm", error_class: "text-red-0" do |ba|
       ba.use :label_text
     end
     b.wrapper tag: "div", class: "inline-flex space-x-1" do |ba|
       ba.use :input, class: "flex w-auto w-auto shadow appearance-none border border-black rounded w-full p-2 bg-white focus:outline-none focus:border-blue-40 text-grey-60 leading-4 transition-colors duration-200 ease-in-out"
     end
-    b.use :full_error, wrap_with: {tag: "p", class: "mt-2 text-red-50 text-xs italic"}
+    b.use :full_error, wrap_with: {tag: "p", class: "mt-2 text-red-0 text-xs italic"}
     b.use :hint, wrap_with: {tag: "p", class: "mt-2 text-black text-xs italic"}
   end
 
   # vertical range input
-  config.wrappers :vertical_range, tag: "div", class: "my-4", error_class: "text-red-50", valid_class: "text-green-40" do |b|
+  config.wrappers :vertical_range, tag: "div", class: "my-4", error_class: "text-red-0", valid_class: "text-green-40" do |b|
     b.use :html5
     b.use :placeholder
     b.optional :readonly
     b.optional :step
-    b.use :label, class: "text-sm font-medium text-black block", error_class: "text-red-50"
+    b.use :label, class: "text-sm font-medium text-black block", error_class: "text-red-0"
     b.wrapper tag: "div", class: "flex items-center h-5" do |ba|
-      ba.use :input, class: "rounded-lg overflow-hidden appearance-none bg-black h-3 w-full text-grey-20", error_class: "text-red-50", valid_class: "text-green-40"
+      ba.use :input, class: "rounded-lg overflow-hidden appearance-none bg-black h-3 w-full text-grey-20"
     end
-    b.use :full_error, wrap_with: {tag: "p", class: "mt-2 text-red-50 text-xs italic"}
+    b.use :full_error, wrap_with: {tag: "p", class: "mt-2 text-red-0 text-xs italic"}
     b.use :hint, wrap_with: {tag: "p", class: "mt-2 text-black text-xs italic"}
   end
 
