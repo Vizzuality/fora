@@ -20,13 +20,13 @@ interface MoreFiltersProps {
 
 const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) => {
   const { filters } = useAppSelector((state) => state['/action-map']);
-  const { funderTypes, funderLegalStatuses, capitalTypes, projectLegalStatuses } = filters;
+  const { funderTypes, funderLegalStatuses, capitalTypes, recipientLegalStatuses } = filters;
   const dispatch = useAppDispatch();
 
   const { data: funderTypesData } = useFunderTypes();
   const { data: funderLegalStatusesData } = useFunderLegalStatuses();
   const { data: capitalTypesData } = useCapitalTypes();
-  const { data: projectLegalStatusesData } = useProjectLegalStatuses();
+  const { data: recipientLegalStatusesData } = useProjectLegalStatuses();
 
   const INITIAL_VALUES = useMemo(() => {
     return {
@@ -45,11 +45,11 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
             return s.id;
           })
         : capitalTypes,
-      projectLegalStatuses: !projectLegalStatuses.length
-        ? projectLegalStatusesData.map((s) => {
+      recipientLegalStatuses: !recipientLegalStatuses.length
+        ? recipientLegalStatusesData.map((s) => {
             return s.id;
           })
-        : projectLegalStatuses,
+        : recipientLegalStatuses,
     };
   }, [
     funderTypes,
@@ -58,8 +58,8 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
     funderLegalStatusesData,
     capitalTypes,
     capitalTypesData,
-    projectLegalStatuses,
-    projectLegalStatusesData,
+    recipientLegalStatuses,
+    recipientLegalStatusesData,
   ]);
 
   const handleSubmit = useCallback(
@@ -68,7 +68,7 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
         funderTypes: funderTypesValue,
         funderLegalStatuses: funderLegalStatusesValue,
         capitalTypes: capitalTypesValue,
-        projectLegalStatuses: projectLegalStatusesValue,
+        recipientLegalStatuses: recipientLegalStatusesValue,
       } = values;
 
       dispatch(
@@ -81,10 +81,10 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
               : funderLegalStatusesValue,
           capitalTypes:
             capitalTypesValue.length === capitalTypesData.length ? [] : capitalTypesValue,
-          projectLegalStatuses:
-            projectLegalStatusesValue.length === projectLegalStatusesData.length
+          recipientLegalStatuses:
+            recipientLegalStatusesValue.length === recipientLegalStatusesData.length
               ? []
-              : projectLegalStatusesValue,
+              : recipientLegalStatusesValue,
         })
       );
 
@@ -94,7 +94,7 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
       funderTypesData,
       funderLegalStatusesData,
       capitalTypesData,
-      projectLegalStatusesData,
+      recipientLegalStatusesData,
       filters,
       dispatch,
       onClose,

@@ -36,6 +36,7 @@ const ProjectsList = () => {
     filters,
     search,
     sort,
+    perPage: 12,
   });
 
   const handleSortProjects = useCallback(
@@ -93,7 +94,7 @@ const ProjectsList = () => {
           </div>
         </div>
 
-        <Cards data={projectsData} />
+        <Cards pathname="/projects" data={projectsData} />
 
         {hasNextProjectsPage && (
           <div className="flex justify-center py-10">

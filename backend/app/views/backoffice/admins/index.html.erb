@@ -1,0 +1,27 @@
+<table class="backoffice-table">
+  <thead>
+    <tr>
+      <th>
+        <%= sort_link @q, :full_name, t("activerecord.attributes.admin.full_name") %>
+      </th>
+      <th>
+        <%= sort_link @q, :email, t("activerecord.attributes.admin.email") %>
+      </th>
+      <th>
+        <%= sort_link @q, :created_at, t("activerecord.attributes.admin.created_at") %>
+      </th>
+      <th>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @resources.each do |resource| %>
+      <tr>
+        <td><%= resource.full_name %></td>
+        <td><%= resource.email %></td>
+        <td><%= I18n.l resource.created_at.to_date %></td>
+        <td><%= link_to t("backoffice.actions.show"), backoffice_admin_path(resource), class: "link-button" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

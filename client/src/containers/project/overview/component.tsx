@@ -45,37 +45,32 @@ const ProjectOverview = () => {
         <div className="space-y-1">
           <div className="text-base font-normal text-grey-20">Last updated: 30 March 2022</div>
           <h2 className="text-3xl font-normal capitalize line-clamp-2 text-ellipsis">
-            {projectData.title}
+            {projectData.name}
           </h2>
         </div>
 
         <div className="flex items-center justify-between">
           <div className="relative max-w-[50px] w-full shrink-0">
             <Image
-              src={projectData.image || '/images/avatar.jpg'}
-              alt={projectData.title}
+              src={projectData.logo.small || '/images/avatar.jpg'}
+              alt={projectData.name}
               layout="responsive"
               width={50}
               height={36}
             />
           </div>
           <p className="font-semibold underline">
-            <a href="www.projectwebsite.org">www.projectwebsite.org</a>
+            <a href="www.projectwebsite.org">{projectData.website}</a>
           </p>
         </div>
 
         <div className="space-y-3">
           <p className="font-semibold uppercase text-grey-20">About</p>
-          <p className="text-xl">
-            EarthShare delivers the tools that businesses, individuals, and nonprofits need to
-            maximize impact. Their all-in-one platform connects businesses, individuals, and
-            nonprofits with donation, volunteer, and carbon offsetting opportunities that directly
-            support today’s most important environmental efforts.
-          </p>
+          <p className="text-xl">{projectData.description}</p>
         </div>
       </div>
       <div className="flex-1">
-        <InfoCard data={PROJECT_CARD_INFO} />
+        <InfoCard data={PROJECT_CARD_INFO} count={12} />
       </div>
     </div>
   );

@@ -7,12 +7,12 @@ import { useRouter } from 'next/router';
 
 import Icon from 'components/icon';
 
-import INFO_SVG from 'svgs/ui/location.svg?sprite';
+import LOCATION_SVG from 'svgs/ui/location.svg?sprite';
 
 import { THEME } from './constants';
 export interface CardProps {
-  id: string;
-  name: string;
+  id?: string;
+  name?: string;
   location?: string;
   href?: string;
   areas?: string[];
@@ -48,7 +48,7 @@ const Cards = ({
 
         <div className="flex space-x-2">
           <Icon
-            icon={INFO_SVG}
+            icon={LOCATION_SVG}
             className={cx({
               'w-5 h-5 text-black': true,
             })}

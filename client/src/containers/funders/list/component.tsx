@@ -95,7 +95,7 @@ const FundersList = () => {
         </div>
 
         <div className="pb-10">
-          <Cards data={fundersData} />
+          <Cards pathname="/funders" data={fundersData} />
         </div>
 
         {hasNextFundersPage && (

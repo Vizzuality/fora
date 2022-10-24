@@ -1,0 +1,29 @@
+<% link = pagy_link_proc(pagy) -%>
+
+<nav aria-label="Pagination" class="pagination flex items-center flex-col-reverse w-full bg-white rounded-b-xl border-t-[1px] border-green-0/20">
+  <ol class="flex flex-wrap items-center justify-center gap-2 py-3">
+    <li class="flex items-center px-1 py-1 justify-center text-green-0 text-sm">
+      <% if pagy.prev %>
+        <%== link.call(pagy.prev, t("backoffice.pagination.prev"), 'aria-label="previous" class="hover:text-black"') %>
+      <% end %>
+    </li>
+
+    <% pagy.series.each do |item| %>
+      <li class="flex items-center px-1 py-1 justify-center text-green-0 text-sm">
+        <% if item.is_a?(Integer) %>
+          <%== link.call(item, item, 'class="hover:text-green-0"') %>
+        <% elsif item.is_a?(String) %>
+          <span class="active text-black"><%== item %></span>
+        <% elsif item == :gap %>
+          <%== t("backoffice.pagination.gap") %>
+        <% end %>
+      </li>
+    <% end %>
+
+    <li class="flex items-center px-1 py-1 justify-center text-green-0 text-sm">
+      <% if pagy.next %>
+        <%== link.call(pagy.next, t("backoffice.pagination.next"), 'aria-label="next" class="hover:text-black"') %>
+      <% end %>
+    </li>
+  </ol>
+</nav>

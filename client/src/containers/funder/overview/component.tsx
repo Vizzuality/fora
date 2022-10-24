@@ -1,28 +1,65 @@
-import React from 'react';
-
-import cx from 'classnames';
+import React, { useMemo } from 'react';
 
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import { useDemographics } from 'hooks/demographics';
 import { useFunder } from 'hooks/funders';
 
 import InfoCard from 'containers/details/info-card';
 
 import Button from 'components/button';
-import Icon from 'components/icon';
-import Tooltip from 'components/tooltip';
 
-import INFO_SVG from 'svgs/ui/info.svg?sprite';
-
-import { PROJECT_CARD_INFO, PROJECT_INFO } from './constants';
+import Address from './address';
+import Attributes from './attributes';
+import { PROJECT_CARD_INFO } from './constants';
 
 const FunderOverview = () => {
   const { query } = useRouter();
   const { id: funderId } = query;
+
+  const { data: demographicsData } = useDemographics();
   const { data: funderData } = useFunder(`${funderId}`);
 
-  const { name, description, website, logo } = funderData;
+  const { contact_email: email, description, logo, name, projects } = funderData;
+
+  const GEOGRPAHIC_SCOPE = useMemo(() => {
+    const projSubgeographics = projects.map((proj) => proj.subgeographics);
+    const arraySubGeo = projSubgeographics?.flat().map((subg) => subg.name);
+    return arraySubGeo;
+  }, [projects]);
+
+  const DEMOGRAPHIC_SCOPE = useMemo(() => {
+    const projDemographics = projects.map((proj) => proj.demographics);
+    const arrayDemogr = projDemographics?.flat().map((demogr) => demogr);
+
+    return demographicsData.filter((c) => arrayDemogr.includes(c.id));
+  }, [demographicsData, projects]);
+
+  // TO_DO: demograpgic leadership
+  const CARD_DATA = useMemo(() => {
+    return PROJECT_CARD_INFO.map((attr) => {
+      switch (attr.id) {
+        case 'geogpraphic-scope':
+          return {
+            ...attr,
+            value: GEOGRPAHIC_SCOPE.join(', '),
+          };
+        case 'demopgraphic-scope':
+          return {
+            ...attr,
+            value: DEMOGRAPHIC_SCOPE.map((d) => d.name).join(', '),
+          };
+        case 'demographic-leadership':
+          return {
+            ...attr,
+            value: DEMOGRAPHIC_SCOPE.map((d) => d.name).join(', '),
+          };
+        default:
+          return attr;
+      }
+    });
+  }, [GEOGRPAHIC_SCOPE, DEMOGRAPHIC_SCOPE]);
 
   return (
     <div className="flex space-x-32">
@@ -42,57 +79,19 @@ const FunderOverview = () => {
               height={36}
             />
           </div>
-          <Button type="button" size="base" theme="black-alt">
+          <Button
+            type="button"
+            size="base"
+            theme="black-alt"
+            href={`mailto:${email}?subject=Hi ${name}`}
+          >
             Contact Funder
           </Button>
         </div>
 
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <p className="text-base font-semibold uppercase text-grey-20">Headquarters Adress</p>
-            <p>Washington, DC, United States</p>
-          </div>
+        <Address />
 
-          <p className="font-semibold underline">
-            <a href={website} target="_blank" rel="noopener noreferrer">
-              {website}
-            </a>
-          </p>
-        </div>
-
-        <div className="py-4 border-y border-grey-40/40">
-          <dl className="grid grid-cols-2 grid-rows-2 gap-y-7">
-            {PROJECT_INFO.map(({ id, title, info, subtitle }) => (
-              <div key={id}>
-                <span className="inline-flex items-center text-base font-semibold uppercase text-grey-20">
-                  <dt className="pr-2 uppercase whitespace-nowrap">{title}</dt>
-                  <Tooltip
-                    arrowProps={{
-                      enabled: true,
-                      size: 6,
-                      className: 'bg-grey-60',
-                    }}
-                    content={
-                      <div className="max-w-xs p-2.5 text-grey-20 rounded shadow-xl bg-grey-60 border border-grey-0/5">
-                        <span>{info}</span>
-                      </div>
-                    }
-                  >
-                    <div>
-                      <Icon
-                        icon={INFO_SVG}
-                        className={cx({
-                          'w-3 h-3 text-grey-20/30': true,
-                        })}
-                      />
-                    </div>
-                  </Tooltip>
-                </span>
-                <dd>{subtitle}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+        <Attributes />
 
         <div className="space-y-3">
           <p className="font-semibold uppercase text-grey-20">About</p>
@@ -100,7 +99,7 @@ const FunderOverview = () => {
         </div>
       </div>
       <div className="flex-1">
-        <InfoCard data={PROJECT_CARD_INFO} />
+        <InfoCard data={CARD_DATA} count={projects.length} />
       </div>
     </div>
   );

@@ -36,8 +36,6 @@ export async function getStaticPaths() {
     params: { id: `${f.id}` },
   }));
 
-  // console.log('paths', paths);
-
   return {
     paths,
     fallback: false, // can also be true or 'blocking'
@@ -55,7 +53,7 @@ export async function getStaticProps(ctx) {
   // Props returned will be passed to the page component
   return {
     props: {
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))) || null,
+      dehydratedState: dehydrate(queryClient) || null,
     },
   };
 }

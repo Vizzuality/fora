@@ -18,14 +18,15 @@ export interface InfoCardProps {
       name: string;
     }[];
   }[];
+  count: number;
 }
 
-const InfoCard = ({ data }: InfoCardProps) => {
+const InfoCard = ({ data, count }: InfoCardProps) => {
   return (
     <div className="p-12 space-y-8 bg-green-80">
       <div>
         <p className="font-semibold uppercase">funding</p>
-        <p className="text-4xl font-display">12</p>
+        <p className="text-4xl font-display">{count}</p>
         <p className="font-semibold capitalize">projects</p>
       </div>
 
@@ -46,17 +47,17 @@ const InfoCard = ({ data }: InfoCardProps) => {
                   </div>
                 }
               >
-                <div>
+                <div className="w-3.5 h-3.5 rounded-full bg-grey-0">
                   <Icon
                     icon={INFO_SVG}
                     className={cx({
-                      'w-3 h-3': true,
+                      'w-3.5 h-3.5 text-green-80': true,
                     })}
                   />
                 </div>
               </Tooltip>
             </span>
-            <dd>{value}</dd>
+            <dd>{value || 'None'}</dd>
           </div>
         ))}
       </dl>

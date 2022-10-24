@@ -1,9 +1,41 @@
 en:
   "true": "yes"
   "false": "no"
+  activerecord:
+    attributes:
+      admin:
+        first_name: First name
+        last_name: Last name
+        full_name: Full name
+        email: E-mail
+        created_at: Created at
+        updated_at: Updated at
+    errors:
+      models:
+        admin:
+          attributes:
+            password:
+              password_length: must be at least %{count} characters long
+              password_complexity: must include at least one lowercase letter, one uppercase letter, and one digit
   api:
     errors:
       missing_geographic: "Geographic param is mandatory!"
+  backoffice:
+    actions:
+      show: Show
+    pagination:
+      prev: "←"
+      next: "→"
+      gap: "..."
+    layout:
+      header: Backoffice
+      sign_out: Sign out
+    sign_in:
+      welcome: Welcome to FORA backoffice.
+      enter_details_below: Please enter your details below.
+      sign_in: Sign in
+    show:
+      title: "Details of %{name}"
   enums:
     area:
       equity_and_justice:

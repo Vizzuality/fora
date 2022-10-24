@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
+
+import { useRouter } from 'next/router';
 
 import { useAppSelector } from 'store/hooks';
 
 import { useProjects } from 'hooks/projects';
 
+import NoData from 'containers/action-map/list/no-data';
+
 import Loading from 'components/loading';
 
-import Item from './item';
+import Item from '../item';
 
 const List = () => {
+  const { push } = useRouter();
   const { filters } = useAppSelector((state) => state['/action-map']);
 
   // FUNDERS
@@ -19,9 +24,33 @@ const List = () => {
     isFetched: projectsIsFetched,
   } = useProjects({
     filters,
+    includes: 'subgeographic_ancestors,investments',
   });
 
+  const DATA = useMemo(() => {
+    return projectsData
+      .map((d) => {
+        const { funders } = d;
+        return {
+          ...d,
+          count: funders.length,
+        };
+      })
+      .sort((a, b) => b.count - a.count);
+  }, [projectsData]);
+
   const LOADING = projectsIsFetching && !projectsIsFetched;
+  const NO_DATA = !DATA.length && !LOADING;
+
+  const handleClick = useCallback(
+    (id: string) => {
+      push({
+        pathname: `/projects/[id]`,
+        query: { id },
+      });
+    },
+    [push]
+  );
 
   return (
     <>
@@ -37,9 +66,11 @@ const List = () => {
         </div>
         <ul className="relative space-y-2">
           {!LOADING &&
-            projectsData
+            DATA
               //
-              .map((d) => <Item {...d} key={d.id} />)}
+              .map((d) => <Item {...d} key={d.id} data={DATA} onClick={() => handleClick(d.id)} />)}
+
+          {NO_DATA && <NoData />}
         </ul>
       </div>
     </>

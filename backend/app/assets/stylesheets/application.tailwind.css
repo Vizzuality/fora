@@ -1,3 +1,53 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .button {
+    @apply relative flex items-center justify-center font-semibold rounded-lg border px-10 py-3
+  }
+
+  .button-primary-green {
+    @apply text-grey-0 border-green-40 hover:bg-green-60 active:bg-grey-0/10 text-base transition-colors bg-green-40
+  }
+
+  .link-button {
+    @apply text-sm font-semibold text-green-0 hover:underline
+  }
+
+  .backoffice-table {
+    @apply w-full bg-white text-base rounded-t-xl
+  }
+
+  .backoffice-table th {
+    @apply text-left text-sm p-4
+  }
+
+  .backoffice-table td {
+    @apply text-left p-4 max-w-[30rem] break-words
+  }
+
+  .backoffice-table tr, .backoffice-table th {
+    @apply border-b-[1px] border-green-0/20
+  }
+
+  .backoffice-table tr:last-child {
+    @apply border-b-0;
+  }
+
+  .alert {
+    @apply text-sm text-black rounded-lg p-4 mb-4
+  }
+
+  .alert-success {
+    @apply bg-green-40
+  }
+
+  .alert-danger {
+    @apply bg-red-50
+  }
+
+  .alert-info {
+    @apply bg-grey-60
+  }
+}

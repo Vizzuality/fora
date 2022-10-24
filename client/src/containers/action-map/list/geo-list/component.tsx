@@ -1,22 +1,25 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
-import { useAppSelector } from 'store/hooks';
+import { setFilters } from 'store/action-map';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 import { omit } from 'lodash';
 
 import { useFunders, useFundersByGeographicScope } from 'hooks/funders';
-import { useProjectsByGeographicScope } from 'hooks/projects';
+import { useProjects, useProjectsByGeographicScope } from 'hooks/projects';
 
 import NoData from 'containers/action-map/list/no-data';
 
 import Loading from 'components/loading';
 
-import Item from './item';
+import Item from '../item';
 
 const GeoList = () => {
   const { view, type, filters } = useAppSelector((state) => state['/action-map']);
   const { subgeographics } = filters;
+  const dispatch = useAppDispatch();
 
+  // FUNDERS
   // get funders grouped by geographic scope
   const {
     data: fundersData,
@@ -24,20 +27,30 @@ const GeoList = () => {
     isFetched: fundersIsFetched,
   } = useFunders({
     filters: omit(filters, ['subgeographics']),
+    includes: 'subgeographic_ancestors',
   });
   const fundersGroupedData = useFundersByGeographicScope(view, fundersData);
 
   // PROJECTS
   // get projects grouped by geographic scope
-  // const { data: projectsData } = useProjects({
-  //   filters: omit(filters, ['subgeographics']),
-  // });
-
-  const { data: projectsGroupedData } = useProjectsByGeographicScope(view, {
+  const { data: projectsData } = useProjects({
     filters: omit(filters, ['subgeographics']),
+    includes: 'subgeographic_ancestors',
   });
+  const projectsGroupedData = useProjectsByGeographicScope(view, projectsData);
 
   const DATA = useMemo(() => {
+    const data = {
+      funders: fundersData,
+      projects: projectsData,
+    };
+
+    return data[type];
+  }, [type, fundersData, projectsData]);
+
+  // DATA
+  // get data for the current type
+  const GROUPED_DATA = useMemo(() => {
     const grouped = {
       funders: fundersGroupedData.filter(
         (d) => !subgeographics.length || subgeographics.includes(d.id)
@@ -50,8 +63,33 @@ const GeoList = () => {
     return grouped[type];
   }, [type, fundersGroupedData, projectsGroupedData, subgeographics]);
 
+  const MAX_MIN_DATA = useMemo(() => {
+    const raw = {
+      funders: fundersGroupedData,
+      projects: projectsGroupedData,
+    };
+
+    if (subgeographics.length) {
+      return raw[type];
+    }
+
+    return GROUPED_DATA;
+  }, [type, subgeographics, fundersGroupedData, projectsGroupedData, GROUPED_DATA]);
+
   const LOADING = fundersIsFetching && !fundersIsFetched;
   const NO_DATA = !DATA.length && !LOADING;
+
+  const handleClick = useCallback(
+    (id: string) => {
+      dispatch(
+        setFilters({
+          ...filters,
+          subgeographics: [id],
+        })
+      );
+    },
+    [filters, dispatch]
+  );
 
   return (
     <>
@@ -68,9 +106,11 @@ const GeoList = () => {
         <ul className="relative space-y-2">
           {!LOADING &&
             !NO_DATA &&
-            DATA
+            GROUPED_DATA
               //
-              .map((d) => <Item {...d} key={d.id} data={DATA} />)}
+              .map((d) => (
+                <Item {...d} key={d.id} data={MAX_MIN_DATA} onClick={() => handleClick(d.id)} />
+              ))}
 
           {NO_DATA && <NoData />}
         </ul>

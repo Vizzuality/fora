@@ -9,7 +9,9 @@ import { omit } from 'lodash';
 
 import { useFunders, useFundersByGeographicScope } from 'hooks/funders';
 import { useMapProjection } from 'hooks/map';
-import { useProjectsByGeographicScope } from 'hooks/projects';
+import { useProjects, useProjectsByGeographicScope } from 'hooks/projects';
+
+import Loading from 'components/loading';
 
 import MapTooltip from './tooltip';
 import type { MapTooltipProps } from './tooltip';
@@ -29,24 +31,54 @@ const Map = () => {
   const dispatch = useAppDispatch();
 
   // FUNDERS
-  const { data: fundersData } = useFunders({
-    filters: omit(filters, ['subgeographics']),
-  });
+  const {
+    data: fundersData,
+    isFetching: fundersIsFetching,
+    isFetched: fundersIsFetched,
+  } = useFunders(
+    {
+      filters: omit(filters, ['subgeographics']),
+      includes: 'subgeographic_ancestors',
+    },
+    {
+      keepPreviousData: false,
+    }
+  );
   const fundersGroupedData = useFundersByGeographicScope(view, fundersData);
 
   // PROJECTS
-  const { data: projectsData } = useProjectsByGeographicScope(view, {
-    filters: omit(filters, ['subgeographics']),
-  });
+  const {
+    data: projectsData,
+    isFetching: projectsIsFetching,
+    isFetched: projectsIsFetched,
+  } = useProjects(
+    {
+      filters: omit(filters, ['subgeographics']),
+      includes: 'subgeographic_ancestors',
+    },
+    {
+      keepPreviousData: false,
+    }
+  );
+  const projectsGroupedData = useProjectsByGeographicScope(view, projectsData);
 
   const PROJECTION = useMapProjection({ view });
 
   const DATA = useMemo(() => {
     return {
       funders: fundersGroupedData,
-      projects: projectsData,
+      projects: projectsGroupedData,
     };
-  }, [fundersGroupedData, projectsData]);
+  }, [fundersGroupedData, projectsGroupedData]);
+
+  const LOADING = useMemo(() => {
+    const loading = {
+      funders: fundersIsFetching && !fundersIsFetched,
+      projects: projectsIsFetching && !projectsIsFetched,
+    };
+
+    return loading[type];
+  }, [type, fundersIsFetching, fundersIsFetched, projectsIsFetching, projectsIsFetched]);
 
   const VIEW = useMemo(() => {
     return createElement(VIEWS[view], {
@@ -102,7 +134,13 @@ const Map = () => {
   }, [view, type, DATA, filters, dispatch]);
 
   return (
-    <div className="w-full">
+    <div className="relative w-full">
+      <Loading
+        visible={LOADING}
+        className="absolute top-0 left-0 flex items-center justify-center w-full h-full bg-white/10"
+        iconClassName="w-10 h-10"
+      />
+
       <RSMMap {...PROJECTION} width={800} height={500}>
         {/* Render selected view */}
         {VIEW}

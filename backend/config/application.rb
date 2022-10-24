@@ -7,7 +7,7 @@ require "rails/all"
 Bundler.require(*Rails.groups)
 
 # otherwise relative rails url root is not taken when running server using bin/rails s command
-Dotenv::Railtie.load if Rails.env.development?
+Dotenv::Railtie.load
 
 module Backend
   class Application < Rails::Application

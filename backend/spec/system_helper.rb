@@ -1,7 +1,7 @@
 require "capybara/cuprite"
 require "rails_helper"
 
-Capybara.default_max_wait_time = 2
+Capybara.default_max_wait_time = 5
 Capybara.default_normalize_ws = true
 
 Capybara.register_driver(:cuprite) do |app|
@@ -11,9 +11,9 @@ Capybara.register_driver(:cuprite) do |app|
     browser_options: {
       "no-sandbox": nil
     },
-    timeout: 120,
+    timeout: 180,
     # Increase Chrome startup wait time (required for stable CI builds)
-    process_timeout: 120,
+    process_timeout: 180,
     inspector: true,
     headless: ENV["HEADLESS"] != "false"
   )
