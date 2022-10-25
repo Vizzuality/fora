@@ -95,6 +95,7 @@ RSpec.configure do |config|
                   demographics_other: {type: :string, nullable: true},
                   recipient_legal_status: {type: :string, enum: RecipientLegalStatus::TYPES, nullable: true},
                   recipient_legal_status_other: {type: :string, nullable: true},
+                  areas: {type: :array, items: {type: :string, enum: Area::TYPES}},
                   logo: {"$ref" => "#/components/schemas/image_blob", :nullable => true}
                 }
               },
