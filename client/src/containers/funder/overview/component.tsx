@@ -36,7 +36,7 @@ const FunderOverview = () => {
     return demographicsData.filter((c) => arrayDemogr.includes(c.id));
   }, [demographicsData, projects]);
 
-  // TO_DO: demograpgic leadership
+  // TO_DO: demograpgic leadership & areas of focus
   const CARD_DATA = useMemo(() => {
     return PROJECT_CARD_INFO.map((attr) => {
       switch (attr.id) {

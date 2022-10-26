@@ -22,6 +22,10 @@ module API
       has_many_restricted :investments
       has_many_restricted :funders
 
+      attribute :areas do |object|
+        object.investments.map { |i| i.areas }.flatten.uniq
+      end
+
       attribute :logo do |object|
         image_links_for object.logo
       end

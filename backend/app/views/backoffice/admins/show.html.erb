@@ -1,6 +1,15 @@
-<div class="w-full bg-white text-base rounded-xl p-3">
+<div class="relative w-full bg-white text-base rounded-xl p-3">
+  <div class="absolute flex gap-3 top-2 right-2">
+    <%= link_to t("backoffice.actions.edit"), edit_backoffice_admin_path(@resource), class: "button button-primary-green" %>
+    <%= link_to t("backoffice.actions.delete"), backoffice_admin_path(@resource), class: "button button-primary-green",
+      data: {
+        turbo_method: :delete,
+        turbo_confirm: t("backoffice.messages.delete_confirmation", model: resource_class.model_name.human.downcase)
+      } %>
+  </div>
+
   <h1 class="font-semibold text-xl text-black mb-6">
-    <%= t "backoffice.show.title", name: @resource.full_name %>
+    <%= t "backoffice.messages.show_record", record: @resource.to_s %>
   </h1>
 
   <table>

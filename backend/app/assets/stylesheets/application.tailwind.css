@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,6 +12,10 @@
 
   .button-primary-green {
     @apply text-grey-0 border-green-40 hover:bg-green-60 active:bg-grey-0/10 text-base transition-colors bg-green-40
+  }
+
+  .button-secondary-green {
+    @apply bg-green-0/10 border border-green-0 text-green-0 hover:bg-green-0/5 focus-visible:outline-green-0
   }
 
   .link-button {
@@ -49,5 +56,9 @@
 
   .alert-info {
     @apply bg-grey-60
+  }
+
+  li[role="menuitem"] a, li[role="menuitem"] button {
+    @apply block px-8 py-2 w-full hover:bg-green-0/5;
   }
 }

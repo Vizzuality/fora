@@ -58,6 +58,8 @@ sudo apt-get install -y libnginx-mod-http-passenger
 
 if [ ! -f /etc/nginx/modules-enabled/50-mod-http-passenger.conf ]; then sudo ln -s /usr/share/nginx/modules-available/mod-http-passenger.load /etc/nginx/modules-enabled/50-mod-http-passenger.conf ; fi
 
+# Install imagemagick
+sudo apt-get install -y imagemagick
 
 #
 # Create project dir
