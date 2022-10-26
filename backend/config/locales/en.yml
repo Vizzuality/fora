@@ -298,3 +298,17 @@ en:
         name: Media and communications
       sponsorship:
         name: Sponsorship
+    report_page:
+      general_report:
+        name: General Report
+      disparities_report:
+        name: Disparities Report
+      interactive_report:
+        name: Interactive Report
+    widget_type:
+      diagram:
+        name: Diagram
+      table:
+        name: Table
+      total:
+        name: Total

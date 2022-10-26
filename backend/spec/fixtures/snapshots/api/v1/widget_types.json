@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "id": "diagram",
+      "type": "widget_type",
+      "attributes": {
+        "name": "Diagram"
+      }
+    },
+    {
+      "id": "table",
+      "type": "widget_type",
+      "attributes": {
+        "name": "Table"
+      }
+    },
+    {
+      "id": "total",
+      "type": "widget_type",
+      "attributes": {
+        "name": "Total"
+      }
+    }
+  ]
+}

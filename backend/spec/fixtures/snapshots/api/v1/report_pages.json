@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "id": "disparities_report",
+      "type": "report_page",
+      "attributes": {
+        "name": "Disparities Report"
+      }
+    },
+    {
+      "id": "general_report",
+      "type": "report_page",
+      "attributes": {
+        "name": "General Report"
+      }
+    },
+    {
+      "id": "interactive_report",
+      "type": "report_page",
+      "attributes": {
+        "name": "Interactive Report"
+      }
+    }
+  ]
+}
