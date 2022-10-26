@@ -1,41 +1,49 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
 
 import cx from 'classnames';
 
 import { Listbox, Transition } from '@headlessui/react';
 
-import THEME from 'components/forms/select2/constants/theme';
+import { Checkbox } from 'components/forms';
+import THEME from 'components/forms/select/constants/theme';
 import Icon from 'components/icon';
 
 import CHEVRON_DOWN_SVG from 'svgs/ui/chevron-down.svg?sprite';
 import CHEVRON_UP_SVG from 'svgs/ui/chevron-up.svg?sprite';
 
-import Checkbox from '../checkbox';
+import type { MultiSelectProps } from './types';
 
-import type { Select2Props } from './types';
-
-export const Select2: FC<Select2Props> = (props: Select2Props) => {
+export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
   const {
     batchSelectionActive = false,
     batchSelectionLabel = 'Select all',
     clearSelectionActive = false,
     clearSelectionLabel = 'Clear all',
     disabled = false,
-    multiple = false,
     options,
     placeholder = 'Select...',
     size = 'base',
     theme = 'dark',
     onSelect,
+    values,
   } = props;
   const ref = useRef(null);
-  const initialValue = multiple ? [] : null;
+  const initialValue = values || [];
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(initialValue);
 
-  useEffect(() => {
-    onSelect(selected);
-  }, [selected, onSelect]);
+  const SELECTED = useMemo(() => {
+    if (!selected.length) return placeholder || 'Select items';
+
+    if (selected.length === 1) {
+      const option = options.find((o) => o.value === selected[0]);
+      return option.label;
+    }
+
+    if (selected.length > 1) return `Selected items (${selected.length})`;
+
+    return null;
+  }, [options, placeholder, selected]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -46,29 +54,19 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
     document.addEventListener('mousedown', handleClickOutside);
   }, [ref]);
 
-  const isSelected = (value) => {
-    if (multiple) return selected.find((el) => el === value) ? true : false;
-    return selected === value ? true : false;
-  };
+  const handleSelect = (option) => {
+    const newSelected = [...selected];
+    const index = selected.indexOf(option.value);
 
-  const handleDeselect = (value) => {
-    const selectedUpdated = selected.filter((el) => el !== value);
-    setSelected(selectedUpdated);
-    setIsOpen(true);
-  };
-
-  const handleSelect = (value) => {
-    if (!multiple) {
-      setIsOpen(!isOpen);
-      return setSelected(value);
-    }
-    if (!isSelected(value) && multiple) {
-      const selectedUpdated = [...selected, options.find((el) => el === value)];
-      return setSelected(selectedUpdated);
+    if (index === -1) {
+      newSelected.push(option.value);
     } else {
-      handleDeselect(value);
+      newSelected.splice(index, 1);
     }
-    setIsOpen(true);
+    setSelected(newSelected);
+    if (onSelect) {
+      onSelect(newSelected);
+    }
   };
 
   return (
@@ -94,19 +92,13 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                     className={cx({
                       'relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out cursor-pointer sm:text-sm sm:leading-5 border border-grey-0 rounded-lg':
                         true,
+                      'border border-grey-0/40 text-grey-0/40': disabled,
                       [THEME.sizes[size]]: true,
                       [THEME[theme].open.button]: isOpen,
                     })}
                     onClick={() => setIsOpen(!isOpen)}
                   >
-                    {multiple && (
-                      <span className="block truncate">
-                        {selected.length < 1 && 'Select items'}
-                        {selected.length === 1 && selected[0].label}
-                        {selected.length >= 2 && `Selected items (${selected.length})`}
-                      </span>
-                    )}
-                    {!multiple && <span className="block truncate">{selected || placeholder}</span>}
+                    <span className="block truncate">{SELECTED}</span>
                     <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                       <Icon
                         icon={isOpen ? CHEVRON_UP_SVG : CHEVRON_DOWN_SVG}
@@ -137,7 +129,7 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                     })}
                   >
                     <div className="flex justify-between ml-2 text-sm">
-                      {batchSelectionActive && multiple && (
+                      {batchSelectionActive && (
                         <button
                           className="px-4 py-2 text-left underline text-grey-20"
                           type="button"
@@ -146,14 +138,15 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                           {batchSelectionLabel}
                         </button>
                       )}
-                      {clearSelectionActive && multiple && (
+                      {clearSelectionActive && (
                         <button
                           className="px-4 py-2 text-left underline"
                           type="button"
                           onClick={() => setSelected(initialValue)}
                         >
                           {selected.length < 1 && clearSelectionLabel}
-                          {selected.length > 1 && `${clearSelectionLabel} (${selected.length})`}
+                          {selected.length > 1 &&
+                            `${clearSelectionLabel} (${selected.length} Selected)`}
                           {selected.length === options.length &&
                             `${clearSelectionLabel} (All selected)`}
                         </button>
@@ -171,15 +164,11 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                                 [THEME[theme].item.active]: active,
                               })}
                             >
-                              {multiple && (
-                                <>
-                                  <Checkbox
-                                    className="cursor-pointer focus:text-black focus:ring-black checked:bg-black"
-                                    checked={selected.includes(opt)}
-                                    readOnly
-                                  />
-                                </>
-                              )}
+                              <Checkbox
+                                className="cursor-pointer focus:text-black focus:ring-black checked:bg-black"
+                                checked={selected.includes(opt.value)}
+                                readOnly
+                              />
 
                               <span
                                 className={cx({
@@ -204,4 +193,4 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
   );
 };
 
-export default Select2;
+export default Select;

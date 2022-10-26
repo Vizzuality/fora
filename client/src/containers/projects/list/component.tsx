@@ -11,7 +11,7 @@ import Cards from 'containers/cards';
 import Wrapper from 'containers/wrapper';
 
 import Button from 'components/button';
-import Select2 from 'components/forms/select2';
+import Select from 'components/forms/select';
 import Icon from 'components/icon';
 import Loading from 'components/loading';
 
@@ -62,7 +62,7 @@ const ProjectsList = () => {
 
           <div className="flex justify-between">
             <div className="flex items-center w-1/12">
-              <Select2
+              <Select
                 id="sort-by-projects"
                 placeholder="Sort by"
                 theme="light"

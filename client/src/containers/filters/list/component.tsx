@@ -20,11 +20,11 @@ interface FilterListProps {
 
 const FilterList = ({ moreFilters }: FilterListProps) => {
   return (
-    <div className="flex items-stretch justify-between space-x-4">
+    <div className="grid items-end grid-cols-12 gap-x-4">
       {FILTERS.map((filter) => {
-        const { id, name, info, Selected } = filter;
+        const { id, name, info, className, Selected } = filter;
         return (
-          <div key={id} className="flex flex-col space-y-5">
+          <div key={id} className={cx({ 'flex flex-col space-y-5': true, [className]: className })}>
             <span className="inline-flex items-center text-base font-semibold uppercase text-grey-0">
               <label className="pr-2 cursor-pointer whitespace-nowrap">{name}</label>
 
@@ -57,7 +57,11 @@ const FilterList = ({ moreFilters }: FilterListProps) => {
         );
       })}
 
-      {moreFilters && <MoreFiltersSelected />}
+      {moreFilters && (
+        <div className="pb-3">
+          <MoreFiltersSelected />
+        </div>
+      )}
     </div>
   );
 };

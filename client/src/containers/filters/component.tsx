@@ -3,11 +3,7 @@ import React from 'react';
 import FilterList from './list';
 
 const Filters = ({ moreFilters }) => {
-  return (
-    <div className="flex items-center justify-between">
-      <FilterList moreFilters={moreFilters} />
-    </div>
-  );
+  return <FilterList moreFilters={moreFilters} />;
 };
 
 export default Filters;

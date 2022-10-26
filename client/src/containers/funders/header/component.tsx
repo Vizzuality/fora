@@ -36,7 +36,7 @@ const FundersHeader = () => {
           <Search value={search} placeholder="Search" theme="green" onChange={onChangeSearch} />
         </div>
 
-        <div className="w-2/3 mt-14">
+        <div className="mt-14">
           <Filters moreFilters />
         </div>
       </Wrapper>

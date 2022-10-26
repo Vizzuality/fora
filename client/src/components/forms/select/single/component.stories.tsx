@@ -1,11 +1,11 @@
 import { Story } from '@storybook/react/types-6-0';
 
-import Select2 from './component';
-import type { Select2Props } from './types';
+import Select from './component';
+import type { SingleSelectProps } from './types';
 
-const StorySelect2 = {
+const StorySelect = {
   title: 'Components/Forms/Select Headless',
-  component: Select2,
+  component: Select,
   parameters: { actions: { argTypesRegex: '^on.*' } },
   argTypes: {
     theme: {
@@ -33,11 +33,11 @@ const StorySelect2 = {
   },
 };
 
-export default StorySelect2;
+export default StorySelect;
 
-const Template: Story<Select2Props> = (args) => (
+const Template: Story<SingleSelectProps> = (args) => (
   <div className="relative">
-    <Select2 {...args} />
+    <Select {...args} />
   </div>
 );
 

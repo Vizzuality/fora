@@ -11,12 +11,13 @@ import Cards from 'containers/cards';
 import Wrapper from 'containers/wrapper';
 
 import Button from 'components/button';
-import Select2 from 'components/forms/select2';
 import Icon from 'components/icon';
 import Loading from 'components/loading';
 
 import DOWNLOAD_SVG from 'svgs/ui/download.svg?sprite';
 import SHARE_SVG from 'svgs/ui/share.svg?sprite';
+
+import Sentence from './sentence';
 
 const SORT_OPTIONS = [
   { label: 'a-z', value: 'asc' },
@@ -25,6 +26,7 @@ const SORT_OPTIONS = [
 
 const FundersList = () => {
   const { filters, search, sort } = useAppSelector((state) => state['/funders']);
+  const { geographic } = filters;
   const dispatch = useAppDispatch();
 
   const {
@@ -54,15 +56,11 @@ const FundersList = () => {
     <>
       <Wrapper>
         <div className="py-8">
-          <p className="max-w-md line-clamp-2">
-            Your are viewing <strong>{fundersData.length} funders</strong> from{' '}
-            <strong>All U.S regions</strong> who invest in{' '}
-            <strong>Toxins Reduction, Food Sovereignity, Climate Change</strong>
-          </p>
+          {geographic && <Sentence />}
 
           <div className="flex justify-between mt-10">
             {/* <div className="flex items-center w-1/12">
-              <Select2
+              <Select
                 id="sort-by-funders"
                 placeholder="Sort by"
                 theme="light"
