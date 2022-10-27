@@ -29,7 +29,8 @@ const CUSTOM_CENTROIDS = {
 };
 
 const OFFSETS = {
-  PR: [0, -25],
+  PR: [0, -40],
+  PI: [30, -25],
 };
 
 const RegionsView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: ViewProps) => {
@@ -131,17 +132,21 @@ const RegionsView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }:
                 className="pointer-events-none"
               >
                 <foreignObject
-                  x={-75}
+                  x={-50}
                   y={-75}
-                  width={150}
+                  width={100}
                   height={150}
                   className="pointer-events-none"
                 >
                   <div className="relative flex items-center justify-center h-full text-sm text-center">
                     <div
                       className={cx({
-                        'py-0.5 px-2 text-black': true,
+                        'py-0.5 px-2 text-black pointer-events-auto cursor-pointer': true,
                       })}
+                      onClick={(e) => onClick(e, geo.properties)}
+                      onMouseEnter={(e) => onMouseEnter(e, geo.properties)}
+                      onMouseMove={(e) => onMouseMove(e, geo.properties)}
+                      onMouseLeave={(e) => onMouseLeave(e, geo.properties)}
                     >
                       {name}
                     </div>

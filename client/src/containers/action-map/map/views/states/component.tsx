@@ -31,6 +31,7 @@ const OFFSETS = {
   DC: [49, 21],
   PRI: [10, -25],
   VIR: [2, -10],
+  OPI: [4, -15],
 };
 
 const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: ViewProps) => {
@@ -138,8 +139,12 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
                   <div className="relative flex items-center justify-center h-full text-sm text-center">
                     <div
                       className={cx({
-                        'py-0.5 px-2 text-black ml-5': true,
+                        'py-0.5 px-2 text-black ml-5 cursor-pointer pointer-events-auto': true,
                       })}
+                      onClick={(e) => onClick(e, geo.properties)}
+                      onMouseEnter={(e) => onMouseEnter(e, geo.properties)}
+                      onMouseMove={(e) => onMouseMove(e, geo.properties)}
+                      onMouseLeave={(e) => onMouseLeave(e, geo.properties)}
                     >
                       {code}
                     </div>
