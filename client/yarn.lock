@@ -9074,7 +9074,6 @@ __metadata:
     eslint-plugin-react-hooks: 4.3.0
     final-form: 4.20.2
     framer-motion: 7.0.0
-    geo-albers-usa-territories: 0.1.0
     jsona: 1.10.1
     jsonwebtoken: 8.5.1
     lefthook: ^1.1.2
@@ -9392,15 +9391,6 @@ __metadata:
   version: 1.0.0-beta.2
   resolution: "gensync@npm:1.0.0-beta.2"
   checksum: a7437e58c6be12aa6c90f7730eac7fa9833dc78872b4ad2963d2031b00a3367a93f98aec75f9aaac7220848e4026d67a8655e870b24f20a543d103c0d65952ec
-  languageName: node
-  linkType: hard
-
-"geo-albers-usa-territories@npm:0.1.0":
-  version: 0.1.0
-  resolution: "geo-albers-usa-territories@npm:0.1.0"
-  peerDependencies:
-    d3-geo: ^2.0.1
-  checksum: a6b244f534a13f2594f9da3501e58fdb553b1038180e8c1736ce9670174aafb686de5978787a23de35a351cd31847e08fc304a5b87fdcbe6754ee2adb9223318
   languageName: node
   linkType: hard
 

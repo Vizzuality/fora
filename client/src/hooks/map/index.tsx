@@ -1,5 +1,4 @@
-import { geoAlbersUsaTerritories } from 'geo-albers-usa-territories';
-
+import { geoAlbersUsaTerritories } from './albers-usa';
 import type { UseMapProjectionProps } from './types';
 
 const proj = geoAlbersUsaTerritories().scale(1050).translate([400, 250]);
