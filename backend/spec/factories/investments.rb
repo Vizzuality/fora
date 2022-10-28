@@ -12,7 +12,7 @@ FactoryBot.define do
     end
     sequence(:year_invested) do |n|
       Faker::Config.random = Random.new(n)
-      Faker::Date.between(from: 5.years.ago, to: Date.today).year
+      Faker::Date.between(from: Date.new(ReportYear::TYPES.first.to_i), to: Date.new(ReportYear::TYPES.last.to_i)).year
     end
     sequence(:initial_funded_year) do |n|
       Faker::Config.random = Random.new(n)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_18_084105) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_26_101935) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -199,6 +199,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_18_084105) do
     t.index ["subgeographic_geometry_id"], name: "index_subgeographics_on_subgeographic_geometry_id"
   end
 
+  create_table "widget_data", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "widget_id", null: false
+    t.string "filter_key"
+    t.jsonb "data", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["filter_key", "widget_id"], name: "index_widget_data_on_filter_key_and_widget_id", unique: true
+    t.index ["widget_id"], name: "index_widget_data_on_widget_id"
+  end
+
+  create_table "widgets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "report_pages", null: false, array: true
+    t.string "report_year", null: false
+    t.string "widget_type", null: false
+    t.string "slug", null: false
+    t.integer "position", null: false
+    t.boolean "support_filters", default: false, null: false
+    t.string "title", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug", "report_year"], name: "index_widgets_on_slug_and_report_year", unique: true
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "funder_subgeographics", "funders", on_delete: :cascade
@@ -216,4 +240,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_18_084105) do
   add_foreign_key "subgeographic_hierarchies", "subgeographics", column: "descendant_id", on_delete: :cascade
   add_foreign_key "subgeographics", "subgeographic_geometries", on_delete: :cascade
   add_foreign_key "subgeographics", "subgeographics", column: "parent_id", on_delete: :cascade
+  add_foreign_key "widget_data", "widgets", on_delete: :cascade
 end

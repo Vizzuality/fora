@@ -13,6 +13,9 @@ class Ability
 
   def default_rights
     # enums
+    can %i[index show], WidgetType
+    can %i[index show], ReportYear
+    can %i[index show], ReportPage
     can %i[index show], FundingType
     can %i[index show], GrantDuration
     can %i[index show], ApplicationStatus
