@@ -7,7 +7,6 @@ import Checkbox from 'components/forms/checkbox';
 import Input from 'components/forms/input';
 import Label from 'components/forms/label';
 import Radio from 'components/forms/radio';
-import Select, { Option } from 'components/forms/select';
 import Textarea from 'components/forms/textarea';
 import { composeValidators, booleanValidator, arrayValidator } from 'components/forms/validations';
 
@@ -17,13 +16,6 @@ const StoryForms = {
 };
 
 export default StoryForms;
-
-const OPTIONS = [
-  { label: 'Option 1', value: 'option-1' },
-  { label: 'Option 2', value: 'option-2' },
-  { label: 'Option 3', value: 'option-3', disabled: true },
-  { label: 'Option 4', value: 'option-4' },
-];
 
 export function Form(): ReactNode {
   return (
@@ -74,39 +66,6 @@ export function Form(): ReactNode {
                     Description
                   </Label>
                   <Textarea id="form-description" {...flprops} rows={4} />
-                </>
-              )}
-            </FieldRFF>
-          </div>
-
-          {/* SELECT */}
-          <div className="mt-5">
-            <FieldRFF name="category" validate={composeValidators([{ presence: true }])}>
-              {(flprops) => (
-                <>
-                  <Label htmlFor="form-select" className="mb-3 uppercase">
-                    Category
-                  </Label>
-                  <Select
-                    {...flprops.input}
-                    placeholder="Select..."
-                    theme="light"
-                    size="md"
-                    clearable
-                    render={(selected) => <div>{selected.label}</div>}
-                  >
-                    {OPTIONS.map(({ label, value, disabled }) => (
-                      <Option
-                        key={value}
-                        value={value}
-                        theme="light"
-                        label={label}
-                        disabled={disabled}
-                      >
-                        {label}
-                      </Option>
-                    ))}
-                  </Select>
                 </>
               )}
             </FieldRFF>
