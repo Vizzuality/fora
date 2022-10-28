@@ -2,7 +2,12 @@ import React from 'react';
 
 import FilterList from './list';
 
-const Filters = ({ moreFilters, type }) => {
+interface FiltersProps {
+  moreFilters?: boolean;
+  type: string;
+}
+
+const Filters = ({ moreFilters, type }: FiltersProps) => {
   return <FilterList moreFilters={moreFilters} type={type} />;
 };
 

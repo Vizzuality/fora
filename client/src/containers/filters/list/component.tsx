@@ -15,7 +15,7 @@ import { FILTERS } from './constants';
 // const Filter = dynamic(() => import('components/filters/trigger'), { ssr: false });
 
 interface FilterListProps {
-  moreFilters: boolean;
+  moreFilters?: boolean;
   type: string;
 }
 

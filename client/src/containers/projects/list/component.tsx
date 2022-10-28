@@ -5,26 +5,23 @@ import cx from 'classnames';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { setSort } from 'store/projects';
 
+import { Menu } from '@headlessui/react';
+
 import { useProjectsInfinity } from 'hooks/projects';
 
 import Cards from 'containers/cards';
+import Sentence from 'containers/sentence';
 import Wrapper from 'containers/wrapper';
 
 import Button from 'components/button';
-import Select from 'components/forms/select';
 import Icon from 'components/icon';
 import Loading from 'components/loading';
 
-import DOWNLOAD_SVG from 'svgs/ui/download.svg?sprite';
-import SHARE_SVG from 'svgs/ui/share.svg?sprite';
-
-const SORT_OPTIONS = [
-  { label: 'a-z', value: 'asc' },
-  { label: 'z-a', value: 'desc' },
-];
+import CHEVRON_DOWN_SVG from 'svgs/ui/chevron-down.svg?sprite';
 
 const ProjectsList = () => {
   const { filters, search, sort } = useAppSelector((state) => state['/projects']);
+  const { geographic } = filters;
   const dispatch = useAppDispatch();
 
   const {
@@ -54,47 +51,64 @@ const ProjectsList = () => {
     <>
       <Wrapper>
         <div className="py-8">
-          <p className="max-w-md line-clamp-2">
-            Your are viewing <strong>{projectsData.length} funders</strong> from{' '}
-            <strong>All U.S regions</strong> who invest in{' '}
-            <strong>Toxins Reduction, Food Sovereignity, Climate Change</strong>
-          </p>
+          {geographic && <Sentence type="projects" />}
 
-          <div className="flex justify-between">
+          <div className="flex justify-between mt-10">
             <div className="flex items-center w-1/12">
-              <Select
-                id="sort-by-projects"
-                placeholder="Sort by"
-                theme="light"
-                size="base"
-                options={SORT_OPTIONS}
-                value={sort.order}
-                onSelect={handleSortProjects}
-              />
-            </div>
-
-            <div className="flex m-3 border divide-x rounded-md divide-solid border-grey-20">
-              <button type="button" className="px-3 py-3">
-                <Icon
-                  icon={SHARE_SVG}
-                  className={cx({
-                    'w-4 h-4 text-grey-0': true,
-                  })}
-                />
-              </button>
-              <button type="button" className="px-3 py-3">
-                <Icon
-                  icon={DOWNLOAD_SVG}
-                  className={cx({
-                    'w-4 h-4 text-grey-0': true,
-                  })}
-                />
-              </button>
+              <Menu as="div" className="relative">
+                <Menu.Button className="flex items-center space-x-2">
+                  <p className="font-semibold">Sort by</p>
+                  <Icon
+                    icon={CHEVRON_DOWN_SVG}
+                    className={cx({
+                      'w-3 h-3': true,
+                    })}
+                  />
+                </Menu.Button>
+                <Menu.Items className="absolute flex flex-col py-2 bg-white rounded-md shadow-lg focus:outline-none">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        className={cx({
+                          'px-4 py-3': true,
+                          'bg-grey-20/20': active,
+                        })}
+                        type="button"
+                        onClick={() => handleSortProjects('asc')}
+                      >
+                        A - Z
+                      </button>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        className={cx({
+                          'px-4 py-3': true,
+                          'bg-grey-20/20': active,
+                        })}
+                        type="button"
+                        onClick={() => handleSortProjects('desc')}
+                      >
+                        Z - A
+                      </button>
+                    )}
+                  </Menu.Item>
+                </Menu.Items>
+              </Menu>
             </div>
           </div>
         </div>
 
-        <Cards pathname="/projects" data={projectsData} />
+        {!projectsData.length ? (
+          <div className="pb-10">
+            <p className="text-grey-20">No results fitting this search were found.</p>
+          </div>
+        ) : (
+          <div className="pb-10">
+            <Cards pathname="/funders" data={projectsData} />
+          </div>
+        )}
 
         {hasNextProjectsPage && (
           <div className="flex justify-center py-10">
