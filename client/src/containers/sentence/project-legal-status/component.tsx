@@ -5,9 +5,10 @@ import { useAppSelector } from 'store/hooks';
 import { useProjectLegalStatuses } from 'hooks/project-legal-statuses';
 
 import SentenceTooltip from 'containers/action-map/sentence/common/tooltip';
+import { SentenceProps } from 'containers/sentence/types';
 
-const ProjectLegalStatusSentence = () => {
-  const { type, filters } = useAppSelector((state) => state['/action-map']);
+const ProjectLegalStatusSentence: React.FC<SentenceProps> = ({ type }) => {
+  const { filters } = useAppSelector((state) => state[`/${type}`]);
   const { recipientLegalStatuses } = filters;
 
   const { data: recipientLegalStatusesData, isFetched: projectLegalStatusIsFetched } =

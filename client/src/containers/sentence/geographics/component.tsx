@@ -4,10 +4,11 @@ import { useAppSelector } from 'store/hooks';
 
 import { useGeographics, useSubGeographics } from 'hooks/geographics';
 
-import SentenceTooltip from 'containers/funders/list/sentence/common/tooltip';
+import SentenceTooltip from 'containers/sentence/common/tooltip';
+import { SentenceProps } from 'containers/sentence/types';
 
-const GeographicsSentence = () => {
-  const { filters } = useAppSelector((state) => state['/funders']);
+const GeographicsSentence: React.FC<SentenceProps> = ({ type }) => {
+  const { filters } = useAppSelector((state) => state[`/${type}`]);
   const { geographic, subgeographics } = filters;
 
   const { data: geographicsData, isFetched: geographicsIsFetched } = useGeographics();

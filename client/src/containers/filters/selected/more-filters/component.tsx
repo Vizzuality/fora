@@ -11,12 +11,14 @@ import Modal from 'components/modal';
 
 import FILTERS_SVG from 'svgs/ui/filters.svg?sprite';
 
-interface MoreFiltersSelectedProps {}
+interface MoreFiltersSelectedProps {
+  type: string;
+}
 
-const MoreFiltersSelected: React.FC<MoreFiltersSelectedProps> = () => {
+const MoreFiltersSelected: React.FC<MoreFiltersSelectedProps> = ({ type }) => {
   const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModal();
 
-  const { type, filters } = useAppSelector((state) => state['/action-map']);
+  const { filters } = useAppSelector((state) => state[`/${type}`]);
   const { funderTypes, funderLegalStatuses, capitalTypes, projectLegalStatuses } = filters;
 
   const SELECTED = useMemo(() => {

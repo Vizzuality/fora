@@ -4,10 +4,11 @@ import { useAppSelector } from 'store/hooks';
 
 import { useAreas } from 'hooks/areas';
 
-import SentenceTooltip from 'containers/action-map/sentence/common/tooltip';
+import SentenceTooltip from 'containers/sentence/common/tooltip';
+import { SentenceProps } from 'containers/sentence/types';
 
-const AreasSentence = () => {
-  const { filters } = useAppSelector((state) => state['/action-map']);
+const AreasSentence: React.FC<SentenceProps> = ({ type }) => {
+  const { filters } = useAppSelector((state) => state[`/${type}`]);
   const { areas } = filters;
 
   const { data: areasData, isFetched: areasIsFetched } = useAreas();

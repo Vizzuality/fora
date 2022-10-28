@@ -16,12 +16,14 @@ import { FILTERS } from './constants';
 
 interface FilterListProps {
   moreFilters: boolean;
+  type: string;
 }
 
-const FilterList = ({ moreFilters }: FilterListProps) => {
+const FilterList = ({ moreFilters, type }: FilterListProps) => {
+  const FILTERS_DATA = FILTERS(type);
   return (
     <div className="grid items-end grid-cols-12 gap-x-4">
-      {FILTERS.map((filter) => {
+      {FILTERS_DATA?.map((filter) => {
         const { id, name, info, className, Selected } = filter;
         return (
           <div key={id} className={cx({ 'flex flex-col space-y-5': true, [className]: className })}>
@@ -41,11 +43,11 @@ const FilterList = ({ moreFilters }: FilterListProps) => {
                     </div>
                   }
                 >
-                  <div>
+                  <div className="w-4 h-4 rounded-full bg-grey-0">
                     <Icon
                       icon={INFO_SVG}
                       className={cx({
-                        'w-3 h-3 text-grey-0': true,
+                        'w-4 h-4 text-green-0': true,
                       })}
                     />
                   </div>

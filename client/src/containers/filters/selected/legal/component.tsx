@@ -2,17 +2,20 @@ import React, { useCallback, useMemo } from 'react';
 
 import cx from 'classnames';
 
-import { setFilters } from 'store/action-map';
+import { setFilters as setFundersFilters } from 'store/funders';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { setFilters as setProjectsFilters } from 'store/projects';
 
 import { useFunderLegalStatuses } from 'hooks/funder-legal-statuses';
 
 import { MultiSelect } from 'components/forms';
 
-interface GeographicSelectedProps {}
+interface LegalSelectedProps {
+  type: string;
+}
 
-const LegalSelected: React.FC<GeographicSelectedProps> = ({}: GeographicSelectedProps) => {
-  const { filters } = useAppSelector((state) => state['/funders']);
+const LegalSelected: React.FC<LegalSelectedProps> = ({ type }: LegalSelectedProps) => {
+  const { filters } = useAppSelector((state) => state[`/${type}`]);
   const { funderLegalStatuses } = filters;
   const dispatch = useAppDispatch();
 
@@ -29,15 +32,15 @@ const LegalSelected: React.FC<GeographicSelectedProps> = ({}: GeographicSelected
 
   const handleSelect = useCallback(
     (value) => {
-      console.log({ value });
+      const filterType = type === 'funders' ? setFundersFilters : setProjectsFilters;
       dispatch(
-        setFilters({
+        filterType({
           ...filters,
           funderLegalStatuses: value,
         })
       );
     },
-    [dispatch, filters]
+    [dispatch, filters, type]
   );
 
   return (

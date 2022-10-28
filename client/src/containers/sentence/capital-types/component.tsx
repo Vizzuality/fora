@@ -1,14 +1,26 @@
 import React, { useMemo } from 'react';
 
+import { useRouter } from 'next/router';
+
 import { useAppSelector } from 'store/hooks';
 
 import { useCapitalTypes } from 'hooks/capital-types';
 
-import SentenceTooltip from 'containers/action-map/sentence/common/tooltip';
+import SentenceTooltip from 'containers/sentence/common/tooltip';
+import { SentenceProps } from 'containers/sentence/types';
 
-const CapitalTypesSentence = () => {
-  const { type, filters } = useAppSelector((state) => state['/action-map']);
+const CapitalTypesSentence: React.FC<SentenceProps> = ({ type }) => {
+  const { filters } = useAppSelector((state) => state[`/${type}`]);
   const { capitalTypes } = filters;
+  const { pathname } = useRouter();
+
+  const TYPE = useMemo(() => {
+    if (pathname.includes('project')) {
+      return 'projects';
+    } else {
+      return 'funders';
+    }
+  }, [pathname]);
 
   const { data: capitalTypesData, isFetched: capitalTypesIsFetched } = useCapitalTypes();
 
@@ -24,7 +36,7 @@ const CapitalTypesSentence = () => {
     return `${first.name} +${rest.length}`;
   }, [SELECTED_LIST]);
 
-  if (!capitalTypes.length || !capitalTypesIsFetched || type !== 'funders') return null;
+  if (!capitalTypes.length || !capitalTypesIsFetched || TYPE !== 'funders') return null;
 
   return <SentenceTooltip text={SELECTED_TEXT} list={SELECTED_LIST} prefix=" of capital " />;
 };

@@ -5,24 +5,19 @@ import cx from 'classnames';
 import { setSort } from 'store/funders';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
+import { Menu } from '@headlessui/react';
+
 import { useFundersInfinity } from 'hooks/funders';
 
 import Cards from 'containers/cards';
+import Sentence from 'containers/sentence';
 import Wrapper from 'containers/wrapper';
 
 import Button from 'components/button';
 import Icon from 'components/icon';
 import Loading from 'components/loading';
 
-import DOWNLOAD_SVG from 'svgs/ui/download.svg?sprite';
-import SHARE_SVG from 'svgs/ui/share.svg?sprite';
-
-import Sentence from './sentence';
-
-const SORT_OPTIONS = [
-  { label: 'a-z', value: 'asc' },
-  { label: 'z-a', value: 'desc' },
-];
+import CHEVRON_DOWN_SVG from 'svgs/ui/chevron-down.svg?sprite';
 
 const FundersList = () => {
   const { filters, search, sort } = useAppSelector((state) => state['/funders']);
@@ -56,45 +51,62 @@ const FundersList = () => {
     <>
       <Wrapper>
         <div className="py-8">
-          {geographic && <Sentence />}
+          {geographic && <Sentence type="funders" />}
 
           <div className="flex justify-between mt-10">
-            {/* <div className="flex items-center w-1/12">
-              <Select
-                id="sort-by-funders"
-                placeholder="Sort by"
-                theme="light"
-                size="base"
-                options={SORT_OPTIONS}
-                value={sort.order}
-                onSelect={handleSortFunders}
-              />
-            </div> */}
-
-            <div className="flex m-3 border divide-x rounded-md divide-solid border-grey-20">
-              <button type="button" className="px-3 py-3">
+            <Menu as="div" className="relative">
+              <Menu.Button className="flex items-center space-x-2">
+                <p className="font-semibold">Sort by</p>
                 <Icon
-                  icon={SHARE_SVG}
+                  icon={CHEVRON_DOWN_SVG}
                   className={cx({
-                    'w-4 h-4 text-grey-0': true,
+                    'w-3 h-3': true,
                   })}
                 />
-              </button>
-              <button type="button" className="px-3 py-3">
-                <Icon
-                  icon={DOWNLOAD_SVG}
-                  className={cx({
-                    'w-4 h-4 text-grey-0': true,
-                  })}
-                />
-              </button>
-            </div>
+              </Menu.Button>
+              <Menu.Items className="absolute flex flex-col py-2 bg-white rounded-md shadow-lg focus:outline-none">
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={cx({
+                        'px-4 py-3': true,
+                        'bg-grey-20/20': active,
+                      })}
+                      type="button"
+                      onClick={() => handleSortFunders('asc')}
+                    >
+                      A - Z
+                    </button>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={cx({
+                        'px-4 py-3': true,
+                        'bg-grey-20/20': active,
+                      })}
+                      type="button"
+                      onClick={() => handleSortFunders('desc')}
+                    >
+                      Z - A
+                    </button>
+                  )}
+                </Menu.Item>
+              </Menu.Items>
+            </Menu>
           </div>
         </div>
 
-        <div className="pb-10">
-          <Cards pathname="/funders" data={fundersData} />
-        </div>
+        {!fundersData.length ? (
+          <div className="pb-10">
+            <p className="text-grey-20">No results fitting this search were found.</p>
+          </div>
+        ) : (
+          <div className="pb-10">
+            <Cards pathname="/funders" data={fundersData} />
+          </div>
+        )}
 
         {hasNextFundersPage && (
           <div className="flex justify-center pb-10">

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
+import React, { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import cx from 'classnames';
 
@@ -54,20 +54,38 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
     document.addEventListener('mousedown', handleClickOutside);
   }, [ref]);
 
-  const handleSelect = (option) => {
-    const newSelected = [...selected];
-    const index = selected.indexOf(option.value);
+  const handleSelect = useCallback(
+    (option) => {
+      const newSelected = [...selected];
+      const index = selected.indexOf(option.value);
 
-    if (index === -1) {
-      newSelected.push(option.value);
-    } else {
-      newSelected.splice(index, 1);
-    }
-    setSelected(newSelected);
+      if (index === -1) {
+        newSelected.push(option.value);
+      } else {
+        newSelected.splice(index, 1);
+      }
+      setSelected(newSelected);
+      if (onSelect) {
+        onSelect(newSelected);
+      }
+    },
+    [onSelect, selected]
+  );
+
+  const handleSelectAll = useCallback(() => {
+    const allOptions = options.map((o) => o.value);
+    setSelected(allOptions);
     if (onSelect) {
-      onSelect(newSelected);
+      onSelect(allOptions);
     }
-  };
+  }, [onSelect, options]);
+
+  const handleClearAll = useCallback(() => {
+    setSelected([]);
+    if (onSelect) {
+      onSelect([]);
+    }
+  }, [onSelect]);
 
   return (
     <div className="flex -mt-2">
@@ -133,7 +151,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                         <button
                           className="px-4 py-2 text-left underline text-grey-20"
                           type="button"
-                          onClick={() => setSelected(options)}
+                          onClick={handleSelectAll}
                         >
                           {batchSelectionLabel}
                         </button>
@@ -142,10 +160,11 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                         <button
                           className="px-4 py-2 text-left underline"
                           type="button"
-                          onClick={() => setSelected(initialValue)}
+                          onClick={handleClearAll}
                         >
                           {selected.length < 1 && clearSelectionLabel}
                           {selected.length > 1 &&
+                            selected.length !== options.length &&
                             `${clearSelectionLabel} (${selected.length} Selected)`}
                           {selected.length === options.length &&
                             `${clearSelectionLabel} (All selected)`}

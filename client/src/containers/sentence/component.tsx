@@ -4,6 +4,7 @@ import { initialState, reset } from 'store/action-map';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 import { useFunders } from 'hooks/funders';
+import { useProjects } from 'hooks/projects';
 
 import Loading from 'components/loading';
 
@@ -16,8 +17,8 @@ import Geographics from './geographics';
 import ProjectLegalStatus from './project-legal-status';
 import { SentenceProps } from './types';
 
-const Sentence: React.FC<SentenceProps> = () => {
-  const { type, filters } = useAppSelector((state) => state['/action-map']);
+const Sentence: React.FC<SentenceProps> = ({ type }) => {
+  const { filters } = useAppSelector((state) => state[`/${type}`]);
   const dispatch = useAppDispatch();
 
   const {
@@ -28,21 +29,31 @@ const Sentence: React.FC<SentenceProps> = () => {
     filters,
   });
 
+  const {
+    data: projectsData,
+    isFetching: projectsIsFetching,
+    isFetched: projectsIsFetched,
+  } = useProjects({
+    filters,
+  });
+
   const DATA = useMemo(() => {
     const data = {
       funders: fundersData,
+      projects: projectsData,
     };
 
     return data[type];
-  }, [fundersData, type]);
+  }, [fundersData, projectsData, type]);
 
   const LOADING = useMemo(() => {
     const loading = {
       funders: fundersIsFetching && !fundersIsFetched,
+      projects: projectsIsFetching && !projectsIsFetched,
     };
 
     return loading[type];
-  }, [type, fundersIsFetching, fundersIsFetched]);
+  }, [type, fundersIsFetching, fundersIsFetched, projectsIsFetching, projectsIsFetched]);
 
   const handleReset = useCallback(() => {
     dispatch(reset());
@@ -60,13 +71,13 @@ const Sentence: React.FC<SentenceProps> = () => {
         <>
           <div className="inline mr-2">
             You are viewing {DATA.length} {type}
-            <Geographics />
-            <Areas />
-            <Demographics />
-            <FunderTypes />
-            <FunderLegalStatus />
-            <CapitalTypes />
-            <ProjectLegalStatus />
+            <Geographics type={type} />
+            <Areas type={type} />
+            <Demographics type={type} />
+            <FunderTypes type={type} />
+            <FunderLegalStatus type={type} />
+            <CapitalTypes type={type} />
+            <ProjectLegalStatus type={type} />
           </div>
 
           {JSON.stringify(filters) !== JSON.stringify(initialState.filters) && (

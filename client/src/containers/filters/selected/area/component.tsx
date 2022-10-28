@@ -2,18 +2,21 @@ import React, { useCallback, useMemo } from 'react';
 
 import cx from 'classnames';
 
-import { setFilters } from 'store/funders';
+import { setFilters as setFundersFilters } from 'store/funders';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { setFilters as setProjectsFilters } from 'store/projects';
 
 import { useAreas } from 'hooks/areas';
 
 import { MultiSelect } from 'components/forms';
 import Loading from 'components/loading';
 
-interface AreaSelectedProps {}
+interface AreaSelectedProps {
+  type: string;
+}
 
-const AreaSelected: React.FC<AreaSelectedProps> = () => {
-  const { filters } = useAppSelector((state) => state['/funders']);
+const AreaSelected: React.FC<AreaSelectedProps> = ({ type }) => {
+  const { filters } = useAppSelector((state) => state[`/${type}`]);
   const dispatch = useAppDispatch();
   const { data: areasData, isFetching: areasIsFetching, isFetched: areasIsFetched } = useAreas();
   const { areas } = filters;
@@ -25,15 +28,15 @@ const AreaSelected: React.FC<AreaSelectedProps> = () => {
 
   const handleSelectArea = useCallback(
     (values) => {
-      console.log({ values });
+      const filterType = type === 'funders' ? setFundersFilters : setProjectsFilters;
       dispatch(
-        setFilters({
+        filterType({
           ...filters,
           areas: values,
         })
       );
     },
-    [dispatch, filters]
+    [dispatch, filters, type]
   );
 
   return (

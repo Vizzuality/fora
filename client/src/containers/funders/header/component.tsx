@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
 import { setSearch } from 'store/funders';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
@@ -23,13 +23,14 @@ const FundersHeader = () => {
     dispatch(setSearch(value));
   }, 250);
 
+  const fundersCount = Math.floor(fundersData.length / 10) * 10;
   return (
     <header className="py-16 bg-green-0 text-grey-0">
       <Wrapper>
         <div className="space-y-5">
           <h2 className="max-w-2xl text-4xl font-display">Explore the FORA community members</h2>
           <h3 className="max-w-2xl text-2xl font-display">
-            Search our database of {fundersData.length}+ funders supporting regenerative agriculture
+            Search our database of {fundersCount}+ funders supporting regenerative agriculture
           </h3>
         </div>
         <div className="w-2/3 mt-11">
@@ -37,7 +38,7 @@ const FundersHeader = () => {
         </div>
 
         <div className="mt-14">
-          <Filters moreFilters />
+          <Filters moreFilters type="funders" />
         </div>
       </Wrapper>
     </header>

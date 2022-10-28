@@ -5,9 +5,10 @@ import { useAppSelector } from 'store/hooks';
 import { useDemographics } from 'hooks/demographics';
 
 import SentenceTooltip from 'containers/action-map/sentence/common/tooltip';
+import { SentenceProps } from 'containers/sentence/types';
 
-const DemographicsSentence = () => {
-  const { filters } = useAppSelector((state) => state['/action-map']);
+const DemographicsSentence: React.FC<SentenceProps> = ({ type }) => {
+  const { filters } = useAppSelector((state) => state[`/${type}`]);
   const { demographics } = filters;
 
   const { data: demographicsData, isFetched: demographicsIsFetched } = useDemographics();

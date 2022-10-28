@@ -2,17 +2,22 @@ import React, { useCallback, useMemo } from 'react';
 
 import cx from 'classnames';
 
-import { setFilters } from 'store/funders';
+import { setFilters as setFundersFilters } from 'store/funders';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { setFilters as setProjectsFilters } from 'store/projects';
 
 import { useGeographics, useSubGeographics } from 'hooks/geographics';
 
 import { MultiSelect, Select } from 'components/forms';
 
-interface GeographicSelectedProps {}
+interface GeographicSelectedProps {
+  type: string;
+}
 
-const GeographicSelected: React.FC<GeographicSelectedProps> = ({}: GeographicSelectedProps) => {
-  const { filters } = useAppSelector((state) => state['/funders']);
+const GeographicSelected: React.FC<GeographicSelectedProps> = ({
+  type,
+}: GeographicSelectedProps) => {
+  const { filters } = useAppSelector((state) => state[`/${type}`]);
   const { geographic, subgeographics } = filters;
   const dispatch = useAppDispatch();
 
@@ -35,37 +40,37 @@ const GeographicSelected: React.FC<GeographicSelectedProps> = ({}: GeographicSel
     [subgeographicsData, subgeographicsIsFetched]
   );
 
+  const filterType = type === 'funders' ? setFundersFilters : setProjectsFilters;
+
   const handleSelectGeo = useCallback(
     (value) => {
-      console.log({ value });
       dispatch(
-        setFilters({
+        filterType({
           ...filters,
           geographic: value,
         })
       );
     },
-    [dispatch, filters]
+    [dispatch, filterType, filters]
   );
 
   const handleSelectSubGeo = useCallback(
     (value) => {
-      console.log({ value });
       dispatch(
-        setFilters({
+        filterType({
           ...filters,
           subgeographics: value,
         })
       );
     },
-    [dispatch, filters]
+    [dispatch, filterType, filters]
   );
-  // console.log('condit', !SELECTED_GEO);
+
   return (
     <div className="flex space-x-4">
       <div
         className={cx({
-          'font-semibold w-full': true,
+          'font-semibold w-1/2': true,
         })}
       >
         <Select
@@ -80,7 +85,7 @@ const GeographicSelected: React.FC<GeographicSelectedProps> = ({}: GeographicSel
       </div>
       <div
         className={cx({
-          'font-semibold w-full': true,
+          'font-semibold w-1/2': true,
         })}
       >
         <MultiSelect
@@ -93,7 +98,7 @@ const GeographicSelected: React.FC<GeographicSelectedProps> = ({}: GeographicSel
           disabled={!geographic}
           onSelect={handleSelectSubGeo}
           batchSelectionActive
-          batchSelectionLabel=""
+          clearSelectionActive
         />
       </div>
     </div>

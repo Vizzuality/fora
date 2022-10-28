@@ -28,7 +28,6 @@ const OrganizationSelected: React.FC<GeographicSelectedProps> = ({}: GeographicS
 
   const handleSelect = useCallback(
     (value) => {
-      console.log({ value });
       dispatch(
         setFilters({
           ...filters,
