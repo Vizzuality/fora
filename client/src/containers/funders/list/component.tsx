@@ -53,54 +53,60 @@ const FundersList = () => {
         <div className="py-8">
           {geographic && <Sentence type="funders" />}
 
-          <div className="flex justify-between mt-10">
-            <Menu as="div" className="relative">
-              <Menu.Button className="flex items-center space-x-2">
-                <p className="font-semibold">Sort by</p>
-                <Icon
-                  icon={CHEVRON_DOWN_SVG}
-                  className={cx({
-                    'w-3 h-3': true,
-                  })}
-                />
-              </Menu.Button>
-              <Menu.Items className="absolute flex flex-col py-2 bg-white rounded-md shadow-lg focus:outline-none">
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={cx({
-                        'px-4 py-3': true,
-                        'bg-grey-20/20': active,
-                      })}
-                      type="button"
-                      onClick={() => handleSortFunders('asc')}
-                    >
-                      A - Z
-                    </button>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={cx({
-                        'px-4 py-3': true,
-                        'bg-grey-20/20': active,
-                      })}
-                      type="button"
-                      onClick={() => handleSortFunders('desc')}
-                    >
-                      Z - A
-                    </button>
-                  )}
-                </Menu.Item>
-              </Menu.Items>
-            </Menu>
-          </div>
+          {!!fundersData.length && (
+            <div className="flex justify-between mt-10">
+              <Menu as="div" className="relative">
+                <Menu.Button className="flex items-center space-x-2">
+                  <p className="font-semibold">Sort by</p>
+                  <Icon
+                    icon={CHEVRON_DOWN_SVG}
+                    className={cx({
+                      'w-3 h-3': true,
+                    })}
+                  />
+                </Menu.Button>
+                <Menu.Items className="absolute flex flex-col py-2 bg-white rounded-md shadow-lg focus:outline-none">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        className={cx({
+                          'px-4 py-3': true,
+                          'bg-grey-20/20': active,
+                        })}
+                        type="button"
+                        onClick={() => handleSortFunders('asc')}
+                      >
+                        A - Z
+                      </button>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        className={cx({
+                          'px-4 py-3': true,
+                          'bg-grey-20/20': active,
+                        })}
+                        type="button"
+                        onClick={() => handleSortFunders('desc')}
+                      >
+                        Z - A
+                      </button>
+                    )}
+                  </Menu.Item>
+                </Menu.Items>
+              </Menu>
+            </div>
+          )}
         </div>
 
         {!fundersData.length ? (
-          <div className="pb-10">
-            <p className="text-grey-20">No results fitting this search were found.</p>
+          <div className="flex flex-col items-center pb-10 space-y-4">
+            <p className="text-2xl font-semibold">No results found</p>
+            <p className="max-w-sm text-center text-grey-20">
+              Sorry, we have searched in our entire database but we couldn&apos;t find any results
+              fitting your search criteria.
+            </p>
           </div>
         ) : (
           <div className="pb-10">

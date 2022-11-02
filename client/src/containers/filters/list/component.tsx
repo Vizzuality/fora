@@ -3,7 +3,7 @@ import React from 'react';
 import cx from 'classnames';
 // import dynamic from 'next/dynamic';
 
-import MoreFiltersSelected from 'containers/action-map/filters/selected/more-filters';
+import MoreFiltersSelected from 'containers/filters/selected/more-filters';
 
 import Icon from 'components/icon';
 import Tooltip from 'components/tooltip';
@@ -61,7 +61,7 @@ const FilterList = ({ moreFilters, type }: FilterListProps) => {
 
       {moreFilters && (
         <div className="pb-3">
-          <MoreFiltersSelected />
+          <MoreFiltersSelected type={type} />
         </div>
       )}
     </div>

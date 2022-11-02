@@ -5,6 +5,8 @@ import cx from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import { useAreas } from 'hooks/areas';
+
 import Icon from 'components/icon';
 
 import LOCATION_SVG from 'svgs/ui/location.svg?sprite';
@@ -27,6 +29,7 @@ const Cards = ({
   theme = 'grey',
 }: CardProps) => {
   const { pathname } = useRouter();
+  const { data: areasData } = useAreas();
 
   const FORMAT_LINK_TEXT = useMemo(() => {
     if (pathname.includes('project')) {
@@ -35,6 +38,18 @@ const Cards = ({
       return 'funder';
     }
   }, [pathname]);
+
+  const AREAS_OF_FOCUS = useMemo(() => {
+    const filteredAreas = areasData.filter((c) => areas.includes(c.id));
+
+    return filteredAreas.map((a) => a.name);
+  }, [areas, areasData]);
+
+  // const ADDRESS = [
+  //   officeCity,
+  //   ...(!!officeState.name ? [officeState.name] : []),
+  //   officeCountry.name,
+  // ];
 
   return (
     <div
@@ -58,7 +73,7 @@ const Cards = ({
       </div>
 
       <div className="border-t divide-y divide-grey-40/50 border-grey-40/50">
-        <div className="py-4">{areas.join(' • ')}</div>
+        <div className="py-4">{AREAS_OF_FOCUS.join(' • ')}</div>
 
         <div className="pt-4">
           <Link href={href}>
