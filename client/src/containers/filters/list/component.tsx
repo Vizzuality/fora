@@ -1,9 +1,8 @@
 import React from 'react';
 
 import cx from 'classnames';
-// import dynamic from 'next/dynamic';
 
-import MoreFiltersSelected from 'containers/action-map/filters/selected/more-filters';
+import MoreFiltersSelected from 'containers/filters/selected/more-filters';
 
 import Icon from 'components/icon';
 import Tooltip from 'components/tooltip';
@@ -12,14 +11,11 @@ import INFO_SVG from 'svgs/ui/info.svg?sprite';
 
 import { FILTERS } from './constants';
 
-// const Filter = dynamic(() => import('components/filters/trigger'), { ssr: false });
-
 interface FilterListProps {
-  moreFilters?: boolean;
   type: string;
 }
 
-const FilterList = ({ moreFilters, type }: FilterListProps) => {
+const FilterList = ({ type }: FilterListProps) => {
   const FILTERS_DATA = FILTERS(type);
   return (
     <div className="grid items-end grid-cols-12 gap-x-4">
@@ -58,12 +54,9 @@ const FilterList = ({ moreFilters, type }: FilterListProps) => {
           </div>
         );
       })}
-
-      {moreFilters && (
-        <div className="pb-3">
-          <MoreFiltersSelected />
-        </div>
-      )}
+      <div className="pb-3">
+        <MoreFiltersSelected type={type} />
+      </div>
     </div>
   );
 };

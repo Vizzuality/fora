@@ -26,9 +26,17 @@ const AreaSelected: React.FC<AreaSelectedProps> = ({ type }) => {
     [areasData, areasIsFetched]
   );
 
+  const filterType = useMemo(() => {
+    const data = {
+      funders: setFundersFilters,
+      projects: setProjectsFilters,
+    };
+
+    return data[type];
+  }, [type]);
+
   const handleSelectArea = useCallback(
     (values) => {
-      const filterType = type === 'funders' ? setFundersFilters : setProjectsFilters;
       dispatch(
         filterType({
           ...filters,
@@ -36,7 +44,7 @@ const AreaSelected: React.FC<AreaSelectedProps> = ({ type }) => {
         })
       );
     },
-    [dispatch, filters, type]
+    [dispatch, filterType, filters]
   );
 
   return (

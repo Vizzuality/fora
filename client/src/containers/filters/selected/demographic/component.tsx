@@ -29,9 +29,17 @@ const DemographicSelected: React.FC<DemographicSelectedProps> = ({ type }) => {
     [demographicsData, demographicsIsFetched]
   );
 
+  const filterType = useMemo(() => {
+    const data = {
+      funders: setFundersFilters,
+      projects: setProjectsFilters,
+    };
+
+    return data[type];
+  }, [type]);
+
   const handleSelect = useCallback(
     (value) => {
-      const filterType = type === 'funders' ? setFundersFilters : setProjectsFilters;
       dispatch(
         filterType({
           ...filters,
@@ -39,7 +47,7 @@ const DemographicSelected: React.FC<DemographicSelectedProps> = ({ type }) => {
         })
       );
     },
-    [dispatch, filters, type]
+    [dispatch, filterType, filters]
   );
 
   return (

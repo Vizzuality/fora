@@ -34,6 +34,7 @@ const ProjectsList = () => {
     search,
     sort,
     perPage: 12,
+    includes: 'subgeographic_ancestors',
   });
 
   const handleSortProjects = useCallback(
@@ -53,8 +54,8 @@ const ProjectsList = () => {
         <div className="py-8">
           {geographic && <Sentence type="projects" />}
 
-          <div className="flex justify-between mt-10">
-            <div className="flex items-center w-1/12">
+          {!!projectsData.length && (
+            <div className="flex justify-between mt-10">
               <Menu as="div" className="relative">
                 <Menu.Button className="flex items-center space-x-2">
                   <p className="font-semibold">Sort by</p>
@@ -97,16 +98,20 @@ const ProjectsList = () => {
                 </Menu.Items>
               </Menu>
             </div>
-          </div>
+          )}
         </div>
 
         {!projectsData.length ? (
-          <div className="pb-10">
-            <p className="text-grey-20">No results fitting this search were found.</p>
+          <div className="flex flex-col items-center pb-10 space-y-4">
+            <p className="text-2xl font-semibold">No results found</p>
+            <p className="max-w-sm text-center text-grey-20">
+              Sorry, we have searched in our entire database but we couldn&apos;t find any results
+              fitting your search criteria.
+            </p>
           </div>
         ) : (
           <div className="pb-10">
-            <Cards pathname="/funders" data={projectsData} />
+            <Cards pathname="/projects" data={projectsData} />
           </div>
         )}
 

@@ -4,7 +4,7 @@ import { useAppSelector } from 'store/hooks';
 
 import { useModal } from 'hooks/modals';
 
-import MoreFilters from 'containers/action-map/filters/modals/more-filters';
+import MoreFilters from 'containers/filters/modals/more-filters';
 
 import Icon from 'components/icon';
 import Modal from 'components/modal';
@@ -19,7 +19,7 @@ const MoreFiltersSelected: React.FC<MoreFiltersSelectedProps> = ({ type }) => {
   const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModal();
 
   const { filters } = useAppSelector((state) => state[`/${type}`]);
-  const { funderTypes, funderLegalStatuses, capitalTypes, projectLegalStatuses } = filters;
+  const { funderTypes, funderLegalStatuses, capitalTypes, recipientLegalStatuses } = filters;
 
   const SELECTED = useMemo(() => {
     if (type === 'funders') {
@@ -28,10 +28,10 @@ const MoreFiltersSelected: React.FC<MoreFiltersSelectedProps> = ({ type }) => {
     }
 
     if (type === 'projects') {
-      const s = [!!projectLegalStatuses.length];
+      const s = [!!recipientLegalStatuses.length];
       return s.filter((v) => v).length;
     }
-  }, [type, funderTypes, funderLegalStatuses, capitalTypes, projectLegalStatuses]);
+  }, [type, funderTypes, funderLegalStatuses, capitalTypes, recipientLegalStatuses]);
 
   return (
     <>
@@ -58,7 +58,7 @@ const MoreFiltersSelected: React.FC<MoreFiltersSelectedProps> = ({ type }) => {
         onOpenChange={closeModal}
         dismissable
       >
-        <MoreFilters onClose={closeModal} />
+        <MoreFilters onClose={closeModal} type={type} />
       </Modal>
     </>
   );

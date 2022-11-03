@@ -40,7 +40,14 @@ const GeographicSelected: React.FC<GeographicSelectedProps> = ({
     [subgeographicsData, subgeographicsIsFetched]
   );
 
-  const filterType = type === 'funders' ? setFundersFilters : setProjectsFilters;
+  const filterType = useMemo(() => {
+    const data = {
+      funders: setFundersFilters,
+      projects: setProjectsFilters,
+    };
+
+    return data[type];
+  }, [type]);
 
   const handleSelectGeo = useCallback(
     (value) => {
