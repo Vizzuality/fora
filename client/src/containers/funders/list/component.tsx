@@ -29,6 +29,8 @@ const FundersList = () => {
     fetchNextPage: fetchNextPageFunders,
     hasNextPage: hasNextFundersPage,
     isFetchingNextPage: isFetchingNextFundersPage,
+    isFetching: isFetchingFunders,
+    isFetched: isFetchedFunders,
   } = useFundersInfinity({
     filters,
     search,
@@ -36,6 +38,8 @@ const FundersList = () => {
     perPage: 12,
     includes: 'subgeographic_ancestors',
   });
+
+  const LOADING = isFetchingFunders && !isFetchedFunders;
 
   const handleSortFunders = useCallback(
     (value) => {
@@ -101,7 +105,7 @@ const FundersList = () => {
           )}
         </div>
 
-        {!fundersData.length ? (
+        {!fundersData.length && !LOADING && (
           <div className="flex flex-col items-center pb-10 space-y-4">
             <p className="text-2xl font-semibold">No results found</p>
             <p className="max-w-sm text-center text-grey-20">
@@ -109,7 +113,9 @@ const FundersList = () => {
               fitting your search criteria.
             </p>
           </div>
-        ) : (
+        )}
+
+        {!!fundersData.length && !LOADING && (
           <div className="pb-10">
             <Cards pathname="/funders" data={fundersData} />
           </div>

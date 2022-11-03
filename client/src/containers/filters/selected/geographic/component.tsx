@@ -28,7 +28,12 @@ const GeographicSelected: React.FC<GeographicSelectedProps> = ({
 
   const geographicOptions = useMemo(
     () =>
-      geographicIsFetched ? geographicData.map((geo) => ({ label: geo.name, value: geo.id })) : [],
+      geographicIsFetched
+        ? [
+            { label: 'Clear', value: null },
+            ...geographicData.map((geo) => ({ label: geo.name, value: geo.id })),
+          ]
+        : [],
     [geographicData, geographicIsFetched]
   );
 
@@ -40,37 +45,39 @@ const GeographicSelected: React.FC<GeographicSelectedProps> = ({
     [subgeographicsData, subgeographicsIsFetched]
   );
 
-  const filterType = useMemo(() => {
-    const data = {
-      funders: setFundersFilters,
-      projects: setProjectsFilters,
-    };
-
-    return data[type];
-  }, [type]);
-
   const handleSelectGeo = useCallback(
     (value) => {
+      const action = {
+        funders: setFundersFilters,
+        projects: setProjectsFilters,
+      };
+
       dispatch(
-        filterType({
+        action[type]({
           ...filters,
           geographic: value,
+          subgeographics: [],
         })
       );
     },
-    [dispatch, filterType, filters]
+    [dispatch, type, filters]
   );
 
   const handleSelectSubGeo = useCallback(
     (value) => {
+      const action = {
+        funders: setFundersFilters,
+        projects: setProjectsFilters,
+      };
+
       dispatch(
-        filterType({
+        action[type]({
           ...filters,
           subgeographics: value,
         })
       );
     },
-    [dispatch, filterType, filters]
+    [dispatch, type, filters]
   );
 
   return (

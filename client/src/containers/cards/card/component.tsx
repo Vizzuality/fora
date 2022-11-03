@@ -5,24 +5,23 @@ import cx from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import { Funder } from 'types/funder';
+import { Project } from 'types/project';
+
 import { useAreas } from 'hooks/areas';
 
 import Icon from 'components/icon';
-import { Funder } from 'types/funder';
-import { Project } from 'types/project';
 
 import LOCATION_SVG from 'svgs/ui/location.svg?sprite';
 
 import { THEME } from './constants';
 type T = Project & Funder;
 export interface CardProps extends Partial<T> {
-  key?: string;
   href?: string;
   theme?: 'green' | 'grey';
 }
 
 const Cards = ({
-  key,
   name,
   href = '',
   areas = ['area', 'area2', 'area3'],
@@ -58,7 +57,6 @@ const Cards = ({
         'flex flex-col justify-between p-8': true,
         [THEME[theme]]: true,
       })}
-      id={key}
     >
       <div className="space-y-5">
         <h3 className="text-2xl font-display line-clamp-3">{name}</h3>

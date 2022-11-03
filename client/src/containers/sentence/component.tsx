@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo } from 'react';
 
-import { initialState, reset } from 'store/action-map';
+import { initialState as fundersInitialState, reset as fundersReset } from 'store/funders';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { initialState as projectsInitialState, reset as projectsReset } from 'store/projects';
 
 import { useFunders } from 'hooks/funders';
 import { useProjects } from 'hooks/projects';
@@ -46,6 +47,15 @@ const Sentence: React.FC<SentenceProps> = ({ type }) => {
     return data[type];
   }, [fundersData, projectsData, type]);
 
+  const INITIAL_STATE = useMemo(() => {
+    const initialState = {
+      funders: fundersInitialState,
+      projects: projectsInitialState,
+    };
+
+    return initialState[type];
+  }, [type]);
+
   const LOADING = useMemo(() => {
     const loading = {
       funders: fundersIsFetching && !fundersIsFetched,
@@ -56,8 +66,13 @@ const Sentence: React.FC<SentenceProps> = ({ type }) => {
   }, [type, fundersIsFetching, fundersIsFetched, projectsIsFetching, projectsIsFetched]);
 
   const handleReset = useCallback(() => {
-    dispatch(reset());
-  }, [dispatch]);
+    const action = {
+      funders: fundersReset,
+      projects: projectsReset,
+    };
+
+    dispatch(action[type]());
+  }, [dispatch, type]);
 
   return (
     <div className="relative text-sm font-semibold text-grey-20 min-h-[16px]">
@@ -80,7 +95,7 @@ const Sentence: React.FC<SentenceProps> = ({ type }) => {
             <ProjectLegalStatus type={type} />
           </div>
 
-          {JSON.stringify(filters) !== JSON.stringify(initialState.filters) && (
+          {JSON.stringify(filters) !== JSON.stringify(INITIAL_STATE.filters) && (
             <button className="underline hover:text-black" onClick={handleReset}>
               Reset all filters
             </button>

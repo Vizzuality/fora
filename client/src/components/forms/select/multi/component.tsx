@@ -37,7 +37,8 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 
     if (selected.length === 1) {
       const option = options.find((o) => o.value === selected[0]);
-      return option.label;
+      if (option) return option.label;
+      return null;
     }
 
     if (selected.length > 1) return `Selected items (${selected.length})`;
@@ -53,6 +54,10 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
     };
     document.addEventListener('mousedown', handleClickOutside);
   }, [ref]);
+
+  useEffect(() => {
+    setSelected(values);
+  }, [values]);
 
   const handleSelect = useCallback(
     (option) => {
@@ -146,7 +151,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                       [THEME[theme].menu]: true,
                     })}
                   >
-                    <div className="flex justify-between ml-2 text-sm">
+                    <div className="flex ml-2 text-sm">
                       {batchSelectionActive && (
                         <button
                           className="px-4 py-2 text-left underline text-grey-20"

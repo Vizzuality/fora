@@ -22,29 +22,25 @@ const AreaSelected: React.FC<AreaSelectedProps> = ({ type }) => {
   const { areas } = filters;
 
   const areasOptions = useMemo(
-    () => areasIsFetched && areasData.map((area) => ({ label: area.name, value: area.id })),
-    [areasData, areasIsFetched]
+    () => areasData.map((area) => ({ label: area.name, value: area.id })),
+    [areasData]
   );
-
-  const filterType = useMemo(() => {
-    const data = {
-      funders: setFundersFilters,
-      projects: setProjectsFilters,
-    };
-
-    return data[type];
-  }, [type]);
 
   const handleSelectArea = useCallback(
     (values) => {
+      const action = {
+        funders: setFundersFilters,
+        projects: setProjectsFilters,
+      };
+
       dispatch(
-        filterType({
+        action[type]({
           ...filters,
           areas: values,
         })
       );
     },
-    [dispatch, filterType, filters]
+    [dispatch, type, filters]
   );
 
   return (
@@ -56,19 +52,18 @@ const AreaSelected: React.FC<AreaSelectedProps> = ({ type }) => {
       {areasIsFetching && !areasIsFetched && (
         <Loading visible={true} className="relative w-2 h-2" iconClassName="w-3 h-3" />
       )}
-      {areasIsFetched && (
-        <MultiSelect
-          id="area-focus-select"
-          placeholder="All areas of focus"
-          theme="light"
-          size="base"
-          options={areasOptions}
-          values={areas}
-          onSelect={handleSelectArea}
-          batchSelectionActive
-          clearSelectionActive
-        />
-      )}
+
+      <MultiSelect
+        id="area-focus-select"
+        placeholder="All areas of focus"
+        theme="light"
+        size="base"
+        options={areasOptions}
+        values={areas}
+        onSelect={handleSelectArea}
+        batchSelectionActive
+        clearSelectionActive
+      />
     </div>
   );
 };

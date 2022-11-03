@@ -2,13 +2,14 @@ import React, { useCallback, useMemo } from 'react';
 
 import cx from 'classnames';
 
-import { setFilters as setFundersFilters } from 'store/action-map';
+import { setFilters as setFundersFilters } from 'store/funders';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { setFilters as setProjectsFilters } from 'store/projects';
 
 import { useDemographics } from 'hooks/demographics';
 
 import { MultiSelect } from 'components/forms';
+import Loading from 'components/loading';
 
 interface DemographicSelectedProps {
   type: string;
@@ -19,35 +20,32 @@ const DemographicSelected: React.FC<DemographicSelectedProps> = ({ type }) => {
   const { demographics } = filters;
   const dispatch = useAppDispatch();
 
-  const { data: demographicsData, isFetched: demographicsIsFetched } = useDemographics();
+  const {
+    data: demographicsData,
+    isFetched: demographicsIsFetched,
+    isFetching: demographicsIsFetching,
+  } = useDemographics();
 
   const demographicOptions = useMemo(
-    () =>
-      demographicsIsFetched
-        ? demographicsData.map((demogr) => ({ label: demogr.name, value: demogr.id }))
-        : [],
-    [demographicsData, demographicsIsFetched]
+    () => demographicsData.map((demogr) => ({ label: demogr.name, value: demogr.id })),
+    [demographicsData]
   );
-
-  const filterType = useMemo(() => {
-    const data = {
-      funders: setFundersFilters,
-      projects: setProjectsFilters,
-    };
-
-    return data[type];
-  }, [type]);
 
   const handleSelect = useCallback(
     (value) => {
+      const action = {
+        funders: setFundersFilters,
+        projects: setProjectsFilters,
+      };
+
       dispatch(
-        filterType({
+        action[type]({
           ...filters,
           demographics: value,
         })
       );
     },
-    [dispatch, filterType, filters]
+    [dispatch, type, filters]
   );
 
   return (
@@ -56,9 +54,13 @@ const DemographicSelected: React.FC<DemographicSelectedProps> = ({ type }) => {
         'font-semibold w-full': true,
       })}
     >
+      {demographicsIsFetching && !demographicsIsFetched && (
+        <Loading visible={true} className="relative w-2 h-2" iconClassName="w-3 h-3" />
+      )}
+
       <MultiSelect
         id="gepgraphic-scope-select"
-        placeholder="Select"
+        placeholder="All demographics"
         theme="light"
         size="base"
         options={demographicOptions}
