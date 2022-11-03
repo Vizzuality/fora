@@ -1,9 +1,4 @@
-import {
-  DemographicSelected,
-  GeographicSelected,
-  AreaSelected,
-  LegalSelected,
-} from 'containers/filters/selected';
+import { DemographicSelected, GeographicSelected, AreaSelected } from 'containers/filters/selected';
 
 export const FILTERS = (type) => {
   return [
@@ -27,13 +22,6 @@ export const FILTERS = (type) => {
       info: 'Different demographic groups a project or funder focuses on working or investing in.',
       className: 'col-span-2',
       Selected: <DemographicSelected type={type} />,
-    },
-    {
-      id: 'legal',
-      name: 'Legal Status',
-      info: 'Different demographic groups a project or funder focuses on working or investing in.',
-      className: 'col-span-2',
-      Selected: <LegalSelected type={type} />,
     },
   ];
 };

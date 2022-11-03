@@ -34,6 +34,7 @@ const ProjectsList = () => {
     search,
     sort,
     perPage: 12,
+    includes: 'subgeographic_ancestors',
   });
 
   const handleSortProjects = useCallback(

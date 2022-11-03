@@ -38,7 +38,7 @@ const FundersHeader = () => {
         </div>
 
         <div className="mt-14">
-          <Filters moreFilters type="funders" />
+          <Filters type="funders" />
         </div>
       </Wrapper>
     </header>
