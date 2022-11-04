@@ -2,8 +2,9 @@ import React, { useCallback, useMemo } from 'react';
 
 import { Form as FormRFF } from 'react-final-form';
 
-import { setFilters } from 'store/action-map';
+import { setFilters as setFundersFilters } from 'store/funders';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { setFilters as setProjectsFilters } from 'store/projects';
 
 import { useCapitalTypes } from 'hooks/capital-types';
 import { useFunderLegalStatuses } from 'hooks/funder-legal-statuses';
@@ -72,8 +73,13 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose, type }: MoreFiltersP
         recipientLegalStatuses: recipientLegalStatusesValue,
       } = values;
 
+      const action = {
+        funders: setFundersFilters,
+        projects: setProjectsFilters,
+      };
+
       dispatch(
-        setFilters({
+        action[type]({
           ...filters,
           funderTypes: funderTypesValue.length === funderTypesData.length ? [] : funderTypesValue,
           funderLegalStatuses:
@@ -92,6 +98,7 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose, type }: MoreFiltersP
       if (onClose) onClose();
     },
     [
+      type,
       funderTypesData,
       funderLegalStatusesData,
       capitalTypesData,

@@ -13,6 +13,7 @@ const THEME = {
     open: {
       button: 'bg-transparent',
     },
+    loading: 'relative flex items-center w-full h-full',
   },
   light: {
     button: {
@@ -28,6 +29,7 @@ const THEME = {
     open: {
       button: 'bg-transparent',
     },
+    loading: 'relative flex items-center w-full h-full',
   },
   sizes: {
     base: 'pl-4 pr-10 py-3 text-sm',

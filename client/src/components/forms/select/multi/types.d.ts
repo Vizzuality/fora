@@ -11,5 +11,6 @@ export interface MultiSelectProps extends SelectStatusProps, SelectDataProps, Se
   size: 'base' | 's';
   theme: 'dark' | 'light';
   values?: string[];
+  loading?: boolean;
   onSelect?: (selection: string[]) => void;
 }

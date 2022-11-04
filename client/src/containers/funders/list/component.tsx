@@ -21,7 +21,6 @@ import CHEVRON_DOWN_SVG from 'svgs/ui/chevron-down.svg?sprite';
 
 const FundersList = () => {
   const { filters, search, sort } = useAppSelector((state) => state['/funders']);
-  const { geographic } = filters;
   const dispatch = useAppDispatch();
 
   const {
@@ -56,7 +55,7 @@ const FundersList = () => {
     <>
       <Wrapper>
         <div className="py-8">
-          {geographic && <Sentence type="funders" />}
+          <Sentence type="funders" />
 
           {!!fundersData.length && (
             <div className="flex justify-between mt-10">
@@ -115,7 +114,7 @@ const FundersList = () => {
           </div>
         )}
 
-        {!!fundersData.length && !LOADING && (
+        {!!fundersData.length && (
           <div className="pb-10">
             <Cards pathname="/funders" data={fundersData} />
           </div>

@@ -89,10 +89,14 @@ const Sentence: React.FC<SentenceProps> = ({ type }) => {
             <Geographics type={type} />
             <Areas type={type} />
             <Demographics type={type} />
-            <FunderTypes type={type} />
-            <FunderLegalStatus type={type} />
-            <CapitalTypes type={type} />
-            <ProjectLegalStatus type={type} />
+            {type === 'funders' && (
+              <>
+                <FunderTypes type={type} />
+                <FunderLegalStatus type={type} />
+                <CapitalTypes type={type} />
+              </>
+            )}
+            {type === 'projects' && <ProjectLegalStatus type={type} />}
           </div>
 
           {JSON.stringify(filters) !== JSON.stringify(INITIAL_STATE.filters) && (

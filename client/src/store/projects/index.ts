@@ -11,7 +11,7 @@ export type Sort = {
   field: string;
   order: 'asc' | 'desc';
 };
-interface FundersState {
+interface ProjectsState {
   search?: string;
   sort?: Sort;
   filters: {
@@ -24,14 +24,14 @@ interface FundersState {
 }
 
 // Define the initial state using that type
-export const initialState: FundersState = {
+export const initialState: ProjectsState = {
   sort: {
     field: 'title',
     order: 'asc',
   },
   search: '',
   filters: {
-    geographic: 'regions',
+    geographic: null,
     subgeographics: [],
     areas: [],
     demographics: [],
@@ -40,7 +40,7 @@ export const initialState: FundersState = {
 };
 
 export const slice = createSlice({
-  name: '/funders',
+  name: '/projects',
   initialState,
   reducers: {
     setSearch: (state, action: PayloadAction<string>) => {
@@ -49,7 +49,7 @@ export const slice = createSlice({
     setSort: (state, action: PayloadAction<Sort>) => {
       state.sort = action.payload;
     },
-    setFilters: (state, action: PayloadAction<FundersState['filters']>) => ({
+    setFilters: (state, action: PayloadAction<ProjectsState['filters']>) => ({
       ...state,
       filters: action.payload,
     }),
@@ -59,7 +59,7 @@ export const slice = createSlice({
     [HYDRATE]: (state, action) => {
       return {
         ...state,
-        ...action.payload['/funders'],
+        ...action.payload['/projects'],
       };
     },
   },

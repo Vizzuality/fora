@@ -6,6 +6,7 @@ import { Listbox, Transition } from '@headlessui/react';
 
 import THEME from 'components/forms/select/constants/theme';
 import Icon from 'components/icon';
+import Loading from 'components/loading';
 
 import CHEVRON_DOWN_SVG from 'svgs/ui/chevron-down.svg?sprite';
 import CHEVRON_UP_SVG from 'svgs/ui/chevron-up.svg?sprite';
@@ -19,8 +20,11 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
     placeholder = 'Select...',
     size = 'base',
     theme = 'dark',
-    onSelect,
     value,
+    clearable,
+    clearSelectionLabel = 'Clear',
+    loading,
+    onSelect,
   } = props;
   const ref = useRef(null);
   const initialValue = value || null;
@@ -28,13 +32,15 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
   const [selected, setSelected] = useState(initialValue);
 
   const SELECTED = useMemo(() => {
+    if (loading) return 'Loading...';
+
     if (selected) {
       const option = options.find((o) => o.value === selected);
       return option?.label;
     }
 
     return placeholder;
-  }, [options, selected, placeholder]);
+  }, [options, selected, placeholder, loading]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -45,8 +51,12 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
     document.addEventListener('mousedown', handleClickOutside);
   }, [ref]);
 
+  useEffect(() => {
+    setSelected(value);
+  }, [value]);
+
   const handleSelect = (option) => {
-    setIsOpen(!isOpen);
+    setIsOpen(false);
     setSelected(option.value);
 
     if (onSelect) {
@@ -54,8 +64,16 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
     }
   };
 
+  const handleClear = () => {
+    setIsOpen(false);
+    setSelected(null);
+    if (onSelect) {
+      onSelect(null);
+    }
+  };
+
   return (
-    <div className="flex -mt-2">
+    <div className="flex">
       <div
         className={cx({
           'w-full': true,
@@ -85,12 +103,20 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                   >
                     <span className="block truncate">{SELECTED}</span>
                     <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                      <Icon
-                        icon={isOpen ? CHEVRON_UP_SVG : CHEVRON_DOWN_SVG}
-                        className={cx({
-                          'w-3 h-3': true,
-                        })}
+                      <Loading
+                        visible={loading}
+                        className={THEME[theme].loading}
+                        iconClassName="w-3 h-3"
                       />
+
+                      {!loading && (
+                        <Icon
+                          icon={isOpen ? CHEVRON_UP_SVG : CHEVRON_DOWN_SVG}
+                          className={cx({
+                            'w-3 h-3': true,
+                          })}
+                        />
+                      )}
                     </span>
                   </Listbox.Button>
                 </span>
@@ -113,6 +139,18 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                       [THEME[theme].menu]: true,
                     })}
                   >
+                    <div className="flex px-5 text-sm">
+                      {clearable && (
+                        <button
+                          className="py-2 text-left underline"
+                          type="button"
+                          onClick={handleClear}
+                        >
+                          {clearSelectionLabel}
+                        </button>
+                      )}
+                    </div>
+
                     {options.map((opt) => {
                       return (
                         <Listbox.Option key={opt.value} value={opt}>

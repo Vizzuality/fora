@@ -21,28 +21,32 @@ const GeographicSelected: React.FC<GeographicSelectedProps> = ({
   const { geographic, subgeographics } = filters;
   const dispatch = useAppDispatch();
 
-  const { data: geographicData, isFetched: geographicIsFetched } = useGeographics();
-  const { data: subgeographicsData, isFetched: subgeographicsIsFetched } = useSubGeographics({
-    filters: { geographic },
-  });
+  const {
+    data: geographicData,
+    isFetching: geographicIsFetching,
+    isFetched: geographicIsFetched,
+  } = useGeographics();
+  const {
+    data: subgeographicsData,
+    isFetching: subgeographicsIsFetching,
+    isFetched: subgeographicsIsFetched,
+  } = useSubGeographics(
+    {
+      filters: { geographic },
+    },
+    {
+      enabled: !!geographic,
+    }
+  );
 
   const geographicOptions = useMemo(
-    () =>
-      geographicIsFetched
-        ? [
-            { label: 'Clear', value: null },
-            ...geographicData.map((geo) => ({ label: geo.name, value: geo.id })),
-          ]
-        : [],
-    [geographicData, geographicIsFetched]
+    () => geographicData.map((geo) => ({ label: geo.name, value: geo.id })),
+    [geographicData]
   );
 
   const subgeographicOptions = useMemo(
-    () =>
-      subgeographicsIsFetched
-        ? subgeographicsData.map((subGeo) => ({ label: subGeo.name, value: subGeo.id }))
-        : [],
-    [subgeographicsData, subgeographicsIsFetched]
+    () => subgeographicsData.map((subGeo) => ({ label: subGeo.name, value: subGeo.id })),
+    [subgeographicsData]
   );
 
   const handleSelectGeo = useCallback(
@@ -92,8 +96,10 @@ const GeographicSelected: React.FC<GeographicSelectedProps> = ({
           placeholder="All main divisions"
           theme="light"
           size="base"
+          clearable
           options={geographicOptions}
           value={geographic}
+          loading={geographicIsFetching && !geographicIsFetched}
           onSelect={handleSelectGeo}
         />
       </div>
@@ -110,9 +116,10 @@ const GeographicSelected: React.FC<GeographicSelectedProps> = ({
           options={subgeographicOptions}
           values={subgeographics}
           disabled={!geographic}
-          onSelect={handleSelectSubGeo}
           batchSelectionActive
           clearSelectionActive
+          loading={subgeographicsIsFetching && !subgeographicsIsFetched}
+          onSelect={handleSelectSubGeo}
         />
       </div>
     </div>

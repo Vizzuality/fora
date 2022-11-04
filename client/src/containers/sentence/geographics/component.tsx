@@ -34,6 +34,8 @@ const GeographicsSentence: React.FC<SentenceProps> = ({ type }) => {
 
   if (!geographicsIsFetched || !subgeographicsIsFetched) return null;
 
+  if (!geographic) return null;
+
   return <SentenceTooltip text={SELECTED_TEXT} list={SELECTED_LIST} prefix=" from " />;
 };
 

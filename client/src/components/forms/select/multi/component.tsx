@@ -7,6 +7,7 @@ import { Listbox, Transition } from '@headlessui/react';
 import { Checkbox } from 'components/forms';
 import THEME from 'components/forms/select/constants/theme';
 import Icon from 'components/icon';
+import Loading from 'components/loading';
 
 import CHEVRON_DOWN_SVG from 'svgs/ui/chevron-down.svg?sprite';
 import CHEVRON_UP_SVG from 'svgs/ui/chevron-up.svg?sprite';
@@ -22,10 +23,11 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
     disabled = false,
     options,
     placeholder = 'Select...',
+    loading,
     size = 'base',
     theme = 'dark',
-    onSelect,
     values,
+    onSelect,
   } = props;
   const ref = useRef(null);
   const initialValue = values || [];
@@ -33,7 +35,11 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
   const [selected, setSelected] = useState(initialValue);
 
   const SELECTED = useMemo(() => {
+    if (loading) return 'Loading...';
+
     if (!selected.length) return placeholder || 'Select items';
+
+    if (selected.length === options.length) return placeholder;
 
     if (selected.length === 1) {
       const option = options.find((o) => o.value === selected[0]);
@@ -44,7 +50,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
     if (selected.length > 1) return `Selected items (${selected.length})`;
 
     return null;
-  }, [options, placeholder, selected]);
+  }, [loading, options, placeholder, selected]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -93,7 +99,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
   }, [onSelect]);
 
   return (
-    <div className="flex -mt-2">
+    <div className="relative flex">
       <div
         className={cx({
           'w-full': true,
@@ -119,16 +125,28 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                       [THEME.sizes[size]]: true,
                       [THEME[theme].open.button]: isOpen,
                     })}
-                    onClick={() => setIsOpen(!isOpen)}
+                    onClick={() => {
+                      if (!loading) {
+                        setIsOpen(!isOpen);
+                      }
+                    }}
                   >
                     <span className="block truncate">{SELECTED}</span>
                     <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                      <Icon
-                        icon={isOpen ? CHEVRON_UP_SVG : CHEVRON_DOWN_SVG}
-                        className={cx({
-                          'w-3 h-3': true,
-                        })}
+                      <Loading
+                        visible={loading}
+                        className={THEME[theme].loading}
+                        iconClassName="w-3 h-3"
                       />
+
+                      {!loading && (
+                        <Icon
+                          icon={isOpen ? CHEVRON_UP_SVG : CHEVRON_DOWN_SVG}
+                          className={cx({
+                            'w-3 h-3': true,
+                          })}
+                        />
+                      )}
                     </span>
                   </Listbox.Button>
                 </span>
@@ -151,10 +169,10 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                       [THEME[theme].menu]: true,
                     })}
                   >
-                    <div className="flex ml-2 text-sm">
+                    <div className="flex px-5 space-x-5 text-sm">
                       {batchSelectionActive && (
                         <button
-                          className="px-4 py-2 text-left underline text-grey-20"
+                          className="py-2 text-left underline text-grey-20"
                           type="button"
                           onClick={handleSelectAll}
                         >
@@ -163,7 +181,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                       )}
                       {clearSelectionActive && (
                         <button
-                          className="px-4 py-2 text-left underline"
+                          className="py-2 text-left underline"
                           type="button"
                           onClick={handleClearAll}
                         >

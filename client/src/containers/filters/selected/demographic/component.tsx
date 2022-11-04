@@ -9,7 +9,6 @@ import { setFilters as setProjectsFilters } from 'store/projects';
 import { useDemographics } from 'hooks/demographics';
 
 import { MultiSelect } from 'components/forms';
-import Loading from 'components/loading';
 
 interface DemographicSelectedProps {
   type: string;
@@ -54,10 +53,6 @@ const DemographicSelected: React.FC<DemographicSelectedProps> = ({ type }) => {
         'font-semibold w-full': true,
       })}
     >
-      {demographicsIsFetching && !demographicsIsFetched && (
-        <Loading visible={true} className="relative w-2 h-2" iconClassName="w-3 h-3" />
-      )}
-
       <MultiSelect
         id="gepgraphic-scope-select"
         placeholder="All demographics"
@@ -65,9 +60,10 @@ const DemographicSelected: React.FC<DemographicSelectedProps> = ({ type }) => {
         size="base"
         options={demographicOptions}
         values={demographics}
-        onSelect={handleSelect}
         batchSelectionActive
         clearSelectionActive
+        loading={demographicsIsFetching && !demographicsIsFetched}
+        onSelect={handleSelect}
       />
     </div>
   );

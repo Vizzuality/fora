@@ -9,7 +9,6 @@ import { setFilters as setProjectsFilters } from 'store/projects';
 import { useAreas } from 'hooks/areas';
 
 import { MultiSelect } from 'components/forms';
-import Loading from 'components/loading';
 
 interface AreaSelectedProps {
   type: string;
@@ -49,10 +48,6 @@ const AreaSelected: React.FC<AreaSelectedProps> = ({ type }) => {
         'font-semibold w-full': true,
       })}
     >
-      {areasIsFetching && !areasIsFetched && (
-        <Loading visible={true} className="relative w-2 h-2" iconClassName="w-3 h-3" />
-      )}
-
       <MultiSelect
         id="area-focus-select"
         placeholder="All areas of focus"
@@ -63,6 +58,7 @@ const AreaSelected: React.FC<AreaSelectedProps> = ({ type }) => {
         onSelect={handleSelectArea}
         batchSelectionActive
         clearSelectionActive
+        loading={areasIsFetching && !areasIsFetched}
       />
     </div>
   );

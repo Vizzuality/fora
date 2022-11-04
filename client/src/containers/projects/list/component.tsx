@@ -21,7 +21,6 @@ import CHEVRON_DOWN_SVG from 'svgs/ui/chevron-down.svg?sprite';
 
 const ProjectsList = () => {
   const { filters, search, sort } = useAppSelector((state) => state['/projects']);
-  const { geographic } = filters;
   const dispatch = useAppDispatch();
 
   const {
@@ -29,6 +28,8 @@ const ProjectsList = () => {
     fetchNextPage: fetchNextPageProjects,
     hasNextPage: hasNextProjectsPage,
     isFetchingNextPage: isFetchingNextProjectsPage,
+    isFetching: isFetchingProjects,
+    isFetched: isFetchedProjects,
   } = useProjectsInfinity({
     filters,
     search,
@@ -36,6 +37,8 @@ const ProjectsList = () => {
     perPage: 12,
     includes: 'subgeographic_ancestors',
   });
+
+  const LOADING = isFetchingProjects && !isFetchedProjects;
 
   const handleSortProjects = useCallback(
     (value) => {
@@ -52,7 +55,7 @@ const ProjectsList = () => {
     <>
       <Wrapper>
         <div className="py-8">
-          {geographic && <Sentence type="projects" />}
+          <Sentence type="projects" />
 
           {!!projectsData.length && (
             <div className="flex justify-between mt-10">
@@ -101,7 +104,7 @@ const ProjectsList = () => {
           )}
         </div>
 
-        {!projectsData.length ? (
+        {!projectsData.length && !LOADING && (
           <div className="flex flex-col items-center pb-10 space-y-4">
             <p className="text-2xl font-semibold">No results found</p>
             <p className="max-w-sm text-center text-grey-20">
@@ -109,7 +112,9 @@ const ProjectsList = () => {
               fitting your search criteria.
             </p>
           </div>
-        ) : (
+        )}
+
+        {!!projectsData.length && (
           <div className="pb-10">
             <Cards pathname="/projects" data={projectsData} />
           </div>

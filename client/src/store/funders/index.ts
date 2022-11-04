@@ -21,13 +21,7 @@ interface FundersState {
     demographics?: string[];
     funderTypes?: string[];
     funderLegalStatuses?: string[];
-    funderRoles?: string[];
-    fundingTypes?: string[];
     capitalTypes?: string[];
-    capitalAcceptances?: string[];
-    grantDurations?: string[];
-    recipientLegalStatuses?: string[];
-    applicationStatus?: string[];
   };
 }
 
@@ -44,14 +38,8 @@ export const initialState: FundersState = {
     areas: [],
     demographics: [],
     funderTypes: [],
-    fundingTypes: [],
     funderLegalStatuses: [],
-    funderRoles: [],
     capitalTypes: [],
-    capitalAcceptances: [],
-    grantDurations: [],
-    recipientLegalStatuses: [],
-    applicationStatus: [],
   },
 };
 
@@ -100,14 +88,8 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
       demographics,
       subgeographics,
       funderTypes,
-      fundingTypes,
       funderLegalStatuses,
-      funderRoles,
       capitalTypes,
-      capitalAcceptances,
-      grantDurations,
-      recipientLegalStatuses,
-      applicationStatus,
       search,
       sortField,
       sortOrder,
@@ -124,14 +106,8 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
       demographics ||
       subgeographics ||
       funderTypes ||
-      fundingTypes ||
       funderLegalStatuses ||
-      funderRoles ||
-      capitalTypes ||
-      capitalAcceptances ||
-      grantDurations ||
-      recipientLegalStatuses ||
-      applicationStatus
+      capitalTypes
     ) {
       await store.dispatch(
         setFilters({
@@ -151,29 +127,11 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
           ...(funderTypes && {
             funderTypes: funderTypes as string[],
           }),
-          ...(fundingTypes && {
-            fundingTypes: fundingTypes as string[],
-          }),
           ...(funderLegalStatuses && {
             funderLegalStatuses: funderLegalStatuses as string[],
           }),
-          ...(funderRoles && {
-            funderRoles: funderRoles as string[],
-          }),
           ...(capitalTypes && {
             capitalTypes: capitalTypes as string[],
-          }),
-          ...(capitalAcceptances && {
-            capitalAcceptances: capitalAcceptances as string[],
-          }),
-          ...(grantDurations && {
-            grantDurations: grantDurations as string[],
-          }),
-          ...(recipientLegalStatuses && {
-            recipientLegalStatuses: recipientLegalStatuses as string[],
-          }),
-          ...(applicationStatus && {
-            applicationStatus: applicationStatus as string[],
           }),
         })
       );
@@ -207,22 +165,10 @@ export const setQueryFromReduxState = (pathname: string, state: any) => {
         ...(!!filters.areas.length && { areas: filters.areas }),
         ...(!!filters.demographics.length && { demographics: filters.demographics }),
         ...(!!filters.funderTypes.length && { funderTypes: filters.funderTypes }),
-        ...(!!filters.fundingTypes.length && { fundingTypes: filters.fundingTypes }),
         ...(!!filters.funderLegalStatuses.length && {
           funderLegalStatuses: filters.funderLegalStatuses,
         }),
-        ...(!!filters.funderRoles.length && { funderRoles: filters.funderRoles }),
         ...(!!filters.capitalTypes.length && { capitalTypes: filters.capitalTypes }),
-        ...(!!filters.capitalAcceptances.length && {
-          capitalAcceptances: filters.capitalAcceptances,
-        }),
-        ...(!!filters.grantDurations.length && { grantDurations: filters.grantDurations }),
-        ...(!!filters.recipientLegalStatuses.length && {
-          recipientLegalStatuses: filters.recipientLegalStatuses,
-        }),
-        ...(!!filters.applicationStatus.length && {
-          applicationStatus: filters.applicationStatus,
-        }),
         ...(!!search && { search: search }),
         ...(!!sort && {
           sortField: sort.field,

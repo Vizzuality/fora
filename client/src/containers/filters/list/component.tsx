@@ -22,7 +22,10 @@ const FilterList = ({ type }: FilterListProps) => {
       {FILTERS_DATA?.map((filter) => {
         const { id, name, info, className, Selected } = filter;
         return (
-          <div key={id} className={cx({ 'flex flex-col space-y-5': true, [className]: className })}>
+          <div
+            key={id}
+            className={cx({ 'flex flex-col space-y-2.5': true, [className]: className })}
+          >
             <span className="inline-flex items-center text-base font-semibold uppercase text-grey-0">
               <label className="pr-2 cursor-pointer whitespace-nowrap">{name}</label>
 
