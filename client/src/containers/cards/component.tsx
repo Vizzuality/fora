@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { Funder } from 'types/funder';
+import { Project } from 'types/project';
+
 import Card from './card';
-import { CardProps } from './card';
 
 export interface CardsProps {
-  data: CardProps[];
+  data: (Funder | Project)[] | Partial<Funder>[] | Partial<Project>[];
   theme?: 'green' | 'grey';
   pathname: string;
 }

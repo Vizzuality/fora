@@ -5,24 +5,19 @@ import cx from 'classnames';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { setSort } from 'store/projects';
 
+import { Menu } from '@headlessui/react';
+
 import { useProjectsInfinity } from 'hooks/projects';
 
 import Cards from 'containers/cards';
+import Sentence from 'containers/sentence';
 import Wrapper from 'containers/wrapper';
 
 import Button from 'components/button';
-import { Select } from 'components/forms';
-import { Option } from 'components/forms/select';
 import Icon from 'components/icon';
 import Loading from 'components/loading';
 
-import DOWNLOAD_SVG from 'svgs/ui/download.svg?sprite';
-import SHARE_SVG from 'svgs/ui/share.svg?sprite';
-
-const SORT_OPTIONS = [
-  { label: 'a-z', value: 'asc' },
-  { label: 'z-a', value: 'desc' },
-];
+import CHEVRON_DOWN_SVG from 'svgs/ui/chevron-down.svg?sprite';
 
 const ProjectsList = () => {
   const { filters, search, sort } = useAppSelector((state) => state['/projects']);
@@ -33,12 +28,17 @@ const ProjectsList = () => {
     fetchNextPage: fetchNextPageProjects,
     hasNextPage: hasNextProjectsPage,
     isFetchingNextPage: isFetchingNextProjectsPage,
+    isFetching: isFetchingProjects,
+    isFetched: isFetchedProjects,
   } = useProjectsInfinity({
     filters,
     search,
     sort,
     perPage: 12,
+    includes: 'subgeographic_ancestors',
   });
+
+  const LOADING = isFetchingProjects && !isFetchedProjects;
 
   const handleSortProjects = useCallback(
     (value) => {
@@ -55,52 +55,70 @@ const ProjectsList = () => {
     <>
       <Wrapper>
         <div className="py-8">
-          <p className="max-w-md line-clamp-2">
-            Your are viewing <strong>{projectsData.length} funders</strong> from{' '}
-            <strong>All U.S regions</strong> who invest in{' '}
-            <strong>Toxins Reduction, Food Sovereignity, Climate Change</strong>
-          </p>
+          <Sentence type="projects" />
 
-          <div className="flex justify-between">
-            <div className="flex items-center w-1/12">
-              <Select
-                placeholder="Sort by"
-                theme="light"
-                size="sm"
-                render={(selected) => <div>{selected.label}</div>}
-                value={sort.order}
-                onChange={handleSortProjects}
-              >
-                {SORT_OPTIONS.map(({ label, value }) => (
-                  <Option key={value} value={value} theme="light" label={label}>
-                    {label}
-                  </Option>
-                ))}
-              </Select>
+          {!!projectsData.length && (
+            <div className="flex justify-between mt-10">
+              <Menu as="div" className="relative">
+                <Menu.Button className="flex items-center space-x-2">
+                  <p className="font-semibold">Sort by</p>
+                  <Icon
+                    icon={CHEVRON_DOWN_SVG}
+                    className={cx({
+                      'w-3 h-3': true,
+                    })}
+                  />
+                </Menu.Button>
+                <Menu.Items className="absolute flex flex-col py-2 bg-white rounded-md shadow-lg focus:outline-none">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        className={cx({
+                          'px-4 py-3': true,
+                          'bg-grey-20/20': active,
+                        })}
+                        type="button"
+                        onClick={() => handleSortProjects('asc')}
+                      >
+                        A - Z
+                      </button>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        className={cx({
+                          'px-4 py-3': true,
+                          'bg-grey-20/20': active,
+                        })}
+                        type="button"
+                        onClick={() => handleSortProjects('desc')}
+                      >
+                        Z - A
+                      </button>
+                    )}
+                  </Menu.Item>
+                </Menu.Items>
+              </Menu>
             </div>
-
-            <div className="flex m-3 border divide-x rounded-md divide-solid border-grey-20">
-              <button type="button" className="px-3 py-3">
-                <Icon
-                  icon={SHARE_SVG}
-                  className={cx({
-                    'w-4 h-4 text-grey-0': true,
-                  })}
-                />
-              </button>
-              <button type="button" className="px-3 py-3">
-                <Icon
-                  icon={DOWNLOAD_SVG}
-                  className={cx({
-                    'w-4 h-4 text-grey-0': true,
-                  })}
-                />
-              </button>
-            </div>
-          </div>
+          )}
         </div>
 
-        <Cards pathname="/projects" data={projectsData} />
+        {!projectsData.length && !LOADING && (
+          <div className="flex flex-col items-center pb-10 space-y-4">
+            <p className="text-2xl font-semibold">No results found</p>
+            <p className="max-w-sm text-center text-grey-20">
+              Sorry, we have searched in our entire database but we couldn&apos;t find any results
+              fitting your search criteria.
+            </p>
+          </div>
+        )}
+
+        {!!projectsData.length && (
+          <div className="pb-10">
+            <Cards pathname="/projects" data={projectsData} />
+          </div>
+        )}
 
         {hasNextProjectsPage && (
           <div className="flex justify-center py-10">

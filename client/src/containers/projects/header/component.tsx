@@ -5,6 +5,7 @@ import { setSearch } from 'store/projects';
 
 import { useDebounceCallback } from '@react-hook/debounce';
 
+import Filters from 'containers/filters';
 import Wrapper from 'containers/wrapper';
 
 import Search from 'components/search';
@@ -31,6 +32,10 @@ const ProjectsHeader = () => {
         </div>
         <div className="w-2/3 mt-11">
           <Search value={search} placeholder="Search" theme="green" onChange={onChangeSearch} />
+        </div>
+
+        <div className="mt-14">
+          <Filters type="projects" />
         </div>
       </Wrapper>
     </header>

@@ -1874,6 +1874,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@headlessui/react@npm:1.7.3":
+  version: 1.7.3
+  resolution: "@headlessui/react@npm:1.7.3"
+  peerDependencies:
+    react: ^16 || ^17 || ^18
+    react-dom: ^16 || ^17 || ^18
+  checksum: c9391e15e63dc7e459d42125a94e22f964419c440d9f37fd85f6f501612aad42b3e30e79f712e8097c66e08891c26dcd662863e572ff21cc6cf34a3185ae4aa5
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.5.0":
   version: 0.5.0
   resolution: "@humanwhocodes/config-array@npm:0.5.0"
@@ -9028,6 +9038,7 @@ __metadata:
     "@dnd-kit/utilities": 3.2.0
     "@egjs/react-flicking": 4.9.4
     "@floating-ui/react-dom-interactions": 0.9.2
+    "@headlessui/react": 1.7.3
     "@react-hook/debounce": 4.0.0
     "@reduxjs/toolkit": 1.5.1
     "@storybook/addon-actions": 6.5.10
