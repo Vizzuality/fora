@@ -5,14 +5,15 @@ import cx from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import { Funder } from 'types/funder';
+import { Project } from 'types/project';
+
 import { useFunder, useFunders } from 'hooks/funders';
 import { useProject, useProjects } from 'hooks/projects';
 
 import Cards from 'containers/cards';
 
 import Icon from 'components/icon';
-import { Funder } from 'types/funder';
-import { Project } from 'types/project';
 
 import CHEVRON_RIGHT_SVG from 'svgs/ui/chevron-right.svg?sprite';
 
@@ -45,6 +46,7 @@ const DemographicSimilars = ({ type }: SimilarsSectionProps) => {
   const { data: fundersData } = useFunders(
     {
       filters: { demographics },
+      includes: 'subgeographic_ancestors',
     },
     { enabled: !!id && type === 'funders' }
   );
@@ -53,6 +55,7 @@ const DemographicSimilars = ({ type }: SimilarsSectionProps) => {
   const { data: projectsData } = useProjects(
     {
       filters: { demographics },
+      includes: 'subgeographic_ancestors',
     },
     { enabled: !!id && type === 'projects' }
   );

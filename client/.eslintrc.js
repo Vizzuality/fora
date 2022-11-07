@@ -106,6 +106,11 @@ module.exports = {
             position: 'before',
           },
           {
+            pattern: 'types/**',
+            group: 'internal',
+            position: 'before',
+          },
+          {
             pattern: 'hooks/**',
             group: 'internal',
             position: 'before',

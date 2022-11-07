@@ -28,7 +28,7 @@ export const fetchFunder = (id: string) =>
     url: `/funders/${id}`,
     params: jsonAPIAdapter({
       includes:
-        'subgeographics,primary_office_state,primary_office_country,projects,projects.subgeographics',
+        'subgeographic_ancestors,primary_office_state,primary_office_country,projects,projects.subgeographics',
     }),
   }).then((response) => response.data);
 
