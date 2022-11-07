@@ -42,10 +42,6 @@ export const POLICIES = [
     href: '/privacy-policy',
   },
   {
-    label: 'Cookies policy',
-    href: '/cookies-policy',
-  },
-  {
     label: 'Terms of use',
     href: '/terms-of-use',
   },
