@@ -22,6 +22,14 @@ import API from 'services/api';
   FETCH FUNCTIONS
 ****************************************
 */
+export const fetchProjects = (params: ParamsProps) => {
+  return API.request({
+    method: 'GET',
+    url: '/projects',
+    params: jsonAPIAdapter(params),
+  }).then((response) => response.data);
+};
+
 export const fetchProject = (id: string) =>
   API.request({
     method: 'GET',
@@ -30,14 +38,6 @@ export const fetchProject = (id: string) =>
       includes: 'subgeographic_ancestors,funders,funders.subgeographics',
     }),
   }).then((response) => response.data);
-
-export const fetchProjects = (params: ParamsProps) => {
-  return API.request({
-    method: 'GET',
-    url: '/projects',
-    params: jsonAPIAdapter(params),
-  }).then((response) => response.data);
-};
 
 /**
 ****************************************
