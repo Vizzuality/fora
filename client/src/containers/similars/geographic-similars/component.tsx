@@ -43,6 +43,10 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
   const { subgeographics } = DATA;
 
   // Subgeographics
+  const GEOGRAPHIC = useMemo(() => {
+    return subgeographics?.map((sub) => sub.geographic);
+  }, [subgeographics]);
+
   const SUBGEOGRAPHICS = useMemo(() => {
     return subgeographics?.map((sub) => sub.abbreviation);
   }, [subgeographics]);
@@ -51,6 +55,7 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
   const { data: fundersData } = useFunders(
     {
       filters: { subgeographics: SUBGEOGRAPHICS },
+      includes: 'subgeographic_ancestors',
     },
     { enabled: !!id && type === 'funders' }
   );
@@ -59,9 +64,14 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
   const { data: projectsData } = useProjects(
     {
       filters: { subgeographics: SUBGEOGRAPHICS },
+      includes: 'subgeographic_ancestors',
     },
     { enabled: !!id && type === 'projects' }
   );
+
+  const RANDOM_SORT = useMemo(() => {
+    return Math.random();
+  }, []);
 
   const DATA_BY_GEO = useMemo(() => {
     const data = {
@@ -72,9 +82,9 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
     const d: Array<Funder | Project> = data[type];
 
     const relevant = d.filter((f) => f.id !== id);
-    const shuffled = relevant.sort(() => 0.5 - Math.random());
+    const shuffled = relevant.sort(() => 0.5 - RANDOM_SORT);
     return shuffled.slice(0, 3);
-  }, [id, type, fundersData, projectsData]);
+  }, [id, type, fundersData, projectsData, RANDOM_SORT]);
 
   return (
     <>
@@ -83,7 +93,11 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
           <div className="flex items-center justify-between">
             <div className="font-semibold capitalize text-grey-20">By Geographic Scope</div>
             <div>
-              <Link href={`/${type}?subgeographics=${SUBGEOGRAPHICS.join(',')}`}>
+              <Link
+                href={`/${type}?geographic=${GEOGRAPHIC.toString()}&subgeographics[]=${SUBGEOGRAPHICS.join(
+                  ','
+                )}`}
+              >
                 <a className="flex items-center space-x-3 font-semibold underline decoration-1">
                   <span>{`View all similar ${type}`}</span>
                   <Icon

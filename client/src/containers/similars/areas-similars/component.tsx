@@ -61,6 +61,10 @@ const AreasSimilars = ({ type }: SimilarsSectionProps) => {
     { enabled: !!id && type === 'projects' }
   );
 
+  const RANDOM_SORT = useMemo(() => {
+    return Math.random();
+  }, []);
+
   const DATA_BY_AREA = useMemo(() => {
     const data = {
       funders: fundersData,
@@ -70,9 +74,9 @@ const AreasSimilars = ({ type }: SimilarsSectionProps) => {
     const d: Array<Funder | Project> = data[type];
 
     const relevant = d.filter((f) => f.id !== id);
-    const shuffled = relevant.sort(() => 0.5 - Math.random());
+    const shuffled = relevant.sort(() => 0.5 - RANDOM_SORT);
     return shuffled.slice(0, 3);
-  }, [id, type, fundersData, projectsData]);
+  }, [id, type, fundersData, projectsData, RANDOM_SORT]);
 
   return (
     <>
@@ -81,7 +85,7 @@ const AreasSimilars = ({ type }: SimilarsSectionProps) => {
           <div className="flex items-center justify-between">
             <div className="font-semibold capitalize text-grey-20">By Area of Focus</div>
             <div>
-              <Link href={`/${type}?areas=${areas.join(',')}`}>
+              <Link href={`/${type}?areas[]=${areas.join(',')}`}>
                 <a className="flex items-center space-x-3 font-semibold underline decoration-1">
                   <span>{`View all similar ${type}`}</span>
                   <Icon
