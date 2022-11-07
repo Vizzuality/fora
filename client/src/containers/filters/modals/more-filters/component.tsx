@@ -21,7 +21,7 @@ interface MoreFiltersProps {
 }
 
 const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose, type }: MoreFiltersProps) => {
-  const { filters } = useAppSelector((state) => state['/action-map']);
+  const { filters } = useAppSelector((state) => state[`/${type}`]);
   const { funderTypes, funderLegalStatuses, capitalTypes, recipientLegalStatuses } = filters;
   const dispatch = useAppDispatch();
 
@@ -32,26 +32,34 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose, type }: MoreFiltersP
 
   const INITIAL_VALUES = useMemo(() => {
     return {
-      funderTypes: !funderTypes.length
-        ? funderTypesData.map((s) => {
-            return s.id;
-          })
-        : funderTypes,
-      funderLegalStatuses: !funderLegalStatuses.length
-        ? funderLegalStatusesData.map((s) => {
-            return s.id;
-          })
-        : funderLegalStatuses,
-      capitalTypes: !capitalTypes.length
-        ? capitalTypesData.map((s) => {
-            return s.id;
-          })
-        : capitalTypes,
-      recipientLegalStatuses: !recipientLegalStatuses.length
-        ? recipientLegalStatusesData.map((s) => {
-            return s.id;
-          })
-        : recipientLegalStatuses,
+      ...(funderTypes && {
+        funderTypes: !funderTypes.length
+          ? funderTypesData.map((s) => {
+              return s.id;
+            })
+          : funderTypes,
+      }),
+      ...(funderLegalStatuses && {
+        funderLegalStatuses: !funderLegalStatuses.length
+          ? funderLegalStatusesData.map((s) => {
+              return s.id;
+            })
+          : funderLegalStatuses,
+      }),
+      ...(capitalTypes && {
+        capitalTypes: !capitalTypes.length
+          ? capitalTypesData.map((s) => {
+              return s.id;
+            })
+          : capitalTypes,
+      }),
+      ...(recipientLegalStatuses && {
+        recipientLegalStatuses: !recipientLegalStatuses.length
+          ? recipientLegalStatusesData.map((s) => {
+              return s.id;
+            })
+          : recipientLegalStatuses,
+      }),
     };
   }, [
     funderTypes,
@@ -81,17 +89,25 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose, type }: MoreFiltersP
       dispatch(
         action[type]({
           ...filters,
-          funderTypes: funderTypesValue.length === funderTypesData.length ? [] : funderTypesValue,
-          funderLegalStatuses:
-            funderLegalStatusesValue.length === funderLegalStatusesData.length
-              ? []
-              : funderLegalStatusesValue,
-          capitalTypes:
-            capitalTypesValue.length === capitalTypesData.length ? [] : capitalTypesValue,
-          recipientLegalStatuses:
-            recipientLegalStatusesValue.length === recipientLegalStatusesData.length
-              ? []
-              : recipientLegalStatusesValue,
+          ...(!!funderTypesValue && {
+            funderTypes: funderTypesValue.length === funderTypesData.length ? [] : funderTypesValue,
+          }),
+          ...(!!funderLegalStatusesValue && {
+            funderLegalStatuses:
+              funderLegalStatusesValue.length === funderLegalStatusesData.length
+                ? []
+                : funderLegalStatusesValue,
+          }),
+          ...(!!capitalTypesValue && {
+            capitalTypes:
+              capitalTypesValue.length === capitalTypesData.length ? [] : capitalTypesValue,
+          }),
+          ...(!!recipientLegalStatusesValue && {
+            recipientLegalStatuses:
+              recipientLegalStatusesValue.length === recipientLegalStatusesData.length
+                ? []
+                : recipientLegalStatusesValue,
+          }),
         })
       );
 
@@ -119,7 +135,7 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose, type }: MoreFiltersP
         >
           <MoreFiltersHeader />
           <MoreFiltersList type={type} />
-          <MoreFiltersFooter onClose={onClose} />
+          <MoreFiltersFooter type={type} onClose={onClose} />
         </form>
       )}
     </FormRFF>

@@ -1,25 +1,30 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { useForm } from 'react-final-form';
 
 import FilterModalFooter from 'components/filters/modal/footer';
 
-interface MoreFiltersProps {
+interface MoreFiltersFooterProps {
+  type: string;
   onClose?: () => void;
 }
 
-const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }) => {
+const MoreFiltersFooter: React.FC<MoreFiltersFooterProps> = ({ type, onClose }) => {
   const form = useForm();
   const { values } = form.getState();
   const { funderTypes, funderLegalStatuses, capitalTypes, recipientLegalStatuses } = values;
 
-  const DISABLED =
-    !funderTypes.length ||
-    !funderLegalStatuses.length ||
-    !capitalTypes.length ||
-    !recipientLegalStatuses.length;
+  const DISABLED = useMemo(() => {
+    if (type === 'funders') {
+      return !funderTypes.length || !funderLegalStatuses.length || !capitalTypes.length;
+    }
+
+    if (type === 'projects') {
+      return !recipientLegalStatuses.length;
+    }
+  }, [type, funderTypes, funderLegalStatuses, capitalTypes, recipientLegalStatuses]);
 
   return <FilterModalFooter disabled={DISABLED} onClose={onClose} />;
 };
 
-export default MoreFilters;
+export default MoreFiltersFooter;
