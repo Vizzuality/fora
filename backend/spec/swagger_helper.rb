@@ -112,6 +112,28 @@ RSpec.configure do |config|
             },
             required: %w[id type attributes relationships]
           },
+          widget: {
+            type: :object,
+            properties: {
+              id: {type: :string},
+              type: {type: :string},
+              attributes: {
+                type: :object,
+                properties: {
+                  title: {type: :string},
+                  report_pages: {type: :array, items: {type: :string, enum: ReportPage::TYPES}},
+                  report_year: {type: :number, enum: ReportYear::TYPES},
+                  widget_type: {type: :string, enum: WidgetType::TYPES},
+                  slug: {type: :string, enum: WidgetSlug::TYPES},
+                  position: {type: :integer},
+                  description: {type: :string},
+                  created_at: {type: :string},
+                  updated_at: {type: :string}
+                }
+              }
+            },
+            required: %w[id type attributes]
+          },
           subgeographic: {
             type: :object,
             properties: {
@@ -252,12 +274,12 @@ RSpec.configure do |config|
           enum: {
             type: :object,
             properties: {
-              id: {type: :string},
+              id: {type: [:number, :string]},
               type: {type: :string},
               attributes: {
                 type: :object,
                 properties: {
-                  name: {type: :string}
+                  name: {type: [:number, :string]}
                 },
                 required: %w[name]
               }
