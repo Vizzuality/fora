@@ -1,11 +1,7 @@
-export interface TableProps {
+import { TableOptions } from '@tanstack/react-table';
+
+export interface TableProps<T> extends Partial<TableOptions<T>> {
   className?: string;
-  // headers: TableHeaderItem[];
-  body: TableRow[];
-  selectedRowId?: string | number;
 }
 
-export interface TableRow {
-  id: string;
-  isSelected?: boolean;
-}
+export type TData = {};

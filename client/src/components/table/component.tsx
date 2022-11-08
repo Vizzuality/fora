@@ -1,15 +1,23 @@
 import cx from 'classnames';
 
 import {
-  createColumnHelper,
   flexRender,
   getCoreRowModel,
+  getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 
 import { TableProps } from './types';
 
-const Table: React.FC<TableProps> = ({ className, headers }) => {
+const Table = <T extends unknown>({ data, columns, className, ...options }: TableProps<T>) => {
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    ...options,
+  });
+
   return (
     <table
       className={cx({
@@ -18,12 +26,28 @@ const Table: React.FC<TableProps> = ({ className, headers }) => {
       })}
     >
       <thead>
-        <tr>
-          {headers.map((header) => (
-            <th key={`header-${header.id}`}>{header.label}</th>
-          ))}
-        </tr>
+        {table.getHeaderGroups().map((headerGroup) => (
+          <tr key={headerGroup.id}>
+            {headerGroup.headers.map((header) => (
+              <th key={header.id}>
+                <div onClick={header.column.getToggleSortingHandler()}>
+                  {flexRender(header.column.columnDef.header, header.getContext())}
+                </div>
+              </th>
+            ))}
+          </tr>
+        ))}
       </thead>
+
+      <tbody>
+        {table.getRowModel().rows.map((row) => (
+          <tr key={row.id}>
+            {row.getVisibleCells().map((cell) => (
+              <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 };
