@@ -3932,6 +3932,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/react-table@npm:^8.5.22":
+  version: 8.5.22
+  resolution: "@tanstack/react-table@npm:8.5.22"
+  dependencies:
+    "@tanstack/table-core": 8.5.22
+  peerDependencies:
+    react: ">=16"
+    react-dom: ">=16"
+  checksum: dc200b5a4e1a3c634b8d926574deb9290b23c7ac4b8ff53e3b760a6a7be8c44213f23aa8fa257c6b66cfff92ca7c88fd09b9389f001d0c49a24f1e59af5de9f8
+  languageName: node
+  linkType: hard
+
+"@tanstack/table-core@npm:8.5.22":
+  version: 8.5.22
+  resolution: "@tanstack/table-core@npm:8.5.22"
+  checksum: ee273094b3257f21156a53523b6aa5a2f46a6c4b34a21b0989031c08d69f389205cade5811fe9d0ca744e9128d5f6046568050b649b3422ff52e18fd59cee2b0
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:2":
   version: 2.0.0
   resolution: "@tootallnate/once@npm:2.0.0"
@@ -9054,6 +9073,7 @@ __metadata:
     "@tailwindcss/typography": 0.5.7
     "@tanem/react-nprogress": 5.0.11
     "@tanstack/react-query": 4.0.10
+    "@tanstack/react-table": ^8.5.22
     "@turf/rewind": 6.5.0
     "@types/geojson": ^7946.0.10
     "@types/gtag.js": 0.0.5
