@@ -70,9 +70,12 @@ const Template: Story<TableProps<AggregatedArea>> = () => {
         sortingFn: 'alphanumeric',
       },
       {
-        header: (ctx) => <HeaderSorted {...ctx}>Funded with($)</HeaderSorted>,
+        header: (ctx) => <HeaderSorted {...ctx}>Funded with ($)</HeaderSorted>,
         accessorKey: 'funded',
         sortingFn: 'alphanumeric',
+        cell: ({ cell }) => {
+          return <span>{cell.getValue().toLocaleString()}</span>;
+        },
       },
     ],
     []
