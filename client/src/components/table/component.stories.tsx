@@ -1,9 +1,10 @@
 import React, { useMemo, useState } from 'react';
 
 import { Story } from '@storybook/react/types-6-0';
-import { SortingState } from '@tanstack/react-table';
+import { ColumnDef, SortingState } from '@tanstack/react-table';
 
 import Table from './component';
+import HeaderSorted from './headers/sorted';
 import { TableProps } from './types';
 
 const S = {
@@ -54,17 +55,24 @@ const DATA = [
 ];
 
 const Template: Story<TableProps<AggregatedArea>> = () => {
-  const [sorting, setSorting] = useState<SortingState>([]);
+  const [sorting, setSorting] = useState<SortingState>([
+    {
+      id: 'area',
+      desc: false,
+    },
+  ]);
 
-  const columns = useMemo(
+  const columns = useMemo<ColumnDef<AggregatedArea>[]>(
     () => [
       {
-        header: 'Area of Focus',
+        header: (ctx) => <HeaderSorted {...ctx}>Area</HeaderSorted>,
         accessorKey: 'area',
+        sortingFn: 'alphanumeric',
       },
       {
-        header: 'Funded with($)',
+        header: (ctx) => <HeaderSorted {...ctx}>Funded with($)</HeaderSorted>,
         accessorKey: 'funded',
+        sortingFn: 'alphanumeric',
       },
     ],
     []
@@ -73,9 +81,19 @@ const Template: Story<TableProps<AggregatedArea>> = () => {
     <Table
       data={DATA}
       columns={columns}
+      classNames={{
+        table: 'border-collapse',
+        tbody: 'border-t border-b border-grey-40',
+        tr: 'odd:bg-grey-60',
+        th: 'py-5 px-10',
+        td: 'py-5 px-10',
+      }}
+      // STATE
       state={{
         sorting,
       }}
+      // SORTING
+      enableSortingRemoval={false}
       onSortingChange={setSorting}
     />
   );
