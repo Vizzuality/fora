@@ -13,6 +13,7 @@ class Ability
 
   def default_rights
     # enums
+    can %i[index show], WidgetSlug
     can %i[index show], WidgetType
     can %i[index show], ReportYear
     can %i[index show], ReportPage
@@ -37,5 +38,6 @@ class Ability
     can %i[index show], Recipient
     can %i[index show], RecipientSubgeographic
     can %i[index show], Investment, visible: true
+    can %i[index show], Widget
   end
 end

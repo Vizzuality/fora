@@ -10,14 +10,12 @@ FactoryBot.define do
       WidgetType::TYPES.sample random: Random.new(n)
     end
     sequence(:slug) do |n|
-      Faker::Config.random = Random.new(n)
-      Faker::Internet.slug
+      WidgetSlug::TYPES[n]
     end
     sequence(:position) do |n|
       Faker::Config.random = Random.new(n)
       Faker::Number.between from: 1, to: 100
     end
-    support_filters { false }
     sequence(:title) do |n|
       Faker::Config.random = Random.new(n)
       Faker::Lorem.sentence
@@ -25,10 +23,6 @@ FactoryBot.define do
     sequence(:description) do |n|
       Faker::Config.random = Random.new(n)
       Faker::Lorem.paragraph(sentence_count: 4)
-    end
-
-    trait :with_filters do
-      support_filters { true }
     end
   end
 end

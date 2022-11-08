@@ -1,23 +1,16 @@
 require "rails_helper"
 
 RSpec.describe WidgetData, type: :model do
-  subject { build(:widget_data) }
+  subject { described_class.new widget: widget, filters: filters }
 
-  it { is_expected.to be_valid }
+  let(:widget) { create :widget, slug: "summary" }
+  let(:filters) { {areas: "test"} }
 
-  it "should not be valid without widget" do
-    subject.widget = nil
-    expect(subject).to have(1).errors_on(:widget)
+  it "returns correct title" do
+    expect(subject.title).to eq(widget.title)
   end
 
-  it "should not be valid without uniq filter_key" do
-    subject.save!
-    widget_data = WidgetData.new subject.reload.attributes
-    expect(widget_data).to have(1).errors_on(:filter_key)
-  end
-
-  it "should not be valid without data" do
-    subject.data = nil
-    expect(subject).to have(1).errors_on(:data)
+  it "returns correct data" do
+    expect(subject.data).to eq(Widgets::Queries::Summary.new(widget.report_year, filters).call)
   end
 end

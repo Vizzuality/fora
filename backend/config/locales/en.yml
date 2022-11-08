@@ -312,3 +312,10 @@ en:
         name: Table
       total:
         name: Total
+  widgets:
+    headers:
+      summary:
+        total_number_funders: Total number of FORA members
+        total_number_projects: Total number of projects
+        total_capital: Total capital (USD)
+        total_grants: Total grants (USD)
