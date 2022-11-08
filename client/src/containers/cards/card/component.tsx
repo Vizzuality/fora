@@ -3,7 +3,6 @@ import React, { useMemo } from 'react';
 import cx from 'classnames';
 
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 import { Funder } from 'types/funder';
 import { Project } from 'types/project';
@@ -28,16 +27,15 @@ const Cards = ({
   theme = 'grey',
   subgeographics,
 }: CardProps) => {
-  const { pathname } = useRouter();
   const { data: areasData } = useAreas();
 
   const FORMAT_LINK_TEXT = useMemo(() => {
-    if (pathname.includes('project')) {
+    if (href.includes('project')) {
       return 'project';
     } else {
       return 'funder';
     }
-  }, [pathname]);
+  }, [href]);
 
   const AREAS_OF_FOCUS = useMemo(() => {
     const filteredAreas = areasData.filter((c) => areas.includes(c.id));

@@ -42,7 +42,7 @@ const ProjectsList = () => {
 
   const handleSortProjects = useCallback(
     (value) => {
-      dispatch(setSort({ field: 'title', order: value }));
+      dispatch(setSort({ field: 'name', order: value }));
     },
     [dispatch]
   );
