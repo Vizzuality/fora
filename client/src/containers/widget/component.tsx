@@ -4,11 +4,11 @@ import { Widget } from 'types/widget';
 
 import { useWidget } from 'hooks/widgets';
 
-import { WidgetDiagram, WidgetTable, WidgetTotals } from 'containers/widget/types';
+import { WidgetDiagram, WidgetTable, WidgetTotal } from 'containers/widget/types';
 
 const WIDGETS_TYPES = {
   table: WidgetTable,
-  totals: WidgetTotals,
+  total: WidgetTotal,
   diagram: WidgetDiagram,
 };
 
