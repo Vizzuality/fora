@@ -11,7 +11,7 @@ module Widgets
       end
 
       def call
-        {headers: headers, data: data}
+        {headers: headers, values: values}
       end
 
       def title
@@ -24,7 +24,7 @@ module Widgets
         []
       end
 
-      def data
+      def values
         []
       end
     end

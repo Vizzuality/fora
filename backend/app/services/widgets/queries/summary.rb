@@ -12,7 +12,7 @@ module Widgets
         ]
       end
 
-      def data
+      def values
         [
           {value: Funder.where(date_joined_fora: ..DateTime.new(year).end_of_year).count},
           {value: Investment.where(year_invested: year).count("DISTINCT investments.project_id")},

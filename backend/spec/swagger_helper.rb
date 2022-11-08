@@ -134,6 +134,29 @@ RSpec.configure do |config|
             },
             required: %w[id type attributes]
           },
+          widget_data: {
+            type: :object,
+            properties: {
+              id: {type: :string},
+              type: {type: :string},
+              attributes: {
+                type: :object,
+                properties: {
+                  title: {type: :string},
+                  data: {
+                    type: :object,
+                    properties: {
+                      headers: {type: :array},
+                      values: {type: :array}
+                    },
+                    required: %w[headers values]
+                  }
+                },
+                required: %w[title data]
+              }
+            },
+            required: %w[id type attributes]
+          },
           subgeographic: {
             type: :object,
             properties: {

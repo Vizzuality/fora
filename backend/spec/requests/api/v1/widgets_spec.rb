@@ -66,7 +66,7 @@ RSpec.describe "API V1 Widgets", type: :request do
       it_behaves_like "with not found error"
 
       response "200", :success do
-        schema type: :object, properties: {data: {"$ref" => "#/components/schemas/widget"}}
+        schema type: :object, properties: {data: {"$ref" => "#/components/schemas/widget_data"}}
 
         run_test!
 
