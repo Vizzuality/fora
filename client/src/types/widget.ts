@@ -12,6 +12,7 @@ export interface Widget {
   slug: string;
   title: string;
   description: string;
+  config?: Record<string, any>;
   report_pages: ReportPages;
   report_year: ReportYears;
   widget_type: WidgetTypes;

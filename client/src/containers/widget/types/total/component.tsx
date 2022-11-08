@@ -35,11 +35,9 @@ const TOTALS = [
     value: '27M',
   },
 ];
-const WidgetTotal = (widget: Widget) => {
-  console.log(widget);
-
+const WidgetTotal = ({ slug }: Widget) => {
   return (
-    <dl className="grid grid-cols-12 gap-6">
+    <dl id={slug} className="grid grid-cols-12 gap-6">
       {TOTALS.map((total) => (
         <div key={total.id} className="col-span-12 md:col-span-6">
           <div className="py-3.5 px-10 bg-grey-60 space-y-1">
