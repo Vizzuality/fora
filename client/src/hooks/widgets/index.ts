@@ -13,7 +13,7 @@ import API from 'services/api';
 ****************************************
 */
 
-export const fetchWidgets = (params: ParamsProps) => {
+export const fetchWidgets = (params?: ParamsProps) => {
   return API.request({
     method: 'GET',
     url: '/widgets',

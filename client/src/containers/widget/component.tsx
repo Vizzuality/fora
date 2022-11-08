@@ -13,7 +13,7 @@ const WIDGETS_TYPES = {
 };
 
 const WidgetWrapper = (widget: Widget) => {
-  const { title, slug, widget_type: widgetType } = widget;
+  const { slug, widget_type: widgetType } = widget;
   const query = useWidget(slug);
 
   const WIDGET = useMemo(() => {
@@ -23,13 +23,7 @@ const WidgetWrapper = (widget: Widget) => {
     });
   }, [widget, query, widgetType]);
 
-  return (
-    <div>
-      <h2>{title}</h2>
-
-      {WIDGET}
-    </div>
-  );
+  return WIDGET;
 };
 
 export default WidgetWrapper;

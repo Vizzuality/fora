@@ -18,7 +18,8 @@ export const NAV = [
   },
   {
     label: 'Dashboards',
-    href: '/dashboards',
+    // href: '/dashboards',
+    href: '/dashboards/general-report', // Temporary redirect to the only existing report
   },
   {
     label: 'About',
