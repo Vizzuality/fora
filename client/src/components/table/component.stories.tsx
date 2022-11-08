@@ -54,7 +54,7 @@ const DATA = [
 ];
 
 const Template: Story<TableProps<AggregatedArea>> = () => {
-  const [sorting, setSorting] = useState<SortingState>();
+  const [sorting, setSorting] = useState<SortingState>([]);
 
   const columns = useMemo(
     () => [
