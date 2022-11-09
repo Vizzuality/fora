@@ -319,3 +319,6 @@ en:
         total_number_projects: Total number of projects
         total_capital: Total capital (USD)
         total_grants: Total grants (USD)
+      funded_areas:
+        area_of_focus: Area of Focus
+        funded_with: Funded with ($)
