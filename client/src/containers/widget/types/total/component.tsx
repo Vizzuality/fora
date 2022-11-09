@@ -35,8 +35,8 @@ const TOTALS = [
     value: '-',
   },
 ];
-const WidgetTotal = ({ slug, widget_data }: Widget) => {
-  const { data } = widget_data;
+const WidgetTotal = ({ slug, query }: Widget) => {
+  const { data } = query;
 
   const TOTALS_DATA = useMemo(() => {
     if (!data) return TOTALS;

@@ -23,5 +23,5 @@ export interface Widget {
   report_year: ReportYears;
   widget_type: WidgetTypes;
   data?: WidgetData;
-  widget_data?: UseQueryResult<Widget, unknown>;
+  query?: UseQueryResult<Widget, unknown>;
 }
