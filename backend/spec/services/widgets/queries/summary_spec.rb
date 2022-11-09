@@ -24,10 +24,10 @@ RSpec.describe Widgets::Queries::Summary do
     end
 
     it "contains correct data" do
-      expect(subject.call[:values].first[:value]).to eq(1)
-      expect(subject.call[:values].second[:value]).to eq(2)
-      expect(subject.call[:values].third[:value]).to eq(20)
-      expect(subject.call[:values].fourth[:value]).to eq(10)
+      expect(subject.call[:values].first.first[:value]).to eq(1)
+      expect(subject.call[:values].first.second[:value]).to eq(2)
+      expect(subject.call[:values].first.third[:value]).to eq(20)
+      expect(subject.call[:values].first.fourth[:value]).to eq(10)
     end
   end
 end

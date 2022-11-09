@@ -76,4 +76,32 @@ RSpec.describe "API V1 Widgets", type: :request do
       end
     end
   end
+
+  path "/api/v1/widgets/{slug}/download" do
+    get "Returns appropriate csv file with widget data" do
+      tags "Widgets"
+      consumes "application/json"
+      produces "text/csv"
+      parameter name: :slug, in: :path, type: :string, description: "Slug of Widget"
+      parameter name: "filter[report_year]", in: :query, type: :number, enum: ReportYear::TYPES, description: "Get widgets only for specified report year", required: true
+      parameter name: "filter[subgeographics]", in: :query, type: :string, description: "Filter results only for specified subgeographics. Use comma to separate multiple fields", required: false
+      parameter name: "filter[areas]", in: :query, type: :string, enum: Area::TYPES, description: "Filter results only for specified areas. Use comma to separate multiple fields", required: false
+      parameter name: "filter[demographics]", in: :query, type: :string, enum: Demographic::TYPES, description: "Filter results only for specified demographics. Use comma to separate multiple fields", required: false
+
+      let!(:widget) { create :widget, report_pages: ["general_report"], report_year: 2021, slug: "summary", widget_type: "total" }
+      let!(:investment) { create :investment, year_invested: 2021 }
+      let(:slug) { widget.slug }
+      let("filter[report_year]") { 2021 }
+
+      it_behaves_like "with not found error"
+
+      response "200", :success do
+        run_test!
+
+        it "returns correct csv file" do
+          expect(response.body).to eq(WidgetData.new(widget: widget, filters: {}).to_csv)
+        end
+      end
+    end
+  end
 end

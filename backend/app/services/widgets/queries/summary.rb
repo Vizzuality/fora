@@ -13,12 +13,12 @@ module Widgets
       end
 
       def values
-        [
+        [[
           {value: Funder.where(date_joined_fora: ..DateTime.new(year).end_of_year).count},
           {value: Investment.where(year_invested: year).count("DISTINCT investments.project_id")},
           {value: Investment.where(year_invested: year).sum(:amount)},
           {value: Investment.where(year_invested: year).where("capital_types && ARRAY[?]::varchar[]", %w[grants re_grants]).sum(:amount)}
-        ]
+        ]]
       end
     end
   end

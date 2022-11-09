@@ -1,7 +1,7 @@
 module API
   module V1
     class WidgetsController < BaseController
-      before_action :fetch_widget, only: %i[show]
+      before_action :fetch_widget, only: %i[show download]
       load_and_authorize_resource
 
       def index
@@ -21,6 +21,11 @@ module API
           widget_data,
           params: {current_user: current_user, current_ability: current_ability}
         ).serializable_hash
+      end
+
+      def download
+        widget_data = WidgetData.new widget: @widget, filters: filter_params
+        send_data widget_data.to_csv, filename: "FORA: #{widget_data.title}.csv"
       end
 
       private
