@@ -1,43 +1,22 @@
 import React from 'react';
 
-import { useAppSelector } from 'store/hooks';
-
-import { useWidgets } from 'hooks/widgets';
-
-import Widget from 'containers/widget';
 import Wrapper from 'containers/wrapper';
 
+import Charts from './charts';
+
 const ReportTotals = () => {
-  const { filters } = useAppSelector((state) => state['/dashboards/general-report']);
-
-  const { data: widgetsData } = useWidgets({
-    filters,
-  });
-
-  console.log(widgetsData);
-
   return (
-    <section className="bg-white py-14">
+    <section className="py-16 bg-white">
       <Wrapper>
-        <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-12 md:col-span-6">
-            <Widget
-              title="Pie Chart 1"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet"
-              id="general-report-horizontal-pie-chart-1"
-              slug="general-report-horizontal-pie-chart-1"
-              widget_type="diagram"
-              report_pages={['general_report']}
-              report_year={2021}
-              config={{
-                type: 'pie',
-                className: 'bg-grey-60',
-              }}
-              params={{ filters }}
-            />
-          </div>
+        <div className="space-y-5">
+          <h2 className="max-w-xl text-3xl font-display">Explore projects and funders totals</h2>
+          <h3 className="max-w-2xl text-2xl font-display">
+            Total number of projects and funders per Area of Focus
+          </h3>
         </div>
       </Wrapper>
+
+      <Charts />
     </section>
   );
 };
