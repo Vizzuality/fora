@@ -1,3 +1,4 @@
+import Dashboards from 'containers/dashboards';
 import MetaTags from 'containers/meta-tags';
 
 const TITLE_TEXT = 'FORA Dashboards | A display of aggregations of collective data';
@@ -14,6 +15,8 @@ const DashboardsPage: React.FC = () => {
         type="website"
         imageURL={IMAGE_URL}
       />
+
+      <Dashboards />
     </div>
   );
 };
