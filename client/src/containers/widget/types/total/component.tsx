@@ -47,6 +47,7 @@ const WidgetTotal = ({ slug, widget_data }: Widget) => {
       const total = TOTALS.find((t) => t.id === header.value);
 
       return {
+        id: header.value,
         ...total,
         ...header,
         ...d.values[index],
