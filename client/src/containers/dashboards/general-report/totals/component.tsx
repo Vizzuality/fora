@@ -27,7 +27,7 @@ const ReportTotals = () => {
               id="general-report-horizontal-pie-chart-1"
               slug="general-report-horizontal-pie-chart-1"
               widget_type="diagram"
-              report_pages="general_report"
+              report_pages={['general_report']}
               report_year={2021}
               config={{
                 type: 'pie',

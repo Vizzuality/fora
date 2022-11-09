@@ -17,12 +17,13 @@ export const getStaticProps = STORE_WRAPPER.getStaticProps((store) => async () =
 
   const { filters } = store.getState()['/dashboards/general-report'];
 
-  const fetch = () =>
-    fetchWidgets({
-      filters,
-    });
+  const params = {
+    filters,
+  };
 
-  await queryClient.prefetchQuery(['widgets'], fetch);
+  const fetch = () => fetchWidgets(params);
+
+  await queryClient.prefetchQuery(['widgets', JSON.stringify(params)], fetch);
 
   // Props returned will be passed to the page component
   return {
