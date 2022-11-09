@@ -80,6 +80,7 @@ const Template: Story<TableProps<AggregatedArea>> = () => {
     ],
     []
   );
+
   return (
     <Table
       data={DATA}
