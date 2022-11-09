@@ -1,16 +1,17 @@
 import React from 'react';
 
+import { useAppSelector } from 'store/hooks';
+
 import { useWidgets } from 'hooks/widgets';
 
 import Widget from 'containers/widget';
 import Wrapper from 'containers/wrapper';
 
 const ReportFund = () => {
+  const { filters } = useAppSelector((state) => state['/dashboards/general-report']);
+
   const { data: widgetsData } = useWidgets({
-    filters: {
-      report_page: 'general_report',
-      report_year: 2021,
-    },
+    filters,
   });
 
   console.log(widgetsData);
@@ -32,6 +33,7 @@ const ReportFund = () => {
                 type: 'horizontal-bar',
                 className: 'bg-white',
               }}
+              params={{ filters }}
             />
           </div>
         </div>

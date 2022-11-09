@@ -1,10 +1,16 @@
-type ReportPages = 'general_report' | 'disparities_report' | 'interactive_report';
-type ReportYears = 2021;
+import { UseQueryResult } from '@tanstack/react-query';
 
-type WidgetTypes = 'diagram' | 'table' | 'total';
-type WidgetData = {
-  key: string;
-  data: any;
+import { ReportPages, ReportYears } from './dashboards';
+
+export type WidgetTypes = 'diagram' | 'table' | 'total';
+export type WidgetData = {
+  headers: {
+    label: string;
+    value: string;
+  }[];
+  values: {
+    value: any;
+  }[];
 };
 
 export interface Widget {
@@ -16,5 +22,6 @@ export interface Widget {
   report_pages: ReportPages;
   report_year: ReportYears;
   widget_type: WidgetTypes;
-  widget_data?: WidgetData;
+  data?: WidgetData;
+  widget_data?: UseQueryResult<Widget, unknown>;
 }

@@ -1,5 +1,7 @@
 import { createElement, useMemo } from 'react';
 
+import { ParamsProps } from 'lib/adapters/types';
+
 import { Widget } from 'types/widget';
 
 import { useWidget } from 'hooks/widgets';
@@ -12,15 +14,23 @@ const WIDGETS_TYPES = {
   diagram: WidgetDiagram,
 };
 
-const WidgetWrapper = (widget: Widget) => {
+export interface WidgetWrapperProps extends Widget {
+  params: ParamsProps;
+}
+
+const WidgetWrapper = ({ params, ...widget }: WidgetWrapperProps) => {
   const { slug, widget_type: widgetType } = widget;
-  const query = useWidget(slug);
+  const query = useWidget(slug, params);
 
   const WIDGET = useMemo(() => {
-    return createElement(WIDGETS_TYPES[widgetType], {
-      ...widget,
-      ...query,
-    });
+    if (WIDGETS_TYPES[widgetType]) {
+      return createElement(WIDGETS_TYPES[widgetType], {
+        ...widget,
+        widget_data: query,
+      });
+    }
+
+    return null;
   }, [widget, query, widgetType]);
 
   return WIDGET;

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+
+import { useAppSelector } from 'store/hooks';
 
 import { useWidgets } from 'hooks/widgets';
 
@@ -6,27 +8,24 @@ import Widget from 'containers/widget';
 import Wrapper from 'containers/wrapper';
 
 const ReportOverview = () => {
+  const { filters } = useAppSelector((state) => state['/dashboards/general-report']);
+
   const { data: widgetsData } = useWidgets({
-    filters: {
-      report_page: 'general_report',
-      report_year: 2021,
-    },
+    filters,
   });
 
-  console.log(widgetsData);
+  const WIDGET = useMemo(() => {
+    if (!widgetsData) {
+      return null;
+    }
+
+    return widgetsData.find((widget) => widget.slug === 'summary');
+  }, [widgetsData]);
 
   return (
     <section className="py-10">
       <Wrapper>
-        <Widget
-          title="Totals"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet"
-          id="general-report-totals"
-          slug="general-report-totals"
-          widget_type="total"
-          report_pages="general_report"
-          report_year={2021}
-        />
+        <Widget {...WIDGET} params={{ filters }} />
       </Wrapper>
     </section>
   );

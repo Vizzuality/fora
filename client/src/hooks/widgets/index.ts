@@ -21,11 +21,11 @@ export const fetchWidgets = (params?: ParamsProps) => {
   }).then((response) => response.data);
 };
 
-export const fetchWidget = (slug: string) =>
+export const fetchWidget = (slug: string, params?: ParamsProps) =>
   API.request({
     method: 'GET',
     url: `/widgets/${slug}`,
-    params: jsonAPIAdapter({}),
+    params: jsonAPIAdapter(params),
   }).then((response) => response.data);
 
 export const downloadWidget = (slug: string) =>
@@ -44,10 +44,7 @@ export function useWidgets(
   params: ParamsProps = {},
   queryOptions: UseQueryOptions<Widget[], unknown> = {}
 ) {
-  const fetch = () =>
-    fetchWidgets({
-      ...params,
-    });
+  const fetch = () => fetchWidgets(params);
 
   const query = useQuery(['widgets', JSON.stringify(params)], fetch, {
     placeholderData: {
@@ -65,10 +62,14 @@ export function useWidgets(
 ****************************************
 */
 
-export function useWidget(slug: string, queryOptions: UseQueryOptions<Widget, unknown> = {}) {
-  const fetch = () => fetchWidget(slug);
+export function useWidget(
+  slug: string,
+  params: ParamsProps = {},
+  queryOptions: UseQueryOptions<Widget, unknown> = {}
+) {
+  const fetch = () => fetchWidget(slug, params);
 
-  const query = useQuery(['widget', slug], fetch, {
+  const query = useQuery(['widget', slug, JSON.stringify(params)], fetch, {
     enabled: !!slug,
     placeholderData: {},
     ...queryOptions,

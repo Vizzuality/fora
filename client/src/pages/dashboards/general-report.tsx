@@ -1,3 +1,5 @@
+import { STORE_WRAPPER } from 'store';
+
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 
 import { fetchWidgets } from 'hooks/widgets';
@@ -10,15 +12,14 @@ const DESCRIPTION_TEXT =
   'Review graphs, charts, and other visualizations in order to get a higher level and comprehensive analysis of FORA member’s collective work.';
 const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/dashboards.jpg`;
 
-export async function getStaticProps() {
+export const getStaticProps = STORE_WRAPPER.getStaticProps((store) => async () => {
   const queryClient = new QueryClient();
+
+  const { filters } = store.getState()['/dashboards/general-report'];
 
   const fetch = () =>
     fetchWidgets({
-      filters: {
-        report_page: 'general_report',
-        report_year: 2021,
-      },
+      filters,
     });
 
   await queryClient.prefetchQuery(['widgets'], fetch);
@@ -29,7 +30,7 @@ export async function getStaticProps() {
       dehydratedState: dehydrate(queryClient) || null,
     },
   };
-}
+});
 
 const DashboardsGeneralReportPage: React.FC = () => {
   return (

@@ -1,16 +1,17 @@
 import React from 'react';
 
+import { useAppSelector } from 'store/hooks';
+
 import { useWidgets } from 'hooks/widgets';
 
 import Widget from 'containers/widget';
 import Wrapper from 'containers/wrapper';
 
 const ReportTotals = () => {
+  const { filters } = useAppSelector((state) => state['/dashboards/general-report']);
+
   const { data: widgetsData } = useWidgets({
-    filters: {
-      report_page: 'general_report',
-      report_year: 2021,
-    },
+    filters,
   });
 
   console.log(widgetsData);
@@ -32,6 +33,7 @@ const ReportTotals = () => {
                 type: 'pie',
                 className: 'bg-grey-60',
               }}
+              params={{ filters }}
             />
           </div>
         </div>
