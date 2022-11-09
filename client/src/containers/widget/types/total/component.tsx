@@ -9,42 +9,17 @@ import Tooltip from 'components/tooltip';
 
 import INFO_SVG from 'svgs/ui/info.svg?sprite';
 
-const TOTALS = [
-  {
-    id: 'total_funders',
-    label: 'Total number of FORA members',
-    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet',
-    value: '-',
-  },
-  {
-    id: 'total_projects',
-    label: 'Total number of projects',
-    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet',
-    value: '-',
-  },
-  {
-    id: 'total_capital',
-    label: 'Total capital (USD)',
-    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet',
-    value: '-',
-  },
-  {
-    id: 'total_grants',
-    label: 'Total grants (USD)',
-    info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet',
-    value: '-',
-  },
-];
-const WidgetTotal = ({ slug, query }: Widget) => {
+const WidgetTotal = ({ slug, config, query }: Widget) => {
   const { data } = query;
+  const { meta } = config;
 
   const TOTALS_DATA = useMemo(() => {
-    if (!data) return TOTALS;
+    if (!data) return meta;
 
     const { data: d } = data;
 
     return d.headers.map((header, index) => {
-      const total = TOTALS.find((t) => t.id === header.value);
+      const total = meta.find((t) => t.id === header.value);
 
       return {
         id: header.value,
@@ -53,7 +28,7 @@ const WidgetTotal = ({ slug, query }: Widget) => {
         ...d.values[index],
       };
     });
-  }, [data]);
+  }, [data, meta]);
 
   return (
     <dl id={slug} className="grid grid-cols-12 gap-6">
