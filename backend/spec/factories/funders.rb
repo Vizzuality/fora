@@ -53,7 +53,7 @@ FactoryBot.define do
     end
     sequence(:date_joined_fora) do |n|
       Faker::Config.random = Random.new(n)
-      Faker::Date.backward days: 360
+      Faker::Date.between(from: Date.new(ReportYear::TYPES.first.to_i - 2), to: Date.new(ReportYear::TYPES.last.to_i))
     end
     sequence(:funder_type) do |n|
       FunderType::TYPES.sample random: Random.new(n)

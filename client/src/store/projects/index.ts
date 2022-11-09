@@ -26,7 +26,7 @@ interface ProjectsState {
 // Define the initial state using that type
 export const initialState: ProjectsState = {
   sort: {
-    field: 'title',
+    field: 'name',
     order: 'asc',
   },
   search: '',

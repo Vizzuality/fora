@@ -20,7 +20,7 @@ const ProjectList = () => {
       <div className="space-y-9">
         <h3 className="text-2xl font-display"> Who is funding this project?</h3>
 
-        {funders.length && <Cards pathname="/projects" theme="green" data={funders} />}
+        {funders.length && <Cards pathname="/funders" theme="green" data={funders} />}
       </div>
 
       <div className="space-y-9">
