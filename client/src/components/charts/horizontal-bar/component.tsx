@@ -1,9 +1,8 @@
 import { FC, useMemo } from 'react';
 
-import CHROMA from 'chroma-js';
-import { scaleLinear, scaleOrdinal } from 'd3-scale';
+import { scaleLinear } from 'd3-scale';
 
-import { VISUALIZATION_RAMP } from 'constants/colors';
+import { useColorRamp } from 'hooks/widgets';
 
 import type { HorizontalBarChartProps } from './types';
 
@@ -20,22 +19,7 @@ export const HorizontalBarChart: FC<HorizontalBarChartProps> = ({
   }, [data]);
   const VALUE_SCALE = scaleLinear(VALUE_DOMAIN, [0, 1]);
 
-  // COLOR
-  const CHROMA_COLOR_SCALE = CHROMA.scale(VISUALIZATION_RAMP);
-
-  const COLOR_DOMAIN = useMemo(() => {
-    return data.map((d) => d.id);
-  }, [data]);
-
-  const COLOR_RANGE = useMemo(() => {
-    const ramp = [...VISUALIZATION_RAMP];
-    if (data.length < ramp.length) {
-      return ramp.slice(0, data.length);
-    }
-    return CHROMA_COLOR_SCALE.colors(data.length) as string[];
-  }, [CHROMA_COLOR_SCALE, data]);
-
-  const COLOR_SCALE = scaleOrdinal(COLOR_DOMAIN, COLOR_RANGE);
+  const COLOR_SCALE = useColorRamp(data);
 
   return (
     <ul className="space-y-2.5">

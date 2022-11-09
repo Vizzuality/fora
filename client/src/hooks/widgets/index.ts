@@ -1,9 +1,15 @@
+import { useMemo } from 'react';
+
 import { jsonAPIAdapter } from 'lib/adapters/json-api-adapter';
 import { ParamsProps } from 'lib/adapters/types';
 
 import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from '@tanstack/react-query';
+import CHROMA from 'chroma-js';
+import { scaleOrdinal } from 'd3-scale';
 
 import { Widget } from 'types/widget';
+
+import { VISUALIZATION_RAMP } from 'constants/colors';
 
 import API from 'services/api';
 
@@ -108,4 +114,22 @@ export function useWidgetDownload(
     },
     ...queryOptions,
   });
+}
+
+export function useColorRamp(data) {
+  const CHROMA_COLOR_SCALE = CHROMA.scale(VISUALIZATION_RAMP);
+
+  const COLOR_DOMAIN = useMemo(() => {
+    return data.map((d) => d.id);
+  }, [data]);
+
+  const COLOR_RANGE = useMemo(() => {
+    const ramp = [...VISUALIZATION_RAMP];
+    if (data.length < ramp.length) {
+      return ramp.slice(0, data.length);
+    }
+    return CHROMA_COLOR_SCALE.colors(data.length) as string[];
+  }, [CHROMA_COLOR_SCALE, data]);
+
+  return scaleOrdinal(COLOR_DOMAIN, COLOR_RANGE);
 }
