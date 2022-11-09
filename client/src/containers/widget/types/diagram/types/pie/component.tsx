@@ -59,8 +59,8 @@ const WidgetDiagramPie = () => {
                     backgroundColor: COLOR_SCALE(d.id),
                   }}
                 />
-                <div className="text-sm">
-                  {d.label} <strong>{d.value}</strong>
+                <div className="text-sm font-semibold">
+                  {d.label} <strong className="font-bold">{d.value}</strong>
                 </div>
               </li>
             ))}

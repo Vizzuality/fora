@@ -31,9 +31,15 @@ export const HorizontalBarChart: FC<HorizontalBarChartProps> = ({
               width: `${VALUE_SCALE(d.value) * 100}%`,
               backgroundColor: COLOR_SCALE(d.id),
             }}
-            onClick={() => onPathMouseClick(d)}
-            onMouseEnter={() => onPathMouseEnter(d)}
-            onMouseLeave={() => onPathMouseLeave(d)}
+            onClick={() => {
+              if (onPathMouseClick) onPathMouseClick(d);
+            }}
+            onMouseEnter={() => {
+              if (onPathMouseEnter) onPathMouseEnter(d);
+            }}
+            onMouseLeave={() => {
+              if (onPathMouseLeave) onPathMouseLeave(d);
+            }}
           />
         </li>
       ))}
