@@ -11,12 +11,11 @@ import Wrapper from 'containers/wrapper';
 
 import { HeaderSorted } from 'components/table/headers';
 
-const SLUGS = ['funded_areas', 'funded_subgeographics'] as const;
+const SLUGS = ['funded_areas', 'funded_subgeographics'];
 
 type AggregatedArea = {
-  value: string;
-  area: string;
-  funded: number;
+  area_of_focus: string;
+  funded_width: number;
 };
 
 const ReportFundingTable = () => {
@@ -38,12 +37,12 @@ const ReportFundingTable = () => {
     () => [
       {
         header: (ctx) => <HeaderSorted {...ctx}>Area</HeaderSorted>,
-        accessorKey: 'area',
+        accessorKey: 'area_of_focus',
         sortingFn: 'alphanumeric',
       },
       {
         header: (ctx) => <HeaderSorted {...ctx}>Funded with ($)</HeaderSorted>,
-        accessorKey: 'funded',
+        accessorKey: 'funded_with',
         sortingFn: 'alphanumeric',
         cell: ({ cell }) => {
           return <span>{cell.getValue().toLocaleString()}</span>;
@@ -54,8 +53,8 @@ const ReportFundingTable = () => {
   );
   const [sorting, setSorting] = useState<SortingState>([
     {
-      id: 'area',
-      desc: false,
+      id: 'funded_with',
+      desc: true,
     },
   ]);
 
@@ -71,6 +70,7 @@ const ReportFundingTable = () => {
               columns,
               classNames: {
                 table: 'border-collapse',
+                thead: 'sticky top-0 bg-grey-60',
                 tbody: 'border-t border-b border-grey-40',
                 tr: 'odd:bg-white',
                 th: 'py-5 px-10',

@@ -8,9 +8,7 @@ export type WidgetData = {
     label: string;
     value: string;
   }[];
-  values: {
-    value: any;
-  }[];
+  values: any[];
 };
 
 export interface Widget {
