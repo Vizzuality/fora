@@ -62,14 +62,6 @@
             }
           ]
         },
-        "investments": {
-          "data": [
-            {
-              "id": "f453a8ec-cc81-42e5-a500-1e9c6db26d78",
-              "type": "investment"
-            }
-          ]
-        },
         "funders": {
           "data": [
             {
@@ -128,11 +120,6 @@
           ]
         },
         "subgeographic_ancestors": {
-          "data": [
-
-          ]
-        },
-        "investments": {
           "data": [
 
           ]
@@ -196,14 +183,6 @@
 
           ]
         },
-        "investments": {
-          "data": [
-            {
-              "id": "f1a81dab-ad35-46ee-9af6-0cb5bb1b64f2",
-              "type": "investment"
-            }
-          ]
-        },
         "funders": {
           "data": [
             {
@@ -262,11 +241,6 @@
           ]
         },
         "subgeographic_ancestors": {
-          "data": [
-
-          ]
-        },
-        "investments": {
           "data": [
 
           ]
