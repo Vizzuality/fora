@@ -137,23 +137,16 @@ export function useProjectsInfinity(
     }
   );
 
-  const { data } = query;
-  const { pages } = data || {};
-
   const DATA = useMemo(() => {
-    if (!pages) {
-      return [];
-    }
+    const { pages } = query.data;
 
-    return pages.flat();
-  }, [pages]);
+    return pages.flatMap((page) => page.data);
+  }, [query]);
 
-  return useMemo(() => {
-    return {
-      ...query,
-      data: DATA,
-    };
-  }, [query, DATA]);
+  return {
+    ...query,
+    data: DATA,
+  };
 }
 
 /**
