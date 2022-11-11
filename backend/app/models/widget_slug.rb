@@ -5,7 +5,7 @@ class WidgetSlug
 
   TYPES_WITH_QUERIES = {
     "summary" => Widgets::Queries::Summary,
-    "funded_areas" => nil,
+    "funded_areas" => Widgets::Queries::FundedAreas,
     "funded_subgeographics" => nil,
     "funded_demographics" => nil,
     "funded_funder_types" => nil,
