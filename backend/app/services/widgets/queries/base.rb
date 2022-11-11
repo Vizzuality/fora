@@ -25,7 +25,7 @@ module Widgets
       end
 
       def values
-        []
+        [[]]
       end
     end
   end

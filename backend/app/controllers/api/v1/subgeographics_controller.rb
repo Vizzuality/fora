@@ -1,6 +1,8 @@
 module API
   module V1
     class SubgeographicsController < BaseController
+      mandatory_attributes({filter: [:geographic]}, only: :geojson)
+
       load_and_authorize_resource
 
       def index
@@ -17,8 +19,6 @@ module API
       end
 
       def geojson
-        raise API::UnprocessableEntityError, I18n.t("api.errors.missing_geographic") if filter_params[:geographic].blank?
-
         render json: Subgeographic.as_geojson(filter_params[:geographic])
       end
 
