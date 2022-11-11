@@ -38,7 +38,7 @@ module API
       end
 
       def filter_params
-        params.fetch(:filter, {}).permit :report_year, :report_page, :widget_type, :areas, :subgeographics, :demographics
+        params.fetch(:filter, {}).permit :report_year, :report_page, :widget_type, :areas, :geographic, :subgeographics, :demographics
       end
     end
   end
