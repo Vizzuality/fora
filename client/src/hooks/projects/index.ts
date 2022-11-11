@@ -13,7 +13,7 @@ import {
 } from '@tanstack/react-query';
 import { orderBy, uniqBy } from 'lodash';
 
-import { Project } from 'types/project';
+import { InifiniteProject, Project } from 'types/project';
 
 import API from 'services/api';
 
@@ -113,20 +113,29 @@ export function useProjectsByGeographicScope(view: View, data: Project[] = []) {
 */
 export function useProjectsInfinity(
   params: ParamsProps = {},
-  queryOptions: UseInfiniteQueryOptions<Project[], unknown> = {}
+  queryOptions: UseInfiniteQueryOptions<InifiniteProject, unknown> = {}
 ) {
   const fetch = ({ pageParam = 1 }) => fetchProjects({ ...params, page: pageParam });
 
-  const query = useInfiniteQuery(['infinite-projects', JSON.stringify(params)], fetch, {
-    ...queryOptions,
-    getNextPageParam: (lastPage) => {
-      const { meta = {} } = lastPage;
-      const { page = 1, pages = 10 } = meta;
+  const query = useInfiniteQuery<InifiniteProject>(
+    ['infinite-projects', JSON.stringify(params)],
+    fetch,
+    {
+      ...queryOptions,
+      select: (data) => data, // override default select function
+      placeholderData: {
+        pages: [],
+        pageParams: [],
+      },
+      getNextPageParam: (lastPage) => {
+        const { meta } = lastPage;
+        const { page = 1, pages = 10 } = meta;
 
-      const nextPage = page + 1 > pages ? null : page + 1;
-      return nextPage;
-    },
-  });
+        const nextPage = page + 1 > pages ? null : page + 1;
+        return nextPage;
+      },
+    }
+  );
 
   const { data } = query;
   const { pages } = data || {};

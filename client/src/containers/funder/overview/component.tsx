@@ -23,7 +23,7 @@ const FunderOverview = () => {
 
   const { contact_email: email, description, logo, name, projects } = funderData;
 
-  const GEOGRPAHIC_SCOPE = useMemo(() => {
+  const GEOGRAPHIC_SCOPE = useMemo(() => {
     const projSubgeographics = projects.map((proj) => proj.subgeographics);
     const arraySubGeo = projSubgeographics?.flat().map((subg) => subg.name);
     return arraySubGeo;
@@ -43,7 +43,7 @@ const FunderOverview = () => {
         case 'geogpraphic-scope':
           return {
             ...attr,
-            value: GEOGRPAHIC_SCOPE.join(', '),
+            value: GEOGRAPHIC_SCOPE.join(', '),
           };
         case 'demopgraphic-scope':
           return {
@@ -59,7 +59,7 @@ const FunderOverview = () => {
           return attr;
       }
     });
-  }, [GEOGRPAHIC_SCOPE, DEMOGRAPHIC_SCOPE]);
+  }, [GEOGRAPHIC_SCOPE, DEMOGRAPHIC_SCOPE]);
 
   return (
     <div className="flex space-x-32">

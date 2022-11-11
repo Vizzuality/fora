@@ -1,8 +1,8 @@
 import axios from 'axios';
-// import Jsona from 'jsona';
+import Jsona from 'jsona';
 import qs from 'query-string';
 
-// const dataFormatter = new Jsona();
+const dataFormatter = new Jsona();
 
 const API = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_API_URL || process.env.STORYBOOK_API_URL}`,
@@ -31,5 +31,13 @@ const API = axios.create({
     return qs.stringify(parsedParams, { arrayFormat: 'comma' });
   },
 });
+
+API.interceptors.response.use((response) => ({
+  ...response,
+  data: {
+    ...response.data,
+    data: !!response.data && dataFormatter.deserialize(response.data), // JSON API deserialize
+  },
+}));
 
 export default API;

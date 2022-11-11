@@ -8,7 +8,7 @@ import { GAPage } from 'lib/analytics/ga';
 import { STORE_WRAPPER } from 'store';
 
 import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
-import Jsona from 'jsona';
+// import Jsona from 'jsona';
 
 import ApplicationLayout from 'layouts/application';
 
@@ -21,7 +21,7 @@ import { MediaContextProvider } from 'components/media-query';
 import 'styles/globals.css';
 import 'styles/flicking.css';
 
-const dataFormatter = new Jsona();
+// const dataFormatter = new Jsona();
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   const [queryClient] = useState(
@@ -34,13 +34,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
             refetchOnWindowFocus: false,
             structuralSharing: false,
             select: (data: any) => {
-              if (data.pages) {
-                return {
-                  ...data,
-                  pages: data.pages.map((d) => dataFormatter.deserialize(d)),
-                };
-              }
-              return dataFormatter.deserialize(data);
+              return data.data;
             },
           },
         },
