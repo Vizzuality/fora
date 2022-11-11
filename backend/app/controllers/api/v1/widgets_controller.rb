@@ -1,6 +1,9 @@
 module API
   module V1
     class WidgetsController < BaseController
+      mandatory_attributes({filter: [:report_page]}, only: :index)
+      mandatory_attributes({filter: [:report_year]})
+
       before_action :fetch_widget, only: %i[show download]
       load_and_authorize_resource
 

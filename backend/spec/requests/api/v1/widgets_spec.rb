@@ -44,6 +44,30 @@ RSpec.describe "API V1 Widgets", type: :request do
           end
         end
       end
+
+      response "422", "Missing mandatory param" do
+        schema "$ref" => "#/components/schemas/errors"
+
+        context "when report page is missing" do
+          let("filter[report_page]") {}
+
+          run_test!
+
+          it "returns correct error", generate_swagger_example: true do
+            expect(response_json["errors"][0]["title"]).to eq(I18n.t("api.errors.missing_mandatory_param", name: "filter[report_page]"))
+          end
+        end
+
+        context "when report year is missing" do
+          let("filter[report_year]") {}
+
+          run_test!
+
+          it "returns correct error" do
+            expect(response_json["errors"][0]["title"]).to eq(I18n.t("api.errors.missing_mandatory_param", name: "filter[report_year]"))
+          end
+        end
+      end
     end
   end
 
@@ -74,6 +98,18 @@ RSpec.describe "API V1 Widgets", type: :request do
           expect(response.body).to match_snapshot("api/v1/get-widget-data")
         end
       end
+
+      response "422", "Missing mandatory param" do
+        schema "$ref" => "#/components/schemas/errors"
+
+        let("filter[report_year]") {}
+
+        run_test!
+
+        it "returns correct error" do
+          expect(response_json["errors"][0]["title"]).to eq(I18n.t("api.errors.missing_mandatory_param", name: "filter[report_year]"))
+        end
+      end
     end
   end
 
@@ -100,6 +136,18 @@ RSpec.describe "API V1 Widgets", type: :request do
 
         it "returns correct csv file" do
           expect(response.body).to eq(WidgetData.new(widget: widget, filters: {}).to_csv)
+        end
+      end
+
+      response "422", "Missing mandatory param" do
+        schema "$ref" => "#/components/schemas/errors"
+
+        let("filter[report_year]") {}
+
+        run_test!
+
+        it "returns correct error" do
+          expect(response_json["errors"][0]["title"]).to eq(I18n.t("api.errors.missing_mandatory_param", name: "filter[report_year]"))
         end
       end
     end

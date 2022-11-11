@@ -102,7 +102,7 @@ RSpec.describe "API V1 Subgeographics", type: :request do
         run_test!
 
         it "returns correct error", generate_swagger_example: true do
-          expect(response_json["errors"][0]["title"]).to eq(I18n.t("api.errors.missing_geographic"))
+          expect(response_json["errors"][0]["title"]).to eq(I18n.t("api.errors.missing_mandatory_param", name: "filter[geographic]"))
         end
       end
     end
