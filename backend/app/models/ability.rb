@@ -37,7 +37,6 @@ class Ability
     can %i[index show], Project
     can %i[index show], Recipient
     can %i[index show], RecipientSubgeographic
-    can %i[index show], Investment, visible: true
     can %i[index show download], Widget
   end
 end
