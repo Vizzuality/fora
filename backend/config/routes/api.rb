@@ -28,6 +28,10 @@ namespace :api, format: "json" do
     end
     resources :funders, only: %i[index show]
     resources :projects, only: %i[index show]
-    resources :widgets, only: %i[index show]
+    resources :widgets, only: %i[index show] do
+      member do
+        get :download
+      end
+    end
   end
 end

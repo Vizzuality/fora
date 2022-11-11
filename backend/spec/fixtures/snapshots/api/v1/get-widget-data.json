@@ -1,6 +1,6 @@
 {
   "data": {
-    "id": "1975693e-3242-445e-93db-6c6640a8f13e",
+    "id": "6cf88990-7e1d-4ff0-b730-c7d9c08fb622",
     "type": "widget_data",
     "attributes": {
       "title": "Enim repellat pariatur est.",
@@ -24,18 +24,20 @@
           }
         ],
         "values": [
-          {
-            "value": 1
-          },
-          {
-            "value": 1
-          },
-          {
-            "value": "68.96"
-          },
-          {
-            "value": "68.96"
-          }
+          [
+            {
+              "value": 1.0
+            },
+            {
+              "value": 1.0
+            },
+            {
+              "value": 68.96
+            },
+            {
+              "value": 68.96
+            }
+          ]
         ]
       }
     }

@@ -1,3 +1,5 @@
+require "csv"
+
 class WidgetData
   attr_accessor :widget, :filters
 
@@ -13,10 +15,19 @@ class WidgetData
   end
 
   def data
-    return query_service.call if query_klass.support_filters? # do not cache data which uses filters for now, because it contains too many options
+    @data ||= begin
+      return query_service.call if query_klass.support_filters? # do not cache data which uses filters for now, because it contains too many options
 
-    Rails.cache.fetch "widget-data-#{widget.id}", expires_in: 1.hour do
-      query_service.call
+      Rails.cache.fetch "widget-data-#{widget.id}", expires_in: 1.hour do
+        query_service.call
+      end
+    end
+  end
+
+  def to_csv
+    CSV.generate(headers: true) do |csv|
+      csv << data[:headers].pluck(:label)
+      data[:values].each { |row| csv << row.pluck(:value) }
     end
   end
 

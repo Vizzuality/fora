@@ -14,7 +14,7 @@ module Widgets
         Area.all.sort_by(&:name).map do |area|
           [
             {id: area.id, value: area.name},
-            {value: (investments[area.id] || 0)}
+            {value: (investments[area.id] || 0).to_f}
           ]
         end
       end
