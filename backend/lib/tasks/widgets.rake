@@ -10,7 +10,7 @@ namespace :widgets do
         {report_pages: ["general_report"], report_year: year, widget_type: "diagram", slug: "funded_demographics", position: 4, title: "Amount funded towards each demographic focus (USD)"},
         {report_pages: ["general_report"], report_year: year, widget_type: "diagram", slug: "funded_funder_types", position: 5, title: "Amount funded by each funder organization type (USD)"},
         {report_pages: ["general_report"], report_year: year, widget_type: "diagram", slug: "funded_capital_types", position: 6, title: "Amount directed towards each capital type (USD)"},
-        {report_pages: ["general_report"], report_year: year, widget_type: "diagram", slug: "funded_funder_legal_statuses", position: 7, title: "Amount funded towards each grantee legal status (USD)"},
+        {report_pages: ["general_report"], report_year: year, widget_type: "diagram", slug: "funded_recipient_legal_statuses", position: 7, title: "Amount funded towards each grantee legal status (USD)"},
         {report_pages: ["general_report"], report_year: year, widget_type: "table", slug: "total_projects_funders_areas", position: 8, title: "Total number of projects and funders per area of focus"},
         {report_pages: ["general_report"], report_year: year, widget_type: "table", slug: "total_projects_funders_subgeographics", position: 9, title: "Total number of projects and funders per geographic focus"},
         {report_pages: ["general_report"], report_year: year, widget_type: "diagram", slug: "total_projects_capital_types", position: 10, title: "Total number of projects per capital type"},

@@ -314,6 +314,8 @@ en:
         name: Total
   widgets:
     headers:
+      common:
+        values: Values
       summary:
         total_number_funders: Total number of FORA members
         total_number_projects: Total number of projects
@@ -324,3 +326,11 @@ en:
         funded_with: Funded with ($)
       funded_subgeographics:
         funded_with: Funded with ($)
+      funded_demographics:
+        demographic: Demographic
+      funded_funder_types:
+        organization_type: Organization type
+      funded_capital_types:
+        capital_type: Capital type
+      funded_recipient_legal_statuses:
+        recipient_legal_status: Recipient legal status
