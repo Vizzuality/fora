@@ -22,17 +22,17 @@
       }
     },
     {
-      "id": "funded_funder_legal_statuses",
-      "type": "widget_slug",
-      "attributes": {
-        "name": "funded_funder_legal_statuses"
-      }
-    },
-    {
       "id": "funded_funder_types",
       "type": "widget_slug",
       "attributes": {
         "name": "funded_funder_types"
+      }
+    },
+    {
+      "id": "funded_recipient_legal_statuses",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "funded_recipient_legal_statuses"
       }
     },
     {
