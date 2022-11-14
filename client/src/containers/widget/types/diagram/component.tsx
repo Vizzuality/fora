@@ -42,7 +42,7 @@ const WidgetDiagram = (widget: Widget) => {
   return (
     <div
       className={cx({
-        'py-8 px-6 space-y-5': true,
+        'py-8 px-6 space-y-5 h-full': true,
         [className]: !!className,
       })}
     >
