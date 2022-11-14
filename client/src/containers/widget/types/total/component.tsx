@@ -19,13 +19,14 @@ const WidgetTotal = ({ slug, config, query }: Widget) => {
     const { data: d } = data;
 
     return d.headers.map((header, index) => {
+      const [values] = d.values;
       const total = meta.find((t) => t.id === header.value);
 
       return {
         id: header.value,
         ...total,
         ...header,
-        ...d.values[index],
+        ...values[index],
       };
     });
   }, [data, meta]);
