@@ -1,6 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
-
-import useCookie from 'react-use-cookie';
+import React from 'react';
 
 import Script from 'next/script';
 
