@@ -78,6 +78,7 @@ RSpec.describe "API V1 Widgets", type: :request do
       produces "application/json"
       parameter name: :slug, in: :path, type: :string, description: "Slug of Widget"
       parameter name: "filter[report_year]", in: :query, type: :number, enum: ReportYear::TYPES, description: "Get widgets only for specified report year", required: true
+      parameter name: "filter[geographic]", in: :query, type: :string, description: "Filter results only for specified geographic.", required: false
       parameter name: "filter[subgeographics]", in: :query, type: :string, description: "Filter results only for specified subgeographics. Use comma to separate multiple fields", required: false
       parameter name: "filter[areas]", in: :query, type: :string, enum: Area::TYPES, description: "Filter results only for specified areas. Use comma to separate multiple fields", required: false
       parameter name: "filter[demographics]", in: :query, type: :string, enum: Demographic::TYPES, description: "Filter results only for specified demographics. Use comma to separate multiple fields", required: false
@@ -120,6 +121,7 @@ RSpec.describe "API V1 Widgets", type: :request do
       produces "text/csv"
       parameter name: :slug, in: :path, type: :string, description: "Slug of Widget"
       parameter name: "filter[report_year]", in: :query, type: :number, enum: ReportYear::TYPES, description: "Get widgets only for specified report year", required: true
+      parameter name: "filter[geographic]", in: :query, type: :string, description: "Filter results only for specified geographic.", required: false
       parameter name: "filter[subgeographics]", in: :query, type: :string, description: "Filter results only for specified subgeographics. Use comma to separate multiple fields", required: false
       parameter name: "filter[areas]", in: :query, type: :string, enum: Area::TYPES, description: "Filter results only for specified areas. Use comma to separate multiple fields", required: false
       parameter name: "filter[demographics]", in: :query, type: :string, enum: Demographic::TYPES, description: "Filter results only for specified demographics. Use comma to separate multiple fields", required: false

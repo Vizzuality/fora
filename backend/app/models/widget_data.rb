@@ -16,9 +16,9 @@ class WidgetData
 
   def data
     @data ||= begin
-      return query_service.call if query_klass.support_filters? # do not cache data which uses filters for now, because it contains too many options
+      return query_service.call unless query_service.enabled_cache?
 
-      Rails.cache.fetch "widget-data-#{widget.id}", expires_in: 1.hour do
+      Rails.cache.fetch "widget-data-#{widget.id}-#{query_service.cache_key}", expires_in: 1.hour do
         query_service.call
       end
     end

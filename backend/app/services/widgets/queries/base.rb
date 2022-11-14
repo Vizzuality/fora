@@ -18,6 +18,14 @@ module Widgets
         nil
       end
 
+      def enabled_cache?
+        !self.class.support_filters?
+      end
+
+      def cache_key
+        nil
+      end
+
       private
 
       def headers

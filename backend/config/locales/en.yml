@@ -322,3 +322,5 @@ en:
       funded_areas:
         area_of_focus: Area of Focus
         funded_with: Funded with ($)
+      funded_subgeographics:
+        funded_with: Funded with ($)
