@@ -1,5 +1,7 @@
 import React, { useMemo } from 'react';
 
+import { formatDollar } from 'lib/formats';
+
 import { useAppSelector } from 'store/hooks';
 
 import { useWidgets } from 'hooks/widgets';
@@ -25,12 +27,14 @@ const META = [
     label: 'Total capital (USD)',
     info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet',
     value: '-',
+    format: formatDollar,
   },
   {
     id: 'total_grants',
     label: 'Total grants (USD)',
     info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc sit amet',
     value: '-',
+    format: formatDollar,
   },
 ];
 const ReportOverview = () => {

@@ -18,7 +18,8 @@ const WidgetTotal = ({ slug, config, query }: Widget) => {
 
     const { data: d } = data;
 
-    return d.headers.map((header, index) => {
+    // Get values
+    const d1 = d.headers.map((header, index) => {
       const [values] = d.values;
       const total = meta.find((t) => t.id === header.value);
 
@@ -27,6 +28,16 @@ const WidgetTotal = ({ slug, config, query }: Widget) => {
         ...total,
         ...header,
         ...values[index],
+      };
+    });
+
+    // Parse values
+    return d1.map((v) => {
+      const { format } = meta.find((t) => t.id === v.id);
+
+      return {
+        ...v,
+        ...(format && { value: format(v.value, { maximumSignificantDigits: 3 }) }),
       };
     });
   }, [data, meta]);

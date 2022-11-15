@@ -11,7 +11,7 @@ const SLUGS = [
   'funded_demographics',
   'funded_funder_types',
   'funded_capital_types',
-  'funded_funder_legal_statuses',
+  'funded_recipient_legal_statuses',
 ];
 
 const ReportFundingCharts = () => {
