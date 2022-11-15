@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "id": "70e5aea4-438f-4b76-8b03-a1b8faa430a2",
+      "type": "widget",
+      "attributes": {
+        "title": "Enim repellat pariatur est.",
+        "description": "Enim repellat pariatur. Earum modi eos. Libero tempora exercitationem. Qui dolorem quo."
+      }
+    },
+    {
+      "id": "64b74398-e050-4538-aac1-07593f77de61",
+      "type": "widget",
+      "attributes": {
+        "title": "Placeat commodi libero et.",
+        "description": "Placeat commodi libero. Quo recusandae repellat. Sunt commodi tempore. Voluptatem et corrupti."
+      }
+    }
+  ]
+}

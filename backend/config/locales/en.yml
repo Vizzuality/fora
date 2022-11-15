@@ -23,7 +23,7 @@ en:
               password_complexity: must include at least one lowercase letter, one uppercase letter, and one digit
   api:
     errors:
-      missing_geographic: "Geographic param is mandatory!"
+      missing_mandatory_param: "Parameter %{name} is mandatory!"
   backoffice:
     actions:
       show: Show
@@ -312,3 +312,25 @@ en:
         name: Table
       total:
         name: Total
+  widgets:
+    headers:
+      common:
+        values: Values
+      summary:
+        total_number_funders: Total number of FORA members
+        total_number_projects: Total number of projects
+        total_capital: Total capital (USD)
+        total_grants: Total grants (USD)
+      funded_areas:
+        area_of_focus: Area of Focus
+        funded_with: Funded with ($)
+      funded_subgeographics:
+        funded_with: Funded with ($)
+      funded_demographics:
+        demographic: Demographic
+      funded_funder_types:
+        organization_type: Organization type
+      funded_capital_types:
+        capital_type: Capital type
+      funded_recipient_legal_statuses:
+        recipient_legal_status: Recipient legal status

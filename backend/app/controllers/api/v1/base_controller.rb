@@ -4,6 +4,7 @@ module API
       include ActionController::RequestForgeryProtection
       include API::Errors
       include API::Authentication
+      include API::ParamsValidations
 
       protect_from_forgery with: :exception
 

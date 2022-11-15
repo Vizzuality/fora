@@ -1,0 +1,116 @@
+{
+  "data": [
+    {
+      "id": "funded_areas",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "funded_areas"
+      }
+    },
+    {
+      "id": "funded_capital_types",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "funded_capital_types"
+      }
+    },
+    {
+      "id": "funded_demographics",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "funded_demographics"
+      }
+    },
+    {
+      "id": "funded_funder_types",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "funded_funder_types"
+      }
+    },
+    {
+      "id": "funded_recipient_legal_statuses",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "funded_recipient_legal_statuses"
+      }
+    },
+    {
+      "id": "funded_subgeographics",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "funded_subgeographics"
+      }
+    },
+    {
+      "id": "summary",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "summary"
+      }
+    },
+    {
+      "id": "total_funders_capital_acceptances",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "total_funders_capital_acceptances"
+      }
+    },
+    {
+      "id": "total_funders_capital_types",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "total_funders_capital_types"
+      }
+    },
+    {
+      "id": "total_funders_demographics",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "total_funders_demographics"
+      }
+    },
+    {
+      "id": "total_funders_funder_types",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "total_funders_funder_types"
+      }
+    },
+    {
+      "id": "total_projects_capital_types",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "total_projects_capital_types"
+      }
+    },
+    {
+      "id": "total_projects_demographics",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "total_projects_demographics"
+      }
+    },
+    {
+      "id": "total_projects_funders_areas",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "total_projects_funders_areas"
+      }
+    },
+    {
+      "id": "total_projects_funders_subgeographics",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "total_projects_funders_subgeographics"
+      }
+    },
+    {
+      "id": "total_projects_recipient_legal_statuses",
+      "type": "widget_slug",
+      "attributes": {
+        "name": "total_projects_recipient_legal_statuses"
+      }
+    }
+  ]
+}

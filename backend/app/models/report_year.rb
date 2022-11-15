@@ -4,7 +4,7 @@ class ReportYear
   include EnumModel
 
   # Recreate Widgets when adding new year by specialized task
-  TYPES = %w[
+  TYPES = [
     2021
   ].freeze
 

@@ -57,8 +57,8 @@ RSpec.describe "API V1 Projects", type: :request do
         end
 
         context "with relationships" do
-          let("fields[project]") { "name,subgeographics,investments,nonexisting" }
-          let(:includes) { "subgeographics,investments" }
+          let("fields[project]") { "name,subgeographics,funders,nonexisting" }
+          let(:includes) { "subgeographics,funders" }
 
           it "matches snapshot" do
             expect(response.body).to match_snapshot("api/v1/projects-include-relationships")

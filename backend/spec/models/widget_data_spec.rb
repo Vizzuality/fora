@@ -1,23 +1,27 @@
 require "rails_helper"
+require "csv"
 
 RSpec.describe WidgetData, type: :model do
-  subject { build(:widget_data) }
+  subject { described_class.new widget: widget, filters: filters }
 
-  it { is_expected.to be_valid }
+  let(:widget) { create :widget, slug: "summary" }
+  let(:filters) { {areas: "test"} }
 
-  it "should not be valid without widget" do
-    subject.widget = nil
-    expect(subject).to have(1).errors_on(:widget)
+  it "returns correct title" do
+    expect(subject.title).to eq(widget.title)
   end
 
-  it "should not be valid without uniq filter_key" do
-    subject.save!
-    widget_data = WidgetData.new subject.reload.attributes
-    expect(widget_data).to have(1).errors_on(:filter_key)
+  it "returns correct data" do
+    expect(subject.data).to eq(Widgets::Queries::Summary.new(widget.report_year, filters).call)
   end
 
-  it "should not be valid without data" do
-    subject.data = nil
-    expect(subject).to have(1).errors_on(:data)
+  describe "#to_csv" do
+    let(:csv) { CSV.parse subject.to_csv }
+    let(:query_data) { Widgets::Queries::Summary.new(widget.report_year, filters).call }
+
+    it "returns correct data inside csv" do
+      expect(csv.first).to eq(query_data[:headers].pluck(:label))
+      expect(csv.second).to eq(query_data[:values].first.pluck(:value).map(&:to_s))
+    end
   end
 end
