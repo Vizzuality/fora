@@ -19,3 +19,19 @@ output "account_id" {
 #output "redis_port" {
 #  value = module.redis.port
 #}
+
+output "mx_record_name" {
+  value = module.email.mx_record_name
+}
+
+output "mx_record_value" {
+  value = module.email.mx_record_value
+}
+
+output "txt_record_name" {
+  value = module.email.txt_record_name
+}
+
+output "txt_record_value" {
+  value = module.email.txt_record_value
+}

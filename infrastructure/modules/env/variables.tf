@@ -70,3 +70,8 @@ variable "rds_instance_class" {
   type        = string
   description = "RDS instance type class"
 }
+
+variable "ses_domain_identity_arn" {
+  type        = string
+  description = "AWS SES domain identity ARN"
+}
