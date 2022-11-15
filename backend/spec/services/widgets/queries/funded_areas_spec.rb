@@ -10,9 +10,9 @@ RSpec.describe Widgets::Queries::FundedAreas do
     let!(:ignored_investment) { create :investment, year_invested: 2030, amount: 20, areas: ["equity_and_justice"] }
 
     it "contains correct header" do
-      expect(result[:headers].first[:label]).to eq(I18n.t("widgets.headers.funded_areas.area_of_focus"))
+      expect(result[:headers].first[:label]).to eq(I18n.t("activerecord.models.area.one"))
       expect(result[:headers].first[:value]).to eq(:area_of_focus)
-      expect(result[:headers].second[:label]).to eq(I18n.t("widgets.headers.funded_areas.funded_with"))
+      expect(result[:headers].second[:label]).to eq(I18n.t("widgets.headers.common.funded_with"))
       expect(result[:headers].second[:value]).to eq(:funded_with)
     end
 

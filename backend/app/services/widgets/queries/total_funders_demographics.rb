@@ -1,6 +1,6 @@
 module Widgets
   module Queries
-    class FundedDemographics < Base
+    class TotalFundersDemographics < Base
       private
 
       def headers
@@ -20,12 +20,9 @@ module Widgets
       end
 
       def investments
-        @investments ||= Investment.select(:amount, :project_id).includes(project: :recipient)
-          .where(year_invested: year).each_with_object({}) do |investment, res|
-          investment.project.recipient.demographics.each do |demographic|
-            res[demographic] = (res[demographic] || 0) + (investment.amount / investment.project.recipient.demographics.size).round
-          end
-        end
+        @investments ||= Investment.joins(:funder, project: :recipient)
+          .where(funders: {date_joined_fora: ..DateTime.new(year).end_of_year})
+          .group("unnest(recipients.demographics)").count("DISTINCT investments.funder_id")
       end
     end
   end

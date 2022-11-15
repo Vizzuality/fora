@@ -5,7 +5,7 @@ module Widgets
 
       def headers
         [
-          {label: I18n.t("widgets.headers.total_projects_funders_areas.area_of_focus"), value: :area_of_focus},
+          {label: I18n.t("activerecord.models.area.one"), value: :area_of_focus},
           {label: I18n.t("widgets.headers.total_projects_funders_areas.total_projects"), value: :total_projects},
           {label: I18n.t("widgets.headers.total_projects_funders_areas.total_funders"), value: :total_funders}
         ]

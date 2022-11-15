@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Widgets::Queries::FundedRecipientLegalStatuses do
+RSpec.describe Widgets::Queries::TotalProjectsRecipientLegalStatuses do
   subject { described_class.new 2021 }
 
   describe "#call" do
@@ -8,10 +8,10 @@ RSpec.describe Widgets::Queries::FundedRecipientLegalStatuses do
     let(:project_1) { create :project, recipient: create(:recipient, recipient_legal_status: "for_profit") }
     let(:project_2) { create :project, recipient: create(:recipient, recipient_legal_status: "for_profit") }
     let(:project_3) { create :project, recipient: create(:recipient, recipient_legal_status: "foundation") }
-    let!(:investment_1) { create :investment, year_invested: 2021, amount: 10, project: project_1 }
-    let!(:investment_2) { create :investment, year_invested: 2021, amount: 20, project: project_2 }
-    let!(:investment_3) { create :investment, year_invested: 2021, amount: 20, project: project_3 }
-    let!(:ignored_investment) { create :investment, year_invested: 2030, amount: 20, project: project_1 }
+    let!(:investment_1) { create :investment, year_invested: 2021, project: project_1 }
+    let!(:investment_2) { create :investment, year_invested: 2021, project: project_2 }
+    let!(:investment_3) { create :investment, year_invested: 2021, project: project_3 }
+    let!(:ignored_investment) { create :investment, year_invested: 2030, project: project_1 }
 
     it "contains correct header" do
       expect(result[:headers].first[:label]).to eq(I18n.t("activerecord.models.recipient_legal_status.one"))
@@ -28,8 +28,8 @@ RSpec.describe Widgets::Queries::FundedRecipientLegalStatuses do
     end
 
     it "has correct values for appropriate recipient legal status" do
-      expect(result[:values].find { |v| v.first[:id] == "for_profit" }.second[:value]).to eq(30)
-      expect(result[:values].find { |v| v.first[:id] == "foundation" }.second[:value]).to eq(20)
+      expect(result[:values].find { |v| v.first[:id] == "for_profit" }.second[:value]).to eq(2)
+      expect(result[:values].find { |v| v.first[:id] == "foundation" }.second[:value]).to eq(1)
     end
   end
 end

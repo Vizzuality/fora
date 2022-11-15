@@ -1,6 +1,6 @@
 module Widgets
   module Queries
-    class FundedRecipientLegalStatuses < Base
+    class TotalProjectsRecipientLegalStatuses < Base
       private
 
       def headers
@@ -20,7 +20,7 @@ module Widgets
       end
 
       def investments
-        @investments ||= Investment.where(year_invested: year).joins(project: :recipient).group("recipients.recipient_legal_status").sum(:amount)
+        @investments ||= Investment.where(year_invested: year).joins(project: :recipient).group("recipients.recipient_legal_status").count
       end
     end
   end
