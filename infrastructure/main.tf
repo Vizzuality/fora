@@ -32,14 +32,22 @@ module "bootstrap" {
 module "staging" {
   source = "./modules/env"
 
-  project_name       = var.project_name
-  environment        = "staging"
-  vpc                = data.aws_vpc.default_vpc
-  subnet_ids         = data.aws_subnets.subnet_ids.ids
-  availability_zones = data.aws_availability_zones.available_azs.names
-  ec2_instance_type  = "t3a.medium"
-  ec2_ami            = data.aws_ami.latest-ubuntu-lts.id
-  ec2_user_data      = data.template_file.server_setup.rendered
-  rds_engine_version = var.rds_engine_version
-  rds_instance_class = "db.t3.micro"
+  project_name            = var.project_name
+  environment             = "staging"
+  vpc                     = data.aws_vpc.default_vpc
+  subnet_ids              = data.aws_subnets.subnet_ids.ids
+  availability_zones      = data.aws_availability_zones.available_azs.names
+  ec2_instance_type       = "t3a.medium"
+  ec2_ami                 = data.aws_ami.latest-ubuntu-lts.id
+  ec2_user_data           = data.template_file.server_setup.rendered
+  rds_engine_version      = var.rds_engine_version
+  rds_instance_class      = "db.t3.micro"
+  ses_domain_identity_arn = module.email.ses_domain_identity_arn
+}
+
+module "email" {
+  source = "./modules/email"
+
+  domain = var.domain
+  region = var.aws_region
 }

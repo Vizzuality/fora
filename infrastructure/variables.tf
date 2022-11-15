@@ -27,6 +27,15 @@ variable "allowed_account_id" {
 }
 
 #
+# SES configuration
+#
+
+variable "domain" {
+  type        = string
+  description = "Domain from which to send emails"
+}
+
+#
 # RDS configuration
 #
 variable "rds_log_retention_period" {
