@@ -132,21 +132,3 @@ resource "aws_iam_user_policy_attachment" "s3_access_for_fora" {
   user       = aws_iam_user.backend_aws_user.name
   policy_arn = aws_iam_policy.fora_file_storage_s3_rw_access.arn
 }
-
-data "aws_iam_policy_document" "ses_sender" {
-  statement {
-    actions   = ["ses:SendRawEmail", "ses:SendEmail"]
-    resources = [var.ses_domain_identity_arn]
-  }
-}
-
-resource "aws_iam_policy" "ses_sender" {
-  name        = "ses_sender"
-  description = "Allows sending of e-mails via Simple Email Service"
-  policy      = data.aws_iam_policy_document.ses_sender.json
-}
-
-resource "aws_iam_user_policy_attachment" "ses_access_for_fora" {
-  user       = aws_iam_user.backend_aws_user.name
-  policy_arn = aws_iam_policy.ses_sender.arn
-}

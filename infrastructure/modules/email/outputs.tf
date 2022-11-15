@@ -17,3 +17,7 @@ output "txt_record_value" {
 output "ses_domain_identity_arn" {
   value = aws_ses_domain_identity.domain_identity.arn
 }
+
+output "smtp_server_address" {
+  value = "email-smtp.${var.region}.amazonaws.com"
+}
