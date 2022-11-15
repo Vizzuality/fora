@@ -24,7 +24,7 @@ const List = () => {
     isFetched: projectsIsFetched,
   } = useProjects({
     filters,
-    includes: 'subgeographic_ancestors,investments',
+    includes: 'subgeographic_ancestors',
   });
 
   const DATA = useMemo(() => {

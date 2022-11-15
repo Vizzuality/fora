@@ -4,7 +4,6 @@ import { Demographic } from './demographic';
 import { FunderLegalStatus } from './funder-legal-status';
 import { FunderType } from './funder-type';
 import { SubGeographic } from './geographics';
-import { Investment } from './investment';
 import { Project } from './project';
 
 /**
@@ -26,7 +25,6 @@ export interface Funder {
   demographics: Demographic['id'][];
   funder_legal_status: FunderLegalStatus['id'];
   funder_type: FunderType['id'];
-  investments: Investment[];
   leadership_demographics: Demographic['id'][];
   primary_office_address: string;
   primary_office_city: string;
