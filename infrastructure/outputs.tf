@@ -35,3 +35,7 @@ output "txt_record_name" {
 output "txt_record_value" {
   value = module.email.txt_record_value
 }
+
+output "smtp_server_address" {
+  value = module.email.smtp_server_address
+}
