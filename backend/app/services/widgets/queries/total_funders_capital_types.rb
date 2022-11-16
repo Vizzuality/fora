@@ -1,6 +1,6 @@
 module Widgets
   module Queries
-    class FundedCapitalTypes < Base
+    class TotalFundersCapitalTypes < Base
       private
 
       def headers
@@ -20,11 +20,7 @@ module Widgets
       end
 
       def investments
-        @investments ||= Investment.select(:amount, :capital_types).where(year_invested: year).each_with_object({}) do |investment, res|
-          investment.capital_types.each do |capital_type|
-            res[capital_type] = (res[capital_type] || 0) + (investment.amount / investment.capital_types.size).round
-          end
-        end
+        @investments = Investment.where(year_invested: year).group("unnest(capital_types)").count("DISTINCT investments.funder_id")
       end
     end
   end

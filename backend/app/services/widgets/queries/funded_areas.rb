@@ -5,8 +5,8 @@ module Widgets
 
       def headers
         [
-          {label: I18n.t("widgets.headers.funded_areas.area_of_focus"), value: :area_of_focus},
-          {label: I18n.t("widgets.headers.funded_areas.funded_with"), value: :funded_with}
+          {label: I18n.t("activerecord.models.area.one"), value: :area_of_focus},
+          {label: I18n.t("widgets.headers.common.funded_with"), value: :funded_with}
         ]
       end
 

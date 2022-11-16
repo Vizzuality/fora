@@ -6,6 +6,24 @@ en:
       admin:
         one: Admin
         few: Admins
+      area:
+        one: Area of Focus
+        few: Areas of Focus
+      demographic:
+        one: Demographic
+        few: Demographics
+      funder_type:
+        one: Organization type
+        few: Organization types
+      capital_type:
+        one: Capital type
+        few: Capital types
+      recipient_legal_status:
+        one: Recipient legal status
+        few: Recipient legal statuses
+      capital_acceptance:
+        one: Capital acceptance
+        few: Capital acceptances
     attributes:
       admin:
         first_name: First name
@@ -316,21 +334,12 @@ en:
     headers:
       common:
         values: Values
+        funded_with: Funded with ($)
       summary:
         total_number_funders: Total number of FORA members
         total_number_projects: Total number of projects
         total_capital: Total capital (USD)
         total_grants: Total grants (USD)
-      funded_areas:
-        area_of_focus: Area of Focus
-        funded_with: Funded with ($)
-      funded_subgeographics:
-        funded_with: Funded with ($)
-      funded_demographics:
-        demographic: Demographic
-      funded_funder_types:
-        organization_type: Organization type
-      funded_capital_types:
-        capital_type: Capital type
-      funded_recipient_legal_statuses:
-        recipient_legal_status: Recipient legal status
+      total_projects_funders_areas:
+        total_projects: Total projects
+        total_funders: Total funders

@@ -1,17 +1,14 @@
 require "rails_helper"
 
-RSpec.describe Widgets::Queries::FundedFunderTypes do
+RSpec.describe Widgets::Queries::TotalFundersFunderTypes do
   subject { described_class.new 2021 }
 
   describe "#call" do
     let(:result) { subject.call }
-    let(:funder_1) { create :funder, funder_type: "accelerator" }
-    let(:funder_2) { create :funder, funder_type: "accelerator" }
-    let(:funder_3) { create :funder, funder_type: "advisory" }
-    let!(:investment_1) { create :investment, year_invested: 2021, amount: 10, funder: funder_1 }
-    let!(:investment_2) { create :investment, year_invested: 2021, amount: 20, funder: funder_2 }
-    let!(:investment_3) { create :investment, year_invested: 2021, amount: 20, funder: funder_3 }
-    let!(:ignored_investment) { create :investment, year_invested: 2030, amount: 20, funder: funder_1 }
+    let!(:funder_1) { create :funder, date_joined_fora: Date.new(2021), funder_type: "accelerator" }
+    let!(:funder_2) { create :funder, date_joined_fora: Date.new(2021), funder_type: "accelerator" }
+    let!(:funder_3) { create :funder, date_joined_fora: Date.new(2021), funder_type: "advisory" }
+    let!(:ignored_funder) { create :funder, date_joined_fora: Date.new(2030), funder_type: "accelerator" }
 
     it "contains correct header" do
       expect(result[:headers].first[:label]).to eq(I18n.t("activerecord.models.funder_type.one"))
@@ -28,8 +25,8 @@ RSpec.describe Widgets::Queries::FundedFunderTypes do
     end
 
     it "has correct values for appropriate funder types" do
-      expect(result[:values].find { |v| v.first[:id] == "accelerator" }.second[:value]).to eq(30)
-      expect(result[:values].find { |v| v.first[:id] == "advisory" }.second[:value]).to eq(20)
+      expect(result[:values].find { |v| v.first[:id] == "accelerator" }.second[:value]).to eq(2)
+      expect(result[:values].find { |v| v.first[:id] == "advisory" }.second[:value]).to eq(1)
     end
   end
 end
