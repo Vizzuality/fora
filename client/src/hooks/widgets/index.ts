@@ -3,11 +3,11 @@ import { useMemo } from 'react';
 import { jsonAPIAdapter } from 'lib/adapters/json-api-adapter';
 import { ParamsProps } from 'lib/adapters/types';
 
-import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from '@tanstack/react-query';
+import { useMutation, useQuery, UseQueryOptions } from '@tanstack/react-query';
 import CHROMA from 'chroma-js';
 import { scaleOrdinal } from 'd3-scale';
 
-import { Widget } from 'types/widget';
+import { Widget, WidgetDownload } from 'types/widget';
 
 import { VISUALIZATION_RAMP } from 'constants/colors';
 
@@ -34,12 +34,12 @@ export const fetchWidget = (slug: string, params?: ParamsProps) =>
     params: jsonAPIAdapter(params),
   }).then((response) => response.data);
 
-export const downloadWidget = (slug: string) =>
+export const downloadWidget = (slug: string, params?: ParamsProps) =>
   API.request({
     method: 'GET',
     url: `/widgets/${slug}/download`,
-    params: jsonAPIAdapter({}),
-  }).then((response) => response.data);
+    params: jsonAPIAdapter(params),
+  }).then((response) => new Blob([response.data], { type: 'text/csv' }));
 
 /**
 ****************************************
@@ -90,29 +90,26 @@ export function useWidget(
 ****************************************
 */
 
-export function useWidgetDownload(
-  slug: string,
-  queryOptions: UseMutationOptions<unknown, unknown> = {}
-) {
-  const fetch = () => downloadWidget(slug);
+export function useWidgetDownload() {
+  const fetch = ({ slug, params }) => downloadWidget(slug, params);
 
-  return useMutation(fetch, {
-    onSuccess: () => {
-      // const { data: blob } = data;
-      // const { pid } = variables;
-      // const url = window.URL.createObjectURL(new Blob([blob]));
-      // const link = document.createElement('a');
-      // link.href = url;
-      // link.setAttribute('download', `project-${pid}.zip`);
-      // document.body.appendChild(link);
-      // link.click();
-      // link.remove();
-      // console.info('Success', data, variables, context);
+  return useMutation({
+    mutationFn: ({ slug, params }: WidgetDownload) => {
+      return fetch({ slug, params });
+    },
+    onSuccess: (data, variables) => {
+      const { slug } = variables;
+      const url = window.URL.createObjectURL(data);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `widget-${slug}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
     },
     onError: (error, variables, context) => {
       console.info('Error', error, variables, context);
     },
-    ...queryOptions,
   });
 }
 

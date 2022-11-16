@@ -5,8 +5,10 @@ import cx from 'classnames';
 import { Widget } from 'types/widget';
 
 import { useModal } from 'hooks/modals';
+import { useWidgetDownload } from 'hooks/widgets';
 
 import Icon from 'components/icon';
+import Loading from 'components/loading';
 import Modal from 'components/modal';
 
 import DOWNLOAD_SVG from 'svgs/ui/download.svg?sprite';
@@ -20,10 +22,12 @@ const CHART_TYPES = {
 };
 
 const WidgetDiagram = (widget: Widget) => {
-  const { title, description, config } = widget;
+  const { title, slug, description, config, params } = widget;
   const { type, className } = config;
 
   const { isOpen: isOpenModal, open: openModal, close: closeModal } = useModal();
+
+  const { mutate: mutateDownload, isLoading: isDownloadLoading } = useWidgetDownload();
 
   const CHART = useMemo(() => {
     return createElement(CHART_TYPES[type], {
@@ -36,8 +40,8 @@ const WidgetDiagram = (widget: Widget) => {
   }, [openModal]);
 
   const handleClickDownload = useCallback(() => {
-    console.info('Download');
-  }, []);
+    mutateDownload({ slug, params });
+  }, [slug, params, mutateDownload]);
 
   return (
     <div
@@ -64,7 +68,8 @@ const WidgetDiagram = (widget: Widget) => {
             className="p-3 shrink-0 hover:bg-green-0/25"
             onClick={handleClickDownload}
           >
-            <div className="flex items-center justify-center w-6 h-6">
+            <div className="relative flex items-center justify-center w-6 h-6">
+              <Loading visible={isDownloadLoading} />
               <Icon icon={DOWNLOAD_SVG} className="block w-5 h-5" />
             </div>
           </button>

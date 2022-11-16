@@ -26,12 +26,13 @@ const WidgetWrapper = ({ params, ...widget }: WidgetWrapperProps) => {
     if (WIDGETS_TYPES[widgetType]) {
       return createElement(WIDGETS_TYPES[widgetType], {
         ...widget,
+        params,
         query,
       });
     }
 
     return null;
-  }, [widget, query, widgetType]);
+  }, [widget, params, query, widgetType]);
 
   return WIDGET;
 };

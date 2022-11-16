@@ -28,16 +28,23 @@ const API = axios.create({
         [snakeKey]: prms[key],
       };
     }, {});
+
     return qs.stringify(parsedParams, { arrayFormat: 'comma' });
   },
 });
 
-API.interceptors.response.use((response) => ({
-  ...response,
-  data: {
-    ...response.data,
-    data: !!response.data && dataFormatter.deserialize(response.data), // JSON API deserialize
-  },
-}));
+API.interceptors.response.use((response) => {
+  if (response.headers['content-type'].includes('application/json')) {
+    return {
+      ...response,
+      data: {
+        ...response.data,
+        data: !!response.data && dataFormatter.deserialize(response.data), // JSON API deserialize
+      },
+    };
+  }
+
+  return response;
+});
 
 export default API;
