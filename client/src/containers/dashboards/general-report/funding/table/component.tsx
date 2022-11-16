@@ -2,27 +2,31 @@ import React, { useMemo, useState } from 'react';
 
 import { useAppSelector } from 'store/hooks';
 
-import { ColumnDef, SortingState } from '@tanstack/react-table';
+import { ColumnDef, SortingFnOption, SortingState } from '@tanstack/react-table';
 
 import { useWidgets } from 'hooks/widgets';
 
 import Widget from 'containers/widget';
 import Wrapper from 'containers/wrapper';
 
+import { Select } from 'components/forms';
 import { HeaderSorted } from 'components/table/headers';
 
 const SLUGS = ['funded_areas', 'funded_subgeographics'];
+const OPTIONS = [
+  { label: 'Area of focus', value: 'funded_areas' },
+  { label: 'Geographic scope', value: 'funded_subgeographics' },
+];
 
 type AggregatedArea = {
-  area_of_focus: string;
+  area_of_focus?: string;
+  geographic?: string;
   funded_width: number;
 };
 
 const ReportFundingTable = () => {
-  const [
-    selectedWidget,
-    // setSelectedWidget
-  ] = useState(SLUGS[0]);
+  const [selectedWidget, setSelectedWidget] = useState(SLUGS[0]);
+
   const { filters } = useAppSelector((state) => state['/dashboards/general-report']);
 
   const { data: widgetsData } = useWidgets({
@@ -35,11 +39,25 @@ const ReportFundingTable = () => {
 
   const columns = useMemo<ColumnDef<AggregatedArea>[]>(
     () => [
-      {
-        header: (ctx) => <HeaderSorted {...ctx}>Area</HeaderSorted>,
-        accessorKey: 'area_of_focus',
-        sortingFn: 'alphanumeric',
-      },
+      ...(selectedWidget === 'funded_areas'
+        ? [
+            {
+              header: (ctx) => <HeaderSorted {...ctx}>Area</HeaderSorted>,
+              accessorKey: 'area_of_focus',
+              sortingFn: 'alphanumeric' as SortingFnOption<AggregatedArea>,
+            },
+          ]
+        : []),
+      ...(selectedWidget === 'funded_subgeographics'
+        ? [
+            {
+              header: (ctx) => <HeaderSorted {...ctx}>Countries</HeaderSorted>,
+              accessorKey: 'geographic',
+              sortingFn: 'alphanumeric' as SortingFnOption<AggregatedArea>,
+            },
+          ]
+        : []),
+
       {
         header: (ctx) => <HeaderSorted {...ctx}>Funded with ($)</HeaderSorted>,
         accessorKey: 'funded_with',
@@ -49,7 +67,7 @@ const ReportFundingTable = () => {
         },
       },
     ],
-    []
+    [selectedWidget]
   );
   const [sorting, setSorting] = useState<SortingState>([
     {
@@ -62,7 +80,19 @@ const ReportFundingTable = () => {
     <div className="pt-5 pb-16">
       <Wrapper>
         <div className="space-y-10">
-          <h3 className="max-w-2xl text-2xl font-display">Amount funded towards Area of Focus</h3>
+          <h3 className="max-w-2xl text-2xl font-display">
+            Amount funded towards{' '}
+            <Select
+              id="funded-select"
+              value={selectedWidget}
+              theme="none"
+              size="none"
+              options={OPTIONS}
+              onSelect={(value) => {
+                setSelectedWidget(value);
+              }}
+            />
+          </h3>
 
           <Widget
             {...WIDGET}
