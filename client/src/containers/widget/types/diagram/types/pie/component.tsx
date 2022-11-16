@@ -1,37 +1,34 @@
+import { useMemo } from 'react';
+
+import { Widget } from 'types/widget';
+
 import { useColorRamp } from 'hooks/widgets';
 
 import Pie from 'components/charts/pie';
 
-const FAKE_DATA = [
-  {
-    id: 'a',
-    label: 'Amazing',
-    value: 10,
-  },
-  {
-    id: 'b',
-    label: 'Beautiful',
-    value: 60,
-  },
-  {
-    id: 'c',
-    label: 'Cool',
-    value: 30,
-  },
-  {
-    id: 'd',
-    label: 'Delightful',
-    value: 40,
-  },
-  {
-    id: 'e',
-    label: 'Elegant',
-    value: 50,
-  },
-].sort((a, b) => b.value - a.value);
+const WidgetDiagramPie = ({ query }: Widget) => {
+  const { data } = query;
 
-const WidgetDiagramPie = () => {
-  const COLOR_SCALE = useColorRamp(FAKE_DATA);
+  const DATA = useMemo(() => {
+    if (!data) return [];
+
+    const { data: d } = data;
+
+    return d.values
+      .map((v) => {
+        const [name, value] = v;
+
+        return {
+          id: name.id,
+          label: name.value,
+          ...value,
+        };
+      })
+      .filter((v) => v.value)
+      .sort((a, b) => b.value - a.value);
+  }, [data]);
+
+  const COLOR_SCALE = useColorRamp(DATA);
 
   return (
     <div className="flex space-x-10">
@@ -40,7 +37,7 @@ const WidgetDiagramPie = () => {
         <Pie
           width={250}
           height={250}
-          data={FAKE_DATA}
+          data={DATA}
           // onPathMouseClick={(props) => console.log(props)}
         />
       </div>
@@ -49,7 +46,7 @@ const WidgetDiagramPie = () => {
       <div className="mt-5 grow space-y-2.5">
         <h4 className="font-semibold uppercase text-grey-20">Legend</h4>
         <ul className="space-y-1">
-          {FAKE_DATA
+          {DATA
             //
             .map((d) => (
               <li className="flex items-center" key={d.id}>

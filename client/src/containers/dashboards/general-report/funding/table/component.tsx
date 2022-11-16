@@ -14,8 +14,22 @@ import { HeaderSorted } from 'components/table/headers';
 
 const SLUGS = ['funded_areas', 'funded_subgeographics'];
 const OPTIONS = [
-  { label: 'Area of focus', value: 'funded_areas' },
-  { label: 'Geographic scope', value: 'funded_subgeographics' },
+  {
+    label: 'Area of focus',
+    value: 'funded_areas',
+    defaultSorting: {
+      id: 'funded_with',
+      desc: true,
+    },
+  },
+  {
+    label: 'Geographic scope',
+    value: 'funded_subgeographics',
+    defaultSorting: {
+      id: 'funded_with',
+      desc: true,
+    },
+  },
 ];
 
 type AggregatedArea = {
@@ -26,6 +40,7 @@ type AggregatedArea = {
 
 const ReportFundingTable = () => {
   const [selectedWidget, setSelectedWidget] = useState(SLUGS[0]);
+  const [sorting, setSorting] = useState<SortingState>();
 
   const { filters } = useAppSelector((state) => state['/dashboards/general-report']);
 
@@ -69,12 +84,17 @@ const ReportFundingTable = () => {
     ],
     [selectedWidget]
   );
-  const [sorting, setSorting] = useState<SortingState>([
-    {
-      id: 'funded_with',
-      desc: true,
-    },
-  ]);
+
+  useMemo(() => {
+    const option = OPTIONS.find((o) => o.value === selectedWidget);
+
+    setSorting([
+      {
+        id: option?.defaultSorting.id,
+        desc: option?.defaultSorting.desc,
+      },
+    ]);
+  }, [selectedWidget]);
 
   return (
     <div className="pt-5 pb-16">
