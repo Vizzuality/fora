@@ -13,13 +13,13 @@ class WidgetSlug
     "funded_recipient_legal_statuses" => Widgets::Queries::FundedRecipientLegalStatuses,
     "total_projects_funders_areas" => Widgets::Queries::TotalProjectsFundersAreas,
     "total_projects_funders_subgeographics" => Widgets::Queries::TotalProjectsFundersSubgeographics,
-    "total_projects_capital_types" => nil,
-    "total_projects_demographics" => nil,
-    "total_funders_capital_types" => nil,
-    "total_funders_demographics" => nil,
-    "total_funders_funder_types" => nil,
-    "total_funders_capital_acceptances" => nil,
-    "total_projects_recipient_legal_statuses" => nil
+    "total_projects_capital_types" => Widgets::Queries::TotalProjectsCapitalTypes,
+    "total_projects_demographics" => Widgets::Queries::TotalProjectsDemographics,
+    "total_funders_capital_types" => Widgets::Queries::TotalFundersCapitalTypes,
+    "total_funders_demographics" => Widgets::Queries::TotalFundersDemographics,
+    "total_funders_funder_types" => Widgets::Queries::TotalFundersFunderTypes,
+    "total_funders_capital_acceptances" => Widgets::Queries::TotalFundersCapitalAcceptances,
+    "total_projects_recipient_legal_statuses" => Widgets::Queries::TotalProjectsRecipientLegalStatuses
   }.freeze
   TYPES = TYPES_WITH_QUERIES.keys
 
