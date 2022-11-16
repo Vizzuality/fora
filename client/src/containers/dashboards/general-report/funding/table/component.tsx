@@ -2,10 +2,12 @@ import React, { useMemo, useState } from 'react';
 
 import { formatDollar } from 'lib/formats';
 
+import { Geographic } from 'store/action-map';
 import { useAppSelector } from 'store/hooks';
 
 import { ColumnDef, SortingFnOption, SortingState } from '@tanstack/react-table';
 
+import { useGeographics } from 'hooks/geographics';
 import { useWidgets } from 'hooks/widgets';
 
 import Widget from 'containers/widget';
@@ -43,6 +45,9 @@ type AggregatedArea = {
 const ReportFundingTable = () => {
   const [selectedWidget, setSelectedWidget] = useState(SLUGS[0]);
   const [sorting, setSorting] = useState<SortingState>();
+  const [geographic, setGeographic] = useState<Geographic>('regions');
+
+  const { data: geographicData } = useGeographics();
 
   const { filters } = useAppSelector((state) => state['/dashboards/general-report']);
 
@@ -68,9 +73,20 @@ const ReportFundingTable = () => {
       ...(selectedWidget === 'funded_subgeographics'
         ? [
             {
-              header: (ctx) => <HeaderSorted {...ctx}>Countries</HeaderSorted>,
+              header: () => (
+                <Select
+                  id="geographic-table-header"
+                  theme="none"
+                  size="none"
+                  options={geographicData.map((geo) => ({
+                    label: geo.name,
+                    value: geo.id,
+                  }))}
+                  value={geographic}
+                  onSelect={(v) => setGeographic(v as Geographic)}
+                />
+              ),
               accessorKey: 'geographic',
-              sortingFn: 'alphanumeric' as SortingFnOption<AggregatedArea>,
             },
           ]
         : []),
@@ -90,7 +106,7 @@ const ReportFundingTable = () => {
         },
       },
     ],
-    [selectedWidget]
+    [geographic, geographicData, selectedWidget]
   );
 
   useMemo(() => {
@@ -142,7 +158,12 @@ const ReportFundingTable = () => {
               enableSortingRemoval: false,
               onSortingChange: setSorting,
             }}
-            params={{ filters }}
+            params={{
+              filters: {
+                ...filters,
+                geographic,
+              },
+            }}
           />
         </div>
       </Wrapper>
