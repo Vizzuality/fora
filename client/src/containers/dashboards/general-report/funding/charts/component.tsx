@@ -1,5 +1,7 @@
 import React, { useMemo } from 'react';
 
+import { formatDollar } from 'lib/formats';
+
 import { useAppSelector } from 'store/hooks';
 
 import { useWidgets } from 'hooks/widgets';
@@ -34,7 +36,15 @@ const ReportFundingCharts = () => {
           <div key={widget.id} className="col-span-12 md:col-span-6">
             <Widget
               {...widget}
-              config={{ type: 'horizontal-bar', className: 'bg-white' }}
+              config={{
+                type: 'horizontal-bar',
+                className: 'bg-white',
+                format: (v) =>
+                  formatDollar(v, {
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                  }),
+              }}
               params={{ filters }}
             />
           </div>

@@ -4,8 +4,9 @@ import { Widget } from 'types/widget';
 
 import HorizontalBar from 'components/charts/horizontal-bar';
 
-const WidgetDiagramHorizontalBar = ({ query }: Widget) => {
+const WidgetDiagramHorizontalBar = ({ query, config }: Widget) => {
   const { data } = query;
+  const { format } = config;
 
   const DATA = useMemo(() => {
     if (!data) return [];
@@ -42,7 +43,7 @@ const WidgetDiagramHorizontalBar = ({ query }: Widget) => {
             .map((d) => (
               <li className="flex items-center h-3" key={d.id}>
                 <div className="text-sm font-semibold">
-                  {d.label} <strong className="font-bold">{d.value}</strong>
+                  {d.label} <strong className="font-bold">{format(d.value)}</strong>
                 </div>
               </li>
             ))}

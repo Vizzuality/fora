@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
+import { formatDollar } from 'lib/formats';
+
 import { useAppSelector } from 'store/hooks';
 
 import { ColumnDef, SortingFnOption, SortingState } from '@tanstack/react-table';
@@ -78,7 +80,13 @@ const ReportFundingTable = () => {
         accessorKey: 'funded_with',
         sortingFn: 'alphanumeric',
         cell: ({ cell }) => {
-          return <span>{cell.getValue().toLocaleString()}</span>;
+          return (
+            <span>
+              {formatDollar(cell.getValue(), {
+                maximumFractionDigits: 2,
+              })}
+            </span>
+          );
         },
       },
     ],
