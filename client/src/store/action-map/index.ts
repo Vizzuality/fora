@@ -23,6 +23,8 @@ interface ActionMapState {
     capitalTypes?: string[];
     recipientLegalStatuses?: string[];
   };
+  funderSelected?: string;
+  projectSelected?: string;
 }
 
 // Define the initial state using that type
@@ -39,6 +41,8 @@ export const initialState: ActionMapState = {
     capitalTypes: [],
     recipientLegalStatuses: [],
   },
+  funderSelected: null,
+  projectSelected: null,
 };
 
 export const slice = createSlice({
@@ -57,6 +61,14 @@ export const slice = createSlice({
       ...state,
       filters: action.payload,
     }),
+    setFunderSelected: (state, action: PayloadAction<string>) => ({
+      ...state,
+      funderSelected: action.payload,
+    }),
+    setProjectSelected: (state, action: PayloadAction<string>) => ({
+      ...state,
+      projectSelected: action.payload,
+    }),
     reset: () => initialState,
   },
   extraReducers: {
@@ -69,7 +81,8 @@ export const slice = createSlice({
   },
 });
 
-export const { setType, setView, setFilters, reset } = slice.actions;
+export const { setType, setView, setFilters, setFunderSelected, setProjectSelected, reset } =
+  slice.actions;
 
 export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
   return STORE_WRAPPER.getServerSideProps((store) => async (ctx) => {

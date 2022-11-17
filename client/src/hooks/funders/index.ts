@@ -158,7 +158,7 @@ export function useFunder(id: string, queryOptions: UseQueryOptions<Funder, unkn
   const fetch = () => fetchFunder(id);
   const query = useQuery(['funder', id], fetch, {
     enabled: !!id,
-    placeholderData: {},
+    placeholderData: { data: {} },
     ...queryOptions,
   });
 

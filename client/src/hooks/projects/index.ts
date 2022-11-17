@@ -158,7 +158,7 @@ export function useProject(id: string, queryOptions: UseQueryOptions<Project, un
 
   const query = useQuery(['project', id], fetch, {
     enabled: !!id,
-    placeholderData: {},
+    placeholderData: { data: {} },
     ...queryOptions,
   });
 

@@ -1,8 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 
-import { useRouter } from 'next/router';
-
-import { useAppSelector } from 'store/hooks';
+import { setProjectSelected } from 'store/action-map';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 import { useProjects } from 'hooks/projects';
 
@@ -13,8 +12,9 @@ import Loading from 'components/loading';
 import Item from '../item';
 
 const List = () => {
-  const { push } = useRouter();
   const { filters } = useAppSelector((state) => state['/action-map']);
+
+  const dispatch = useAppDispatch();
 
   // FUNDERS
   // get projects filtered by the current filters
@@ -44,12 +44,9 @@ const List = () => {
 
   const handleClick = useCallback(
     (id: string) => {
-      push({
-        pathname: `/projects/[id]`,
-        query: { id },
-      });
+      dispatch(setProjectSelected(id));
     },
-    [push]
+    [dispatch]
   );
 
   return (
