@@ -67,8 +67,8 @@ const ProjectPreview: React.FC<ProjectPreviewProps> = ({ id, onClick }) => {
         iconClassName="w-10 h-10"
       />
 
-      <div className="flex pt-8 space-x-32">
-        <div className="space-y-16">
+      <div className="flex space-x-16 lg:space-x-32">
+        <div className="w-full space-y-16">
           <div className="space-y-9">
             <div className="space-y-1">
               <div className="text-base font-normal text-grey-20">Last updated: 30 March 2022</div>
@@ -86,7 +86,9 @@ const ProjectPreview: React.FC<ProjectPreviewProps> = ({ id, onClick }) => {
           </Button>
         </div>
 
-        <InfoCard data={CARD_DATA} count={funders.length} />
+        <div className="w-full">
+          <InfoCard data={CARD_DATA} count={funders.length} />
+        </div>
       </div>
     </>
   );

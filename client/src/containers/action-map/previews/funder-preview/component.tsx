@@ -65,8 +65,8 @@ const FunderPreview: React.FC<FunderPreviewProps> = ({ id, onClick }) => {
         className="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-white/75"
         iconClassName="w-10 h-10"
       />
-      <div className="flex pt-8 space-x-32">
-        <div className="space-y-16">
+      <div className="flex space-x-16 lg:space-x-32">
+        <div className="w-full space-y-16">
           <div className="space-y-9">
             <div className="space-y-1">
               <h2 className="text-3xl font-normal capitalize line-clamp-2 text-ellipsis">{name}</h2>
@@ -89,7 +89,7 @@ const FunderPreview: React.FC<FunderPreviewProps> = ({ id, onClick }) => {
           </Button>
         </div>
 
-        <div>
+        <div className="w-full">
           <InfoCard data={CARD_DATA} count={projects.length} />
         </div>
       </div>
