@@ -9,6 +9,7 @@ import { useGeographics } from 'hooks/geographics';
 import { useWidgets } from 'hooks/widgets';
 
 import Widget from 'containers/widget';
+import WidgetToolbar from 'containers/widget/toolbar';
 import Wrapper from 'containers/wrapper';
 
 import { Select } from 'components/forms';
@@ -55,8 +56,18 @@ const ReportFundingTable = () => {
   });
 
   const WIDGET = useMemo(() => {
-    return widgetsData.find((widget) => widget.slug === selectedWidget);
-  }, [selectedWidget, widgetsData]);
+    const w = widgetsData.find((widget) => widget.slug === selectedWidget);
+
+    return {
+      ...w,
+      params: {
+        filters: {
+          ...filters,
+          geographic,
+        },
+      },
+    };
+  }, [selectedWidget, widgetsData, filters, geographic]);
 
   const columns = useMemo<ColumnDef<AggregatedArea>[]>(
     () => [
@@ -127,19 +138,28 @@ const ReportFundingTable = () => {
     <div className="pt-5 pb-16">
       <Wrapper>
         <div className="space-y-10">
-          <h3 className="text-2xl font-display">
-            Total number of projects and funders per{' '}
-            <Select
-              id="total-funders-projects-select"
-              value={selectedWidget}
-              theme="none"
-              size="none"
-              options={OPTIONS}
-              onSelect={(value) => {
-                setSelectedWidget(value);
+          <div className="flex items-center justify-between">
+            <h3 className="text-2xl font-display">
+              Total number of projects and funders per{' '}
+              <Select
+                id="total-funders-projects-select"
+                value={selectedWidget}
+                theme="none"
+                size="none"
+                options={OPTIONS}
+                onSelect={(value) => {
+                  setSelectedWidget(value);
+                }}
+              />
+            </h3>
+
+            <WidgetToolbar
+              {...WIDGET}
+              toolbar={{
+                download: true,
               }}
             />
-          </h3>
+          </div>
 
           <Widget
             {...WIDGET}
@@ -160,12 +180,6 @@ const ReportFundingTable = () => {
               // SORTING
               enableSortingRemoval: false,
               onSortingChange: setSorting,
-            }}
-            params={{
-              filters: {
-                ...filters,
-                geographic,
-              },
             }}
           />
         </div>

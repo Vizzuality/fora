@@ -37,8 +37,8 @@ const THEME = {
     menu: 'bg-white',
     item: {
       base: '',
-      active: 'bg-black/30 text-black',
-      selected: 'bg-black/40 text-black',
+      active: 'bg-grey-60 text-black',
+      selected: 'bg-black/10 text-black',
       disabled: 'opacity-40 text-black',
     },
     open: {
