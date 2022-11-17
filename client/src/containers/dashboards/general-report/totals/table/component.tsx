@@ -66,6 +66,7 @@ const ReportFundingTable = () => {
               header: (ctx) => <HeaderSorted {...ctx}>Area</HeaderSorted>,
               accessorKey: 'area_of_focus',
               sortingFn: 'alphanumeric' as SortingFnOption<AggregatedArea>,
+              minSize: 500,
             },
           ]
         : []),
@@ -86,6 +87,7 @@ const ReportFundingTable = () => {
                 />
               ),
               accessorKey: 'geographic',
+              minSize: 500,
             },
           ]
         : []),
