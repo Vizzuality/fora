@@ -22,3 +22,11 @@ export interface Project {
   subgeographics: SubGeographic[];
   subgeographic_ancestors: SubGeographic[];
 }
+
+export type InifiniteProject = {
+  data: Project[];
+  meta: {
+    page: number;
+    pages: number;
+  };
+};

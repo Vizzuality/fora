@@ -21,7 +21,7 @@ RSpec.describe Widgets::Queries::FundedSubgeographics do
       it "fallbacks to countries" do
         expect(result[:headers].first[:label]).to eq(Geographic.find("countries").name)
         expect(result[:headers].first[:value]).to eq(:geographic)
-        expect(result[:headers].second[:label]).to eq(I18n.t("widgets.headers.funded_subgeographics.funded_with"))
+        expect(result[:headers].second[:label]).to eq(I18n.t("widgets.headers.common.funded_with"))
         expect(result[:headers].second[:value]).to eq(:funded_with)
       end
     end
@@ -42,7 +42,7 @@ RSpec.describe Widgets::Queries::FundedSubgeographics do
       it "contains correct header" do
         expect(result[:headers].first[:label]).to eq(Geographic.find("countries").name)
         expect(result[:headers].first[:value]).to eq(:geographic)
-        expect(result[:headers].second[:label]).to eq(I18n.t("widgets.headers.funded_subgeographics.funded_with"))
+        expect(result[:headers].second[:label]).to eq(I18n.t("widgets.headers.common.funded_with"))
         expect(result[:headers].second[:value]).to eq(:funded_with)
       end
 
@@ -76,7 +76,7 @@ RSpec.describe Widgets::Queries::FundedSubgeographics do
       it "contains correct header" do
         expect(result[:headers].first[:label]).to eq(Geographic.find("regions").name)
         expect(result[:headers].first[:value]).to eq(:geographic)
-        expect(result[:headers].second[:label]).to eq(I18n.t("widgets.headers.funded_subgeographics.funded_with"))
+        expect(result[:headers].second[:label]).to eq(I18n.t("widgets.headers.common.funded_with"))
         expect(result[:headers].second[:value]).to eq(:funded_with)
       end
 

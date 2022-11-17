@@ -21,22 +21,22 @@ const ProjectOverview = () => {
 
   const { funders } = projectData;
 
-  const GEOGRPAHIC_SCOPE = useMemo(() => {
-    const projSubgeographics = funders.map((proj) => proj.subgeographics);
-    const arraySubGeo = projSubgeographics?.flat().map((subg) => subg.name);
+  const GEOGRAPHIC_SCOPE = useMemo(() => {
+    const funderSubgeographics = funders.map((f) => f.subgeographics);
+    const arraySubGeo = funderSubgeographics?.flat().map((subg) => subg.name);
     return arraySubGeo;
   }, [funders]);
 
   const DEMOGRAPHIC_SCOPE = useMemo(() => {
-    const projDemographics = funders.map((proj) => proj.demographics);
-    const arrayDemogr = projDemographics?.flat().map((demogr) => demogr);
+    const funderDemographics = funders.map((f) => f.demographics);
+    const arrayDemogr = funderDemographics?.flat().map((demogr) => demogr);
 
     return demographicsData.filter((c) => arrayDemogr.includes(c.id));
   }, [demographicsData, funders]);
 
   const AREAS_OF_FOCUS = useMemo(() => {
-    const projAreas = funders.map((proj) => proj.areas);
-    const arrayAreas = projAreas?.flat().map((area) => area);
+    const funderAreas = funders.map((f) => f.areas);
+    const arrayAreas = funderAreas?.flat().map((area) => area);
 
     return areasData.filter((c) => arrayAreas.includes(c.id));
   }, [areasData, funders]);
@@ -45,17 +45,17 @@ const ProjectOverview = () => {
   const CARD_DATA = useMemo(() => {
     return FUNDED_CARD_INFO.map((attr) => {
       switch (attr.id) {
-        case 'geogpraphic-scope':
+        case 'geographic-scope':
           return {
             ...attr,
-            value: GEOGRPAHIC_SCOPE.join(', '),
+            value: GEOGRAPHIC_SCOPE.join(', '),
           };
         case 'area-of-focus':
           return {
             ...attr,
             value: AREAS_OF_FOCUS.map((a) => a.name).join(' • '),
           };
-        case 'demopgraphic-scope':
+        case 'demographic-scope':
           return {
             ...attr,
             value: DEMOGRAPHIC_SCOPE.map((d) => d.name).join(', '),
@@ -69,7 +69,7 @@ const ProjectOverview = () => {
           return attr;
       }
     });
-  }, [GEOGRPAHIC_SCOPE, AREAS_OF_FOCUS, DEMOGRAPHIC_SCOPE]);
+  }, [GEOGRAPHIC_SCOPE, AREAS_OF_FOCUS, DEMOGRAPHIC_SCOPE]);
 
   return (
     <div className="flex space-x-32">

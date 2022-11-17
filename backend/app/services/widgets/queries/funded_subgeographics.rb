@@ -21,7 +21,7 @@ module Widgets
       def headers
         [
           {label: Geographic.find(geographic).name, value: :geographic},
-          {label: I18n.t("widgets.headers.funded_subgeographics.funded_with"), value: :funded_with}
+          {label: I18n.t("widgets.headers.common.funded_with"), value: :funded_with}
         ]
       end
 

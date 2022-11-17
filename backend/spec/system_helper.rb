@@ -11,9 +11,9 @@ Capybara.register_driver(:cuprite) do |app|
     browser_options: {
       "no-sandbox": nil
     },
-    timeout: 180,
+    timeout: 210,
     # Increase Chrome startup wait time (required for stable CI builds)
-    process_timeout: 180,
+    process_timeout: 210,
     inspector: true,
     headless: ENV["HEADLESS"] != "false"
   )

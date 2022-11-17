@@ -5,7 +5,7 @@ module Widgets
 
       def headers
         [
-          {label: I18n.t("widgets.headers.funded_recipient_legal_statuses.recipient_legal_status"), value: :recipient_legal_status},
+          {label: I18n.t("activerecord.models.recipient_legal_status.one"), value: :recipient_legal_status},
           {label: I18n.t("widgets.headers.common.values"), value: :values}
         ]
       end

@@ -5,7 +5,7 @@ module Widgets
 
       def headers
         [
-          {label: I18n.t("widgets.headers.funded_demographics.demographic"), value: :demographic},
+          {label: I18n.t("activerecord.models.demographic.one"), value: :demographic},
           {label: I18n.t("widgets.headers.common.values"), value: :values}
         ]
       end

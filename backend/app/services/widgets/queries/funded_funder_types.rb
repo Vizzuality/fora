@@ -5,7 +5,7 @@ module Widgets
 
       def headers
         [
-          {label: I18n.t("widgets.headers.funded_funder_types.organization_type"), value: :funder_type},
+          {label: I18n.t("activerecord.models.funder_type.one"), value: :funder_type},
           {label: I18n.t("widgets.headers.common.values"), value: :values}
         ]
       end

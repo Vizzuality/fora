@@ -44,6 +44,9 @@ const Table = <T extends unknown>({
                   'py-5 text-base font-semibold text-left': true,
                   [classNames.th]: !!classNames.th,
                 })}
+                style={{
+                  width: header.getSize(),
+                }}
               >
                 {flexRender(header.column.columnDef.header, header.getContext())}
               </th>

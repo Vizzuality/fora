@@ -5,7 +5,7 @@ module Widgets
 
       def headers
         [
-          {label: I18n.t("widgets.headers.funded_capital_types.capital_type"), value: :capital_type},
+          {label: I18n.t("activerecord.models.capital_type.one"), value: :capital_type},
           {label: I18n.t("widgets.headers.common.values"), value: :values}
         ]
       end

@@ -8,7 +8,8 @@ module API
       load_and_authorize_resource
 
       def index
-        @widgets = @widgets.where report_pages: Array.wrap(filter_params[:report_page]), report_year: filter_params[:report_year]
+        @widgets = @widgets.where "report_pages && ARRAY[?]::varchar[]", Array.wrap(filter_params[:report_page])
+        @widgets = @widgets.where report_year: filter_params[:report_year]
         @widgets = @widgets.where widget_type: filter_params[:widget_type] if filter_params[:widget_type].present?
         @widgets = @widgets.order position: :asc
         render json: WidgetSerializer.new(

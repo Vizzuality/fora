@@ -12,7 +12,7 @@ RSpec.describe Widgets::Queries::FundedDemographics do
     let!(:ignored_investment) { create :investment, year_invested: 2030, amount: 20, project: project_1 }
 
     it "contains correct header" do
-      expect(result[:headers].first[:label]).to eq(I18n.t("widgets.headers.funded_demographics.demographic"))
+      expect(result[:headers].first[:label]).to eq(I18n.t("activerecord.models.demographic.one"))
       expect(result[:headers].first[:value]).to eq(:demographic)
       expect(result[:headers].second[:label]).to eq(I18n.t("widgets.headers.common.values"))
       expect(result[:headers].second[:value]).to eq(:values)

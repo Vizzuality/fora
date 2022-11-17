@@ -14,7 +14,7 @@ RSpec.describe Widgets::Queries::FundedFunderTypes do
     let!(:ignored_investment) { create :investment, year_invested: 2030, amount: 20, funder: funder_1 }
 
     it "contains correct header" do
-      expect(result[:headers].first[:label]).to eq(I18n.t("widgets.headers.funded_funder_types.organization_type"))
+      expect(result[:headers].first[:label]).to eq(I18n.t("activerecord.models.funder_type.one"))
       expect(result[:headers].first[:value]).to eq(:funder_type)
       expect(result[:headers].second[:label]).to eq(I18n.t("widgets.headers.common.values"))
       expect(result[:headers].second[:value]).to eq(:values)

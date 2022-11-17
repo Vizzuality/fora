@@ -3,6 +3,11 @@ import { Story } from '@storybook/react/types-6-0';
 import PieChart from './component';
 import { PieChartProps } from './types';
 
+type Datum = {
+  id: string;
+  label: string;
+  value: number;
+};
 const StoryPieChart = {
   title: 'Components/Charts/Pie',
   component: PieChart,
@@ -11,7 +16,9 @@ const StoryPieChart = {
 
 export default StoryPieChart;
 
-const Template: Story<PieChartProps> = ({ ...args }: PieChartProps) => <PieChart {...args} />;
+const Template: Story<PieChartProps<Datum>> = ({ ...args }: PieChartProps<Datum>) => (
+  <PieChart {...args} />
+);
 
 export const Default = Template.bind({});
 Default.args = {

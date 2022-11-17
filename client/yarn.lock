@@ -9123,6 +9123,7 @@ __metadata:
     react-redux: 7.2.4
     react-simple-maps: 3.0.0
     react-use-cookie: 1.4.0
+    safe-json-stringify: 1.2.0
     start-server-and-test: 1.12.1
     storybook-addon-swc: 1.1.8
     svg-sprite-loader: 6.0.11
@@ -14847,6 +14848,13 @@ __metadata:
   version: 5.2.1
   resolution: "safe-buffer@npm:5.2.1"
   checksum: b99c4b41fdd67a6aaf280fcd05e9ffb0813654894223afb78a31f14a19ad220bba8aba1cb14eddce1fcfb037155fe6de4e861784eb434f7d11ed58d1e70dd491
+  languageName: node
+  linkType: hard
+
+"safe-json-stringify@npm:1.2.0":
+  version: 1.2.0
+  resolution: "safe-json-stringify@npm:1.2.0"
+  checksum: 5bb32db6d6a3ceb3752df51f4043a412419cd3d4fcd5680a865dfa34cd7e575ba659c077d13f52981ced084061df9c75c7fb12e391584d4264e6914c1cd3d216
   languageName: node
   linkType: hard
 
