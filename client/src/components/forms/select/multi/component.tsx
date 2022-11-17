@@ -138,43 +138,46 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
                 className={cx({
-                  'z-50 absolute w-full overflow-y-auto rounded-lg shadow-lg min-w-[250px]': true,
+                  'z-50 absolute w-full overflow-y-auto rounded-lg shadow-select min-w-[250px]':
+                    true,
                   [THEME[theme].button[size]]: true,
                 })}
               >
                 <Listbox.Options
                   static
                   className={cx({
-                    'py-1 overflow-y-auto text-base leading-6 max-h-60 focus:outline-none': true,
+                    'overflow-y-auto text-base leading-6 max-h-60 focus:outline-none': true,
                     [THEME[theme].menu]: true,
                   })}
                 >
-                  <div className="flex px-5 space-x-5 text-sm">
-                    {batchSelectionActive && (
-                      <button
-                        className="py-2 text-left underline text-grey-20"
-                        type="button"
-                        onClick={handleSelectAll}
-                      >
-                        {batchSelectionLabel}
-                      </button>
-                    )}
+                  {(batchSelectionActive || clearSelectionActive) && (
+                    <div className="flex px-5 pt-1 space-x-5 text-sm">
+                      {batchSelectionActive && (
+                        <button
+                          className="py-2 text-left underline text-grey-20"
+                          type="button"
+                          onClick={handleSelectAll}
+                        >
+                          {batchSelectionLabel}
+                        </button>
+                      )}
 
-                    {clearSelectionActive && (
-                      <button
-                        className="py-2 text-left underline"
-                        type="button"
-                        onClick={handleClearAll}
-                      >
-                        {selected.length < 1 && clearSelectionLabel}
-                        {selected.length >= 1 &&
-                          selected.length !== options.length &&
-                          `${clearSelectionLabel} (${selected.length} Selected)`}
-                        {selected.length === options.length &&
-                          `${clearSelectionLabel} (All selected)`}
-                      </button>
-                    )}
-                  </div>
+                      {clearSelectionActive && (
+                        <button
+                          className="py-2 text-left underline"
+                          type="button"
+                          onClick={handleClearAll}
+                        >
+                          {selected.length < 1 && clearSelectionLabel}
+                          {selected.length >= 1 &&
+                            selected.length !== options.length &&
+                            `${clearSelectionLabel} (${selected.length} Selected)`}
+                          {selected.length === options.length &&
+                            `${clearSelectionLabel} (All selected)`}
+                        </button>
+                      )}
+                    </div>
+                  )}
 
                   {options.map((opt) => {
                     return (

@@ -116,19 +116,19 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                 <Listbox.Options
                   static
                   className={cx({
-                    'py-1 overflow-y-auto text-base leading-6 max-h-60 focus:outline-none': true,
+                    'overflow-y-auto text-base leading-6 max-h-60 focus:outline-none': true,
                     [THEME[theme].menu]: true,
                   })}
                 >
-                  <div className="flex px-5 text-sm">
-                    {clearable && (
+                  {clearable && (
+                    <div className="flex px-5 pt-1 text-sm">
                       <Listbox.Option key={null} value={null}>
                         <button type="button" className="py-2 text-left underline">
                           {clearSelectionLabel}
                         </button>
                       </Listbox.Option>
-                    )}
-                  </div>
+                    </div>
+                  )}
 
                   {options.map((opt) => {
                     return (
