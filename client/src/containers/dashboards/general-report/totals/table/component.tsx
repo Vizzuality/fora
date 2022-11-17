@@ -170,7 +170,7 @@ const ReportFundingTable = () => {
                 thead: 'sticky top-0 bg-white',
                 tbody: 'border-t border-b border-grey-40',
                 tr: 'odd:bg-grey-60',
-                th: 'py-5 px-10',
+                th: 'py-5 px-10 text-black',
                 td: 'py-5 px-10',
               },
               // STATE

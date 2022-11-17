@@ -108,7 +108,8 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
                 className={cx({
-                  'z-50 absolute w-full overflow-y-auto rounded-lg shadow-lg min-w-[250px]': true,
+                  'z-50 absolute w-full overflow-y-auto rounded-lg shadow-select min-w-[250px]':
+                    true,
                   [THEME[theme].button[size]]: true,
                 })}
               >
