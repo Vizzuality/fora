@@ -156,7 +156,7 @@ RSpec.describe "Backoffice: Admins", type: :system do
       end
     end
 
-    it "deletes admin do" do
+    it "deletes admin" do
       accept_confirm do
         click_on t("backoffice.actions.delete")
       end

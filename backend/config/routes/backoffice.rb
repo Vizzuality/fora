@@ -5,4 +5,5 @@ get "/backoffice", to: redirect("backoffice/admins"), as: :admin_root
 
 namespace :backoffice do
   resources :admins
+  resources :uploads, only: %i[new create index show destroy]
 end

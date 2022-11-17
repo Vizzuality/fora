@@ -1,0 +1,36 @@
+<div class="relative w-full bg-white text-base rounded-xl p-3">
+  <div class="absolute flex gap-3 top-2 right-2">
+    <%= link_to t("backoffice.actions.delete"), backoffice_upload_path(@resource), class: "button button-primary-green",
+      data: {
+        turbo_method: :delete,
+        turbo_confirm: t("backoffice.messages.delete_confirmation", model: resource_class.model_name.human.downcase)
+      } %>
+  </div>
+
+  <h1 class="font-semibold text-xl text-black mb-6">
+    <%= t "backoffice.messages.show_record", record: @resource.to_s %>
+  </h1>
+
+  <table>
+    <tr>
+      <td class="p-2"><%= @resource.class.human_attribute_name(:status) %>:</td>
+      <td><%= status_tag :upload_status, @resource.status %></td>
+    </tr>
+    <tr>
+      <td class="p-2"><%= @resource.class.human_attribute_name(:created_by) %>:</td>
+      <td><%= @resource.created_by.full_name %></td>
+    </tr>
+    <tr>
+      <td class="p-2"><%= @resource.class.human_attribute_name(:file) %>:</td>
+      <td><%= link_to @resource.file.filename, url_for(@resource.file) %></td>
+    </tr>
+    <tr>
+      <td class="p-2"><%= @resource.class.human_attribute_name(:created_at) %>:</td>
+      <td><%= I18n.l @resource.created_at %></td>
+    </tr>
+    <tr>
+      <td class="p-2"><%= @resource.class.human_attribute_name(:updated_at) %>:</td>
+      <td><%= I18n.l @resource.updated_at %></td>
+    </tr>
+  </table>
+</div>

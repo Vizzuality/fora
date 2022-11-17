@@ -1,6 +1,8 @@
 class Admin < ApplicationRecord
   devise :database_authenticatable, :registerable, :rememberable, :validatable
 
+  has_many :uploads, dependent: :destroy
+
   validates :password, length: {minimum: 12, message: :password_length}, allow_nil: true
   validate :password_complexity
   validates_presence_of :first_name, :last_name

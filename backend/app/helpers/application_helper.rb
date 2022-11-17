@@ -1,6 +1,14 @@
 module ApplicationHelper
   include Pagy::Frontend
 
+  STATUS_TAG_CLASSES = {
+    "new" => "text-grey-20 bg-grey-20/20",
+    "processing" => "text-green-20 bg-green-20/20",
+    "completed" => "text-green-0 bg-green-0/20",
+    "failed" => "text-red-dark bg-red-dark/20",
+    "crashed" => "text-red-dark bg-red-dark/20"
+  }
+
   FLASH_CLASSES = {
     notice: "alert-success",
     success: "alert-success",
@@ -21,6 +29,16 @@ module ApplicationHelper
     }.reject { |_k, v| v == false }.keys
 
     link_to text, path, class: classnames
+  end
+
+  def status_tag(enum_klass, key)
+    return if key.blank?
+
+    content_tag(
+      :span,
+      t("enums.#{enum_klass}.#{key}.name", default: key).downcase,
+      class: "text-sm px-2 py-1 rounded-full #{STATUS_TAG_CLASSES[key.to_s]}"
+    )
   end
 
   def svg(filename, options = {})

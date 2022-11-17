@@ -5,6 +5,8 @@ module Backoffice
     extend ActiveSupport::Concern
 
     included do
+      mattr_accessor :includes
+
       before_action :initialize_resource, only: [:new, :create]
       before_action :fetch_resource, only: %i[show edit update destroy]
       before_action :set_breadcrumbs, except: [:index]
@@ -13,7 +15,7 @@ module Backoffice
     end
 
     def index
-      @q = resource_class.ransack params[:q]
+      @q = resource_class.includes(self.class.includes).ransack params[:q]
       @pagy_object, @resources = pagy @q.result.order(created_at: :desc), pagy_defaults
     end
 
@@ -65,7 +67,7 @@ module Backoffice
     end
 
     def set_breadcrumbs
-      @breadcrumbs = [Breadcrumb.new(resource_class.model_name.human, resources_url)]
+      @breadcrumbs = [Breadcrumb.new(resource_class.model_name.human(count: 2), resources_url)]
       @breadcrumbs << if @resource.new_record?
         Breadcrumb.new(I18n.t("backoffice.messages.new_record", model: resource_class.model_name.human))
       else
