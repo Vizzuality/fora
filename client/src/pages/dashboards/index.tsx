@@ -6,6 +6,15 @@ const DESCRIPTION_TEXT =
   'Review graphs, charts, and other visualizations in order to get a higher level and comprehensive analysis of FORA member’s collective work.';
 const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/dashboards.jpg`;
 
+export function getStaticProps() {
+  return {
+    redirect: {
+      destination: '/dashboards/general-report',
+      permanent: false,
+    },
+  };
+}
+
 const DashboardsPage: React.FC = () => {
   return (
     <div>
