@@ -42,7 +42,7 @@ const FunderPreview: React.FC<FunderPreviewProps> = ({ id, onClick }) => {
             ...attr,
             value: GEOGRPAHIC_SCOPE.join(', '),
           };
-        case 'demopgraphic-scope':
+        case 'demographic-scope':
           return {
             ...attr,
             value: DEMOGRAPHIC_SCOPE.map((d) => d.name).join(', '),

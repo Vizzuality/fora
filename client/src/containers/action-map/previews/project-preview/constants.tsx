@@ -6,7 +6,7 @@ export const PROJECT_CARD_INFO = [
     value: '',
   },
   {
-    id: 'demopgraphic-scope',
+    id: 'demographic-scope',
     title: 'Demographic Scope',
     info: 'Different demographic groups a project or funder focuses on working or investing in.',
     value: '',

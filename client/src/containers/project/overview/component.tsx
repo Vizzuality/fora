@@ -55,7 +55,7 @@ const ProjectOverview = () => {
             ...attr,
             value: AREAS_OF_FOCUS.map((a) => a.name).join(' • '),
           };
-        case 'demopgraphic-scope':
+        case 'demographic-scope':
           return {
             ...attr,
             value: DEMOGRAPHIC_SCOPE.map((d) => d.name).join(', '),
