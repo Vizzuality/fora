@@ -63,10 +63,10 @@ const WidgetToolbar = ({ title, description, slug, params, toolbar }: WidgetTool
         )}
       </div>
 
-      <Modal title={title} open={isOpenModal} onOpenChange={() => closeModal()}>
-        <div className="p-6">
+      <Modal size="s" title={title} open={isOpenModal} onOpenChange={() => closeModal()}>
+        <div className="p-20 space-y-5">
           <h3 className="text-2xl font-display">{title}</h3>
-          <p className="mt-2 text-grey-100">{description}</p>
+          <p className="mt-2 text-lg text-grey-100">{description}</p>
         </div>
       </Modal>
     </>
