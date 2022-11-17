@@ -1,4 +1,5 @@
 import actionMap from 'store/action-map';
+import dashboardsGeneralReport from 'store/dashboards/general-report';
 import funders from 'store/funders';
 import projects from 'store/projects';
 
@@ -10,6 +11,7 @@ const staticReducers = {
   '/action-map': actionMap,
   '/funders': funders,
   '/projects': projects,
+  '/dashboards/general-report': dashboardsGeneralReport,
 };
 
 const asyncReducers = {};

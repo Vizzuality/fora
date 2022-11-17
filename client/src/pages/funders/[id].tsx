@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 
 import { dehydrate, QueryClient } from '@tanstack/react-query';
+import safeJsonStringify from 'safe-json-stringify';
 
 import { fetchFunder, fetchFunders, useFunder } from 'hooks/funders';
 
@@ -53,7 +54,7 @@ export async function getStaticProps(ctx) {
   // Props returned will be passed to the page component
   return {
     props: {
-      dehydratedState: dehydrate(queryClient) || null,
+      dehydratedState: JSON.parse(safeJsonStringify(dehydrate(queryClient))) || null,
     },
   };
 }

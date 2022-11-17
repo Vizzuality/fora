@@ -82,30 +82,28 @@ const Sentence: React.FC<SentenceProps> = ({ type }) => {
         iconClassName="w-4 h-4"
       />
 
-      {!!DATA.length && (
-        <>
-          <div className="inline mr-2">
-            You are viewing {DATA.length} {type}
-            <Geographics type={type} />
-            <Areas type={type} />
-            <Demographics type={type} />
-            {type === 'funders' && (
-              <>
-                <FunderTypes type={type} />
-                <FunderLegalStatus type={type} />
-                <CapitalTypes type={type} />
-              </>
-            )}
-            {type === 'projects' && <ProjectLegalStatus type={type} />}
-          </div>
-
-          {JSON.stringify(filters) !== JSON.stringify(INITIAL_STATE.filters) && (
-            <button className="underline hover:text-black" onClick={handleReset}>
-              Reset all filters
-            </button>
+      <>
+        <div className="inline mr-2">
+          You are viewing {DATA.length} {type}
+          <Geographics type={type} />
+          <Areas type={type} />
+          <Demographics type={type} />
+          {type === 'funders' && (
+            <>
+              <FunderTypes type={type} />
+              <FunderLegalStatus type={type} />
+              <CapitalTypes type={type} />
+            </>
           )}
-        </>
-      )}
+          {type === 'projects' && <ProjectLegalStatus type={type} />}
+        </div>
+
+        {JSON.stringify(filters) !== JSON.stringify(INITIAL_STATE.filters) && (
+          <button className="underline hover:text-black" onClick={handleReset}>
+            Reset all filters
+          </button>
+        )}
+      </>
     </div>
   );
 };

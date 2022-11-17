@@ -105,7 +105,7 @@ const ProjectsList = () => {
         </div>
 
         {!projectsData.length && !LOADING && (
-          <div className="flex flex-col items-center pb-10 space-y-4">
+          <div className="flex flex-col items-center py-12 pb-20 space-y-4">
             <p className="text-2xl font-semibold">No results found</p>
             <p className="max-w-sm text-center text-grey-20">
               Sorry, we have searched in our entire database but we couldn&apos;t find any results

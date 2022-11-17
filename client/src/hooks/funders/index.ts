@@ -13,7 +13,7 @@ import {
 } from '@tanstack/react-query';
 import { orderBy, uniqBy } from 'lodash';
 
-import { Funder } from 'types/funder';
+import { Funder, InifiniteFunder } from 'types/funder';
 
 import API from 'services/api';
 
@@ -22,15 +22,6 @@ import API from 'services/api';
   FETCH FUNCTIONS
 ****************************************
 */
-export const fetchFunder = (id: string) =>
-  API.request({
-    method: 'GET',
-    url: `/funders/${id}`,
-    params: jsonAPIAdapter({
-      includes:
-        'subgeographic_ancestors,primary_office_state,primary_office_country,projects,projects.subgeographics',
-    }),
-  }).then((response) => response.data);
 
 export const fetchFunders = (params: ParamsProps) => {
   return API.request({
@@ -40,6 +31,15 @@ export const fetchFunders = (params: ParamsProps) => {
   }).then((response) => response.data);
 };
 
+export const fetchFunder = (id: string) =>
+  API.request({
+    method: 'GET',
+    url: `/funders/${id}`,
+    params: jsonAPIAdapter({
+      includes:
+        'subgeographic_ancestors,primary_office_state,primary_office_country,projects,projects.subgeographics',
+    }),
+  }).then((response) => response.data);
 /**
 ****************************************
   FUNDERS
@@ -114,38 +114,40 @@ export function useFundersByGeographicScope(view: View, data: Funder[] = []) {
 */
 export function useFundersInfinity(
   params: ParamsProps = {},
-  queryOptions: UseInfiniteQueryOptions<Funder[], unknown> = {}
+  queryOptions: UseInfiniteQueryOptions<InifiniteFunder> = {}
 ) {
   const fetch = ({ pageParam = 1 }) => fetchFunders({ ...params, page: pageParam });
 
-  const query = useInfiniteQuery(['infinite-funders', JSON.stringify(params)], fetch, {
-    ...queryOptions,
-    getNextPageParam: (lastPage) => {
-      const { meta = {} } = lastPage;
-      const { page = 1, pages = 10 } = meta;
+  const query = useInfiniteQuery<InifiniteFunder>(
+    ['infinite-funders', JSON.stringify(params)],
+    fetch,
+    {
+      ...queryOptions,
+      select: (data) => data, // override default select function
+      placeholderData: {
+        pages: [],
+        pageParams: [],
+      },
+      getNextPageParam: (lastPage) => {
+        const { meta } = lastPage;
+        const { page = 1, pages = 10 } = meta;
 
-      const nextPage = page + 1 > pages ? null : page + 1;
-      return nextPage;
-    },
-  });
-
-  const { data } = query;
-  const { pages } = data || {};
+        const nextPage = page + 1 > pages ? null : page + 1;
+        return nextPage;
+      },
+    }
+  );
 
   const DATA = useMemo(() => {
-    if (!pages) {
-      return [];
-    }
+    const { pages } = query.data;
 
-    return pages.flat();
-  }, [pages]);
+    return pages.flatMap((page) => page.data);
+  }, [query]);
 
-  return useMemo(() => {
-    return {
-      ...query,
-      data: DATA,
-    };
-  }, [DATA, query]);
+  return {
+    ...query,
+    data: DATA,
+  };
 }
 
 /**

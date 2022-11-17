@@ -1,16 +1,16 @@
 export interface MultiSelectProps extends SelectStatusProps, SelectDataProps, SelectThemeProps {
   id: string | number;
-  batchSelectionActive?: boolean;
-  batchSelectionLabel?: string;
-  clearSelectionActive?: boolean;
-  clearSelectionLabel?: string;
-  disabled?: boolean;
+  className?: string;
   options?: SelectOptionProps[];
   placeholder?: string;
-  selected?: string[];
+  disabled?: boolean;
   size: 'base' | 's';
   theme: 'dark' | 'light';
   values?: string[];
   loading?: boolean;
+  batchSelectionActive?: boolean;
+  batchSelectionLabel?: string;
+  clearSelectionActive?: boolean;
+  clearSelectionLabel?: string;
   onSelect?: (selection: string[]) => void;
 }
