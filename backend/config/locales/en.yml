@@ -5,7 +5,12 @@ en:
     models:
       admin:
         one: Admin
+        other: Admins
         few: Admins
+      upload:
+        one: Upload
+        other: Uploads
+        few: Uploads
       area:
         one: Area of Focus
         few: Areas of Focus
@@ -30,6 +35,13 @@ en:
         last_name: Last name
         full_name: Full name
         email: E-mail
+        created_at: Created at
+        updated_at: Updated at
+      upload:
+        id: ID
+        file: File
+        status: Status
+        created_by: Created by
         created_at: Created at
         updated_at: Updated at
     errors:
@@ -330,6 +342,17 @@ en:
         name: Table
       total:
         name: Total
+    upload_status:
+      new:
+        name: New
+      processing:
+        name: Processing
+      completed:
+        name: Completed
+      failed:
+        name: Failed
+      crashed:
+        name: Crashed
   widgets:
     headers:
       common:
