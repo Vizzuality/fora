@@ -3,8 +3,6 @@ import { useCallback, useEffect, useState } from 'react';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
-import { GAPage } from 'lib/analytics/ga';
-
 import { STORE_WRAPPER } from 'store';
 
 import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
@@ -61,9 +59,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
     [asPath]
   );
 
-  const handleRouteChangeCompleted = useCallback((url: string) => {
-    GAPage(url);
-
+  const handleRouteChangeCompleted = useCallback(() => {
     setRouteLoading((prevState) => ({
       ...prevState,
       loading: false,
