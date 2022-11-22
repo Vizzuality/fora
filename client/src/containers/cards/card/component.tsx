@@ -71,7 +71,7 @@ const Cards = ({
       </div>
 
       <div className="border-t divide-y divide-grey-40/50 border-grey-40/50">
-        <div className="py-4">{AREAS_OF_FOCUS.join(' • ')}</div>
+        <div className="py-4 leading-snug">{AREAS_OF_FOCUS.join(' • ')}</div>
 
         <div className="pt-4">
           <Link href={href}>

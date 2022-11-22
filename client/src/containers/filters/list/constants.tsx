@@ -4,7 +4,11 @@ export const FILTERS = (type) => {
   return [
     {
       id: 'geographic',
-      name: 'Geographic Scope (Main & Sub-divisions)',
+      name: (
+        <>
+          Geographic Scope <span className="normal-case">(Main & Sub-divisions)</span>
+        </>
+      ),
       info: 'The country, region or state a project or funder focuses on working or investing in.',
       className: 'col-span-4',
       Selected: <GeographicSelected type={type} />,
