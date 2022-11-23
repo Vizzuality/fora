@@ -1,18 +1,16 @@
-import { FC, useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { Group } from '@visx/group';
 import { Pie } from '@visx/shape';
-import CHROMA from 'chroma-js';
-import { scaleOrdinal } from 'd3-scale';
 import { motion } from 'framer-motion';
 
-import { VISUALIZATION_RAMP } from 'constants/colors';
+import { useColorRamp } from 'hooks/widgets';
 
 import type { PieChartProps } from './types';
 
 const defaultMargin = { top: 20, right: 20, bottom: 20, left: 20 };
 
-export const PieChart: FC<PieChartProps> = ({
+export const PieChart = <T extends unknown>({
   data,
   width,
   height,
@@ -20,7 +18,8 @@ export const PieChart: FC<PieChartProps> = ({
   onPathMouseClick,
   onPathMouseEnter,
   onPathMouseLeave,
-}: PieChartProps) => {
+  pieProps,
+}: PieChartProps<T>) => {
   const [hover, setHover] = useState<string | null>(null);
 
   // SIZES
@@ -31,22 +30,7 @@ export const PieChart: FC<PieChartProps> = ({
   const centerX = innerWidth / 2;
   const thickness = 40;
 
-  // COLOR
-  const CHROMA_COLOR_SCALE = CHROMA.scale(VISUALIZATION_RAMP);
-
-  const COLOR_DOMAIN = useMemo(() => {
-    return data.map((d) => d.id);
-  }, [data]);
-
-  const COLOR_RANGE = useMemo(() => {
-    const ramp = [...VISUALIZATION_RAMP];
-    if (data.length < ramp.length) {
-      return ramp.slice(0, data.length);
-    }
-    return CHROMA_COLOR_SCALE.colors(data.length) as string[];
-  }, [CHROMA_COLOR_SCALE, data]);
-
-  const COLOR_SCALE = scaleOrdinal(COLOR_DOMAIN, COLOR_RANGE);
+  const COLOR_SCALE = useColorRamp(data);
 
   // Getters
   const getValue = useCallback((d: any) => d.value, []);
@@ -83,6 +67,7 @@ export const PieChart: FC<PieChartProps> = ({
           padAngle={0.015}
           cornerRadius={0}
           startAngle={0}
+          {...pieProps}
         >
           {(pie) => {
             return pie.arcs.map((arc) => (

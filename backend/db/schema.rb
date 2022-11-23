@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_07_085055) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_16_092559) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -199,6 +199,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_07_085055) do
     t.index ["subgeographic_geometry_id"], name: "index_subgeographics_on_subgeographic_geometry_id"
   end
 
+  create_table "uploads", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "created_by_id", null: false
+    t.integer "status", default: 0, null: false
+    t.string "error_messages", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_uploads_on_created_by_id"
+  end
+
   create_table "widgets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "report_pages", null: false, array: true
     t.integer "report_year", null: false
@@ -229,4 +238,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_07_085055) do
   add_foreign_key "subgeographic_hierarchies", "subgeographics", column: "descendant_id", on_delete: :cascade
   add_foreign_key "subgeographics", "subgeographic_geometries", on_delete: :cascade
   add_foreign_key "subgeographics", "subgeographics", column: "parent_id", on_delete: :cascade
+  add_foreign_key "uploads", "admins", column: "created_by_id", on_delete: :cascade
 end

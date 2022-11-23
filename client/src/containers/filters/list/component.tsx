@@ -17,6 +17,7 @@ interface FilterListProps {
 
 const FilterList = ({ type }: FilterListProps) => {
   const FILTERS_DATA = FILTERS(type);
+
   return (
     <div className="grid items-end grid-cols-12 gap-x-4">
       {FILTERS_DATA?.map((filter) => {

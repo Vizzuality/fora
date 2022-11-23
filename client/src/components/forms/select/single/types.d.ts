@@ -1,14 +1,14 @@
 export interface SingleSelectProps extends SelectStatusProps, SelectDataProps, SelectThemeProps {
   id: string | number;
-  disabled?: boolean;
-  value: string;
+  className?: string;
   options?: SelectOptionProps[];
   placeholder?: string;
+  disabled?: boolean;
+  size: 'base' | 's' | 'none';
+  theme: 'dark' | 'light' | 'none';
+  value: string;
   loading?: boolean;
-  selected?: string;
   clearable?: boolean;
   clearSelectionLabel?: string;
-  size: 'base' | 's';
-  theme: 'dark' | 'light';
   onSelect?: (selection: string) => void;
 }

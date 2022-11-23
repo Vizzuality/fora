@@ -1,0 +1,47 @@
+<%= render "new_record", text: t("backoffice.messages.create_new_record", model: resource_class.model_name.human), url: new_backoffice_upload_path %>
+
+<table class="backoffice-table">
+  <thead>
+    <tr>
+      <th>
+        <%= sort_link @q, :id, t("activerecord.attributes.upload.id") %>
+      </th>
+      <th>
+        <%= sort_link @q, :status, t("activerecord.attributes.upload.status") %>
+      </th>
+      <th>
+        <%= sort_link @q, :created_by_full_name, t("activerecord.attributes.upload.created_by") %>
+      </th>
+      <th>
+        <%= sort_link @q, :created_at, t("activerecord.attributes.upload.created_at") %>
+      </th>
+      <th>
+      </th>
+      <th class="opacity-25">
+        <%= svg "menu" %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @resources.each do |resource| %>
+      <tr>
+        <td><%= resource.id %></td>
+        <td><%= status_tag :upload_status, resource.status %></td>
+        <td><%= resource.created_by.full_name %></td>
+        <td><%= I18n.l resource.created_at.to_date %></td>
+        <td><%= link_to t("backoffice.actions.show"), backoffice_upload_path(resource), class: "link-button" %></td>
+        <td>
+          <%= render "menu" do %>
+            <%= render "backoffice/base/menu/item" do %>
+              <%= link_to t("backoffice.actions.delete"), backoffice_upload_path(resource),
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: t("backoffice.messages.delete_confirmation", model: resource_class.model_name.human.downcase)
+                } %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

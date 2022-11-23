@@ -8,6 +8,7 @@ if Rails.env.development?
   Project.delete_all
   Recipient.delete_all
   Widget.delete_all
+  Upload.delete_all
   Admin.delete_all
 
   Admin.create! first_name: "Admin", last_name: "Example", password: "SuperSecret1234", email: "admin@example.com"

@@ -13,7 +13,7 @@ import {
 } from '@tanstack/react-query';
 import { orderBy, uniqBy } from 'lodash';
 
-import { Project } from 'types/project';
+import { InifiniteProject, Project } from 'types/project';
 
 import API from 'services/api';
 
@@ -22,6 +22,14 @@ import API from 'services/api';
   FETCH FUNCTIONS
 ****************************************
 */
+export const fetchProjects = (params: ParamsProps) => {
+  return API.request({
+    method: 'GET',
+    url: '/projects',
+    params: jsonAPIAdapter(params),
+  }).then((response) => response.data);
+};
+
 export const fetchProject = (id: string) =>
   API.request({
     method: 'GET',
@@ -30,14 +38,6 @@ export const fetchProject = (id: string) =>
       includes: 'subgeographic_ancestors,funders,funders.subgeographics',
     }),
   }).then((response) => response.data);
-
-export const fetchProjects = (params: ParamsProps) => {
-  return API.request({
-    method: 'GET',
-    url: '/projects',
-    params: jsonAPIAdapter(params),
-  }).then((response) => response.data);
-};
 
 /**
 ****************************************
@@ -113,38 +113,40 @@ export function useProjectsByGeographicScope(view: View, data: Project[] = []) {
 */
 export function useProjectsInfinity(
   params: ParamsProps = {},
-  queryOptions: UseInfiniteQueryOptions<Project[], unknown> = {}
+  queryOptions: UseInfiniteQueryOptions<InifiniteProject, unknown> = {}
 ) {
   const fetch = ({ pageParam = 1 }) => fetchProjects({ ...params, page: pageParam });
 
-  const query = useInfiniteQuery(['infinite-projects', JSON.stringify(params)], fetch, {
-    ...queryOptions,
-    getNextPageParam: (lastPage) => {
-      const { meta = {} } = lastPage;
-      const { page = 1, pages = 10 } = meta;
+  const query = useInfiniteQuery<InifiniteProject>(
+    ['infinite-projects', JSON.stringify(params)],
+    fetch,
+    {
+      ...queryOptions,
+      select: (data) => data, // override default select function
+      placeholderData: {
+        pages: [],
+        pageParams: [],
+      },
+      getNextPageParam: (lastPage) => {
+        const { meta } = lastPage;
+        const { page = 1, pages = 10 } = meta;
 
-      const nextPage = page + 1 > pages ? null : page + 1;
-      return nextPage;
-    },
-  });
-
-  const { data } = query;
-  const { pages } = data || {};
+        const nextPage = page + 1 > pages ? null : page + 1;
+        return nextPage;
+      },
+    }
+  );
 
   const DATA = useMemo(() => {
-    if (!pages) {
-      return [];
-    }
+    const { pages } = query.data;
 
-    return pages.flat();
-  }, [pages]);
+    return pages.flatMap((page) => page.data);
+  }, [query]);
 
-  return useMemo(() => {
-    return {
-      ...query,
-      data: DATA,
-    };
-  }, [query, DATA]);
+  return {
+    ...query,
+    data: DATA,
+  };
 }
 
 /**

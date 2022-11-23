@@ -159,7 +159,7 @@ const How = () => {
                     </ul>
                   </div>
                   <div className="flex space-x-5">
-                    <Button size="xl" theme="black-alt" href="/dashboard">
+                    <Button size="xl" theme="black-alt" href="/dashboards">
                       Go to Dashboard
                     </Button>
                   </div>

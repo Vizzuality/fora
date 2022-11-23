@@ -39,3 +39,11 @@ export interface Funder {
   subgeographic_ancestors: SubGeographic[];
   subgeographics: SubGeographic[];
 }
+
+export type InifiniteFunder = {
+  data: Funder[];
+  meta: {
+    page: number;
+    pages: number;
+  };
+};

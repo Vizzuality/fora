@@ -1,0 +1,14 @@
+<%= simple_form_for [:backoffice, resource] do |f| %>
+  <%= f.error_notification %>
+
+  <h2 class="mb-4 mt-6 text-grey-20 font-semibold text-xl">
+    <%= t("backoffice.forms.common.information") %>
+  </h2>
+
+  <%= f.input :file, as: :file, input_html: { accept: "application/zip" }, required: true %>
+
+  <div class="mt-3 flex justify-end gap-3">
+    <%= link_to t("backoffice.actions.cancel"), resources_url, class: "button button-secondary-green" %>
+    <%= f.button :submit, t("backoffice.actions.save"), class: "button button-primary-green" %>
+  </div>
+<% end %>

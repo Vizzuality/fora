@@ -127,5 +127,10 @@ module.exports = {
         0: '#CC503E',
       },
     },
+    extend: {
+      boxShadow: {
+        select: '0px 2px 10px 0 rgba(0, 0, 0, 0.15)',
+      },
+    },
   },
 };
