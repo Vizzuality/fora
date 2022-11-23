@@ -40,7 +40,7 @@ const WidgetToolbar = ({ title, description, slug, params, toolbar }: WidgetTool
         {info && (
           <button
             type="button"
-            className="p-3 shrink-0 hover:bg-green-0/25"
+            className="p-3 transition-colors shrink-0 hover:bg-grey-40"
             onClick={handleClickInfo}
           >
             <div className="flex items-center justify-center w-6 h-6 border rounded-full border-grey-0">
@@ -52,7 +52,7 @@ const WidgetToolbar = ({ title, description, slug, params, toolbar }: WidgetTool
         {download && (
           <button
             type="button"
-            className="p-3 shrink-0 hover:bg-green-0/25"
+            className="p-3 transition-colors shrink-0 hover:bg-grey-40"
             onClick={handleClickDownload}
           >
             <div className="relative flex items-center justify-center w-6 h-6">

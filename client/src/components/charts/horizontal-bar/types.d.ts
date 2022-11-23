@@ -14,7 +14,8 @@ export interface HorizontalBarChartProps {
     bottom: number;
     left: number;
   };
-  onPathMouseClick?: (data: HorizontalBarChartData) => void;
-  onPathMouseEnter?: (data: HorizontalBarChartData) => void;
-  onPathMouseLeave?: (data: HorizontalBarChartData) => void;
+  onPathMouseClick?: (e: MouseEvent<HTMLElement>, data: HorizontalBarChartData) => void;
+  onPathMouseEnter?: (e: MouseEvent<HTMLElement>, data: HorizontalBarChartData) => void;
+  onPathMouseLeave?: (e: MouseEvent<HTMLElement>, data: HorizontalBarChartData) => void;
+  onPathMouseMove?: (e: MouseEvent<HTMLElement>, data: HorizontalBarChartData) => void;
 }

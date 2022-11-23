@@ -1,12 +1,18 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 import { Widget } from 'types/widget';
 
 import HorizontalBar from 'components/charts/horizontal-bar';
 
+import HorizonalBarTooltip from './tooltip/component';
+
 const WidgetDiagramHorizontalBar = ({ query, config }: Widget) => {
+  const [tooltip, setTooltip] = useState({
+    rect: null,
+    properties: null,
+  });
+
   const { data } = query;
-  const { format } = config;
 
   const DATA = useMemo(() => {
     if (!data) return [];
@@ -31,7 +37,49 @@ const WidgetDiagramHorizontalBar = ({ query, config }: Widget) => {
     <div className="flex pt-10 space-x-2">
       {/* CHART */}
       <div className="shrink-0 grow">
-        <HorizontalBar data={DATA} />
+        <HorizontalBar
+          data={DATA}
+          onPathMouseEnter={(e, d) => {
+            setTooltip({
+              rect: {
+                top: e.clientY,
+                left: e.clientX,
+                right: e.clientX,
+                bottom: e.clientY,
+                x: e.clientX,
+                y: e.clientY,
+                width: 0,
+                height: 0,
+                toJSON: () => ({}),
+              },
+              properties: d,
+            });
+          }}
+          onPathMouseLeave={() => {
+            setTooltip({
+              rect: null,
+              properties: null,
+            });
+          }}
+          onPathMouseMove={(e, d) => {
+            setTooltip({
+              rect: {
+                top: e.clientY,
+                left: e.clientX,
+                right: e.clientX,
+                bottom: e.clientY,
+                x: e.clientX,
+                y: e.clientY,
+                width: 0,
+                height: 0,
+                toJSON: () => ({}),
+              },
+              properties: d,
+            });
+          }}
+        />
+
+        <HorizonalBarTooltip {...tooltip} config={config} />
       </div>
 
       {/* LEGEND */}
@@ -42,9 +90,7 @@ const WidgetDiagramHorizontalBar = ({ query, config }: Widget) => {
             //
             .map((d) => (
               <li className="flex items-center h-3" key={d.id}>
-                <div className="text-sm font-semibold">
-                  {d.label} <strong className="font-bold">{format(d.value)}</strong>
-                </div>
+                <div className="text-sm font-semibold">{d.label}</div>
               </li>
             ))}
         </ul>
