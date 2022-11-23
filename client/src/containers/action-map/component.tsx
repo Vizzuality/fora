@@ -1,56 +1,17 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
-
-import { setFunderSelected, setProjectSelected } from 'store/action-map';
-import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 import Wrapper from 'containers/wrapper';
 
 import Filters from './filters';
 import Legend from './legend';
 import List from './list';
-import FunderPreview from './previews/funder-preview';
-import Preview from './previews/preview';
-import ProjectPreview from './previews/project-preview';
 import Sentence from './sentence';
 
 const Map = dynamic(() => import('./map'), { ssr: false });
 
 const ActionMap = () => {
-  const dispatch = useAppDispatch();
-  const { push } = useRouter();
-  const { funderSelected, projectSelected } = useAppSelector((state) => state['/action-map']);
-
-  const handleFunderPreviewClick = useCallback(
-    (id: string) => {
-      push({
-        pathname: `/funders/[id]`,
-        query: { id },
-      });
-    },
-    [push]
-  );
-
-  const handleFunderPreviewClose = useCallback(() => {
-    dispatch(setFunderSelected(null));
-  }, [dispatch]);
-
-  const handleProjectPreviewClick = useCallback(
-    (id: string) => {
-      push({
-        pathname: `/projects/[id]`,
-        query: { id },
-      });
-    },
-    [push]
-  );
-
-  const handleProjectPreviewClose = useCallback(() => {
-    dispatch(setProjectSelected(null));
-  }, [dispatch]);
-
   return (
     <>
       <Filters />
@@ -66,22 +27,6 @@ const ActionMap = () => {
           <div className="grid grid-cols-12 gap-x-10">
             <div className="col-span-8">
               <div className="relative flex flex-col w-full space-y-5">
-                {funderSelected && (
-                  <Preview onClose={handleFunderPreviewClose}>
-                    <FunderPreview
-                      id={funderSelected}
-                      onClick={() => handleFunderPreviewClick(funderSelected)}
-                    />
-                  </Preview>
-                )}
-                {projectSelected && (
-                  <Preview onClose={handleProjectPreviewClose}>
-                    <ProjectPreview
-                      id={projectSelected}
-                      onClick={() => handleProjectPreviewClick(projectSelected)}
-                    />
-                  </Preview>
-                )}
                 <Map />
 
                 <div className="flex items-center justify-between">{/* <View /> */}</div>

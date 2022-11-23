@@ -1,19 +1,26 @@
 import React, { useCallback, useMemo } from 'react';
 
+import { useRouter } from 'next/router';
+
 import { setFunderSelected } from 'store/action-map';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 import { useFunders } from 'hooks/funders';
+import { useModal } from 'hooks/modals';
 
 import NoData from 'containers/action-map/list/no-data';
+import FunderPreview from 'containers/action-map/previews/funder-preview';
 
 import Loading from 'components/loading';
+import Modal from 'components/modal';
 
 import Item from '../item';
 
 const List = () => {
-  const { filters } = useAppSelector((state) => state['/action-map']);
+  const { funderSelected, filters } = useAppSelector((state) => state['/action-map']);
+  const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModal();
 
+  const { push } = useRouter();
   const dispatch = useAppDispatch();
 
   // FUNDERS
@@ -46,9 +53,25 @@ const List = () => {
   const handleClick = useCallback(
     (id: string) => {
       dispatch(setFunderSelected(id));
+      openModal();
     },
-    [dispatch]
+    [dispatch, openModal]
   );
+
+  const handleFunderPreviewClick = useCallback(
+    (id: string) => {
+      push({
+        pathname: `/funders/[id]`,
+        query: { id },
+      });
+    },
+    [push]
+  );
+
+  const handleFunderPreviewClose = useCallback(() => {
+    dispatch(setFunderSelected(null));
+    closeModal();
+  }, [dispatch, closeModal]);
 
   return (
     <>
@@ -71,6 +94,17 @@ const List = () => {
           {NO_DATA && <NoData />}
         </ul>
       </div>
+      {funderSelected && (
+        <Modal
+          size="default"
+          title=""
+          open={isModalOpen}
+          onOpenChange={handleFunderPreviewClose}
+          dismissable
+        >
+          <FunderPreview onClick={() => handleFunderPreviewClick(funderSelected)} />
+        </Modal>
+      )}
     </>
   );
 };

@@ -11,7 +11,6 @@ import ApplicationLayout from 'layouts/application';
 
 import MetaIcons from 'containers/meta-icons';
 import RouteLoading from 'containers/route-loading';
-import ThirdParty from 'containers/third-party';
 
 import { MediaContextProvider } from 'components/media-query';
 
@@ -97,7 +96,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
         <MediaContextProvider>
           <MetaIcons />
 
-          <ThirdParty />
+          {/* <ThirdParty /> */}
 
           <RouteLoading {...routeLoading} />
 

@@ -1,19 +1,26 @@
 import React, { useCallback, useMemo } from 'react';
 
+import { useRouter } from 'next/router';
+
 import { setProjectSelected } from 'store/action-map';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
+import { useModal } from 'hooks/modals';
 import { useProjects } from 'hooks/projects';
 
 import NoData from 'containers/action-map/list/no-data';
+import ProjectPreview from 'containers/action-map/previews/project-preview';
 
 import Loading from 'components/loading';
+import Modal from 'components/modal';
 
 import Item from '../item';
 
 const List = () => {
-  const { filters } = useAppSelector((state) => state['/action-map']);
+  const { projectSelected, filters } = useAppSelector((state) => state['/action-map']);
+  const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModal();
 
+  const { push } = useRouter();
   const dispatch = useAppDispatch();
 
   // FUNDERS
@@ -45,9 +52,25 @@ const List = () => {
   const handleClick = useCallback(
     (id: string) => {
       dispatch(setProjectSelected(id));
+      openModal();
     },
-    [dispatch]
+    [dispatch, openModal]
   );
+
+  const handleProjectPreviewClick = useCallback(
+    (id: string) => {
+      push({
+        pathname: `/projects/[id]`,
+        query: { id },
+      });
+    },
+    [push]
+  );
+
+  const handleProjectPreviewClose = useCallback(() => {
+    dispatch(setProjectSelected(null));
+    closeModal();
+  }, [dispatch, closeModal]);
 
   return (
     <>
@@ -70,6 +93,16 @@ const List = () => {
           {NO_DATA && <NoData />}
         </ul>
       </div>
+
+      <Modal
+        size="default"
+        title=""
+        open={isModalOpen}
+        onOpenChange={handleProjectPreviewClose}
+        dismissable
+      >
+        <ProjectPreview onClick={() => handleProjectPreviewClick(projectSelected)} />
+      </Modal>
     </>
   );
 };
