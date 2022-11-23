@@ -8,6 +8,7 @@ type PieChartData = {
 
 export interface PieChartProps<T> {
   data: PieChartData[];
+  selected: PieChartData['id'];
   width?: number;
   height?: number;
   margin?: {

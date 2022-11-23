@@ -38,6 +38,12 @@ const WidgetDiagramPie = ({ query }: Widget) => {
       .sort((a, b) => b.value - a.value);
   }, [data]);
 
+  const HIGHLIGHTED = useMemo(() => {
+    if (!highlighted) return DATA[0];
+
+    return highlighted;
+  }, [highlighted, DATA]);
+
   const COLOR_SCALE = useColorRamp(DATA);
 
   return (
@@ -49,20 +55,21 @@ const WidgetDiagramPie = ({ query }: Widget) => {
             width={250}
             height={250}
             data={DATA}
+            selected={DATA[0]?.id}
             onPathMouseEnter={(props) => setHighlighted(props)}
             onPathMouseLeave={() => setHighlighted(null)}
           />
 
           <AnimatePresence>
-            {highlighted && (
+            {HIGHLIGHTED && (
               <motion.div
                 className="absolute top-0 left-0 flex items-center justify-center w-full h-full pointer-events-none"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
                 <div className="flex flex-col items-center justify-center w-1/2 px-2 text-center divide-y h-1/2 divide-grey-40">
-                  <div className="py-1 text-xl">{highlighted.value}</div>
-                  <div className="py-1 text-base">{highlighted.label}</div>
+                  <div className="py-1 text-xl">{HIGHLIGHTED.value}</div>
+                  <div className="py-1 text-base">{HIGHLIGHTED.label}</div>
                 </div>
               </motion.div>
             )}
