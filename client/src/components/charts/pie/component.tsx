@@ -90,11 +90,9 @@ export const PieChart = <T extends unknown>({
                   if (onPathMouseClick) onPathMouseClick(arc.data);
                 }}
                 onMouseEnter={() => {
-                  setHover(arc.data.id);
                   if (onPathMouseEnter) onPathMouseEnter(arc.data);
                 }}
                 onMouseLeave={() => {
-                  setHover(selected);
                   if (onPathMouseLeave) onPathMouseLeave(arc.data);
                 }}
               />

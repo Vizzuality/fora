@@ -55,9 +55,8 @@ const WidgetDiagramPie = ({ query }: Widget) => {
             width={250}
             height={250}
             data={DATA}
-            selected={DATA[0]?.id}
+            selected={HIGHLIGHTED?.id}
             onPathMouseEnter={(props) => setHighlighted(props)}
-            onPathMouseLeave={() => setHighlighted(null)}
           />
 
           <AnimatePresence>
@@ -84,7 +83,13 @@ const WidgetDiagramPie = ({ query }: Widget) => {
           {DATA
             //
             .map((d) => (
-              <li className="flex items-center" key={d.id}>
+              <li
+                className="flex items-center"
+                key={d.id}
+                onMouseEnter={() => {
+                  setHighlighted(d);
+                }}
+              >
                 <div
                   className="w-3 h-3 mr-2 rounded-full"
                   style={{
