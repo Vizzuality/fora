@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { Group } from '@visx/group';
 import { Pie } from '@visx/shape';
@@ -12,6 +12,7 @@ const defaultMargin = { top: 20, right: 20, bottom: 20, left: 20 };
 
 export const PieChart = <T extends unknown>({
   data,
+  selected,
   width,
   height,
   margin = defaultMargin,
@@ -20,7 +21,7 @@ export const PieChart = <T extends unknown>({
   onPathMouseLeave,
   pieProps,
 }: PieChartProps<T>) => {
-  const [hover, setHover] = useState<string | null>(null);
+  const [hover, setHover] = useState<string | null>(selected);
 
   // SIZES
   const innerWidth = width - margin.left - margin.right;
@@ -31,6 +32,10 @@ export const PieChart = <T extends unknown>({
   const thickness = 40;
 
   const COLOR_SCALE = useColorRamp(data);
+
+  useMemo(() => {
+    setHover(selected);
+  }, [selected]);
 
   // Getters
   const getValue = useCallback((d: any) => d.value, []);
@@ -89,7 +94,7 @@ export const PieChart = <T extends unknown>({
                   if (onPathMouseEnter) onPathMouseEnter(arc.data);
                 }}
                 onMouseLeave={() => {
-                  setHover(null);
+                  setHover(selected);
                   if (onPathMouseLeave) onPathMouseLeave(arc.data);
                 }}
               />

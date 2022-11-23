@@ -30,6 +30,12 @@ export const Tooltip = ({
   placement = 'top',
   virtual = false,
   virtualDOMRect,
+  middlewares = {
+    offset: true,
+    flip: true,
+    shift: true,
+    size: true,
+  },
   arrowProps = {
     enabled: false,
     size: 8,
@@ -38,6 +44,8 @@ export const Tooltip = ({
   portalProps = {
     enabled: true,
   },
+  useHoverProps = {},
+  useClickProps = {},
 }: TooltipProps) => {
   const [open, setOpen] = useState(false);
 
@@ -57,18 +65,22 @@ export const Tooltip = ({
     open,
     onOpenChange: setOpen,
     middleware: [
-      offset(5),
-      flip(),
-      size({
-        apply({ availableWidth, availableHeight, elements }) {
-          // Do things with the data, e.g.
-          Object.assign(elements.floating.style, {
-            maxWidth: `${availableWidth - 50}px`,
-            maxHeight: `${availableHeight - 25}px`,
-          });
-        },
-      }),
-      shift({ padding: 8 }),
+      ...(middlewares.offset ? [offset(5)] : []),
+      ...(middlewares.flip ? [flip()] : []),
+      ...(middlewares.shift ? [shift({ padding: 8 })] : []),
+      ...(middlewares.size
+        ? [
+            size({
+              apply({ availableWidth, availableHeight, elements }) {
+                // Do things with the data, e.g.
+                Object.assign(elements.floating.style, {
+                  maxWidth: `${availableWidth - 50}px`,
+                  maxHeight: `${availableHeight - 25}px`,
+                });
+              },
+            }),
+          ]
+        : []),
       ...(arrowRef.current && arrowProps.enabled
         ? [
             arrow({
@@ -84,9 +96,11 @@ export const Tooltip = ({
     useHover(context, {
       enabled: trigger === 'hover' && !virtual && enabled,
       restMs: 40,
+      ...useHoverProps,
     }),
     useClick(context, {
       enabled: trigger === 'click' && !virtual && enabled,
+      ...useClickProps,
     }),
     useFocus(context),
     useRole(context, { role: 'tooltip' }),

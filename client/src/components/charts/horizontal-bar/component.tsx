@@ -1,5 +1,7 @@
 import { FC, useMemo } from 'react';
 
+import cx from 'classnames';
+
 import { scaleLinear } from 'd3-scale';
 
 import { useColorRamp } from 'hooks/widgets';
@@ -11,6 +13,7 @@ export const HorizontalBarChart: FC<HorizontalBarChartProps> = ({
   onPathMouseClick,
   onPathMouseEnter,
   onPathMouseLeave,
+  onPathMouseMove,
 }: HorizontalBarChartProps) => {
   // SIZES
   const VALUE_DOMAIN = useMemo(() => {
@@ -22,25 +25,37 @@ export const HorizontalBarChart: FC<HorizontalBarChartProps> = ({
   const COLOR_SCALE = useColorRamp(data);
 
   return (
-    <ul className="space-y-2.5">
-      {data.map((d) => (
+    <ul>
+      {data.map((d, i) => (
         <li className="flex items-center justify-end" key={d.id}>
           <div
-            className="h-3 origin-right rounded-xl hover:scale-y-105"
+            className={cx({
+              'flex items-center justify-end group': true,
+              'pt-2.5': i !== 0,
+            })}
             style={{
               width: `${VALUE_SCALE(d.value) * 100}%`,
-              backgroundColor: COLOR_SCALE(d.id),
             }}
-            onClick={() => {
-              if (onPathMouseClick) onPathMouseClick(d);
+            onClick={(e) => {
+              if (onPathMouseClick) onPathMouseClick(e, d);
             }}
-            onMouseEnter={() => {
-              if (onPathMouseEnter) onPathMouseEnter(d);
+            onMouseEnter={(e) => {
+              if (onPathMouseEnter) onPathMouseEnter(e, d);
             }}
-            onMouseLeave={() => {
-              if (onPathMouseLeave) onPathMouseLeave(d);
+            onMouseLeave={(e) => {
+              if (onPathMouseLeave) onPathMouseLeave(e, d);
             }}
-          />
+            onMouseMove={(e) => {
+              if (onPathMouseMove) onPathMouseMove(e, d);
+            }}
+          >
+            <div
+              className="w-full h-3 transition-transform origin-right rounded-xl group-hover:scale-y-125"
+              style={{
+                backgroundColor: COLOR_SCALE(d.id),
+              }}
+            />
+          </div>
         </li>
       ))}
     </ul>
