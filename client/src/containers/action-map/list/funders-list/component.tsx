@@ -10,6 +10,7 @@ import { useModal } from 'hooks/modals';
 
 import NoData from 'containers/action-map/list/no-data';
 import FunderPreview from 'containers/action-map/previews/funder-preview';
+import Preview from 'containers/action-map/previews/preview';
 
 import Loading from 'components/loading';
 import Modal from 'components/modal';
@@ -73,6 +74,20 @@ const List = () => {
     closeModal();
   }, [dispatch, closeModal]);
 
+  const handlePreviousClick = useCallback(() => {
+    const IDS = DATA.map((d) => d.id);
+    const currentIndex = IDS.indexOf(funderSelected);
+    const previousIndex = currentIndex - 1 < 0 ? IDS.length - 1 : currentIndex - 1;
+    dispatch(setFunderSelected(IDS[previousIndex]));
+  }, [dispatch, funderSelected, DATA]);
+
+  const handleNextClick = useCallback(() => {
+    const IDS = DATA.map((d) => d.id);
+    const currentIndex = IDS.indexOf(funderSelected);
+    const nextIndex = currentIndex + 1 > IDS.length - 1 ? 0 : currentIndex + 1;
+    dispatch(setFunderSelected(IDS[nextIndex]));
+  }, [dispatch, funderSelected, DATA]);
+
   return (
     <>
       <Loading
@@ -102,7 +117,9 @@ const List = () => {
           onOpenChange={handleFunderPreviewClose}
           dismissable
         >
-          <FunderPreview onClick={() => handleFunderPreviewClick(funderSelected)} />
+          <Preview onNext={handleNextClick} onPrevious={handlePreviousClick}>
+            <FunderPreview onClick={() => handleFunderPreviewClick(funderSelected)} />
+          </Preview>
         </Modal>
       )}
     </>

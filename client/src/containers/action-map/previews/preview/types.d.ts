@@ -1,4 +1,5 @@
 export interface PreviewProps {
   children: ReactNode;
-  onClose: () => void;
+  onNext: () => void;
+  onPrevious: () => void;
 }

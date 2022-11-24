@@ -9,6 +9,7 @@ import { useModal } from 'hooks/modals';
 import { useProjects } from 'hooks/projects';
 
 import NoData from 'containers/action-map/list/no-data';
+import Preview from 'containers/action-map/previews/preview';
 import ProjectPreview from 'containers/action-map/previews/project-preview';
 
 import Loading from 'components/loading';
@@ -72,6 +73,20 @@ const List = () => {
     closeModal();
   }, [dispatch, closeModal]);
 
+  const handlePreviousClick = useCallback(() => {
+    const IDS = DATA.map((d) => d.id);
+    const currentIndex = IDS.indexOf(projectSelected);
+    const previousIndex = currentIndex - 1 < 0 ? IDS.length - 1 : currentIndex - 1;
+    dispatch(setProjectSelected(IDS[previousIndex]));
+  }, [dispatch, projectSelected, DATA]);
+
+  const handleNextClick = useCallback(() => {
+    const IDS = DATA.map((d) => d.id);
+    const currentIndex = IDS.indexOf(projectSelected);
+    const nextIndex = currentIndex + 1 > IDS.length - 1 ? 0 : currentIndex + 1;
+    dispatch(setProjectSelected(IDS[nextIndex]));
+  }, [dispatch, projectSelected, DATA]);
+
   return (
     <>
       <Loading
@@ -101,7 +116,9 @@ const List = () => {
         onOpenChange={handleProjectPreviewClose}
         dismissable
       >
-        <ProjectPreview onClick={() => handleProjectPreviewClick(projectSelected)} />
+        <Preview onNext={handleNextClick} onPrevious={handlePreviousClick}>
+          <ProjectPreview onClick={() => handleProjectPreviewClick(projectSelected)} />
+        </Preview>
       </Modal>
     </>
   );
