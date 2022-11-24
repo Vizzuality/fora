@@ -1,4 +1,4 @@
-export const FUNDED_CARD_INFO = [
+export const SCOPES = [
   {
     id: 'geographic-scope',
     title: 'Geographic Scope',

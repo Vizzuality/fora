@@ -2,34 +2,42 @@ import React, { useMemo } from 'react';
 
 import { useAppSelector } from 'store/hooks';
 
+import { useAreas } from 'hooks/areas';
 import { useDemographics } from 'hooks/demographics';
 import { useProject } from 'hooks/projects';
+
+import { SCOPES } from 'constants/scopes';
 
 import InfoCard from 'containers/details/info-card';
 
 import Button from 'components/button';
 import Loading from 'components/loading';
 
-import { PROJECT_CARD_INFO } from './constants';
-import type { ProjectPreviewProps } from './types';
-
-const ProjectPreview: React.FC<ProjectPreviewProps> = ({ onClick }) => {
+const ProjectPreview = () => {
   const { projectSelected } = useAppSelector((state) => state['/action-map']);
-  const { data: demographicsData } = useDemographics();
 
+  const { data: areasData } = useAreas();
+  const { data: demographicsData } = useDemographics();
   const {
     data: projectData,
     isFetched: projectIsFetched,
     isFetching: projectIsFetching,
   } = useProject(projectSelected);
 
-  const { description, name, funders = [] } = projectData;
+  const { id, description, name, funders = [] } = projectData;
 
   const GEOGRAPHIC_SCOPE = useMemo(() => {
     const projSubgeographics = funders.map((proj) => proj.subgeographics);
     const arraySubGeo = projSubgeographics?.flat().map((subg) => subg.name);
     return arraySubGeo;
   }, [funders]);
+
+  const AREAS_OF_FOCUS = useMemo(() => {
+    const funderAreas = funders.map((f) => f.areas);
+    const arrayAreas = funderAreas?.flat().map((area) => area);
+
+    return areasData.filter((c) => arrayAreas.includes(c.id));
+  }, [areasData, funders]);
 
   const DEMOGRAPHIC_SCOPE = useMemo(() => {
     const projDemographics = funders.map((proj) => proj.demographics);
@@ -38,14 +46,18 @@ const ProjectPreview: React.FC<ProjectPreviewProps> = ({ onClick }) => {
     return demographicsData.filter((c) => arrayDemogr.includes(c.id));
   }, [demographicsData, funders]);
 
-  // TO_DO: demograpgic leadership & areas of focus
   const CARD_DATA = useMemo(() => {
-    return PROJECT_CARD_INFO.map((attr) => {
+    return SCOPES.map((attr) => {
       switch (attr.id) {
-        case 'geogpraphic-scope':
+        case 'geographic-scope':
           return {
             ...attr,
             value: GEOGRAPHIC_SCOPE.join(', '),
+          };
+        case 'area-of-focus':
+          return {
+            ...attr,
+            value: AREAS_OF_FOCUS.map((a) => a.name).join(' • '),
           };
         case 'demographic-scope':
           return {
@@ -61,7 +73,7 @@ const ProjectPreview: React.FC<ProjectPreviewProps> = ({ onClick }) => {
           return attr;
       }
     });
-  }, [GEOGRAPHIC_SCOPE, DEMOGRAPHIC_SCOPE]);
+  }, [GEOGRAPHIC_SCOPE, AREAS_OF_FOCUS, DEMOGRAPHIC_SCOPE]);
 
   return (
     <>
@@ -85,13 +97,13 @@ const ProjectPreview: React.FC<ProjectPreviewProps> = ({ onClick }) => {
             </div>
           </div>
 
-          <Button type="button" size="base" theme="black" onClick={onClick}>
+          <Button href={`/projects/${id}`} type="button" size="base" theme="black">
             Go to Project Page
           </Button>
         </div>
 
         <div className="w-full">
-          <InfoCard data={CARD_DATA} count={funders.length} />
+          <InfoCard type="project" data={CARD_DATA} count={funders.length} />
         </div>
       </div>
     </>

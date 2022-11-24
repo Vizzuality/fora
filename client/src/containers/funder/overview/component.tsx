@@ -6,13 +6,14 @@ import { useRouter } from 'next/router';
 import { useDemographics } from 'hooks/demographics';
 import { useFunder } from 'hooks/funders';
 
+import { SCOPES } from 'constants/scopes';
+
 import InfoCard from 'containers/details/info-card';
 
 import Button from 'components/button';
 
 import Address from './address';
 import Attributes from './attributes';
-import { PROJECT_CARD_INFO } from './constants';
 
 const FunderOverview = () => {
   const { query } = useRouter();
@@ -38,9 +39,9 @@ const FunderOverview = () => {
 
   // TO_DO: demograpgic leadership & areas of focus
   const CARD_DATA = useMemo(() => {
-    return PROJECT_CARD_INFO.map((attr) => {
+    return SCOPES.map((attr) => {
       switch (attr.id) {
-        case 'geogpraphic-scope':
+        case 'geographic-scope':
           return {
             ...attr,
             value: GEOGRAPHIC_SCOPE.join(', '),
@@ -99,7 +100,7 @@ const FunderOverview = () => {
         </div>
       </div>
       <div className="flex-1">
-        <InfoCard data={CARD_DATA} count={projects.length} />
+        <InfoCard type="funder" data={CARD_DATA} count={projects.length} />
       </div>
     </div>
   );

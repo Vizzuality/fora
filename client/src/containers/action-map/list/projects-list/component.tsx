@@ -1,7 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
 
-import { useRouter } from 'next/router';
-
 import { setProjectSelected } from 'store/action-map';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
@@ -21,7 +19,6 @@ const List = () => {
   const { projectSelected, filters } = useAppSelector((state) => state['/action-map']);
   const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModal();
 
-  const { push } = useRouter();
   const dispatch = useAppDispatch();
 
   // FUNDERS
@@ -56,16 +53,6 @@ const List = () => {
       openModal();
     },
     [dispatch, openModal]
-  );
-
-  const handleProjectPreviewClick = useCallback(
-    (id: string) => {
-      push({
-        pathname: `/projects/[id]`,
-        query: { id },
-      });
-    },
-    [push]
   );
 
   const handleProjectPreviewClose = useCallback(() => {
@@ -117,7 +104,7 @@ const List = () => {
         dismissable
       >
         <Preview onNext={handleNextClick} onPrevious={handlePreviousClick}>
-          <ProjectPreview onClick={() => handleProjectPreviewClick(projectSelected)} />
+          <ProjectPreview />
         </Preview>
       </Modal>
     </>

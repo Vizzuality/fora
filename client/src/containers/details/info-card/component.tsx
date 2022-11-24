@@ -1,8 +1,6 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import cx from 'classnames';
-
-import { useRouter } from 'next/router';
 
 import Icon from 'components/icon';
 import Tooltip from 'components/tooltip';
@@ -20,28 +18,17 @@ export interface InfoCardProps {
       name: string;
     }[];
   }[];
+  type: 'funder' | 'project';
   count: number;
 }
 
-const InfoCard = ({ data, count }: InfoCardProps) => {
-  const { pathname } = useRouter();
-  const USER_TYPE = useMemo(() => {
-    if (pathname.includes('project')) {
-      return 'project';
-    } else {
-      return 'funder';
-    }
-  }, [pathname]);
+const InfoCard = ({ data, count, type }: InfoCardProps) => {
   return (
     <div className="p-12 space-y-8 bg-green-80">
       <div>
-        <p className="font-semibold uppercase">
-          {USER_TYPE === 'funder' ? 'funding' : 'funded by'}
-        </p>
+        <p className="font-semibold uppercase">{type === 'funder' ? 'funding' : 'funded by'}</p>
         <p className="text-4xl font-display">{count}</p>
-        <p className="font-semibold capitalize">
-          {USER_TYPE === 'funder' ? 'projects' : 'funders'}
-        </p>
+        <p className="font-semibold capitalize">{type === 'funder' ? 'projects' : 'funders'}</p>
       </div>
 
       <dl className="">

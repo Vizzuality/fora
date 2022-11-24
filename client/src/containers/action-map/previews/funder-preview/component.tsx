@@ -2,19 +2,21 @@ import React, { useMemo } from 'react';
 
 import { useAppSelector } from 'store/hooks';
 
+import { useAreas } from 'hooks/areas';
 import { useDemographics } from 'hooks/demographics';
 import { useFunder } from 'hooks/funders';
+
+import { SCOPES } from 'constants/scopes';
 
 import InfoCard from 'containers/details/info-card';
 
 import Button from 'components/button';
 import Loading from 'components/loading';
 
-import { PROJECT_CARD_INFO } from './constants';
-import type { FunderPreviewProps } from './types';
-
-const FunderPreview: React.FC<FunderPreviewProps> = ({ onClick }) => {
+const FunderPreview = () => {
   const { funderSelected } = useAppSelector((state) => state['/action-map']);
+
+  const { data: areasData } = useAreas();
   const { data: demographicsData } = useDemographics();
   const {
     data: funderData,
@@ -22,13 +24,20 @@ const FunderPreview: React.FC<FunderPreviewProps> = ({ onClick }) => {
     isFetched: funderIsFetched,
   } = useFunder(funderSelected);
 
-  const { description, name, website, projects = [] } = funderData;
+  const { id, description, name, website, projects = [] } = funderData;
 
   const GEOGRAPHIC_SCOPE = useMemo(() => {
     const projSubgeographics = projects.map((proj) => proj.subgeographics);
     const arraySubGeo = projSubgeographics?.flat().map((subg) => subg.name);
     return arraySubGeo;
   }, [projects]);
+
+  const AREAS_OF_FOCUS = useMemo(() => {
+    const funderAreas = projects.map((f) => f.areas);
+    const arrayAreas = funderAreas?.flat().map((area) => area);
+
+    return areasData.filter((c) => arrayAreas.includes(c.id));
+  }, [areasData, projects]);
 
   const DEMOGRAPHIC_SCOPE = useMemo(() => {
     const projDemographics = projects.map((proj) => proj.demographics);
@@ -38,13 +47,19 @@ const FunderPreview: React.FC<FunderPreviewProps> = ({ onClick }) => {
   }, [demographicsData, projects]);
 
   const CARD_DATA = useMemo(() => {
-    return PROJECT_CARD_INFO.map((attr) => {
+    return SCOPES.map((attr) => {
       switch (attr.id) {
-        case 'geogpraphic-scope':
+        case 'geographic-scope':
           return {
             ...attr,
             value: GEOGRAPHIC_SCOPE.join(', '),
           };
+        case 'area-of-focus':
+          return {
+            ...attr,
+            value: AREAS_OF_FOCUS.map((a) => a.name).join(' • '),
+          };
+
         case 'demographic-scope':
           return {
             ...attr,
@@ -59,7 +74,7 @@ const FunderPreview: React.FC<FunderPreviewProps> = ({ onClick }) => {
           return attr;
       }
     });
-  }, [GEOGRAPHIC_SCOPE, DEMOGRAPHIC_SCOPE]);
+  }, [GEOGRAPHIC_SCOPE, AREAS_OF_FOCUS, DEMOGRAPHIC_SCOPE]);
 
   return (
     <>
@@ -88,13 +103,13 @@ const FunderPreview: React.FC<FunderPreviewProps> = ({ onClick }) => {
             </div>
           </div>
 
-          <Button type="button" size="base" theme="black" onClick={onClick}>
+          <Button href={`/funders/${id}`} type="button" size="base" theme="black">
             Go to Funder Page
           </Button>
         </div>
 
         <div className="w-full">
-          <InfoCard data={CARD_DATA} count={projects.length} />
+          <InfoCard type="funder" data={CARD_DATA} count={projects.length} />
         </div>
       </div>
     </>

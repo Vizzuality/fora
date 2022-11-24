@@ -1,7 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
 
-import { useRouter } from 'next/router';
-
 import { setFunderSelected } from 'store/action-map';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
@@ -21,7 +19,6 @@ const List = () => {
   const { funderSelected, filters } = useAppSelector((state) => state['/action-map']);
   const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModal();
 
-  const { push } = useRouter();
   const dispatch = useAppDispatch();
 
   // FUNDERS
@@ -57,16 +54,6 @@ const List = () => {
       openModal();
     },
     [dispatch, openModal]
-  );
-
-  const handleFunderPreviewClick = useCallback(
-    (id: string) => {
-      push({
-        pathname: `/funders/[id]`,
-        query: { id },
-      });
-    },
-    [push]
   );
 
   const handleFunderPreviewClose = useCallback(() => {
@@ -109,19 +96,18 @@ const List = () => {
           {NO_DATA && <NoData />}
         </ul>
       </div>
-      {funderSelected && (
-        <Modal
-          size="default"
-          title=""
-          open={isModalOpen}
-          onOpenChange={handleFunderPreviewClose}
-          dismissable
-        >
-          <Preview onNext={handleNextClick} onPrevious={handlePreviousClick}>
-            <FunderPreview onClick={() => handleFunderPreviewClick(funderSelected)} />
-          </Preview>
-        </Modal>
-      )}
+
+      <Modal
+        size="default"
+        title=""
+        open={isModalOpen}
+        onOpenChange={handleFunderPreviewClose}
+        dismissable
+      >
+        <Preview onNext={handleNextClick} onPrevious={handlePreviousClick}>
+          <FunderPreview />
+        </Preview>
+      </Modal>
     </>
   );
 };
