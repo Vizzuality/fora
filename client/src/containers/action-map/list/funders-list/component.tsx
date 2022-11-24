@@ -1,20 +1,25 @@
 import React, { useCallback, useMemo } from 'react';
 
-import { useRouter } from 'next/router';
-
-import { useAppSelector } from 'store/hooks';
+import { setFunderSelected } from 'store/action-map';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 import { useFunders } from 'hooks/funders';
+import { useModal } from 'hooks/modals';
 
 import NoData from 'containers/action-map/list/no-data';
+import FunderPreview from 'containers/action-map/previews/funder-preview';
+import Preview from 'containers/action-map/previews/preview';
 
 import Loading from 'components/loading';
+import Modal from 'components/modal';
 
 import Item from '../item';
 
 const List = () => {
-  const { push } = useRouter();
-  const { filters } = useAppSelector((state) => state['/action-map']);
+  const { funderSelected, filters } = useAppSelector((state) => state['/action-map']);
+  const { isOpen: isModalOpen, open: openModal, close: closeModal } = useModal();
+
+  const dispatch = useAppDispatch();
 
   // FUNDERS
   // get funders filtered by the current filters
@@ -45,13 +50,30 @@ const List = () => {
 
   const handleClick = useCallback(
     (id: string) => {
-      push({
-        pathname: `/funders/[id]`,
-        query: { id },
-      });
+      dispatch(setFunderSelected(id));
+      openModal();
     },
-    [push]
+    [dispatch, openModal]
   );
+
+  const handleFunderPreviewClose = useCallback(() => {
+    dispatch(setFunderSelected(null));
+    closeModal();
+  }, [dispatch, closeModal]);
+
+  const handlePreviousClick = useCallback(() => {
+    const IDS = DATA.map((d) => d.id);
+    const currentIndex = IDS.indexOf(funderSelected);
+    const previousIndex = currentIndex - 1 < 0 ? IDS.length - 1 : currentIndex - 1;
+    dispatch(setFunderSelected(IDS[previousIndex]));
+  }, [dispatch, funderSelected, DATA]);
+
+  const handleNextClick = useCallback(() => {
+    const IDS = DATA.map((d) => d.id);
+    const currentIndex = IDS.indexOf(funderSelected);
+    const nextIndex = currentIndex + 1 > IDS.length - 1 ? 0 : currentIndex + 1;
+    dispatch(setFunderSelected(IDS[nextIndex]));
+  }, [dispatch, funderSelected, DATA]);
 
   return (
     <>
@@ -74,6 +96,18 @@ const List = () => {
           {NO_DATA && <NoData />}
         </ul>
       </div>
+
+      <Modal
+        size="default"
+        title=""
+        open={isModalOpen}
+        onOpenChange={handleFunderPreviewClose}
+        dismissable
+      >
+        <Preview onNext={handleNextClick} onPrevious={handlePreviousClick}>
+          <FunderPreview />
+        </Preview>
+      </Modal>
     </>
   );
 };

@@ -1,12 +1,18 @@
-export const PROJECT_CARD_INFO = [
+export const SCOPES = [
   {
-    id: 'geogpraphic-scope',
+    id: 'geographic-scope',
     title: 'Geographic Scope',
     info: 'The country, region or state a project or funder focuses on working or investing in.',
     value: '',
   },
   {
-    id: 'demopgraphic-scope',
+    id: 'area-of-focus',
+    title: 'Area of Focus',
+    info: 'A regenerative agriculture related topic a project or funder focuses on working or investing in.',
+    value: '',
+  },
+  {
+    id: 'demographic-scope',
     title: 'Demographic Scope',
     info: 'Different demographic groups a project or funder focuses on working or investing in.',
     value: '',

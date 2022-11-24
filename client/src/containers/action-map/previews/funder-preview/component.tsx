@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 
-import Image from 'next/image';
-import { useRouter } from 'next/router';
+import { useAppSelector } from 'store/hooks';
 
 import { useAreas } from 'hooks/areas';
 import { useDemographics } from 'hooks/demographics';
@@ -12,19 +11,20 @@ import { SCOPES } from 'constants/scopes';
 import InfoCard from 'containers/details/info-card';
 
 import Button from 'components/button';
+import Loading from 'components/loading';
 
-import Address from './address';
-import Attributes from './attributes';
-
-const FunderOverview = () => {
-  const { query } = useRouter();
-  const { id: funderId } = query;
+const FunderPreview = () => {
+  const { funderSelected } = useAppSelector((state) => state['/action-map']);
 
   const { data: areasData } = useAreas();
   const { data: demographicsData } = useDemographics();
-  const { data: funderData } = useFunder(`${funderId}`);
+  const {
+    data: funderData,
+    isFetching: funderIsFetching,
+    isFetched: funderIsFetched,
+  } = useFunder(funderSelected);
 
-  const { contact_email: email, description, logo, name, projects } = funderData;
+  const { id, description, name, website, projects = [] } = funderData;
 
   const GEOGRAPHIC_SCOPE = useMemo(() => {
     const projSubgeographics = projects.map((proj) => proj.subgeographics);
@@ -53,7 +53,6 @@ const FunderOverview = () => {
     return demographicsData.filter((c) => arrayDemogr.includes(c.id));
   }, [demographicsData, projects]);
 
-  // TO_DO: demograpgic leadership & areas of focus
   const CARD_DATA = useMemo(() => {
     return SCOPES.map((attr) => {
       switch (attr.id) {
@@ -67,6 +66,7 @@ const FunderOverview = () => {
             ...attr,
             value: AREAS_OF_FOCUS.map((a) => a.name).join(' • '),
           };
+
         case 'demographic-scope':
           return {
             ...attr,
@@ -84,47 +84,43 @@ const FunderOverview = () => {
   }, [GEOGRAPHIC_SCOPE, AREAS_OF_FOCUS, DEMOGRAPHIC_SCOPE, DEMOGRAPHIC_LEADERSHIP_SCOPE]);
 
   return (
-    <div className="flex space-x-32">
-      <div className="flex-1 space-y-9">
-        <div className="space-y-1">
-          <div className="text-base font-normal text-grey-20">Last updated: 30 March 2022</div>
-          <h2 className="text-3xl font-normal capitalize line-clamp-2 text-ellipsis">{name}</h2>
-        </div>
+    <>
+      <Loading
+        visible={funderIsFetching && !funderIsFetched}
+        className="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-white/75"
+        iconClassName="w-10 h-10"
+      />
 
-        <div className="flex justify-between">
-          <div className="relative max-w-[50px] w-full shrink-0">
-            <Image
-              src={logo.small || '/images/avatar.jpg'}
-              alt={name}
-              layout="responsive"
-              width={50}
-              height={36}
-            />
+      <div className="flex space-x-16 lg:space-x-32">
+        <div className="w-full space-y-16">
+          <div className="space-y-9">
+            <div className="space-y-1">
+              <h2 className="text-3xl font-normal capitalize line-clamp-2 text-ellipsis">{name}</h2>
+              <div className="text-base font-normal text-grey-20">Last updated: 30 March 2022</div>
+            </div>
+            <p className="font-semibold underline">
+              <a href={website} target="_blank" rel="noopener noreferrer">
+                {website}
+              </a>
+            </p>
+
+            <div className="space-y-3">
+              <p className="font-semibold uppercase text-grey-20">About</p>
+              <p className="text-xl">{description}</p>
+            </div>
           </div>
-          <Button
-            type="button"
-            size="base"
-            theme="black-alt"
-            href={`mailto:${email}?subject=Hi ${name}`}
-          >
-            Contact Funder
+
+          <Button href={`/funders/${id}`} type="button" size="base" theme="black">
+            Go to Funder Page
           </Button>
         </div>
 
-        <Address />
-
-        <Attributes />
-
-        <div className="space-y-3">
-          <p className="font-semibold uppercase text-grey-20">About</p>
-          <p className="text-xl">{description}</p>
+        <div className="w-full">
+          <InfoCard type="funder" data={CARD_DATA} count={projects.length} />
         </div>
       </div>
-      <div className="flex-1">
-        <InfoCard type="funder" data={CARD_DATA} count={projects.length} />
-      </div>
-    </div>
+    </>
   );
 };
 
-export default FunderOverview;
+export default FunderPreview;

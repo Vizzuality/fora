@@ -26,7 +26,7 @@ const ActionMap = () => {
 
           <div className="grid grid-cols-12 gap-x-10">
             <div className="col-span-8">
-              <div className="flex flex-col w-full space-y-5">
+              <div className="relative flex flex-col w-full space-y-5">
                 <Map />
 
                 <div className="flex items-center justify-between">{/* <View /> */}</div>

@@ -17,11 +17,13 @@ const ProjectList = () => {
 
   return (
     <div className="space-y-20">
-      <div className="space-y-9">
-        <h3 className="text-2xl font-display"> Who is funding this project?</h3>
+      {!!funders.length && (
+        <div className="space-y-9">
+          <h3 className="text-2xl font-display"> Who is funding this project?</h3>
 
-        {funders.length && <Cards pathname="/funders" theme="green" data={funders} />}
-      </div>
+          <Cards pathname="/funders" theme="green" data={funders} />
+        </div>
+      )}
 
       <div className="space-y-9">
         <Similars type="projects" />
