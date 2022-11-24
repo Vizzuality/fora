@@ -34,6 +34,13 @@ const ProjectOverview = () => {
     return demographicsData.filter((c) => arrayDemogr.includes(c.id));
   }, [demographicsData, funders]);
 
+  const DEMOGRAPHIC_LEADERSHIP_SCOPE = useMemo(() => {
+    const funderDemographics = funders.map((f) => f.leadership_demographics);
+    const arrayDemogr = funderDemographics?.flat().map((demogr) => demogr);
+
+    return demographicsData.filter((c) => arrayDemogr.includes(c.id));
+  }, [demographicsData, funders]);
+
   const AREAS_OF_FOCUS = useMemo(() => {
     const funderAreas = funders.map((f) => f.areas);
     const arrayAreas = funderAreas?.flat().map((area) => area);
@@ -63,13 +70,13 @@ const ProjectOverview = () => {
         case 'demographic-leadership':
           return {
             ...attr,
-            value: DEMOGRAPHIC_SCOPE.map((d) => d.name).join(', '),
+            value: DEMOGRAPHIC_LEADERSHIP_SCOPE.map((d) => d.name).join(', '),
           };
         default:
           return attr;
       }
     });
-  }, [GEOGRAPHIC_SCOPE, AREAS_OF_FOCUS, DEMOGRAPHIC_SCOPE]);
+  }, [GEOGRAPHIC_SCOPE, AREAS_OF_FOCUS, DEMOGRAPHIC_SCOPE, DEMOGRAPHIC_LEADERSHIP_SCOPE]);
 
   return (
     <div className="flex space-x-32">

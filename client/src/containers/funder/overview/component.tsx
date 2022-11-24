@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import { useAreas } from 'hooks/areas';
 import { useDemographics } from 'hooks/demographics';
 import { useFunder } from 'hooks/funders';
 
@@ -19,6 +20,7 @@ const FunderOverview = () => {
   const { query } = useRouter();
   const { id: funderId } = query;
 
+  const { data: areasData } = useAreas();
   const { data: demographicsData } = useDemographics();
   const { data: funderData } = useFunder(`${funderId}`);
 
@@ -30,9 +32,23 @@ const FunderOverview = () => {
     return arraySubGeo;
   }, [projects]);
 
+  const AREAS_OF_FOCUS = useMemo(() => {
+    const funderAreas = projects.map((f) => f.areas);
+    const arrayAreas = funderAreas?.flat().map((area) => area);
+
+    return areasData.filter((c) => arrayAreas.includes(c.id));
+  }, [areasData, projects]);
+
   const DEMOGRAPHIC_SCOPE = useMemo(() => {
     const projDemographics = projects.map((proj) => proj.demographics);
     const arrayDemogr = projDemographics?.flat().map((demogr) => demogr);
+
+    return demographicsData.filter((c) => arrayDemogr.includes(c.id));
+  }, [demographicsData, projects]);
+
+  const DEMOGRAPHIC_LEADERSHIP_SCOPE = useMemo(() => {
+    const funderDemographics = projects.map((f) => f.leadership_demographics);
+    const arrayDemogr = funderDemographics?.flat().map((demogr) => demogr);
 
     return demographicsData.filter((c) => arrayDemogr.includes(c.id));
   }, [demographicsData, projects]);
@@ -46,6 +62,11 @@ const FunderOverview = () => {
             ...attr,
             value: GEOGRAPHIC_SCOPE.join(', '),
           };
+        case 'area-of-focus':
+          return {
+            ...attr,
+            value: AREAS_OF_FOCUS.map((a) => a.name).join(' • '),
+          };
         case 'demographic-scope':
           return {
             ...attr,
@@ -54,13 +75,13 @@ const FunderOverview = () => {
         case 'demographic-leadership':
           return {
             ...attr,
-            value: DEMOGRAPHIC_SCOPE.map((d) => d.name).join(', '),
+            value: DEMOGRAPHIC_LEADERSHIP_SCOPE.map((d) => d.name).join(', '),
           };
         default:
           return attr;
       }
     });
-  }, [GEOGRAPHIC_SCOPE, DEMOGRAPHIC_SCOPE]);
+  }, [GEOGRAPHIC_SCOPE, AREAS_OF_FOCUS, DEMOGRAPHIC_SCOPE, DEMOGRAPHIC_LEADERSHIP_SCOPE]);
 
   return (
     <div className="flex space-x-32">

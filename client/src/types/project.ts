@@ -12,6 +12,7 @@ export interface Project {
   // Filters
   areas: Area['id'][];
   demographics: Demographic['id'][];
+  leadership_demographics: Demographic['id'][];
   recipient_legal_status: ProjectLegalStatus;
   funders: Partial<Funder>[];
   logo: {
