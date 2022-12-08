@@ -41,4 +41,5 @@ RSpec.describe Investment, type: :model do
   include_examples :static_relation_validations, attribute: :capital_types, presence: true
   include_examples :static_relation_validations, attribute: :areas, presence: true
   include_examples :static_relation_validations, attribute: :grant_duration, presence: true
+  include_examples :static_relation_validations, attribute: :demographics, presence: true
 end

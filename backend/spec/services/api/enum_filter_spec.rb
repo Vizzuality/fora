@@ -1,9 +1,12 @@
 require "rails_helper"
 
 RSpec.describe API::EnumFilter do
-  subject { described_class.new query, filters, extra_models: extra_models }
+  subject do
+    described_class.new query, filters, extra_belongs_to_models: extra_belongs_to_models, extra_has_many_models: extra_has_many_models
+  end
 
-  let(:extra_models) { [] }
+  let(:extra_belongs_to_models) { [] }
+  let(:extra_has_many_models) { [] }
 
   describe "#call" do
     context "when using multiple filters on string attributes" do
@@ -48,7 +51,7 @@ RSpec.describe API::EnumFilter do
       end
     end
 
-    context "when filtering on enum attributes from different table" do
+    context "when filtering on enum attributes from different table through belong_to relation" do
       let!(:correct_project) do
         create :project, recipient: create(:recipient, recipient_legal_status: "foundation")
       end
@@ -58,7 +61,23 @@ RSpec.describe API::EnumFilter do
 
       let(:query) { Project.joins(:recipient) }
       let(:filters) { {recipient_legal_statuses: "foundation"} }
-      let(:extra_models) { [Recipient] }
+      let(:extra_belongs_to_models) { [Recipient] }
+
+      it "returns correct project" do
+        expect(subject.call).to eq([correct_project])
+      end
+    end
+
+    context "when filtering on enum attributes from different table through has_many relation" do
+      let!(:investment_1) { create :investment, project: correct_project, demographics: ["women"] }
+      let!(:investment_2) { create :investment, project: correct_project, demographics: ["youth"] }
+      let!(:investment_3) { create :investment, project: different_demographics_project, demographics: ["asian"] }
+      let!(:correct_project) { create :project }
+      let!(:different_demographics_project) { create :project }
+
+      let(:query) { Project.all }
+      let(:filters) { {demographics: "women,youth"} }
+      let(:extra_has_many_models) { {Investment.all => "project_id"} }
 
       it "returns correct project" do
         expect(subject.call).to eq([correct_project])

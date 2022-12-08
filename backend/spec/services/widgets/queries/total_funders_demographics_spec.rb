@@ -7,12 +7,12 @@ RSpec.describe Widgets::Queries::TotalFundersDemographics do
     let(:result) { subject.call }
     let!(:funder_1) { create :funder, date_joined_fora: Date.new(2021) }
     let!(:funder_2) { create :funder, date_joined_fora: Date.new(2021) }
-    let!(:project_1) { create :project, recipient: create(:recipient, demographics: ["black_or_african_american"]) }
-    let!(:project_2) { create :project, recipient: create(:recipient, demographics: ["black_or_african_american", "indigenous_tribal_nations"]) }
-    let!(:ignored_funder) { create :funder, date_joined_fora: Date.new(2030), demographics: ["black_or_african_american"] }
-    let!(:investment_1) { create :investment, funder: funder_1, project: project_1 }
-    let!(:investment_2) { create :investment, funder: funder_2, project: project_2 }
-    let!(:ignored_investment) { create :investment, funder: funder_1, project: project_1 }
+    let!(:ignored_funder) { create :funder, date_joined_fora: Date.new(2030) }
+    let!(:investment_1) { create :investment, funder: funder_1, demographics: ["black_or_african_american"] }
+    let!(:investment_2) do
+      create :investment, funder: funder_2, demographics: ["black_or_african_american", "indigenous_tribal_nations"]
+    end
+    let!(:ignored_investment) { create :investment, funder: ignored_funder }
 
     it "contains correct header" do
       expect(result[:headers].first[:label]).to eq(I18n.t("activerecord.models.demographic.one"))

@@ -44,7 +44,7 @@ RSpec.describe Subgeographic, type: :model do
       end
 
       context "when subgeographic is used by recipient" do
-        let!(:recipient) { create :recipient, subgeographics: [country] }
+        let!(:investment) { create :investment, subgeographics: [country] }
 
         it "returns country subgeographic" do
           expect(Subgeographic.only_active).to include(country)

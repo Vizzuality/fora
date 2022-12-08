@@ -5,11 +5,13 @@ RSpec.describe Widgets::Queries::FundedDemographics do
 
   describe "#call" do
     let(:result) { subject.call }
-    let(:project_1) { create :project, recipient: create(:recipient, demographics: ["black_or_african_american"]) }
-    let(:project_2) { create :project, recipient: create(:recipient, demographics: ["black_or_african_american", "indigenous_tribal_nations"]) }
-    let!(:investment_1) { create :investment, year_invested: 2021, amount: 10, project: project_1 }
-    let!(:investment_2) { create :investment, year_invested: 2021, amount: 20, project: project_2 }
-    let!(:ignored_investment) { create :investment, year_invested: 2030, amount: 20, project: project_1 }
+    let!(:investment_1) do
+      create :investment, year_invested: 2021, amount: 10, demographics: ["black_or_african_american"]
+    end
+    let!(:investment_2) do
+      create :investment, year_invested: 2021, amount: 20, demographics: ["black_or_african_american", "indigenous_tribal_nations"]
+    end
+    let!(:ignored_investment) { create :investment, year_invested: 2030, amount: 20 }
 
     it "contains correct header" do
       expect(result[:headers].first[:label]).to eq(I18n.t("activerecord.models.demographic.one"))

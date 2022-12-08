@@ -9,6 +9,7 @@ module API
         :website,
         :leadership_demographics,
         :leadership_demographics_other,
+        :areas,
         :demographics,
         :demographics_other,
         :recipient_legal_status,
@@ -20,10 +21,6 @@ module API
       has_many_restricted :subgeographics
       has_many_restricted :subgeographic_ancestors, serializer: :subgeographic
       has_many_restricted :funders
-
-      attribute :areas do |object|
-        object.investments.map { |i| i.areas }.flatten.uniq
-      end
 
       attribute :logo do |object|
         image_links_for object.logo

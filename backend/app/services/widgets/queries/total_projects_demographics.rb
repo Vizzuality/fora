@@ -20,8 +20,8 @@ module Widgets
       end
 
       def investments
-        @investments ||= Investment.joins(project: :recipient).where(year_invested: year)
-          .group("unnest(recipients.demographics)").count("DISTINCT investments.project_id")
+        @investments ||= Investment.where(year_invested: year).group("unnest(demographics)")
+          .count("DISTINCT investments.project_id")
       end
     end
   end

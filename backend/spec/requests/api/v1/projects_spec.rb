@@ -26,8 +26,9 @@ RSpec.describe "API V1 Projects", type: :request do
         create_list :project, 3, recipient: create(:recipient, recipient_legal_status: "for_profit")
       end
       let!(:project) do
-        create :project, recipient: create(:recipient, subgeographics: [national], recipient_legal_status: "foundation")
+        create :project, recipient: create(:recipient, recipient_legal_status: "foundation")
       end
+      let!(:investment_subgeographic) { create :investment, project: project, subgeographics: [national] }
       let!(:investment_other) { create :investment, project: projects.first, areas: %w[equity_and_justice] }
       let!(:investment_project) { create :investment, project: project, areas: %w[food_sovereignty] }
 
@@ -161,7 +162,7 @@ RSpec.describe "API V1 Projects", type: :request do
 
       let(:country) { create :subgeographic, geographic: :countries }
       let!(:national) { create :subgeographic, geographic: :national, parent: country }
-      let!(:project) { create :project, recipient: create(:recipient, subgeographics: [national]) }
+      let!(:project) { create :project, investments: [create(:investment, subgeographics: [national])] }
       let(:id) { project.id }
 
       it_behaves_like "with not found error"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_16_092559) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_08_083902) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -106,6 +106,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_16_092559) do
     t.index ["primary_office_state_id"], name: "index_funders_on_primary_office_state_id"
   end
 
+  create_table "investment_subgeographics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "investment_id", null: false
+    t.uuid "subgeographic_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["investment_id"], name: "index_investment_subgeographics_on_investment_id"
+    t.index ["subgeographic_id"], name: "index_investment_subgeographics_on_subgeographic_id"
+  end
+
   create_table "investments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "project_id", null: false
     t.uuid "funder_id", null: false
@@ -123,6 +132,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_16_092559) do
     t.integer "number_of_grant_years"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "demographics", null: false, array: true
+    t.text "demographics_other"
     t.index ["funder_id"], name: "index_investments_on_funder_id"
     t.index ["project_id"], name: "index_investments_on_project_id"
   end
@@ -137,15 +148,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_16_092559) do
     t.index ["recipient_id"], name: "index_projects_on_recipient_id"
   end
 
-  create_table "recipient_subgeographics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "recipient_id", null: false
-    t.uuid "subgeographic_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["recipient_id"], name: "index_recipient_subgeographics_on_recipient_id"
-    t.index ["subgeographic_id"], name: "index_recipient_subgeographics_on_subgeographic_id"
-  end
-
   create_table "recipients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "contact_first_name"
@@ -156,8 +158,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_16_092559) do
     t.string "city"
     t.string "leadership_demographics", array: true
     t.text "leadership_demographics_other"
-    t.string "demographics", null: false, array: true
-    t.text "demographics_other"
     t.string "recipient_legal_status"
     t.text "recipient_legal_status_other"
     t.datetime "created_at", null: false
@@ -227,11 +227,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_16_092559) do
   add_foreign_key "funder_subgeographics", "subgeographics", on_delete: :cascade
   add_foreign_key "funders", "subgeographics", column: "primary_office_country_id", on_delete: :cascade
   add_foreign_key "funders", "subgeographics", column: "primary_office_state_id", on_delete: :cascade
+  add_foreign_key "investment_subgeographics", "investments", on_delete: :cascade
+  add_foreign_key "investment_subgeographics", "subgeographics", on_delete: :cascade
   add_foreign_key "investments", "funders", on_delete: :cascade
   add_foreign_key "investments", "projects", on_delete: :cascade
   add_foreign_key "projects", "recipients", on_delete: :cascade
-  add_foreign_key "recipient_subgeographics", "recipients", on_delete: :cascade
-  add_foreign_key "recipient_subgeographics", "subgeographics", on_delete: :cascade
   add_foreign_key "recipients", "subgeographics", column: "country_id", on_delete: :cascade
   add_foreign_key "recipients", "subgeographics", column: "state_id", on_delete: :cascade
   add_foreign_key "subgeographic_hierarchies", "subgeographics", column: "ancestor_id", on_delete: :cascade

@@ -35,10 +35,10 @@ module Widgets
       end
 
       def investments
-        @investments ||= Investment.select(:amount, :project_id).includes(project: {recipient: :subgeographic_ancestors})
-          .where(year_invested: year, project: Project.for_geographics(geographic).select(:id))
+        @investments ||= Investment.select(:id, :amount).includes(:subgeographic_ancestors)
+          .joins(:subgeographic_ancestors).where(year_invested: year, subgeographics: {geographic: geographic})
           .each_with_object({}) do |investment, res|
-          subgeographics = investment.project.recipient.subgeographic_ancestors.to_a.select { |s| s.geographic == geographic }
+          subgeographics = investment.subgeographic_ancestors.to_a.select { |s| s.geographic == geographic }
           subgeographics.each do |subgeographic|
             res[subgeographic.id] = (res[subgeographic.id] || 0) + (investment.amount / subgeographics.size).round
           end

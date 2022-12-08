@@ -24,7 +24,7 @@ class Subgeographic < ApplicationRecord
     scope geographic, -> { where(geographic: geographic) }
   end
   scope :only_active, -> {
-    recipients = RecipientSubgeographic.select("subgeographic_id").to_sql
+    recipients = InvestmentSubgeographic.select("subgeographic_id").to_sql
     funders = FunderSubgeographic.select("subgeographic_id").to_sql
     where(id: SubgeographicHierarchy.where("descendant_id IN (#{recipients} UNION #{funders})").select(:ancestor_id))
   }

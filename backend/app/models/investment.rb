@@ -2,6 +2,11 @@ class Investment < ApplicationRecord
   belongs_to :funder
   belongs_to :project
 
+  has_many :investment_subgeographics, dependent: :destroy
+  has_many :subgeographics, through: :investment_subgeographics
+  has_many :subgeographic_ancestors, through: :subgeographics, source: :subgeographic_ancestors
+
+  validates :demographics, array_inclusion: {in: Demographic::TYPES, allow_blank: true}, presence: true
   validates :funding_type, inclusion: {in: FundingType::TYPES, allow_blank: true}, presence: true
   validates :capital_types, array_inclusion: {in: CapitalType::TYPES, allow_blank: true}, presence: true
   validates :areas, array_inclusion: {in: Area::TYPES, allow_blank: true}, presence: true
