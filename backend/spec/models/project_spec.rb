@@ -15,7 +15,7 @@ RSpec.describe Project, type: :model do
       let!(:country) { create :subgeographic, geographic: :countries }
       let!(:region) { create :subgeographic, geographic: :regions, parent: country }
 
-      let!(:correct_project) { create :project, recipient: create(:recipient, subgeographics: [region]) }
+      let!(:correct_project) { create :project, investments: [create(:investment, subgeographics: [region])] }
       let!(:ignored_project) { create :project }
 
       it "returns correct result for current subgeographic" do
@@ -32,8 +32,8 @@ RSpec.describe Project, type: :model do
       let!(:region) { create :subgeographic, geographic: :regions, parent: country }
       let!(:national) { create :subgeographic, geographic: :national, parent: country }
 
-      let!(:project_1) { create :project, recipient: create(:recipient, subgeographics: [region]) }
-      let!(:project_2) { create :project, recipient: create(:recipient, subgeographics: [national]) }
+      let!(:project_1) { create :project, investments: [create(:investment, subgeographics: [region])] }
+      let!(:project_2) { create :project, investments: [create(:investment, subgeographics: [national])] }
 
       it "returns correct result for current geographic" do
         expect(Project.for_geographics(:regions)).to eq([project_1])
@@ -55,6 +55,36 @@ RSpec.describe Project, type: :model do
         expect(Project.with_funders_count.find(project.id).funders_count).to eq(investments.count)
         expect(Project.with_funders_count.find(project_without_funder.id).funders_count).to be_zero
       end
+    end
+  end
+
+  describe "#areas" do
+    let!(:project) do
+      create :project, investments: [create(:investment, areas: ["equity_and_justice"]), create(:investment, areas: ["food_sovereignty"])]
+    end
+
+    it "returns correct value" do
+      expect(project.areas).to match_array(%w[equity_and_justice food_sovereignty])
+    end
+  end
+
+  describe "#demographics" do
+    let!(:project) do
+      create :project, investments: [create(:investment, demographics: ["women"]), create(:investment, demographics: ["youth"])]
+    end
+
+    it "returns correct value" do
+      expect(project.demographics).to match_array(%w[women youth])
+    end
+  end
+
+  describe "#demographics_other" do
+    let!(:project) do
+      create :project, investments: [create(:investment, demographics_other: "TEST 1"), create(:investment, demographics_other: "TEST 2")]
+    end
+
+    it "returns correct value" do
+      expect(project.demographics_other).to eq("TEST 1\nTEST 2")
     end
   end
 end

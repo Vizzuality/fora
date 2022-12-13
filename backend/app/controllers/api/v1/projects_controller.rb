@@ -13,12 +13,13 @@ module API
         @projects = @projects.for_geographics filter_params[:geographic] if filter_params[:geographic].present?
         @projects = @projects.search filter_params[:full_text] if filter_params[:full_text].present?
         @projects = API::EnumFilter.new(
-          @projects.joins(:recipient).left_joins(:investments),
+          @projects.joins(:recipient),
           filter_params.to_h.slice(*ENUM_FILTERS),
-          extra_models: [Recipient, Investment]
+          extra_belongs_to_models: [Recipient],
+          extra_has_many_models: {Investment => "project_id"}
         ).call
         @projects = Project.with_funders_count.where(id: @projects.pluck(:id))
-          .includes :investments, :funders, recipient: [:state, :country, :subgeographics, :subgeographic_ancestors, logo_attachment: [:blob]]
+          .includes :investments, :funders, :subgeographics, :subgeographic_ancestors, recipient: [:state, :country, logo_attachment: [:blob]]
         @projects = API::Sorting.new(@projects, sorting_params, SORTING_COLUMNS).call.order :created_at
         pagy_object, @projects = pagy @projects, page: current_page, items: per_page unless params[:disable_pagination].to_s == "true"
         render json: ProjectSerializer.new(

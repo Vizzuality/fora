@@ -35,6 +35,13 @@ FactoryBot.define do
       Faker::Config.random = Random.new(n)
       Faker::Lorem.sentence
     end
+    sequence(:demographics) do |n|
+      Demographic::TYPES.sample 2, random: Random.new(n)
+    end
+    sequence(:demographics_other) do |n|
+      Faker::Config.random = Random.new(n)
+      Faker::Lorem.sentence
+    end
     sequence(:grant_duration) do |n|
       GrantDuration::TYPES.sample random: Random.new(n)
     end

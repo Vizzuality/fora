@@ -21,6 +21,5 @@ RSpec.describe Recipient, type: :model do
   end
 
   include_examples :static_relation_validations, attribute: :leadership_demographics, presence: false
-  include_examples :static_relation_validations, attribute: :demographics, presence: true
   include_examples :static_relation_validations, attribute: :recipient_legal_status, presence: false
 end

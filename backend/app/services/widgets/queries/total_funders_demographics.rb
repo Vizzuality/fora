@@ -20,9 +20,8 @@ module Widgets
       end
 
       def investments
-        @investments ||= Investment.joins(:funder, project: :recipient)
-          .where(funders: {date_joined_fora: ..DateTime.new(year).end_of_year})
-          .group("unnest(recipients.demographics)").count("DISTINCT investments.funder_id")
+        @investments ||= Investment.joins(:funder).where(funders: {date_joined_fora: ..DateTime.new(year).end_of_year})
+          .group("unnest(investments.demographics)").count("DISTINCT investments.funder_id")
       end
     end
   end

@@ -34,14 +34,12 @@ RSpec.describe Widgets::Queries::TotalProjectsFundersSubgeographics do
       let!(:region) { create :subgeographic, geographic: :regions, parent: country_1 }
       let!(:country_2) { create :subgeographic, geographic: :countries, name: "CCCC" }
       let!(:ignored_country) { create :subgeographic, geographic: :countries, name: "BBBB" }
-      let!(:project_1) { create :project, recipient: create(:recipient, subgeographics: [region]) }
-      let!(:project_2) { create :project, recipient: create(:recipient, subgeographics: [country_1, country_2]) }
       let!(:funder_1) { create :funder, date_joined_fora: Date.new(2021), subgeographics: [country_1] }
       let!(:funder_2) { create :funder, date_joined_fora: Date.new(2021), subgeographics: [country_2] }
       let!(:ignored_funder) { create :funder, date_joined_fora: Date.new(2030), subgeographics: [country_2] }
-      let!(:investment_1) { create :investment, year_invested: 2021, project: project_1, funder: funder_1 }
-      let!(:investment_2) { create :investment, year_invested: 2021, project: project_2, funder: funder_2 }
-      let!(:ignored_investment) { create :investment, year_invested: 2030, project: project_1, funder: funder_1 }
+      let!(:investment_1) { create :investment, year_invested: 2021, funder: funder_1, subgeographics: [region] }
+      let!(:investment_2) { create :investment, year_invested: 2021, funder: funder_2, subgeographics: [country_1, country_2] }
+      let!(:ignored_investment) { create :investment, year_invested: 2030, funder: funder_1 }
 
       it "contains correct header" do
         expect(result[:headers].first[:label]).to eq(Geographic.find("countries").name)
@@ -77,14 +75,16 @@ RSpec.describe Widgets::Queries::TotalProjectsFundersSubgeographics do
       let!(:state) { create :subgeographic, geographic: :states, parent: region_1 }
       let!(:region_2) { create :subgeographic, geographic: :regions, name: "CCCC" }
       let!(:region_3) { create :subgeographic, geographic: :regions, name: "BBBB" }
-      let!(:project_1) { create :project, recipient: create(:recipient, subgeographics: [state]) }
-      let!(:project_2) { create :project, recipient: create(:recipient, subgeographics: [region_1, region_2]) }
       let!(:funder_1) { create :funder, date_joined_fora: Date.new(2021), subgeographics: [region_1] }
       let!(:funder_2) { create :funder, date_joined_fora: Date.new(2021), subgeographics: [region_2] }
       let!(:ignored_funder) { create :funder, date_joined_fora: Date.new(2030), subgeographics: [region_2] }
-      let!(:investment_1) { create :investment, year_invested: 2021, amount: 10, project: project_1, funder: funder_1 }
-      let!(:investment_2) { create :investment, year_invested: 2021, amount: 20, project: project_2, funder: funder_2 }
-      let!(:ignored_investment) { create :investment, year_invested: 2030, amount: 10, project: project_1, funder: funder_1 }
+      let!(:investment_1) do
+        create :investment, year_invested: 2021, amount: 10, funder: funder_1, subgeographics: [state]
+      end
+      let!(:investment_2) do
+        create :investment, year_invested: 2021, amount: 20, funder: funder_2, subgeographics: [region_1, region_2]
+      end
+      let!(:ignored_investment) { create :investment, year_invested: 2030, funder: funder_1 }
 
       it "contains correct header" do
         expect(result[:headers].first[:label]).to eq(Geographic.find("regions").name)
