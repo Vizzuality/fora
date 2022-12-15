@@ -36,7 +36,7 @@ const WidgetToolbar = ({ title, description, slug, params, toolbar }: WidgetTool
 
   return (
     <>
-      <div className="flex border divide-x rounded-lg shrink-0 border-grey-40 divide-grey-40">
+      <div className="flex overflow-hidden border divide-x rounded-lg shrink-0 border-grey-40 divide-grey-40">
         {info && (
           <button
             type="button"
