@@ -67,32 +67,25 @@
       "id": "network_of_funders",
       "type": "funder_type",
       "attributes": {
-        "name": "Network of funders"
+        "name": "Other"
       }
     },
     {
       "id": "other",
       "type": "funder_type",
       "attributes": {
-        "name": "Other"
+        "name": "Private Foundation"
       }
     },
     {
       "id": "private_foundation",
       "type": "funder_type",
       "attributes": {
-        "name": "Private Foundation"
-      }
-    },
-    {
-      "id": "public_foundation",
-      "type": "funder_type",
-      "attributes": {
         "name": "Public Foundation"
       }
     },
     {
-      "id": "regrantor",
+      "id": "public_foundation",
       "type": "funder_type",
       "attributes": {
         "name": "Regrantor"

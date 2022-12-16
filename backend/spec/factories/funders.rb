@@ -41,7 +41,8 @@ FactoryBot.define do
       Faker::Address.full_address
     end
     sequence(:primary_contact_role) do |n|
-      Role::TYPES.sample random: Random.new(n)
+      Faker::Config.random = Random.new(n)
+      Faker::Lorem.word
     end
     sequence(:secondary_email_which_can_be_shared) do |n|
       Faker::Config.random = Random.new(n)

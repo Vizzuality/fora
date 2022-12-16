@@ -33,4 +33,14 @@
       <td><%= I18n.l @resource.updated_at %></td>
     </tr>
   </table>
+
+  <% if @resource.error_messages.present? %>
+    <h2 class="font-semibold text-black my-4">
+      <%= t "backoffice.forms.upload.error_messages" %>
+    </h2>
+
+    <% @resource.error_messages.each do |error_message| %>
+      <%= error_message %><br />
+    <% end %>
+  <% end %>
 </div>

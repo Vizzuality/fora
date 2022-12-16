@@ -46,6 +46,13 @@
       "id": "pris",
       "type": "capital_type",
       "attributes": {
+        "name": "Other"
+      }
+    },
+    {
+      "id": "re_grants",
+      "type": "capital_type",
+      "attributes": {
         "name": "PRIs"
       }
     },

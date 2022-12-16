@@ -15,6 +15,7 @@ gem "cancancan"
 gem "redis"
 gem "devise"
 gem "ransack"
+gem "rubyzip"
 
 gem "dotenv-rails"
 
@@ -44,6 +45,7 @@ gem "rgeo"
 gem "rgeo-geojson"
 gem "standard"
 gem "closure_tree"
+gem "mime-types"
 
 group :development, :test do
   gem "debug", platforms: %i[mri mingw x64_mingw]

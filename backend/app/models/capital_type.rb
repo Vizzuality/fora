@@ -12,5 +12,6 @@ class CapitalType
     re_grants
     forgivable_loans
     guarantees
+    other
   ].freeze
 end

@@ -56,6 +56,11 @@ RSpec.describe Funder, type: :model do
     expect(subject).to have(1).errors_on(:primary_contact_phone)
   end
 
+  it "should not be valid without primary_contact_role" do
+    subject.primary_contact_role = nil
+    expect(subject).to have(1).errors_on(:primary_contact_role)
+  end
+
   it "should not be valid without primary_contact_location" do
     subject.primary_contact_location = nil
     expect(subject).to have(1).errors_on(:primary_contact_location)
@@ -81,7 +86,6 @@ RSpec.describe Funder, type: :model do
     expect(subject).to have(1).errors_on(:logo)
   end
 
-  include_examples :static_relation_validations, attribute: :primary_contact_role, presence: true
   include_examples :static_relation_validations, attribute: :funder_type, presence: true
   include_examples :static_relation_validations, attribute: :capital_acceptances, presence: true
   include_examples :static_relation_validations, attribute: :leadership_demographics, presence: true

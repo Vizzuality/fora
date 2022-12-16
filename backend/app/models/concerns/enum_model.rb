@@ -37,5 +37,9 @@ module EnumModel
     def find(slug)
       new(slug: slug)
     end
+
+    def find_by_name(value)
+      all.find { |enum| enum.name == value }
+    end
   end
 end

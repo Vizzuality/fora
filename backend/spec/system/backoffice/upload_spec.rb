@@ -39,6 +39,9 @@ RSpec.describe "Backoffice: Uploads", type: :system do
   end
 
   describe "Show" do
+    let(:error) { "THIS IS ERROR" }
+    let!(:upload) { create :upload, error_messages: [error] }
+
     before do
       visit "/backoffice/uploads"
       within_row(upload.id) do
@@ -58,6 +61,11 @@ RSpec.describe "Backoffice: Uploads", type: :system do
       expect(page).to have_text(upload.file.filename)
       expect(page).to have_text(I18n.l(upload.created_at))
       expect(page).to have_text(I18n.l(upload.updated_at))
+    end
+
+    it "shows error messages" do
+      expect(page).to have_text(I18n.t("backoffice.forms.upload.error_messages"))
+      expect(page).to have_text(error)
     end
   end
 

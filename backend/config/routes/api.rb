@@ -11,7 +11,6 @@ namespace :api, format: "json" do
     resources :funding_types, only: %i[index]
     resources :grant_durations, only: %i[index]
     resources :application_statuses, only: %i[index]
-    resources :roles, only: %i[index]
     resources :capital_acceptances, only: %i[index]
     resources :demographics, only: %i[index]
     resources :capital_types, only: %i[index]

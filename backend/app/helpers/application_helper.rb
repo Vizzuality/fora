@@ -5,8 +5,8 @@ module ApplicationHelper
     "new" => "text-grey-20 bg-grey-20/20",
     "processing" => "text-green-20 bg-green-20/20",
     "completed" => "text-green-0 bg-green-0/20",
-    "failed" => "text-red-dark bg-red-dark/20",
-    "crashed" => "text-red-dark bg-red-dark/20"
+    "failed" => "text-red-0 bg-red-0/20",
+    "crashed" => "text-red-0 bg-red-0/20"
   }
 
   FLASH_CLASSES = {

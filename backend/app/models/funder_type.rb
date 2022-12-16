@@ -13,7 +13,6 @@ class FunderType
     individual
     initiative
     loan_fund
-    network_of_funders
     private_foundation
     public_foundation
     regrantor

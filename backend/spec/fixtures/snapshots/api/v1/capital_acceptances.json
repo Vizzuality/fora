@@ -39,7 +39,7 @@
       "id": "private_capital",
       "type": "capital_acceptance",
       "attributes": {
-        "name": "Private Capital (closed)"
+        "name": "Private Capital (Closed)"
       }
     }
   ]
