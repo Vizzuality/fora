@@ -66,6 +66,30 @@ RSpec.describe DummySubgeographicsModule do
       end
     end
 
+    context "when geographic focus should be transformed to state" do
+      let(:transformed_state) { described_class::COUNTRIES_TO_STATES.first.first }
+      let!(:state) { create :subgeographic, geographic: :states, name: transformed_state, parent: usa_country }
+      let(:countries) { [transformed_state, usa_country.name] }
+
+      before { subject.call }
+
+      it "assigns state instead of country subgeographic to record" do
+        expect(record.subgeographics).to eq([state])
+      end
+    end
+
+    context "when geographic focus should be transformed to region" do
+      let(:transformed_region) { described_class::COUNTRIES_TO_REGIONS.first }
+      let!(:region) { create :subgeographic, geographic: :regions, name: transformed_region.last, parent: usa_country }
+      let(:countries) { [transformed_region.first, usa_country.name] }
+
+      before { subject.call }
+
+      it "assigns region instead of country subgeographic to record" do
+        expect(record.subgeographics).to eq([region])
+      end
+    end
+
     context "when multiple geographic types are combined" do
       let!(:country) { create :subgeographic, geographic: :countries, name: "Croatia" }
       let!(:state) { create :subgeographic, geographic: :states, name: "Georgia", parent: usa_country }
