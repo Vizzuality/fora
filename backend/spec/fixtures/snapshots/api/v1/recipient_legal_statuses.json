@@ -4,28 +4,42 @@
       "id": "cooperative",
       "type": "recipient_legal_status",
       "attributes": {
-        "name": "Cooperative"
+        "name": "For-profit"
       }
     },
     {
       "id": "for_profit",
       "type": "recipient_legal_status",
       "attributes": {
-        "name": "For-profit"
+        "name": "Government Organization"
       }
     },
     {
       "id": "foundation",
       "type": "recipient_legal_status",
       "attributes": {
-        "name": "Foundation"
+        "name": "I don't know"
       }
     },
     {
       "id": "other",
       "type": "recipient_legal_status",
       "attributes": {
-        "name": "Other"
+        "name": "Individual"
+      }
+    },
+    {
+      "id": "non_profit",
+      "type": "recipient_legal_status",
+      "attributes": {
+        "name": "Nonprofit"
+      }
+    },
+    {
+      "id": "research_institution",
+      "type": "recipient_legal_status",
+      "attributes": {
+        "name": "Research Institution"
       }
     }
   ]

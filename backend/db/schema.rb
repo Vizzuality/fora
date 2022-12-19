@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_08_083902) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_19_101619) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -139,29 +139,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_08_083902) do
   end
 
   create_table "projects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name"
-    t.text "description"
     t.uuid "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_projects_on_name", unique: true, where: "(name IS NOT NULL)"
     t.index ["recipient_id"], name: "index_projects_on_recipient_id"
   end
 
   create_table "recipients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.string "contact_first_name"
-    t.string "contact_last_name"
+    t.string "contact_first_name", null: false
+    t.string "contact_last_name", null: false
     t.string "website"
     t.uuid "country_id", null: false
     t.uuid "state_id"
-    t.string "city"
+    t.string "city", null: false
     t.string "leadership_demographics", array: true
     t.text "leadership_demographics_other"
     t.string "recipient_legal_status"
-    t.text "recipient_legal_status_other"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description", null: false
     t.index ["country_id"], name: "index_recipients_on_country_id"
     t.index ["name"], name: "index_recipients_on_name", unique: true
     t.index ["state_id"], name: "index_recipients_on_state_id"

@@ -9,11 +9,11 @@ class Project < ApplicationRecord
   has_many :subgeographics, -> { distinct }, through: :investment_subgeographics
   has_many :subgeographic_ancestors, through: :subgeographics, source: :subgeographic_ancestors
 
-  pg_search_scope :search, against: [:name, :description]
+  pg_search_scope :search, associated_against: {recipient: [:name, :description]}
 
-  validates_uniqueness_of :name, case_sensitive: false, allow_blank: true
-
-  delegate :website,
+  delegate :name,
+    :description,
+    :website,
     :leadership_demographics,
     :leadership_demographics_other,
     :recipient_legal_status,
@@ -31,10 +31,6 @@ class Project < ApplicationRecord
     funders_count = Investment.where("investments.project_id = projects.id").select("COUNT(DISTINCT investments.funder_id)").to_sql
     select "projects.*, (#{funders_count}) AS funders_count"
   }
-
-  def recipient_name
-    recipient.name
-  end
 
   def areas
     investments_data_for :areas

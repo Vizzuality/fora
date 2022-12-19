@@ -26,7 +26,7 @@ RSpec.describe "API V1 Projects", type: :request do
         create_list :project, 3, recipient: create(:recipient, recipient_legal_status: "for_profit")
       end
       let!(:project) do
-        create :project, recipient: create(:recipient, recipient_legal_status: "foundation")
+        create :project, recipient: create(:recipient, recipient_legal_status: "government_organization")
       end
       let!(:investment_subgeographic) { create :investment, project: project, subgeographics: [national] }
       let!(:investment_other) { create :investment, project: projects.first, areas: %w[equity_and_justice] }
@@ -95,7 +95,7 @@ RSpec.describe "API V1 Projects", type: :request do
 
         context "when filtered for specified enums" do
           context "when used with enum from recipient table" do
-            let("filter[recipient_legal_statuses]") { "foundation" }
+            let("filter[recipient_legal_statuses]") { "government_organization" }
 
             it "returns only projects with correct recipient_legal_status" do
               expect(response_json["data"].pluck("id")).to eq([project.id])
@@ -123,7 +123,7 @@ RSpec.describe "API V1 Projects", type: :request do
           let("filter[subgeographics]") { national.abbreviation }
           let("filter[geographic]") { :national }
           let("filter[areas]") { "food_sovereignty" }
-          let("filter[recipient_legal_statuses]") { "foundation" }
+          let("filter[recipient_legal_statuses]") { "government_organization" }
           let("filter[full_text]") { project.name }
 
           it "returns only projects which are true for all filters" do

@@ -4,7 +4,7 @@
       "id": "481e3e6b-4552-44d7-b827-6c949dbea855",
       "type": "project",
       "attributes": {
-        "name": "Elbert Denesik"
+        "name": "Msgr. Genaro Cronin"
       },
       "relationships": {
         "subgeographics": {
@@ -33,7 +33,7 @@
       "id": "54c613a6-eaf5-427e-93ab-f16f20f02626",
       "type": "project",
       "attributes": {
-        "name": "Msgr. Genaro Cronin"
+        "name": "Otha Kemmer"
       },
       "relationships": {
         "subgeographics": {
@@ -43,7 +43,10 @@
         },
         "funders": {
           "data": [
-
+            {
+              "id": "6657fb0d-01ca-4313-97b6-fde4222dd74a",
+              "type": "funder"
+            }
           ]
         }
       }
@@ -62,10 +65,7 @@
         },
         "funders": {
           "data": [
-            {
-              "id": "a6afeb54-2400-442e-8cdf-02ef71f6b164",
-              "type": "funder"
-            }
+
           ]
         }
       }
@@ -74,7 +74,7 @@
       "id": "913da573-483c-46bd-8252-180ee0333ee4",
       "type": "project",
       "attributes": {
-        "name": "Raymon Wisoky"
+        "name": "Otha Kemmer"
       },
       "relationships": {
         "subgeographics": {

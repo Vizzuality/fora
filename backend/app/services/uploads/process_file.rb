@@ -18,7 +18,7 @@ module Uploads
     def call
       upload.transaction do
         Importers::Uploads::Funders.new(zip_data[:funders], zip_data[:funder_images], errors).call
-        # Importers::Uploads::Projects.new(zip_data[:projects], zip_data[:project_images], errors).call
+        Importers::Uploads::Projects.new(zip_data[:projects], zip_data[:project_images], errors).call
         # Importers::Uploads::Investments.new(zip_data[:projects], zip_data[:project_images], errors).call
         raise ActiveRecord::Rollback if errors.present?
       end

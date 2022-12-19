@@ -7,7 +7,7 @@ RSpec.describe Widgets::Queries::FundedRecipientLegalStatuses do
     let(:result) { subject.call }
     let(:project_1) { create :project, recipient: create(:recipient, recipient_legal_status: "for_profit") }
     let(:project_2) { create :project, recipient: create(:recipient, recipient_legal_status: "for_profit") }
-    let(:project_3) { create :project, recipient: create(:recipient, recipient_legal_status: "foundation") }
+    let(:project_3) { create :project, recipient: create(:recipient, recipient_legal_status: "government_organization") }
     let!(:investment_1) { create :investment, year_invested: 2021, amount: 10, project: project_1 }
     let!(:investment_2) { create :investment, year_invested: 2021, amount: 20, project: project_2 }
     let!(:investment_3) { create :investment, year_invested: 2021, amount: 20, project: project_3 }
@@ -29,7 +29,7 @@ RSpec.describe Widgets::Queries::FundedRecipientLegalStatuses do
 
     it "has correct values for appropriate recipient legal status" do
       expect(result[:values].find { |v| v.first[:id] == "for_profit" }.second[:value]).to eq(30)
-      expect(result[:values].find { |v| v.first[:id] == "foundation" }.second[:value]).to eq(20)
+      expect(result[:values].find { |v| v.first[:id] == "government_organization" }.second[:value]).to eq(20)
     end
   end
 end

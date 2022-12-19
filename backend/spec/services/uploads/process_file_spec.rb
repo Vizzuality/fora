@@ -7,13 +7,17 @@ RSpec.describe Uploads::ProcessFile do
     let!(:usa_country) { create :subgeographic, geographic: :countries, name: "United States" }
     let!(:afghanistan) { create :subgeographic, geographic: :countries, name: "Afghanistan" }
     let!(:aruba) { create :subgeographic, geographic: :countries, name: "Aruba" }
-    let!(:united_arab_emirates) { create :subgeographic, geographic: :countries, name: "United Arab Emirates" }
+    let!(:andorra) { create :subgeographic, geographic: :countries, name: "Andorra" }
     let!(:jamaica) { create :subgeographic, geographic: :countries, name: "Jamaica" }
+    let!(:new_caledonia) { create :subgeographic, geographic: :countries, name: "New Caledonia" }
+    let!(:united_arab_emirates) { create :subgeographic, geographic: :countries, name: "United Arab Emirates" }
     let!(:national) { create :subgeographic, geographic: :national, name: "United States", parent: usa_country }
-    let!(:connecticut) { create :subgeographic, geographic: :states, name: "Connecticut", parent: usa_country }
-    let!(:new_hampshire) { create :subgeographic, geographic: :states, name: "New Hampshire", parent: usa_country }
     let!(:alabama) { create :subgeographic, geographic: :states, name: "Alabama", parent: usa_country }
     let!(:alaska) { create :subgeographic, geographic: :states, name: "Alaska", parent: usa_country }
+    let!(:columbia) { create :subgeographic, geographic: :states, name: "District of Columbia", parent: usa_country }
+    let!(:connecticut) { create :subgeographic, geographic: :states, name: "Connecticut", parent: usa_country }
+    let!(:delaware) { create :subgeographic, geographic: :states, name: "Delaware", parent: usa_country }
+    let!(:new_hampshire) { create :subgeographic, geographic: :states, name: "New Hampshire", parent: usa_country }
 
     before { subject.call }
 
@@ -23,9 +27,17 @@ RSpec.describe Uploads::ProcessFile do
       end
       let(:funder_1) { Funder.find_by! name: "11th Hour Project" }
       let(:funder_2) { Funder.find_by! name: "Armonia LLC" }
+      let(:recipient_1) { Recipient.find_by! name: "Chicken World" }
+      let(:recipient_2) { Recipient.find_by! name: "Llama" }
 
       it "creates new records" do
         expect(Funder.count).to eq(2)
+        expect(Recipient.count).to eq(2)
+        expect(Project.count).to eq(2)
+      end
+
+      it "does not return any error" do
+        expect(subject.errors).to be_empty
       end
 
       it "matches attributes of first funder with data from zip file" do
@@ -111,6 +123,40 @@ RSpec.describe Uploads::ProcessFile do
         expect(funder_2.logo.filename.to_s).to eq("Logo_ Natural Investments LLC - 2022.jpg")
         expect(funder_2.logo.content_type).to eq("image/jpeg")
       end
+
+      it "matches attributes of first recipient with data from zip file" do
+        expect(recipient_1.name).to eq("Chicken World")
+        expect(recipient_1.description).to eq("Lots of chickens")
+        expect(recipient_1.contact_first_name).to eq("Chicken")
+        expect(recipient_1.contact_last_name).to eq("Man")
+        expect(recipient_1.website).to eq("https://www.chickens.org/")
+        expect(recipient_1.country).to eq(andorra)
+        expect(recipient_1.state).to eq(delaware)
+        expect(recipient_1.city).to eq("New York")
+        expect(recipient_1.leadership_demographics).to match_array(["no_specific_focus"])
+        expect(recipient_1.leadership_demographics_other).to be_nil
+        expect(recipient_1.recipient_legal_status).to eq("government_organization")
+        expect(recipient_1.logo).to be_attached
+        expect(recipient_1.logo.filename).to eq("Logo_RAF.jpg")
+        expect(recipient_1.logo.content_type).to eq("image/jpeg")
+      end
+
+      it "matches attributes of second recipient with data from zip file" do
+        expect(recipient_2.name).to eq("Llama")
+        expect(recipient_2.description).to eq("Hairy")
+        expect(recipient_2.contact_first_name).to eq("Me")
+        expect(recipient_2.contact_last_name).to eq("Me II")
+        expect(recipient_2.website).to eq("https://forainitiative.org/")
+        expect(recipient_2.country).to eq(new_caledonia)
+        expect(recipient_2.state).to eq(columbia)
+        expect(recipient_2.city).to eq("Austin")
+        expect(recipient_2.leadership_demographics).to match_array(["black_or_african_american", "indigenous_tribal_nations"])
+        expect(recipient_2.leadership_demographics_other).to be_nil
+        expect(recipient_2.recipient_legal_status).to eq("for_profit")
+        expect(recipient_2.logo).to be_attached
+        expect(recipient_2.logo.filename).to eq("Logo_ Natural Investments LLC - 2022.jpg")
+        expect(recipient_2.logo.content_type).to eq("image/jpeg")
+      end
     end
 
     context "when provided data are wrong" do
@@ -120,6 +166,8 @@ RSpec.describe Uploads::ProcessFile do
 
       it "does not creates any new records" do
         expect(Funder.count).to be_zero
+        expect(Recipient.count).to be_zero
+        expect(Project.count).to be_zero
       end
 
       it "keeps errors" do

@@ -246,12 +246,16 @@ en:
     recipient_legal_status:
       for_profit:
         name: For-profit
-      foundation:
-        name: Foundation
-      cooperative:
-        name: Cooperative
-      other:
-        name: Other
+      government_organization:
+        name: Government Organization
+      individual:
+        name: Individual
+      non_profit:
+        name: Nonprofit
+      research_institution:
+        name: Research Institution
+      i_dont_know:
+        name: I don't know
     capital_type:
       grants:
         name: Grants

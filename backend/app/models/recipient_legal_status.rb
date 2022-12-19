@@ -5,8 +5,10 @@ class RecipientLegalStatus
 
   TYPES = %w[
     for_profit
-    foundation
-    cooperative
-    other
+    government_organization
+    individual
+    non_profit
+    research_institution
+    i_dont_know
   ].freeze
 end
