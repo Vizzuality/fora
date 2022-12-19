@@ -46,7 +46,8 @@ const Cards = ({
   const ADDRESS = useMemo(() => {
     const subgeoTypes = ['states', 'national', 'countries', 'regions'];
     const filteredSubgeo = subgeographics.filter((s) => subgeoTypes.includes(s.geographic));
-    return filteredSubgeo[0].name;
+
+    return !!filteredSubgeo.length && filteredSubgeo[0].name;
   }, [subgeographics]);
 
   return (
@@ -66,7 +67,7 @@ const Cards = ({
               'w-5 h-5 text-black': true,
             })}
           />
-          <p className="line-clamp-3">{ADDRESS || 'North Carolina'}</p>
+          <p className="line-clamp-3">{ADDRESS || '-'}</p>
         </div>
       </div>
 
