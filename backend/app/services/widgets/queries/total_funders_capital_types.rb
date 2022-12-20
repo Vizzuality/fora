@@ -20,7 +20,7 @@ module Widgets
       end
 
       def investments
-        @investments = Investment.where(year_invested: year).group("unnest(capital_types)").count("DISTINCT investments.funder_id")
+        @investments = Investment.where(year_invested: year).group("capital_type").count("DISTINCT investments.funder_id")
       end
     end
   end

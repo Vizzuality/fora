@@ -80,14 +80,12 @@ RSpec.configure do |config|
                 properties: {
                   name: {type: :string, nullable: true},
                   description: {type: :string, nullable: true},
-                  recipient_name: {type: :string},
                   website: {type: :string, nullable: true},
                   leadership_demographics: {type: :array, items: {type: :string, enum: Demographic::TYPES}},
                   leadership_demographics_other: {type: :string, nullable: true},
                   demographics: {type: :array, items: {type: :string, enum: Demographic::TYPES}},
                   demographics_other: {type: :string, nullable: true},
                   recipient_legal_status: {type: :string, enum: RecipientLegalStatus::TYPES, nullable: true},
-                  recipient_legal_status_other: {type: :string, nullable: true},
                   areas: {type: :array, items: {type: :string, enum: Area::TYPES}},
                   logo: {"$ref" => "#/components/schemas/image_blob", :nullable => true}
                 }

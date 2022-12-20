@@ -9,8 +9,8 @@ RSpec.describe Widgets::Queries::Summary do
     let!(:ignored_funder) { create :funder, date_joined_fora: Date.new(2030) }
     let!(:project_1) { create :project }
     let!(:project_2) { create :project }
-    let!(:investment_1) { create :investment, funder: funder, project: project_1, year_invested: 2021, capital_types: ["grants"], amount: 10 }
-    let!(:investment_2) { create :investment, funder: funder, project: project_2, year_invested: 2021, capital_types: ["debt"], amount: 10 }
+    let!(:investment_1) { create :investment, funder: funder, project: project_1, year_invested: 2021, capital_type: "grants", amount: 10 }
+    let!(:investment_2) { create :investment, funder: funder, project: project_2, year_invested: 2021, capital_type: "debt", amount: 10 }
     let!(:ignored_investment) { create :investment, funder: funder, project: project_2, year_invested: 2030 }
 
     it "contains correct header" do

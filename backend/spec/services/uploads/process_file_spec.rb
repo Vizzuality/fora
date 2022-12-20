@@ -10,6 +10,7 @@ RSpec.describe Uploads::ProcessFile do
     let!(:andorra) { create :subgeographic, geographic: :countries, name: "Andorra" }
     let!(:jamaica) { create :subgeographic, geographic: :countries, name: "Jamaica" }
     let!(:new_caledonia) { create :subgeographic, geographic: :countries, name: "New Caledonia" }
+    let!(:norfolk_island) { create :subgeographic, geographic: :countries, name: "Norfolk Island" }
     let!(:united_arab_emirates) { create :subgeographic, geographic: :countries, name: "United Arab Emirates" }
     let!(:national) { create :subgeographic, geographic: :national, name: "United States", parent: usa_country }
     let!(:alabama) { create :subgeographic, geographic: :states, name: "Alabama", parent: usa_country }
@@ -29,11 +30,14 @@ RSpec.describe Uploads::ProcessFile do
       let(:funder_2) { Funder.find_by! name: "Armonia LLC" }
       let(:recipient_1) { Recipient.find_by! name: "Chicken World" }
       let(:recipient_2) { Recipient.find_by! name: "Llama" }
+      let(:investment_1) { Investment.find_by! project: recipient_1.project, funder: funder_1 }
+      let(:investment_2) { Investment.find_by! project: recipient_2.project, funder: funder_2 }
 
       it "creates new records" do
         expect(Funder.count).to eq(2)
         expect(Recipient.count).to eq(2)
         expect(Project.count).to eq(2)
+        expect(Investment.count).to eq(2)
       end
 
       it "does not return any error" do
@@ -157,6 +161,48 @@ RSpec.describe Uploads::ProcessFile do
         expect(recipient_2.logo.filename).to eq("Logo_ Natural Investments LLC - 2022.jpg")
         expect(recipient_2.logo.content_type).to eq("image/jpeg")
       end
+
+      it "matches attributes of first investment with data from zip file" do
+        expect(investment_1.funder).to eq(funder_1)
+        expect(investment_1.submitting_organization_contact_name).to eq("Chicken Face")
+        expect(investment_1.project).to eq(recipient_1.project)
+        expect(investment_1.privacy).to eq("visible_only_to_staff")
+        expect(investment_1.amount).to eq(100000000)
+        expect(investment_1.year_invested).to eq(2022)
+        expect(investment_1.initial_funded_year).to eq(2022)
+        expect(investment_1.capital_type).to eq("equity")
+        expect(investment_1.capital_type_other).to be_nil
+        expect(investment_1.funding_type).to be_nil
+        expect(investment_1.funding_type_other).to be_nil
+        expect(investment_1.grant_duration).to eq("one_year")
+        expect(investment_1.number_of_grant_years).to be_zero
+        expect(investment_1.areas).to match_array(["urban_farming", "water"])
+        expect(investment_1.areas_other).to be_nil
+        expect(investment_1.demographics).to match_array(["no_specific_focus"])
+        expect(investment_1.demographics_other).to be_nil
+        expect(investment_1.subgeographics).to match_array([national, norfolk_island])
+      end
+
+      it "matches attributes of second investment with data from zip file" do
+        expect(investment_2.funder).to eq(funder_2)
+        expect(investment_2.submitting_organization_contact_name).to eq("Kirby")
+        expect(investment_2.project).to eq(recipient_2.project)
+        expect(investment_2.privacy).to eq("all")
+        expect(investment_2.amount).to eq(100)
+        expect(investment_2.year_invested).to eq(2022)
+        expect(investment_2.initial_funded_year).to eq(2018)
+        expect(investment_2.capital_type).to eq("grants")
+        expect(investment_2.capital_type_other).to be_nil
+        expect(investment_2.funding_type).to eq("general_operating_support")
+        expect(investment_2.funding_type_other).to be_nil
+        expect(investment_2.grant_duration).to eq("multi_year")
+        expect(investment_2.number_of_grant_years).to eq(2)
+        expect(investment_2.areas).to match_array(["agroforestry", "alternative_proteins"])
+        expect(investment_2.areas_other).to be_nil
+        expect(investment_2.demographics).to match_array(["black_or_african_american", "indigenous_tribal_nations"])
+        expect(investment_2.demographics_other).to be_nil
+        expect(investment_2.subgeographics).to match_array([national, jamaica])
+      end
     end
 
     context "when provided data are wrong" do
@@ -168,6 +214,7 @@ RSpec.describe Uploads::ProcessFile do
         expect(Funder.count).to be_zero
         expect(Recipient.count).to be_zero
         expect(Project.count).to be_zero
+        expect(Investment.count).to be_zero
       end
 
       it "keeps errors" do

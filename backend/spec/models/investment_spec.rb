@@ -37,9 +37,17 @@ RSpec.describe Investment, type: :model do
     expect(subject).to have(1).errors_on(:number_of_grant_years)
   end
 
-  include_examples :static_relation_validations, attribute: :funding_type, presence: true
-  include_examples :static_relation_validations, attribute: :capital_types, presence: true
+  it "should not be valid without funding_type when grants" do
+    subject.assign_attributes funding_type: nil, capital_type: "other"
+    expect(subject).to be_valid
+    subject.assign_attributes funding_type: nil, capital_type: "grants"
+    expect(subject).to have(1).errors_on(:funding_type)
+  end
+
+  include_examples :static_relation_validations, attribute: :funding_type, presence: false
+  include_examples :static_relation_validations, attribute: :capital_type, presence: true
   include_examples :static_relation_validations, attribute: :areas, presence: true
   include_examples :static_relation_validations, attribute: :grant_duration, presence: true
-  include_examples :static_relation_validations, attribute: :demographics, presence: true
+  include_examples :static_relation_validations, attribute: :demographics, presence: false
+  include_examples :static_relation_validations, attribute: :privacy, presence: true
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_19_101619) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_20_103504) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -118,22 +118,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_101619) do
   create_table "investments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "project_id", null: false
     t.uuid "funder_id", null: false
-    t.boolean "visible", default: false, null: false
     t.decimal "amount", precision: 15, scale: 4, null: false
     t.integer "year_invested", null: false
     t.integer "initial_funded_year", null: false
-    t.string "funding_type", null: false
+    t.string "funding_type"
     t.text "funding_type_other"
-    t.string "capital_types", null: false, array: true
     t.string "areas", null: false, array: true
     t.text "areas_other"
     t.string "grant_duration", null: false
-    t.text "grant_duration_other"
     t.integer "number_of_grant_years"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "demographics", null: false, array: true
     t.text "demographics_other"
+    t.string "capital_type", null: false
+    t.string "capital_type_other"
+    t.string "submitting_organization_contact_name"
+    t.string "privacy", null: false
     t.index ["funder_id"], name: "index_investments_on_funder_id"
     t.index ["project_id"], name: "index_investments_on_project_id"
   end

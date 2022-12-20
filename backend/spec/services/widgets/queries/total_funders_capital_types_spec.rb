@@ -7,9 +7,11 @@ RSpec.describe Widgets::Queries::TotalFundersCapitalTypes do
     let(:result) { subject.call }
     let!(:funder_1) { create :funder }
     let!(:funder_2) { create :funder }
-    let!(:investment_1) { create :investment, year_invested: 2021, funder: funder_1, capital_types: ["grants"] }
-    let!(:investment_2) { create :investment, year_invested: 2021, funder: funder_2, capital_types: ["grants", "debt"] }
-    let!(:ignored_investment) { create :investment, year_invested: 2030, funder: funder_1, capital_types: ["grants"] }
+    let!(:investment_1) { create :investment, year_invested: 2021, funder: funder_1, capital_type: "grants" }
+    let!(:investment_2) { create :investment, year_invested: 2021, funder: funder_1, capital_type: "grants" }
+    let!(:investment_3) { create :investment, year_invested: 2021, funder: funder_1, capital_type: "debt" }
+    let!(:investment_4) { create :investment, year_invested: 2021, funder: funder_2, capital_type: "debt" }
+    let!(:ignored_investment) { create :investment, year_invested: 2030, funder: funder_1, capital_type: "grants" }
 
     it "contains correct header" do
       expect(result[:headers].first[:label]).to eq(I18n.t("activerecord.models.capital_type.one"))
@@ -26,8 +28,8 @@ RSpec.describe Widgets::Queries::TotalFundersCapitalTypes do
     end
 
     it "has correct values for appropriate capital types" do
-      expect(result[:values].find { |v| v.first[:id] == "grants" }.second[:value]).to eq(2)
-      expect(result[:values].find { |v| v.first[:id] == "debt" }.second[:value]).to eq(1)
+      expect(result[:values].find { |v| v.first[:id] == "grants" }.second[:value]).to eq(1)
+      expect(result[:values].find { |v| v.first[:id] == "debt" }.second[:value]).to eq(2)
     end
   end
 end

@@ -17,17 +17,13 @@ module Importers
         data.each do |attr|
           create_with! attr
         rescue EnumError => e
-          errors << I18n.t("activerecord.errors.importers.uploads.enum_error",
-            klass_name: self.class.name.demodulize.singularize,
-            respondent_id: simple_column_for(:respondent_id, attr),
-            error: e.message)
+          store_error "activerecord.errors.importers.uploads.enum_error", e.message, attr
         rescue ActiveRecord::RecordInvalid => e
           e.record.errors.each do |error|
-            errors << I18n.t("activerecord.errors.importers.uploads.record_invalid",
-              klass_name: self.class.name.demodulize.singularize,
-              respondent_id: simple_column_for(:respondent_id, attr),
-              error: error.full_message)
+            store_error "activerecord.errors.importers.uploads.record_invalid", error.full_message, attr
           end
+        rescue ActiveRecord::RecordNotFound => e
+          store_error "activerecord.errors.importers.uploads.dependency_error", e.message, attr
         end
       end
 
@@ -48,6 +44,13 @@ module Importers
 
       def boolean_column_for(key, attr)
         simple_column_for(key, attr).to_s.downcase == "yes"
+      end
+
+      def store_error(scope, message, attr)
+        errors << I18n.t(scope,
+          klass_name: self.class.name.demodulize.singularize,
+          respondent_id: simple_column_for(:respondent_id, attr),
+          error: message)
       end
     end
   end

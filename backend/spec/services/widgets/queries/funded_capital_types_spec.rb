@@ -5,9 +5,9 @@ RSpec.describe Widgets::Queries::FundedCapitalTypes do
 
   describe "#call" do
     let(:result) { subject.call }
-    let!(:investment_1) { create :investment, year_invested: 2021, amount: 10, capital_types: ["grants"] }
-    let!(:investment_2) { create :investment, year_invested: 2021, amount: 20, capital_types: ["grants", "debt"] }
-    let!(:ignored_investment) { create :investment, year_invested: 2030, amount: 20, capital_types: ["grants"] }
+    let!(:investment_1) { create :investment, year_invested: 2021, amount: 10, capital_type: "grants" }
+    let!(:investment_2) { create :investment, year_invested: 2021, amount: 20, capital_type: "debt" }
+    let!(:ignored_investment) { create :investment, year_invested: 2030, amount: 20, capital_type: "grants" }
 
     it "contains correct header" do
       expect(result[:headers].first[:label]).to eq(I18n.t("activerecord.models.capital_type.one"))
@@ -24,8 +24,8 @@ RSpec.describe Widgets::Queries::FundedCapitalTypes do
     end
 
     it "has correct values for appropriate capital types" do
-      expect(result[:values].find { |v| v.first[:id] == "grants" }.second[:value]).to eq(20)
-      expect(result[:values].find { |v| v.first[:id] == "debt" }.second[:value]).to eq(10)
+      expect(result[:values].find { |v| v.first[:id] == "grants" }.second[:value]).to eq(10)
+      expect(result[:values].find { |v| v.first[:id] == "debt" }.second[:value]).to eq(20)
     end
   end
 end

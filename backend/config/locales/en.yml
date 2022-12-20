@@ -49,9 +49,11 @@ en:
         uploads:
           record_invalid: "%{klass_name} with Respondent ID: %{respondent_id} contains validation error: %{error}"
           enum_error: "%{klass_name} with Respondent ID: %{respondent_id} contains error! %{error}"
+          dependency_error: "%{klass_name} with Respondent ID: %{respondent_id} is missing dependency! %{error}"
           unknown_enum: "Attribute %{key} does not support values: %{values}"
           multiple_values: "Attribute %{key} is not array and cannot store multiple options"
           multiple_other_enums: "Attribute %{key} allows to save just one custom value, but multiple values were provided: %{values}"
+          dependency_not_found: "%{klass} with %{attr} %{value} was not found!"
       models:
         admin:
           attributes:
@@ -334,6 +336,8 @@ en:
         name: Media and communications
       sponsorship:
         name: Sponsorship
+      other:
+        name: Other
     report_page:
       general_report:
         name: General Report
@@ -359,6 +363,19 @@ en:
         name: Failed
       crashed:
         name: Crashed
+    investment_privacy:
+      all:
+        name: Yes, ALL of the information can be shared on the platform, including non-aggregated funding amount
+      aggregate_amount_funded:
+        name: Yes, general information can be shared, but please ensure the funding amount is only included as aggregated data
+      amount_funded_visible_only_to_members:
+        name: Yes, general information can be shared, but please keep the funding amount private to FORA members only and do not even include in the aggregated data
+      amount_funded_visible_only_to_staff:
+        name: Yes, general information can be shared, but please keep the funding amount private to FORA staff only and do not even include in the aggregated data
+      visible_only_to_members:
+        name: No, I don't want any of this information included on the platform. It can only be available to FORA members privately.
+      visible_only_to_staff:
+        name: No, I don't want any of this information included on the platform, or available to FORA members. It can only be available to FORA staff privately.
   widgets:
     headers:
       common:
