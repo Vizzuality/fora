@@ -60,7 +60,7 @@ SimpleForm.setup do |config|
     b.wrapper tag: "div", class: "flex items-center h-5" do |ba|
       ba.use :input, class: checkbox_class
     end
-    b.wrapper tag: "div", class: "ml-3 text-sm" do |bb|
+    b.wrapper tag: "div", class: "pt-1 text-sm" do |bb|
       bb.use :label, class: "block", error_class: "text-red-0"
       bb.use :hint, wrap_with: {tag: "p", class: "block text-black text-xs italic"}
       bb.use :full_error, wrap_with: {tag: "p", class: "block text-red-0 text-xs italic"}
