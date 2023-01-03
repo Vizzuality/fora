@@ -8,10 +8,21 @@ RSpec.describe Widgets::Queries::FundedFunderTypes do
     let(:funder_1) { create :funder, funder_type: "accelerator" }
     let(:funder_2) { create :funder, funder_type: "accelerator" }
     let(:funder_3) { create :funder, funder_type: "advisory" }
-    let!(:investment_1) { create :investment, year_invested: 2021, amount: 10, funder: funder_1 }
-    let!(:investment_2) { create :investment, year_invested: 2021, amount: 20, funder: funder_2 }
-    let!(:investment_3) { create :investment, year_invested: 2021, amount: 20, funder: funder_3 }
-    let!(:ignored_investment) { create :investment, year_invested: 2030, amount: 20, funder: funder_1 }
+    let!(:investment_1) do
+      create :investment, year_invested: 2021, amount: 10, privacy: "all", funder: funder_1
+    end
+    let!(:investment_2) do
+      create :investment, year_invested: 2021, amount: 20, privacy: "all", funder: funder_2
+    end
+    let!(:investment_3) do
+      create :investment, year_invested: 2021, amount: 20, privacy: "aggregate_amount_funded", funder: funder_3
+    end
+    let!(:ignored_investment_with_different_year) do
+      create :investment, year_invested: 2030, privacy: "all", funder: funder_1
+    end
+    let!(:ignored_investment_with_different_privacy) do
+      create :investment, year_invested: 2021, privacy: "amount_funded_visible_only_to_members", funder: funder_1
+    end
 
     it "contains correct header" do
       expect(result[:headers].first[:label]).to eq(I18n.t("activerecord.models.funder_type.one"))

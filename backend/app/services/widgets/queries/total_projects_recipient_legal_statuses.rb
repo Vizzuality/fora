@@ -20,7 +20,8 @@ module Widgets
       end
 
       def investments
-        @investments ||= Investment.where(year_invested: year).joins(project: :recipient).group("recipients.recipient_legal_status").count
+        @investments ||= Investment.can_be_shown_without_amount.where(year_invested: year).joins(project: :recipient)
+          .group("recipients.recipient_legal_status").count
       end
     end
   end

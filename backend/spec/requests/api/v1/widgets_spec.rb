@@ -84,7 +84,7 @@ RSpec.describe "API V1 Widgets", type: :request do
       parameter name: "filter[demographics]", in: :query, type: :string, enum: Demographic::TYPES, description: "Filter results only for specified demographics. Use comma to separate multiple fields", required: false
 
       let!(:widget) { create :widget, report_pages: ["general_report"], report_year: 2021, slug: "summary", widget_type: "total" }
-      let!(:investment) { create :investment, year_invested: 2021 }
+      let!(:investment) { create :investment, privacy: "all", year_invested: 2021 }
       let(:slug) { widget.slug }
       let("filter[report_year]") { 2021 }
 
@@ -127,7 +127,7 @@ RSpec.describe "API V1 Widgets", type: :request do
       parameter name: "filter[demographics]", in: :query, type: :string, enum: Demographic::TYPES, description: "Filter results only for specified demographics. Use comma to separate multiple fields", required: false
 
       let!(:widget) { create :widget, report_pages: ["general_report"], report_year: 2021, slug: "summary", widget_type: "total" }
-      let!(:investment) { create :investment, year_invested: 2021 }
+      let!(:investment) { create :investment, privacy: "all", year_invested: 2021 }
       let(:slug) { widget.slug }
       let("filter[report_year]") { 2021 }
 

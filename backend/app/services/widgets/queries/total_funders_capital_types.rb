@@ -20,7 +20,8 @@ module Widgets
       end
 
       def investments
-        @investments = Investment.where(year_invested: year).group("capital_type").count("DISTINCT investments.funder_id")
+        @investments = Investment.can_be_shown_without_amount.where(year_invested: year)
+          .group("capital_type").count("DISTINCT investments.funder_id")
       end
     end
   end

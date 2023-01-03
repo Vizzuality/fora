@@ -8,10 +8,21 @@ RSpec.describe Widgets::Queries::FundedRecipientLegalStatuses do
     let(:project_1) { create :project, recipient: create(:recipient, recipient_legal_status: "for_profit") }
     let(:project_2) { create :project, recipient: create(:recipient, recipient_legal_status: "for_profit") }
     let(:project_3) { create :project, recipient: create(:recipient, recipient_legal_status: "government_organization") }
-    let!(:investment_1) { create :investment, year_invested: 2021, amount: 10, project: project_1 }
-    let!(:investment_2) { create :investment, year_invested: 2021, amount: 20, project: project_2 }
-    let!(:investment_3) { create :investment, year_invested: 2021, amount: 20, project: project_3 }
-    let!(:ignored_investment) { create :investment, year_invested: 2030, amount: 20, project: project_1 }
+    let!(:investment_1) do
+      create :investment, year_invested: 2021, amount: 10, privacy: "all", project: project_1
+    end
+    let!(:investment_2) do
+      create :investment, year_invested: 2021, amount: 20, privacy: "all", project: project_2
+    end
+    let!(:investment_3) do
+      create :investment, year_invested: 2021, amount: 20, privacy: "aggregate_amount_funded", project: project_3
+    end
+    let!(:ignored_investment_with_different_year) do
+      create :investment, year_invested: 2030, privacy: "all", project: project_1
+    end
+    let!(:ignored_investment_with_different_privacy) do
+      create :investment, year_invested: 2021, privacy: "amount_funded_visible_only_to_members", project: project_1
+    end
 
     it "contains correct header" do
       expect(result[:headers].first[:label]).to eq(I18n.t("activerecord.models.recipient_legal_status.one"))
