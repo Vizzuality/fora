@@ -72,6 +72,13 @@ en:
       welcome: Welcome to FORA backoffice.
       enter_details_below: Please enter your details below.
       sign_in: Sign in
+      forgot_password: Forgot password
+    forgot_password:
+      title: Forgot your password?
+      button: Send me reset password instructions
+    change_password:
+      title: Change your password
+      button: Change my password
     messages:
       new_record: "New %{model}"
       create_new_record: "Add %{model}"
