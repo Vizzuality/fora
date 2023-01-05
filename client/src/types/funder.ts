@@ -26,7 +26,6 @@ export interface Funder {
   funder_legal_status: FunderLegalStatus['id'];
   funder_type: FunderType['id'];
   leadership_demographics: Demographic['id'][];
-  primary_office_address: string;
   primary_office_city: string;
   primary_office_state: SubGeographic;
   primary_office_country: SubGeographic;

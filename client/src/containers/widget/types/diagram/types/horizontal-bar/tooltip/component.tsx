@@ -31,9 +31,9 @@ const HorizonalBarTooltip = ({ rect, properties = {}, config }: HorizonalBarTool
         size: false,
       }}
       content={
-        <div className="w-[200px] p-5 bg-white border rounded shadow-xl pointer-events-none text-grey-20 border-grey-0/5">
-          <div className="text-sm font-semibold">{properties.label}</div>
-          <div className="text-2xl font-bold">{format(properties.value)}</div>
+        <div className="w-[160px] p-5 bg-white border rounded shadow-xl pointer-events-none text-grey-20 border-grey-0/5 space-y-1">
+          <div className="text-sm font-semibold uppercase">{properties.label}</div>
+          <div className="text-sm font-bold text-grey-0">{format(properties.value)}</div>
         </div>
       }
     />

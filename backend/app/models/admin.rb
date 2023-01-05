@@ -1,5 +1,5 @@
 class Admin < ApplicationRecord
-  devise :database_authenticatable, :registerable, :rememberable, :validatable
+  devise :database_authenticatable, :recoverable, :rememberable, :validatable
 
   has_many :uploads, foreign_key: :created_by_id, dependent: :destroy
 
@@ -23,5 +23,9 @@ class Admin < ApplicationRecord
     return if password.match?(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)./)
 
     errors.add :password, :password_complexity
+  end
+
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
   end
 end
