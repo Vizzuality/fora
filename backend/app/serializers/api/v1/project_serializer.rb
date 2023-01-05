@@ -5,15 +5,13 @@ module API
 
       attributes :name,
         :description,
-        :recipient_name,
         :website,
         :leadership_demographics,
         :leadership_demographics_other,
         :areas,
         :demographics,
         :demographics_other,
-        :recipient_legal_status,
-        :recipient_legal_status_other
+        :recipient_legal_status
 
       belongs_to_restricted :state, serializer: :subgeographic
       belongs_to_restricted :country, serializer: :subgeographic

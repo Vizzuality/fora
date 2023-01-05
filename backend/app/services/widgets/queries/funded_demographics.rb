@@ -20,7 +20,7 @@ module Widgets
       end
 
       def investments
-        @investments ||= Investment.select(:amount, :demographics).where(year_invested: year)
+        @investments ||= Investment.can_show_aggregated_amount.select(:amount, :demographics).where(year_invested: year)
           .each_with_object({}) do |investment, res|
           investment.demographics.each do |demographic|
             res[demographic] = (res[demographic] || 0) + (investment.amount / investment.demographics.size).round

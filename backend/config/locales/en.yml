@@ -45,6 +45,15 @@ en:
         created_at: Created at
         updated_at: Updated at
     errors:
+      importers:
+        uploads:
+          record_invalid: "%{klass_name} with Respondent ID: %{respondent_id} contains validation error: %{error}"
+          enum_error: "%{klass_name} with Respondent ID: %{respondent_id} contains error! %{error}"
+          dependency_error: "%{klass_name} with Respondent ID: %{respondent_id} is missing dependency! %{error}"
+          unknown_enum: "Attribute %{key} does not support values: %{values}"
+          multiple_values: "Attribute %{key} is not array and cannot store multiple options"
+          multiple_other_enums: "Attribute %{key} allows to save just one custom value, but multiple values were provided: %{values}"
+          dependency_not_found: "%{klass} with %{attr} %{value} was not found!"
       models:
         admin:
           attributes:
@@ -92,6 +101,8 @@ en:
         information: Information
       admin:
         password: Password
+      upload:
+        error_messages: These are errors encountered during processing of uploaded file
   simple_form:
     required:
       text: 'required'
@@ -119,7 +130,7 @@ en:
       land_access:
         name: Land Access
       policy_advocacy:
-        name: Policy - Advocacy
+        name: Policy- Advocacy
       movement_building:
         name: Movement Building
       nutrient_quality_density:
@@ -220,8 +231,6 @@ en:
         name: Initiative
       loan_fund:
         name: Loan Fund
-      network_of_funders:
-        name: Network of funders
       private_foundation:
         name: Private Foundation
       public_foundation:
@@ -234,11 +243,11 @@ en:
       for_profit:
         name: For-profit
       government_organization:
-        name: Government organisation
+        name: Government Organization
       individual:
         name: Individual
       non_profit:
-        name: Non-profit
+        name: Nonprofit
       research_institution:
         name: Research Institution
       other:
@@ -246,12 +255,16 @@ en:
     recipient_legal_status:
       for_profit:
         name: For-profit
-      foundation:
-        name: Foundation
-      cooperative:
-        name: Cooperative
-      other:
-        name: Other
+      government_organization:
+        name: Government Organization
+      individual:
+        name: Individual
+      non_profit:
+        name: Nonprofit
+      research_institution:
+        name: Research Institution
+      i_dont_know:
+        name: I don't know
     capital_type:
       grants:
         name: Grants
@@ -269,6 +282,8 @@ en:
         name: Forgivable loans
       guarantees:
         name: Guarantees
+      other:
+        name: Other
     demographic:
       black_or_african_american:
         name: Black or African American
@@ -302,23 +317,16 @@ en:
       investments_accepted:
         name: Investments Accepted
       private_capital:
-        name: Private Capital (closed)
+        name: Private Capital (Closed)
       other:
         name: Other
-    role:
-      funder:
-        name: Funder
-      regrantor:
-        name: Regrantor
-      intermediary:
-        name: Intermediary
     application_status:
       does_not_provide_funding:
         name: Does not provide funding
       invitation_only:
         name: Invitation only
-      open_invitations:
-        name: Open Invitations
+      open_invitation:
+        name: Open Invitation
     grant_duration:
       one_year:
         name: One year
@@ -335,6 +343,8 @@ en:
         name: Media and communications
       sponsorship:
         name: Sponsorship
+      other:
+        name: Other
     report_page:
       general_report:
         name: General Report
@@ -360,6 +370,19 @@ en:
         name: Failed
       crashed:
         name: Crashed
+    investment_privacy:
+      all:
+        name: Yes, ALL of the information can be shared on the platform, including non-aggregated funding amount
+      aggregate_amount_funded:
+        name: Yes, general information can be shared, but please ensure the funding amount is only included as aggregated data
+      amount_funded_visible_only_to_members:
+        name: Yes, general information can be shared, but please keep the funding amount private to FORA members only and do not even include in the aggregated data
+      amount_funded_visible_only_to_staff:
+        name: Yes, general information can be shared, but please keep the funding amount private to FORA staff only and do not even include in the aggregated data
+      visible_only_to_members:
+        name: No, I don't want any of this information included on the platform. It can only be available to FORA members privately.
+      visible_only_to_staff:
+        name: No, I don't want any of this information included on the platform, or available to FORA members. It can only be available to FORA staff privately.
   widgets:
     headers:
       common:

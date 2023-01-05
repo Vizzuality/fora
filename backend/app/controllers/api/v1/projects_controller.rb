@@ -18,7 +18,7 @@ module API
           extra_belongs_to_models: [Recipient],
           extra_has_many_models: {Investment => "project_id"}
         ).call
-        @projects = Project.with_funders_count.where(id: @projects.pluck(:id))
+        @projects = Project.joins(:recipient).with_funders_count.where(id: @projects.pluck(:id))
           .includes :investments, :funders, :subgeographics, :subgeographic_ancestors, recipient: [:state, :country, logo_attachment: [:blob]]
         @projects = API::Sorting.new(@projects, sorting_params, SORTING_COLUMNS).call.order :created_at
         pagy_object, @projects = pagy @projects, page: current_page, items: per_page unless params[:disable_pagination].to_s == "true"

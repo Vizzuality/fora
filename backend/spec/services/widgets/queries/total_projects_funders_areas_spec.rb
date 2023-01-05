@@ -7,9 +7,18 @@ RSpec.describe Widgets::Queries::TotalProjectsFundersAreas do
     let(:result) { subject.call }
     let(:funder_1) { create :funder, date_joined_fora: Date.new(2021), areas: ["equity_and_justice"] }
     let(:funder_2) { create :funder, date_joined_fora: Date.new(2021), areas: ["food_sovereignty"] }
-    let!(:investment_1) { create :investment, year_invested: 2021, funder: funder_1, areas: ["equity_and_justice"] }
-    let!(:investment_2) { create :investment, year_invested: 2021, funder: funder_2, areas: ["equity_and_justice", "food_sovereignty"] }
-    let!(:ignored_investment) { create :investment, year_invested: 2030, funder: funder_2, areas: ["equity_and_justice"] }
+    let!(:investment_1) do
+      create :investment, year_invested: 2021, privacy: "all", funder: funder_1, areas: ["equity_and_justice"]
+    end
+    let!(:investment_2) do
+      create :investment, year_invested: 2021, privacy: "amount_funded_visible_only_to_members", funder: funder_2, areas: ["equity_and_justice", "food_sovereignty"]
+    end
+    let!(:ignored_investment_with_different_year) do
+      create :investment, year_invested: 2030, privacy: "all", funder: funder_2, areas: ["equity_and_justice"]
+    end
+    let!(:ignored_investment_with_different_privacy) do
+      create :investment, year_invested: 2021, privacy: "visible_only_to_members", funder: funder_2, areas: ["equity_and_justice"]
+    end
 
     it "contains correct header" do
       expect(result[:headers].first[:label]).to eq(I18n.t("activerecord.models.area.one"))

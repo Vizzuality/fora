@@ -6,6 +6,6 @@ class ApplicationStatus
   TYPES = %w[
     does_not_provide_funding
     invitation_only
-    open_invitations
+    open_invitation
   ].freeze
 end

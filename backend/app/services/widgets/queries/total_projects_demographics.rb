@@ -20,7 +20,7 @@ module Widgets
       end
 
       def investments
-        @investments ||= Investment.where(year_invested: year).group("unnest(demographics)")
+        @investments ||= Investment.can_be_shown_without_amount.where(year_invested: year).group("unnest(demographics)")
           .count("DISTINCT investments.project_id")
       end
     end

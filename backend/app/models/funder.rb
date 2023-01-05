@@ -14,7 +14,6 @@ class Funder < ApplicationRecord
 
   pg_search_scope :search, against: [:name, :description]
 
-  validates :primary_contact_role, inclusion: {in: Role::TYPES, allow_blank: true}, presence: true
   validates :funder_type, inclusion: {in: FunderType::TYPES, allow_blank: true}, presence: true
   validates :capital_acceptances, array_inclusion: {in: CapitalAcceptance::TYPES, allow_blank: true}, presence: true
   validates :leadership_demographics, array_inclusion: {in: Demographic::TYPES, allow_blank: true}, presence: true
@@ -37,6 +36,7 @@ class Funder < ApplicationRecord
     :primary_contact_email,
     :primary_contact_phone,
     :primary_contact_location,
+    :primary_contact_role,
     :date_joined_fora,
     :number_staff_employees
 

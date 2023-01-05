@@ -15,6 +15,13 @@
       }
     },
     {
+      "id": "other",
+      "type": "funding_type",
+      "attributes": {
+        "name": "Other"
+      }
+    },
+    {
       "id": "program_or_project_specific",
       "type": "funding_type",
       "attributes": {

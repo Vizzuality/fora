@@ -18,7 +18,7 @@
       "id": "open_invitations",
       "type": "application_status",
       "attributes": {
-        "name": "Open Invitations"
+        "name": "Open Invitation"
       }
     }
   ]

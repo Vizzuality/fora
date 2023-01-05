@@ -8,5 +8,6 @@ class FundingType
     program_or_project_specific
     media_and_communications
     sponsorship
+    other
   ].freeze
 end

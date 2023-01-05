@@ -22,7 +22,8 @@ module Widgets
       end
 
       def total_projects
-        @total_projects ||= Investment.where(year_invested: year).group("unnest(areas)").count("DISTINCT investments.project_id")
+        @total_projects ||= Investment.can_be_shown_without_amount.where(year_invested: year)
+          .group("unnest(areas)").count("DISTINCT investments.project_id")
       end
 
       def total_funders

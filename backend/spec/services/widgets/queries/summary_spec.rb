@@ -9,9 +9,18 @@ RSpec.describe Widgets::Queries::Summary do
     let!(:ignored_funder) { create :funder, date_joined_fora: Date.new(2030) }
     let!(:project_1) { create :project }
     let!(:project_2) { create :project }
-    let!(:investment_1) { create :investment, funder: funder, project: project_1, year_invested: 2021, capital_types: ["grants"], amount: 10 }
-    let!(:investment_2) { create :investment, funder: funder, project: project_2, year_invested: 2021, capital_types: ["debt"], amount: 10 }
-    let!(:ignored_investment) { create :investment, funder: funder, project: project_2, year_invested: 2030 }
+    let!(:investment_1) do
+      create :investment, funder: funder, project: project_1, year_invested: 2021, privacy: "all", capital_type: "grants", amount: 10
+    end
+    let!(:investment_2) do
+      create :investment, funder: funder, project: project_2, year_invested: 2021, privacy: "aggregate_amount_funded", capital_type: "debt", amount: 10
+    end
+    let!(:ignored_investment_with_different_year) do
+      create :investment, funder: funder, project: project_2, year_invested: 2030, privacy: "all"
+    end
+    let!(:ignored_investment_with_different_privacy) do
+      create :investment, funder: funder, project: project_2, year_invested: 2021, privacy: "visible_only_to_members"
+    end
 
     it "contains correct header" do
       expect(result[:headers].first[:label]).to eq(I18n.t("widgets.headers.summary.total_number_funders"))

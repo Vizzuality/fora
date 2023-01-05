@@ -5,9 +5,18 @@ RSpec.describe Widgets::Queries::FundedAreas do
 
   describe "#call" do
     let(:result) { subject.call }
-    let!(:investment_1) { create :investment, year_invested: 2021, amount: 10, areas: ["equity_and_justice"] }
-    let!(:investment_2) { create :investment, year_invested: 2021, amount: 20, areas: ["equity_and_justice", "food_sovereignty"] }
-    let!(:ignored_investment) { create :investment, year_invested: 2030, amount: 20, areas: ["equity_and_justice"] }
+    let!(:investment_1) do
+      create :investment, year_invested: 2021, amount: 10, privacy: "all", areas: ["equity_and_justice"]
+    end
+    let!(:investment_2) do
+      create :investment, year_invested: 2021, amount: 20, privacy: "aggregate_amount_funded", areas: ["equity_and_justice", "food_sovereignty"]
+    end
+    let!(:ignored_investment_with_different_year) do
+      create :investment, year_invested: 2030, privacy: "all", areas: ["equity_and_justice"]
+    end
+    let!(:ignored_investment_with_different_privacy) do
+      create :investment, year_invested: 2021, privacy: "amount_funded_visible_only_to_members", areas: ["equity_and_justice"]
+    end
 
     it "contains correct header" do
       expect(result[:headers].first[:label]).to eq(I18n.t("activerecord.models.area.one"))

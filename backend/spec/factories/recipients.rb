@@ -4,6 +4,10 @@ FactoryBot.define do
       Faker::Config.random = Random.new(n)
       Faker::Name.name
     end
+    sequence(:description) do |n|
+      Faker::Config.random = Random.new(n)
+      Faker::Lorem.paragraph(sentence_count: 4)
+    end
     logo { Rack::Test::UploadedFile.new(Rails.root.join("spec/fixtures/files/picture.jpg"), "image/jpeg") }
     sequence(:contact_first_name) do |n|
       Faker::Config.random = Random.new(n)
@@ -32,10 +36,6 @@ FactoryBot.define do
     end
     sequence(:recipient_legal_status) do |n|
       RecipientLegalStatus::TYPES.sample random: Random.new(n)
-    end
-    sequence(:recipient_legal_status_other) do |n|
-      Faker::Config.random = Random.new(n)
-      Faker::Lorem.sentence
     end
   end
 end

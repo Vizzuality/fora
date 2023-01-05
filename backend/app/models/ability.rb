@@ -20,7 +20,6 @@ class Ability
     can %i[index show], FundingType
     can %i[index show], GrantDuration
     can %i[index show], ApplicationStatus
-    can %i[index show], Role
     can %i[index show], CapitalAcceptance
     can %i[index show], Demographic
     can %i[index show], CapitalType

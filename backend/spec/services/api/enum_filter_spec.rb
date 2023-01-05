@@ -53,14 +53,14 @@ RSpec.describe API::EnumFilter do
 
     context "when filtering on enum attributes from different table through belong_to relation" do
       let!(:correct_project) do
-        create :project, recipient: create(:recipient, recipient_legal_status: "foundation")
+        create :project, recipient: create(:recipient, recipient_legal_status: "government_organization")
       end
       let!(:different_recipient_legal_statuses_project) do
         create :project, recipient: create(:recipient, recipient_legal_status: "for_profit")
       end
 
       let(:query) { Project.joins(:recipient) }
-      let(:filters) { {recipient_legal_statuses: "foundation"} }
+      let(:filters) { {recipient_legal_statuses: "government_organization"} }
       let(:extra_belongs_to_models) { [Recipient] }
 
       it "returns correct project" do

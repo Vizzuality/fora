@@ -11,7 +11,7 @@
       "id": "government_organization",
       "type": "funder_legal_status",
       "attributes": {
-        "name": "Government organisation"
+        "name": "Government Organization"
       }
     },
     {
@@ -25,7 +25,7 @@
       "id": "non_profit",
       "type": "funder_legal_status",
       "attributes": {
-        "name": "Non-profit"
+        "name": "Nonprofit"
       }
     },
     {
