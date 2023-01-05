@@ -35,7 +35,7 @@ module Widgets
       end
 
       def investments
-        @investments ||= Investment.select(:id, :amount).includes(:subgeographic_ancestors)
+        @investments ||= Investment.can_show_aggregated_amount.select(:id, :amount).includes(:subgeographic_ancestors)
           .joins(:subgeographic_ancestors).where(year_invested: year, subgeographics: {geographic: geographic})
           .each_with_object({}) do |investment, res|
           subgeographics = investment.subgeographic_ancestors.to_a.select { |s| s.geographic == geographic }

@@ -7,11 +7,24 @@ RSpec.describe Widgets::Queries::TotalFundersCapitalTypes do
     let(:result) { subject.call }
     let!(:funder_1) { create :funder }
     let!(:funder_2) { create :funder }
-    let!(:investment_1) { create :investment, year_invested: 2021, funder: funder_1, capital_type: "grants" }
-    let!(:investment_2) { create :investment, year_invested: 2021, funder: funder_1, capital_type: "grants" }
-    let!(:investment_3) { create :investment, year_invested: 2021, funder: funder_1, capital_type: "debt" }
-    let!(:investment_4) { create :investment, year_invested: 2021, funder: funder_2, capital_type: "debt" }
-    let!(:ignored_investment) { create :investment, year_invested: 2030, funder: funder_1, capital_type: "grants" }
+    let!(:investment_1) do
+      create :investment, year_invested: 2021, privacy: "all", funder: funder_1, capital_type: "grants"
+    end
+    let!(:investment_2) do
+      create :investment, year_invested: 2021, privacy: "aggregate_amount_funded", funder: funder_1, capital_type: "grants"
+    end
+    let!(:investment_3) do
+      create :investment, year_invested: 2021, privacy: "amount_funded_visible_only_to_members", funder: funder_1, capital_type: "debt"
+    end
+    let!(:investment_4) do
+      create :investment, year_invested: 2021, privacy: "amount_funded_visible_only_to_staff", funder: funder_2, capital_type: "debt"
+    end
+    let!(:ignored_investment_with_different_year) do
+      create :investment, year_invested: 2030, privacy: "all", funder: funder_1, capital_type: "grants"
+    end
+    let!(:ignored_investment_with_different_privacy) do
+      create :investment, year_invested: 2021, privacy: "visible_only_to_members", funder: funder_1, capital_type: "grants"
+    end
 
     it "contains correct header" do
       expect(result[:headers].first[:label]).to eq(I18n.t("activerecord.models.capital_type.one"))

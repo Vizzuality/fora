@@ -37,7 +37,7 @@ module Widgets
       end
 
       def total_projects
-        @total_projects ||= Investment.where(year_invested: 2021).joins(:subgeographic_ancestors)
+        @total_projects ||= Investment.can_be_shown_without_amount.where(year_invested: 2021).joins(:subgeographic_ancestors)
           .group("ancestor_id").count("DISTINCT investments.project_id")
       end
 

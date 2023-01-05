@@ -17,4 +17,7 @@ class Investment < ApplicationRecord
   validates :funding_type, presence: true, if: -> { capital_type == "grants" }
   validates :year_invested, :initial_funded_year, numericality: {only_integer: true, greater_than: 1980, less_than: 2100}
   validates :amount, numericality: {greater_than: 0}
+
+  scope :can_show_aggregated_amount, -> { where privacy: %w[all aggregate_amount_funded] }
+  scope :can_be_shown_without_amount, -> { where privacy: %w[all aggregate_amount_funded amount_funded_visible_only_to_members amount_funded_visible_only_to_staff] }
 end

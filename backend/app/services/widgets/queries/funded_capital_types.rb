@@ -20,7 +20,7 @@ module Widgets
       end
 
       def investments
-        @investments ||= Investment.where(year_invested: year).group("capital_type").sum(:amount)
+        @investments ||= Investment.can_show_aggregated_amount.where(year_invested: year).group("capital_type").sum(:amount)
       end
     end
   end
