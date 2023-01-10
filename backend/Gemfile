@@ -71,6 +71,7 @@ group :development do
   gem "capistrano-passenger", "~> 0.2.1", require: false
   gem "capistrano-rails", "~> 1.6", require: false
   gem "capistrano-rvm", "~> 0.1.2", require: false
+  gem "capistrano-sidekiq"
   gem "capistrano-yarn", "~> 2.0.2", require: false
   gem "capistrano-db-tasks", "~> 0.6", require: false
   gem "bcrypt_pbkdf"

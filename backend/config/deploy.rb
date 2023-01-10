@@ -18,6 +18,8 @@ set :db_local_clean, true
 set :db_remote_clean, true
 
 set :init_system, :systemd
+set :sidekiq_service_unit_user, :system
+set :systemctl_user, :system
 
 set :passenger_restart_with_sudo, true
 set :passenger_roles, :web
