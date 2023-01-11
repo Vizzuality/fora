@@ -134,6 +134,10 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano-sidekiq (2.3.0)
+      capistrano (>= 3.9.0)
+      capistrano-bundler
+      sidekiq (>= 6.0)
     capistrano-yarn (2.0.2)
       capistrano (~> 3.0)
     capybara (3.37.1)
@@ -470,6 +474,7 @@ DEPENDENCIES
   capistrano-passenger (~> 0.2.1)
   capistrano-rails (~> 1.6)
   capistrano-rvm (~> 0.1.2)
+  capistrano-sidekiq
   capistrano-yarn (~> 2.0.2)
   capybara (>= 3.26)
   closure_tree
