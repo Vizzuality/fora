@@ -6,6 +6,20 @@
       "attributes": {
         "name": 2021
       }
+    },
+    {
+      "id": 2022,
+      "type": "report_year",
+      "attributes": {
+        "name": 2022
+      }
+    },
+    {
+      "id": 2023,
+      "type": "report_year",
+      "attributes": {
+        "name": 2023
+      }
     }
   ]
 }

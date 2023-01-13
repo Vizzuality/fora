@@ -5,7 +5,9 @@ class ReportYear
 
   # Recreate Widgets when adding new year by specialized task
   TYPES = [
-    2021
+    2021,
+    2022,
+    2023
   ].freeze
 
   def read_attribute(_name)
