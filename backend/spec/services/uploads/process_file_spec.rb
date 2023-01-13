@@ -225,5 +225,22 @@ RSpec.describe Uploads::ProcessFile do
         )
       end
     end
+
+    context "when provided data are empty" do
+      let(:upload) do
+        create :upload, file: Rack::Test::UploadedFile.new(Rails.root.join("spec/fixtures/files/upload_empty.zip"), "application/zip")
+      end
+
+      it "does not creates any new records" do
+        expect(Funder.count).to be_zero
+        expect(Recipient.count).to be_zero
+        expect(Project.count).to be_zero
+        expect(Investment.count).to be_zero
+      end
+
+      it "does not return any error" do
+        expect(subject.errors).to be_empty
+      end
+    end
   end
 end

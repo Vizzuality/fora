@@ -7,7 +7,7 @@ RSpec.describe Importers::Uploads::Investments do
     let(:data) do
       [{
         "Respondent ID" => "118188164108",
-        "Submitting Organization Name (Public)" => "Armonia LLC",
+        "Submitting Organization Name (Public)" => ["Other (please specify)", "Armonia LLC"],
         "Submitting Organization Contact Name (First and Last | Only FORA)" => "Kirby",
         "Partner Organization Name (Public). If the organization's name is in the dropdown, choose it and you may jump to Question 20. If not, please choose \"Organization Not Listed\" and continue with the questions." => "Organization Not Listed",
         "Partner Organization Name (Public)" => "Llama",

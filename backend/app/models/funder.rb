@@ -29,14 +29,10 @@ class Funder < ApplicationRecord
 
   validates_presence_of :name,
     :description,
-    :primary_office_address,
     :primary_office_city,
     :primary_contact_first_name,
     :primary_contact_last_name,
     :primary_contact_email,
-    :primary_contact_phone,
-    :primary_contact_location,
-    :primary_contact_role,
     :date_joined_fora,
     :number_staff_employees
 

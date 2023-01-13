@@ -144,11 +144,11 @@ en:
       soil_measurement_and_technology:
         name: Soil Measurement and Technology
       middle_of_the_supply_chain_infrastructure:
-        name: Middle of the Supply Chain Infrastructure (processing, distribution, transportation)
+        name: Middle of the Supply Chain Infrastructure (processing, distribution, transporation)
       fiber_systems:
         name: Fiber Systems
       toxins_reduction:
-        name: Toxins Reduction (ie organics, pesticides, herbicides etc.)
+        name: Toxins Reduction (ie organics, pesticides, herbicides etc)
       media_communications_narrative_building:
         name: Media, Communications, Narrative Building
       technical_assistance_and_business_planning:
@@ -160,7 +160,7 @@ en:
       education_youth:
         name: Education - Youth
       education_future_farmers_young_farmers:
-        name: Education - Future Farmers, Young Farmers, etc
+        name: Education- Future Farmers, Young Farmers, etc
       healthy_food_access:
         name: Healthy Food Access
       supply_chain_and_market_development:

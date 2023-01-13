@@ -28,7 +28,7 @@ RSpec.describe Importers::Uploads::Funders do
         "Website: (Format: https://www.sitename.com, orhttp://www.sitename.com) (Public)" => "http://armoniallc.com/",
         "Year Joined FORA (Public)" => "2019",
         "Logo (Public)" => "Logo_Natural_Investments_202022.jpg",
-        "Organization Type (Public)" => ["Accelerator"],
+        "Organization Type (Public)" => ["Other (please specify)", "Custom organization type"],
         "Capital Acceptance (Public)" => ["Advises and Manages Capital", "Donations Accepted", "Custom Capital Acceptance"],
         "Leadership Demographic (select all that apply | Aggregated Publicly)" => ["Black or African American", "Indigenous/Tribal Nations"],
         "Staff Employees - Number (Only FORA)" => "3",
@@ -86,8 +86,8 @@ RSpec.describe Importers::Uploads::Funders do
       expect(funder.number_staff_employees).to eq(3)
       expect(funder.date_joined_fora).to eq(Date.new(2019))
       expect(funder.networks).to eq("SAFSF")
-      expect(funder.funder_type).to eq("accelerator")
-      expect(funder.funder_type_other).to be_nil
+      expect(funder.funder_type).to eq("other")
+      expect(funder.funder_type_other).to eq("Custom organization type")
       expect(funder.capital_acceptances).to match_array(["advises_and_manages_capital", "donations_accepted", "other"])
       expect(funder.capital_acceptances_other).to eq("Custom Capital Acceptance")
       expect(funder.leadership_demographics).to match_array(["black_or_african_american", "indigenous_tribal_nations"])

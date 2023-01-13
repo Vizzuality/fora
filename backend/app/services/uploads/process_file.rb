@@ -28,7 +28,7 @@ module Uploads
 
     def zip_data
       @zip_data ||= begin
-        result = {funders: nil, funder_images: {}, projects: nil, project_images: {}}
+        result = {funders: [], funder_images: {}, projects: [], project_images: {}}
         Zip::File.open_buffer(upload.file.blob.download) do |zip|
           zip.each { |file| store file, to: result }
         end
