@@ -67,7 +67,7 @@
       "id": "education_future_farmers_young_farmers",
       "type": "area",
       "attributes": {
-        "name": "Education - Future Farmers, Young Farmers, etc"
+        "name": "Education- Future Farmers, Young Farmers, etc"
       }
     },
     {
@@ -179,7 +179,7 @@
       "id": "middle_of_the_supply_chain_infrastructure",
       "type": "area",
       "attributes": {
-        "name": "Middle of the Supply Chain Infrastructure (processing, distribution, transportation)"
+        "name": "Middle of the Supply Chain Infrastructure (processing, distribution, transporation)"
       }
     },
     {
@@ -291,7 +291,7 @@
       "id": "toxins_reduction",
       "type": "area",
       "attributes": {
-        "name": "Toxins Reduction (ie organics, pesticides, herbicides etc.)"
+        "name": "Toxins Reduction (ie organics, pesticides, herbicides etc)"
       }
     },
     {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_02_095451) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_13_102423) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_02_095451) do
   create_table "funders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
-    t.string "primary_office_address", null: false
+    t.string "primary_office_address"
     t.string "primary_office_city", null: false
     t.uuid "primary_office_state_id"
     t.uuid "primary_office_country_id", null: false
@@ -77,9 +77,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_02_095451) do
     t.string "primary_contact_last_name", null: false
     t.string "primary_contact_email", null: false
     t.boolean "show_primary_email", default: false, null: false
-    t.string "primary_contact_phone", null: false
-    t.string "primary_contact_location", null: false
-    t.string "primary_contact_role", null: false
+    t.string "primary_contact_phone"
+    t.string "primary_contact_location"
+    t.string "primary_contact_role"
     t.string "secondary_email_which_can_be_shared"
     t.string "website"
     t.datetime "date_joined_fora", null: false

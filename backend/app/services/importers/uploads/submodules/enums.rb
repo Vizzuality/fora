@@ -6,6 +6,8 @@ module Importers
       module Enums
         extend ActiveSupport::Concern
 
+        OTHER_FIELD_NAME = "Other (please specify)"
+
         private
 
         def assign_enum_to(record, key, enum_klass, attr)
@@ -22,7 +24,7 @@ module Importers
         def enums_for(values, enum_klass)
           enums, others = [[], []]
           values.to_a.each do |value|
-            enum = enum_klass.find_by_name value
+            enum = value == OTHER_FIELD_NAME ? enum_klass.find("other") : enum_klass.find_by_name(value)
             enum.blank? ? others << value : enums << enum.id
           end
           [enums, others]

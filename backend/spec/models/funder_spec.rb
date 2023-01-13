@@ -26,11 +26,6 @@ RSpec.describe Funder, type: :model do
     expect(subject).to have(1).errors_on(:description)
   end
 
-  it "should not be valid without primary_office_address" do
-    subject.primary_office_address = nil
-    expect(subject).to have(1).errors_on(:primary_office_address)
-  end
-
   it "should not be valid without primary_office_city" do
     subject.primary_office_city = nil
     expect(subject).to have(1).errors_on(:primary_office_city)
@@ -49,21 +44,6 @@ RSpec.describe Funder, type: :model do
   it "should not be valid without primary_contact_email" do
     subject.primary_contact_email = nil
     expect(subject).to have(1).errors_on(:primary_contact_email)
-  end
-
-  it "should not be valid without primary_contact_phone" do
-    subject.primary_contact_phone = nil
-    expect(subject).to have(1).errors_on(:primary_contact_phone)
-  end
-
-  it "should not be valid without primary_contact_role" do
-    subject.primary_contact_role = nil
-    expect(subject).to have(1).errors_on(:primary_contact_role)
-  end
-
-  it "should not be valid without primary_contact_location" do
-    subject.primary_contact_location = nil
-    expect(subject).to have(1).errors_on(:primary_contact_location)
   end
 
   it "should not be valid without date_joined_fora" do

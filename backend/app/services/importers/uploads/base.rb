@@ -39,7 +39,7 @@ module Importers
 
       def simple_column_for(key, attr)
         value = attr[column_name_for(key)]
-        value.is_a?(Array) ? value.first : value
+        value.is_a?(Array) ? value.last : value
       end
 
       def boolean_column_for(key, attr)

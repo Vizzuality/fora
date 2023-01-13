@@ -25,7 +25,8 @@ RSpec.describe DummyEnumsModule do
     let(:capital_acceptances) do
       [
         CapitalAcceptance.find("advises_and_manages_capital").to_s,
-        CapitalAcceptance.find("does_not_provide_funding").to_s
+        CapitalAcceptance.find("does_not_provide_funding").to_s,
+        Importers::Uploads::Submodules::Enums::OTHER_FIELD_NAME
       ]
     end
     let(:capital_acceptances_other) { "Custom capital acceptance" }
