@@ -64,17 +64,17 @@
       }
     },
     {
-      "id": "education_future_farmers_young_farmers",
-      "type": "area",
-      "attributes": {
-        "name": "Education- Future Farmers, Young Farmers, etc"
-      }
-    },
-    {
       "id": "education_youth",
       "type": "area",
       "attributes": {
         "name": "Education - Youth"
+      }
+    },
+    {
+      "id": "education_future_farmers_young_farmers",
+      "type": "area",
+      "attributes": {
+        "name": "Education- Future Farmers, Young Farmers, etc"
       }
     },
     {
