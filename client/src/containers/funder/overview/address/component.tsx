@@ -19,7 +19,7 @@ const FunderAddress = () => {
 
   const ADDRESS = [
     officeCity,
-    ...(!!officeState.name ? [officeState.name] : []),
+    ...(!!officeState?.name ? [officeState.name] : []),
     officeCountry.name,
   ];
 
