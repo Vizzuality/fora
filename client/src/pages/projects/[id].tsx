@@ -56,6 +56,7 @@ export async function getStaticProps(ctx) {
   // Props returned will be passed to the page component
   return {
     props: {
+      revalidate: 30 * 60, // 30 minutees
       dehydratedState: JSON.parse(safeJsonStringify(dehydrate(queryClient))) || null,
     },
   };
