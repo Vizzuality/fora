@@ -33,13 +33,17 @@ export async function getStaticPaths() {
     disablePagination: true,
   });
 
+  // Get the paths we want to pre-render based on funders
   const paths = response.data.map((f) => ({
     params: { id: `${f.id}` },
   }));
 
+  // We'll pre-render only these paths at build time.
+  // { fallback: blocking } will server-render pages
+  // on-demand if the path doesn't exist.
   return {
     paths,
-    fallback: false, // can also be true or 'blocking'
+    fallback: 'blocking', // can also be true or 'blocking'
   };
 }
 
