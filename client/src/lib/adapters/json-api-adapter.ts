@@ -1,6 +1,6 @@
 import { ParamsProps } from './types';
 
-export function jsonAPIAdapter(params: ParamsProps) {
+export function jsonAPIAdapter(params: ParamsProps = {}) {
   const { filters = {}, search, sort, includes, page, perPage, disablePagination } = params;
 
   const parsedFilters = Object.keys(filters).reduce((acc, key) => {

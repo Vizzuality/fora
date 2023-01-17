@@ -7,6 +7,7 @@ import { useMutation, useQuery, UseQueryOptions } from '@tanstack/react-query';
 import CHROMA from 'chroma-js';
 import { scaleOrdinal } from 'd3-scale';
 
+import { ReportYear } from 'types/dashboards';
 import { Widget, WidgetDownload } from 'types/widget';
 
 import { VISUALIZATION_RAMP } from 'constants/colors';
@@ -40,6 +41,14 @@ export const downloadWidget = (slug: string, params?: ParamsProps) =>
     url: `/widgets/${slug}/download`,
     params: jsonAPIAdapter(params),
   }).then((response) => new Blob([response.data], { type: 'text/csv' }));
+
+export const fetchYears = (params?: ParamsProps) => {
+  return API.request({
+    method: 'GET',
+    url: '/report_years',
+    params: jsonAPIAdapter(params),
+  }).then((response) => response.data);
+};
 
 /**
 ****************************************
@@ -111,6 +120,19 @@ export function useWidgetDownload() {
       console.info('Error', error, variables, context);
     },
   });
+}
+
+export function useReportYears(queryOptions: UseQueryOptions<ReportYear[], unknown> = {}) {
+  const fetch = () => fetchYears();
+
+  const query = useQuery(['report-years'], fetch, {
+    placeholderData: {
+      data: [],
+    },
+    ...queryOptions,
+  });
+
+  return query;
 }
 
 export function useColorRamp(data) {

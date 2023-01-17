@@ -1,8 +1,12 @@
 import { STORE_WRAPPER } from 'store';
 
+import { setFilters } from 'store/dashboards/general-report';
+
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 
-import { fetchWidgets } from 'hooks/widgets';
+import { ReportYears } from 'types/dashboards';
+
+import { fetchWidgets, fetchYears } from 'hooks/widgets';
 
 import GeneralReport from 'containers/dashboards/general-report';
 import MetaTags from 'containers/meta-tags';
@@ -17,12 +21,25 @@ export const getStaticProps = STORE_WRAPPER.getStaticProps((store) => async () =
 
   const { filters } = store.getState()['/dashboards/general-report'];
 
+  // Prefetch years
+  const fYears = () => fetchYears();
+  await queryClient.prefetchQuery(['report-years'], fYears);
+  const { data } = queryClient.getQueryData<{ data: any[] }>(['report-years']);
+
+  // loop through years and set filter reportYear with the last year
+  const lastYear = data[data.length - 1];
+  store.dispatch(
+    setFilters({
+      ...filters,
+      reportYear: lastYear.name as ReportYears,
+    })
+  );
+
+  // Prefetch widgets
   const params = {
     filters,
   };
-
   const fetch = () => fetchWidgets(params);
-
   await queryClient.prefetchQuery(['widgets', JSON.stringify(params)], fetch);
 
   // Props returned will be passed to the page component
