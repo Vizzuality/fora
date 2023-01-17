@@ -88,20 +88,29 @@ const ProjectOverview = () => {
           </h2>
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="relative max-w-[50px] w-full shrink-0">
-            <Image
-              src={projectData.logo.small || '/images/avatar.jpg'}
-              alt={projectData.name}
-              layout="responsive"
-              width={50}
-              height={36}
-            />
+        {(projectData.logo.small || projectData.website) && (
+          <div className="flex items-center justify-between">
+            {projectData.logo.small && (
+              <div className="relative max-w-[50px] w-full shrink-0">
+                <Image
+                  src={projectData.logo.small || '/images/avatar.jpg'}
+                  alt={projectData.name}
+                  layout="responsive"
+                  width={50}
+                  height={36}
+                />
+              </div>
+            )}
+
+            {projectData.website && (
+              <p className="font-semibold underline">
+                <a target="_blank" rel="noopener noreferrer" href={projectData.website}>
+                  {projectData.website}
+                </a>
+              </p>
+            )}
           </div>
-          <p className="font-semibold underline">
-            <a href="www.projectwebsite.org">{projectData.website}</a>
-          </p>
-        </div>
+        )}
 
         <div className="space-y-3">
           <p className="font-semibold uppercase text-grey-20">About</p>

@@ -91,25 +91,32 @@ const FunderOverview = () => {
           <h2 className="text-3xl font-normal capitalize line-clamp-2 text-ellipsis">{name}</h2>
         </div>
 
-        <div className="flex justify-between">
-          <div className="relative max-w-[50px] w-full shrink-0">
-            <Image
-              src={logo.small || '/images/avatar.jpg'}
-              alt={name}
-              layout="responsive"
-              width={50}
-              height={36}
-            />
+        {(logo.small || email) && (
+          <div className="flex justify-between">
+            {logo.small && (
+              <div className="relative max-w-[50px] w-full shrink-0">
+                <Image
+                  src={logo.small || '/images/avatar.jpg'}
+                  alt={name}
+                  layout="responsive"
+                  width={50}
+                  height={36}
+                />
+              </div>
+            )}
+
+            {email && (
+              <Button
+                type="button"
+                size="base"
+                theme="black-alt"
+                href={`mailto:${email}?subject=Hi ${name}`}
+              >
+                Contact Funder
+              </Button>
+            )}
           </div>
-          <Button
-            type="button"
-            size="base"
-            theme="black-alt"
-            href={`mailto:${email}?subject=Hi ${name}`}
-          >
-            Contact Funder
-          </Button>
-        </div>
+        )}
 
         <Address />
 
