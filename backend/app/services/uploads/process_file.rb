@@ -41,9 +41,9 @@ module Uploads
 
       *path, basename = file.name.split "/"
       to[:funders] = transform_to_hash(file.get_input_stream.read) if basename == FUNDER_CSV
-      to[:funder_images][basename] = to_tempfile(file, basename) if path.first == FUNDER_IMAGES_FOLDER
+      to[:funder_images][basename] = to_tempfile(file, basename) if path.include? FUNDER_IMAGES_FOLDER
       to[:projects] = transform_to_hash(file.get_input_stream.read) if basename == PROJECT_CSV
-      to[:project_images][basename] = to_tempfile(file, basename) if path.first == PROJECT_IMAGES_FOLDER
+      to[:project_images][basename] = to_tempfile(file, basename) if path.include? PROJECT_IMAGES_FOLDER
     end
 
     def to_tempfile(file, basename)
