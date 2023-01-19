@@ -94,13 +94,12 @@ const FunderOverview = () => {
         {(logo.small || email) && (
           <div className="flex justify-between">
             {logo.small && (
-              <div className="relative max-w-[50px] w-full shrink-0">
+              <div className="relative max-w-[100px] w-full shrink-0">
                 <Image
                   src={logo.small || '/images/avatar.jpg'}
                   alt={name}
-                  layout="responsive"
-                  width={50}
-                  height={36}
+                  layout="fill"
+                  className="object-contain"
                 />
               </div>
             )}

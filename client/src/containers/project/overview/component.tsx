@@ -91,13 +91,12 @@ const ProjectOverview = () => {
         {(projectData.logo.small || projectData.website) && (
           <div className="flex items-center justify-between">
             {projectData.logo.small && (
-              <div className="relative max-w-[50px] w-full shrink-0">
+              <div className="relative max-w-[100px] w-full shrink-0">
                 <Image
                   src={projectData.logo.small || '/images/avatar.jpg'}
                   alt={projectData.name}
-                  layout="responsive"
-                  width={50}
-                  height={36}
+                  layout="fill"
+                  className="object-contain"
                 />
               </div>
             )}
