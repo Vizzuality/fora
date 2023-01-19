@@ -205,6 +205,45 @@ RSpec.describe Uploads::ProcessFile do
       end
     end
 
+    context "when uploaded data are inside extra folder at zip file" do
+      let(:upload) do
+        create :upload, file: Rack::Test::UploadedFile.new(Rails.root.join("spec/fixtures/files/upload_with_data_in_folder.zip"), "application/zip")
+      end
+      let(:funder_1) { Funder.find_by! name: "11th Hour Project" }
+      let(:funder_2) { Funder.find_by! name: "Armonia LLC" }
+      let(:recipient_1) { Recipient.find_by! name: "Chicken World" }
+      let(:recipient_2) { Recipient.find_by! name: "Llama" }
+
+      it "creates new records" do
+        expect(Funder.count).to eq(2)
+        expect(Recipient.count).to eq(2)
+        expect(Project.count).to eq(2)
+        expect(Investment.count).to eq(2)
+      end
+
+      it "does not return any error" do
+        expect(subject.errors).to be_empty
+      end
+
+      it "assigns logos to funders" do
+        expect(funder_1.logo).to be_attached
+        expect(funder_1.logo.filename).to eq("Logo_ Nature Vest - 2022 (1).jpg")
+        expect(funder_1.logo.content_type).to eq("image/jpeg")
+        expect(funder_2.logo).to be_attached
+        expect(funder_2.logo.filename.to_s).to eq("Logo_ Natural Investments LLC - 2022.jpg")
+        expect(funder_2.logo.content_type).to eq("image/jpeg")
+      end
+
+      it "assigns logos to recipients" do
+        expect(recipient_1.logo).to be_attached
+        expect(recipient_1.logo.filename).to eq("Logo_RAF.jpg")
+        expect(recipient_1.logo.content_type).to eq("image/jpeg")
+        expect(recipient_2.logo).to be_attached
+        expect(recipient_2.logo.filename).to eq("Logo_ Natural Investments LLC - 2022.jpg")
+        expect(recipient_2.logo.content_type).to eq("image/jpeg")
+      end
+    end
+
     context "when provided data are wrong" do
       let(:upload) do
         create :upload, file: Rack::Test::UploadedFile.new(Rails.root.join("spec/fixtures/files/upload_wrong.zip"), "application/zip")

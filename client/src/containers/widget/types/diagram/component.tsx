@@ -6,6 +6,8 @@ import { Widget } from 'types/widget';
 
 import WidgetToolbar from 'containers/widget/toolbar';
 
+import Loading from 'components/loading';
+
 import { HorizontalBarChart, PieChart } from './types';
 
 const CHART_TYPES = {
@@ -14,8 +16,30 @@ const CHART_TYPES = {
 };
 
 const WidgetDiagram = (widget: Widget) => {
-  const { title, config } = widget;
+  const { title, config, query } = widget;
   const { type, className } = config;
+
+  const { data, isFetched, isFetching } = query;
+
+  const NO_DATA = useMemo(() => {
+    if (!isFetched || isFetching) return false;
+
+    const { data: d } = data;
+
+    const D = d.values
+      .map((v) => {
+        const [name, value] = v;
+
+        return {
+          id: name.id,
+          label: name.value,
+          ...value,
+        };
+      })
+      .some((v) => v.value);
+
+    return !D;
+  }, [data, isFetched, isFetching]);
 
   const CHART = useMemo(() => {
     return createElement(CHART_TYPES[type], {
@@ -26,7 +50,7 @@ const WidgetDiagram = (widget: Widget) => {
   return (
     <div
       className={cx({
-        'py-8 px-6 space-y-5 h-full': true,
+        'relative py-8 px-6 space-y-5 h-full': true,
         [className]: !!className,
       })}
     >
@@ -42,7 +66,19 @@ const WidgetDiagram = (widget: Widget) => {
         />
       </header>
 
-      {CHART}
+      <Loading
+        visible={isFetching && !isFetched}
+        className="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-white/90"
+        iconClassName="w-10 h-10"
+      />
+
+      {NO_DATA && (
+        <div className="flex items-center justify-center flex-grow h-60">
+          <p className="uppercase font-display">No data available</p>
+        </div>
+      )}
+
+      {!NO_DATA && CHART}
     </div>
   );
 };
