@@ -17,6 +17,9 @@ jobs:
       DATABASE_USER: postgres
       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       RAILS_ENV: test
+      BACKEND_URL: http://localhost:4000/sub-path/backend
+      FRONTEND_URL: http://localhost:4000/sub-path
+      FRONTEND_API_SECRET: SECRET
 
     services:
       postgres:
