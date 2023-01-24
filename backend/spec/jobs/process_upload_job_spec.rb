@@ -24,12 +24,18 @@ RSpec.describe ProcessUploadJob do
       context "when there are not errors" do
         before do
           allow(process_file_service).to receive(:errors).and_return []
-          described_class.perform_now upload
         end
 
         it "changes upload status to completed" do
+          described_class.perform_now upload
           expect(upload.reload).to be_completed_status
           expect(upload.error_messages).to be_empty
+        end
+
+        it "enqueues job for revalidation of static pages on frontend" do
+          expect {
+            described_class.perform_now upload
+          }.to have_enqueued_job(Frontend::RevalidateStaticPagesJob).with paths: :all
         end
       end
 
@@ -38,12 +44,18 @@ RSpec.describe ProcessUploadJob do
 
         before do
           allow(process_file_service).to receive(:errors).and_return errors
-          described_class.perform_now upload
         end
 
         it "changes upload status to failed" do
+          described_class.perform_now upload
           expect(upload.reload).to be_failed_status
           expect(upload.error_messages).to eq(errors)
+        end
+
+        it "does not enqueue job for revalidation of static pages on frontend" do
+          expect {
+            described_class.perform_now upload
+          }.not_to have_enqueued_job(Frontend::RevalidateStaticPagesJob)
         end
       end
 

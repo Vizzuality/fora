@@ -15,8 +15,9 @@ class ProcessUploadJob < ApplicationJob
   def process_file_of(upload)
     process_file_service = Uploads::ProcessFile.new upload
     process_file_service.call
-    return upload.completed_status! if process_file_service.errors.blank?
+    return upload.update! status: :failed, error_messages: process_file_service.errors if process_file_service.errors.present?
 
-    upload.update! status: :failed, error_messages: process_file_service.errors
+    upload.completed_status!
+    Frontend::RevalidateStaticPagesJob.perform_later paths: :all
   end
 end
