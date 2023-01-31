@@ -24,36 +24,43 @@ const FunderOverview = () => {
   const { data: demographicsData } = useDemographics();
   const { data: funderData } = useFunder(`${funderId}`);
 
-  const { contact_email: email, description, logo, name, projects } = funderData;
+  const {
+    contact_email: email,
+    description,
+    logo,
+    name,
+    subgeographics,
+    demographics,
+    leadership_demographics: leadershipDemographics,
+    funder_legal_status: funderLegalStatus,
+    areas,
+    projects,
+    capital_types: capitalTypes,
+  } = funderData;
 
   const GEOGRAPHIC_SCOPE = useMemo(() => {
-    const projSubgeographics = projects.map((proj) => proj.subgeographics);
-    const arraySubGeo = projSubgeographics?.flat().map((subg) => subg.name);
+    const arraySubGeo = subgeographics?.flat().map((subg) => subg.name);
     return arraySubGeo;
-  }, [projects]);
+  }, [subgeographics]);
 
   const AREAS_OF_FOCUS = useMemo(() => {
-    const funderAreas = projects.map((f) => f.areas);
-    const arrayAreas = funderAreas?.flat().map((area) => area);
+    const arrayAreas = areas?.flat().map((area) => area);
 
     return areasData.filter((c) => arrayAreas.includes(c.id));
-  }, [areasData, projects]);
+  }, [areas, areasData]);
 
   const DEMOGRAPHIC_SCOPE = useMemo(() => {
-    const projDemographics = projects.map((proj) => proj.demographics);
-    const arrayDemogr = projDemographics?.flat().map((demogr) => demogr);
+    const arrayDemogr = demographics?.flat().map((demogr) => demogr);
 
     return demographicsData.filter((c) => arrayDemogr.includes(c.id));
-  }, [demographicsData, projects]);
+  }, [demographics, demographicsData]);
 
   const DEMOGRAPHIC_LEADERSHIP_SCOPE = useMemo(() => {
-    const funderDemographics = projects.map((f) => f.leadership_demographics);
-    const arrayDemogr = funderDemographics?.flat().map((demogr) => demogr);
+    const arrayDemogr = leadershipDemographics?.flat().map((demogr) => demogr);
 
     return demographicsData.filter((c) => arrayDemogr.includes(c.id));
-  }, [demographicsData, projects]);
+  }, [demographicsData, leadershipDemographics]);
 
-  // TO_DO: demograpgic leadership & areas of focus
   const CARD_DATA = useMemo(() => {
     return SCOPES.map((attr) => {
       switch (attr.id) {
@@ -77,11 +84,28 @@ const FunderOverview = () => {
             ...attr,
             value: DEMOGRAPHIC_LEADERSHIP_SCOPE.map((d) => d.name).join(', '),
           };
+        case 'capital-type':
+          return {
+            ...attr,
+            value: capitalTypes.map((d) => d).join(', '),
+          };
+        case 'legal-status':
+          return {
+            ...attr,
+            value: funderLegalStatus,
+          };
         default:
           return attr;
       }
     });
-  }, [GEOGRAPHIC_SCOPE, AREAS_OF_FOCUS, DEMOGRAPHIC_SCOPE, DEMOGRAPHIC_LEADERSHIP_SCOPE]);
+  }, [
+    GEOGRAPHIC_SCOPE,
+    AREAS_OF_FOCUS,
+    DEMOGRAPHIC_SCOPE,
+    DEMOGRAPHIC_LEADERSHIP_SCOPE,
+    capitalTypes,
+    funderLegalStatus,
+  ]);
 
   return (
     <div className="flex space-x-32">

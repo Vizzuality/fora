@@ -23,4 +23,16 @@ export const SCOPES = [
     info: 'Different demographic groups who lead a project.',
     value: '',
   },
+  {
+    id: 'capital-type',
+    title: 'Capital Type',
+    info: 'The type of capital a funder invests with or a project is looking for.',
+    value: '',
+  },
+  {
+    id: 'legal-status',
+    title: 'Legal Status',
+    info: 'The type of capital a funder invests with or a project is looking for.',
+    value: '',
+  },
 ];

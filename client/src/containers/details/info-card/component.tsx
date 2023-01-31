@@ -58,7 +58,7 @@ const InfoCard = ({ data, count, type }: InfoCardProps) => {
                 </div>
               </Tooltip>
             </span>
-            <dd>{value || 'None'}</dd>
+            <dd className="capitalize">{value || 'None'}</dd>
           </div>
         ))}
       </dl>
