@@ -4,7 +4,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import { useAreas } from 'hooks/areas';
+import { useCapitalTypes } from 'hooks/capital-types';
 import { useDemographics } from 'hooks/demographics';
+import { useFunderLegalStatuses } from 'hooks/funder-legal-statuses';
 import { useFunder } from 'hooks/funders';
 
 import { SCOPES } from 'constants/scopes';
@@ -21,8 +23,10 @@ const FunderOverview = () => {
   const { id: funderId } = query;
 
   const { data: areasData } = useAreas();
+  const { data: capitalTypesData } = useCapitalTypes();
   const { data: demographicsData } = useDemographics();
   const { data: funderData } = useFunder(`${funderId}`);
+  const { data: funderLegalStatusesData } = useFunderLegalStatuses();
 
   const {
     contact_email: email,
@@ -45,7 +49,6 @@ const FunderOverview = () => {
 
   const AREAS_OF_FOCUS = useMemo(() => {
     const arrayAreas = areas?.flat().map((area) => area);
-
     return areasData.filter((c) => arrayAreas.includes(c.id));
   }, [areas, areasData]);
 
@@ -60,6 +63,16 @@ const FunderOverview = () => {
 
     return demographicsData.filter((c) => arrayDemogr.includes(c.id));
   }, [demographicsData, leadershipDemographics]);
+
+  const CAPITAL_TYPE = useMemo(() => {
+    const arrayCapital = capitalTypes?.flat().map((capital) => capital);
+
+    return capitalTypesData.filter((c) => arrayCapital.includes(c.id));
+  }, [capitalTypes, capitalTypesData]);
+
+  const FUNDER_LEGAL_STATUSES = useMemo(() => {
+    return funderLegalStatusesData.filter((c) => funderLegalStatus.includes(c.id));
+  }, [funderLegalStatus, funderLegalStatusesData]);
 
   const CARD_DATA = useMemo(() => {
     return SCOPES.map((attr) => {
@@ -87,12 +100,12 @@ const FunderOverview = () => {
         case 'capital-type':
           return {
             ...attr,
-            value: capitalTypes.map((d) => d).join(', '),
+            value: CAPITAL_TYPE.map((d) => d.name).join(', '),
           };
         case 'legal-status':
           return {
             ...attr,
-            value: funderLegalStatus,
+            value: FUNDER_LEGAL_STATUSES.map((d) => d.name).join(', '),
           };
         default:
           return attr;
@@ -103,8 +116,8 @@ const FunderOverview = () => {
     AREAS_OF_FOCUS,
     DEMOGRAPHIC_SCOPE,
     DEMOGRAPHIC_LEADERSHIP_SCOPE,
-    capitalTypes,
-    funderLegalStatus,
+    CAPITAL_TYPE,
+    FUNDER_LEGAL_STATUSES,
   ]);
 
   return (
