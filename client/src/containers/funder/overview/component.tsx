@@ -61,10 +61,6 @@ const FunderOverview = () => {
     return demographicsData.filter((c) => arrayDemogr.includes(c.id));
   }, [demographicsData, leadershipDemographics]);
 
-  const CAPITAL_TYPES = useMemo(() => {
-    return capitalTypes;
-  }, [capitalTypes]);
-
   const CARD_DATA = useMemo(() => {
     return SCOPES.map((attr) => {
       switch (attr.id) {
@@ -91,7 +87,7 @@ const FunderOverview = () => {
         case 'capital-type':
           return {
             ...attr,
-            value: CAPITAL_TYPES.map((d) => d).join(', '),
+            value: capitalTypes.map((d) => d).join(', '),
           };
         case 'legal-status':
           return {
@@ -107,7 +103,7 @@ const FunderOverview = () => {
     AREAS_OF_FOCUS,
     DEMOGRAPHIC_SCOPE,
     DEMOGRAPHIC_LEADERSHIP_SCOPE,
-    CAPITAL_TYPES,
+    capitalTypes,
     funderLegalStatus,
   ]);
 
