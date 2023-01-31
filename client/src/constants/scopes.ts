@@ -32,7 +32,7 @@ export const SCOPES = [
   {
     id: 'legal-status',
     title: 'Legal Status',
-    info: 'The legal identity of a funder defined by law.',
+    info: 'The status of a funder established by law.',
     value: '',
   },
 ];
