@@ -79,7 +79,8 @@ export function useProjectsByGeographicScope(view: View, data: Project[] = []) {
       // Extract subgeographics from projects
       uniqBy(
         data
-          .map((project) => project.subgeographic_ancestors.find((s) => s.geographic === view))
+          .map((project) => project.subgeographic_ancestors.map((s) => s.geographic === view && s))
+          .flat()
           .filter((g) => g),
         'id'
       )

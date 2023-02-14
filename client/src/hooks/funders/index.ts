@@ -80,7 +80,8 @@ export function useFundersByGeographicScope(view: View, data: Funder[] = []) {
       // Extract subgeographics from funders
       uniqBy(
         data
-          .map((funder) => funder.subgeographic_ancestors.find((s) => s.geographic === view))
+          .map((funder) => funder.subgeographic_ancestors.map((s) => s.geographic === view && s))
+          .flat()
           .filter((g) => g),
         'id'
       )
