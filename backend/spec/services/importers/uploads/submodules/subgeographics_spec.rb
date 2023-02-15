@@ -77,5 +77,18 @@ RSpec.describe DummySubgeographicsModule do
         expect(record.subgeographics).to eq([state])
       end
     end
+
+    context "when multiple geographic types are combined" do
+      let!(:country) { create :subgeographic, geographic: :countries, name: "Croatia" }
+      let!(:state) { create :subgeographic, geographic: :states, name: "Georgia", parent: usa_country }
+      let(:countries) { [usa_country.name, country.name] }
+      let(:states) { [described_class::OUTSIDE_US_SUBGEOGRAPHIC, state.name] }
+
+      before { subject.call }
+
+      it "assigns correct subgeographics to record" do
+        expect(record.subgeographics).to match_array([country, state])
+      end
+    end
   end
 end
