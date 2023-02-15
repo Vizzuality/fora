@@ -1,15 +1,15 @@
 require "factory_bot_rails"
 
 if Rails.env.development?
-  Subgeographic.delete_all
-  SubgeographicGeometry.delete_all
-  Investment.delete_all
-  Funder.delete_all
-  Project.delete_all
-  Recipient.delete_all
-  Widget.delete_all
-  Upload.delete_all
-  Admin.delete_all
+  Investment.destroy_all
+  Funder.destroy_all
+  Project.destroy_all
+  Recipient.destroy_all
+  Widget.destroy_all
+  Upload.destroy_all
+  Admin.destroy_all
+  Subgeographic.destroy_all
+  SubgeographicGeometry.destroy_all
 
   Admin.create! first_name: "Admin", last_name: "Example", password: "SuperSecret1234", email: "admin@example.com"
 
