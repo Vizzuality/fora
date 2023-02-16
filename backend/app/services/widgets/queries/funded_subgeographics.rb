@@ -37,22 +37,12 @@ module Widgets
       def investment_data
         @investment_data ||= Investment.where(id: investments_subquery.select(:id)).select(:id, :amount)
           .includes(:subgeographics, :subgeographic_ancestors).each_with_object({}) do |investment, res|
-          subgeographics_within_geographic, subgeographics_outside_geographic = subgeographics_for investment
-          number_of_subgeographics = subgeographics_within_geographic.size + subgeographics_outside_geographic.size
-          subgeographics_within_geographic.each do |subgeographic|
+          subgeographics = investment.subgeographic_ancestors.to_a.select { |s| s.geographic == geographic }
+          number_of_subgeographics = investment.subgeographics.to_a.size
+          subgeographics.each do |subgeographic|
             res[subgeographic.id] = (res[subgeographic.id] || 0) + (investment.amount / number_of_subgeographics).round
           end
         end
-      end
-
-      def subgeographics_for(investment)
-        subgeographics_within_geographic = []
-        subgeographics_outside_geographic = []
-        Subgeographics::BuildPaths.new(investment.subgeographics, investment.subgeographic_ancestors).call.each do |path|
-          subgeographic = path.find { |s| s.geographic == geographic }
-          subgeographic.blank? ? subgeographics_outside_geographic << path.first : subgeographics_within_geographic << subgeographic
-        end
-        [subgeographics_within_geographic.compact.uniq, subgeographics_outside_geographic.compact.uniq]
       end
 
       def investments_subquery
