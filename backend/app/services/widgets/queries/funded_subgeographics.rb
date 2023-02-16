@@ -29,20 +29,24 @@ module Widgets
         subgeographics.sort_by(&:name).map do |subgeographic|
           [
             {id: subgeographic.id, value: subgeographic.name},
-            {value: (investments[subgeographic.id] || 0).to_f}
+            {value: (investment_data[subgeographic.id] || 0).to_f}
           ]
         end
       end
 
-      def investments
-        @investments ||= Investment.can_show_aggregated_amount.select(:id, :amount).includes(:subgeographic_ancestors)
-          .joins(:subgeographic_ancestors).where(year_invested: year, subgeographics: {geographic: geographic})
-          .each_with_object({}) do |investment, res|
+      def investment_data
+        @investment_data ||= Investment.where(id: investments_subquery.select(:id)).select(:id, :amount)
+          .includes(:subgeographics, :subgeographic_ancestors).each_with_object({}) do |investment, res|
           subgeographics = investment.subgeographic_ancestors.to_a.select { |s| s.geographic == geographic }
+          number_of_subgeographics = investment.subgeographics.to_a.size
           subgeographics.each do |subgeographic|
-            res[subgeographic.id] = (res[subgeographic.id] || 0) + (investment.amount / subgeographics.size).round
+            res[subgeographic.id] = (res[subgeographic.id] || 0) + (investment.amount / number_of_subgeographics).round
           end
         end
+      end
+
+      def investments_subquery
+        Investment.can_show_aggregated_amount.joins(:subgeographic_ancestors).where year_invested: year, subgeographics: {geographic: geographic}
       end
 
       def subgeographics

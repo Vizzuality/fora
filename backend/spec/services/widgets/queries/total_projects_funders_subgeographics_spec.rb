@@ -84,7 +84,7 @@ RSpec.describe Widgets::Queries::TotalProjectsFundersSubgeographics do
       let!(:state) { create :subgeographic, geographic: :states, parent: region_1 }
       let!(:region_2) { create :subgeographic, geographic: :regions, name: "CCCC" }
       let!(:region_3) { create :subgeographic, geographic: :regions, name: "BBBB" }
-      let!(:funder_1) { create :funder, date_joined_fora: Date.new(2021), subgeographics: [region_1] }
+      let!(:funder_1) { create :funder, date_joined_fora: Date.new(2021), subgeographics: [region_1, state] }
       let!(:funder_2) { create :funder, date_joined_fora: Date.new(2021), subgeographics: [region_2] }
       let!(:ignored_funder) { create :funder, date_joined_fora: Date.new(2030), subgeographics: [region_2] }
       let!(:investment_1) do

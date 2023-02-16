@@ -109,6 +109,38 @@ RSpec.describe Widgets::Queries::FundedSubgeographics do
         expect(result[:values].find { |v| v.first[:id] == region_2.id }.second[:value]).to eq(10)
         expect(result[:values].find { |v| v.first[:id] == region_3.id }.second[:value]).to eq(0)
       end
+
+      context "when investment is done also to different country" do
+        let!(:country) { create :subgeographic, geographic: :countries }
+        let!(:investment_1) do
+          create :investment, year_invested: 2021, amount: 10, privacy: "all", funder: funder, subgeographics: [state, country]
+        end
+        let!(:investment_2) do
+          create :investment, year_invested: 2021, amount: 20, privacy: "all", funder: funder, subgeographics: [region_1, region_2]
+        end
+
+        it "has correct values for appropriate regions" do
+          expect(result[:values].find { |v| v.first[:id] == region_1.id }.second[:value]).to eq(15)
+          expect(result[:values].find { |v| v.first[:id] == region_2.id }.second[:value]).to eq(10)
+          expect(result[:values].find { |v| v.first[:id] == region_3.id }.second[:value]).to eq(0)
+        end
+      end
+
+      context "when investment is done also to region and state of same region" do
+        let!(:country) { create :subgeographic, geographic: :countries }
+        let!(:investment_1) do
+          create :investment, year_invested: 2021, amount: 10, privacy: "all", funder: funder, subgeographics: [state, region_1]
+        end
+        let!(:investment_2) do
+          create :investment, year_invested: 2021, amount: 20, privacy: "all", funder: funder, subgeographics: [region_1, region_2]
+        end
+
+        it "has correct values for appropriate regions" do
+          expect(result[:values].find { |v| v.first[:id] == region_1.id }.second[:value]).to eq(20)
+          expect(result[:values].find { |v| v.first[:id] == region_2.id }.second[:value]).to eq(10)
+          expect(result[:values].find { |v| v.first[:id] == region_3.id }.second[:value]).to eq(0)
+        end
+      end
     end
   end
 end
