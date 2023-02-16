@@ -29,20 +29,34 @@ module Widgets
         subgeographics.sort_by(&:name).map do |subgeographic|
           [
             {id: subgeographic.id, value: subgeographic.name},
-            {value: (investments[subgeographic.id] || 0).to_f}
+            {value: (investment_data[subgeographic.id] || 0).to_f}
           ]
         end
       end
 
-      def investments
-        @investments ||= Investment.can_show_aggregated_amount.select(:id, :amount).includes(:subgeographic_ancestors)
-          .joins(:subgeographic_ancestors).where(year_invested: year, subgeographics: {geographic: geographic})
-          .each_with_object({}) do |investment, res|
-          subgeographics = investment.subgeographic_ancestors.to_a.select { |s| s.geographic == geographic }
-          subgeographics.each do |subgeographic|
-            res[subgeographic.id] = (res[subgeographic.id] || 0) + (investment.amount / subgeographics.size).round
+      def investment_data
+        @investment_data ||= Investment.where(id: investments_subquery.select(:id)).select(:id, :amount)
+          .includes(:subgeographics, :subgeographic_ancestors).each_with_object({}) do |investment, res|
+          subgeographics_within_geographic, subgeographics_outside_geographic = subgeographics_for investment
+          number_of_subgeographics = subgeographics_within_geographic.size + subgeographics_outside_geographic.size
+          subgeographics_within_geographic.each do |subgeographic|
+            res[subgeographic.id] = (res[subgeographic.id] || 0) + (investment.amount / number_of_subgeographics).round
           end
         end
+      end
+
+      def subgeographics_for(investment)
+        subgeographics_within_geographic = []
+        subgeographics_outside_geographic = []
+        Subgeographics::BuildPaths.new(investment.subgeographics, investment.subgeographic_ancestors).call.each do |path|
+          subgeographic = path.find { |s| s.geographic == geographic }
+          subgeographic.blank? ? subgeographics_outside_geographic << path.first : subgeographics_within_geographic << subgeographic
+        end
+        [subgeographics_within_geographic.compact.uniq, subgeographics_outside_geographic.compact.uniq]
+      end
+
+      def investments_subquery
+        Investment.can_show_aggregated_amount.joins(:subgeographic_ancestors).where year_invested: year, subgeographics: {geographic: geographic}
       end
 
       def subgeographics
