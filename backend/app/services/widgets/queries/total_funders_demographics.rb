@@ -20,7 +20,7 @@ module Widgets
       end
 
       def investments
-        @investments ||= Investment.can_be_shown_without_amount.joins(:funder).where(funders: {date_joined_fora: ..DateTime.new(year).end_of_year})
+        @investments ||= Investment.can_be_shown_without_amount.where(year_invested: year)
           .group("unnest(investments.demographics)").count("DISTINCT investments.funder_id")
       end
     end
