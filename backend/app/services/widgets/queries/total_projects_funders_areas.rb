@@ -27,7 +27,8 @@ module Widgets
       end
 
       def total_funders
-        @total_funders ||= Funder.where(date_joined_fora: ..DateTime.new(year).end_of_year).group("unnest(areas)").count
+        @total_funders ||= Investment.can_be_shown_without_amount.where(year_invested: year)
+          .group("unnest(areas)").count("DISTINCT investments.funder_id")
       end
     end
   end

@@ -5,10 +5,18 @@ RSpec.describe Widgets::Queries::TotalFundersFunderTypes do
 
   describe "#call" do
     let(:result) { subject.call }
-    let!(:funder_1) { create :funder, date_joined_fora: Date.new(2021), funder_type: "accelerator" }
-    let!(:funder_2) { create :funder, date_joined_fora: Date.new(2021), funder_type: "accelerator" }
-    let!(:funder_3) { create :funder, date_joined_fora: Date.new(2021), funder_type: "advisory" }
-    let!(:ignored_funder) { create :funder, date_joined_fora: Date.new(2030), funder_type: "accelerator" }
+    let!(:funder_1) { create :funder, funder_type: "accelerator" }
+    let!(:funder_2) { create :funder, funder_type: "accelerator" }
+    let!(:funder_3) { create :funder, funder_type: "advisory" }
+    let!(:ignored_funder) { create :funder, funder_type: "accelerator" }
+    let!(:ignored_funder_different_privacy) { create :funder, funder_type: "accelerator" }
+    let!(:investment_1) { create :investment, funder: funder_1, year_invested: 2021, privacy: "all" }
+    let!(:investment_2) { create :investment, funder: funder_2, year_invested: 2021, privacy: "all" }
+    let!(:investment_3) { create :investment, funder: funder_3, year_invested: 2021, privacy: "all" }
+    let!(:ignored_investment) { create :investment, funder: ignored_funder, year_invested: 2030, privacy: "all" }
+    let!(:ignored_investment_with_different_privacy) do
+      create :investment, funder: ignored_funder_different_privacy, year_invested: 2021, privacy: "visible_only_to_members"
+    end
 
     it "contains correct header" do
       expect(result[:headers].first[:label]).to eq(I18n.t("activerecord.models.funder_type.one"))

@@ -5,8 +5,8 @@ RSpec.describe Widgets::Queries::Summary do
 
   describe "#call" do
     let(:result) { subject.call }
-    let!(:funder) { create :funder, date_joined_fora: Date.new(2021) }
-    let!(:ignored_funder) { create :funder, date_joined_fora: Date.new(2030) }
+    let!(:funder) { create :funder }
+    let!(:ignored_funder) { create :funder }
     let!(:project_1) { create :project }
     let!(:project_2) { create :project }
     let!(:investment_1) do
@@ -16,7 +16,7 @@ RSpec.describe Widgets::Queries::Summary do
       create :investment, funder: funder, project: project_2, year_invested: 2021, privacy: "aggregate_amount_funded", capital_type: "debt", amount: 10
     end
     let!(:ignored_investment_with_different_year) do
-      create :investment, funder: funder, project: project_2, year_invested: 2030, privacy: "all"
+      create :investment, funder: ignored_funder, project: project_2, year_invested: 2030, privacy: "all"
     end
     let!(:ignored_investment_with_different_privacy) do
       create :investment, funder: funder, project: project_2, year_invested: 2021, privacy: "visible_only_to_members"

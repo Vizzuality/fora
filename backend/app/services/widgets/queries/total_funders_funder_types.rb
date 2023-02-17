@@ -20,7 +20,8 @@ module Widgets
       end
 
       def funders
-        @funders ||= Funder.where(date_joined_fora: ..DateTime.new(year).end_of_year).group("funder_type").count
+        @funders ||= Investment.can_be_shown_without_amount.joins(:funder).where(year_invested: year)
+          .group("funders.funder_type").count("DISTINCT funders.id")
       end
     end
   end

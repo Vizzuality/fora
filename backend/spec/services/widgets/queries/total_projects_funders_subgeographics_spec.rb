@@ -34,20 +34,18 @@ RSpec.describe Widgets::Queries::TotalProjectsFundersSubgeographics do
       let!(:region) { create :subgeographic, geographic: :regions, parent: country_1 }
       let!(:country_2) { create :subgeographic, geographic: :countries, name: "CCCC" }
       let!(:ignored_country) { create :subgeographic, geographic: :countries, name: "BBBB" }
-      let!(:funder_1) { create :funder, date_joined_fora: Date.new(2021), subgeographics: [country_1] }
-      let!(:funder_2) { create :funder, date_joined_fora: Date.new(2021), subgeographics: [country_2] }
-      let!(:ignored_funder) { create :funder, date_joined_fora: Date.new(2030), subgeographics: [country_2] }
+      let!(:funder_1) { create :funder }
       let!(:investment_1) do
         create :investment, year_invested: 2021, privacy: "all", funder: funder_1, subgeographics: [region]
       end
       let!(:investment_2) do
-        create :investment, year_invested: 2021, privacy: "amount_funded_visible_only_to_members", funder: funder_2, subgeographics: [country_1, country_2]
+        create :investment, year_invested: 2021, privacy: "amount_funded_visible_only_to_members", funder: funder_1, subgeographics: [country_1, country_2]
       end
       let!(:ignored_investment_with_different_year) do
-        create :investment, year_invested: 2030, privacy: "all", funder: funder_1, subgeographics: [region]
+        create :investment, year_invested: 2030, privacy: "all", subgeographics: [region]
       end
       let!(:ignored_investment_with_different_privacy) do
-        create :investment, year_invested: 2021, privacy: "visible_only_to_members", funder: funder_1, subgeographics: [region]
+        create :investment, year_invested: 2021, privacy: "visible_only_to_members", subgeographics: [region]
       end
 
       it "contains correct header" do
@@ -84,20 +82,18 @@ RSpec.describe Widgets::Queries::TotalProjectsFundersSubgeographics do
       let!(:state) { create :subgeographic, geographic: :states, parent: region_1 }
       let!(:region_2) { create :subgeographic, geographic: :regions, name: "CCCC" }
       let!(:region_3) { create :subgeographic, geographic: :regions, name: "BBBB" }
-      let!(:funder_1) { create :funder, date_joined_fora: Date.new(2021), subgeographics: [region_1, state] }
-      let!(:funder_2) { create :funder, date_joined_fora: Date.new(2021), subgeographics: [region_2] }
-      let!(:ignored_funder) { create :funder, date_joined_fora: Date.new(2030), subgeographics: [region_2] }
+      let(:funder_1) { create :funder }
       let!(:investment_1) do
         create :investment, year_invested: 2021, privacy: "all", funder: funder_1, subgeographics: [state]
       end
       let!(:investment_2) do
-        create :investment, year_invested: 2021, privacy: "amount_funded_visible_only_to_members", funder: funder_2, subgeographics: [region_1, region_2]
+        create :investment, year_invested: 2021, privacy: "amount_funded_visible_only_to_members", funder: funder_1, subgeographics: [region_1, region_2]
       end
       let!(:ignored_investment_with_different_year) do
-        create :investment, year_invested: 2030, privacy: "all", funder: funder_1, subgeographics: [state]
+        create :investment, year_invested: 2030, privacy: "all", subgeographics: [state]
       end
       let!(:ignored_investment_with_different_privacy) do
-        create :investment, year_invested: 2021, privacy: "visible_only_to_members", funder: funder_1, subgeographics: [state]
+        create :investment, year_invested: 2021, privacy: "visible_only_to_members", subgeographics: [state]
       end
 
       it "contains correct header" do

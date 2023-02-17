@@ -5,19 +5,18 @@ RSpec.describe Widgets::Queries::TotalProjectsFundersAreas do
 
   describe "#call" do
     let(:result) { subject.call }
-    let(:funder_1) { create :funder, date_joined_fora: Date.new(2021), areas: ["equity_and_justice"] }
-    let(:funder_2) { create :funder, date_joined_fora: Date.new(2021), areas: ["food_sovereignty"] }
+    let(:funder_1) { create :funder }
     let!(:investment_1) do
       create :investment, year_invested: 2021, privacy: "all", funder: funder_1, areas: ["equity_and_justice"]
     end
     let!(:investment_2) do
-      create :investment, year_invested: 2021, privacy: "amount_funded_visible_only_to_members", funder: funder_2, areas: ["equity_and_justice", "food_sovereignty"]
+      create :investment, year_invested: 2021, privacy: "amount_funded_visible_only_to_members", funder: funder_1, areas: ["equity_and_justice", "food_sovereignty"]
     end
     let!(:ignored_investment_with_different_year) do
-      create :investment, year_invested: 2030, privacy: "all", funder: funder_2, areas: ["equity_and_justice"]
+      create :investment, year_invested: 2030, privacy: "all", areas: ["equity_and_justice"]
     end
     let!(:ignored_investment_with_different_privacy) do
-      create :investment, year_invested: 2021, privacy: "visible_only_to_members", funder: funder_2, areas: ["equity_and_justice"]
+      create :investment, year_invested: 2021, privacy: "visible_only_to_members", areas: ["equity_and_justice"]
     end
 
     it "contains correct header" do

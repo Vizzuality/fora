@@ -42,8 +42,8 @@ module Widgets
       end
 
       def total_funders
-        @total_funders ||= Funder.where(date_joined_fora: ..DateTime.new(year).end_of_year).joins(:subgeographic_ancestors)
-          .group("ancestor_id").count("DISTINCT funders.id")
+        @total_funders ||= Investment.can_be_shown_without_amount.where(year_invested: year).joins(:subgeographic_ancestors)
+          .group("ancestor_id").count("DISTINCT investments.funder_id")
       end
 
       def subgeographics
