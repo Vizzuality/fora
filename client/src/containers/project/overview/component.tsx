@@ -19,34 +19,40 @@ const ProjectOverview = () => {
   const { data: demographicsData } = useDemographics();
   const { data: projectData } = useProject(`${projectId}`);
 
-  const { funders } = projectData;
+  const {
+    description,
+    logo,
+    name,
+    website,
+    subgeographics,
+    demographics,
+    leadership_demographics: leadershipDemographics,
+    funders,
+    areas,
+  } = projectData;
 
   const GEOGRAPHIC_SCOPE = useMemo(() => {
-    const funderSubgeographics = funders.map((f) => f.subgeographics);
-    const arraySubGeo = funderSubgeographics?.flat().map((subg) => subg.name);
+    const arraySubGeo = subgeographics?.flat().map((subg) => subg.name);
     return arraySubGeo;
-  }, [funders]);
+  }, [subgeographics]);
 
   const DEMOGRAPHIC_SCOPE = useMemo(() => {
-    const funderDemographics = funders.map((f) => f.demographics);
-    const arrayDemogr = funderDemographics?.flat().map((demogr) => demogr);
+    const arrayDemogr = demographics?.flat().map((demogr) => demogr);
 
     return demographicsData.filter((c) => arrayDemogr.includes(c.id));
-  }, [demographicsData, funders]);
+  }, [demographics, demographicsData]);
 
   const DEMOGRAPHIC_LEADERSHIP_SCOPE = useMemo(() => {
-    const funderDemographics = funders.map((f) => f.leadership_demographics);
-    const arrayDemogr = funderDemographics?.flat().map((demogr) => demogr);
+    const arrayDemogr = leadershipDemographics?.flat().map((demogr) => demogr);
 
     return demographicsData.filter((c) => arrayDemogr.includes(c.id));
-  }, [demographicsData, funders]);
+  }, [demographicsData, leadershipDemographics]);
 
   const AREAS_OF_FOCUS = useMemo(() => {
-    const funderAreas = funders.map((f) => f.areas);
-    const arrayAreas = funderAreas?.flat().map((area) => area);
+    const arrayAreas = areas?.flat().map((area) => area);
 
     return areasData.filter((c) => arrayAreas.includes(c.id));
-  }, [areasData, funders]);
+  }, [areas, areasData]);
 
   // TO_DO: demograpgic leadership
   const CARD_DATA = useMemo(() => {
@@ -83,28 +89,26 @@ const ProjectOverview = () => {
       <div className="flex-1 space-y-14">
         <div className="space-y-1">
           <div className="text-base font-normal text-grey-20">Last updated: 30 March 2022</div>
-          <h2 className="text-3xl font-normal capitalize line-clamp-2 text-ellipsis">
-            {projectData.name}
-          </h2>
+          <h2 className="text-3xl font-normal capitalize line-clamp-2 text-ellipsis">{name}</h2>
         </div>
 
-        {(projectData.logo.small || projectData.website) && (
+        {(logo.small || website) && (
           <div className="flex items-center justify-between">
-            {projectData.logo.small && (
+            {logo.small && (
               <div className="relative max-w-[100px] w-full shrink-0">
                 <Image
-                  src={projectData.logo.small || '/images/avatar.jpg'}
-                  alt={projectData.name}
+                  src={logo.small || '/images/avatar.jpg'}
+                  alt={name}
                   layout="fill"
                   className="object-contain"
                 />
               </div>
             )}
 
-            {projectData.website && (
+            {website && (
               <p className="font-semibold underline">
-                <a target="_blank" rel="noopener noreferrer" href={projectData.website}>
-                  {projectData.website}
+                <a target="_blank" rel="noopener noreferrer" href={website}>
+                  {website}
                 </a>
               </p>
             )}
@@ -113,7 +117,7 @@ const ProjectOverview = () => {
 
         <div className="space-y-3">
           <p className="font-semibold uppercase text-grey-20">About</p>
-          <p className="text-xl">{projectData.description}</p>
+          <p className="text-xl">{description}</p>
         </div>
       </div>
       <div className="flex-1">
