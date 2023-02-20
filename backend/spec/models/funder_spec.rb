@@ -106,7 +106,7 @@ RSpec.describe Funder, type: :model do
       end
 
       it "returns correct result for ancestor geographic" do
-        expect(Funder.for_geographics(:countries)).to eq([funder_1, funder_2])
+        expect(Funder.for_geographics(:countries)).to match_array([funder_1, funder_2])
       end
     end
 
