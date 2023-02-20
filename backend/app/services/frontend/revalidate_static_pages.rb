@@ -3,9 +3,10 @@ module Frontend
     attr_accessor :paths, :params
 
     PATHS = {
-      all: %w[/api/revalidate/funders /api/revalidate/projects],
+      all: %w[/api/revalidate/funders /api/revalidate/projects /api/revalidate/dashboards],
       funders: "/api/revalidate/funders",
-      projects: "/api/revalidate/projects"
+      projects: "/api/revalidate/projects",
+      dashboard: "/api/revalidate/dashboards"
     }.freeze
 
     def initialize(paths: :all, **params)

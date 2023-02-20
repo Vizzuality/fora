@@ -15,9 +15,14 @@ class ProcessUploadJob < ApplicationJob
   def process_file_of(upload)
     process_file_service = Uploads::ProcessFile.new upload
     process_file_service.call
-    return upload.update! status: :failed, error_messages: process_file_service.errors if process_file_service.errors.present?
+    return postprocess upload if process_file_service.errors.blank?
 
+    upload.update! status: :failed, error_messages: process_file_service.errors
+  end
+
+  def postprocess(upload)
     upload.completed_status!
+    Rails.cache.clear
     Frontend::RevalidateStaticPagesJob.perform_later paths: :all
   end
 end

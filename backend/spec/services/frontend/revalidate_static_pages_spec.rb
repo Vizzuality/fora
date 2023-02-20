@@ -30,10 +30,13 @@ RSpec.describe Frontend::RevalidateStaticPages do
         stub_request(:get, "#{ENV["FRONTEND_URL"]}/api/revalidate/projects?secret=#{ENV["FRONTEND_API_SECRET"]}")
           .with(headers: {"Content-Type" => "application/json", "Accept" => "application/json"})
           .to_return(status: 200, body: {}.to_json, headers: {})
+        stub_request(:get, "#{ENV["FRONTEND_URL"]}/api/revalidate/dashboards?secret=#{ENV["FRONTEND_API_SECRET"]}")
+          .with(headers: {"Content-Type" => "application/json", "Accept" => "application/json"})
+          .to_return(status: 200, body: {}.to_json, headers: {})
       end
 
       it "sends multiple requests to frontend" do
-        expect(subject.call.map(&:code)).to eq(["200", "200"])
+        expect(subject.call.map(&:code)).to eq(["200", "200", "200"])
       end
     end
   end
