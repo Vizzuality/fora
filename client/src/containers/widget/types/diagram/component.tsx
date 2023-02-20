@@ -6,7 +6,10 @@ import { Widget } from 'types/widget';
 
 import WidgetToolbar from 'containers/widget/toolbar';
 
+import Icon from 'components/icon';
 import Loading from 'components/loading';
+
+import NO_DATA_SVG from 'svgs/ui/no-data.svg?sprite';
 
 import { HorizontalBarChart, PieChart } from './types';
 
@@ -73,8 +76,9 @@ const WidgetDiagram = (widget: Widget) => {
       />
 
       {NO_DATA && (
-        <div className="flex items-center justify-center flex-grow h-60">
-          <p className="uppercase font-display">No data available</p>
+        <div className="flex flex-col items-center justify-center flex-grow h-60 space-y-2.5">
+          <Icon icon={NO_DATA_SVG} className="w-28 h-28" />
+          <p className="font-display text-xl">No data available</p>
         </div>
       )}
 
