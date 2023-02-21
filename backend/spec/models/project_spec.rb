@@ -68,6 +68,26 @@ RSpec.describe Project, type: :model do
     end
   end
 
+  describe "#capital_types" do
+    let!(:project) do
+      create :project, investments: [create(:investment, capital_type: "grants"), create(:investment, capital_type: "mris")]
+    end
+
+    it "returns correct value" do
+      expect(project.capital_types).to match_array(%w[grants mris])
+    end
+  end
+
+  describe "#capital_type_other" do
+    let!(:project) do
+      create :project, investments: [create(:investment, capital_type_other: "TEST 1"), create(:investment, capital_type_other: "TEST 2")]
+    end
+
+    it "returns correct value" do
+      expect(project.capital_type_other).to eq("TEST 1\nTEST 2")
+    end
+  end
+
   describe "#demographics" do
     let!(:project) do
       create :project, investments: [create(:investment, demographics: ["women"]), create(:investment, demographics: ["youth"])]
