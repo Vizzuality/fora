@@ -32,16 +32,16 @@ class Project < ApplicationRecord
     select "projects.*, (#{funders_count}) AS funders_count"
   }
 
-  def areas
-    investments_data_for :areas
+  %i[areas capital_type demographics].each do |attr|
+    define_method attr.to_s.pluralize do
+      investments_data_for attr
+    end
   end
 
-  def demographics
-    investments_data_for :demographics
-  end
-
-  def demographics_other
-    investments_data_for(:demographics_other).compact.join("\n")
+  %i[demographics_other capital_type_other].each do |attr|
+    define_method attr do
+      investments_data_for(attr).compact.join("\n")
+    end
   end
 
   private

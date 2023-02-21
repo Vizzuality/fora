@@ -11,6 +11,8 @@ module API
         :areas,
         :demographics,
         :demographics_other,
+        :capital_types,
+        :capital_type_other,
         :recipient_legal_status
 
       belongs_to_restricted :state, serializer: :subgeographic
