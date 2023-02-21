@@ -36,7 +36,6 @@ const ProjectOverview = () => {
     funders,
     areas,
   } = projectData;
-  console.log({ projectData });
 
   const GEOGRAPHIC_SCOPE = useMemo(() => {
     const arraySubGeo = subgeographics?.flat().map((subg) => subg.name);
@@ -66,7 +65,6 @@ const ProjectOverview = () => {
 
     return capitalTypesData.filter((c) => arrayCapital.includes(c.id));
   }, [capitalTypes, capitalTypesData]);
-  console.log({ CAPITAL_TYPE });
 
   const PROJECT_LEGAL_STATUSES = useMemo(() => {
     return projectLegalStatusesData.filter((c) => projectLegalStatus.includes(c.id));
