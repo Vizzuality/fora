@@ -3,6 +3,7 @@ import { STORE_WRAPPER } from 'store';
 import { setFilters } from 'store/dashboards/general-report';
 
 import { dehydrate, QueryClient } from '@tanstack/react-query';
+import safeJsonStringify from 'safe-json-stringify';
 
 import { ReportYears } from 'types/dashboards';
 
@@ -45,7 +46,8 @@ export const getStaticProps = STORE_WRAPPER.getStaticProps((store) => async () =
   // Props returned will be passed to the page component
   return {
     props: {
-      dehydratedState: dehydrate(queryClient) || null,
+      revalidate: 60,
+      dehydratedState: JSON.parse(safeJsonStringify(dehydrate(queryClient))) || null,
     },
   };
 });
