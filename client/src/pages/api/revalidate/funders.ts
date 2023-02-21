@@ -32,7 +32,7 @@ async function handler(req, res) {
     try {
       // this should be the actual path not a rewritten path
       // e.g. for "/funders/[slug]" this should be "/funders/post-1"
-      await res.revalidate(`/funders/${req.query.id}`);
+      await res.revalidate(`${process.env.NEXT_PUBLIC_BASE_PATH}/funders/${req.query.id}`);
       return res.json({ revalidated: true });
     } catch (err) {
       // If there was an error, Next.js will continue

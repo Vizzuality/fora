@@ -16,7 +16,7 @@ async function handler(req, res) {
 
       // revalidate each project
       data.forEach(async (project) => {
-        await res.revalidate(`/projects/${project.id}`);
+        await res.revalidate(`${process.env.NEXT_PUBLIC_BASE_PATH}/projects/${project.id}`);
       });
 
       return res.json({ revalidated: true });

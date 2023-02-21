@@ -46,7 +46,7 @@ export const getStaticProps = STORE_WRAPPER.getStaticProps((store) => async () =
   // Props returned will be passed to the page component
   return {
     props: {
-      revalidate: 60,
+      revalidate: 30 * 60, // 30 minutees
       dehydratedState: JSON.parse(safeJsonStringify(dehydrate(queryClient))) || null,
     },
   };

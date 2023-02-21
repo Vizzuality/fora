@@ -8,7 +8,7 @@ async function handler(req, res) {
   // ? if we add more dashboards with `getStaticProps` be sure you add them here
   try {
     // revalidate each dashboard page
-    await res.revalidate(`/dashboards/general-report`);
+    await res.revalidate(`${process.env.NEXT_PUBLIC_BASE_PATH}/dashboards/general-report`);
     // await res.revalidate(`/dashboards/disparities-report`);
     // await res.revalidate(`/dashboards/interacive-report`);
 
