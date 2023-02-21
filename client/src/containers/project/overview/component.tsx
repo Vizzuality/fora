@@ -4,7 +4,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 
 import { useAreas } from 'hooks/areas';
+import { useCapitalTypes } from 'hooks/capital-types';
 import { useDemographics } from 'hooks/demographics';
+import { useProjectLegalStatuses } from 'hooks/project-legal-statuses';
 import { useProject } from 'hooks/projects';
 
 import { SCOPES } from 'constants/scopes';
@@ -16,8 +18,10 @@ const ProjectOverview = () => {
   const { id: projectId } = query;
 
   const { data: areasData } = useAreas();
+  const { data: capitalTypesData } = useCapitalTypes();
   const { data: demographicsData } = useDemographics();
   const { data: projectData } = useProject(`${projectId}`);
+  const { data: projectLegalStatusesData } = useProjectLegalStatuses();
 
   const {
     description,
@@ -26,7 +30,9 @@ const ProjectOverview = () => {
     website,
     subgeographics,
     demographics,
+    capital_types: capitalTypes,
     leadership_demographics: leadershipDemographics,
+    recipient_legal_status: projectLegalStatus,
     funders,
     areas,
   } = projectData;
@@ -54,7 +60,16 @@ const ProjectOverview = () => {
     return areasData.filter((c) => arrayAreas.includes(c.id));
   }, [areas, areasData]);
 
-  // TO_DO: demograpgic leadership
+  const CAPITAL_TYPE = useMemo(() => {
+    const arrayCapital = capitalTypes?.flat().map((capital) => capital);
+
+    return capitalTypesData.filter((c) => arrayCapital.includes(c.id));
+  }, [capitalTypes, capitalTypesData]);
+
+  const PROJECT_LEGAL_STATUSES = useMemo(() => {
+    return projectLegalStatusesData.filter((c) => projectLegalStatus.includes(c.id));
+  }, [projectLegalStatus, projectLegalStatusesData]);
+
   const CARD_DATA = useMemo(() => {
     return SCOPES.map((attr) => {
       switch (attr.id) {
@@ -78,11 +93,28 @@ const ProjectOverview = () => {
             ...attr,
             value: DEMOGRAPHIC_LEADERSHIP_SCOPE.map((d) => d.name).join(', '),
           };
+        case 'capital-type':
+          return {
+            ...attr,
+            value: CAPITAL_TYPE.map((d) => d.name).join(', '),
+          };
+        case 'legal-status':
+          return {
+            ...attr,
+            value: PROJECT_LEGAL_STATUSES.map((d) => d.name).join(', '),
+          };
         default:
           return attr;
       }
     });
-  }, [GEOGRAPHIC_SCOPE, AREAS_OF_FOCUS, DEMOGRAPHIC_SCOPE, DEMOGRAPHIC_LEADERSHIP_SCOPE]);
+  }, [
+    GEOGRAPHIC_SCOPE,
+    AREAS_OF_FOCUS,
+    DEMOGRAPHIC_SCOPE,
+    DEMOGRAPHIC_LEADERSHIP_SCOPE,
+    CAPITAL_TYPE,
+    PROJECT_LEGAL_STATUSES,
+  ]);
 
   return (
     <div className="flex space-x-32">
