@@ -35,12 +35,6 @@ const ATTRIBUTES = [
     tooltip:
       'The status of a funder which indicates wheather a funder is open to donations/investments.',
   },
-  {
-    id: 'capital_types',
-    label: 'Capital types',
-    value: '',
-    tooltip: 'The type of capital a funder invests with or a project is looking for.',
-  },
 ];
 
 const FunderAtributes = () => {

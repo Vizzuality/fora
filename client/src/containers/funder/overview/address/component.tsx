@@ -26,7 +26,7 @@ const FunderAddress = () => {
   return (
     <div className="space-y-6">
       <div className="space-y-2">
-        <p className="text-base font-semibold uppercase text-grey-20">Headquarters Adress</p>
+        <p className="text-base font-semibold uppercase text-grey-20">Headquarters Address</p>
         <p className="capitalize">{ADDRESS.join(', ')}</p>
       </div>
 
