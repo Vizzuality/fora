@@ -30,7 +30,13 @@ const Join = () => {
             Support regenerative agriculture initiatives
           </h2>
 
-          <Button size="xl" theme="white" className="px-20">
+          <Button
+            size="xl"
+            theme="white"
+            className="px-20"
+            href="https://forainitiative.org/contact/"
+            target="_blank"
+          >
             Join FORA
           </Button>
         </motion.div>

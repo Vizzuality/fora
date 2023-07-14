@@ -1,5 +1,5 @@
 import MetaTags from 'containers/meta-tags';
-import TermsOfUse from 'containers/terms-of-use';
+// import TermsOfUse from 'containers/terms-of-use';
 
 const TITLE_TEXT = 'FORA | Terms of Use';
 const DESCRIPTION_TEXT =
@@ -7,7 +7,7 @@ const DESCRIPTION_TEXT =
 const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/home.jpg`;
 
 const TermsOfUsePage: React.FC = () => (
-  <div>
+  <div className="flex flex-col grow">
     <MetaTags
       title={TITLE_TEXT}
       description={DESCRIPTION_TEXT}
@@ -15,7 +15,10 @@ const TermsOfUsePage: React.FC = () => (
       imageURL={IMAGE_URL}
     />
 
-    <TermsOfUse />
+    <div className="flex flex-col items-center justify-center grow space-y-10 font-display text-3xl">
+      Coming soon
+    </div>
+    {/* <TermsOfUse /> */}
   </div>
 );
 
