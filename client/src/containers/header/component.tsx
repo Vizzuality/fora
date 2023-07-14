@@ -34,8 +34,8 @@ const Header = () => {
                 src={`${process.env.NEXT_PUBLIC_BASE_PATH}${LOGO_SVG}`}
                 alt="Logo"
                 layout="fixed"
-                width={156}
-                height={72}
+                width={pathname === '/' ? 156 : 156 - 156 * 0.2}
+                height={pathname === '/' ? 72 : 72 - 72 * 0.2}
                 priority
               />
             </a>

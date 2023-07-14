@@ -8,7 +8,7 @@ import ProjectOverview from './overview';
 const Project = () => {
   return (
     <Wrapper>
-      <div className="pb-20 space-y-16">
+      <div className="pt-10 pb-20 space-y-16">
         <ProjectOverview />
         <ProjectList />
       </div>

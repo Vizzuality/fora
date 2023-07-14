@@ -8,7 +8,7 @@ import FunderOverview from './overview';
 const Funder = () => {
   return (
     <Wrapper>
-      <div className="pb-20 space-y-16">
+      <div className="pt-10 pb-20 space-y-16">
         <FunderOverview />
         <FundersList />
       </div>
