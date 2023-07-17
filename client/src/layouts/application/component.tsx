@@ -12,7 +12,7 @@ const ApplicationLayout: React.FC<ApplicationLayoutProps> = (props: ApplicationL
     <div className="flex flex-col lg:min-h-screen">
       <Header />
 
-      <main className="grow">
+      <main className="flex flex-col grow">
         {/* Content */}
         {children}
       </main>

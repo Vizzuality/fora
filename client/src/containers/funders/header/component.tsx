@@ -33,8 +33,15 @@ const FundersHeader = () => {
             Search our database of {fundersCount}+ funders supporting regenerative agriculture
           </h3>
         </div>
-        <div className="w-2/3 mt-11">
-          <Search value={search} placeholder="Search" theme="green" onChange={onChangeSearch} />
+        <div className="grid grid-cols-12 mt-11 gap-x-4">
+          <div className="col-span-8">
+            <Search
+              value={search}
+              placeholder="Search by funder name"
+              theme="green"
+              onChange={onChangeSearch}
+            />
+          </div>
         </div>
 
         <div className="mt-14">

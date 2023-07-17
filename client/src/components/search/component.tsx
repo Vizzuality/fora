@@ -9,8 +9,8 @@ import Icon from 'components/icon';
 import CLOSE_SVG from 'svgs/ui/close.svg?sprite';
 
 const THEME = {
-  green: 'text-black placeholder-grey-0 bg-green-0',
-  white: 'text-grey-0 placeholder-grey-0',
+  green: 'text-black placeholder-grey-0 bg-green-0 text-sm',
+  white: 'text-grey-0 placeholder-grey-0 text-sm',
 };
 
 type SearchProps = Omit<
@@ -55,7 +55,7 @@ export const Search: React.FC<SearchProps> = ({
         value={search}
         type="search"
         className={cx({
-          'w-full h-full': true,
+          'w-full h-full py-3 px-4': true,
           [THEME[theme]]: true,
         })}
         onChange={handleChange}

@@ -24,7 +24,7 @@ export const THEME = {
     },
     icon: 'text-grey-0 text-opacity-50',
     mode: {
-      normal: 'border rounded',
+      normal: 'border rounded-lg',
       dashed: 'border-dashed border-b',
     },
   },

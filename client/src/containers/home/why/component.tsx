@@ -40,7 +40,12 @@ const Why = () => {
                     View all funders
                   </Button>
 
-                  <Button size="xl" theme="blue" href="/funders">
+                  <Button
+                    size="xl"
+                    theme="blue"
+                    href="https://forainitiative.org/contact/"
+                    target="_blank"
+                  >
                     Join FORA
                   </Button>
                 </div>
