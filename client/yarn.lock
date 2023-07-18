@@ -9113,7 +9113,7 @@ __metadata:
     next-auth: 4.3.4
     next-compose-plugins: 2.2.1
     next-optimized-images: 2.6.2
-    next-plausible: ^3.10.1
+    next-plausible: 3.10.1
     next-redux-wrapper: 7.0.5
     postcss: 8.4.13
     prettier: 2.3.0
@@ -12463,7 +12463,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-plausible@npm:^3.10.1":
+"next-plausible@npm:3.10.1":
   version: 3.10.1
   resolution: "next-plausible@npm:3.10.1"
   peerDependencies:
