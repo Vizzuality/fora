@@ -2,6 +2,8 @@ import { useCallback } from 'react';
 
 import { Field as FieldRFF } from 'react-final-form';
 
+import { usePlausible } from 'next-plausible';
+
 import { useDemographics } from 'hooks/demographics';
 
 import FilterList from 'components/filters/list';
@@ -9,6 +11,7 @@ import { arrayValidator, composeValidators } from 'components/forms/validations'
 
 export const DemographicScopeList = () => {
   const { data: demographicsData } = useDemographics();
+  const plausible = usePlausible();
 
   const handleToogleDemographic = useCallback((id, input) => {
     const selection = [...input.value];
@@ -29,9 +32,16 @@ export const DemographicScopeList = () => {
         input.onChange(demographicsData.map((s) => s.id));
       } else {
         input.onChange([]);
+
+        plausible('Map - Reset filters', {
+          props: {
+            filterId: `${id}`,
+            filterName: `${input.name}`,
+          },
+        });
       }
     },
-    [demographicsData]
+    [demographicsData, plausible]
   );
 
   return (

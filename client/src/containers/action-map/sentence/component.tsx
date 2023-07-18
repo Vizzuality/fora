@@ -3,6 +3,8 @@ import React, { useCallback, useMemo } from 'react';
 import { initialState, reset } from 'store/action-map';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
+import { usePlausible } from 'next-plausible';
+
 import { useFunders } from 'hooks/funders';
 import { useProjects } from 'hooks/projects';
 
@@ -20,6 +22,7 @@ import { SentenceProps } from './types';
 const Sentence: React.FC<SentenceProps> = () => {
   const { type, filters } = useAppSelector((state) => state['/action-map']);
   const dispatch = useAppDispatch();
+  const plausible = usePlausible();
 
   const {
     data: fundersData,
@@ -57,7 +60,14 @@ const Sentence: React.FC<SentenceProps> = () => {
 
   const handleReset = useCallback(() => {
     dispatch(reset());
-  }, [dispatch]);
+
+    plausible('Map - Reset filters', {
+      props: {
+        filterId: `reset-all-filters`,
+        filterName: 'Reset all filters sentence',
+      },
+    });
+  }, [plausible, dispatch]);
 
   return (
     <div className="relative text-sm font-semibold text-grey-20 min-h-[16px]">

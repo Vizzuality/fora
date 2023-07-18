@@ -4,6 +4,8 @@ import { Field as FieldRFF, useForm } from 'react-final-form';
 
 import { useAppSelector } from 'store/hooks';
 
+import { usePlausible } from 'next-plausible';
+
 import { useSubGeographics } from 'hooks/geographics';
 
 import FilterList from 'components/filters/list';
@@ -14,6 +16,7 @@ interface GeographicScopeListFooterProps {}
 export const GeographicScopeList: React.FC<GeographicScopeListFooterProps> = ({}) => {
   const { filters } = useAppSelector((state) => state['/action-map']);
   const { geographic: initialGeographic, subgeographics: initialSubgeographics } = filters;
+  const plausible = usePlausible();
 
   const form = useForm();
   const { values } = form.getState();
@@ -67,9 +70,16 @@ export const GeographicScopeList: React.FC<GeographicScopeListFooterProps> = ({}
         form.change('allSubgeographics', true);
       } else {
         input.onChange([]);
+
+        plausible('Map - Reset filters', {
+          props: {
+            filterId: `${id}`,
+            filterName: `${input.name}`,
+          },
+        });
       }
     },
-    [subgeographicData, form]
+    [subgeographicData, form, plausible]
   );
 
   useEffect(() => {
