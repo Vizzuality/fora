@@ -3,6 +3,8 @@ import React, { useMemo } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import { usePlausible } from 'next-plausible';
+
 import { useAreas } from 'hooks/areas';
 import { useCapitalTypes } from 'hooks/capital-types';
 import { useDemographics } from 'hooks/demographics';
@@ -20,6 +22,7 @@ import Attributes from './attributes';
 
 const FunderOverview = () => {
   const { query } = useRouter();
+  const plausible = usePlausible();
   const { id: funderId } = query;
 
   const { data: areasData } = useAreas();
@@ -147,6 +150,13 @@ const FunderOverview = () => {
                 size="base"
                 theme="black-alt"
                 href={`mailto:${email}?subject=Hi ${name}`}
+                onClick={() => {
+                  plausible('Profile - Contact funder', {
+                    props: {
+                      funderName: name,
+                    },
+                  });
+                }}
               >
                 Contact Funder
               </Button>

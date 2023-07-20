@@ -3,6 +3,8 @@ import React, { useCallback } from 'react';
 import { setType, Type } from 'store/action-map';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
+import { usePlausible } from 'next-plausible';
+
 import type { TabsType } from 'components/tabs';
 import Tabs from 'components/tabs';
 
@@ -21,11 +23,20 @@ const FilterTabs = () => {
   const { type } = useAppSelector((state) => state['/action-map']);
   const dispatch = useAppDispatch();
 
+  const plausible = usePlausible();
+
   const handleTabChange = useCallback(
     (id: string) => {
       dispatch(setType(id as Type));
+
+      plausible('Map - Save filter', {
+        props: {
+          filterName: 'Filter Tabs',
+          values: id,
+        },
+      });
     },
-    [dispatch]
+    [dispatch, plausible]
   );
   return (
     <div className="pr-7">

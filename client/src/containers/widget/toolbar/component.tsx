@@ -1,5 +1,7 @@
 import { useCallback } from 'react';
 
+import { usePlausible } from 'next-plausible';
+
 import { Widget } from 'types/widget';
 
 import { useModal } from 'hooks/modals';
@@ -26,13 +28,21 @@ const WidgetToolbar = ({ title, description, slug, params, toolbar }: WidgetTool
 
   const { mutate: mutateDownload, isLoading: isDownloadLoading } = useWidgetDownload();
 
+  const plausible = usePlausible();
+
   const handleClickInfo = useCallback(() => {
     openModal();
   }, [openModal]);
 
   const handleClickDownload = useCallback(() => {
     mutateDownload({ slug, params });
-  }, [slug, params, mutateDownload]);
+
+    plausible('Dashboard - Download report', {
+      props: {
+        reportName: slug,
+      },
+    });
+  }, [mutateDownload, slug, params, plausible]);
 
   return (
     <>

@@ -6,6 +6,7 @@ import { setFilters } from 'store/action-map';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 import { omit } from 'lodash';
+import { usePlausible } from 'next-plausible';
 
 import { useFunders, useFundersByGeographicScope } from 'hooks/funders';
 import { useMapProjection } from 'hooks/map';
@@ -29,6 +30,8 @@ const Map = () => {
 
   const { view, type, filters } = useAppSelector((state) => state['/action-map']);
   const dispatch = useAppDispatch();
+
+  const plausible = usePlausible();
 
   // FUNDERS
   const {
@@ -91,6 +94,12 @@ const Map = () => {
             subgeographics: [properties.abbreviation],
           })
         );
+
+        plausible('Map - Save filter', {
+          props: {
+            mapFilter: 'Map filter click',
+          },
+        });
       },
       onMouseEnter: (e, properties) => {
         setTooltip({
@@ -131,7 +140,7 @@ const Map = () => {
         });
       },
     });
-  }, [view, type, DATA, filters, dispatch]);
+  }, [view, DATA, type, dispatch, filters, plausible]);
 
   return (
     <div className="relative w-full">
