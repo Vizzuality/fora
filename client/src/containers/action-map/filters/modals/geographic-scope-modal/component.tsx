@@ -5,6 +5,8 @@ import { Form as FormRFF } from 'react-final-form';
 import { setView, setFilters } from 'store/action-map';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
+import { usePlausible } from 'next-plausible';
+
 import { useSubGeographics } from 'hooks/geographics';
 
 import GeographicScopeFooter from './footer';
@@ -26,6 +28,8 @@ const GeographicScopeModal: React.FC<GraphicScopeModaProps> = ({
   });
 
   const dispatch = useAppDispatch();
+
+  const plausible = usePlausible();
 
   const INITIAL_VALUES = useMemo(() => {
     return {
@@ -57,8 +61,16 @@ const GeographicScopeModal: React.FC<GraphicScopeModaProps> = ({
       );
 
       if (onClose) onClose();
+
+      plausible('Map - Save filter', {
+        props: {
+          filterName: 'Geographic scope',
+          geographic: geographicValue,
+          subgeographics: allSubgeographicsValue ? [] : subgeographicsValue,
+        },
+      });
     },
-    [filters, dispatch, onClose]
+    [dispatch, filters, onClose, plausible]
   );
 
   return (

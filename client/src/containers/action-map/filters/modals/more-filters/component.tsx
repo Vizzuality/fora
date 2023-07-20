@@ -5,6 +5,8 @@ import { Form as FormRFF } from 'react-final-form';
 import { setFilters } from 'store/action-map';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
+import { usePlausible } from 'next-plausible';
+
 import { useCapitalTypes } from 'hooks/capital-types';
 import { useFunderLegalStatuses } from 'hooks/funder-legal-statuses';
 import { useFunderTypes } from 'hooks/funder-types';
@@ -22,6 +24,8 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
   const { filters } = useAppSelector((state) => state['/action-map']);
   const { funderTypes, funderLegalStatuses, capitalTypes, recipientLegalStatuses } = filters;
   const dispatch = useAppDispatch();
+
+  const plausible = usePlausible();
 
   const { data: funderTypesData } = useFunderTypes();
   const { data: funderLegalStatusesData } = useFunderLegalStatuses();
@@ -89,15 +93,33 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
       );
 
       if (onClose) onClose();
+
+      plausible('Map - Save filter', {
+        props: {
+          filterName: 'More filters',
+          funderTypes: funderTypesValue.length === funderTypesData.length ? [] : funderTypesValue,
+          funderLegalStatuses:
+            funderLegalStatusesValue.length === funderLegalStatusesData.length
+              ? []
+              : funderLegalStatusesValue,
+          capitalTypes:
+            capitalTypesValue.length === capitalTypesData.length ? [] : capitalTypesValue,
+          recipientLegalStatuses:
+            recipientLegalStatusesValue.length === recipientLegalStatusesData.length
+              ? []
+              : recipientLegalStatusesValue,
+        },
+      });
     },
     [
-      funderTypesData,
-      funderLegalStatusesData,
-      capitalTypesData,
-      recipientLegalStatusesData,
-      filters,
       dispatch,
+      filters,
+      funderTypesData.length,
+      funderLegalStatusesData.length,
+      capitalTypesData.length,
+      recipientLegalStatusesData.length,
       onClose,
+      plausible,
     ]
   );
 

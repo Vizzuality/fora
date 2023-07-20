@@ -5,6 +5,8 @@ import { Form as FormRFF } from 'react-final-form';
 import { setFilters } from 'store/action-map';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
+import { usePlausible } from 'next-plausible';
+
 import { useDemographics } from 'hooks/demographics';
 
 import DemographicScopeFooter from './footer';
@@ -21,6 +23,8 @@ const DemographicScopeModal: React.FC<DemographicScopeModaProps> = ({
   const { filters } = useAppSelector((state) => state['/action-map']);
   const { demographics } = filters;
   const dispatch = useAppDispatch();
+
+  const plausible = usePlausible();
 
   const { data: demographicsData } = useDemographics();
 
@@ -47,8 +51,15 @@ const DemographicScopeModal: React.FC<DemographicScopeModaProps> = ({
       );
 
       if (onClose) onClose();
+
+      plausible('Map - Save filter', {
+        props: {
+          filterName: 'Demographic scope',
+          values: demographicsValue.length === demographicsData.length ? [] : demographicsValue,
+        },
+      });
     },
-    [demographicsData, filters, dispatch, onClose]
+    [dispatch, filters, demographicsData.length, onClose, plausible]
   );
 
   return (

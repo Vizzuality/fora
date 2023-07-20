@@ -5,6 +5,8 @@ import { Form as FormRFF } from 'react-final-form';
 import { setFilters } from 'store/action-map';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
+import { usePlausible } from 'next-plausible';
+
 import { useAreas } from 'hooks/areas';
 
 import AreaScopeFooter from './footer';
@@ -19,6 +21,8 @@ const AreaScopeModal: React.FC<AreaScopeModaProps> = ({ onClose }: AreaScopeModa
   const { filters } = useAppSelector((state) => state['/action-map']);
   const { areas } = filters;
   const dispatch = useAppDispatch();
+
+  const plausible = usePlausible();
 
   const { data: areasData } = useAreas();
 
@@ -44,8 +48,15 @@ const AreaScopeModal: React.FC<AreaScopeModaProps> = ({ onClose }: AreaScopeModa
       );
 
       if (onClose) onClose();
+
+      plausible('Map - Save filter', {
+        props: {
+          filterName: 'Area scope',
+          values: areasValue.length === areasData.length ? [] : areasValue,
+        },
+      });
     },
-    [areasData, filters, dispatch, onClose]
+    [dispatch, filters, areasData.length, onClose, plausible]
   );
 
   return (
