@@ -95,7 +95,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
           > */}
         {/* @ts-ignore: https://github.com/artsy/fresnel/issues/281 */}
         <MediaContextProvider>
-          <PlausibleProvider domain="fora-frontend.vercel.app">
+          <PlausibleProvider domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}>
             <MetaIcons />
 
             {/* <ThirdParty /> */}
