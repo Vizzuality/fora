@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { useAreas } from 'hooks/areas';
@@ -150,6 +151,17 @@ const ProjectOverview = () => {
         <div className="space-y-3">
           <p className="font-semibold uppercase text-grey-20">About</p>
           <p className="text-xl">{description}</p>
+        </div>
+
+        <div className="space-y-3">
+          <p className="font-semibold uppercase text-grey-20">Data Source</p>
+          <p className="text-xl">
+            FORA members have provided the project information displayed on this page. Please{' '}
+            <Link href="/privacy-policy">
+              <a className="font-semibold text-black underline">get in touch with FORA</a>
+            </Link>{' '}
+            to suggest any data editions.
+          </p>
         </div>
       </div>
       <div className="flex-1">
