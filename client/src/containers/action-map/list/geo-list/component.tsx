@@ -4,6 +4,7 @@ import { setFilters } from 'store/action-map';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 import { omit } from 'lodash';
+import { usePlausible } from 'next-plausible';
 
 import { useFunders, useFundersByGeographicScope } from 'hooks/funders';
 import { useProjects, useProjectsByGeographicScope } from 'hooks/projects';
@@ -18,6 +19,8 @@ const GeoList = () => {
   const { view, type, filters } = useAppSelector((state) => state['/action-map']);
   const { subgeographics } = filters;
   const dispatch = useAppDispatch();
+
+  const plausible = usePlausible();
 
   // FUNDERS
   // get funders grouped by geographic scope
@@ -87,8 +90,14 @@ const GeoList = () => {
           subgeographics: [id],
         })
       );
+
+      plausible('Map - Save filter', {
+        props: {
+          mapFilter: id,
+        },
+      });
     },
-    [filters, dispatch]
+    [dispatch, filters, plausible]
   );
 
   return (

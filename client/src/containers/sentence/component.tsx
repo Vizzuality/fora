@@ -4,6 +4,8 @@ import { initialState as fundersInitialState, reset as fundersReset } from 'stor
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { initialState as projectsInitialState, reset as projectsReset } from 'store/projects';
 
+import { usePlausible } from 'next-plausible';
+
 import { useFunders } from 'hooks/funders';
 import { useProjects } from 'hooks/projects';
 
@@ -21,6 +23,7 @@ import { SentenceProps } from './types';
 const Sentence: React.FC<SentenceProps> = ({ type }) => {
   const { filters } = useAppSelector((state) => state[`/${type}`]);
   const dispatch = useAppDispatch();
+  const plausible = usePlausible();
 
   const {
     data: fundersData,
@@ -72,7 +75,14 @@ const Sentence: React.FC<SentenceProps> = ({ type }) => {
     };
 
     dispatch(action[type]());
-  }, [dispatch, type]);
+
+    plausible('Map - Reset filters', {
+      props: {
+        filterId: `reset-all-filters`,
+        filterName: 'Reset all filters sentence',
+      },
+    });
+  }, [dispatch, plausible, type]);
 
   return (
     <div className="relative text-sm font-semibold text-grey-20 min-h-[16px]">

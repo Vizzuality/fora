@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { STORE_WRAPPER } from 'store';
 
 import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
+import PlausibleProvider from 'next-plausible';
 
 import ApplicationLayout from 'layouts/application';
 
@@ -94,15 +95,17 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
           > */}
         {/* @ts-ignore: https://github.com/artsy/fresnel/issues/281 */}
         <MediaContextProvider>
-          <MetaIcons />
+          <PlausibleProvider domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}>
+            <MetaIcons />
 
-          {/* <ThirdParty /> */}
+            {/* <ThirdParty /> */}
 
-          <RouteLoading {...routeLoading} />
+            <RouteLoading {...routeLoading} />
 
-          <ApplicationLayout>
-            <Component {...pageProps} />
-          </ApplicationLayout>
+            <ApplicationLayout>
+              <Component {...pageProps} />
+            </ApplicationLayout>
+          </PlausibleProvider>
         </MediaContextProvider>
         {/* </SessionProvider> */}
       </Hydrate>

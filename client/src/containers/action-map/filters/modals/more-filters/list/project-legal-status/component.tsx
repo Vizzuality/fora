@@ -2,6 +2,8 @@ import { useCallback } from 'react';
 
 import { Field as FieldRFF } from 'react-final-form';
 
+import { usePlausible } from 'next-plausible';
+
 import { useProjectLegalStatuses } from 'hooks/project-legal-statuses';
 
 import FilterList from 'components/filters/list';
@@ -9,6 +11,7 @@ import { arrayValidator, composeValidators } from 'components/forms/validations'
 
 export const ProjectLegalStatus = () => {
   const { data: recipientLegalStatusesData } = useProjectLegalStatuses();
+  const plausible = usePlausible();
 
   const handleToogle = useCallback((id, input) => {
     const selection = [...input.value];
@@ -29,9 +32,16 @@ export const ProjectLegalStatus = () => {
         input.onChange(recipientLegalStatusesData.map((s) => s.id));
       } else {
         input.onChange([]);
+
+        plausible('Map - Reset filters', {
+          props: {
+            filterId: `${id}`,
+            filterName: `${input.name}`,
+          },
+        });
       }
     },
-    [recipientLegalStatusesData]
+    [plausible, recipientLegalStatusesData]
   );
 
   return (
