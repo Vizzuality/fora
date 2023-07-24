@@ -13,13 +13,13 @@ const META = [
   {
     id: 'total_funders',
     label: 'Total number of FORA members',
-    info: 'Total number of funders that are currently part of FORA',
+    info: 'The total number of FORA members that have funded/invested in projects -authorized for public disclosure of financial data- in a given year.',
     value: '-',
   },
   {
     id: 'total_projects',
     label: 'Total number of projects',
-    info: 'Total number of projects funded by FORA members (in given year)',
+    info: 'The total number of projects funded by FORA members in a given year. Only projects authorized for public disclosure of financial data are included.',
     value: '-',
   },
   {
