@@ -54,17 +54,16 @@ const ReportHeader = () => {
                 />
               </strong>
             </h2>
-            <div className="border rounded-lg shrink-0 border-grey-40">
-              <button
-                type="button"
-                className="p-3 transition-colors shrink-0 hover:bg-grey-40"
-                onClick={handleClickInfo}
-              >
-                <div className="flex items-center justify-center w-6 h-6 border rounded-full border-grey-0">
-                  <Icon icon={INFO_SVG} className="block w-5 h-5" />
-                </div>
-              </button>
-            </div>
+
+            <button
+              type="button"
+              className="p-3 transition-colors border rounded-lg border-grey-40 shrink-0 hover:bg-grey-40"
+              onClick={handleClickInfo}
+            >
+              <div className="flex items-center justify-center w-6 h-6 border rounded-full border-grey-0">
+                <Icon icon={INFO_SVG} className="block w-5 h-5" />
+              </div>
+            </button>
           </div>
 
           <h3 className="max-w-2xl text-2xl font-display">
