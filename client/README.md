@@ -11,7 +11,6 @@ This is a project template which could be used to the creation of new projects. 
 - [Cypress](https://www.cypress.io/) as testing client
 - git workflow and hooks
 - editorconfig and code style based on [Airbnb](https://github.com/airbnb/javascript)
-- [Storybook](https://storybook.js.org/) also available and configured
 
 ## Getting Started
 
@@ -83,14 +82,13 @@ Here's a step by step guide on how to address vulnerabilities found in productio
 ## Env variables
 
 
-| Variable name           | Description                                                             |  Default value                      |
-|-------------------------|-------------------------------------------------------------------------|------------------------------------:|
-| NEXTAUTH_SECRET         |  Key used to encrypt the NextAuth.js JWT, and to hash email verification tokens. Do not forget to add a secret. NextAuth can handle without it in development mode,  but it won't in production! [https://next-auth.js.org/configuration/options#secret](https://next-auth.js.org/configuration/options#secret) |  |
-| NEXTAUTH_URL            |  Needed by the next-auth library for [handling auth requests and callbacks](https://next-auth.js.org/configuration/options#nextauth_url). Set the environment variable to the canonical URL of your site. Not needed in Vercel deploys.   |  |
-| NEXT_PUBLIC_API_URL  | URL of the API. | https://jsonplaceholder.typicode.com   |
-| STORYBOOK_API_URL  | URL of the API for storybook. |    |
-| NEXT_PUBLIC_GA_TRACKING_ID  | Google Analytics tracking ID. If you're working with an Google Analytics 4 property, you have a Measurement ID instead of a Tracking ID. |    |
-| NEXT_PUBLIC_BASE_PATH  | As this project should live in a subpath of a domain, we need to specify a basePath inside the next.config.js. You may think this variable must be without the NEXT_PUBLIC but it also affects the images urls. That's why we need it at build and run time. We MUST leave it as an empty string for Vercel and local environments = "" [https://nextjs.org/docs/api-reference/next.config.js/basepath](https://nextjs.org/docs/api-reference/next.config.js/basepath)  |    |
+| Variable name           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                            |  Default value                      |
+|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------:|
+| NEXTAUTH_SECRET         | Key used to encrypt the NextAuth.js JWT, and to hash email verification tokens. Do not forget to add a secret. NextAuth can handle without it in development mode,  but it won't in production! [https://next-auth.js.org/configuration/options#secret](https://next-auth.js.org/configuration/options#secret)                                                                                                                                                         |  |
+| NEXTAUTH_URL            | Needed by the next-auth library for [handling auth requests and callbacks](https://next-auth.js.org/configuration/options#nextauth_url). Set the environment variable to the canonical URL of your site. Not needed in Vercel deploys.                                                                                                                                                                                                                                 |  |
+| NEXT_PUBLIC_API_URL  | URL of the API.                                                                                                                                                                                                                                                                                                                                                                                                                                                        | https://jsonplaceholder.typicode.com   |
+| NEXT_PUBLIC_GA_TRACKING_ID  | Google Analytics tracking ID. If you're working with an Google Analytics 4 property, you have a Measurement ID instead of a Tracking ID.                                                                                                                                                                                                                                                                                                                               |    |
+| NEXT_PUBLIC_BASE_PATH  | As this project should live in a subpath of a domain, we need to specify a basePath inside the next.config.ts. You may think this variable must be without the NEXT_PUBLIC but it also affects the images urls. That's why we need it at build and run time. We MUST leave it as an empty string for Vercel and local environments = "" [https://nextjs.org/docs/pages/api-reference/next-config-js/basePath](https://nextjs.org/docs/pages/api-reference/next-config-js/basePath) |    |
 
 
 
