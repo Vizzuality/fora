@@ -42,4 +42,5 @@ npm-debug.log*
 .pnp.*
 
 # typescript
-tsconfig.tsbuildinfo
+*.tsbuildinfo
+next-env.d.ts

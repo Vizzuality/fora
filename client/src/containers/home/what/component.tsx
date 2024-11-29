@@ -39,7 +39,6 @@ const What = () => {
           </div>
         </div>
       </Wrapper>
-
       <Wrapper>
         <div className="relative z-10 grid grid-cols-3 gap-10">
           {PRINCIPLES.map(({ title, icon, description }, i) => (
@@ -71,7 +70,6 @@ const What = () => {
           ))}
         </div>
       </Wrapper>
-
       <Wrapper>
         <div className="grid grid-cols-12 gap-10">
           <div className="relative col-span-6 col-start-2">
@@ -102,6 +100,10 @@ const What = () => {
                   alt="What 1"
                   width={238}
                   height={356}
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
                 />
               </AnimatedScroll>
               <AnimatedScroll
@@ -115,6 +117,10 @@ const What = () => {
                   alt="What 2"
                   width={238}
                   height={356}
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
                 />
               </AnimatedScroll>
             </div>
