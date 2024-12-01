@@ -320,6 +320,9 @@ RSpec.configure do |config|
       },
       servers: [
         {
+          url: "/"
+        },
+        {
           url: "/sub-path/backend"
         },
         {
