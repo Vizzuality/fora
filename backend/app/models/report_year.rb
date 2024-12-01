@@ -7,7 +7,8 @@ class ReportYear
   TYPES = [
     2021,
     2022,
-    2023
+    2023,
+    2024
   ].freeze
 
   def read_attribute(_name)

@@ -34,11 +34,9 @@ if Rails.env.development?
   {countries: (5..10).to_a.sample,
    national: (2..5).to_a.sample,
    regions: (5..10).to_a.sample,
-   states: (5..10).to_a.sample}.each do |geographic, samples|
+   states: (5..10).to_a.sample}.each do |_geographic, samples|
     samples.times do
-      subgeographic = Subgeographic.where(geographic: geographic).order("RANDOM()").first
       recipient = FactoryBot.create :recipient,
-        subgeographics: [subgeographic],
         state: Subgeographic.where(geographic: :states).order("RANDOM()").first,
         country: Subgeographic.where(geographic: :countries).order("RANDOM()").first
       FactoryBot.create :project, recipient: recipient
@@ -47,8 +45,10 @@ if Rails.env.development?
 
   puts "Generating Investments"
   (20..100).to_a.sample.times do
+    subgeographic = Subgeographic.where(geographic: :states).order("RANDOM()").first
     FactoryBot.create :investment,
       funder: Funder.order("RANDOM()").first,
-      project: Project.order("RANDOM()").first
+      project: Project.order("RANDOM()").first,
+      subgeographics: [subgeographic]
   end
 end
