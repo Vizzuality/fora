@@ -48,6 +48,7 @@ const Hero = () => {
                   alt="Hero 1"
                   width={389}
                   height={248}
+                  className="max-w-none"
                 />
               </AnimatedScrollComponent>
 
