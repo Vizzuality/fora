@@ -85,16 +85,17 @@ const AreasSimilars = ({ type }: SimilarsSectionProps) => {
           <div className="flex items-center justify-between">
             <div className="font-semibold capitalize text-grey-20">By Area of Focus</div>
             <div>
-              <Link href={`/${type}?areas[]=${areas.join(',')}`}>
-                <a className="flex items-center space-x-3 font-semibold underline decoration-1">
-                  <span>{`View all similar ${type}`}</span>
-                  <Icon
-                    icon={CHEVRON_RIGHT_SVG}
-                    className={cx({
-                      'w-2 h-2 text-grey-0': true,
-                    })}
-                  />
-                </a>
+              <Link
+                href={`/${type}?areas[]=${areas.join(',')}`}
+                className="flex items-center space-x-3 font-semibold underline decoration-1"
+              >
+                <span>{`View all similar ${type}`}</span>
+                <Icon
+                  icon={CHEVRON_RIGHT_SVG}
+                  className={cx({
+                    'w-2 h-2 text-grey-0': true,
+                  })}
+                />
               </Link>
             </div>
           </div>

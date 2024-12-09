@@ -9,7 +9,7 @@ import { useAppSelector } from 'store/hooks';
 import rewind from '@turf/rewind';
 import CHROMA from 'chroma-js';
 import { geoCentroid } from 'd3-geo';
-import { Feature, MultiPolygon, Polygon } from 'geojson';
+import type { Feature, MultiPolygon, Polygon } from 'geojson';
 import { max, min } from 'lodash';
 
 import { MAP_RAMP } from 'constants/colors';

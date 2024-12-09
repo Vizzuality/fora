@@ -100,7 +100,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
 
             {/* <ThirdParty /> */}
 
-            <RouteLoading {...routeLoading} />
+            <RouteLoading key={routeLoading.key} loading={routeLoading.loading} />
 
             <ApplicationLayout>
               <Component {...pageProps} />
