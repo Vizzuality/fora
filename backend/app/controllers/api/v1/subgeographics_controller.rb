@@ -14,7 +14,7 @@ module API
           @subgeographics,
           include: included_relationships,
           fields: sparse_fieldset,
-          params: {current_user: current_user, current_ability: current_ability}
+          params: {current_member: current_member, current_ability: current_ability}
         ).serializable_hash
       end
 

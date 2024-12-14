@@ -19,7 +19,7 @@ RSpec.describe "API V1 Token", type: :request do
 
       response "200", :success do
         schema type: :object, properties: {
-          token: {type: :string},
+          token: {type: :string}
         }
 
         let(:member) { create :member, password: password }

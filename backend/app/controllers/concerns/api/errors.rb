@@ -1,10 +1,12 @@
 module API
   Error = Class.new(StandardError)
   UnprocessableEntityError = Class.new(Error)
+  UnauthorizedError = Class.new(Error)
 
   module Errors
     def self.included(base)
       base.rescue_from API::Error, with: :render_error
+      base.rescue_from API::UnauthorizedError, with: :render_forbidden_error
       base.rescue_from CanCan::AccessDenied, with: :render_forbidden_error
       base.rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_error
       base.rescue_from API::UnprocessableEntityError, with: :render_unprocessable_entity_error

@@ -15,7 +15,7 @@ module API
         render json: WidgetSerializer.new(
           @widgets,
           fields: sparse_fieldset,
-          params: {current_user: current_user, current_ability: current_ability}
+          params: {current_member: current_member, current_ability: current_ability}
         ).serializable_hash
       end
 
@@ -23,7 +23,7 @@ module API
         widget_data = WidgetData.new widget: @widget, filters: filter_params
         render json: WidgetDataSerializer.new(
           widget_data,
-          params: {current_user: current_user, current_ability: current_ability}
+          params: {current_member: current_member, current_ability: current_ability}
         ).serializable_hash
       end
 

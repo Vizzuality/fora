@@ -5,7 +5,7 @@ class Member < ApplicationRecord
 
   validates_presence_of :first_name, :last_name
 
-  validates :password, length: { minimum: 12, message: :password_length }
+  validates :password, length: {minimum: 12, message: :password_length}
   validate :password_complexity
 
   def full_name
