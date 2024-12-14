@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :member do
+    funder
     sequence(:first_name) do |n|
       Faker::Config.random = Random.new(n)
       Faker::Name.first_name

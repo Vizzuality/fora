@@ -149,15 +149,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_14_133611) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
     t.string "first_name", null: false
     t.string "last_name", null: false
+    t.uuid "funder_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["confirmation_token"], name: "index_members_on_confirmation_token", unique: true
     t.index ["email"], name: "index_members_on_email", unique: true
+    t.index ["funder_id"], name: "index_members_on_funder_id"
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
   end
 
@@ -170,19 +168,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_14_133611) do
 
   create_table "recipients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.string "contact_first_name"
-    t.string "contact_last_name"
+    t.string "contact_first_name", null: false
+    t.string "contact_last_name", null: false
     t.string "website"
-    t.uuid "country_id"
+    t.uuid "country_id", null: false
     t.uuid "state_id"
-    t.string "city"
+    t.string "city", null: false
     t.string "leadership_demographics", array: true
     t.text "leadership_demographics_other"
     t.string "recipient_legal_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "description"
-    t.boolean "published", default: false
+    t.text "description", null: false
     t.index ["country_id"], name: "index_recipients_on_country_id"
     t.index ["name"], name: "index_recipients_on_name", unique: true
     t.index ["state_id"], name: "index_recipients_on_state_id"
@@ -252,6 +249,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_14_133611) do
   add_foreign_key "investment_subgeographics", "subgeographics", on_delete: :cascade
   add_foreign_key "investments", "funders", on_delete: :cascade
   add_foreign_key "investments", "projects", on_delete: :cascade
+  add_foreign_key "members", "funders"
   add_foreign_key "projects", "recipients", on_delete: :cascade
   add_foreign_key "recipients", "subgeographics", column: "country_id", on_delete: :cascade
   add_foreign_key "recipients", "subgeographics", column: "state_id", on_delete: :cascade

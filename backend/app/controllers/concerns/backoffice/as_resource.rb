@@ -58,6 +58,10 @@ module Backoffice
       raise NotImplementedError
     end
 
+    def update_params
+      create_params
+    end
+
     def initialize_resource
       @resource = resource_class.new
     end

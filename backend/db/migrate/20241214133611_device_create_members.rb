@@ -20,9 +20,9 @@ class DeviceCreateMembers < ActiveRecord::Migration[7.0]
       # t.string   :last_sign_in_ip
 
       ## Confirmable
-      t.string   :confirmation_token
-      t.datetime :confirmed_at
-      t.datetime :confirmation_sent_at
+      # t.string   :confirmation_token
+      # t.datetime :confirmed_at
+      # t.datetime :confirmation_sent_at
       # t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
@@ -32,13 +32,14 @@ class DeviceCreateMembers < ActiveRecord::Migration[7.0]
 
       t.string :first_name, null: false
       t.string :last_name, null: false
+      t.belongs_to :funder, type: :uuid, null: false, foreign_key: true
 
       t.timestamps null: false
     end
 
     add_index :members, :email, unique: true
     add_index :members, :reset_password_token, unique: true
-    add_index :members, :confirmation_token,   unique: true
+    # add_index :members, :confirmation_token,   unique: true
     # add_index :admins, :unlock_token,         unique: true
   end
 end

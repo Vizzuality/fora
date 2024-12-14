@@ -1,0 +1,55 @@
+<%= render "new_record", text: t("backoffice.messages.create_new_record", model: resource_class.model_name.human), url: new_backoffice_member_path %>
+
+<table class="backoffice-table">
+  <thead>
+    <tr>
+      <th>
+        <%= sort_link @q, :id, t("activerecord.attributes.funder.id") %>
+      </th>
+      <th>
+        <%= sort_link @q, :email , t("activerecord.attributes.member.email") %>
+      </th>
+      <th>
+        <%= sort_link @q, :first_name , t("activerecord.attributes.member.first_name") %>
+      </th>
+      <th>
+        <%= sort_link @q, :last_name , t("activerecord.attributes.member.last_name") %>
+      </th>
+      <th>
+        <%= sort_link @q, :updated_at, t("activerecord.attributes.member.updated_at") %>
+      </th>
+      <th>
+        <%= sort_link @q, :created_at, t("activerecord.attributes.member.created_at") %>
+      </th>
+      <th>
+      </th>
+      <th class="opacity-25">
+        <%= svg "menu" %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @resources.each do |resource| %>
+      <tr>
+        <td><%= resource.id %></td>
+        <td><%= resource.email %></td>
+        <td><%= resource.first_name %></td>
+        <td><%= resource.last_name %></td>
+        <td><%= I18n.l resource.updated_at.to_date %></td>
+        <td><%= I18n.l resource.created_at.to_date %></td>
+        <td><%= link_to t("backoffice.actions.show"), backoffice_member_path(resource), class: "link-button" %></td>
+        <td>
+          <%= render "menu" do %>
+            <%= render "backoffice/base/menu/item" do %>
+              <%= link_to t("backoffice.actions.delete"), backoffice_member_path(resource),
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: t("backoffice.messages.delete_confirmation", model: resource_class.model_name.human.downcase)
+                } %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

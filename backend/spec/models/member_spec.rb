@@ -34,4 +34,9 @@ RSpec.describe Member, type: :model do
     subject.password = "verysimplepassword"
     expect(subject.errors_on(:password)).to include(I18n.t("activerecord.errors.models.admin.attributes.password.password_complexity"))
   end
+
+  it "should be invalid without funder" do
+    subject.funder = nil
+    expect(subject).to have(1).errors_on(:funder)
+  end
 end
