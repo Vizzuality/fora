@@ -127,7 +127,7 @@ RSpec.describe Importers::Uploads::Funders do
         expect(subject.errors).to include(
           I18n.t("activerecord.errors.importers.uploads.record_invalid",
             klass_name: "Funder", respondent_id: "114188650913",
-            error: "Primary office country must exist")
+            error: "Primary office country can't be blank")
         )
         expect(subject.errors).to include(
           I18n.t("activerecord.errors.importers.uploads.record_invalid",

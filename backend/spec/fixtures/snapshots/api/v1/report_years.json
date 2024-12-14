@@ -20,6 +20,13 @@
       "attributes": {
         "name": 2023
       }
+    },
+    {
+      "id": 2024,
+      "type": "report_year",
+      "attributes": {
+        "name": 2024
+      }
     }
   ]
 }

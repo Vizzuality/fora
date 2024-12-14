@@ -1,0 +1,33 @@
+<%= render "new_record", text: t("backoffice.messages.create_new_record", model: resource_class.model_name.human), url: new_backoffice_funder_path %>
+
+<table class="backoffice-table">
+  <thead>
+    <tr>
+      <th>
+        <%= sort_link @q, :id, t("activerecord.attributes.funder.id") %>
+      </th>
+      <th>
+        <%= sort_link @q, :recipient_name , t("activerecord.attributes.funder.name") %>
+      </th>
+      <th>
+        <%= sort_link @q, :updated_at, t("activerecord.attributes.funder.updated_at") %>
+      </th>
+      <th>
+        <%= sort_link @q, :created_at, t("activerecord.attributes.funder.created_at") %>
+      </th>
+      <th>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @resources.each do |resource| %>
+      <tr>
+        <td><%= resource.id %></td>
+        <td><%= resource.name %></td>
+        <td><%= I18n.l resource.updated_at.to_date %></td>
+        <td><%= I18n.l resource.created_at.to_date %></td>
+        <td><%= link_to t("backoffice.actions.show"), backoffice_funder_path(resource), class: "link-button" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

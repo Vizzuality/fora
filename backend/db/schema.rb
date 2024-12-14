@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_13_102423) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_01_103751) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -68,42 +68,43 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_13_102423) do
 
   create_table "funders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.text "description", null: false
+    t.text "description"
     t.string "primary_office_address"
-    t.string "primary_office_city", null: false
+    t.string "primary_office_city"
     t.uuid "primary_office_state_id"
-    t.uuid "primary_office_country_id", null: false
-    t.string "primary_contact_first_name", null: false
-    t.string "primary_contact_last_name", null: false
-    t.string "primary_contact_email", null: false
+    t.uuid "primary_office_country_id"
+    t.string "primary_contact_first_name"
+    t.string "primary_contact_last_name"
+    t.string "primary_contact_email"
     t.boolean "show_primary_email", default: false, null: false
     t.string "primary_contact_phone"
     t.string "primary_contact_location"
     t.string "primary_contact_role"
     t.string "secondary_email_which_can_be_shared"
     t.string "website"
-    t.datetime "date_joined_fora", null: false
-    t.string "funder_type", null: false
+    t.datetime "date_joined_fora"
+    t.string "funder_type"
     t.text "funder_type_other"
-    t.string "capital_acceptances", null: false, array: true
+    t.string "capital_acceptances", array: true
     t.text "capital_acceptances_other"
-    t.string "leadership_demographics", null: false, array: true
+    t.string "leadership_demographics", array: true
     t.text "leadership_demographics_other"
-    t.integer "number_staff_employees", default: 0, null: false
-    t.string "application_status", null: false
-    t.string "funder_legal_status", null: false
+    t.integer "number_staff_employees", default: 0
+    t.string "application_status"
+    t.string "funder_legal_status"
     t.text "funder_legal_status_other"
     t.boolean "new_to_regenerative_ag", default: true, null: false
     t.text "networks"
-    t.string "capital_types", null: false, array: true
+    t.string "capital_types", array: true
     t.text "capital_types_other"
     t.boolean "spend_down_strategy", default: false, null: false
-    t.string "areas", null: false, array: true
+    t.string "areas", array: true
     t.text "areas_other"
-    t.string "demographics", null: false, array: true
+    t.string "demographics", array: true
     t.text "demographics_other"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "published", default: false
     t.index ["name"], name: "index_funders_on_name", unique: true
     t.index ["primary_office_country_id"], name: "index_funders_on_primary_office_country_id"
     t.index ["primary_office_state_id"], name: "index_funders_on_primary_office_state_id"
@@ -151,18 +152,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_13_102423) do
 
   create_table "recipients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
-    t.string "contact_first_name", null: false
-    t.string "contact_last_name", null: false
+    t.string "contact_first_name"
+    t.string "contact_last_name"
     t.string "website"
-    t.uuid "country_id", null: false
+    t.uuid "country_id"
     t.uuid "state_id"
-    t.string "city", null: false
+    t.string "city"
     t.string "leadership_demographics", array: true
     t.text "leadership_demographics_other"
     t.string "recipient_legal_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "description", null: false
+    t.text "description"
+    t.boolean "published", default: false
     t.index ["country_id"], name: "index_recipients_on_country_id"
     t.index ["name"], name: "index_recipients_on_name", unique: true
     t.index ["state_id"], name: "index_recipients_on_state_id"

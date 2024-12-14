@@ -32,6 +32,8 @@ class Project < ApplicationRecord
     select "projects.*, (#{funders_count}) AS funders_count"
   }
 
+  accepts_nested_attributes_for :recipient
+
   %i[areas capital_type demographics].each do |attr|
     define_method attr.to_s.pluralize do
       investments_data_for attr
@@ -42,6 +44,10 @@ class Project < ApplicationRecord
     define_method attr do
       investments_data_for(attr).compact.join("\n")
     end
+  end
+
+  def to_s
+    recipient.name
   end
 
   private

@@ -124,5 +124,6 @@ FactoryBot.define do
       Faker::Config.random = Random.new(n)
       Faker::Lorem.sentence
     end
+    published { true }
   end
 end

@@ -68,7 +68,8 @@ module Importers
           new_to_regenerative_ag: boolean_column_for(:new_to_regenerative_ag, attr),
           spend_down_strategy: boolean_column_for(:spend_down_strategy, attr),
           number_staff_employees: simple_column_for(:number_staff_employees, attr).to_i,
-          date_joined_fora: Date.new(simple_column_for(:date_joined_fora, attr).to_i)
+          date_joined_fora: Date.new(simple_column_for(:date_joined_fora, attr).to_i),
+          published: true
       end
 
       def assign_enums_to(funder, attr)

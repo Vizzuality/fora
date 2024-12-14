@@ -75,6 +75,11 @@ RSpec.describe Funder, type: :model do
   include_examples :static_relation_validations, attribute: :areas, presence: true
   include_examples :static_relation_validations, attribute: :demographics, presence: true
 
+  it "allows to create funder just with name when not published" do
+    subject = Funder.new name: "Test", published: false
+    expect(subject).to be_valid
+  end
+
   describe "scopes" do
     describe ".for_subgeographics" do
       let!(:country) { create :subgeographic, geographic: :countries }

@@ -29,6 +29,14 @@ en:
       capital_acceptance:
         one: Capital acceptance
         few: Capital acceptances
+      project:
+        one: Project
+        other: Projects
+        few: Projects
+      funder:
+        one: Funder
+        other: Funders
+        few: Funders
     attributes:
       admin:
         first_name: First name
@@ -42,6 +50,20 @@ en:
         file: File
         status: Status
         created_by: Created by
+        created_at: Created at
+        updated_at: Updated at
+      project:
+        id: ID
+        created_at: Created at
+        updated_at: Updated at
+      recipient:
+        id: ID
+        name: Name
+        created_at: Created at
+        updated_at: Updated at
+      funder:
+        id: ID
+        name: Name
         created_at: Created at
         updated_at: Updated at
     errors:
