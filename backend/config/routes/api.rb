@@ -33,5 +33,6 @@ namespace :api, format: "json" do
       end
     end
     resources :token, only: %i[create]
+    resource :reset_password, only: [:create, :update]
   end
 end
