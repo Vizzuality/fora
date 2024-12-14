@@ -32,5 +32,6 @@ namespace :api, format: "json" do
         get :download
       end
     end
+    resources :token, only: %i[create]
   end
 end

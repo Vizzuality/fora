@@ -16,6 +16,7 @@ gem "redis"
 gem "devise"
 gem "ransack"
 gem "rubyzip"
+gem "jwt"
 
 gem "dotenv-rails"
 

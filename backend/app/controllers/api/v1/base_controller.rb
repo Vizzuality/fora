@@ -1,12 +1,9 @@
 module API
   module V1
     class BaseController < ActionController::API
-      include ActionController::RequestForgeryProtection
       include API::Errors
       include API::Authentication
       include API::ParamsValidations
-
-      protect_from_forgery with: :exception
 
       wrap_parameters format: [:json]
 
