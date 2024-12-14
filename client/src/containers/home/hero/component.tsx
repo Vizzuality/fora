@@ -30,7 +30,6 @@ const Hero = () => {
               >
                 <Image
                   priority
-                  layout="fixed"
                   src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/hero/hero-2.png`}
                   alt="Hero 2"
                   width={406}
@@ -45,11 +44,11 @@ const Hero = () => {
               >
                 <Image
                   priority
-                  layout="fixed"
                   src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/hero/hero-1.png`}
                   alt="Hero 1"
                   width={389}
                   height={248}
+                  className="max-w-none"
                 />
               </AnimatedScrollComponent>
 
@@ -60,7 +59,6 @@ const Hero = () => {
               >
                 <Image
                   priority
-                  layout="fixed"
                   src={`${process.env.NEXT_PUBLIC_BASE_PATH}/images/hero/hero-3.png`}
                   alt="Hero 3"
                   width={389}

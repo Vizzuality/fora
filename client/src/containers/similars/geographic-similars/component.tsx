@@ -97,16 +97,15 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
                 href={`/${type}?geographic=${GEOGRAPHIC.toString()}&subgeographics[]=${SUBGEOGRAPHICS.join(
                   ','
                 )}`}
+                className="flex items-center space-x-3 font-semibold underline decoration-1"
               >
-                <a className="flex items-center space-x-3 font-semibold underline decoration-1">
-                  <span>{`View all similar ${type}`}</span>
-                  <Icon
-                    icon={CHEVRON_RIGHT_SVG}
-                    className={cx({
-                      'w-2 h-2 text-grey-0': true,
-                    })}
-                  />
-                </a>
+                <span>{`View all similar ${type}`}</span>
+                <Icon
+                  icon={CHEVRON_RIGHT_SVG}
+                  className={cx({
+                    'w-2 h-2 text-grey-0': true,
+                  })}
+                />
               </Link>
             </div>
           </div>

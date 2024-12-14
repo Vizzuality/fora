@@ -70,13 +70,12 @@ const Cards = ({
           <p className="line-clamp-3">{ADDRESS || '-'}</p>
         </div>
       </div>
-
       <div className="border-t divide-y divide-grey-40/50 border-grey-40/50">
         <div className="py-4 leading-snug">{AREAS_OF_FOCUS.join(' • ')}</div>
 
         <div className="pt-4">
-          <Link href={href}>
-            <a className="font-semibold underline">{`Go to ${FORMAT_LINK_TEXT} page`}</a>
+          <Link href={href} className="font-semibold underline">
+            {`Go to ${FORMAT_LINK_TEXT} page`}
           </Link>
         </div>
       </div>

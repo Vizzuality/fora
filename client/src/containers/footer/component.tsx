@@ -23,16 +23,13 @@ const Footer = () => {
           <div className="flex flex-col justify-between space-y-10 md:space-y-0 md:flex-row">
             <div className="flex flex-col items-center justify-between space-y-10 md:items-start md:space-y-0 md:flex-row md:space-x-20">
               <Link href="/">
-                <a>
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}${LOGO_MONOCHROME_SVG}`}
-                    alt="Logo"
-                    layout="fixed"
-                    width={122}
-                    height={56}
-                    priority
-                  />
-                </a>
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_BASE_PATH}${LOGO_MONOCHROME_SVG}`}
+                  alt="Logo"
+                  width={122}
+                  height={56}
+                  priority
+                />
               </Link>
 
               <nav className="flex">
@@ -52,10 +49,12 @@ const Footer = () => {
                             {label}
                           </a>
                         )}
-
                         {!target && (
-                          <Link href={href}>
-                            <a className="py-2 text-base font-semibold hover:opacity-75">{label}</a>
+                          <Link
+                            href={href}
+                            className="py-2 text-base font-semibold hover:opacity-75"
+                          >
+                            {label}
                           </Link>
                         )}
                       </li>
@@ -91,7 +90,6 @@ const Footer = () => {
           </div>
         </Wrapper>
       </div>
-
       <div className="w-full py-5 text-sm text-white bg-blue-0">
         <Wrapper>
           <div className="flex flex-col items-center justify-between space-y-5 md:space-y-0 md:flex-row">
@@ -106,8 +104,8 @@ const Footer = () => {
                     'md:pr-5': i !== POLICIES.length - 1,
                   })}
                 >
-                  <Link href={href}>
-                    <a className="hover:underline">{label}</a>
+                  <Link href={href} className="hover:underline">
+                    {label}
                   </Link>
                 </li>
               ))}

@@ -41,6 +41,10 @@ const How = () => {
                     alt="Dashboard"
                     width={1281}
                     height={1260}
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                    }}
                   />
                 </AnimatedScroll>
               </div>
@@ -307,6 +311,10 @@ const How = () => {
                     alt="Dashboard"
                     width={1563}
                     height={1047}
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                    }}
                   />
                 </AnimatedScroll>
               </div>

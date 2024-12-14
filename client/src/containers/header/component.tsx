@@ -29,16 +29,13 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* LOGO */}
           <Link href="/">
-            <a>
-              <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH}${LOGO_SVG}`}
-                alt="Logo"
-                layout="fixed"
-                width={pathname === '/' ? 156 : 156 - 156 * 0.2}
-                height={pathname === '/' ? 72 : 72 - 72 * 0.2}
-                priority
-              />
-            </a>
+            <Image
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH}${LOGO_SVG}`}
+              alt="Logo"
+              width={pathname === '/' ? 156 : 156 - 156 * 0.2}
+              height={pathname === '/' ? 72 : 72 - 72 * 0.2}
+              priority
+            />
           </Link>
 
           {/* NAV */}
@@ -64,18 +61,16 @@ const Header = () => {
                         {label}
                       </a>
                     )}
-
                     {!target && (
-                      <Link href={href}>
-                        <a
-                          className={cx({
-                            'text-base font-semibold py-2 px-7': true,
-                            'hover:rounded-lg hover:bg-grey-60/75': !pathname.includes(href),
-                            'rounded-lg bg-green-0': pathname.includes(href) && pathname !== '/',
-                          })}
-                        >
-                          {label}
-                        </a>
+                      <Link
+                        href={href}
+                        className={cx({
+                          'text-base font-semibold py-2 px-7': true,
+                          'hover:rounded-lg hover:bg-grey-60/75': !pathname.includes(href),
+                          'rounded-lg bg-green-0': pathname.includes(href) && pathname !== '/',
+                        })}
+                      >
+                        {label}
                       </Link>
                     )}
                   </li>

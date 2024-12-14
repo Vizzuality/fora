@@ -4,7 +4,7 @@ import { jsonAPIAdapter } from 'lib/adapters/json-api-adapter';
 import { ParamsProps } from 'lib/adapters/types';
 
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import { FeatureCollection } from 'geojson';
+import type { FeatureCollection } from 'geojson';
 
 import { Geographic, SubGeographic } from 'types/geographics';
 

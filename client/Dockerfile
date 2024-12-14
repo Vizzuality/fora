@@ -1,19 +1,29 @@
 # Install dependencies only when needed
-FROM node:16.14-alpine3.15 AS deps
+FROM node:22.11.0-alpine AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat git
+#RUN apk add --no-cache libc6-compat git
+
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+
 WORKDIR /app
-COPY .yarn ./.yarn
-COPY package.json yarn.lock .yarnrc.yml ./
-RUN yarn install --immutable
+RUN corepack enable
+
+#COPY .yarn ./.yarn
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --prod --frozen-lockfile
+#RUN yarn install --immutable
+
 
 # If using npm with a `package-lock.json` comment out above and use below instead
 # COPY package.json package-lock.json ./
 # RUN npm ci
 
 # Rebuild the source code only when needed
-FROM node:16.14-alpine3.15 AS builder
+FROM node:22.11.0-alpine AS builder
 WORKDIR /app
+RUN corepack enable
+
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 
@@ -22,10 +32,11 @@ COPY --from=deps /app/node_modules ./node_modules
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN yarn build
+RUN pnpm build
 
 # Production image, copy all the files and run next
-FROM node:16.14-alpine3.15 AS runner
+FROM node:22.11.0-alpine AS runner
+RUN corepack enable
 WORKDIR /app
 
 ENV NODE_ENV production

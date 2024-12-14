@@ -5,7 +5,7 @@ import qs from 'query-string';
 const dataFormatter = new Jsona();
 
 const API = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_API_URL || process.env.STORYBOOK_API_URL}`,
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: { 'Content-Type': 'application/json' },
   // transformResponse: (data) => {
   //   try {

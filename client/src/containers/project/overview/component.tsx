@@ -131,8 +131,9 @@ const ProjectOverview = () => {
                 <Image
                   src={logo.small || '/images/avatar.jpg'}
                   alt={name}
-                  layout="fill"
                   className="object-contain"
+                  fill
+                  sizes="100vw"
                 />
               </div>
             )}
