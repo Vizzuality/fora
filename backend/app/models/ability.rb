@@ -3,13 +3,31 @@ class Ability
 
   attr_accessor :user
 
-  def initialize(user)
-    @user = user
+  def initialize(member_or_admin)
+    if member_or_admin.is_a?(Admin)
+      @admin = member_or_admin
+      admin_rights
+    else
+      @member = member_or_admin
+      member_rights
+    end
 
     default_rights
   end
 
   private
+
+  def admin_rights
+    can :manage, :all
+
+    unless @admin.is_super_admin?
+      cannot %i[create update destroy], Admin
+      cannot %i[destroy], Member
+    end
+    can %i[update], Admin, id: @admin.id
+  end
+
+  def member_rights; end
 
   def default_rights
     # enums

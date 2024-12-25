@@ -10,5 +10,6 @@ FactoryBot.define do
     end
     sequence(:email) { |n| "admin#{n}@example.com" }
     password { "SuperSecret1234" }
+    is_super_admin { true }
   end
 end

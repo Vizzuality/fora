@@ -128,5 +128,15 @@ RSpec.describe "Backoffice: Members", type: :system do
       end
       expect(page).not_to have_text(member.id)
     end
+
+    context "when admin is not super admin" do
+      let!(:admin) do
+        create(:admin, email: "admin@example.com", password: "SuperSecret6", first_name: "Admin", last_name: "Example", is_super_admin: false)
+      end
+
+      it "does not show delete button" do
+        expect(page).not_to have_text(t("backoffice.actions.delete"))
+      end
+    end
   end
 end

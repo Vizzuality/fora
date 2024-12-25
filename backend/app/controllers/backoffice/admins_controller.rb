@@ -15,6 +15,7 @@ module Backoffice
       params.require(:admin).permit(
         :first_name,
         :last_name,
+        :is_super_admin,
         :email,
         :password,
         :password_confirmation

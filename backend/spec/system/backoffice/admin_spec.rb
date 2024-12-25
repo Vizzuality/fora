@@ -66,16 +66,17 @@ RSpec.describe "Backoffice: Admins", type: :system do
   describe "New" do
     let(:new_admin) { Admin.order(created_at: :desc).first }
 
-    before do
-      visit "/backoffice/admins"
-      click_on t("backoffice.messages.create_new_record", model: Admin.model_name.human)
-    end
-
     context "when provided data are correct" do
+      before do
+        visit "/backoffice/admins"
+        click_on t("backoffice.messages.create_new_record", model: Admin.model_name.human)
+      end
+
       before do
         fill_in "admin[email]", with: "new_email@admin.admin"
         fill_in "admin[first_name]", with: "New First Name"
         fill_in "admin[last_name]", with: "New Last Name"
+        check "admin[is_super_admin]"
         fill_in "admin[password]", with: "NewP@ssword123456"
         fill_in "admin[password_confirmation]", with: "NewP@ssword123456"
         click_on t("backoffice.actions.save")
@@ -87,10 +88,18 @@ RSpec.describe "Backoffice: Admins", type: :system do
         expect(page).to have_text("new_email@admin.admin")
         expect(page).to have_text("New First Name")
         expect(page).to have_text("New Last Name")
+        expect(page).to have_text(
+          "#{Admin.human_attribute_name(:is_super_admin)}: #{t("true").capitalize}"
+        )
       end
     end
 
     context "when provided data are incorrect" do
+      before do
+        visit "/backoffice/admins"
+        click_on t("backoffice.messages.create_new_record", model: Admin.model_name.human)
+      end
+
       before do
         fill_in "admin[password]", with: "NewP@ssword123456"
         fill_in "admin[password_confirmation]", with: "different_password"
@@ -101,6 +110,16 @@ RSpec.describe "Backoffice: Admins", type: :system do
         expect(page).to have_current_path(new_backoffice_admin_path)
         expect(page).to have_text(t("simple_form.error_notification.default_message"))
         expect(page).to have_text("Password confirmation doesn't match Password")
+      end
+    end
+
+    context "when admin is not super admin" do
+      let!(:admin) do
+        create(:admin, email: "admin@example.com", password: "SuperSecret6", first_name: "Admin", last_name: "Example", is_super_admin: false)
+      end
+
+      it "does not have new Admin text" do
+        expect(page).not_to have_text(t("backoffice.messages.create_new_record", model: Admin.model_name.human))
       end
     end
   end

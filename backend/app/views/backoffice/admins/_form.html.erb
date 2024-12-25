@@ -8,6 +8,9 @@
   <%= f.input :email, required: true %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>
+  <% if current_admin.is_super_admin? %>
+    <%= f.input :is_super_admin %>
+  <% end %>
 
   <h2 class="mb-4 mt-6 text-grey-20 font-semibold text-xl">
     <%= t("backoffice.forms.admin.password") %>

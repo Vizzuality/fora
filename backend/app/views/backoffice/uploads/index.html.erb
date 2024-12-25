@@ -32,7 +32,7 @@
         <td><%= link_to t("backoffice.actions.show"), backoffice_upload_path(resource), class: "link-button" %></td>
         <td>
           <%= render "menu" do %>
-            <%= render "backoffice/base/menu/item" do %>
+            <%= render "backoffice/base/menu/item", action: :destroy do %>
               <%= link_to t("backoffice.actions.delete"), backoffice_upload_path(resource),
                 data: {
                   turbo_method: :delete,

@@ -26,6 +26,10 @@
       <td><%= @resource.email %></td>
     </tr>
     <tr>
+      <td class="p-2"><%= @resource.class.human_attribute_name(:is_super_admin) %>:</td>
+      <td><%= t(@resource.is_super_admin.to_s).capitalize %></td>
+    </tr>
+    <tr>
       <td class="p-2"><%= @resource.class.human_attribute_name(:created_at) %>:</td>
       <td><%= I18n.l @resource.created_at %></td>
     </tr>

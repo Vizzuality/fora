@@ -5,6 +5,8 @@ module Backoffice
     extend ActiveSupport::Concern
 
     included do
+      load_and_authorize_resource
+
       mattr_accessor :includes
 
       before_action :initialize_resource, only: [:new, :create]

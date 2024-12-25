@@ -47,6 +47,7 @@ en:
         last_name: Last name
         full_name: Full name
         email: E-mail
+        is_super_admin: Super admin
         created_at: Created at
         updated_at: Updated at
       member:

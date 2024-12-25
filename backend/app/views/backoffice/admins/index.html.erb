@@ -10,6 +10,9 @@
         <%= sort_link @q, :email, t("activerecord.attributes.admin.email") %>
       </th>
       <th>
+        <%= sort_link @q, :is_super_admin %>
+      </th>
+      <th>
         <%= sort_link @q, :created_at, t("activerecord.attributes.admin.created_at") %>
       </th>
       <th>
@@ -24,14 +27,15 @@
       <tr>
         <td><%= resource.full_name %></td>
         <td><%= resource.email %></td>
+        <td><%= t(resource.is_super_admin.to_s).capitalize %></td>
         <td><%= I18n.l resource.created_at.to_date %></td>
         <td><%= link_to t("backoffice.actions.show"), backoffice_admin_path(resource), class: "link-button" %></td>
         <td>
           <%= render "menu" do %>
-            <%= render "backoffice/base/menu/item" do %>
+            <%= render "backoffice/base/menu/item", action: :update do %>
               <%= link_to t("backoffice.actions.edit"), edit_backoffice_admin_path(resource) %>
             <% end %>
-            <%= render "backoffice/base/menu/item" do %>
+            <%= render "backoffice/base/menu/item", action: :destroy do %>
               <%= link_to t("backoffice.actions.delete"), backoffice_admin_path(resource),
                 data: {
                   turbo_method: :delete,
