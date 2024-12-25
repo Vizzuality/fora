@@ -21,6 +21,12 @@ RSpec.configure do |config|
       paths: {},
       components: {
         securitySchemes: {
+          Bearer: {
+            type: :apiKey,
+            name: "Authorization",
+            in: :header,
+            description: "Your JWT token"
+          }
         },
         schemas: {
           funder: {
@@ -102,6 +108,25 @@ RSpec.configure do |config|
               }
             },
             required: %w[id type attributes relationships]
+          },
+          member: {
+            type: :object,
+            properties: {
+              id: {type: :string},
+              type: {type: :string},
+              attributes: {
+                type: :object,
+                properties: {
+                  id: {type: :string},
+                  first_name: {type: :string},
+                  last_name: {type: :string},
+                  email: {type: :string},
+                  created_at: {type: :string},
+                  updated_at: {type: :string}
+                }
+              }
+            },
+            required: %w[id type attributes]
           },
           widget: {
             type: :object,

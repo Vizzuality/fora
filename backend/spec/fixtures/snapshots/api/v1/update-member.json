@@ -1,0 +1,14 @@
+{
+  "data": {
+    "id": "8e5c4b29-97f5-4379-b5ce-15cf730d991e",
+    "type": "member",
+    "attributes": {
+      "id": "8e5c4b29-97f5-4379-b5ce-15cf730d991e",
+      "email": "new@email.test",
+      "first_name": "New",
+      "last_name": "Name",
+      "created_at": "2024-12-25T15:40:17.982Z",
+      "updated_at": "2024-12-25T15:40:17.990Z"
+    }
+  }
+}

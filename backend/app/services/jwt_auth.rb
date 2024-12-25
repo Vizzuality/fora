@@ -5,6 +5,9 @@ class JWTAuth
   def self.encode(member)
     payload = {
       member_id: member.id,
+      first_name: member.first_name,
+      last_name: member.last_name,
+      email: member.email,
       exp: 1.week.from_now.to_i
     }
     JWT.encode payload, SECRET, ALGORITHM

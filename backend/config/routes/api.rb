@@ -32,7 +32,12 @@ namespace :api, format: "json" do
         get :download
       end
     end
-    resources :token, only: %i[create]
+    resources :members, only: %i[update] do
+      collection do
+        get :me
+        post :sign_in
+      end
+    end
     resource :reset_password, only: [:create, :update]
   end
 end

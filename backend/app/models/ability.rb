@@ -7,7 +7,7 @@ class Ability
     if member_or_admin.is_a?(Admin)
       @admin = member_or_admin
       admin_rights
-    else
+    elsif member_or_admin.is_a?(Member)
       @member = member_or_admin
       member_rights
     end
@@ -28,6 +28,7 @@ class Ability
   end
 
   def member_rights
+    can %i[me update], Member, id: @member.id
   end
 
   def default_rights

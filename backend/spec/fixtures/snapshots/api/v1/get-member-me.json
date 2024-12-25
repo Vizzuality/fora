@@ -1,0 +1,14 @@
+{
+  "data": {
+    "id": "f1908e5b-0281-40c1-a045-40451156a8b3",
+    "type": "member",
+    "attributes": {
+      "id": "f1908e5b-0281-40c1-a045-40451156a8b3",
+      "email": "admin1@example.com",
+      "first_name": "Dawna",
+      "last_name": "Block",
+      "created_at": "2024-12-25T15:24:15.424Z",
+      "updated_at": "2024-12-25T15:24:15.424Z"
+    }
+  }
+}
