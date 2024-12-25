@@ -1,6 +1,6 @@
 class JWTAuth
   ALGORITHM = "HS256".freeze
-  SECRET = Rails.application.secrets.secret_key_base
+  SECRET = ENV["JWT_SECRET"]
 
   def self.encode(member)
     payload = {
