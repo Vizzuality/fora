@@ -27,7 +27,8 @@ class Ability
     can %i[update], Admin, id: @admin.id
   end
 
-  def member_rights; end
+  def member_rights
+  end
 
   def default_rights
     # enums

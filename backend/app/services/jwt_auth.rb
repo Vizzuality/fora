@@ -15,7 +15,7 @@ class JWTAuth
 
     payload = JWT.decode(token, SECRET, true, {algorithm: ALGORITHM}).first
     Member.find payload["member_id"]
-  rescue JWT::ExpiredSignature, JWT::VerificationError, ActiveRecord::RecordNotFound
+  rescue JWT::DecodeError, ActiveRecord::RecordNotFound
     nil
   end
 end
