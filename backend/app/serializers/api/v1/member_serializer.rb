@@ -6,6 +6,7 @@ module API
       belongs_to_restricted :funder
 
       has_many_restricted :projects
+      has_many_restricted :investments
     end
   end
 end

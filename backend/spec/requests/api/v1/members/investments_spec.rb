@@ -10,7 +10,6 @@ RSpec.describe "API V1 Member Investments", type: :request do
 
       include_context "with authorization"
 
-
       parameter name: "page[number]", in: :query, type: :integer, description: "Page number. Default: 1", required: false
       parameter name: "page[size]", in: :query, type: :integer, description: "Per page items. Default: 10", required: false
       parameter name: :disable_pagination, in: :query, type: :boolean, description: "Turn off pagination", required: false

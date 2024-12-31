@@ -1,23 +1,28 @@
 {
   "data": {
-    "id": "74892a95-b875-4873-8fc3-c6dad4f57308",
+    "id": "5a7c2bdc-952a-453f-baa2-2b5543f4931f",
     "type": "member",
     "attributes": {
-      "id": "74892a95-b875-4873-8fc3-c6dad4f57308",
+      "id": "5a7c2bdc-952a-453f-baa2-2b5543f4931f",
       "email": "new@email.test",
       "first_name": "New",
       "last_name": "Name",
-      "created_at": "2024-12-31T13:58:31.203Z",
-      "updated_at": "2024-12-31T13:58:31.207Z"
+      "created_at": "2024-12-31T16:18:23.885Z",
+      "updated_at": "2024-12-31T16:18:23.890Z"
     },
     "relationships": {
       "funder": {
         "data": {
-          "id": "61d024ef-7570-49cb-bb32-26ab42f07b21",
+          "id": "4d27782d-d4d3-4ee7-8a4f-125ed236e150",
           "type": "funder"
         }
       },
       "projects": {
+        "data": [
+
+        ]
+      },
+      "investments": {
         "data": [
 
         ]

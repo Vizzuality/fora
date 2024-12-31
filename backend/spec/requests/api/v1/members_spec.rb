@@ -19,6 +19,7 @@ RSpec.describe "API V1 Members", type: :request do
 
         let(:member) { create :member }
         let!(:project) { create :project, member: member }
+        let!(:investment) { create :investment, funder: member.funder }
         let(:Authorization) { "Bearer #{JWTAuth.encode(member)}" }
 
         run_test!

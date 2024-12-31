@@ -164,7 +164,8 @@ RSpec.configure do |config|
                 type: :object,
                 properties: {
                   funder: {"$ref" => "#/components/schemas/response_relation"},
-                  projects: {"$ref" => "#/components/schemas/response_relations"}
+                  projects: {"$ref" => "#/components/schemas/response_relations"},
+                  investments: {"$ref" => "#/components/schemas/response_relations"}
                 }
               }
             },

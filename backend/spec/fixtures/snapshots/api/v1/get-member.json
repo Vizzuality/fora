@@ -1,27 +1,35 @@
 {
   "data": {
-    "id": "eb537b37-145c-450b-a104-ecf6408c6c74",
+    "id": "474d2da4-5f0b-4aab-ad7c-3ef61b8579aa",
     "type": "member",
     "attributes": {
-      "id": "eb537b37-145c-450b-a104-ecf6408c6c74",
+      "id": "474d2da4-5f0b-4aab-ad7c-3ef61b8579aa",
       "email": "admin1@example.com",
       "first_name": "Dawna",
       "last_name": "Block",
-      "created_at": "2024-12-31T13:58:30.926Z",
-      "updated_at": "2024-12-31T13:58:30.926Z"
+      "created_at": "2024-12-31T16:18:24.048Z",
+      "updated_at": "2024-12-31T16:18:24.048Z"
     },
     "relationships": {
       "funder": {
         "data": {
-          "id": "867ec08e-8b20-4929-b36d-09afaca5629c",
+          "id": "e82b1248-4b0c-4332-8e71-453bb211e145",
           "type": "funder"
         }
       },
       "projects": {
         "data": [
           {
-            "id": "74eab1c7-8b40-46ac-a056-010f457e285e",
+            "id": "bf35d0a0-a4dd-4062-8fac-9951e71a6dd2",
             "type": "project"
+          }
+        ]
+      },
+      "investments": {
+        "data": [
+          {
+            "id": "2f777635-0c71-4ec7-9f70-a93404562a7e",
+            "type": "investment"
           }
         ]
       }
