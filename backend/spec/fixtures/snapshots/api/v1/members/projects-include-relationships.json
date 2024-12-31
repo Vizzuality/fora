@@ -1,0 +1,77 @@
+{
+  "data": [
+    {
+      "id": "6f04a537-9bc1-4895-851c-bc439d4a896b",
+      "type": "project",
+      "attributes": {
+        "name": "Otha Kemmer"
+      },
+      "relationships": {
+        "subgeographics": {
+          "data": [
+
+          ]
+        },
+        "funders": {
+          "data": [
+
+          ]
+        }
+      }
+    },
+    {
+      "id": "ab126899-3b7f-4e21-b7e8-ab053782fa0f",
+      "type": "project",
+      "attributes": {
+        "name": "Otha Kemmer"
+      },
+      "relationships": {
+        "subgeographics": {
+          "data": [
+
+          ]
+        },
+        "funders": {
+          "data": [
+
+          ]
+        }
+      }
+    },
+    {
+      "id": "753eabdf-0539-499e-a369-f8ca0f71c043",
+      "type": "project",
+      "attributes": {
+        "name": "Otha Kemmer"
+      },
+      "relationships": {
+        "subgeographics": {
+          "data": [
+
+          ]
+        },
+        "funders": {
+          "data": [
+
+          ]
+        }
+      }
+    }
+  ],
+  "included": [
+
+  ],
+  "meta": {
+    "page": 1,
+    "per_page": 10,
+    "from": 1,
+    "to": 3,
+    "total": 3,
+    "pages": 1
+  },
+  "links": {
+    "first": "/api/v1/projects?page%5Bsize%5D=10",
+    "self": "/api/v1/projects?page%5Bnumber%5D=1&page%5Bsize%5D=10",
+    "last": "/api/v1/projects?page%5Bnumber%5D=1&page%5Bsize%5D=10"
+  }
+}

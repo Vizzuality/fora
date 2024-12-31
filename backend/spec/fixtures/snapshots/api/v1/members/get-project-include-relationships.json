@@ -1,0 +1,24 @@
+{
+  "data": {
+    "id": "f70fc7dd-ee5d-4753-94b2-5fdb6f19eca0",
+    "type": "project",
+    "attributes": {
+      "name": "Otha Kemmer"
+    },
+    "relationships": {
+      "subgeographics": {
+        "data": [
+
+        ]
+      },
+      "funders": {
+        "data": [
+
+        ]
+      }
+    }
+  },
+  "included": [
+
+  ]
+}

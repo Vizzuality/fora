@@ -2,8 +2,9 @@ class Project < ApplicationRecord
   include PgSearch::Model
 
   belongs_to :recipient
+  belongs_to :member, optional: true
 
-  has_many :investments, dependent: :destroy
+  has_many :investments, dependent: :restrict_with_exception
   has_many :funders, -> { distinct }, through: :investments
   has_many :investment_subgeographics, through: :investments
   has_many :subgeographics, -> { distinct }, through: :investment_subgeographics

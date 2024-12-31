@@ -92,7 +92,11 @@ RSpec.describe "API V1 Member Funder", type: :request do
           capital_types: {type: :array, items: {type: :string}},
           areas: {type: :array, items: {type: :string}},
           demographics: {type: :array, items: {type: :string}}
-        }
+        },
+        required: %w[name description primary_office_city primary_contact_first_name primary_contact_last_name" \
+          "primary_contact_email date_joined_fora number_staff_employees funder_type capital_acceptances" \
+          "leadership_demographics application_status funder_legal_status capital_types areas demographics " \
+          "primary_office_country_id]
       }
       parameter name: "fields[funder]", in: :formData, type: :string, description: "Get only required fields. Use comma to separate multiple fields", required: false
       parameter name: :includes, in: :formData, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false

@@ -3,6 +3,8 @@ class Member < ApplicationRecord
 
   belongs_to :funder
 
+  has_many :projects
+
   validates_presence_of :first_name, :last_name
 
   validates :password, length: {minimum: 12, message: :password_length}, allow_nil: true

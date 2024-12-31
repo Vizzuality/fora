@@ -30,6 +30,8 @@ class Ability
   def member_rights
     can %i[show update], Member, id: @member.id
     can %i[show update], Funder, id: @member.funder_id
+    can :manage, Project, member_id: @member.id
+    can :manage, Recipient, project: {member_id: @member.id}
   end
 
   def default_rights

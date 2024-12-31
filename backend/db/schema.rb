@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_25_135941) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_31_125414) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -164,6 +164,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_25_135941) do
     t.uuid "recipient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "member_id"
+    t.index ["member_id"], name: "index_projects_on_member_id"
     t.index ["recipient_id"], name: "index_projects_on_recipient_id"
   end
 
@@ -251,6 +253,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_25_135941) do
   add_foreign_key "investments", "funders", on_delete: :cascade
   add_foreign_key "investments", "projects", on_delete: :cascade
   add_foreign_key "members", "funders"
+  add_foreign_key "projects", "members"
   add_foreign_key "projects", "recipients", on_delete: :cascade
   add_foreign_key "recipients", "subgeographics", column: "country_id", on_delete: :cascade
   add_foreign_key "recipients", "subgeographics", column: "state_id", on_delete: :cascade
