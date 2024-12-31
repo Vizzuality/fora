@@ -3,8 +3,49 @@
 require "swagger_helper"
 
 RSpec.describe "API V1 Members", type: :request do
-  path "/api/v1/members/{id}" do
-    put "Updates a member" do
+  path "/api/v1/member" do
+    get "Returns current member" do
+      tags "Member"
+      consumes "application/json"
+      produces "application/json"
+      security [Bearer: {}]
+      parameter name: "fields[member]", in: :query, type: :string, description: "Get only required fields. Use comma to separate multiple fields", required: false
+      parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
+
+      include_context "with authorization"
+
+      response "200", :success do
+        schema type: :object, properties: {data: {"$ref" => "#/components/schemas/member"}}
+
+        let(:member) { create :member }
+        let(:Authorization) { "Bearer #{JWTAuth.encode(member)}" }
+
+        run_test!
+
+        it "matches snapshot", generate_swagger_example: true do
+          expect(response.body).to match_snapshot("api/v1/get-member")
+        end
+
+        context "with sparse fieldset" do
+          let("fields[member]") { "first_name,email,nonexisting" }
+
+          it "matches snapshot" do
+            expect(response.body).to match_snapshot("api/v1/get-member-sparse-fieldset")
+          end
+        end
+
+        context "with relationships" do
+          let("fields[member]") { "first_name,funder,nonexisting" }
+          let(:includes) { "funder" }
+
+          it "matches snapshot" do
+            expect(response.body).to match_snapshot("api/v1/get-member-include-relationships")
+          end
+        end
+      end
+    end
+
+    put "Updates a current member" do
       tags "Member"
       consumes "application/json"
       produces "application/json"
@@ -79,50 +120,7 @@ RSpec.describe "API V1 Members", type: :request do
     end
   end
 
-  path "/api/v1/members/me" do
-    get "Returns current member" do
-      tags "Member"
-      consumes "application/json"
-      produces "application/json"
-      security [Bearer: {}]
-      parameter name: "fields[member]", in: :query, type: :string, description: "Get only required fields. Use comma to separate multiple fields", required: false
-      parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
-
-      include_context "with authorization"
-
-      response "200", :success do
-        schema type: :object, properties: {data: {"$ref" => "#/components/schemas/member"}}
-
-        let(:member) { create :member }
-        let(:Authorization) { "Bearer #{JWTAuth.encode(member)}" }
-
-        run_test!
-
-        it "matches snapshot", generate_swagger_example: true do
-          expect(response.body).to match_snapshot("api/v1/get-member-me")
-        end
-
-        context "with sparse fieldset" do
-          let("fields[member]") { "first_name,email,nonexisting" }
-
-          it "matches snapshot" do
-            expect(response.body).to match_snapshot("api/v1/get-member-me-sparse-fieldset")
-          end
-        end
-
-        context "with relationships" do
-          let("fields[member]") { "first_name,funder,nonexisting" }
-          let(:includes) { "funder" }
-
-          it "matches snapshot" do
-            expect(response.body).to match_snapshot("api/v1/get-member-me-include-relationships")
-          end
-        end
-      end
-    end
-  end
-
-  path "/api/v1/members/sign_in" do
+  path "/api/v1/member/sign_in" do
     post "Returns member access token" do
       tags "Member"
       consumes "application/json"

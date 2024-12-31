@@ -32,12 +32,15 @@ namespace :api, format: "json" do
         get :download
       end
     end
-    resources :members, only: %i[update] do
+    resource :member, only: %i[show update] do
       collection do
-        get :me
         post :sign_in
       end
     end
     resource :reset_password, only: [:create, :update]
+
+    namespace :members do
+      resource :funder, only: %i[show update]
+    end
   end
 end

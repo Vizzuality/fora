@@ -3,7 +3,7 @@ module API
     class MembersController < BaseController
       load_and_authorize_resource except: :sign_in
 
-      def me
+      def show
         render json: API::V1::MemberSerializer.new(
           current_member,
           include: included_relationships,
@@ -13,15 +13,15 @@ module API
       end
 
       def update
-        if @member.update(member_params)
+        if current_member.update(member_params)
           render json: API::V1::MemberSerializer.new(
-            @member,
+            current_member,
             include: included_relationships,
             fields: sparse_fieldset,
             params: {current_member: current_member, current_ability: current_ability}
           ).serializable_hash
         else
-          raise API::UnprocessableEntityError, @member.errors.full_messages.to_sentence
+          raise API::UnprocessableEntityError, current_member.errors.full_messages.to_sentence
         end
       end
 

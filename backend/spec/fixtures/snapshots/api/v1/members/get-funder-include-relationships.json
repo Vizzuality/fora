@@ -1,0 +1,41 @@
+{
+  "data": {
+    "id": "fa9efb5e-e30a-4e41-b877-9d8d6884e088",
+    "type": "funder",
+    "attributes": {
+      "name": "Otha Kemmer"
+    },
+    "relationships": {
+      "primary_office_country": {
+        "data": {
+          "id": "6f0bcd78-a484-451b-87a1-531cd7aed386",
+          "type": "subgeographic"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "6f0bcd78-a484-451b-87a1-531cd7aed386",
+      "type": "subgeographic",
+      "attributes": {
+        "name": "Papua New Guinea",
+        "code": "NPL",
+        "geographic": "countries",
+        "abbreviation": "C-NPL",
+        "created_at": "2024-12-31T11:53:23.489Z",
+        "updated_at": "2024-12-31T11:53:23.489Z"
+      },
+      "relationships": {
+        "parent": {
+          "data": null
+        },
+        "subgeographics": {
+          "data": [
+
+          ]
+        }
+      }
+    }
+  ]
+}

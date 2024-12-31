@@ -1,0 +1,12 @@
+{
+  "data": {
+    "id": "9ea84931-7a44-48b9-979b-a041ae198cb7",
+    "type": "funder",
+    "attributes": {
+      "name": "New name",
+      "description": "Placeat commodi libero. Quo recusandae repellat. Sunt commodi tempore. Voluptatem et corrupti."
+    },
+    "relationships": {
+    }
+  }
+}
