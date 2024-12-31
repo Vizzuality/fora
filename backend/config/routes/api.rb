@@ -19,6 +19,7 @@ namespace :api, format: "json" do
     resources :funder_types, only: %i[index]
     resources :geographics, only: %i[index]
     resources :areas, only: %i[index]
+    resources :investment_privacies, only: %i[index]
 
     resources :subgeographics, only: %i[index] do
       collection do

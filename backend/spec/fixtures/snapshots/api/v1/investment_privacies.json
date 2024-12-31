@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "id": "visible_only_to_staff",
+      "type": "investment_privacy",
+      "attributes": {
+        "name": "No, I don't want any of this information included on the platform, or available to FORA members. It can only be available to FORA staff privately."
+      }
+    },
+    {
+      "id": "visible_only_to_members",
+      "type": "investment_privacy",
+      "attributes": {
+        "name": "No, I don't want any of this information included on the platform. It can only be available to FORA members privately."
+      }
+    },
+    {
+      "id": "all",
+      "type": "investment_privacy",
+      "attributes": {
+        "name": "Yes, ALL of the information can be shared on the platform, including non-aggregated funding amount"
+      }
+    },
+    {
+      "id": "aggregate_amount_funded",
+      "type": "investment_privacy",
+      "attributes": {
+        "name": "Yes, general information can be shared, but please ensure the funding amount is only included as aggregated data"
+      }
+    },
+    {
+      "id": "amount_funded_visible_only_to_members",
+      "type": "investment_privacy",
+      "attributes": {
+        "name": "Yes, general information can be shared, but please keep the funding amount private to FORA members only and do not even include in the aggregated data"
+      }
+    },
+    {
+      "id": "amount_funded_visible_only_to_staff",
+      "type": "investment_privacy",
+      "attributes": {
+        "name": "Yes, general information can be shared, but please keep the funding amount private to FORA staff only and do not even include in the aggregated data"
+      }
+    }
+  ]
+}

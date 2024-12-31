@@ -1,4 +1,4 @@
-# This file was generated with rails g enum Privacy
+# This file was generated with rails g enum InvestmentPrivacy
 
 class InvestmentPrivacy
   include EnumModel
