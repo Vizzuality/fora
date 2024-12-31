@@ -1,0 +1,42 @@
+{
+  "data": {
+    "id": "7425805c-e8e6-4cf4-88d3-8d96cf0bc05d",
+    "type": "investment",
+    "attributes": {
+      "amount": "100.0",
+      "year_invested": 2020,
+      "initial_funded_year": 2020,
+      "funding_type": "sponsorship",
+      "funding_type_other": "Enim repellat pariatur est.",
+      "areas": [
+        "equity_and_justice"
+      ],
+      "areas_other": "Enim repellat pariatur est.",
+      "grant_duration": "one_year",
+      "number_of_grant_years": 4,
+      "demographics": [
+        "hispanic_or_latinx",
+        "other"
+      ],
+      "demographics_other": "Enim repellat pariatur est.",
+      "capital_type": "debt",
+      "capital_type_other": "Enim repellat pariatur est.",
+      "submitting_organization_contact_name": "Otha Kemmer",
+      "privacy": "all"
+    },
+    "relationships": {
+      "project": {
+        "data": {
+          "id": "3eff977c-db26-463e-93d4-be91d2f74b9d",
+          "type": "project"
+        }
+      },
+      "funder": {
+        "data": {
+          "id": "a102d551-c4ab-4f1a-a9d9-838c900d4549",
+          "type": "funder"
+        }
+      }
+    }
+  }
+}

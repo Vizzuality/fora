@@ -1,0 +1,62 @@
+{
+  "data": [
+    {
+      "id": "e98c531c-205e-4322-952c-a4f0e17a2954",
+      "type": "investment",
+      "attributes": {
+        "amount": "68.96"
+      },
+      "relationships": {
+        "project": {
+          "data": {
+            "id": "7c699ada-2c4a-4085-be63-2ee25918ae79",
+            "type": "project"
+          }
+        }
+      }
+    },
+    {
+      "id": "56435c77-28e6-4931-89e6-31229b3ee21b",
+      "type": "investment",
+      "attributes": {
+        "amount": "98.63"
+      },
+      "relationships": {
+        "project": {
+          "data": {
+            "id": "25a50189-be6f-47d6-8742-8abe3f2a7ada",
+            "type": "project"
+          }
+        }
+      }
+    },
+    {
+      "id": "0db7e039-aead-4f3f-80be-eae4fcaa81e5",
+      "type": "investment",
+      "attributes": {
+        "amount": "99.39"
+      },
+      "relationships": {
+        "project": {
+          "data": {
+            "id": "a8efc81b-231c-4cad-b9e9-a889f75b427d",
+            "type": "project"
+          }
+        }
+      }
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "per_page": 10,
+    "from": 1,
+    "to": 3,
+    "total": 3,
+    "pages": 1
+  },
+  "links": {
+    "first": "/api/v1/members/investments?page%5Bsize%5D=10",
+    "self": "/api/v1/members/investments?page%5Bnumber%5D=1&page%5Bsize%5D=10",
+    "last": "/api/v1/members/investments?page%5Bnumber%5D=1&page%5Bsize%5D=10"
+  }
+}

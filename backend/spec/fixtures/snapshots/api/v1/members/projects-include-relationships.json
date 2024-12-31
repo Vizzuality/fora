@@ -1,7 +1,7 @@
 {
   "data": [
     {
-      "id": "6f04a537-9bc1-4895-851c-bc439d4a896b",
+      "id": "43f23c8f-f2fe-407a-8be4-3a451c1b6a6b",
       "type": "project",
       "attributes": {
         "name": "Otha Kemmer"
@@ -20,7 +20,7 @@
       }
     },
     {
-      "id": "ab126899-3b7f-4e21-b7e8-ab053782fa0f",
+      "id": "88058387-0bd8-41fc-87d1-477ae8d8e480",
       "type": "project",
       "attributes": {
         "name": "Otha Kemmer"
@@ -39,7 +39,7 @@
       }
     },
     {
-      "id": "753eabdf-0539-499e-a369-f8ca0f71c043",
+      "id": "6a71640e-0c49-46c3-a22a-d1722573ef3b",
       "type": "project",
       "attributes": {
         "name": "Otha Kemmer"
@@ -70,8 +70,8 @@
     "pages": 1
   },
   "links": {
-    "first": "/api/v1/projects?page%5Bsize%5D=10",
-    "self": "/api/v1/projects?page%5Bnumber%5D=1&page%5Bsize%5D=10",
-    "last": "/api/v1/projects?page%5Bnumber%5D=1&page%5Bsize%5D=10"
+    "first": "/api/v1/members/projects?page%5Bsize%5D=10",
+    "self": "/api/v1/members/projects?page%5Bnumber%5D=1&page%5Bsize%5D=10",
+    "last": "/api/v1/members/projects?page%5Bnumber%5D=1&page%5Bsize%5D=10"
   }
 }

@@ -42,6 +42,7 @@ namespace :api, format: "json" do
     namespace :members do
       resource :funder, only: %i[show update]
       resources :projects
+      resources :investments
     end
   end
 end

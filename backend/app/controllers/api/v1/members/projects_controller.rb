@@ -15,7 +15,7 @@ module API
             @projects,
             include: included_relationships,
             fields: sparse_fieldset,
-            links: pagy_object.present? ? pagination_links(:api_v1_projects_path, pagy_object) : nil,
+            links: pagy_object.present? ? pagination_links(:api_v1_members_projects_path, pagy_object) : nil,
             meta: pagy_object.present? ? pagination_meta(pagy_object) : nil,
             params: {current_member: current_member, current_ability: current_ability}
           ).serializable_hash
@@ -36,6 +36,7 @@ module API
             render json: ProjectSerializer.new(
               @project,
               include: included_relationships,
+              fields: sparse_fieldset,
               params: {current_member: current_member, current_ability: current_ability}
             ).serializable_hash
           else
@@ -48,6 +49,7 @@ module API
             render json: ProjectSerializer.new(
               @project,
               include: included_relationships,
+              fields: sparse_fieldset,
               params: {current_member: current_member, current_ability: current_ability}
             ).serializable_hash
           else

@@ -1,6 +1,6 @@
 require "swagger_helper"
 
-RSpec.describe "API V1 Member Project", type: :request do
+RSpec.describe "API V1 Member Projects", type: :request do
   path "/api/v1/members/projects" do
     get "List all projects for current member" do
       tags "Projects"

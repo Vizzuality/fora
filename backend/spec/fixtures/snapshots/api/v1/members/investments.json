@@ -1,0 +1,140 @@
+{
+  "data": [
+    {
+      "id": "50302789-476b-4b6f-9758-41f8ea4c1b33",
+      "type": "investment",
+      "attributes": {
+        "amount": "68.96",
+        "year_invested": 2023,
+        "initial_funded_year": 2022,
+        "funding_type": "sponsorship",
+        "funding_type_other": "Enim repellat pariatur est.",
+        "areas": [
+          "land_asset_financing",
+          "capacity_building"
+        ],
+        "areas_other": "Enim repellat pariatur est.",
+        "grant_duration": "multi_year",
+        "number_of_grant_years": 4,
+        "demographics": [
+          "hispanic_or_latinx",
+          "other"
+        ],
+        "demographics_other": "Enim repellat pariatur est.",
+        "capital_type": "re_grants",
+        "capital_type_other": "Enim repellat pariatur est.",
+        "submitting_organization_contact_name": "Otha Kemmer",
+        "privacy": "visible_only_to_staff"
+      },
+      "relationships": {
+        "project": {
+          "data": {
+            "id": "c6b09ce4-e4ea-4381-bbe2-aec30131e4fd",
+            "type": "project"
+          }
+        },
+        "funder": {
+          "data": {
+            "id": "08e2bef5-511f-456f-bcee-6d6bf07cc5ad",
+            "type": "funder"
+          }
+        }
+      }
+    },
+    {
+      "id": "652271a1-6a80-4b0c-b634-51acc86e5327",
+      "type": "investment",
+      "attributes": {
+        "amount": "98.63",
+        "year_invested": 2022,
+        "initial_funded_year": 2023,
+        "funding_type": "general_operating_support",
+        "funding_type_other": "Placeat commodi libero et.",
+        "areas": [
+          "fermentation",
+          "soil_measurement_and_technology"
+        ],
+        "areas_other": "Placeat commodi libero et.",
+        "grant_duration": "one_year",
+        "number_of_grant_years": 1,
+        "demographics": [
+          "no_specific_focus",
+          "other"
+        ],
+        "demographics_other": "Placeat commodi libero et.",
+        "capital_type": "other",
+        "capital_type_other": "Placeat commodi libero et.",
+        "submitting_organization_contact_name": "Msgr. Genaro Cronin",
+        "privacy": "all"
+      },
+      "relationships": {
+        "project": {
+          "data": {
+            "id": "eadce9fc-32c0-4541-bf90-8a0ea8f18710",
+            "type": "project"
+          }
+        },
+        "funder": {
+          "data": {
+            "id": "08e2bef5-511f-456f-bcee-6d6bf07cc5ad",
+            "type": "funder"
+          }
+        }
+      }
+    },
+    {
+      "id": "ce323f69-42b3-4882-9b83-c80cc564030a",
+      "type": "investment",
+      "attributes": {
+        "amount": "99.39",
+        "year_invested": 2023,
+        "initial_funded_year": 2024,
+        "funding_type": "media_and_communications",
+        "funding_type_other": "Et quaerat omnis veniam.",
+        "areas": [
+          "agroforestry",
+          "education_future_farmers_young_farmers"
+        ],
+        "areas_other": "Et quaerat omnis veniam.",
+        "grant_duration": "other",
+        "number_of_grant_years": 3,
+        "demographics": [
+          "i_dont_know",
+          "no_specific_focus"
+        ],
+        "demographics_other": "Et quaerat omnis veniam.",
+        "capital_type": "other",
+        "capital_type_other": "Et quaerat omnis veniam.",
+        "submitting_organization_contact_name": "Raymon Wisoky",
+        "privacy": "amount_funded_visible_only_to_members"
+      },
+      "relationships": {
+        "project": {
+          "data": {
+            "id": "36d1d011-737f-4c8c-b54b-87a50baf748a",
+            "type": "project"
+          }
+        },
+        "funder": {
+          "data": {
+            "id": "08e2bef5-511f-456f-bcee-6d6bf07cc5ad",
+            "type": "funder"
+          }
+        }
+      }
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "per_page": 10,
+    "from": 1,
+    "to": 3,
+    "total": 3,
+    "pages": 1
+  },
+  "links": {
+    "first": "/api/v1/members/investments?page%5Bsize%5D=10",
+    "self": "/api/v1/members/investments?page%5Bnumber%5D=1&page%5Bsize%5D=10",
+    "last": "/api/v1/members/investments?page%5Bnumber%5D=1&page%5Bsize%5D=10"
+  }
+}

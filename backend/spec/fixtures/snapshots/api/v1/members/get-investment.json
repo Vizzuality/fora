@@ -1,0 +1,43 @@
+{
+  "data": {
+    "id": "0a3fa70f-ae21-4cc4-a27b-f85a44ec65d8",
+    "type": "investment",
+    "attributes": {
+      "amount": "68.96",
+      "year_invested": 2023,
+      "initial_funded_year": 2022,
+      "funding_type": "sponsorship",
+      "funding_type_other": "Enim repellat pariatur est.",
+      "areas": [
+        "land_asset_financing",
+        "capacity_building"
+      ],
+      "areas_other": "Enim repellat pariatur est.",
+      "grant_duration": "multi_year",
+      "number_of_grant_years": 4,
+      "demographics": [
+        "hispanic_or_latinx",
+        "other"
+      ],
+      "demographics_other": "Enim repellat pariatur est.",
+      "capital_type": "re_grants",
+      "capital_type_other": "Enim repellat pariatur est.",
+      "submitting_organization_contact_name": "Otha Kemmer",
+      "privacy": "visible_only_to_staff"
+    },
+    "relationships": {
+      "project": {
+        "data": {
+          "id": "b9a53166-17b8-4bc3-88c9-87d32d2ecf38",
+          "type": "project"
+        }
+      },
+      "funder": {
+        "data": {
+          "id": "afefb7a6-7d0c-4028-bc35-90c94e72e8de",
+          "type": "funder"
+        }
+      }
+    }
+  }
+}

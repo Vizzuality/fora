@@ -4,6 +4,7 @@ class Member < ApplicationRecord
   belongs_to :funder
 
   has_many :projects
+  has_many :investments, through: :funder
 
   validates_presence_of :first_name, :last_name
 

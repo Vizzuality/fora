@@ -70,7 +70,7 @@ RSpec.configure do |config|
                   primary_office_country: {"$ref" => "#/components/schemas/response_relation"},
                   subgeographics: {"$ref" => "#/components/schemas/response_relations"},
                   subgeographic_ancestors: {"$ref" => "#/components/schemas/response_relations"},
-                  investments: {"$ref" => "#/components/schemas/response_relations"}
+                  projects: {"$ref" => "#/components/schemas/response_relations"}
                 }
               }
             },
@@ -103,7 +103,42 @@ RSpec.configure do |config|
                   country: {"$ref" => "#/components/schemas/response_relation"},
                   subgeographics: {"$ref" => "#/components/schemas/response_relations"},
                   subgeographic_ancestors: {"$ref" => "#/components/schemas/response_relations"},
-                  investments: {"$ref" => "#/components/schemas/response_relations"}
+                  funders: {"$ref" => "#/components/schemas/response_relations"}
+                }
+              }
+            },
+            required: %w[id type attributes relationships]
+          },
+          investment: {
+            type: :object,
+            properties: {
+              id: {type: :string},
+              type: {type: :string},
+              attributes: {
+                type: :object,
+                properties: {
+                  amount: {type: :string},
+                  year_invested: {type: :number},
+                  initial_funded_year: {type: :number},
+                  funding_type: {type: :string, enum: FundingType::TYPES, nullable: true},
+                  funding_type_other: {type: :string, nullable: true},
+                  areas: {type: :array, items: {type: :string, enum: Area::TYPES}},
+                  areas_other: {type: :string, nullable: true},
+                  grant_duration: {type: :string},
+                  number_of_grant_years: {type: :number, nullable: true},
+                  demographics: {type: :array, items: {type: :string, enum: Demographic::TYPES}, nullable: true},
+                  demographics_other: {type: :string, nullable: true},
+                  capital_type: {type: :string, enum: CapitalType::TYPES},
+                  capital_type_other: {type: :string, nullable: true},
+                  submitting_organization_contact_name: {type: :string},
+                  privacy: {type: :string}
+                }
+              },
+              relationships: {
+                type: :object,
+                properties: {
+                  project: {"$ref" => "#/components/schemas/response_relation"},
+                  funder: {"$ref" => "#/components/schemas/response_relation"}
                 }
               }
             },
