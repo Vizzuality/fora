@@ -1,14 +1,22 @@
 {
   "data": {
-    "id": "f1908e5b-0281-40c1-a045-40451156a8b3",
+    "id": "242e574b-ea06-4a1d-b925-b77147214bd9",
     "type": "member",
     "attributes": {
-      "id": "f1908e5b-0281-40c1-a045-40451156a8b3",
+      "id": "242e574b-ea06-4a1d-b925-b77147214bd9",
       "email": "admin1@example.com",
       "first_name": "Dawna",
       "last_name": "Block",
-      "created_at": "2024-12-25T15:24:15.424Z",
-      "updated_at": "2024-12-25T15:24:15.424Z"
+      "created_at": "2024-12-31T11:21:25.233Z",
+      "updated_at": "2024-12-31T11:21:25.233Z"
+    },
+    "relationships": {
+      "funder": {
+        "data": {
+          "id": "44a070ab-5bf7-476a-b552-e8868bb23c7a",
+          "type": "funder"
+        }
+      }
     }
   }
 }

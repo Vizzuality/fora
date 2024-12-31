@@ -1,14 +1,22 @@
 {
   "data": {
-    "id": "8e5c4b29-97f5-4379-b5ce-15cf730d991e",
+    "id": "a05b3434-6d6f-47a4-ac37-c48f9a34c504",
     "type": "member",
     "attributes": {
-      "id": "8e5c4b29-97f5-4379-b5ce-15cf730d991e",
+      "id": "a05b3434-6d6f-47a4-ac37-c48f9a34c504",
       "email": "new@email.test",
       "first_name": "New",
       "last_name": "Name",
-      "created_at": "2024-12-25T15:40:17.982Z",
-      "updated_at": "2024-12-25T15:40:17.990Z"
+      "created_at": "2024-12-31T11:21:25.112Z",
+      "updated_at": "2024-12-31T11:21:25.115Z"
+    },
+    "relationships": {
+      "funder": {
+        "data": {
+          "id": "bf204db8-6580-4b00-9f62-82a9c0025db2",
+          "type": "funder"
+        }
+      }
     }
   }
 }

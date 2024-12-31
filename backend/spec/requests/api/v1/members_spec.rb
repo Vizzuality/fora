@@ -23,6 +23,8 @@ RSpec.describe "API V1 Members", type: :request do
           password_confirmation: {type: :string, nullable: true}
         }
       }
+      parameter name: "fields[member]", in: :query, type: :string, description: "Get only required fields. Use comma to separate multiple fields", required: false
+      parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
 
       let(:member) { create :member }
       let(:id) { member.id }
@@ -83,6 +85,8 @@ RSpec.describe "API V1 Members", type: :request do
       consumes "application/json"
       produces "application/json"
       security [Bearer: {}]
+      parameter name: "fields[member]", in: :query, type: :string, description: "Get only required fields. Use comma to separate multiple fields", required: false
+      parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
 
       include_context "with authorization"
 
@@ -96,6 +100,23 @@ RSpec.describe "API V1 Members", type: :request do
 
         it "matches snapshot", generate_swagger_example: true do
           expect(response.body).to match_snapshot("api/v1/get-member-me")
+        end
+
+        context "with sparse fieldset" do
+          let("fields[member]") { "first_name,email,nonexisting" }
+
+          it "matches snapshot" do
+            expect(response.body).to match_snapshot("api/v1/get-member-me-sparse-fieldset")
+          end
+        end
+
+        context "with relationships" do
+          let("fields[member]") { "first_name,funder,nonexisting" }
+          let(:includes) { "funder" }
+
+          it "matches snapshot" do
+            expect(response.body).to match_snapshot("api/v1/get-member-me-include-relationships")
+          end
         end
       end
     end

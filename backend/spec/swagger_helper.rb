@@ -124,9 +124,15 @@ RSpec.configure do |config|
                   created_at: {type: :string},
                   updated_at: {type: :string}
                 }
+              },
+              relationships: {
+                type: :object,
+                properties: {
+                  funder: {"$ref" => "#/components/schemas/response_relation"}
+                }
               }
             },
-            required: %w[id type attributes]
+            required: %w[id type attributes relationships]
           },
           widget: {
             type: :object,

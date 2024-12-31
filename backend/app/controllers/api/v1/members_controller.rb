@@ -4,12 +4,22 @@ module API
       load_and_authorize_resource except: :sign_in
 
       def me
-        render json: API::V1::MemberSerializer.new(current_member).serializable_hash
+        render json: API::V1::MemberSerializer.new(
+          current_member,
+          include: included_relationships,
+          fields: sparse_fieldset,
+          params: {current_member: current_member, current_ability: current_ability}
+        ).serializable_hash
       end
 
       def update
         if @member.update(member_params)
-          render json: API::V1::MemberSerializer.new(@member).serializable_hash
+          render json: API::V1::MemberSerializer.new(
+            @member,
+            include: included_relationships,
+            fields: sparse_fieldset,
+            params: {current_member: current_member, current_ability: current_ability}
+          ).serializable_hash
         else
           raise API::UnprocessableEntityError, @member.errors.full_messages.to_sentence
         end

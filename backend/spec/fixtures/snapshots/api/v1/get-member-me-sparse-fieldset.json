@@ -1,0 +1,12 @@
+{
+  "data": {
+    "id": "2f2605b9-f43c-4c91-b09a-090aef968712",
+    "type": "member",
+    "attributes": {
+      "first_name": "Dawna",
+      "email": "admin1@example.com"
+    },
+    "relationships": {
+    }
+  }
+}
