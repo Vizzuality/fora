@@ -18,6 +18,7 @@ RSpec.describe "API V1 Members", type: :request do
         schema type: :object, properties: {data: {"$ref" => "#/components/schemas/member"}}
 
         let(:member) { create :member }
+        let!(:project) { create :project, member: member }
         let(:Authorization) { "Bearer #{JWTAuth.encode(member)}" }
 
         run_test!

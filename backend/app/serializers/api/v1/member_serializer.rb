@@ -4,6 +4,8 @@ module API
       attributes :id, :email, :first_name, :last_name, :created_at, :updated_at
 
       belongs_to_restricted :funder
+
+      has_many_restricted :projects
     end
   end
 end

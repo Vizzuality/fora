@@ -128,7 +128,8 @@ RSpec.configure do |config|
               relationships: {
                 type: :object,
                 properties: {
-                  funder: {"$ref" => "#/components/schemas/response_relation"}
+                  funder: {"$ref" => "#/components/schemas/response_relation"},
+                  projects: {"$ref" => "#/components/schemas/response_relations"}
                 }
               }
             },
