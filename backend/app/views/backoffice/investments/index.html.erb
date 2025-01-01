@@ -1,0 +1,39 @@
+<div class="flex justify-end mb-4 mr-2">
+  <%= render "total_records" %>
+</div>
+
+<table class="backoffice-table">
+  <thead>
+    <tr>
+      <th>
+        <%= sort_link @q, :id, t("activerecord.attributes.funder.id") %>
+      </th>
+      <th>
+        <%= sort_link @q, :funder_name , t("activerecord.attributes.investment.funder") %>
+      </th>
+      <th>
+        <%= sort_link @q, :project_recipient_name , t("activerecord.attributes.investment.project") %>
+      </th>
+      <th>
+        <%= sort_link @q, :updated_at, t("activerecord.attributes.investment.updated_at") %>
+      </th>
+      <th>
+        <%= sort_link @q, :created_at, t("activerecord.attributes.investment.created_at") %>
+      </th>
+      <th>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @resources.each do |resource| %>
+      <tr>
+        <td><%= resource.id %></td>
+        <td><%= resource.funder.name %></td>
+        <td><%= resource.project.name %></td>
+        <td><%= I18n.l resource.updated_at.to_date %></td>
+        <td><%= I18n.l resource.created_at.to_date %></td>
+        <td><%= link_to t("backoffice.actions.show"), backoffice_investment_path(resource), class: "link-button" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

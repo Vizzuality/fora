@@ -1,4 +1,7 @@
 <%= render "new_record", text: t("backoffice.messages.create_new_record", model: resource_class.model_name.human), url: new_backoffice_funder_path %>
+<div class="flex justify-end mb-4 mr-2">
+  <%= render "total_records" %>
+</div>
 
 <table class="backoffice-table">
   <thead>

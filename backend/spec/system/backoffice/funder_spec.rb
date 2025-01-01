@@ -16,6 +16,7 @@ RSpec.describe "Backoffice: Funders", type: :system do
       I18n.t("activerecord.attributes.funder.updated_at"),
       I18n.t("activerecord.attributes.funder.created_at")
     ]
+    it_behaves_like "with csv export", file_name: "funders.csv"
 
     it "shows funders list" do
       within_row(funder.id) do

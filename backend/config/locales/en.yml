@@ -41,8 +41,13 @@ en:
         one: Funder
         other: Funders
         few: Funders
+      investment:
+        one: Investment
+        other: Investments
+        few: Investments
     attributes:
       admin:
+        id: ID
         first_name: First name
         last_name: Last name
         full_name: Full name
@@ -51,9 +56,11 @@ en:
         created_at: Created at
         updated_at: Updated at
       member:
+        id: ID
         first_name: First name
         last_name: Last name
         email: E-mail
+        funder: Funder
         created_at: Created at
         updated_at: Updated at
       upload:
@@ -65,16 +72,83 @@ en:
         updated_at: Updated at
       project:
         id: ID
+        member: Member
         created_at: Created at
         updated_at: Updated at
       recipient:
         id: ID
         name: Name
+        description: Description
+        contact_first_name: Contact first name
+        contact_last_name: Contact last name
+        website: Website
+        country: Country
+        state: State
+        city: City
+        leadership_demographics: Leadership demographics
+        leadership_demographics_other: Other leadership demographics
+        recipient_legal_status: Recipient legal status
         created_at: Created at
         updated_at: Updated at
       funder:
         id: ID
         name: Name
+        description: Description
+        primary_office_address: Primary office address
+        primary_office_city: Primary office city
+        primary_office_state: Primary office state
+        primary_office_country: Primary office country
+        primary_contact_first_name: Primary contact first name
+        primary_contact_last_name: Primary contact last name
+        primary_contact_email: Primary contact email
+        show_primary_email: Show primary email
+        primary_contact_phone: Primary contact phone
+        primary_contact_location: Primary contact location
+        primary_contact_role: Primary contact role
+        secondary_email_which_can_be_shared: Secondary email which can be shared
+        website: Website
+        date_joined_fora: Date joined FORA
+        funder_type: Funder type
+        funder_type_other: Funder type other
+        capital_acceptances: Capital acceptances
+        capital_acceptances_other: Other capital acceptances
+        leadership_demographics: Leadership demographics
+        leadership_demographics_other: Leadership demographics other
+        number_staff_employees: Number of staff/employees
+        application_status: Application status
+        funder_legal_status: Funder legal status
+        funder_legal_status_other: Other funder legal status
+        new_to_regenerative_ag: New to regenerative agriculture
+        networks: Networks
+        capital_types: Capital types
+        capital_types_other: Capital types other
+        spend_down_strategy: Spend down strategy
+        areas: Areas of focus
+        areas_other: Other areas of focus
+        demographics: Demographics
+        demographics_other: Other demographics
+        created_at: Created at
+        updated_at: Updated at
+      investment:
+        id: ID
+        funder: Funder
+        project: Project
+        recipient: Recipient
+        amount: Amount
+        year_invested: Year invested
+        initial_funded_year: Initial funded year
+        funding_type: Funding type
+        funding_type_other: Funding type other
+        areas: Areas of focus
+        areas_other: Other areas of focus
+        grant_duration: Grant duration
+        number_of_grant_years: Number of grant years
+        demographics: Demographics
+        demographics_other: Other demographics
+        capital_type: Capital type
+        capital_type_other: Capital type other
+        submitting_organization_contact_name: Submitting organization contact name
+        privacy: Investment privacy
         created_at: Created at
         updated_at: Updated at
     errors:
@@ -108,6 +182,8 @@ en:
       save: Save
       delete: Delete
       cancel: Cancel
+      total: Total
+      export_csv: export csv
     pagination:
       prev: "←"
       next: "→"

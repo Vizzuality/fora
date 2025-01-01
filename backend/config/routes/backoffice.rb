@@ -8,5 +8,6 @@ namespace :backoffice do
   resources :members
   resources :projects
   resources :funders
+  resources :investments
   resources :uploads, only: %i[new create index show destroy]
 end

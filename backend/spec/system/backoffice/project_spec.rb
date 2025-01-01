@@ -16,6 +16,7 @@ RSpec.describe "Backoffice: Projects", type: :system do
       I18n.t("activerecord.attributes.project.updated_at"),
       I18n.t("activerecord.attributes.project.created_at")
     ]
+    it_behaves_like "with csv export", file_name: "projects.csv"
 
     it "shows projects list" do
       within_row(project.id) do

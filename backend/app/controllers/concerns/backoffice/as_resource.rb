@@ -18,7 +18,17 @@ module Backoffice
 
     def index
       @q = resource_class.includes(self.class.includes).ransack params[:q]
-      @pagy_object, @resources = pagy @q.result.order(created_at: :desc), pagy_defaults
+
+      respond_to do |format|
+        format.html do
+          @pagy_object, @resources = pagy @q.result.order(created_at: :desc), pagy_defaults
+        end
+        format.csv do
+          send_data "Exporters::#{resource_class.to_s.pluralize}".constantize.new(@q.result).call,
+            filename: "#{resource_class.to_s.underscore.pluralize}.csv",
+            type: "text/csv; charset=utf-8"
+        end
+      end
     end
 
     def show

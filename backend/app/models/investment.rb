@@ -20,4 +20,8 @@ class Investment < ApplicationRecord
 
   scope :can_show_aggregated_amount, -> { where privacy: %w[all aggregate_amount_funded] }
   scope :can_be_shown_without_amount, -> { where privacy: %w[all aggregate_amount_funded amount_funded_visible_only_to_members amount_funded_visible_only_to_staff] }
+
+  def to_s
+    "#{funder} - #{project}"
+  end
 end

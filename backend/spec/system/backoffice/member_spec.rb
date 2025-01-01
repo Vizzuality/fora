@@ -17,6 +17,7 @@ RSpec.describe "Backoffice: Members", type: :system do
       I18n.t("activerecord.attributes.admin.updated_at"),
       I18n.t("activerecord.attributes.admin.created_at")
     ]
+    it_behaves_like "with csv export", file_name: "members.csv"
 
     it "shows members list" do
       within_row(member.id) do

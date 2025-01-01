@@ -45,6 +45,10 @@ class Subgeographic < ApplicationRecord
     end
   end
 
+  def to_s
+    name
+  end
+
   private
 
   def invalidate_cache
