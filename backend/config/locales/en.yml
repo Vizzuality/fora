@@ -517,3 +517,12 @@ en:
       subject: Your FORA member account was created!
       content_html: "To login for first time, please %{reset_password_link}."
       reset_password_link: setup your new password
+  devise:
+    mailer:
+      reset_password_instructions:
+        subject: "Reset password instructions"
+        greeting: "Hello %{recipient}"
+        instruction: "Someone has requested a link to change your password, and you can do this through the link below."
+        action: "Change my password"
+        instruction_2: "If you did not request this, please ignore this email."
+        instruction_3: "Your password will not change until you access the link above and create a new one."
