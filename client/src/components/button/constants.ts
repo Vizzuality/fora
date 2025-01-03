@@ -1,4 +1,5 @@
 export const THEME = {
+  transparent: 'text-grey-0 bg-transparent',
   green: 'text-grey-0 bg-green-0 border border-green-0 hover:bg-green-0/90 active:bg-green-0/75',
   'green-alt':
     'text-grey-0 bg-transparent border border-green-0 hover:bg-grey-0/5 active:bg-grey-0/10',

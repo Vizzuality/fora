@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import cx from 'classnames';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import { NAV, POLICIES } from 'constants/nav';
 
@@ -16,80 +17,87 @@ import LINKEDIN_SVG from 'svgs/social/linkedin.svg?sprite';
 import TWITTER_SVG from 'svgs/social/twitter.svg?sprite';
 
 const Footer = () => {
+  const { pathname } = useRouter();
+  const hideNav = useMemo(() => {
+    return pathname.includes('/auth');
+  }, [pathname]);
+
   return (
     <footer>
-      <div className="py-14 bg-blue-0/5">
-        <Wrapper>
-          <div className="flex flex-col justify-between space-y-10 md:space-y-0 md:flex-row">
-            <div className="flex flex-col items-center justify-between space-y-10 md:items-start md:space-y-0 md:flex-row md:space-x-20">
-              <Link href="/">
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_BASE_PATH}${LOGO_MONOCHROME_SVG}`}
-                  alt="Logo"
-                  width={122}
-                  height={56}
-                  priority
-                />
-              </Link>
+      {!hideNav && (
+        <div className="py-14 bg-blue-0/5">
+          <Wrapper>
+            <div className="flex flex-col justify-between space-y-10 md:space-y-0 md:flex-row">
+              <div className="flex flex-col items-center justify-between space-y-10 md:items-start md:space-y-0 md:flex-row md:space-x-20">
+                <Link href="/">
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH}${LOGO_MONOCHROME_SVG}`}
+                    alt="Logo"
+                    width={122}
+                    height={56}
+                    priority
+                  />
+                </Link>
 
-              <nav className="flex">
-                <ul className="gap-10 space-y-3 text-center md:text-left md:columns-2">
-                  {NAV.map((item) => {
-                    const { href, label, target, rel } = item;
+                <nav className="flex">
+                  <ul className="gap-10 space-y-3 text-center md:text-left md:columns-2">
+                    {NAV.map((item) => {
+                      const { href, label, target, rel } = item;
 
-                    return (
-                      <li key={href}>
-                        {target === '_blank' && (
-                          <a
-                            href={href}
-                            target={target}
-                            rel={rel}
-                            className="py-2 text-base font-semibold hover:opacity-75"
-                          >
-                            {label}
-                          </a>
-                        )}
-                        {!target && (
-                          <Link
-                            href={href}
-                            className="py-2 text-base font-semibold hover:opacity-75"
-                          >
-                            {label}
-                          </Link>
-                        )}
-                      </li>
-                    );
-                  })}
+                      return (
+                        <li key={href}>
+                          {target === '_blank' && (
+                            <a
+                              href={href}
+                              target={target}
+                              rel={rel}
+                              className="py-2 text-base font-semibold hover:opacity-75"
+                            >
+                              {label}
+                            </a>
+                          )}
+                          {!target && (
+                            <Link
+                              href={href}
+                              className="py-2 text-base font-semibold hover:opacity-75"
+                            >
+                              {label}
+                            </Link>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </nav>
+              </div>
+
+              <div className="flex flex-col space-y-2.5 items-center">
+                <h3 className="text-sm font-bold text-grey-0">Follow us on:</h3>
+                <ul className="flex items-center space-x-2.5">
+                  <li>
+                    <a
+                      href="https://www.linkedin.com/company/funders-for-regenerative-agriculture/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Icon icon={LINKEDIN_SVG} className="w-6 h-6" />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://twitter.com/FORAFunders"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Icon icon={TWITTER_SVG} className="w-6 h-6" />
+                    </a>
+                  </li>
                 </ul>
-              </nav>
+              </div>
             </div>
-
-            <div className="flex flex-col space-y-2.5 items-center">
-              <h3 className="text-sm font-bold text-grey-0">Follow us on:</h3>
-              <ul className="flex items-center space-x-2.5">
-                <li>
-                  <a
-                    href="https://www.linkedin.com/company/funders-for-regenerative-agriculture/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Icon icon={LINKEDIN_SVG} className="w-6 h-6" />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://twitter.com/FORAFunders"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Icon icon={TWITTER_SVG} className="w-6 h-6" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </Wrapper>
-      </div>
+          </Wrapper>
+        </div>
+      )}
       <div className="w-full py-5 text-sm text-white bg-blue-0">
         <Wrapper>
           <div className="flex flex-col items-center justify-between space-y-5 md:space-y-0 md:flex-row">

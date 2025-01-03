@@ -1,3 +1,7 @@
+import cx from 'classnames';
+
+import { useRouter } from 'next/router';
+
 import Footer from 'containers/footer';
 import Header from 'containers/header';
 
@@ -7,9 +11,15 @@ type ApplicationLayoutProps = {
 
 const ApplicationLayout: React.FC<ApplicationLayoutProps> = (props: ApplicationLayoutProps) => {
   const { children } = props;
+  const { pathname } = useRouter();
 
   return (
-    <div className="flex flex-col lg:min-h-screen">
+    <div
+      className={cx({
+        'flex flex-col lg:min-h-screen': true,
+        'bg-grey-60': pathname.includes('/auth'),
+      })}
+    >
       <Header />
 
       <main className="flex flex-col grow">
