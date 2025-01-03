@@ -1,6 +1,8 @@
 mount Rswag::Ui::Engine => "/api-docs"
 mount Rswag::Api::Engine => "/api-docs"
 
+devise_for :members, path: "api/v1", skip: :all
+
 namespace :api, format: "json" do
   namespace :v1 do
     # enums
