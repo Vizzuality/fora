@@ -8,7 +8,7 @@ set :deploy_to, '/var/www/fora-client'
 set :nvm_type, :user
 set :nvm_node, 'v22.11.0'
 set :nvm_map_bins, %w{node npm pnpm}
-set :pnpm_flags, %w{--silent}
+set :pnpm_flags, %w{--silent} + ["--store=#{shared_path}/node_modules"]
 
 set :repository_cache, "git_cache"
 set :deploy_via, :remote_cache
