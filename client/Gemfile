@@ -14,7 +14,7 @@ group :development do
   # Capistrano is a framework for building automated deployment scripts. [https://github.com/capistrano/capistrano]
   gem "capistrano"
   gem "capistrano-nvm"
-  gem 'capistrano-yarn'
+  gem 'capistrano-pnpm'
   gem 'capistrano-passenger'
   gem "bcrypt_pbkdf"
   gem "ed25519"
