@@ -5,7 +5,7 @@ import type { NextAuthOptions } from 'next-auth';
 import { JWT } from 'next-auth/jwt';
 import Credentials from 'next-auth/providers/credentials';
 
-import AUTHENTICATION from 'services/authentication';
+import authenticationService from 'services/authentication';
 
 const MAX_AGE = 2 * 60 * 60; // 2 hours
 
@@ -40,12 +40,7 @@ export const authOptions: NextAuthOptions = {
         const { email, password } = credentials;
 
         try {
-          const { data } = await AUTHENTICATION.request({
-            url: '/sign_in',
-            method: 'POST',
-            data: { email, password },
-            headers: { 'Content-Type': 'application/json' },
-          });
+          const { data } = await authenticationService.signIn(email, password);
 
           return data;
         } catch (err) {
