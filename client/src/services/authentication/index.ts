@@ -15,12 +15,7 @@ class AuthenticationService {
 
   async signIn(email: string, password: string) {
     try {
-      const response = await this.api.request({
-        url: '/member/sign_in',
-        method: 'POST',
-        data: { email, password },
-      });
-      return response;
+      return await this.api.post('/member/sign_in', { email, password });
     } catch (err) {
       this.handleApiError(err, 'Failed to sign in');
     }
@@ -28,8 +23,7 @@ class AuthenticationService {
 
   async forgotPassword(email: string) {
     try {
-      const response = await this.api.post('/reset_password', { data: { email } });
-      return response;
+      return await this.api.post('/reset_password', { email });
     } catch (err) {
       this.handleApiError(err, 'Failed to process password reset');
     }

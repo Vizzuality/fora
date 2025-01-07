@@ -8,7 +8,7 @@ export interface WrapperProps {
 
 export const AuthWrapper = ({ children }: WrapperProps) => {
   return (
-    <div className="justify-center items-center flex grow">
+    <div className="justify-center items-center flex grow px-5">
       <div className="bg-white px-40 py-20">{children}</div>
     </div>
   );
