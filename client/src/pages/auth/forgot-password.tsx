@@ -9,6 +9,7 @@ import { AuthWrapper } from 'containers/wrapper/component';
 import Button from 'components/button';
 import LinkButton from 'components/button/component';
 import { Input } from 'components/forms';
+import { withAuth } from 'hoc/auth';
 
 import authenticationService from 'services/authentication';
 
@@ -75,5 +76,7 @@ const ForgotPasswordPage = () => {
     </AuthWrapper>
   );
 };
+
+export const getServerSideProps = withAuth();
 
 export default ForgotPasswordPage;

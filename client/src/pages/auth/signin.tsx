@@ -6,14 +6,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { FORM_ERROR } from 'final-form';
-import { getServerSession } from 'next-auth/next';
 import { signIn } from 'next-auth/react';
 
 import { AuthWrapper } from 'containers/wrapper/component';
 
 import Button from 'components/button';
 import { Input } from 'components/forms/input/component';
-import { authOptions } from 'pages/api/auth/[...nextauth]';
+import { withAuth } from 'hoc/auth';
 
 const SignInPage: React.FC = () => {
   const router = useRouter();
@@ -86,21 +85,6 @@ const SignInPage: React.FC = () => {
   );
 };
 
-export async function getServerSideProps(context) {
-  const session = await getServerSession(context.req, context.res, authOptions);
-
-  if (session) {
-    return {
-      redirect: {
-        destination: '/projects',
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
-}
+export const getServerSideProps = withAuth();
 
 export default SignInPage;

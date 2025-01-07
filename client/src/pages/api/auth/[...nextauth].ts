@@ -1,5 +1,7 @@
 import axios from 'axios';
-import NextAuth from 'next-auth';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { GetServerSidePropsContext } from 'next';
+import NextAuth, { getServerSession } from 'next-auth';
 import type { NextAuthOptions } from 'next-auth';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { JWT } from 'next-auth/jwt';
@@ -73,5 +75,14 @@ export const authOptions: NextAuthOptions = {
     },
   },
 };
+
+export function auth(
+  ...args:
+    | [GetServerSidePropsContext['req'], GetServerSidePropsContext['res']]
+    | [NextApiRequest, NextApiResponse]
+    | []
+) {
+  return getServerSession(...args, authOptions);
+}
 
 export default NextAuth(authOptions);
