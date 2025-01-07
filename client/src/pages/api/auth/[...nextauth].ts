@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { GetServerSidePropsContext } from 'next';
 import NextAuth, { getServerSession } from 'next-auth';
@@ -40,18 +39,9 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials: Record<'email' | 'password', string> | undefined) {
         if (!credentials) return null;
         const { email, password } = credentials;
+        const { data } = await authenticationService.signIn(email, password);
 
-        try {
-          const { data } = await authenticationService.signIn(email, password);
-
-          return data;
-        } catch (err) {
-          if (axios.isAxiosError(err) && err.response) {
-            const errorMessage = err.response.data?.errors[0]?.title || 'Login failed';
-            throw new Error(errorMessage);
-          }
-          throw new Error('An unexpected error occurred');
-        }
+        return data;
       },
     }),
   ],
