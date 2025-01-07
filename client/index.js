@@ -1,9 +1,16 @@
+const { spawn } = require('child_process');
 const path = require('path');
-
 const nextPath = path.join(__dirname, 'node_modules', '.bin', 'next');
 
-process.argv.length = 1;
-process.argv.push(nextPath, 'start');
+const nextProcess = spawn(nextPath, ['start'], {
+  stdio: 'inherit',
+});
 
-// eslint-disable-next-line import/no-dynamic-require
-require(nextPath);
+nextProcess.on('error', (err) => {
+  console.error('Failed to start Next.js:', err);
+  process.exit(1);
+});
+
+nextProcess.on('exit', (code) => {
+  process.exit(code);
+});
