@@ -1,4 +1,4 @@
 <h3><%= t "member_mailer.greetings", full_name: @member.full_name %></h3>
 <p><%= t "member_mailer.first_time_login_instructions.content_html",
-         reset_password_link: link_to(t(".reset_password_link"), @token) %></p>
+         reset_password_link: link_to(t(".reset_password_link"), "#{ENV["FRONTEND_URL"]}/auth/signup/#{@token}") %></p>
 <p><%= t "member_mailer.farewell_html" %></p>
