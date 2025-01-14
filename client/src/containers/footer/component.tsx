@@ -6,6 +6,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import { useSession } from 'next-auth/react';
+
 import { NAV, POLICIES } from 'constants/nav';
 
 import Wrapper from 'containers/wrapper';
@@ -18,9 +20,13 @@ import TWITTER_SVG from 'svgs/social/twitter.svg?sprite';
 
 const Footer = () => {
   const { pathname } = useRouter();
+  const { data: session } = useSession();
   const hideNav = useMemo(() => {
     return pathname.includes('/auth');
   }, [pathname]);
+  const NAV_ITEMS = useMemo(() => {
+    return NAV.filter((n) => !(session && n.auth));
+  }, [session]);
 
   return (
     <footer>
@@ -41,7 +47,7 @@ const Footer = () => {
 
                 <nav className="flex">
                   <ul className="gap-10 space-y-3 text-center md:text-left md:columns-2">
-                    {NAV.map((item) => {
+                    {NAV_ITEMS.map((item) => {
                       const { href, label, target, rel } = item;
 
                       return (
