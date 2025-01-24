@@ -1,5 +1,6 @@
 class Funder < ApplicationRecord
   include PgSearch::Model
+  include Cacheable
 
   belongs_to :primary_office_state, class_name: "Subgeographic", optional: true
   belongs_to :primary_office_country, class_name: "Subgeographic", optional: true

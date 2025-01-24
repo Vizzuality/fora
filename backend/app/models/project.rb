@@ -1,5 +1,6 @@
 class Project < ApplicationRecord
   include PgSearch::Model
+  include Cacheable
 
   belongs_to :recipient
   belongs_to :member, optional: true

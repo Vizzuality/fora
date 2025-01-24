@@ -10,6 +10,13 @@ RSpec.describe Project, type: :model do
     expect(subject).to have(1).errors_on(:recipient)
   end
 
+  it "invalidates caches on save" do
+    expect(Rails.cache).to receive(:clear)
+    expect {
+      subject.save
+    }.to have_enqueued_job(Frontend::RevalidateStaticPagesJob).with(paths: :all)
+  end
+
   describe "scopes" do
     describe ".for_subgeographics" do
       let!(:country) { create :subgeographic, geographic: :countries }

@@ -50,4 +50,13 @@ RSpec.describe Investment, type: :model do
   include_examples :static_relation_validations, attribute: :grant_duration, presence: true
   include_examples :static_relation_validations, attribute: :demographics, presence: false
   include_examples :static_relation_validations, attribute: :privacy, presence: true
+
+  it "invalidates caches on save" do
+    investment = create(:investment)
+
+    expect(Rails.cache).to receive(:clear)
+    expect {
+      investment.touch
+    }.to have_enqueued_job(Frontend::RevalidateStaticPagesJob).with(paths: :all)
+  end
 end

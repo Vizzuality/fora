@@ -1,4 +1,6 @@
 class Investment < ApplicationRecord
+  include Cacheable
+
   belongs_to :funder
   belongs_to :project
 

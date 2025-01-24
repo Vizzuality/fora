@@ -18,7 +18,7 @@ class WidgetData
     @data ||= begin
       return query_service.call unless query_service.enabled_cache?
 
-      Rails.cache.fetch "widget-data-#{widget.id}-#{query_service.cache_key}", expires_in: 1.hour do
+      Rails.cache.fetch "widget-data-#{widget.id}-#{query_service.cache_key}", expires_in: 10.minutes do
         query_service.call
       end
     end
