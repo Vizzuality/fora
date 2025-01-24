@@ -20,7 +20,6 @@ module API
       end
 
       def show
-        puts current_member.inspect
         widget_data = WidgetData.new widget: @widget, filters: filter_params, is_member_logged_in: current_member.present?
         render json: WidgetDataSerializer.new(
           widget_data,
