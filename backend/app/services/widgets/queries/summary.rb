@@ -16,8 +16,8 @@ module Widgets
         [[
           {value: Investment.can_be_shown_without_amount.where(year_invested: year).count("DISTINCT investments.funder_id").to_f},
           {value: Investment.can_be_shown_without_amount.where(year_invested: year).count("DISTINCT investments.project_id").to_f},
-          {value: Investment.can_show_aggregated_amount.where(year_invested: year).sum(:amount).to_f},
-          {value: Investment.can_show_aggregated_amount.where(year_invested: year).where(capital_type: %w[grants re_grants]).sum(:amount).to_f}
+          {value: enforce_privacy_for(Investment).where(year_invested: year).sum(:amount).to_f},
+          {value: enforce_privacy_for(Investment).where(year_invested: year).where(capital_type: %w[grants re_grants]).sum(:amount).to_f}
         ]]
       end
     end

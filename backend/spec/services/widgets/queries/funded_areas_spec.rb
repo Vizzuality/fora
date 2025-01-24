@@ -15,7 +15,7 @@ RSpec.describe Widgets::Queries::FundedAreas do
       create :investment, year_invested: 2030, privacy: "all", areas: ["equity_and_justice"]
     end
     let!(:ignored_investment_with_different_privacy) do
-      create :investment, year_invested: 2021, privacy: "amount_funded_visible_only_to_members", areas: ["equity_and_justice"]
+      create :investment, year_invested: 2021, amount: 10, privacy: "amount_funded_visible_only_to_members", areas: ["equity_and_justice"]
     end
 
     it "contains correct header" do
@@ -35,6 +35,15 @@ RSpec.describe Widgets::Queries::FundedAreas do
     it "has correct values for appropriate areas" do
       expect(result[:values].find { |v| v.first[:id] == "equity_and_justice" }.second[:value]).to eq(20)
       expect(result[:values].find { |v| v.first[:id] == "food_sovereignty" }.second[:value]).to eq(10)
+    end
+
+    context "when member is logged in" do
+      subject { described_class.new 2021, {}, true }
+
+      it "has correct values for appropriate areas" do
+        expect(result[:values].find { |v| v.first[:id] == "equity_and_justice" }.second[:value]).to eq(30)
+        expect(result[:values].find { |v| v.first[:id] == "food_sovereignty" }.second[:value]).to eq(10)
+      end
     end
   end
 end

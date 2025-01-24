@@ -20,7 +20,8 @@ module API
       end
 
       def show
-        widget_data = WidgetData.new widget: @widget, filters: filter_params
+        puts current_member.inspect
+        widget_data = WidgetData.new widget: @widget, filters: filter_params, is_member_logged_in: current_member.present?
         render json: WidgetDataSerializer.new(
           widget_data,
           params: {current_member: current_member, current_ability: current_ability}
@@ -28,7 +29,7 @@ module API
       end
 
       def download
-        widget_data = WidgetData.new widget: @widget, filters: filter_params
+        widget_data = WidgetData.new widget: @widget, filters: filter_params, is_member_logged_in: current_member.present?
         send_data widget_data.to_csv, filename: "FORA: #{widget_data.title}.csv"
       end
 

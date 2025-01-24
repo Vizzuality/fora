@@ -76,6 +76,8 @@ RSpec.describe "API V1 Widgets", type: :request do
       tags "Widgets"
       consumes "application/json"
       produces "application/json"
+      security [Bearer: {}]
+
       parameter name: :slug, in: :path, type: :string, description: "Slug of Widget"
       parameter name: "filter[report_year]", in: :query, type: :number, enum: ReportYear::TYPES, description: "Get widgets only for specified report year", required: true
       parameter name: "filter[geographic]", in: :query, type: :string, description: "Filter results only for specified geographic.", required: false
@@ -85,18 +87,34 @@ RSpec.describe "API V1 Widgets", type: :request do
 
       let!(:widget) { create :widget, report_pages: ["general_report"], report_year: 2021, slug: "summary", widget_type: "total" }
       let!(:investment) { create :investment, privacy: "all", year_invested: 2021 }
+      let!(:member_investment) { create :investment, privacy: "amount_funded_visible_only_to_members", year_invested: 2021 }
+
       let(:slug) { widget.slug }
       let("filter[report_year]") { 2021 }
+      let(:Authorization) { "" }
 
       it_behaves_like "with not found error"
 
       response "200", :success do
         schema type: :object, properties: {data: {"$ref" => "#/components/schemas/widget_data"}}
 
-        run_test!
+        context "when user is not logged in" do
+          run_test!
 
-        it "matches snapshot", generate_swagger_example: true do
-          expect(response.body).to match_snapshot("api/v1/get-widget-data")
+          it "matches snapshot", generate_swagger_example: true do
+            expect(response.body).to match_snapshot("api/v1/get-widget-data")
+          end
+        end
+
+        context "when user is logged in" do
+          let(:member) { create :member }
+          let(:Authorization) { "Bearer #{JWTAuth.encode(member)}" }
+
+          run_test!
+
+          it "matches snapshot", generate_swagger_example: true do
+            expect(response.body).to match_snapshot("api/v1/get-widget-data-member")
+          end
         end
       end
 
@@ -119,6 +137,8 @@ RSpec.describe "API V1 Widgets", type: :request do
       tags "Widgets"
       consumes "application/json"
       produces "text/csv"
+      security [Bearer: {}]
+
       parameter name: :slug, in: :path, type: :string, description: "Slug of Widget"
       parameter name: "filter[report_year]", in: :query, type: :number, enum: ReportYear::TYPES, description: "Get widgets only for specified report year", required: true
       parameter name: "filter[geographic]", in: :query, type: :string, description: "Filter results only for specified geographic.", required: false
@@ -130,14 +150,28 @@ RSpec.describe "API V1 Widgets", type: :request do
       let!(:investment) { create :investment, privacy: "all", year_invested: 2021 }
       let(:slug) { widget.slug }
       let("filter[report_year]") { 2021 }
+      let(:Authorization) { "" }
 
       it_behaves_like "with not found error"
 
       response "200", :success do
-        run_test!
+        context "when user is not logged in" do
+          run_test!
 
-        it "returns correct csv file" do
-          expect(response.body).to eq(WidgetData.new(widget: widget, filters: {}).to_csv)
+          it "returns correct csv file" do
+            expect(response.body).to eq(WidgetData.new(widget: widget, filters: {}).to_csv)
+          end
+        end
+
+        context "when user is logged in" do
+          let(:member) { create :member }
+          let(:Authorization) { "Bearer #{JWTAuth.encode(member)}" }
+
+          run_test!
+
+          it "returns correct csv file" do
+            expect(response.body).to eq(WidgetData.new(widget: widget, filters: {}, is_member_logged_in: true).to_csv)
+          end
         end
       end
 

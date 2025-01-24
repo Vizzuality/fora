@@ -21,6 +21,7 @@ class Investment < ApplicationRecord
   validates :amount, numericality: {greater_than: 0}
 
   scope :can_show_aggregated_amount, -> { where privacy: %w[all aggregate_amount_funded] }
+  scope :can_show_aggregated_amount_to_members, -> { where privacy: %w[all aggregate_amount_funded amount_funded_visible_only_to_members] }
   scope :can_be_shown_without_amount, -> { where privacy: %w[all aggregate_amount_funded amount_funded_visible_only_to_members amount_funded_visible_only_to_staff] }
 
   def to_s

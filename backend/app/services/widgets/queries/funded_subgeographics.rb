@@ -46,7 +46,7 @@ module Widgets
       end
 
       def investments_subquery
-        Investment.can_show_aggregated_amount.joins(:subgeographic_ancestors).where year_invested: year, subgeographics: {geographic: geographic}
+        enforce_privacy_for(Investment).joins(:subgeographic_ancestors).where year_invested: year, subgeographics: {geographic: geographic}
       end
 
       def subgeographics

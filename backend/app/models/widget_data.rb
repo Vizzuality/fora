@@ -1,13 +1,14 @@
 require "csv"
 
 class WidgetData
-  attr_accessor :widget, :filters
+  attr_accessor :widget, :filters, :is_member_logged_in
 
   delegate :id, :slug, to: :widget
 
-  def initialize(widget:, filters:)
+  def initialize(widget:, filters:, is_member_logged_in: false)
     @widget = widget
     @filters = filters.presence || {}
+    @is_member_logged_in = is_member_logged_in
   end
 
   def title
@@ -18,7 +19,7 @@ class WidgetData
     @data ||= begin
       return query_service.call unless query_service.enabled_cache?
 
-      Rails.cache.fetch "widget-data-#{widget.id}-#{query_service.cache_key}", expires_in: 10.minutes do
+      Rails.cache.fetch "widget-data-#{widget.id}-#{query_service.cache_key}-#{is_member_logged_in}", expires_in: 10.minutes do
         query_service.call
       end
     end
@@ -34,7 +35,7 @@ class WidgetData
   private
 
   def query_service
-    @query_service ||= query_klass.new widget.report_year, filters
+    @query_service ||= query_klass.new widget.report_year, filters, is_member_logged_in
   end
 
   def query_klass

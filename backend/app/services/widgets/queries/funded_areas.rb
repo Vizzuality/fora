@@ -20,7 +20,7 @@ module Widgets
       end
 
       def investments
-        @investments ||= Investment.can_show_aggregated_amount.select(:amount, :areas).where(year_invested: year)
+        @investments ||= enforce_privacy_for(Investment).select(:amount, :areas).where(year_invested: year)
           .each_with_object({}) do |investment, res|
           investment.areas.each do |investment_area|
             res[investment_area] = (res[investment_area] || 0) + (investment.amount / investment.areas.size).round

@@ -20,7 +20,7 @@ module Widgets
       end
 
       def investments
-        @investments ||= Investment.can_show_aggregated_amount.where(year_invested: year).joins(project: :recipient)
+        @investments ||= enforce_privacy_for(Investment).where(year_invested: year).joins(project: :recipient)
           .group("recipients.recipient_legal_status").sum(:amount)
       end
     end
