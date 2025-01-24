@@ -13,7 +13,7 @@ module Backoffice
       before_action :fetch_resource, only: %i[show edit update destroy]
       before_action :set_breadcrumbs, except: [:index]
 
-      helper_method :resource_class, :resources_url
+      helper_method :resource_class, :resources_url, :resource_url, :new_resource_url
     end
 
     def index
@@ -97,6 +97,10 @@ module Backoffice
 
     def resource_url(*args)
       send("backoffice_#{controller_name.classify.to_s.underscore.singularize}_url", *args)
+    end
+
+    def new_resource_url(*args)
+      send("new_backoffice_#{controller_name.classify.to_s.underscore.singularize}_url", *args)
     end
 
     def resource_class

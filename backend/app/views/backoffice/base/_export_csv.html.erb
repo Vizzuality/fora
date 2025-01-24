@@ -1,0 +1,6 @@
+<%= link_to request.query_parameters.merge(format: :csv) do %>
+  <div class="bg-white text-green-0 rounded-full py-2 px-4">
+    <span class="text-xl leading-none">↓</span>
+    <span><%= t("backoffice.actions.export_csv") %></span>
+  </div>
+<% end %>

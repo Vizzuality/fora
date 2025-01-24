@@ -183,7 +183,7 @@ en:
       delete: Delete
       cancel: Cancel
       total: Total
-      export_csv: export csv
+      export_csv: Export CSV
     pagination:
       prev: "←"
       next: "→"
