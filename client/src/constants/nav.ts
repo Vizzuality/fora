@@ -34,6 +34,12 @@ export const NAV = [
     target: '_blank',
     rel: 'noopener noreferrer',
   },
+  {
+    label: 'Log In',
+    href: '/auth/signin',
+    className: 'border border-grey-0 rounded-lg !bg-white',
+    auth: true,
+  },
 ];
 
 export const POLICIES = [

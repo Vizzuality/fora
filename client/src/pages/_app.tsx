@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { STORE_WRAPPER } from 'store';
 
 import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
+import { SessionProvider } from 'next-auth/react';
 import PlausibleProvider from 'next-plausible';
 
 import ApplicationLayout from 'layouts/application';
@@ -88,26 +89,22 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        {/* <SessionProvider
-            session={pageProps.session}
-            refetchInterval={10 * 60}
-            refetchOnWindowFocus
-          > */}
-        {/* @ts-ignore: https://github.com/artsy/fresnel/issues/281 */}
-        <MediaContextProvider>
-          <PlausibleProvider domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}>
-            <MetaIcons />
+        <SessionProvider session={pageProps.session}>
+          {/* @ts-ignore: https://github.com/artsy/fresnel/issues/281 */}
+          <MediaContextProvider>
+            <PlausibleProvider domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}>
+              <MetaIcons />
 
-            {/* <ThirdParty /> */}
+              {/* <ThirdParty /> */}
 
-            <RouteLoading key={routeLoading.key} loading={routeLoading.loading} />
+              <RouteLoading key={routeLoading.key} loading={routeLoading.loading} />
 
-            <ApplicationLayout>
-              <Component {...pageProps} />
-            </ApplicationLayout>
-          </PlausibleProvider>
-        </MediaContextProvider>
-        {/* </SessionProvider> */}
+              <ApplicationLayout>
+                <Component {...pageProps} />
+              </ApplicationLayout>
+            </PlausibleProvider>
+          </MediaContextProvider>
+        </SessionProvider>
       </Hydrate>
     </QueryClientProvider>
   );

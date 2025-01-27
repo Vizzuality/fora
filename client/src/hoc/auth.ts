@@ -1,111 +1,24 @@
-import { QueryClient, dehydrate } from '@tanstack/react-query';
-import type { GetServerSidePropsContext } from 'next';
-import { getSession } from 'next-auth/react';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 
-import API from 'services/api';
+import { auth } from 'pages/api/auth/[...nextauth]';
 
-type AuthProps = {
-  // TODO: change to a better type definition using Next types
-  redirect?: {
-    destination: string;
-    permanent: boolean;
-  };
-  props?: Record<string, unknown>;
-};
+export function withAuth(gssp?: GetServerSideProps) {
+  return async (context: GetServerSidePropsContext) => {
+    const session = await auth(context.req, context.res);
+    const isPublicRoute = context.req.url?.includes('/auth/');
 
-type AuthHOC = (context: GetServerSidePropsContext, session?: unknown) => Promise<AuthProps>;
-
-export function withProtection(getServerSidePropsFunc?: AuthHOC) {
-  return async (context: GetServerSidePropsContext): Promise<AuthProps> => {
-    const session = await getSession(context);
-    const { resolvedUrl } = context;
-
-    if (!session) {
+    if (!session && !isPublicRoute) {
+      // Protected route without session -> redirect to signin
       return {
         redirect: {
-          destination: `/auth/sign-in?callbackUrl=${resolvedUrl}`, // ? referer url, path from node
+          destination: '/auth/signin',
           permanent: false,
         },
       };
     }
 
-    if (getServerSidePropsFunc) {
-      const SSPF = await getServerSidePropsFunc(context, session);
-
-      return {
-        props: {
-          session,
-          ...SSPF.props,
-        },
-      };
-    }
-
-    return {
-      props: {
-        session,
-      },
-    };
-  };
-}
-
-export function withUser(getServerSidePropsFunc?: AuthHOC) {
-  return async (context: GetServerSidePropsContext): Promise<AuthProps> => {
-    const session = await getSession(context);
-
-    if (!session) {
-      if (getServerSidePropsFunc) {
-        const SSPF = (await getServerSidePropsFunc(context)) || {};
-
-        return {
-          props: {
-            ...SSPF.props,
-          },
-        };
-      }
-
-      return {
-        props: {},
-      };
-    }
-
-    const queryClient = new QueryClient();
-
-    await queryClient.prefetchQuery(['me'], () =>
-      API.request({
-        method: 'GET',
-        url: '/me',
-        headers: {
-          Authorization: `Bearer ${session.accessToken}`,
-        },
-      }).then((response) => response.data)
-    );
-
-    if (getServerSidePropsFunc) {
-      const SSPF = (await getServerSidePropsFunc(context)) || {};
-
-      return {
-        props: {
-          session,
-          dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
-          ...SSPF.props,
-        },
-      };
-    }
-
-    return {
-      props: {
-        session,
-        dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
-      },
-    };
-  };
-}
-
-export function withoutProtection(getServerSidePropsFunc?: AuthHOC) {
-  return async (context: GetServerSidePropsContext): Promise<AuthProps> => {
-    const session = await getSession(context);
-
-    if (session) {
+    if (session && isPublicRoute) {
+      // Public route (auth pages) with session -> redirect to projects
       return {
         redirect: {
           destination: '/projects',
@@ -114,14 +27,10 @@ export function withoutProtection(getServerSidePropsFunc?: AuthHOC) {
       };
     }
 
-    if (getServerSidePropsFunc) {
-      const SSPF = await getServerSidePropsFunc(context);
+    if (gssp) {
+      const gsspData = await gssp(context);
 
-      return {
-        props: {
-          ...SSPF.props,
-        },
-      };
+      return gsspData;
     }
 
     return {

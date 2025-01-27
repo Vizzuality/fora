@@ -17,10 +17,10 @@ export const THEME = {
   light: {
     base: 'w-full leading-tight text-grey-0 bg-white focus:border-grey-40',
     status: {
-      none: 'border-grey-0',
+      none: 'border-grey-40',
       valid: 'border-green-0',
       error: 'border-red-500',
-      disabled: 'border-grey-0 opacity-50',
+      disabled: 'border-grey-40 opacity-50',
     },
     icon: 'text-grey-0 text-opacity-50',
     mode: {

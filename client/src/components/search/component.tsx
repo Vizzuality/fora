@@ -57,6 +57,7 @@ export const Search: React.FC<SearchProps> = ({
         className={cx({
           'w-full h-full py-3 px-4': true,
           [THEME[theme]]: true,
+          '!border-grey-0': true,
         })}
         onChange={handleChange}
       />
