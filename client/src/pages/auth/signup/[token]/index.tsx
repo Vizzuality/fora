@@ -7,7 +7,7 @@ import { withAuth } from 'hoc/auth';
 const SignupPage = () => {
   const params = useParams<{ token: string } | null>();
 
-  return <ChangePassword token={params?.token} />;
+  return <ChangePassword token={params?.token} isSignUp />;
 };
 
 export const getServerSideProps = withAuth();

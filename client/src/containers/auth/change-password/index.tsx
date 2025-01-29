@@ -13,7 +13,10 @@ import Input from 'components/forms/input/component';
 
 import authenticationService from 'services/authentication';
 
-const ChangePassword: FC<{ token: string | undefined }> = ({ token }) => {
+const ChangePassword: FC<{ token: string | undefined; isSignUp?: boolean | undefined }> = ({
+  token,
+  isSignUp,
+}) => {
   const router = useRouter();
 
   const handleFormSubmit = useCallback(
@@ -53,7 +56,9 @@ const ChangePassword: FC<{ token: string | undefined }> = ({ token }) => {
       >
         {({ submitError, handleSubmit }) => (
           <form className="space-y-5" onSubmit={handleSubmit} autoComplete="off">
-            <h2 className="text-3xl text-center font-normal">Change password</h2>
+            <h2 className="text-3xl text-center font-normal">
+              {isSignUp ? 'Create password' : 'Change password'}
+            </h2>
             <div>
               <label>New password</label>
               <FieldRFF name="password" type="password">
@@ -72,7 +77,7 @@ const ChangePassword: FC<{ token: string | undefined }> = ({ token }) => {
                 Cancel
               </LinkButton>
               <Button theme="green" size="base" className="flex-1" type="submit">
-                <span>Reset password</span>
+                <span>{isSignUp ? 'Create password' : 'Reset password'}</span>
               </Button>
             </div>
           </form>
