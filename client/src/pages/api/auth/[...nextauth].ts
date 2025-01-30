@@ -22,7 +22,8 @@ export const authOptions: NextAuthOptions = {
    * By default Next-Auth provides /api/auth/signin
    */
   pages: {
-    signIn: '/auth/signin',
+    signIn: `${process.env.NEXT_PUBLIC_BASE_PATH}/auth/signin`,
+    signOut: `${process.env.NEXT_PUBLIC_BASE_PATH}`,
   },
 
   session: {

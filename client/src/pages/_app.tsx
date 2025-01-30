@@ -89,7 +89,10 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <SessionProvider session={pageProps.session}>
+        <SessionProvider
+          session={pageProps.session}
+          basePath={`${process.env.NEXT_PUBLIC_BASE_PATH}/api/auth`}
+        >
           {/* @ts-ignore: https://github.com/artsy/fresnel/issues/281 */}
           <MediaContextProvider>
             <PlausibleProvider domain={process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN}>
