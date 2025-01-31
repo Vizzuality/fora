@@ -1,7 +1,7 @@
 {
   "data": [
     {
-      "id": "8926a039-c8c8-48eb-a8bc-95c358648c55",
+      "id": "0f0cbe12-c4ac-4901-aa03-2522136f4012",
       "type": "subgeographic",
       "attributes": {
         "name": "Canada"
@@ -13,7 +13,7 @@
       }
     },
     {
-      "id": "57826af7-3d7e-4273-b240-f999f9d9fda2",
+      "id": "8dd3ad82-bf0d-445b-9605-2b6703afb116",
       "type": "subgeographic",
       "attributes": {
         "name": "Papua New Guinea"
@@ -21,7 +21,7 @@
       "relationships": {
         "parent": {
           "data": {
-            "id": "8926a039-c8c8-48eb-a8bc-95c358648c55",
+            "id": "0f0cbe12-c4ac-4901-aa03-2522136f4012",
             "type": "subgeographic"
           }
         }
@@ -30,7 +30,7 @@
   ],
   "included": [
     {
-      "id": "8926a039-c8c8-48eb-a8bc-95c358648c55",
+      "id": "0f0cbe12-c4ac-4901-aa03-2522136f4012",
       "type": "subgeographic",
       "attributes": {
         "name": "Canada"

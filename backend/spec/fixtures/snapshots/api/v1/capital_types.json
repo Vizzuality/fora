@@ -43,14 +43,14 @@
       }
     },
     {
-      "id": "pris",
+      "id": "other",
       "type": "capital_type",
       "attributes": {
         "name": "Other"
       }
     },
     {
-      "id": "re_grants",
+      "id": "pris",
       "type": "capital_type",
       "attributes": {
         "name": "PRIs"

@@ -38,7 +38,7 @@ RSpec.describe Importers::Uploads::Funders do
         "Do you collaborate with other networks/membership organizations? (Public)" => ["Yes", "SAFSF"],
         "Capital Deployed (select all that apply | Public)" => ["Grants", "Debt"],
         "Do you have a spend down strategy? (Public)" => ["Yes"],
-        "Areas of interest (not investing in currently but interested in investing in the future | select all that apply | Public)" => ["Agroforestry", "Alternative Proteins", "Custom Area"],
+        "Areas of interest (not investing in currently but interested in investing in the future | select all that apply | Public)" => ["Agroforestry", "Alternative Proteins"],
         "Demographic Focus (select all that apply | Public)" => ["Black or African American", "Indigenous/Tribal Nations"],
         "Geographic Focus - Countries (Select all that apply | Alphabetical from A - I, move to next question for J - Z | Public)" => ["Afghanistan"],
         "Geographic Focus - Countries (Select all that apply | alphabetical from J - Z | Public)" => ["Country Not Listed"],
@@ -97,8 +97,8 @@ RSpec.describe Importers::Uploads::Funders do
       expect(funder.funder_legal_status_other).to be_nil
       expect(funder.capital_types).to match_array(["grants", "debt"])
       expect(funder.capital_types_other).to be_nil
-      expect(funder.areas).to match_array(["agroforestry", "alternative_proteins", "other"])
-      expect(funder.areas_other).to eq("Custom Area")
+      expect(funder.areas).to match_array(["agroforestry", "alternative_proteins"])
+      expect(funder.areas_other).to be_nil
       expect(funder.demographics).to match_array(["black_or_african_american", "indigenous_tribal_nations"])
       expect(funder.demographics_other).to be_nil
       expect(funder.subgeographics).to match_array([national, afghanistan])

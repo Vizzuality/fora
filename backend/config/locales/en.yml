@@ -225,98 +225,214 @@ en:
       default_message: "Please review the problems below:"
   enums:
     area:
-      equity_and_justice:
-        name: Equity and Justice
-      food_sovereignty:
-        name: Food Sovereignty
-      rural_economic_health:
-        name: Rural Economic Health
-      climate_change:
-        name: Climate Change
-      grazing:
-        name: Grazing
-      soil_health:
-        name: Soil Health
-      water:
-        name: Water
-      biodiversity:
-        name: Biodiversity
-      land_access:
-        name: Land Access
-      policy_advocacy:
-        name: Policy- Advocacy
-      movement_building:
-        name: Movement Building
-      nutrient_quality_density:
-        name: Nutrient Quality/Density
-      research:
-        name: Research (Measuring and Validation of Regen Systems and/or Practices)
+      agroforestry:
+        name: Agroforestry
       animal_welfare:
         name: Animal Welfare
       aquaculture:
         name: Aquaculture
-      soil_measurement_and_technology:
-        name: Soil Measurement and Technology
-      middle_of_the_supply_chain_infrastructure:
-        name: Middle of the Supply Chain Infrastructure (processing, distribution, transporation)
+      biodiversity:
+        name: Biodiversity
+      climate_smart_commodities_practices:
+        name: Climate Smart Commodities/Practices
+      climate_change:
+        name: Climate Change
+      conservation_tillage:
+        name: Conservation Tillage
+      cover_crops:
+        name: Cover Crops
+      crop_diversification:
+        name: Crop Diversification
+      crop_rotation:
+        name: Crop Rotation
+      drainage:
+        name: Drainage
+      feed_additives:
+        name: Feed Additives
+      fertilizer_efficiency:
+        name: Fertilizer Efficiciency (alternatives, application, etc.)
       fiber_systems:
         name: Fiber Systems
-      toxins_reduction:
-        name: Toxins Reduction (ie organics, pesticides, herbicides etc)
-      media_communications_narrative_building:
-        name: Media, Communications, Narrative Building
-      technical_assistance_and_business_planning:
-        name: Technical Assistance and Business Planning (farmers)
-      regenerative_ag_financing:
-        name: Regenerative Ag Financing
-      true_cost_accounting:
-        name: True Cost Accounting
-      education_youth:
-        name: Education - Youth
-      education_future_farmers_young_farmers:
-        name: Education- Future Farmers, Young Farmers, etc
-      healthy_food_access:
-        name: Healthy Food Access
-      supply_chain_and_market_development:
-        name: Supply Chain and Market Development
-      tribal_nations:
-        name: Tribal Nations
-      leadership_development:
-        name: Leadership Development
-      educating_legislators:
-        name: Educating Legislators
-      policy_lobbying:
-        name: Policy- Lobbying
-      farm_workers:
-        name: Farmworkers
-      urban_farming:
-        name: Urban Farming
-      regenerative_ag_organizing_networks_or_groups:
-        name: Regenerative Ag Organizing Networks or Groups
+      grazing_management:
+        name: Grazing Management
+      prescription_fire:
+        name: Prescription Fire
+      land_use_conversation:
+        name: Land use Conversation
+      livestock_partnerships:
+        name: Livestock Partnerships
+      methane_livestock:
+        name: Methane (livestock)
+      methane_rice:
+        name: Methane (rice)
+      nitrogen_management:
+        name: Nitrogen Management
+      nutrient_quality_density:
+        name: Nutrient Quality/Density
+      restoration_of_disturbed_lands:
+        name: Restoration of Disturbed Lands
+      soil_health:
+        name: Soil Health
       sustainable_or_biological_inputs:
         name: Sustainable or Biological Inputs
-      on_farm_automation:
-        name: On Farm Automation
-      farm_equipment:
-        name: Farm Equipment
-      land_asset_financing:
-        name: Land Asset Financing
+      toxins_reduction:
+        name: Toxins Reduction (ie organics, pesticides, herbicides, etc)
+      organic_agriculture:
+        name: Organic Agriculture
+      urban_farming:
+        name: Urban Farming
+      water_quality:
+        name: Water Quality
+      water_conservation_and_management_practices:
+        name: Water Conservation and Management Practices (e.g., irrigation efficiency, water recycling)
+      wetlands:
+        name: Wetlands
+      wildlife_habitat:
+        name: Wildlife Habitat
+      reforestation_and_afforestation:
+        name: Reforestation and Afforestation
+      regenerative_agriculture:
+        name: Regenerative Agriculture
+      watershed_management:
+        name: Watershed Management
       land_conservation:
         name: Land Conservation
-      land_transition:
-        name: Land Transition
-      fermentation:
-        name: Fermentation
-      alternative_proteins:
-        name: Alternative Proteins
-      agroforestry:
-        name: Agroforestry
-      consumer_packaged_goods:
-        name: CPG (Consumer Packaged Goods)
+      agrovoltaics:
+        name: Agrovoltaics
+      climate_change_mitigation_strategies:
+        name: Climate Change Mitigation Strategies (carbon offsets, climate adaptation policies)
+      resilient_crop_systems_development:
+        name: Resilient Crop Systems Development (e.g., salt-tolerant or heat-tolerant crops)
+      on_farm_decarbonization:
+        name: On Farm Decarbonization
+      journalism_training_and_education:
+        name: Journalism Training and Education
+      media_communications_narrative_building:
+        name: Media, Communications, Narrative Building
+      academic_institution_support_and_capacity:
+        name: Academic Institution Support and Capacity
       capacity_building:
         name: Capacity Building
-      other:
-        name: Other
+      education_legislators:
+        name: Education - Legislators
+      education_future_farmers_young_farmers:
+        name: Education - Future Farmers, Young Farmers, etc
+      education_youth:
+        name: Education - Youth
+      education_funders:
+        name: Education - Funders
+      leadership_development:
+        name: Leadership Development
+      support_education_capacity_for_government_staff:
+        name: Support, Education, Capacity for Government Staff
+      technical_assistance_and_business_planning_for_farmers:
+        name: Technical Assistance and Business Planning for Farmers
+      business_planning_marketing_for_farmers:
+        name: Business Planning & Marketing for Farmers
+      regenerative_agriculture_organizing_networks_or_groups:
+        name: Regenerative Agriculture Organizing Networks or Groups
+      community_power_building:
+        name: Community Power Building
+      equity_and_justice:
+        name: Equity and Justice
+      farmworker_rights:
+        name: Farmworker Rights
+      food_sovereignty:
+        name: Food Sovereignty
+      healthy_food_access:
+        name: Healthy Food Access
+      land_access:
+        name: Land Access
+      land_back_initiatives:
+        name: Land Back Initiatives
+      land_tenure:
+        name: Land Tenure
+      land_transition:
+        name: Land Transition
+      market_access_and_infrastructure:
+        name: Market Access and Infrastructure
+      tribal_nations:
+        name: Tribal Nations
+      approved_insurance_providers_and_warranty_products:
+        name: Approved Insurance Providers and Warranty Products
+      farm_equipment:
+        name: Farm Equipment
+      fintech:
+        name: FinTech
+      land_asset_financing:
+        name: Land Asset Financing
+      middle_of_the_supply_chain_infrastructure:
+        name: Middle of the Supply Chain Infrastructure (Processing, Distribution, Transportation)
+      regenerative_agriculture_financing:
+        name: Regenerative Agriculture Financing
+      regenerative_cpgs_brands:
+        name: Regenerative CPGs & Brands
+      rural_economic_health:
+        name: Rural Economic Health
+      supply_chain_and_market_development:
+        name: Supply Chain and Market Development
+      true_cost_accounting:
+        name: True Cost Accounting
+      farm_bill:
+        name: Farm Bill
+      federal_policy_initiatives:
+        name: Federal Policy Initiatives
+      fossil_fuel_based_inputs_alternatives_bioinputs:
+        name: Fossil Fuel Based Inputs Alternatives/Bioinputs
+      insurance_reform_and_alternative_insurance_products:
+        name: Insurance Reform and Alternative Insurance Products
+      litigation:
+        name: Litigation
+      movement_building:
+        name: Movement Building
+      municipal_policy_initiatives:
+        name: Municipal Policy Initiatives
+      next_generation_policy_leadership:
+        name: Next Generation Policy Leadership
+      policy_advocacy:
+        name: Policy - Advocacy
+      policy_lobbying:
+        name: Policy - Lobbying
+      public_and_private_finance_mechanisms:
+        name: Public and Private Finance Mechanisms
+      regulatory_work_taking_on_industry:
+        name: Regulatory Work - Taking on Industry
+      risk_management_reform:
+        name: Risk Management Reform
+      science_informed_policy_development:
+        name: Science Informed Policy Development
+      shareholder_advocacy:
+        name: Shareholder Advocacy
+      state_policy_initiatives:
+        name: State Policy Initiatives
+      tackling_fossil_fuels_in_agriculture:
+        name: Tackling Fossil Fuels In Agriculture
+      voluntary_incentive_programs:
+        name: Voluntary Incentive Programs
+      agtech:
+        name: AgTech
+      alternative_proteins:
+        name: Alternative Proteins
+      fermentation:
+        name: Fermentation
+      emissions_models_methane_n2o:
+        name: Emissions Models (Methane, N2O)
+      genetics:
+        name: Genetics
+      measurement_monitoring_reporting_and_verification:
+        name: Measurement, Monitoring, Reporting, and Verification (MMRV)
+      on_farm_automation:
+        name: On Farm Automation
+      research_measuring_and_validation_of_regenerative_systems_and_practices:
+        name: Research (Measuring and Validation of Regenerative Systems and/or Practices)
+      research_and_development_innovation:
+        name: Research and Development (Innovation)
+      software:
+        name: Software
+      soil_measurement_and_technology:
+        name: Soil Measurement and Technology
+      supply_equipment:
+        name: Supply & Equipment
     geographic:
       countries:
         name: Countries

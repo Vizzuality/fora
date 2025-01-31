@@ -1,28 +1,28 @@
 {
   "data": [
     {
-      "id": "cooperative",
+      "id": "for_profit",
       "type": "recipient_legal_status",
       "attributes": {
         "name": "For-profit"
       }
     },
     {
-      "id": "for_profit",
+      "id": "government_organization",
       "type": "recipient_legal_status",
       "attributes": {
         "name": "Government Organization"
       }
     },
     {
-      "id": "foundation",
+      "id": "i_dont_know",
       "type": "recipient_legal_status",
       "attributes": {
         "name": "I don't know"
       }
     },
     {
-      "id": "other",
+      "id": "individual",
       "type": "recipient_legal_status",
       "attributes": {
         "name": "Individual"

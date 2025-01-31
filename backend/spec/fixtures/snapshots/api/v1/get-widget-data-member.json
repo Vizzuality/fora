@@ -1,0 +1,45 @@
+{
+  "data": {
+    "id": "60d9cb8d-2362-4929-9b6f-4f46442e46df",
+    "type": "widget_data",
+    "attributes": {
+      "title": "Enim repellat pariatur est.",
+      "data": {
+        "headers": [
+          {
+            "label": "Total number of FORA members",
+            "value": "total_funders"
+          },
+          {
+            "label": "Total number of projects",
+            "value": "total_projects"
+          },
+          {
+            "label": "Total capital (USD)",
+            "value": "total_capital"
+          },
+          {
+            "label": "Total grants (USD)",
+            "value": "total_grants"
+          }
+        ],
+        "values": [
+          [
+            {
+              "value": 2.0
+            },
+            {
+              "value": 2.0
+            },
+            {
+              "value": 167.59
+            },
+            {
+              "value": 68.96
+            }
+          ]
+        ]
+      }
+    }
+  }
+}

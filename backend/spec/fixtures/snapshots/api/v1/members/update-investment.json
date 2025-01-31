@@ -1,6 +1,6 @@
 {
   "data": {
-    "id": "7425805c-e8e6-4cf4-88d3-8d96cf0bc05d",
+    "id": "a55a1c46-8c68-4765-b7fc-634ba10a2993",
     "type": "investment",
     "attributes": {
       "amount": "100.0",
@@ -27,13 +27,13 @@
     "relationships": {
       "project": {
         "data": {
-          "id": "3eff977c-db26-463e-93d4-be91d2f74b9d",
+          "id": "03c35517-fd24-466b-984b-152353189d2c",
           "type": "project"
         }
       },
       "funder": {
         "data": {
-          "id": "a102d551-c4ab-4f1a-a9d9-838c900d4549",
+          "id": "d3bdc10e-7da4-4dcd-b406-b41aecf2c61d",
           "type": "funder"
         }
       }

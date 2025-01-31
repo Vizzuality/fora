@@ -64,28 +64,28 @@
       }
     },
     {
-      "id": "network_of_funders",
+      "id": "other",
       "type": "funder_type",
       "attributes": {
         "name": "Other"
       }
     },
     {
-      "id": "other",
+      "id": "private_foundation",
       "type": "funder_type",
       "attributes": {
         "name": "Private Foundation"
       }
     },
     {
-      "id": "private_foundation",
+      "id": "public_foundation",
       "type": "funder_type",
       "attributes": {
         "name": "Public Foundation"
       }
     },
     {
-      "id": "public_foundation",
+      "id": "regrantor",
       "type": "funder_type",
       "attributes": {
         "name": "Regrantor"

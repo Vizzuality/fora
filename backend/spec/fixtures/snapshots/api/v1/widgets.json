@@ -1,7 +1,7 @@
 {
   "data": [
     {
-      "id": "31d445ea-b189-4b5a-a093-eef2415a10e9",
+      "id": "d8b1fb29-84ac-4b48-869f-7c24a0931783",
       "type": "widget",
       "attributes": {
         "title": "Enim repellat pariatur est.",
@@ -13,12 +13,12 @@
         "slug": "funded_areas",
         "position": 38,
         "description": "Enim repellat pariatur. Earum modi eos. Libero tempora exercitationem. Qui dolorem quo.",
-        "created_at": "2022-11-07T09:33:38.698Z",
-        "updated_at": "2022-11-07T09:33:38.698Z"
+        "created_at": "2025-01-31T11:56:45.074Z",
+        "updated_at": "2025-01-31T11:56:45.074Z"
       }
     },
     {
-      "id": "db803363-7759-4cd2-83fd-0aae8b920eea",
+      "id": "2c2d493b-058f-45c1-a11e-987dd61fbdb4",
       "type": "widget",
       "attributes": {
         "title": "Placeat commodi libero et.",
@@ -30,8 +30,8 @@
         "slug": "funded_subgeographics",
         "position": 41,
         "description": "Placeat commodi libero. Quo recusandae repellat. Sunt commodi tempore. Voluptatem et corrupti.",
-        "created_at": "2022-11-07T09:33:38.710Z",
-        "updated_at": "2022-11-07T09:33:38.710Z"
+        "created_at": "2025-01-31T11:56:45.076Z",
+        "updated_at": "2025-01-31T11:56:45.076Z"
       }
     }
   ]

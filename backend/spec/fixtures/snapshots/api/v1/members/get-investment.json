@@ -1,6 +1,6 @@
 {
   "data": {
-    "id": "0a3fa70f-ae21-4cc4-a27b-f85a44ec65d8",
+    "id": "fc93bcd4-87fa-49c0-96f2-3285f3d6436e",
     "type": "investment",
     "attributes": {
       "amount": "68.96",
@@ -9,8 +9,8 @@
       "funding_type": "sponsorship",
       "funding_type_other": "Enim repellat pariatur est.",
       "areas": [
-        "land_asset_financing",
-        "capacity_building"
+        "climate_change_mitigation_strategies",
+        "fertilizer_efficiency"
       ],
       "areas_other": "Enim repellat pariatur est.",
       "grant_duration": "multi_year",
@@ -28,13 +28,13 @@
     "relationships": {
       "project": {
         "data": {
-          "id": "b9a53166-17b8-4bc3-88c9-87d32d2ecf38",
+          "id": "6b259290-d73f-41cf-a66f-d65cdb2ee0bf",
           "type": "project"
         }
       },
       "funder": {
         "data": {
-          "id": "afefb7a6-7d0c-4028-bc35-90c94e72e8de",
+          "id": "dda31fd4-037e-414c-8a8b-a81b25398d4a",
           "type": "funder"
         }
       }

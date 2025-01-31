@@ -1,6 +1,6 @@
 {
   "data": {
-    "id": "b6408133-3b86-49a7-a8b4-03c03b720cc6",
+    "id": "ff3bcff6-0ad9-4392-abf7-c0f783e23de8",
     "type": "investment",
     "attributes": {
       "amount": "68.96"
@@ -8,7 +8,7 @@
     "relationships": {
       "project": {
         "data": {
-          "id": "ad4136b8-d26b-404c-a285-319b487a3eb6",
+          "id": "6e3992a5-94a9-47b9-b11d-ade454a8dc6a",
           "type": "project"
         }
       }

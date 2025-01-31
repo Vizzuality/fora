@@ -1,15 +1,15 @@
 {
   "data": [
     {
-      "id": "8879dbf7-8286-47ba-a4ea-22e821b07ac2",
+      "id": "c17b92e3-4b46-4a57-9b3d-51ced8387d21",
       "type": "subgeographic",
       "attributes": {
         "name": "Canada",
         "code": "BWA",
         "geographic": "countries",
-        "created_at": "2022-09-30T10:34:31.522Z",
-        "updated_at": "2022-09-30T10:34:31.522Z",
-        "abbreviation": "C-BWA"
+        "abbreviation": "C-BWA",
+        "created_at": "2025-01-31T11:56:04.675Z",
+        "updated_at": "2025-01-31T11:56:04.675Z"
       },
       "relationships": {
         "parent": {
@@ -18,7 +18,7 @@
         "subgeographics": {
           "data": [
             {
-              "id": "ba72a175-195c-478b-b289-66866579cf7b",
+              "id": "e04ed29e-b695-4f86-a10d-01fc789472ca",
               "type": "subgeographic"
             }
           ]
@@ -26,20 +26,20 @@
       }
     },
     {
-      "id": "ba72a175-195c-478b-b289-66866579cf7b",
+      "id": "e04ed29e-b695-4f86-a10d-01fc789472ca",
       "type": "subgeographic",
       "attributes": {
         "name": "Papua New Guinea",
         "code": "NPL",
         "geographic": "regions",
-        "created_at": "2022-09-30T10:34:31.535Z",
-        "updated_at": "2022-09-30T10:34:31.535Z",
-        "abbreviation": "R-NPL"
+        "abbreviation": "R-NPL",
+        "created_at": "2025-01-31T11:56:04.679Z",
+        "updated_at": "2025-01-31T11:56:04.679Z"
       },
       "relationships": {
         "parent": {
           "data": {
-            "id": "8879dbf7-8286-47ba-a4ea-22e821b07ac2",
+            "id": "c17b92e3-4b46-4a57-9b3d-51ced8387d21",
             "type": "subgeographic"
           }
         },

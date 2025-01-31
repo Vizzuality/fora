@@ -15,7 +15,7 @@
       }
     },
     {
-      "id": "open_invitations",
+      "id": "open_invitation",
       "type": "application_status",
       "attributes": {
         "name": "Open Invitation"

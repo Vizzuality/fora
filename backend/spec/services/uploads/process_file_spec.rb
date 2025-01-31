@@ -176,7 +176,7 @@ RSpec.describe Uploads::ProcessFile do
         expect(investment_1.funding_type_other).to be_nil
         expect(investment_1.grant_duration).to eq("one_year")
         expect(investment_1.number_of_grant_years).to be_zero
-        expect(investment_1.areas).to match_array(["urban_farming", "water"])
+        expect(investment_1.areas).to match_array(["urban_farming", "water_quality"])
         expect(investment_1.areas_other).to be_nil
         expect(investment_1.demographics).to match_array(["no_specific_focus"])
         expect(investment_1.demographics_other).to be_nil

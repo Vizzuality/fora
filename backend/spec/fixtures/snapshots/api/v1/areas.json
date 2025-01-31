@@ -1,10 +1,31 @@
 {
   "data": [
     {
+      "id": "academic_institution_support_and_capacity",
+      "type": "area",
+      "attributes": {
+        "name": "Academic Institution Support and Capacity"
+      }
+    },
+    {
+      "id": "agtech",
+      "type": "area",
+      "attributes": {
+        "name": "AgTech"
+      }
+    },
+    {
       "id": "agroforestry",
       "type": "area",
       "attributes": {
         "name": "Agroforestry"
+      }
+    },
+    {
+      "id": "agrovoltaics",
+      "type": "area",
+      "attributes": {
+        "name": "Agrovoltaics"
       }
     },
     {
@@ -22,6 +43,13 @@
       }
     },
     {
+      "id": "approved_insurance_providers_and_warranty_products",
+      "type": "area",
+      "attributes": {
+        "name": "Approved Insurance Providers and Warranty Products"
+      }
+    },
+    {
       "id": "aquaculture",
       "type": "area",
       "attributes": {
@@ -36,10 +64,10 @@
       }
     },
     {
-      "id": "consumer_packaged_goods",
+      "id": "business_planning_marketing_for_farmers",
       "type": "area",
       "attributes": {
-        "name": "CPG (Consumer Packaged Goods)"
+        "name": "Business Planning & Marketing for Farmers"
       }
     },
     {
@@ -57,10 +85,80 @@
       }
     },
     {
-      "id": "educating_legislators",
+      "id": "climate_change_mitigation_strategies",
       "type": "area",
       "attributes": {
-        "name": "Educating Legislators"
+        "name": "Climate Change Mitigation Strategies (carbon offsets, climate adaptation policies)"
+      }
+    },
+    {
+      "id": "climate_smart_commodities_practices",
+      "type": "area",
+      "attributes": {
+        "name": "Climate Smart Commodities/Practices"
+      }
+    },
+    {
+      "id": "community_power_building",
+      "type": "area",
+      "attributes": {
+        "name": "Community Power Building"
+      }
+    },
+    {
+      "id": "conservation_tillage",
+      "type": "area",
+      "attributes": {
+        "name": "Conservation Tillage"
+      }
+    },
+    {
+      "id": "cover_crops",
+      "type": "area",
+      "attributes": {
+        "name": "Cover Crops"
+      }
+    },
+    {
+      "id": "crop_diversification",
+      "type": "area",
+      "attributes": {
+        "name": "Crop Diversification"
+      }
+    },
+    {
+      "id": "crop_rotation",
+      "type": "area",
+      "attributes": {
+        "name": "Crop Rotation"
+      }
+    },
+    {
+      "id": "drainage",
+      "type": "area",
+      "attributes": {
+        "name": "Drainage"
+      }
+    },
+    {
+      "id": "education_funders",
+      "type": "area",
+      "attributes": {
+        "name": "Education - Funders"
+      }
+    },
+    {
+      "id": "education_future_farmers_young_farmers",
+      "type": "area",
+      "attributes": {
+        "name": "Education - Future Farmers, Young Farmers, etc"
+      }
+    },
+    {
+      "id": "education_legislators",
+      "type": "area",
+      "attributes": {
+        "name": "Education - Legislators"
       }
     },
     {
@@ -71,10 +169,10 @@
       }
     },
     {
-      "id": "education_future_farmers_young_farmers",
+      "id": "emissions_models_methane_n2o",
       "type": "area",
       "attributes": {
-        "name": "Education- Future Farmers, Young Farmers, etc"
+        "name": "Emissions Models (Methane, N2O)"
       }
     },
     {
@@ -85,6 +183,13 @@
       }
     },
     {
+      "id": "farm_bill",
+      "type": "area",
+      "attributes": {
+        "name": "Farm Bill"
+      }
+    },
+    {
       "id": "farm_equipment",
       "type": "area",
       "attributes": {
@@ -92,10 +197,24 @@
       }
     },
     {
-      "id": "farm_workers",
+      "id": "farmworker_rights",
       "type": "area",
       "attributes": {
-        "name": "Farmworkers"
+        "name": "Farmworker Rights"
+      }
+    },
+    {
+      "id": "federal_policy_initiatives",
+      "type": "area",
+      "attributes": {
+        "name": "Federal Policy Initiatives"
+      }
+    },
+    {
+      "id": "feed_additives",
+      "type": "area",
+      "attributes": {
+        "name": "Feed Additives"
       }
     },
     {
@@ -106,10 +225,24 @@
       }
     },
     {
+      "id": "fertilizer_efficiency",
+      "type": "area",
+      "attributes": {
+        "name": "Fertilizer Efficiciency (alternatives, application, etc.)"
+      }
+    },
+    {
       "id": "fiber_systems",
       "type": "area",
       "attributes": {
         "name": "Fiber Systems"
+      }
+    },
+    {
+      "id": "fintech",
+      "type": "area",
+      "attributes": {
+        "name": "FinTech"
       }
     },
     {
@@ -120,10 +253,24 @@
       }
     },
     {
-      "id": "grazing",
+      "id": "fossil_fuel_based_inputs_alternatives_bioinputs",
       "type": "area",
       "attributes": {
-        "name": "Grazing"
+        "name": "Fossil Fuel Based Inputs Alternatives/Bioinputs"
+      }
+    },
+    {
+      "id": "genetics",
+      "type": "area",
+      "attributes": {
+        "name": "Genetics"
+      }
+    },
+    {
+      "id": "grazing_management",
+      "type": "area",
+      "attributes": {
+        "name": "Grazing Management"
       }
     },
     {
@@ -131,6 +278,20 @@
       "type": "area",
       "attributes": {
         "name": "Healthy Food Access"
+      }
+    },
+    {
+      "id": "insurance_reform_and_alternative_insurance_products",
+      "type": "area",
+      "attributes": {
+        "name": "Insurance Reform and Alternative Insurance Products"
+      }
+    },
+    {
+      "id": "journalism_training_and_education",
+      "type": "area",
+      "attributes": {
+        "name": "Journalism Training and Education"
       }
     },
     {
@@ -148,10 +309,24 @@
       }
     },
     {
+      "id": "land_back_initiatives",
+      "type": "area",
+      "attributes": {
+        "name": "Land Back Initiatives"
+      }
+    },
+    {
       "id": "land_conservation",
       "type": "area",
       "attributes": {
         "name": "Land Conservation"
+      }
+    },
+    {
+      "id": "land_tenure",
+      "type": "area",
+      "attributes": {
+        "name": "Land Tenure"
       }
     },
     {
@@ -162,10 +337,45 @@
       }
     },
     {
+      "id": "land_use_conversation",
+      "type": "area",
+      "attributes": {
+        "name": "Land use Conversation"
+      }
+    },
+    {
       "id": "leadership_development",
       "type": "area",
       "attributes": {
         "name": "Leadership Development"
+      }
+    },
+    {
+      "id": "litigation",
+      "type": "area",
+      "attributes": {
+        "name": "Litigation"
+      }
+    },
+    {
+      "id": "livestock_partnerships",
+      "type": "area",
+      "attributes": {
+        "name": "Livestock Partnerships"
+      }
+    },
+    {
+      "id": "market_access_and_infrastructure",
+      "type": "area",
+      "attributes": {
+        "name": "Market Access and Infrastructure"
+      }
+    },
+    {
+      "id": "measurement_monitoring_reporting_and_verification",
+      "type": "area",
+      "attributes": {
+        "name": "Measurement, Monitoring, Reporting, and Verification (MMRV)"
       }
     },
     {
@@ -176,10 +386,24 @@
       }
     },
     {
+      "id": "methane_livestock",
+      "type": "area",
+      "attributes": {
+        "name": "Methane (livestock)"
+      }
+    },
+    {
+      "id": "methane_rice",
+      "type": "area",
+      "attributes": {
+        "name": "Methane (rice)"
+      }
+    },
+    {
       "id": "middle_of_the_supply_chain_infrastructure",
       "type": "area",
       "attributes": {
-        "name": "Middle of the Supply Chain Infrastructure (processing, distribution, transporation)"
+        "name": "Middle of the Supply Chain Infrastructure (Processing, Distribution, Transportation)"
       }
     },
     {
@@ -187,6 +411,27 @@
       "type": "area",
       "attributes": {
         "name": "Movement Building"
+      }
+    },
+    {
+      "id": "municipal_policy_initiatives",
+      "type": "area",
+      "attributes": {
+        "name": "Municipal Policy Initiatives"
+      }
+    },
+    {
+      "id": "next_generation_policy_leadership",
+      "type": "area",
+      "attributes": {
+        "name": "Next Generation Policy Leadership"
+      }
+    },
+    {
+      "id": "nitrogen_management",
+      "type": "area",
+      "attributes": {
+        "name": "Nitrogen Management"
       }
     },
     {
@@ -204,45 +449,122 @@
       }
     },
     {
-      "id": "other",
+      "id": "on_farm_decarbonization",
       "type": "area",
       "attributes": {
-        "name": "Other"
+        "name": "On Farm Decarbonization"
+      }
+    },
+    {
+      "id": "organic_agriculture",
+      "type": "area",
+      "attributes": {
+        "name": "Organic Agriculture"
       }
     },
     {
       "id": "policy_advocacy",
       "type": "area",
       "attributes": {
-        "name": "Policy- Advocacy"
+        "name": "Policy - Advocacy"
       }
     },
     {
       "id": "policy_lobbying",
       "type": "area",
       "attributes": {
-        "name": "Policy- Lobbying"
+        "name": "Policy - Lobbying"
       }
     },
     {
-      "id": "regenerative_ag_financing",
+      "id": "prescription_fire",
       "type": "area",
       "attributes": {
-        "name": "Regenerative Ag Financing"
+        "name": "Prescription Fire"
       }
     },
     {
-      "id": "regenerative_ag_organizing_networks_or_groups",
+      "id": "public_and_private_finance_mechanisms",
       "type": "area",
       "attributes": {
-        "name": "Regenerative Ag Organizing Networks or Groups"
+        "name": "Public and Private Finance Mechanisms"
       }
     },
     {
-      "id": "research",
+      "id": "reforestation_and_afforestation",
       "type": "area",
       "attributes": {
-        "name": "Research (Measuring and Validation of Regen Systems and/or Practices)"
+        "name": "Reforestation and Afforestation"
+      }
+    },
+    {
+      "id": "regenerative_agriculture",
+      "type": "area",
+      "attributes": {
+        "name": "Regenerative Agriculture"
+      }
+    },
+    {
+      "id": "regenerative_agriculture_financing",
+      "type": "area",
+      "attributes": {
+        "name": "Regenerative Agriculture Financing"
+      }
+    },
+    {
+      "id": "regenerative_agriculture_organizing_networks_or_groups",
+      "type": "area",
+      "attributes": {
+        "name": "Regenerative Agriculture Organizing Networks or Groups"
+      }
+    },
+    {
+      "id": "regenerative_cpgs_brands",
+      "type": "area",
+      "attributes": {
+        "name": "Regenerative CPGs & Brands"
+      }
+    },
+    {
+      "id": "regulatory_work_taking_on_industry",
+      "type": "area",
+      "attributes": {
+        "name": "Regulatory Work - Taking on Industry"
+      }
+    },
+    {
+      "id": "research_measuring_and_validation_of_regenerative_systems_and_practices",
+      "type": "area",
+      "attributes": {
+        "name": "Research (Measuring and Validation of Regenerative Systems and/or Practices)"
+      }
+    },
+    {
+      "id": "research_and_development_innovation",
+      "type": "area",
+      "attributes": {
+        "name": "Research and Development (Innovation)"
+      }
+    },
+    {
+      "id": "resilient_crop_systems_development",
+      "type": "area",
+      "attributes": {
+        "name": "Resilient Crop Systems Development (e.g., salt-tolerant or heat-tolerant crops)"
+      }
+    },
+    {
+      "id": "restoration_of_disturbed_lands",
+      "type": "area",
+      "attributes": {
+        "name": "Restoration of Disturbed Lands"
+      }
+    },
+    {
+      "id": "risk_management_reform",
+      "type": "area",
+      "attributes": {
+        "name": "Risk Management Reform"
       }
     },
     {
@@ -250,6 +572,27 @@
       "type": "area",
       "attributes": {
         "name": "Rural Economic Health"
+      }
+    },
+    {
+      "id": "science_informed_policy_development",
+      "type": "area",
+      "attributes": {
+        "name": "Science Informed Policy Development"
+      }
+    },
+    {
+      "id": "shareholder_advocacy",
+      "type": "area",
+      "attributes": {
+        "name": "Shareholder Advocacy"
+      }
+    },
+    {
+      "id": "software",
+      "type": "area",
+      "attributes": {
+        "name": "Software"
       }
     },
     {
@@ -267,10 +610,31 @@
       }
     },
     {
+      "id": "state_policy_initiatives",
+      "type": "area",
+      "attributes": {
+        "name": "State Policy Initiatives"
+      }
+    },
+    {
+      "id": "supply_equipment",
+      "type": "area",
+      "attributes": {
+        "name": "Supply & Equipment"
+      }
+    },
+    {
       "id": "supply_chain_and_market_development",
       "type": "area",
       "attributes": {
         "name": "Supply Chain and Market Development"
+      }
+    },
+    {
+      "id": "support_education_capacity_for_government_staff",
+      "type": "area",
+      "attributes": {
+        "name": "Support, Education, Capacity for Government Staff"
       }
     },
     {
@@ -281,17 +645,24 @@
       }
     },
     {
-      "id": "technical_assistance_and_business_planning",
+      "id": "tackling_fossil_fuels_in_agriculture",
       "type": "area",
       "attributes": {
-        "name": "Technical Assistance and Business Planning (farmers)"
+        "name": "Tackling Fossil Fuels In Agriculture"
+      }
+    },
+    {
+      "id": "technical_assistance_and_business_planning_for_farmers",
+      "type": "area",
+      "attributes": {
+        "name": "Technical Assistance and Business Planning for Farmers"
       }
     },
     {
       "id": "toxins_reduction",
       "type": "area",
       "attributes": {
-        "name": "Toxins Reduction (ie organics, pesticides, herbicides etc)"
+        "name": "Toxins Reduction (ie organics, pesticides, herbicides, etc)"
       }
     },
     {
@@ -316,10 +687,45 @@
       }
     },
     {
-      "id": "water",
+      "id": "voluntary_incentive_programs",
       "type": "area",
       "attributes": {
-        "name": "Water"
+        "name": "Voluntary Incentive Programs"
+      }
+    },
+    {
+      "id": "water_conservation_and_management_practices",
+      "type": "area",
+      "attributes": {
+        "name": "Water Conservation and Management Practices (e.g., irrigation efficiency, water recycling)"
+      }
+    },
+    {
+      "id": "water_quality",
+      "type": "area",
+      "attributes": {
+        "name": "Water Quality"
+      }
+    },
+    {
+      "id": "watershed_management",
+      "type": "area",
+      "attributes": {
+        "name": "Watershed Management"
+      }
+    },
+    {
+      "id": "wetlands",
+      "type": "area",
+      "attributes": {
+        "name": "Wetlands"
+      }
+    },
+    {
+      "id": "wildlife_habitat",
+      "type": "area",
+      "attributes": {
+        "name": "Wildlife Habitat"
       }
     }
   ]

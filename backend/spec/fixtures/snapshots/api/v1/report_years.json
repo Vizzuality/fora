@@ -1,28 +1,28 @@
 {
   "data": [
     {
-      "id": 2021,
+      "id": "2021",
       "type": "report_year",
       "attributes": {
         "name": 2021
       }
     },
     {
-      "id": 2022,
+      "id": "2022",
       "type": "report_year",
       "attributes": {
         "name": 2022
       }
     },
     {
-      "id": 2023,
+      "id": "2023",
       "type": "report_year",
       "attributes": {
         "name": 2023
       }
     },
     {
-      "id": 2024,
+      "id": "2024",
       "type": "report_year",
       "attributes": {
         "name": 2024
