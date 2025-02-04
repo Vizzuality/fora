@@ -17,7 +17,7 @@ const ProjectList = () => {
 
   return (
     <div className="space-y-20">
-      {!!funders.length && (
+      {!!funders?.length && (
         <div className="space-y-9">
           <h3 className="text-2xl font-display"> Who is funding this project?</h3>
 

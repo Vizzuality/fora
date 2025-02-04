@@ -2,6 +2,7 @@ import actionMap from 'store/action-map';
 import dashboardsGeneralReport from 'store/dashboards/general-report';
 import funders from 'store/funders';
 import projects from 'store/projects';
+import projectForm from'store/projects/projectFormSlice';
 
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import type { ReducersMapObject } from '@reduxjs/toolkit';
@@ -12,6 +13,7 @@ const staticReducers = {
   '/funders': funders,
   '/projects': projects,
   '/dashboards/general-report': dashboardsGeneralReport,
+  '/projects/slice/projectFormSlice': projectForm,
 };
 
 const asyncReducers = {};

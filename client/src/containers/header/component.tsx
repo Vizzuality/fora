@@ -71,7 +71,7 @@ const Header = () => {
                         className={cx({
                           'text-base font-semibold py-2 px-7': true,
                           'hover:rounded-lg hover:bg-grey-60/75': pathname !== href,
-                          'rounded-lg bg-green-0': isActiveNavItem(href),
+                          'border-b-2 border-[#A3BC3B]': isActiveNavItem(href),
                           'text-grey-0 hover:underline': !filled,
                         })}
                       >
@@ -85,7 +85,7 @@ const Header = () => {
                           'text-base font-semibold py-2 px-7',
                           {
                             'hover:rounded-lg hover:bg-grey-60/75': !pathname.includes(href),
-                            'rounded-lg bg-green-0': isActiveNavItem(href),
+                            'border-b-2 border-[#A3BC3B]': isActiveNavItem(href),
                             'pointer-events-none select-none':
                               pathname.includes(href) && pathname !== '/',
                           },

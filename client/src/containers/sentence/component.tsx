@@ -19,6 +19,7 @@ import FunderTypes from './funder-types';
 import Geographics from './geographics';
 import ProjectLegalStatus from './project-legal-status';
 import { SentenceProps } from './types';
+import Filter from 'components/filters/trigger';
 
 const Sentence: React.FC<SentenceProps> = ({ type }) => {
   const { filters } = useAppSelector((state) => state[`/${type}`]);
@@ -93,8 +94,9 @@ const Sentence: React.FC<SentenceProps> = ({ type }) => {
       />
 
       <>
-        <div className="inline mr-2">
-          You are viewing {DATA.length} {type}
+        <div className="inline mr-2 text-[32px] font-display">
+          An overview of all your Projects
+          {/* {DATA.length} {type} */}
           <Geographics type={type} />
           <Areas type={type} />
           <Demographics type={type} />
@@ -110,7 +112,7 @@ const Sentence: React.FC<SentenceProps> = ({ type }) => {
 
         {JSON.stringify(filters) !== JSON.stringify(INITIAL_STATE.filters) && (
           <button className="underline hover:text-black" onClick={handleReset}>
-            Reset all filters
+            Reset all Filter
           </button>
         )}
       </>

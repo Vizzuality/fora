@@ -14,10 +14,11 @@ import Icon from 'components/icon';
 import LOCATION_SVG from 'svgs/ui/location.svg?sprite';
 
 import { THEME } from './constants';
+import LinkButton, { Anchor, Button } from 'components/button/component';
 type T = Project & Funder;
 export interface CardProps extends Partial<T> {
   href?: string;
-  theme?: 'green' | 'grey';
+  theme?: 'green' | 'grey' | 'bg-green-0';
 }
 
 const Cards = ({
@@ -53,7 +54,7 @@ const Cards = ({
   return (
     <div
       className={cx({
-        'flex flex-col justify-between p-8': true,
+        'flex flex-col justify-between p-8 bg-green-0': true,
         [THEME[theme]]: true,
       })}
     >
@@ -73,10 +74,12 @@ const Cards = ({
       <div className="border-t divide-y divide-grey-40/50 border-grey-40/50">
         <div className="py-4 leading-snug">{AREAS_OF_FOCUS.join(' • ')}</div>
 
-        <div className="pt-4">
-          <Link href={href} className="font-semibold underline">
-            {`Go to ${FORMAT_LINK_TEXT} page`}
-          </Link>
+        <div>
+          <Button className="px-2 mt-4 border border-black rounded-md" theme="transparent">
+            <Link href={href} className="font-medium">
+              Edit Details
+            </Link>
+          </Button>
         </div>
       </div>
     </div>

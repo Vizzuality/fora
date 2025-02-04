@@ -6,16 +6,20 @@ import { ParamsProps } from 'lib/adapters/types';
 import { View } from 'store/action-map';
 
 import {
+  QueryClient,
   useInfiniteQuery,
   UseInfiniteQueryOptions,
+  useMutation,
   useQuery,
+  useQueryClient,
   UseQueryOptions,
 } from '@tanstack/react-query';
 import { orderBy, uniqBy } from 'lodash';
 
-import { InifiniteProject, Project } from 'types/project';
+import { CreateProjectPayload, InifiniteProject, Project } from 'types/project';
 
 import API from 'services/api';
+import { useSession } from 'next-auth/react';
 
 /**
 ****************************************
@@ -166,4 +170,44 @@ export function useProject(id: string, queryOptions: UseQueryOptions<Project, un
   });
 
   return query;
+}
+
+
+export const createProject = async (projectData: CreateProjectPayload) => {
+  const { data: session } = useSession();
+  const response = await API.request({
+    method: 'POST',
+    url: '/projects',
+    data: {
+      type: 'projects',
+      attributes: {
+        ...projectData, logo: projectData.logo ? await processFileUpload(projectData.logo) : null},
+    },
+    headers: {
+      Authorization: `Bearer ${session.accessToken}`, 
+    }
+
+  });
+
+  return response.data;
+}
+
+// Helper function for file processing
+const processFileUpload = async (file: File) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  // const response = await API.uploadFile(formData);
+  // return response.data.url; \// Assuming API returns file URL
+  return 'no endpoint yet'
+};
+
+export function useCreateProject(){
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: createProject,
+    onSuccess: () => queryClient.invalidateQueries(['projects']),
+    onError: (error, variables, context) => {
+      console.error('Error creating project', error, variables, context);
+    },
+  })
 }

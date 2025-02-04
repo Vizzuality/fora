@@ -32,3 +32,18 @@ export type InifiniteProject = {
     pages: number;
   };
 };
+
+export interface CreateProjectPayload {
+  name: string;
+  description: string;
+  logo?: File;
+  contact_first_name: string;
+  contact_last_name: string;
+  website?: string;
+  country_id: number;
+  state_id?: number;
+  city: string;
+  leadership_demographics_other?: string;
+  recipient_legal_status: string;
+  leadership_demographics: string[];
+}

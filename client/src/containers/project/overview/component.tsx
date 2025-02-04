@@ -39,7 +39,7 @@ const ProjectOverview = () => {
 
   const GEOGRAPHIC_SCOPE = useMemo(() => {
     const arraySubGeo = subgeographics?.flat().map((subg) => subg.name);
-    return arraySubGeo;
+    return arraySubGeo || [];
   }, [subgeographics]);
 
   const DEMOGRAPHIC_SCOPE = useMemo(() => {
@@ -63,7 +63,7 @@ const ProjectOverview = () => {
   const CAPITAL_TYPE = useMemo(() => {
     const arrayCapital = capitalTypes?.flat().map((capital) => capital);
 
-    return capitalTypesData.filter((c) => arrayCapital.includes(c.id));
+    return capitalTypesData.filter((c) => arrayCapital?.includes(c.id));
   }, [capitalTypes, capitalTypesData]);
 
   const PROJECT_LEGAL_STATUSES = useMemo(() => {
@@ -124,7 +124,7 @@ const ProjectOverview = () => {
           <h2 className="text-3xl font-normal capitalize line-clamp-2 text-ellipsis">{name}</h2>
         </div>
 
-        {(logo.small || website) && (
+        {(logo?.small || website) && (
           <div className="flex items-center justify-between">
             {logo.small && (
               <div className="relative max-w-[100px] w-full shrink-0">
@@ -170,7 +170,7 @@ const ProjectOverview = () => {
         </div>
       </div>
       <div className="flex-1">
-        <InfoCard type="project" data={CARD_DATA} count={funders.length} />
+        <InfoCard type="project" data={CARD_DATA} count={funders?.length} />
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import List from './list';
 const Projects = () => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <List />
     </>
   );
