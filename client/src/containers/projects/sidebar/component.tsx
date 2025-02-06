@@ -23,10 +23,11 @@ const steps = [
 const StepperSidebar = () => {
   // const [active, setActive] = useState('');
   const router = useRouter();
-  const { asPath } = router;
+  // const { asPath } = router;
+  const stepName = router.query.step || "project-details";
 
   const handleNavigation = (stepId: string) => {
-    router.push(`/projects/create-project/${stepId}`, undefined, { shallow: true });
+    router.push(`/projects/new/${stepId}`, undefined, { shallow: true });
   };
 
 
@@ -48,19 +49,19 @@ const StepperSidebar = () => {
         {({ open }) => (
           <>
             {/* Mobile Dropdown */}
-            <div className="md:hidden p-4 border-b">
+            <div className="p-4 border-b md:hidden">
               <Disclosure.Button className="flex items-center justify-between w-full">
                 <span className="font-medium">
-                  {steps.find((step) => asPath.startsWith(`/projects/create-project/${step.id}`))?.name}
+                  {steps.find((step) => step.id === stepName)?.name}
                 </span>
               </Disclosure.Button>
             </div>
 
             {/* Sidebar (Desktop) */}
-            <div className="hidden md:block p-6">
+            <div className="hidden p-6 md:block">
               <nav className="space-y-2">
                 {steps.map((step) => {
-                   const isActive = asPath.startsWith(`/projects/create-project/${step.id}`);
+                   const isActive = stepName === step.id;
                   return (
                     <button
                       key={step.id}
@@ -79,9 +80,10 @@ const StepperSidebar = () => {
             </div>
 
             {/* Mobile Navigation Panel */}
-            <Disclosure.Panel className="md:hidden p-4 space-y-2">
+            <Disclosure.Panel className="p-4 space-y-2 md:hidden">
               {steps.map((step) => {
-                 const isActive = asPath.startsWith(`/projects/create-project/${step.id}`);
+                //  const isActive = asPath.startsWith(`/projects/create-project/${step.id}`);
+                const isActive = stepName === step.id;
                 return (
                   <button
                     key={step.id}

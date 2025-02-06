@@ -57,8 +57,8 @@ const ProjectsList = () => {
         <div className="py-8">
           <Sentence type="projects" />
 
-            <div className="flex justify-between mt-10">
           {!!projectsData.length && (
+            <div className="flex justify-between mt-10">
               <Menu as="div" className="relative">
                 <Menu.Button className="flex items-center space-x-2">
                   <p className="font-semibold">Sort by</p>
@@ -100,8 +100,8 @@ const ProjectsList = () => {
                   </Menu.Item>
                 </Menu.Items>
               </Menu>
-          )}
             </div>
+          )}
         </div>
 
         {!projectsData.length && !LOADING && (
@@ -116,8 +116,7 @@ const ProjectsList = () => {
 
         {!!projectsData.length && (
           <div className="pb-10">
-
-            <Cards pathname="/projects" data={projectsData} theme='bg-green-0' project={true} />
+            <Cards pathname="/projects" data={projectsData} />
           </div>
         )}
 

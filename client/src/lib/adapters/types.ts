@@ -1,3 +1,5 @@
+import { Project } from "types/project";
+
 export interface ParamsProps {
   search?: string;
   sort?: {
@@ -6,6 +8,17 @@ export interface ParamsProps {
   };
   filters?: Record<string, any>;
   includes?: string;
+  page?: number;
+  perPage?: number;
+  disablePagination?: boolean;
+}
+
+
+export interface MyProjectProps{
+  sort?:{
+    field:string;
+    order: 'asc' | 'desc';
+  },
   page?: number;
   perPage?: number;
   disablePagination?: boolean;

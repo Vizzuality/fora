@@ -2,18 +2,21 @@ import actionMap from 'store/action-map';
 import dashboardsGeneralReport from 'store/dashboards/general-report';
 import funders from 'store/funders';
 import projects from 'store/projects';
-import projectForm from'store/projects/projectFormSlice';
+import myProjects from 'store/myProjects';
+import ProjectFormReducer from 'store/myProjects/form';
 
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import type { ReducersMapObject } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
+
 
 const staticReducers = {
   '/action-map': actionMap,
   '/funders': funders,
   '/projects': projects,
   '/dashboards/general-report': dashboardsGeneralReport,
-  '/projects/slice/projectFormSlice': projectForm,
+  '/myProjects': myProjects,
+  '/projectForm': ProjectFormReducer,
 };
 
 const asyncReducers = {};

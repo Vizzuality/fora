@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ProjectBreadcumb from './breadcumb/component';
 import ProjectCard from 'containers/projects/ui/Card';
 import Link from 'next/link';
 import Icon from 'components/icon';
@@ -8,8 +7,11 @@ import upload from 'svgs/icons/upload.svg?sprite';
 import CHEVRON_RIGHT from 'svgs/icons/arrow-right.svg?sprite';
 import LOCK from 'svgs/icons/lock.svg?sprite';
 import USER_TWO from 'svgs/icons/user-two.svg?sprite';
+import { useDispatch } from 'react-redux';
 const NewProj = () => {
   const [logo, setLogo] = useState<File | null>(null);
+
+  const dispatch = useDispatch();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files?.[0]) {
@@ -21,6 +23,7 @@ const NewProj = () => {
     <ProjectCard title="Project Name Details">
       {/* Add project details */}
       <div className=" md:w-full">
+        
         <div className="md:w-[559px] w-full">
           <p className='leading-none'>
             {' '}

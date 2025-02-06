@@ -31,7 +31,7 @@ const Cards = ({ data = [], theme = 'grey', pathname, project = false }: CardsPr
             Add new <br /> Project{' '}
           </p>
           <div className="mt-5">
-            <Link href="/projects/create-project/project-details">
+            <Link href="/my-projects/new">
               <Icon icon={ADD_ICON_SVG} className="w-10 h-10 font-medium" />
             </Link>
           </div>
