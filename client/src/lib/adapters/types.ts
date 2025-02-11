@@ -10,3 +10,13 @@ export interface ParamsProps {
   perPage?: number;
   disablePagination?: boolean;
 }
+
+export interface MyProjectProps{
+  sort?:{
+    field:string;
+    order: 'asc' | 'desc';
+  },
+  page?: number;
+  perPage?: number;
+  disablePagination?: boolean;
+}

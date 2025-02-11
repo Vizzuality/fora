@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Jsona from 'jsona';
+import { getSession } from 'next-auth/react';
 import qs from 'query-string';
 
 const dataFormatter = new Jsona();
@@ -31,6 +32,12 @@ const API = axios.create({
 
     return qs.stringify(parsedParams, { arrayFormat: 'comma' });
   },
+});
+
+API.interceptors.request.use(async (config) => {
+  const MySession = await getSession();
+  if(MySession) config.headers.Authorization = `Bearer ${MySession.accessToken}`;
+  return config;
 });
 
 API.interceptors.response.use((response) => {
