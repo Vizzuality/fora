@@ -21,18 +21,35 @@ const Header = () => {
   const { pathname } = useRouter();
   const { data: session } = useSession();
   const isAuthPath = useMemo(() => pathname.includes('/auth'), [pathname]);
+
   const NAV_ITEMS = useMemo(() => {
-    return NAV.filter((n) => !n.footer && !(session && n.auth));
+    return NAV.filter(
+      (n) =>
+        !n.footer && !(session && n.auth) && (!n.label.includes('My') || n.label === 'My Projects')
+    );
   }, [session]);
+  const isMyPage = useMemo(() => pathname.startsWith('/my-') || pathname.includes('/projects/new'), [pathname]);
+
+  const MY_NAV_ITEMS = useMemo(() => {
+    return NAV.filter((n) => n.label.includes('My'));
+  }, [])
+
 
   const isActiveNavItem = useCallback(
-    (href: string) => {
+    (href: string, isMyNav = false) => {
       if (isAuthPath) return false;
 
-      return pathname.includes(href) && pathname !== '/';
+      const isActive = pathname.includes(href) && pathname !== '/';
+      return isActive ? (isMyNav ? 'border-b-2 border-green-0 px-2' : 'rounded-lg bg-green-0') : '';
     },
     [pathname, isAuthPath]
   );
+
+
+  // Filter only "My" related items if we are on a "My" page
+  // const filteredNavItems = isMyPage
+  //   ? NAV_ITEMS.filter((item) => item.label.includes('My'))
+  //   : NAV_ITEMS;
 
   return (
     <header
@@ -58,34 +75,35 @@ const Header = () => {
           {/* NAV */}
           <nav className="flex items-center justify-between">
             <ul className="flex items-center justify-between space-x-3">
-              {NAV_ITEMS.map((item) => {
+              {!isMyPage && NAV_ITEMS.map((item) => {
                 const { href, label, filled, target, rel, className } = item;
 
                 return (
                   <li key={href}>
-                    {target === '_blank' && (
+                    {target === '_blank' ? (
                       <a
                         href={href}
                         target={target}
                         rel={rel}
-                        className={cx({
+                        className={cx(
+                          isActiveNavItem(href),
+                          {
                           'text-base font-semibold py-2 px-7': true,
                           'hover:rounded-lg hover:bg-grey-60/75': pathname !== href,
-                          'rounded-lg bg-green-0': isActiveNavItem(href),
+
                           'text-grey-0 hover:underline': !filled,
                         })}
                       >
                         {label}
                       </a>
-                    )}
-                    {!target && (
+                    ) : (
                       <Link
                         href={href}
                         className={cx(
                           'text-base font-semibold py-2 px-7',
+                          isActiveNavItem(href),
                           {
                             'hover:rounded-lg hover:bg-grey-60/75': !pathname.includes(href),
-                            'rounded-lg bg-green-0': isActiveNavItem(href),
                             'pointer-events-none select-none':
                               pathname.includes(href) && pathname !== '/',
                           },
@@ -98,6 +116,47 @@ const Header = () => {
                   </li>
                 );
               })}
+
+              {/* "MY NAVIGATION: SHOW ONLY MY ITEMS " */}
+              {isMyPage &&
+                MY_NAV_ITEMS.map(({ href, label, filled, target, rel, className }) => (
+                  <li key={href}>
+                    {target === '_blank' ? (
+                      <a
+                        href={href}
+                        target={target}
+                        rel={rel}
+                        className={cx(
+                          'text-base font-semibold py-2 px-7',
+                          isActiveNavItem(href, true),
+                          {
+                            'hover:rounded-lg hover:bg-grey-60/75': pathname !== href,
+                            'text-grey-0 hover:underline': !filled,
+                          },
+                          className
+                        )}
+                      >
+                        {label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={href}
+                        className={cx(
+                          'text-base font-semibold py-2 px-7',
+                          isActiveNavItem(href, true),
+                          {
+                            'hover:rounded-lg hover:bg-grey-60/75': !pathname.includes(href),
+                            'pointer-events-none select-none':
+                              pathname.includes(href) && pathname !== '/',
+                          },
+                          className
+                        )}
+                      >
+                        {label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
               {session && (
                 <Button type="button" theme="transparent">
                   <CircleUserIcon />
