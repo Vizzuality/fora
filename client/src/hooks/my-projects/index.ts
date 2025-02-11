@@ -21,6 +21,14 @@ export const fetchMemberProjects = (params: MyProjectProps) => {
   }).then(res => res.data);
 }
 
+export const fetchMyProject = (id: string) => {
+  return API.request({
+    method: 'GET',
+    url: `/my-projects/${id}`,
+
+  }).then((res) => res.data);
+}
+
 export function useFetchMemberProjects(params: MyProjectProps = {}, queryOption: UseQueryOptions<Project[], unknown> = {}) {
   const fetch = () =>
     fetchMemberProjects({
@@ -71,4 +79,17 @@ export function useMyInfinityProjects(
     ...query,
     data: DATA,
   };
+}
+
+
+export function useMyProject(id: string, queryOptions: UseQueryOptions<Project, unknown> = {}){
+  const fetch = () => fetchMyProject(id);
+
+  const query = useQuery(['myProject', id], fetch, {
+    enabled: !!id,
+    placeholderData: {data: {}},
+    ...queryOptions,
+  })
+
+  return query;
 }

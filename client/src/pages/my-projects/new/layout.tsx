@@ -35,7 +35,7 @@ export default function NewProjectLayout({ children }: { children: React.ReactNo
       </div>
     </div>
 
-      <ProjectForm/>
+      <ProjectForm mode='create'/>
     </Wrapper>
   );
 }

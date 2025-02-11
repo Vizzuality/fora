@@ -8,8 +8,13 @@ import CHEVRON_RIGHT from 'svgs/icons/arrow-right.svg?sprite';
 import LOCK from 'svgs/icons/lock.svg?sprite';
 import USER_TWO from 'svgs/icons/user-two.svg?sprite';
 import { useDispatch } from 'react-redux';
+import { Field } from 'react-final-form';
+import { Placement } from '@floating-ui/react-dom-interactions';
+import { useAppSelector } from 'store/hooks';
+import { RootState } from 'store';
 const ProjectDetails = () => {
   const [logo, setLogo] = useState<File | null>(null);
+  const draft = useAppSelector((state: RootState) => state['/projectForm'])
 
   const dispatch = useDispatch();
 
@@ -48,17 +53,20 @@ const ProjectDetails = () => {
             <label className='flex'>
             <Icon icon={eye} className="w-4 h-4 pr-1" />PARTNER ORGANIZATION NAME <span className="text-red-0">*</span>
             </label>
-            <input
-              type="text"
-              className="w-full p-2 mt-2 border border-gray-300 rounded-lg outline-none focus:ring focus:ring-blue-200"
+
+            <Field name="name"
+            value={draft.draftProject.name}
+            component={"input"}
+            className="w-full p-2 mt-2 border border-gray-300 rounded-lg outline-none focus:ring focus:ring-blue-200"
             />
           </div>
 
           <div className="flex flex-col py-2">
             <label className='flex'><Icon icon={eye} className="w-4 h-4 pr-1" />PROJECT WEBSITE</label>
-            <input
-              type="text"
-              className="w-full p-2 mt-2 border border-gray-800 rounded-lg outline-none focus:ring focus:ring-blue-200"
+
+             <Field name="website"
+            component="input"
+            className="w-full p-2 mt-2 border border-gray-300 rounded-lg outline-none focus:ring focus:ring-blue-200"
             />
           </div>
         </div>
@@ -67,12 +75,15 @@ const ProjectDetails = () => {
           <label className="flex pb-3 font-medium text-gray-700 "><Icon icon={eye} className="w-4 h-4 pr-1" />
             Description <span className="text-red-0">*</span>
           </label>
-          <textarea
-            className="w-full h-32 p-3 my-3 border border-gray-300 rounded-lg outline-none focus:ring focus:ring-blue-200"
-          ></textarea>
+
+          <Field
+          name="description"
+          component="textarea"
+          className="w-full h-32 p-3 my-3 border border-gray-300 rounded-lg outline-none focus:none "
+          />
         </div>
 
-        {/* Upload Logo */}
+ 
         <div className="mt-6">
           <label className="flex mb-1 font-medium text-gray-700">
             <Icon icon={eye} className="w-4 h-4 pr-1" /> LOGO
@@ -92,7 +103,7 @@ const ProjectDetails = () => {
             )}
           </div>
         </div>
-       
+
         <div className="mt-6">
           <label className="flex mb-1 font-medium text-gray-700">
             <Icon icon={eye} className="w-4 h-4 pr-1" />
