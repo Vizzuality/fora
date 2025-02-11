@@ -2,7 +2,7 @@ import actionMap from 'store/action-map';
 import dashboardsGeneralReport from 'store/dashboards/general-report';
 import funders from 'store/funders';
 import projects from 'store/projects';
-
+import myProjects from 'store/myProjects';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import type { ReducersMapObject } from '@reduxjs/toolkit';
 import { createWrapper } from 'next-redux-wrapper';
@@ -12,6 +12,7 @@ const staticReducers = {
   '/funders': funders,
   '/projects': projects,
   '/dashboards/general-report': dashboardsGeneralReport,
+  '/myProjects': myProjects,
 };
 
 const asyncReducers = {};
