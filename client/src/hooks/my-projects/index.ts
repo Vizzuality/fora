@@ -1,6 +1,6 @@
-import { useMemo } from "react";
-import { jsonAPIAdapter } from "lib/adapters/json-api-adapter";
-import { MyProjectProps } from "lib/adapters/types";
+import { useMemo } from 'react';
+import { jsonAPIAdapter } from 'lib/adapters/json-api-adapter';
+import { MyProjectProps } from 'lib/adapters/types';
 import {
   QueryClient,
   useInfiniteQuery,
@@ -10,50 +10,54 @@ import {
   useQueryClient,
   UseQueryOptions,
 } from '@tanstack/react-query';
-import API from "services/api";
-import { InifiniteProject, Project } from "types/project";
+import API from 'services/api';
+import { InifiniteProject, Project } from 'types/project';
 
 export const fetchMemberProjects = (params: MyProjectProps) => {
   return API.request({
-    method: "GET",
-    url: "/members/projects",
+    method: 'GET',
+    url: '/members/projects',
     params: jsonAPIAdapter(params),
-  }).then(res => res.data);
-}
+  }).then((res) => res.data);
+};
 
 export const fetchMyProject = (id: string) => {
   return API.request({
     method: 'GET',
     url: `/my-projects/${id}`,
-
   }).then((res) => res.data);
-}
+};
 
-export function useFetchMemberProjects(params: MyProjectProps = {}, queryOption: UseQueryOptions<Project[], unknown> = {}) {
+export function useFetchMemberProjects(
+  params: MyProjectProps = {},
+  queryOption: UseQueryOptions<Project[], unknown> = {}
+) {
   const fetch = () =>
     fetchMemberProjects({
-      ...params, disablePagination: true
+      ...params,
+      disablePagination: true,
     });
 
   const query = useQuery(['myProjects', JSON.stringify(params)], fetch, {
     placeholderData: {
       data: [],
     },
-   ...queryOption,
+    ...queryOption,
   });
 
   return query;
-
 }
-
 
 export function useMyInfinityProjects(
   params: MyProjectProps = {},
   queryOptions: UseInfiniteQueryOptions<InifiniteProject, unknown> = {}
-){
-    const fetch = ({pageParam = 1}) => fetchMemberProjects({...params, page: pageParam});
+) {
+  const fetch = ({ pageParam = 1 }) => fetchMemberProjects({ ...params, page: pageParam });
 
-    const query = useInfiniteQuery<InifiniteProject, unknown>(['myProjects', JSON.stringify(params)], fetch, {
+  const query = useInfiniteQuery<InifiniteProject, unknown>(
+    ['myProjects', JSON.stringify(params)],
+    fetch,
+    {
       ...queryOptions,
       select: (data) => data, // override default select function
       placeholderData: {
@@ -81,15 +85,14 @@ export function useMyInfinityProjects(
   };
 }
 
-
-export function useMyProject(id: string, queryOptions: UseQueryOptions<Project, unknown> = {}){
+export function useMyProject(id: string, queryOptions: UseQueryOptions<Project, unknown> = {}) {
   const fetch = () => fetchMyProject(id);
 
   const query = useQuery(['myProject', id], fetch, {
     enabled: !!id,
-    placeholderData: {data: {}},
+    placeholderData: { data: {} },
     ...queryOptions,
-  })
+  });
 
   return query;
 }

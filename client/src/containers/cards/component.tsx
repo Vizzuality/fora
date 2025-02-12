@@ -36,7 +36,12 @@ const Cards = ({ data = [], theme = 'grey', pathname, project = false }: CardsPr
         </div>
       )}
       {data.map((item) => (
-        <Card theme={theme} key={item.id} href={`${pathname}/${item.id}${project ? '/edit' : ''}`} {...item} />
+        <Card
+          theme={theme}
+          key={item.id}
+          href={`${pathname}/${item.id}${project ? '/edit' : ''}`}
+          {...item}
+        />
       ))}
     </div>
   );

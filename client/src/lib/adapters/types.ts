@@ -11,11 +11,11 @@ export interface ParamsProps {
   disablePagination?: boolean;
 }
 
-export interface MyProjectProps{
-  sort?:{
-    field:string;
+export interface MyProjectProps {
+  sort?: {
+    field: string;
     order: 'asc' | 'desc';
-  },
+  };
   page?: number;
   perPage?: number;
   disablePagination?: boolean;

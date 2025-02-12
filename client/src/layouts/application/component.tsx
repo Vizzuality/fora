@@ -16,7 +16,7 @@ const ApplicationLayout: React.FC<ApplicationLayoutProps> = (props: ApplicationL
   return (
     <div
       className={cx({
-        'flex flex-col lg:min-h-screen': true,
+        'flex flex-col lg:min-h-screen bg-grey-60': true,
         'bg-grey-60': pathname.includes('/auth'),
       })}
     >

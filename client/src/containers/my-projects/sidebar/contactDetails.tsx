@@ -5,7 +5,7 @@ import Icon from 'components/icon';
 import eye from 'svgs/icons/eye.svg?sprite';
 import upload from 'svgs/icons/upload.svg?sprite';
 import CHEVRON_RIGHT from 'svgs/icons/arrow-right.svg?sprite';
-import CHEVRON_LEFT from'svgs/icons/arrow-left.svg?sprite';
+import CHEVRON_LEFT from 'svgs/icons/arrow-left.svg?sprite';
 import LOCK from 'svgs/icons/lock.svg?sprite';
 import USER_TWO from 'svgs/icons/user-two.svg?sprite';
 const ContactDetails = () => {
@@ -72,16 +72,14 @@ const ContactDetails = () => {
               className="w-full p-2 mt-2 border border-gray-800 rounded-lg outline-none focus:ring focus:ring-blue-200"
             />
           </div>
-
         </div>
-          <div className='flex justify-end gap-4'>
+        <div className="flex justify-end gap-4">
           <div className="flex items-center justify-end">
             <button className="flex items-center p-2 mt-6 text-black transition bg-transparent border rounded-lg hover:bg-blue-700">
-            <span className="pr-2">
+              <span className="pr-2">
                 <Icon icon={CHEVRON_LEFT} className="w-3 h-3" />
               </span>
               Project Details
-
             </button>
           </div>
 
@@ -93,7 +91,7 @@ const ContactDetails = () => {
               </span>
             </button>
           </div>
-          </div>
+        </div>
       </div>
     </ProjectCard>
   );

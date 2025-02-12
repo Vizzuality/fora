@@ -80,8 +80,6 @@ const FocusAreas = () => {
               <option className="text-sm">Select all that apply</option>
             </select>
           </div>
-
-
         </div>
         <div className="flex justify-end gap-4">
           <div className="flex items-center justify-end">

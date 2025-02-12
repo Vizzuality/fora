@@ -17,11 +17,11 @@ export interface ProjectFormState {
     leadership_demographics_other: string;
     recipient_legal_status: string;
     leadership_demographics: string[];
-  }
+  };
 }
 
 const initialState: ProjectFormState = {
-  draftProject:{
+  draftProject: {
     name: '',
     description: '',
     logo: null,
@@ -34,8 +34,7 @@ const initialState: ProjectFormState = {
     leadership_demographics_other: '',
     recipient_legal_status: '',
     leadership_demographics: [],
-  }
-  
+  },
 };
 
 const slice = createSlice({
@@ -58,7 +57,7 @@ const slice = createSlice({
 
     clearDraft: (state) => {
       state.draftProject = initialState.draftProject;
-    }
+    },
   },
   extraReducers: {
     [HYDRATE]: (state, action) => {

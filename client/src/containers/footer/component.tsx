@@ -27,10 +27,14 @@ const Footer = () => {
   const NAV_ITEMS = useMemo(() => {
     return NAV.filter((n) => !(session && n.auth));
   }, [session]);
+  const isMyPage = useMemo(
+    () => pathname.startsWith('/my-') || pathname.includes('/projects/new'),
+    [pathname]
+  );
 
   return (
     <footer>
-      {!hideNav && (
+      {!hideNav && !isMyPage && (
         <div className="py-14 bg-blue-0/5">
           <Wrapper>
             <div className="flex flex-col justify-between space-y-10 md:space-y-0 md:flex-row">
