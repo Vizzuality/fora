@@ -48,7 +48,12 @@ const MyProjectList = () => {
         <div className="py-8">
           {!!myProjects.length && (
             <>
-              <MyProjectsSentence type="projects" />
+              <div className="relative text-sm font-semibold text-grey-20 min-h-[16px]">
+                <div className="inline mr-2 text-[32px] font-display font-thin text-black">
+                  An overview of all your Projects
+                </div>
+              </div>
+
               <div className="flex justify-between mt-10">
                 <Menu as="div" className="relative">
                   <Menu.Button className="flex items-center space-x-2">
@@ -97,18 +102,16 @@ const MyProjectList = () => {
         </div>
 
         {!myProjects.length && !LOADING && (
-          <div className="flex items-center justify-center px-5 grow ">
-            <div className="flex flex-col items-center py-12 pb-20 space-y-4">
-              <p className="md:text-[40px] font-display font-medium">You have no projects added.</p>
-              <p className="max-w-sm text-center text-grey-20">
-                Sorry, we have searched in our entire database but we couldn&apos;t find any results
-                fitting your search criteria.
-              </p>
+          <div className="flex flex-col items-center justify-center space-y-4 h-[40vh] bg-white md:w-[55rem] mx-auto">
+            <p className="md:text-[40px] font-display font-medium">You have no projects added.</p>
+            <p className="max-w-sm text-center py-3 text-grey-20">
+              Sorry, we have searched in our entire database but we couldn&apos;t find any results
+              fitting your search criteria.
+            </p>
 
-              <button className="px-4 py-2 text-black rounded-lg bg-green-10">
-                <Link href="/my-projects/new">Add Product</Link>
-              </button>
-            </div>
+            <button className="px-4 py-2 my-3 text-black rounded-lg bg-green-0">
+              <Link href="/my-projects/new">Add Project</Link>
+            </button>
           </div>
         )}
 

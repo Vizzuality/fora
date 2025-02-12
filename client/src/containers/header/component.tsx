@@ -28,12 +28,14 @@ const Header = () => {
         !n.footer && !(session && n.auth) && (!n.label.includes('My') || n.label === 'My Projects')
     );
   }, [session]);
-  const isMyPage = useMemo(() => pathname.startsWith('/my-') || pathname.includes('/projects/new'), [pathname]);
+  const isMyPage = useMemo(
+    () => pathname.startsWith('/my-') || pathname.includes('/projects/new'),
+    [pathname]
+  );
 
   const MY_NAV_ITEMS = useMemo(() => {
     return NAV.filter((n) => n.label.includes('My'));
-  }, [])
-
+  }, []);
 
   const isActiveNavItem = useCallback(
     (href: string, isMyNav = false) => {
@@ -44,7 +46,6 @@ const Header = () => {
     },
     [pathname, isAuthPath]
   );
-
 
   // Filter only "My" related items if we are on a "My" page
   // const filteredNavItems = isMyPage
@@ -75,47 +76,46 @@ const Header = () => {
           {/* NAV */}
           <nav className="flex items-center justify-between">
             <ul className="flex items-center justify-between space-x-3">
-              {!isMyPage && NAV_ITEMS.map((item) => {
-                const { href, label, filled, target, rel, className } = item;
+              {!isMyPage &&
+                NAV_ITEMS.map((item) => {
+                  const { href, label, filled, target, rel, className } = item;
 
-                return (
-                  <li key={href}>
-                    {target === '_blank' ? (
-                      <a
-                        href={href}
-                        target={target}
-                        rel={rel}
-                        className={cx(
-                          isActiveNavItem(href),
-                          {
-                          'text-base font-semibold py-2 px-7': true,
-                          'hover:rounded-lg hover:bg-grey-60/75': pathname !== href,
+                  return (
+                    <li key={href}>
+                      {target === '_blank' ? (
+                        <a
+                          href={href}
+                          target={target}
+                          rel={rel}
+                          className={cx(isActiveNavItem(href), {
+                            'text-base font-semibold py-2 px-7': true,
+                            'hover:rounded-lg hover:bg-grey-60/75': pathname !== href,
 
-                          'text-grey-0 hover:underline': !filled,
-                        })}
-                      >
-                        {label}
-                      </a>
-                    ) : (
-                      <Link
-                        href={href}
-                        className={cx(
-                          'text-base font-semibold py-2 px-7',
-                          isActiveNavItem(href),
-                          {
-                            'hover:rounded-lg hover:bg-grey-60/75': !pathname.includes(href),
-                            'pointer-events-none select-none':
-                              pathname.includes(href) && pathname !== '/',
-                          },
-                          className
-                        )}
-                      >
-                        {label}
-                      </Link>
-                    )}
-                  </li>
-                );
-              })}
+                            'text-grey-0 hover:underline': !filled,
+                          })}
+                        >
+                          {label}
+                        </a>
+                      ) : (
+                        <Link
+                          href={href}
+                          className={cx(
+                            'text-base font-semibold py-2 px-7',
+                            isActiveNavItem(href),
+                            {
+                              'hover:rounded-lg hover:bg-grey-60/75': !pathname.includes(href),
+                              'pointer-events-none select-none':
+                                pathname.includes(href) && pathname !== '/',
+                            },
+                            className
+                          )}
+                        >
+                          {label}
+                        </Link>
+                      )}
+                    </li>
+                  );
+                })}
 
               {/* "MY NAVIGATION: SHOW ONLY MY ITEMS " */}
               {isMyPage &&
