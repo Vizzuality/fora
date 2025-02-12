@@ -1,28 +1,12 @@
-import { useRouter } from 'next/router';
 import { useState } from 'react';
-import FocusAreas from 'containers/my-projects/sidebar/focus_area';
-import { Form } from 'react-final-form';
-import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'store';
-import ContactDetails from 'containers/my-projects/sidebar/contactDetails';
-import Funding from 'containers/my-projects/sidebar/funding';
-import ProjectDetails from './projectDetails';
 
-interface FormValues {
-  name: string;
-  description: string;
-  logo: File | null;
-  contact_first_name: string;
-  contact_last_name: string;
-  website: string;
-  country_id: number | null;
-  state_id: number | null;
-  city: string;
-  leadership_demographics_other: string;
-  recipient_legal_status: string;
-  leadership_demographics: string[];
-}
+import { Form } from 'react-final-form';
+
+import ContactDetails from 'containers/my-projects/sidebar/contactDetails';
+import FocusAreas from 'containers/my-projects/sidebar/focus_area';
+import Funding from 'containers/my-projects/sidebar/funding';
+
+import ProjectDetails from './projectDetails';
 
 interface ProjectFormProps {
   mode: 'create' | 'edit';
@@ -54,25 +38,10 @@ const SideNavigation = ({ currentStep, setCurrentStep }) => (
   </div>
 );
 
-const initialForm = {
-  name: '',
-  description: '',
-  logo: null,
-  contact_first_name: '',
-  contact_last_name: '',
-  website: '',
-  country_id: null,
-  state_id: null,
-  city: '',
-  leadership_demographics_other: '',
-  recipient_legal_status: '',
-  leadership_demographics: [],
-};
-const ProjectForm = ({ mode, initialData, projectId }: ProjectFormProps) => {
-  const router = useRouter();
+const ProjectForm = ({ initialData }: ProjectFormProps) => {
   const [currentStep, setCurrentStep] = useState(STEPS[0].id);
 
-  const handleSubmit = (values: FormValues) => {};
+  const handleSubmit = () => {};
   return (
     <Form
       onSubmit={handleSubmit}
@@ -101,8 +70,8 @@ const ProjectForm = ({ mode, initialData, projectId }: ProjectFormProps) => {
 
         return errors;
       }}
-      render={({ handleSubmit, values, valid, submitting, form }) => (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-8 p-4 md:flex-row">
+      render={() => (
+        <form className="flex flex-col gap-8 p-4 md:flex-row">
           <SideNavigation currentStep={currentStep} setCurrentStep={setCurrentStep} />
           <div className="flex-1 max-w-3xl">
             {STEPS.find((step) => step.id === currentStep)?.component}

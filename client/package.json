@@ -67,6 +67,7 @@
   "devDependencies": {
     "@types/geojson": "7946.0.14",
     "@types/gtag.js": "0.0.5",
+    "@types/lodash": "^4.14.191",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
     "@typescript-eslint/eslint-plugin": "5.13.0",

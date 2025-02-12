@@ -1,5 +1,6 @@
-import FundingHome from 'containers/funding';
 import React from 'react';
+
+import FundingHome from 'containers/funding';
 
 const Funding = () => {
   return <FundingHome />;

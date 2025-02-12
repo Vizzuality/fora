@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
-import { STORE_WRAPPER } from 'store';
-import qs from 'query-string';
 
 export interface ProjectFormState {
   draftProject: {
@@ -41,16 +39,6 @@ const slice = createSlice({
   name: '/createProjectForm',
   initialState,
   reducers: {
-    //  updateField: <K extends keyof ProjectFormState>(
-    //   state: ProjectFormState,
-    //   action: PayloadAction<{ field: K; value: ProjectFormState[K] }>
-    // ) => {
-    //   state[action.payload.field] = action.payload.value;
-    // },
-    // setForm: (state, action: PayloadAction<ProjectFormState>) => {
-    //   return action.payload;
-    // },
-
     updateDraft: (state, action: PayloadAction<Partial<ProjectFormState['draftProject']>>) => {
       state.draftProject = { ...state.draftProject, ...action.payload };
     },

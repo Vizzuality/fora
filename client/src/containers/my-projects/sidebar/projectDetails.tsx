@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
-import ProjectCard from 'containers/projects/ui/card';
-import Link from 'next/link';
-import Icon from 'components/icon';
-import eye from 'svgs/icons/eye.svg?sprite';
-import upload from 'svgs/icons/upload.svg?sprite';
-import CHEVRON_RIGHT from 'svgs/icons/arrow-right.svg?sprite';
-import LOCK from 'svgs/icons/lock.svg?sprite';
-import USER_TWO from 'svgs/icons/user-two.svg?sprite';
-import { useDispatch } from 'react-redux';
+
 import { Field } from 'react-final-form';
-import { Placement } from '@floating-ui/react-dom-interactions';
-import { useAppSelector } from 'store/hooks';
+
+import Link from 'next/link';
+
 import { RootState } from 'store';
+
+import { useAppSelector } from 'store/hooks';
+
+import ProjectCard from 'containers/projects/ui/card';
+
+import Icon from 'components/icon';
+
+import CHEVRON_RIGHT from 'svgs/icons/arrow-right.svg?sprite';
+import eye from 'svgs/icons/eye.svg?sprite';
+import LOCK from 'svgs/icons/lock.svg?sprite';
+import upload from 'svgs/icons/upload.svg?sprite';
+import USER_TWO from 'svgs/icons/user-two.svg?sprite';
+
 const ProjectDetails = () => {
   const [logo, setLogo] = useState<File | null>(null);
   const draft = useAppSelector((state: RootState) => state['/projectForm']);
-
-  const dispatch = useDispatch();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files?.[0]) {
@@ -29,9 +33,8 @@ const ProjectDetails = () => {
       <div className=" md:w-full">
         <div className="md:w-[559px] w-full">
           <p className="leading-none">
-            {' '}
             Lorem ipsum dolor sit amet consectetur et fringilla pellentesque in ut congue at
-            ultrices nulla nibh dolor sit amet pellentesque consectetur.{' '}
+            ultrices nulla nibh dolor sit amet pellentesque consectetur.
           </p>
 
           <div className="flex gap-4 p-2 my-5 rounded-xl bg-grey-60">
@@ -50,7 +53,6 @@ const ProjectDetails = () => {
           </div>
         </div>
         <div className="flex gap-2 text-[14px]/[10px] pb-3">
-          {' '}
           <span className="text-red-0">*</span>
           All fields marked with a red asterisk are mandatory to fill
         </div>
@@ -155,7 +157,7 @@ const ProjectDetails = () => {
 
         <div className="flex items-center justify-end">
           <button className="flex items-center p-2 mt-6 text-black transition bg-transparent border rounded-lg hover:bg-blue-700">
-            Contact Details{' '}
+            Contact Details
             <span className="pl-2">
               <Icon icon={CHEVRON_RIGHT} className="w-3 h-3" />
             </span>

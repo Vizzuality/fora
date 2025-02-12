@@ -1,8 +1,11 @@
-import ProjectCard from 'containers/projects/ui/card';
 import React from 'react';
+
+import ProjectCard from 'containers/projects/ui/card';
+
 import Icon from 'components/icon';
-import eye from 'svgs/icons/eye.svg?sprite';
-import upload from 'svgs/icons/upload.svg?sprite';
+
+// import eye from 'svgs/icons/eye.svg?sprite';
+// import upload from 'svgs/icons/upload.svg?sprite';
 import CHEVRON_LEFT from 'svgs/icons/arrow-left.svg?sprite';
 
 const FundingHome = () => {

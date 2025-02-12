@@ -1,11 +1,16 @@
-import { useMyProject } from 'hooks/my-projects';
-import { NextPage } from 'next';
-import { useRouter } from 'next/router';
 import React from 'react';
+
+import { useRouter } from 'next/router';
+
+import { NextPage } from 'next';
+
+import { useMyProject } from 'hooks/my-projects';
+
 import MetaTags from 'containers/meta-tags';
+import ProjectForm from 'containers/my-projects/sidebar/form';
+
 import ProtectedRoute from 'hoc/protectedRoute';
 import NewProjectLayout from 'pages/my-projects/new/layout';
-import ProjectForm from 'containers/my-projects/sidebar/form';
 
 // export const getServerSideProps = getReduxStateFromQuery();
 

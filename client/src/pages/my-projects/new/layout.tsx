@@ -1,20 +1,8 @@
 'use client';
-import { useEffect } from 'react';
 
-import { useDispatch } from 'react-redux';
 import Wrapper from 'containers/wrapper';
-import ProjectForm from 'containers/my-projects/sidebar/form';
 
 export default function NewProjectLayout({ children }: { children: React.ReactNode }) {
-  const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(resetForm());
-  //   return () => {
-  //     dispatch(resetForm());
-  //   };
-  // }, [dispatch]);
-
   return (
     <Wrapper>
       <div className="flex flex-col justify-between my-2 md:flex-row">
@@ -36,8 +24,7 @@ export default function NewProjectLayout({ children }: { children: React.ReactNo
           </div>
         </div>
       </div>
-
-      <ProjectForm mode="create" />
+      {children}
     </Wrapper>
   );
 }
