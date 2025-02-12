@@ -21,16 +21,16 @@ export const NAV = [
     href: '/dashboards',
   },
   {
-    label: "My Details",
-    href: '/my-details'
+    label: 'My Details',
+    href: '/my-details',
   },
   {
-    label: "My Projects",
-    href: "/my-projects"
+    label: 'My Projects',
+    href: '/my-projects',
   },
   {
-    label: "My Funding",
-    href: "/my-funding"
+    label: 'My Funding',
+    href: '/my-funding',
   },
   {
     label: 'About',

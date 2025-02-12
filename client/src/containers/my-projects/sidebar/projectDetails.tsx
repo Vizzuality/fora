@@ -21,21 +21,27 @@ const ProjectDetails = () => {
 
   return (
     <ProjectCard title="Project Name Details">
-
       <div className=" md:w-full">
-
         <div className="md:w-[559px] w-full">
-          <p className='leading-none'>
+          <p className="leading-none">
             {' '}
             Lorem ipsum dolor sit amet consectetur et fringilla pellentesque in ut congue at
             ultrices nulla nibh dolor sit amet pellentesque consectetur.{' '}
           </p>
 
           <div className="flex gap-4 p-2 my-5 rounded-xl bg-grey-60">
-
-            <Link href="/projects/new/project-details" className="flex"><Icon icon={LOCK} className="w-4 h-4 pr-1" />Private Information</Link>
-            <Link href="/projects/new/project-details" className="flex"><Icon icon={eye} className="w-4 h-4 pr-1" />Aggregated Information</Link>
-            <Link href="" className="flex"><Icon icon={USER_TWO} className="w-4 h-4 pr-1" />Only FORA members</Link>
+            <Link href="/projects/new/project-details" className="flex">
+              <Icon icon={LOCK} className="w-4 h-4 pr-1" />
+              Private Information
+            </Link>
+            <Link href="/projects/new/project-details" className="flex">
+              <Icon icon={eye} className="w-4 h-4 pr-1" />
+              Aggregated Information
+            </Link>
+            <Link href="" className="flex">
+              <Icon icon={USER_TWO} className="w-4 h-4 pr-1" />
+              Only FORA members
+            </Link>
           </div>
         </div>
         <div className="flex gap-2 text-[14px]/[10px] pb-3">
@@ -45,8 +51,9 @@ const ProjectDetails = () => {
         </div>
         <div className="grid grid-cols-1 gap-6 mb-4 md:grid-cols-2">
           <div className="flex flex-col py-2">
-            <label className='flex'>
-            <Icon icon={eye} className="w-4 h-4 pr-1" />PARTNER ORGANIZATION NAME <span className="text-red-0">*</span>
+            <label className="flex">
+              <Icon icon={eye} className="w-4 h-4 pr-1" />
+              PARTNER ORGANIZATION NAME <span className="text-red-0">*</span>
             </label>
             <input
               type="text"
@@ -55,7 +62,10 @@ const ProjectDetails = () => {
           </div>
 
           <div className="flex flex-col py-2">
-            <label className='flex'><Icon icon={eye} className="w-4 h-4 pr-1" />PROJECT WEBSITE</label>
+            <label className="flex">
+              <Icon icon={eye} className="w-4 h-4 pr-1" />
+              PROJECT WEBSITE
+            </label>
             <input
               type="text"
               className="w-full p-2 mt-2 border border-gray-800 rounded-lg outline-none focus:ring focus:ring-blue-200"
@@ -64,12 +74,11 @@ const ProjectDetails = () => {
         </div>
 
         <div className="mt-6">
-          <label className="flex pb-3 font-medium text-gray-700 "><Icon icon={eye} className="w-4 h-4 pr-1" />
+          <label className="flex pb-3 font-medium text-gray-700 ">
+            <Icon icon={eye} className="w-4 h-4 pr-1" />
             Description <span className="text-red-0">*</span>
           </label>
-          <textarea
-            className="w-full h-32 p-3 my-3 border border-gray-300 rounded-lg outline-none focus:ring focus:ring-blue-200"
-          ></textarea>
+          <textarea className="w-full h-32 p-3 my-3 border border-gray-300 rounded-lg outline-none focus:ring focus:ring-blue-200"></textarea>
         </div>
 
         {/* Upload Logo */}
@@ -92,7 +101,7 @@ const ProjectDetails = () => {
             )}
           </div>
         </div>
-       
+
         <div className="mt-6">
           <label className="flex mb-1 font-medium text-gray-700">
             <Icon icon={eye} className="w-4 h-4 pr-1" />
@@ -134,7 +143,7 @@ const ProjectDetails = () => {
           <button className="flex items-center p-2 mt-6 text-black transition bg-transparent border rounded-lg hover:bg-blue-700">
             Contact Details{' '}
             <span className="pl-2">
-              <Icon icon={CHEVRON_RIGHT} className="w-3 h-3"/>
+              <Icon icon={CHEVRON_RIGHT} className="w-3 h-3" />
             </span>
           </button>
         </div>

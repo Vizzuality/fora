@@ -1,10 +1,8 @@
-import FundingHome from 'containers/funding'
-import React from 'react'
+import FundingHome from 'containers/funding';
+import React from 'react';
 
 const Funding = () => {
-  return (
-    <FundingHome/>
-  )
-}
+  return <FundingHome />;
+};
 
-export default Funding
+export default Funding;

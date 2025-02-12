@@ -36,7 +36,7 @@ const API = axios.create({
 
 API.interceptors.request.use(async (config) => {
   const MySession = await getSession();
-  if(MySession) config.headers.Authorization = `Bearer ${MySession.accessToken}`;
+  if (MySession) config.headers.Authorization = `Bearer ${MySession.accessToken}`;
   return config;
 });
 

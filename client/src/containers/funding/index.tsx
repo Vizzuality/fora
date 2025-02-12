@@ -17,7 +17,7 @@ const FundingHome = () => {
             habitant sit sagittis.
           </p>
         </div>
-        <button className="bg-green-10 text-black rounded-lg p-2"> Report Funding</button>
+        <button className="bg-green-0 text-black rounded-lg p-3"> Report Funding</button>
       </div>
 
       <div className="flex items-center justify-end">

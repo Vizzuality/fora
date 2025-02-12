@@ -24,8 +24,8 @@ interface FormValues {
   leadership_demographics: string[];
 }
 
-interface ProjectFormProps{
-  mode: "create" | "edit";
+interface ProjectFormProps {
+  mode: 'create' | 'edit';
   initialData?: any;
   projectId?: string;
 }
@@ -44,7 +44,7 @@ const SideNavigation = ({ currentStep, setCurrentStep }) => (
         onClick={() => setCurrentStep(step.id)}
         className={`w-full text-left px-4 py-3 transition-colors ${
           currentStep === step.id
-            ? 'bg-green-0 text-gray-700 font-medium border-green-0 rounded-md '
+            ? 'bg-green-20 text-gray-700 font-medium border-green-20 rounded-md '
             : 'text-gray-600 hover:bg-green-0'
         }`}
       >
@@ -54,59 +54,61 @@ const SideNavigation = ({ currentStep, setCurrentStep }) => (
   </div>
 );
 
- const initialForm = {
+const initialForm = {
   name: '',
-    description: '',
-    logo: null,
-    contact_first_name: '',
-    contact_last_name: '',
-    website: '',
-    country_id: null,
-    state_id: null,
-    city: '',
-    leadership_demographics_other: '',
-    recipient_legal_status: '',
-    leadership_demographics: [],
-}
+  description: '',
+  logo: null,
+  contact_first_name: '',
+  contact_last_name: '',
+  website: '',
+  country_id: null,
+  state_id: null,
+  city: '',
+  leadership_demographics_other: '',
+  recipient_legal_status: '',
+  leadership_demographics: [],
+};
 const ProjectForm = ({ mode, initialData, projectId }: ProjectFormProps) => {
-
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(STEPS[0].id);
 
-  const handleSubmit = (values: FormValues) => {
-
-  };
+  const handleSubmit = (values: FormValues) => {};
   return (
-    <Form onSubmit={handleSubmit} initialValues={initialData || {partnerName: '',
-      projectWebsite: '',
-      projectDescription: '',
-      logo: '',
-      collectDemographics: 'no',
-      leadershipDemographics: [],
-      contactName: '',
-      email: '',
-      focusArea: '',
-      fundingAmount: '',
-    }}
-    validate={(values) => {
-      const errors: any = {};
-      if (!values.name) {
-        errors.name = 'Name is required';
+    <Form
+      onSubmit={handleSubmit}
+      initialValues={
+        initialData || {
+          partnerName: '',
+          projectWebsite: '',
+          projectDescription: '',
+          logo: '',
+          collectDemographics: 'no',
+          leadershipDemographics: [],
+          contactName: '',
+          email: '',
+          focusArea: '',
+          fundingAmount: '',
+        }
       }
-      if (!values.description) {
-        errors.description = 'Description is required';
-      }
+      validate={(values) => {
+        const errors: any = {};
+        if (!values.name) {
+          errors.name = 'Name is required';
+        }
+        if (!values.description) {
+          errors.description = 'Description is required';
+        }
 
-      return errors;
-    }}
-    render={({handleSubmit, values, valid, submitting, form}) => (
-      <form onSubmit={handleSubmit} className='flex flex-col gap-8 p-4 md:flex-row'>
-        <SideNavigation currentStep={currentStep} setCurrentStep={setCurrentStep} />
-        <div className='flex-1 max-w-3xl'>
-          {STEPS.find(step => step.id === currentStep)?.component}
-        </div>
-      </form>
-    )}
+        return errors;
+      }}
+      render={({ handleSubmit, values, valid, submitting, form }) => (
+        <form onSubmit={handleSubmit} className="flex flex-col gap-8 p-4 md:flex-row">
+          <SideNavigation currentStep={currentStep} setCurrentStep={setCurrentStep} />
+          <div className="flex-1 max-w-3xl">
+            {STEPS.find((step) => step.id === currentStep)?.component}
+          </div>
+        </form>
+      )}
     />
   );
 };

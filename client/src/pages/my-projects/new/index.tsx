@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const TITLE_TEXT = 'FORA Projects | FORA supported regenerative agriculture projects';
 const DESCRIPTION_TEXT =
@@ -13,19 +13,19 @@ import { NextPage } from 'next';
 const NewProjectPage: NextPage = () => {
   return (
     <ProtectedRoute>
-    <div>
-    <MetaTags
-      title={TITLE_TEXT}
-      description={DESCRIPTION_TEXT}
-      type="website"
-      imageURL={IMAGE_URL}
-    />
-     <NewProjectLayout>
-      <ProjectForm mode='create' />
-     </NewProjectLayout>
-    </div>
+      <div>
+        <MetaTags
+          title={TITLE_TEXT}
+          description={DESCRIPTION_TEXT}
+          type="website"
+          imageURL={IMAGE_URL}
+        />
+        <NewProjectLayout>
+          <ProjectForm mode="create" />
+        </NewProjectLayout>
+      </div>
     </ProtectedRoute>
-  )
-}
+  );
+};
 
-export default NewProjectPage
+export default NewProjectPage;

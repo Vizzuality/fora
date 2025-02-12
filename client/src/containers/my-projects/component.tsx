@@ -1,12 +1,12 @@
-import React from 'react'
-import MyProjectList from './list'
+import React from 'react';
+import MyProjectList from './list';
 
 const MyProject = () => {
   return (
-  <>
-    <MyProjectList />
-  </>
-  )
-}
+    <>
+      <MyProjectList />
+    </>
+  );
+};
 
-export default MyProject
+export default MyProject;

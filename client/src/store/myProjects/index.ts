@@ -11,7 +11,7 @@ export type Sort = {
   order: 'asc' | 'desc';
 };
 
-interface MyProjectState{
+interface MyProjectState {
   sort?: Sort;
 }
 
@@ -19,8 +19,8 @@ export const initialState: MyProjectState = {
   sort: {
     field: 'name',
     order: 'asc',
-  }
-}
+  },
+};
 
 export const slice = createSlice({
   name: '/myProjects',
@@ -36,17 +36,16 @@ export const slice = createSlice({
       return {
         ...state,
         ...action.payload['/myProjects'],
-      }
-    }
-  }
-})
+      };
+    },
+  },
+});
 
 export const { setSort } = slice.actions;
 
-export function getReduxStateFromQuery(getServerSidePropsFunc?: Function){
-  return STORE_WRAPPER.getServerSideProps((store) =>async (ctx) => {
-
-    const {resolvedUrl} = ctx;
+export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
+  return STORE_WRAPPER.getServerSideProps((store) => async (ctx) => {
+    const { resolvedUrl } = ctx;
     const { query } = qs.parseUrl(decodeURIComponent(resolvedUrl), {
       arrayFormat: 'bracket-separator',
       arrayFormatSeparator: ',',
@@ -54,10 +53,7 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function){
       parseBooleans: true,
     });
 
-    const {
-      sortField,
-      sortOrder,
-    } = query;
+    const { sortField, sortOrder } = query;
 
     if (sortField && sortOrder) {
       await store.dispatch(setSort({ field: sortField, order: sortOrder } as Sort));
@@ -76,11 +72,11 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function){
     return {
       props: {},
     };
-  })
+  });
 }
 
 export const setQueryFromReduxState = (pathname: string, state: any) => {
-  const {sort} = state;
+  const { sort } = state;
   const url = qs.stringifyUrl(
     {
       url: pathname,
@@ -89,14 +85,14 @@ export const setQueryFromReduxState = (pathname: string, state: any) => {
           sortField: sort.field,
           sortOrder: sort.order,
         }),
-      }
+      },
     },
     {
       arrayFormat: 'bracket-separator',
       arrayFormatSeparator: ',',
     }
-  )
+  );
 
-  router.replace(url, null, {shallow: true});
-}
+  router.replace(url, null, { shallow: true });
+};
 export default slice.reducer;
