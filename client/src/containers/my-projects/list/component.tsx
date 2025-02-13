@@ -1,17 +1,24 @@
-import cx from 'classnames';
-import { Menu } from '@headlessui/react';
-import MyProjectsSentence from 'containers/sentence/my-projects';
-import Wrapper from 'containers/wrapper';
-import { setSort } from 'store/myProjects';
-import { useFetchMemberProjects, useMyInfinityProjects } from 'hooks/my-projects';
 import { useCallback } from 'react';
+
+import cx from 'classnames';
+
+import Link from 'next/link';
+
 import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { setSort } from 'store/myProjects';
+
+import { Menu } from '@headlessui/react';
+
+import { useMyInfinityProjects } from 'hooks/my-projects';
+
+import Cards from 'containers/cards';
+import Wrapper from 'containers/wrapper';
+
 import Button from 'components/button';
 import Icon from 'components/icon';
 import Loading from 'components/loading';
+
 import CHEVRON_DOWN_SVG from 'svgs/ui/chevron-down.svg?sprite';
-import Cards from 'containers/cards';
-import Link from 'next/link';
 
 const MyProjectList = () => {
   const { sort } = useAppSelector((state) => state['/myProjects']);
@@ -23,7 +30,6 @@ const MyProjectList = () => {
     hasNextPage: hasNextProjectsPage,
     isFetchingNextPage: isFetchingNextProjectsPage,
     isFetching: isFetchingMyProjects,
-    isFetched: isFetchedMyProjects,
   } = useMyInfinityProjects({
     sort,
     perPage: 12,
@@ -104,7 +110,7 @@ const MyProjectList = () => {
         {!myProjects.length && !LOADING && (
           <div className="flex flex-col items-center justify-center space-y-4 h-[40vh] bg-white md:w-[55rem] mx-auto">
             <p className="md:text-[40px] font-display font-medium">You have no projects added.</p>
-            <p className="max-w-sm text-center py-3 text-grey-20">
+            <p className="max-w-sm py-3 text-center text-grey-20">
               Sorry, we have searched in our entire database but we couldn&apos;t find any results
               fitting your search criteria.
             </p>

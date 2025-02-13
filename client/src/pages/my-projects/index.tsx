@@ -1,11 +1,13 @@
 import React from 'react';
+
 import { useAppSelector } from 'store/hooks';
-import MetaTags from 'containers/meta-tags';
-import Url from 'containers/url';
-import MyProjectList from 'containers/my-projects/list';
-import ProtectedRoute from 'hoc/protectedRoute';
-import { withAuth } from 'hoc/auth';
 import { getReduxStateFromQuery, setQueryFromReduxState } from 'store/myProjects';
+
+import MetaTags from 'containers/meta-tags';
+import MyProjectList from 'containers/my-projects/list';
+import Url from 'containers/url';
+
+import ProtectedRoute from 'hoc/protectedRoute';
 
 export const getServerSideProps = getReduxStateFromQuery();
 
