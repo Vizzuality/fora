@@ -3,7 +3,6 @@ import React from 'react';
 import Link from 'next/link';
 import Icon from 'components/icon';
 import eye from 'svgs/icons/eye.svg?sprite';
-import upload from 'svgs/icons/upload.svg?sprite';
 import CHEVRON_RIGHT from 'svgs/icons/arrow-right.svg?sprite';
 import CHEVRON_LEFT from 'svgs/icons/arrow-left.svg?sprite';
 import LOCK from 'svgs/icons/lock.svg?sprite';

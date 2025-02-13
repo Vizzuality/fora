@@ -1,12 +1,15 @@
 import React from 'react';
 
+import Link from 'next/link';
+
 import { Funder } from 'types/funder';
 import { Project } from 'types/project';
 
-import Card from './card';
 import Icon from 'components/icon';
+
 import ADD_ICON_SVG from 'svgs/icons/add.svg?sprite';
-import Link from 'next/link';
+
+import Card from './card';
 
 export interface CardsProps {
   data: (Funder | Project)[] | Partial<Funder>[] | Partial<Project>[];

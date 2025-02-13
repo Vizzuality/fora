@@ -1,17 +1,18 @@
 import { useMemo } from 'react';
+
 import { jsonAPIAdapter } from 'lib/adapters/json-api-adapter';
 import { MyProjectProps } from 'lib/adapters/types';
+
 import {
-  QueryClient,
   useInfiniteQuery,
   UseInfiniteQueryOptions,
-  useMutation,
   useQuery,
-  useQueryClient,
   UseQueryOptions,
 } from '@tanstack/react-query';
-import API from 'services/api';
+
 import { InifiniteProject, Project } from 'types/project';
+
+import API from 'services/api';
 
 export const fetchMemberProjects = (params: MyProjectProps) => {
   return API.request({
@@ -35,6 +36,7 @@ export function useFetchMemberProjects(
     placeholderData: {
       data: [],
     },
+    ...queryOption,
     ...queryOption,
   });
 

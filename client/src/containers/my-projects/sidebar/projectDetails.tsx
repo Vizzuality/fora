@@ -7,11 +7,8 @@ import upload from 'svgs/icons/upload.svg?sprite';
 import CHEVRON_RIGHT from 'svgs/icons/arrow-right.svg?sprite';
 import LOCK from 'svgs/icons/lock.svg?sprite';
 import USER_TWO from 'svgs/icons/user-two.svg?sprite';
-import { useDispatch } from 'react-redux';
 const ProjectDetails = () => {
   const [logo, setLogo] = useState<File | null>(null);
-
-  const dispatch = useDispatch();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files?.[0]) {
