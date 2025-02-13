@@ -3,9 +3,12 @@ import React from 'react';
 import ProjectCard from 'containers/projects/ui/card';
 
 import Icon from 'components/icon';
+<<<<<<< HEAD
+=======
 
 // import eye from 'svgs/icons/eye.svg?sprite';
 // import upload from 'svgs/icons/upload.svg?sprite';
+>>>>>>> 8af903628a29c788edf5e1cf3eb602333a7b3dc3
 import CHEVRON_LEFT from 'svgs/icons/arrow-left.svg?sprite';
 
 const FundingHome = () => {
@@ -20,7 +23,7 @@ const FundingHome = () => {
             habitant sit sagittis.
           </p>
         </div>
-        <button className="bg-green-0 text-black rounded-lg p-3"> Report Funding</button>
+        <button className="p-3 text-black rounded-lg bg-green-0"> Report Funding</button>
       </div>
 
       <div className="flex items-center justify-end">

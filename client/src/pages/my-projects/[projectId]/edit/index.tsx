@@ -12,7 +12,6 @@ import ProjectForm from 'containers/my-projects/sidebar/form';
 import ProtectedRoute from 'hoc/protectedRoute';
 import NewProjectLayout from 'pages/my-projects/new/layout';
 
-// export const getServerSideProps = getReduxStateFromQuery();
 
 const TITLE_TEXT = 'FORA Projects | FORA supported regenerative agriculture projects';
 const DESCRIPTION_TEXT =

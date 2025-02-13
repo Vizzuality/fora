@@ -8,7 +8,6 @@ import MyProjectList from 'containers/my-projects/list';
 import Url from 'containers/url';
 
 import ProtectedRoute from 'hoc/protectedRoute';
-// import { withAuth } from 'hoc/auth';
 
 export const getServerSideProps = getReduxStateFromQuery();
 
@@ -35,7 +34,5 @@ const MyProjects: React.FC = () => {
     </ProtectedRoute>
   );
 };
-
-// export const getServerSideProps = withAuth();
 
 export default MyProjects;

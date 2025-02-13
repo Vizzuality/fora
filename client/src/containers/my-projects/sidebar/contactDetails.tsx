@@ -5,8 +5,6 @@ import Link from 'next/link';
 import ProjectCard from 'containers/projects/ui/card';
 
 import Icon from 'components/icon';
-
-// import upload from 'svgs/icons/upload.svg?sprite';
 import CHEVRON_LEFT from 'svgs/icons/arrow-left.svg?sprite';
 import CHEVRON_RIGHT from 'svgs/icons/arrow-right.svg?sprite';
 import eye from 'svgs/icons/eye.svg?sprite';
