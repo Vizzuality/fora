@@ -44,6 +44,7 @@ export function useFetchMemberProjects(
       data: [],
     },
     ...queryOption,
+    ...queryOption,
   });
 
   return query;

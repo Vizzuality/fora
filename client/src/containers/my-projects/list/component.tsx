@@ -110,7 +110,7 @@ const MyProjectList = () => {
         {!myProjects.length && !LOADING && (
           <div className="flex flex-col items-center justify-center space-y-4 h-[40vh] bg-white md:w-[55rem] mx-auto">
             <p className="md:text-[40px] font-display font-medium">You have no projects added.</p>
-            <p className="max-w-sm text-center py-3 text-grey-20">
+            <p className="max-w-sm py-3 text-center text-grey-20">
               Sorry, we have searched in our entire database but we couldn&apos;t find any results
               fitting your search criteria.
             </p>
