@@ -68,7 +68,7 @@ const ProjectForm = ({ initialData }: ProjectFormProps) => {
 
         return errors;
       }}
-      render={({handleSubmit}) => (
+      render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit} className="flex flex-col gap-8 p-4 md:flex-row">
           <SideNavigation currentStep={currentStep} setCurrentStep={setCurrentStep} />
           <div className="flex-1 max-w-3xl">

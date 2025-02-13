@@ -12,7 +12,6 @@ import ProjectForm from 'containers/my-projects/sidebar/form';
 import ProtectedRoute from 'hoc/protectedRoute';
 import NewProjectLayout from 'pages/my-projects/new/layout';
 
-
 const TITLE_TEXT = 'FORA Projects | FORA supported regenerative agriculture projects';
 const DESCRIPTION_TEXT =
   'Stay up-to-date on the what, who, and where of the funding and strategies of FORA members for synergistic collaboration in support of your work.';
