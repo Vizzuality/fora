@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ProjectCard from 'containers/projects/ui/card';
-import Link from 'next/link';
 import Icon from 'components/icon';
 import eye from 'svgs/icons/eye.svg?sprite';
 import upload from 'svgs/icons/upload.svg?sprite';
@@ -27,18 +26,18 @@ const ProjectDetails = () => {
           </p>
 
           <div className="flex gap-4 p-2 my-5 rounded-xl bg-grey-60">
-            <Link href="/projects/new/project-details" className="flex">
-              <Icon icon={LOCK} className="w-4 h-4 pr-1" />
+            <div className="flex items-center gap-1">
+              <Icon icon={LOCK} className="w-4 h-4" />
               Private Information
-            </Link>
-            <Link href="/projects/new/project-details" className="flex">
-              <Icon icon={eye} className="w-4 h-4 pr-1" />
+            </div>
+            <div className="flex items-center gap-1">
+              <Icon icon={eye} className="w-4 h-4" />
               Aggregated Information
-            </Link>
-            <Link href="" className="flex">
-              <Icon icon={USER_TWO} className="w-4 h-4 pr-1" />
+            </div>
+            <div className="flex items-center gap-1">
+              <Icon icon={USER_TWO} className="w-4 h-4" />
               Only FORA members
-            </Link>
+            </div>
           </div>
         </div>
         <div className="flex gap-2 text-[14px]/[10px] pb-3">
@@ -83,8 +82,11 @@ const ProjectDetails = () => {
           <label className="flex mb-1 font-medium text-gray-700">
             <Icon icon={eye} className="w-4 h-4 pr-1" /> LOGO
           </label>
-          <div className="flex items-center justify-center w-full p-6 border border-gray-700 border-dashed rounded-lg cursor-pointer hover:border-blue-400">
-            <input type="file" className="hidden" onChange={handleFileChange} />
+          <div
+            className="flex items-center justify-center w-full p-6 border border-gray-700 border-dashed rounded-lg cursor-pointer hover:border-blue-400"
+            onClick={() => document.getElementById('file-upload')?.click()}
+          >
+            <input type="file" className="hidden" id="file-upload" onChange={handleFileChange} />
             {logo ? (
               <p className="text-gray-700">{logo.name}</p>
             ) : (
@@ -133,6 +135,10 @@ const ProjectDetails = () => {
           </label>
           <select className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring focus:ring-green-200">
             <option>Select all that apply</option>
+            <option>Asian</option>
+            <option>Black or African American</option>
+            <option>Hispanic or Latinx</option>
+            <option>Indigenous/Tribal Nations</option>
           </select>
         </div>
 

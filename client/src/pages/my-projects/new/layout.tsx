@@ -1,5 +1,3 @@
-'use client';
-
 import Wrapper from 'containers/wrapper';
 
 export default function NewProjectLayout({ children }: { children: React.ReactNode }) {

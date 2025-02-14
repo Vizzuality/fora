@@ -1,6 +1,5 @@
 import ProjectCard from 'containers/projects/ui/card';
 import React from 'react';
-import Link from 'next/link';
 import Icon from 'components/icon';
 import eye from 'svgs/icons/eye.svg?sprite';
 import CHEVRON_RIGHT from 'svgs/icons/arrow-right.svg?sprite';
@@ -18,18 +17,18 @@ const FocusAreas = () => {
             ultrices nulla nibh dolor sit amet pellentesque consectetur.
           </p>
           <div className="flex gap-4 p-2 my-5 rounded-xl bg-grey-60">
-            <Link href="/projects/new/project-details" className="flex">
-              <Icon icon={LOCK} className="w-4 h-4 pr-1" />
+            <div className="flex items-center gap-1">
+              <Icon icon={LOCK} className="w-4 h-4" />
               Private Information
-            </Link>
-            <Link href="/projects/new/project-details" className="flex">
-              <Icon icon={eye} className="w-4 h-4 pr-1" />
+            </div>
+            <div className="flex items-center gap-1">
+              <Icon icon={eye} className="w-4 h-4" />
               Aggregated Information
-            </Link>
-            <Link href="" className="flex">
-              <Icon icon={USER_TWO} className="w-4 h-4 pr-1" />
+            </div>
+            <div className="flex items-center gap-1">
+              <Icon icon={USER_TWO} className="w-4 h-4" />
               Only FORA members
-            </Link>
+            </div>
           </div>
         </div>
 

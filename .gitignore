@@ -6,3 +6,9 @@
 
 /infrastructure/.terraform/
 /client/log
+/client/.env
+
+/client/node_modules
+/client/.env.default
+/backend/
+/infrastructure/

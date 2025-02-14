@@ -39,10 +39,10 @@ const SideNavigation = ({ currentStep, setCurrentStep }) => (
 const ProjectForm = ({ initialData }: ProjectFormProps) => {
   const [currentStep, setCurrentStep] = useState(STEPS[0].id);
 
-  const handleSubmit = () => {};
+  const onSubmit = () => {};
   return (
     <Form
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
       initialValues={
         initialData || {
           partnerName: '',
@@ -68,8 +68,8 @@ const ProjectForm = ({ initialData }: ProjectFormProps) => {
 
         return errors;
       }}
-      render={() => (
-        <form className="flex flex-col gap-8 p-4 md:flex-row">
+      render={({ handleSubmit }) => (
+        <form onSubmit={handleSubmit} className="flex flex-col gap-8 p-4 md:flex-row">
           <SideNavigation currentStep={currentStep} setCurrentStep={setCurrentStep} />
           <div className="flex-1 max-w-3xl">
             {STEPS.find((step) => step.id === currentStep)?.component}
