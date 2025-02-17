@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import FocusAreas from 'containers/my-projects/sidebar/focus_area';
+import React from 'react';
+
 import { Form } from 'react-final-form';
 
 import ContactDetails from 'containers/my-projects/sidebar/contactDetails';
+import FocusAreas from 'containers/my-projects/sidebar/focus_area';
 import Funding from 'containers/my-projects/sidebar/funding';
+
 import ProjectDetails from './projectDetails';
-import React from 'react';
 
 interface ProjectFormProps {
   mode?: 'create' | 'edit';

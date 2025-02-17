@@ -1,9 +1,12 @@
-import ProjectCard from 'containers/projects/ui/card';
 import React from 'react';
+
+import ProjectCard from 'containers/projects/ui/card';
+
 import Icon from 'components/icon';
-import eye from 'svgs/icons/eye.svg?sprite';
-import CHEVRON_RIGHT from 'svgs/icons/arrow-right.svg?sprite';
+
 import CHEVRON_LEFT from 'svgs/icons/arrow-left.svg?sprite';
+import CHEVRON_RIGHT from 'svgs/icons/arrow-right.svg?sprite';
+import eye from 'svgs/icons/eye.svg?sprite';
 import LOCK from 'svgs/icons/lock.svg?sprite';
 import USER_TWO from 'svgs/icons/user-two.svg?sprite';
 
@@ -46,6 +49,9 @@ const FocusAreas = ({ setCurrentStep }) => {
             </label>
             <select className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring focus:ring-green-200">
               <option className="text-sm">Select all that apply</option>
+              <option>AgTech</option>
+              <option>Agroforestry</option>
+              <option>Agrovoltaics</option>
             </select>
           </div>
 
@@ -56,6 +62,10 @@ const FocusAreas = ({ setCurrentStep }) => {
             </label>
             <select className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring focus:ring-green-200">
               <option className="text-sm">Select all that apply</option>
+
+              <option>Asian</option>
+              <option>Black or African American</option>
+              <option>Hispanic or Latinx</option>
             </select>
           </div>
 
@@ -66,6 +76,10 @@ const FocusAreas = ({ setCurrentStep }) => {
             </label>
             <select className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring focus:ring-green-200">
               <option className="text-sm">Select all that apply</option>
+
+              <option>USA</option>
+              <option>UK</option>
+              <option>India</option>
             </select>
           </div>
 
@@ -76,6 +90,10 @@ const FocusAreas = ({ setCurrentStep }) => {
             </label>
             <select className="w-full p-3 border border-gray-300 rounded-lg outline-none focus:ring focus:ring-green-200">
               <option className="text-sm">Select all that apply</option>
+
+              <option>USA</option>
+              <option>UK</option>
+              <option>India</option>
             </select>
           </div>
         </div>

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+
 import ProjectCard from 'containers/projects/ui/card';
+
 import Icon from 'components/icon';
 
-import eye from 'svgs/icons/eye.svg?sprite';
-import upload from 'svgs/icons/upload.svg?sprite';
 import CHEVRON_RIGHT from 'svgs/icons/arrow-right.svg?sprite';
+import eye from 'svgs/icons/eye.svg?sprite';
 import LOCK from 'svgs/icons/lock.svg?sprite';
+import upload from 'svgs/icons/upload.svg?sprite';
 import USER_TWO from 'svgs/icons/user-two.svg?sprite';
 const ProjectDetails = ({ setCurrentStep }) => {
   const [logo, setLogo] = useState<File | null>(null);
