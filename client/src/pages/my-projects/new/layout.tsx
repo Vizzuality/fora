@@ -3,9 +3,9 @@ import Wrapper from 'containers/wrapper';
 export default function NewProjectLayout({ children }: { children: React.ReactNode }) {
   return (
     <Wrapper>
-      <div className="flex flex-col justify-between my-2 md:flex-row">
-        <div className="my-3 text-center">
-          <h1 className="font-normal text-[32px] py-3 md:py-0 font-display tracking-normal">
+      <div className="flex flex-col justify-between my-2 md:flex-row lg:pt-3 ">
+        <div className="my-3 lg:text-center text-left">
+          <h1 className="font-normal text-[20px] lg:text-[32px] py-3 md:py-0 font-display tracking-normal">
             Add or update project details
           </h1>
         </div>

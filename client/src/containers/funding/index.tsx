@@ -1,9 +1,12 @@
-import ProjectCard from 'containers/projects/ui/card';
 import React from 'react';
+
+import ProjectCard from 'containers/projects/ui/card';
+
 import Icon from 'components/icon';
+
 import CHEVRON_LEFT from 'svgs/icons/arrow-left.svg?sprite';
 
-const FundingHome = () => {
+const FundingHome = ({ setCurrentStep }) => {
   return (
     <ProjectCard title="">
       <div className="flex flex-col items-center justify-center font-display h-[50vh]">
@@ -19,7 +22,10 @@ const FundingHome = () => {
       </div>
 
       <div className="flex items-center justify-end">
-        <button className="flex items-center p-2 mt-6 text-black transition bg-transparent border rounded-lg hover:bg-blue-700">
+        <button
+          onClick={() => setCurrentStep('focus-area')}
+          className="flex items-center p-2 mt-6 text-black transition bg-transparent border rounded-lg hover:bg-blue-700"
+        >
           <span className="pr-2">
             <Icon icon={CHEVRON_LEFT} className="w-3 h-3" />
           </span>

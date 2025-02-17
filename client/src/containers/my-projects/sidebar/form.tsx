@@ -5,17 +5,27 @@ import { Form } from 'react-final-form';
 import ContactDetails from 'containers/my-projects/sidebar/contactDetails';
 import Funding from 'containers/my-projects/sidebar/funding';
 import ProjectDetails from './projectDetails';
+import React from 'react';
 
 interface ProjectFormProps {
   mode?: 'create' | 'edit';
   initialData?: any;
   projectId?: string;
 }
+
 const STEPS = [
-  { id: 'project-details', name: 'PROJECT DETAILS', component: <ProjectDetails /> },
-  { id: 'contact-details', name: 'CONTACT DETAILS', component: <ContactDetails /> },
-  { id: 'focus-area', name: 'FOCUS AREA', component: <FocusAreas /> },
-  { id: 'funding', name: 'FUNDING', component: <Funding /> },
+  {
+    id: 'project-details',
+    name: 'PROJECT DETAILS',
+    component: (props) => <ProjectDetails {...props} />,
+  },
+  {
+    id: 'contact-details',
+    name: 'CONTACT DETAILS',
+    component: (props) => <ContactDetails {...props} />,
+  },
+  { id: 'focus-area', name: 'FOCUS AREA', component: (props) => <FocusAreas {...props} /> },
+  { id: 'funding', name: 'FUNDING', component: (props) => <Funding {...props} /> },
 ];
 
 const SideNavigation = ({ currentStep, setCurrentStep }) => (
@@ -38,25 +48,33 @@ const SideNavigation = ({ currentStep, setCurrentStep }) => (
 
 const ProjectForm = ({ initialData }: ProjectFormProps) => {
   const [currentStep, setCurrentStep] = useState(STEPS[0].id);
+  const [formValues, setFormValues] = useState(
+    initialData || {
+      partnerName: '',
+      projectWebsite: '',
+      projectDescription: '',
+      logo: '',
+      collectDemographics: 'no',
+      leadershipDemographics: [],
+      contactName: '',
+      email: '',
+      focusArea: '',
+      fundingAmount: '',
+    }
+  );
 
-  const onSubmit = () => {};
+  const handleNextStep = (values) => {
+    setFormValues((prev) => ({ ...prev, ...values })); // Save form values before switching steps
+  };
+
+  const onSubmit = (values) => {
+    alert(`Form submitted successfully! ${values}`);
+  };
+
   return (
     <Form
       onSubmit={onSubmit}
-      initialValues={
-        initialData || {
-          partnerName: '',
-          projectWebsite: '',
-          projectDescription: '',
-          logo: '',
-          collectDemographics: 'no',
-          leadershipDemographics: [],
-          contactName: '',
-          email: '',
-          focusArea: '',
-          fundingAmount: '',
-        }
-      }
+      initialValues={formValues}
       validate={(values) => {
         const errors: any = {};
         if (!values.name) {
@@ -68,11 +86,16 @@ const ProjectForm = ({ initialData }: ProjectFormProps) => {
 
         return errors;
       }}
-      render={({ handleSubmit }) => (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-8 p-4 md:flex-row">
+      render={({ handleSubmit, values }) => (
+        <form onSubmit={handleSubmit} className="flex flex-col gap-8 lg:p-4 md:flex-row my-2">
           <SideNavigation currentStep={currentStep} setCurrentStep={setCurrentStep} />
           <div className="flex-1 max-w-3xl">
-            {STEPS.find((step) => step.id === currentStep)?.component}
+            {STEPS.find((step) => step.id === currentStep)?.component({
+              setCurrentStep: (nextStep) => {
+                handleNextStep(values); // Save values when changing steps
+                setCurrentStep(nextStep);
+              },
+            })}
           </div>
         </form>
       )}

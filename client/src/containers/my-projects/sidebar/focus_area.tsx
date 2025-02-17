@@ -7,7 +7,7 @@ import CHEVRON_LEFT from 'svgs/icons/arrow-left.svg?sprite';
 import LOCK from 'svgs/icons/lock.svg?sprite';
 import USER_TWO from 'svgs/icons/user-two.svg?sprite';
 
-const FocusAreas = () => {
+const FocusAreas = ({ setCurrentStep }) => {
   return (
     <ProjectCard title="Project Name Focus Areas">
       <div className="md:w-full">
@@ -16,7 +16,7 @@ const FocusAreas = () => {
             Lorem ipsum dolor sit amet consectetur et fringilla pellentesque in ut congue at
             ultrices nulla nibh dolor sit amet pellentesque consectetur.
           </p>
-          <div className="flex gap-4 p-2 my-5 rounded-xl bg-grey-60">
+          <div className="lg:flex block space-y-2 gap-4 p-2 my-5 rounded-xl bg-grey-60">
             <div className="flex items-center gap-1">
               <Icon icon={LOCK} className="w-4 h-4" />
               Private Information
@@ -81,7 +81,10 @@ const FocusAreas = () => {
         </div>
         <div className="flex justify-end gap-4">
           <div className="flex items-center justify-end">
-            <button className="flex items-center p-2 mt-6 text-black transition bg-transparent border rounded-lg hover:bg-blue-700">
+            <button
+              onClick={() => setCurrentStep('contact-details')}
+              className="flex items-center p-2 mt-6 text-black transition bg-transparent border rounded-lg hover:bg-blue-700"
+            >
               <span className="pr-2">
                 <Icon icon={CHEVRON_LEFT} className="w-3 h-3" />
               </span>
@@ -90,8 +93,11 @@ const FocusAreas = () => {
           </div>
 
           <div className="flex items-center justify-end">
-            <button className="flex items-center p-2 mt-6 text-black transition bg-transparent border rounded-lg hover:bg-blue-700">
-              Investment{' '}
+            <button
+              onClick={() => setCurrentStep('funding')}
+              className="flex items-center p-2 mt-6 text-black transition bg-transparent border rounded-lg hover:bg-blue-700"
+            >
+              Funding{' '}
               <span className="pl-2">
                 <Icon icon={CHEVRON_RIGHT} className="w-3 h-3" />
               </span>
