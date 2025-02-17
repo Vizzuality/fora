@@ -3,7 +3,6 @@ import { GetServerSidePropsContext } from 'next';
 import NextAuth, { getServerSession } from 'next-auth';
 import type { NextAuthOptions } from 'next-auth';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { JWT } from 'next-auth/jwt';
 import Credentials from 'next-auth/providers/credentials';
 
 import authenticationService from 'services/authentication';
