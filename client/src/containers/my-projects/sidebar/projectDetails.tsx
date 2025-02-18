@@ -30,14 +30,14 @@ const ProjectDetails = ({ setCurrentStep }) => {
             Lorem ipsum dolor sit amet consectetur et fringilla pellentesque in ut congue at
             ultrices nulla nibh dolor sit amet pellentesque consectetur.
           </p>
-          <div className="lg:flex block space-y-2 gap-4 p-2 my-5 rounded-xl bg-grey-60">
-            <div className="flex items-center gap-1">
+          <div className="lg:flex block lg:gap-4 p-2 my-5 rounded-xl bg-grey-60 ">
+            <div className="flex items-center gap-1 my-1 lg:my-0">
               <Icon icon={LOCK} className="w-4 h-4" /> Private Information
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 my-1 lg:my-0">
               <Icon icon={eye} className="w-4 h-4" /> Aggregated Information
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 my-1 lg:my-0">
               <Icon icon={USER_TWO} className="w-4 h-4" /> Only FORA members
             </div>
           </div>
@@ -48,28 +48,30 @@ const ProjectDetails = ({ setCurrentStep }) => {
           All fields marked with a red asterisk are mandatory to fill
         </div>
 
-        <Field name="partnerName">
-          {({ input }) => (
-            <div className="flex flex-col py-2">
-              <label className="flex">
-                <Icon icon={eye} className="w-4 h-4 pr-1" /> PARTNER ORGANIZATION NAME{' '}
-                <span className="text-red-0">*</span>
-              </label>
-              <input {...input} type="text" className="w-full p-2 mt-2 border rounded-lg" />
-            </div>
-          )}
-        </Field>
+        <div className="flex flex-col md:flex-row md:gap-4">
+          <Field name="partnerName">
+            {({ input }) => (
+              <div className="flex flex-col py-2  w-full">
+                <label className="flex">
+                  <Icon icon={eye} className="w-4 h-4 pr-1" /> PARTNER ORGANIZATION NAME{' '}
+                  <span className="text-red-0">*</span>
+                </label>
+                <input {...input} type="text" className="w-full p-2 mt-2 border rounded-lg" />
+              </div>
+            )}
+          </Field>
 
-        <Field name="projectWebsite">
-          {({ input }) => (
-            <div className="flex flex-col py-2">
-              <label className="flex">
-                <Icon icon={eye} className="w-4 h-4 pr-1" /> PROJECT WEBSITE
-              </label>
-              <input {...input} type="text" className="w-full p-2 mt-2 border rounded-lg" />
-            </div>
-          )}
-        </Field>
+          <Field name="projectWebsite">
+            {({ input }) => (
+              <div className="flex flex-col py-2  w-full">
+                <label className="flex">
+                  <Icon icon={eye} className="w-4 h-4 pr-1" /> PROJECT WEBSITE
+                </label>
+                <input {...input} type="text" className="w-full p-2 mt-2 border rounded-lg" />
+              </div>
+            )}
+          </Field>
+        </div>
 
         <Field name="projectDescription">
           {({ input }) => (

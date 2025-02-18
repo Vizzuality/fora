@@ -61,6 +61,19 @@ const ProjectForm = ({ initialData }: ProjectFormProps) => {
     setFormValues((prev) => ({ ...prev, ...values }));
   };
 
+  const handleSubmit = (values) => {
+    // Log the values of the form when the last step is submitted
+    if (currentStep === STEPS[STEPS.length - 1].id) {
+      alert(`Form submitted successfully! ${JSON.stringify(values)}`);
+      // You can send a POST request here if necessary, like a mutation or API call
+    } else {
+      // If not the last step, save the current values and go to the next step
+      handleNextStep(values);
+      const nextStepIndex = STEPS.findIndex((step) => step.id === currentStep) + 1;
+      setCurrentStep(STEPS[nextStepIndex].id);
+    }
+  };
+
   const StepComponent = STEPS.find((step) => step.id === currentStep)?.component;
 
   return (
@@ -69,13 +82,10 @@ const ProjectForm = ({ initialData }: ProjectFormProps) => {
       <div className="flex-1 max-w-3xl">
         {StepComponent && (
           <Form
-            onSubmit={(values) => {
-              handleNextStep(values);
-              alert(`Form submitted successfully! ${JSON.stringify(values)}`);
-            }}
+            onSubmit={handleSubmit}
             initialValues={formValues}
-            render={({ handleSubmit }) => (
-              <form onSubmit={handleSubmit}>
+            render={({ handleSubmit: finalFormHandleSubmit }) => (
+              <form onSubmit={finalFormHandleSubmit}>
                 <StepComponent setCurrentStep={setCurrentStep} />
               </form>
             )}

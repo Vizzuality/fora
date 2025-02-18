@@ -19,18 +19,15 @@ const FocusAreas = ({ setCurrentStep }) => {
         <div className="md:w-[559px] w-full">
           <p>Lorem ipsum dolor sit amet consectetur...</p>
 
-          <div className="lg:flex block space-y-2 gap-4 p-2 my-5 rounded-xl bg-grey-60">
-            <div className="flex items-center gap-1">
-              <Icon icon={LOCK} className="w-4 h-4" />
-              Private Information
+          <div className="lg:flex block lg:gap-4 p-2 my-5 rounded-xl bg-grey-60 ">
+            <div className="flex items-center gap-1 my-1 lg:my-0">
+              <Icon icon={LOCK} className="w-4 h-4" /> Private Information
             </div>
-            <div className="flex items-center gap-1">
-              <Icon icon={eye} className="w-4 h-4" />
-              Aggregated Information
+            <div className="flex items-center gap-1 my-1 lg:my-0">
+              <Icon icon={eye} className="w-4 h-4" /> Aggregated Information
             </div>
-            <div className="flex items-center gap-1">
-              <Icon icon={USER_TWO} className="w-4 h-4" />
-              Only FORA members
+            <div className="flex items-center gap-1 my-1 lg:my-0">
+              <Icon icon={USER_TWO} className="w-4 h-4" /> Only FORA members
             </div>
           </div>
         </div>

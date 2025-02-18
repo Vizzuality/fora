@@ -8,6 +8,8 @@ import {
   UseInfiniteQueryOptions,
   useQuery,
   UseQueryOptions,
+  useQueryClient,
+  useMutation,
 } from '@tanstack/react-query';
 
 import { InifiniteProject, Project } from 'types/project';
@@ -78,4 +80,29 @@ export function useMyInfinityProjects(
     ...query,
     data: DATA,
   };
+}
+
+export const createMemberProject = async (projectData: FormData) => {
+  return API.request({
+    method: 'POST',
+    url: '/members/projects',
+    data: projectData,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  }).then((res) => res.data);
+};
+
+export function useCreateMemberProject() {
+  const queryClient = useQueryClient();
+
+  return useMutation(createMemberProject, {
+    onSuccess: (data) => {
+      queryClient.invalidateQueries(['myProjects']); // Refresh project list
+      console.info('Project created successfully:', data);
+    },
+    onError: (error) => {
+      console.error('Error creating project:', error);
+    },
+  });
 }
