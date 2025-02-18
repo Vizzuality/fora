@@ -60,7 +60,7 @@ const MyProjectList = () => {
                 </div>
               </div>
 
-              <div className="flex justify-between mt-10">
+              <div className="flex  mt-10">
                 <Menu as="div" className="relative">
                   <Menu.Button className="flex items-center space-x-2">
                     <p className="font-semibold">Sort by</p>
@@ -102,6 +102,7 @@ const MyProjectList = () => {
                     </Menu.Item>
                   </Menu.Items>
                 </Menu>
+                <p className="text-grey-20 text-base px-4">{myProjects?.length} projects</p>
               </div>
             </>
           )}
@@ -123,12 +124,7 @@ const MyProjectList = () => {
 
         {!!myProjects.length && (
           <div className="pb-10">
-            <Cards
-              pathname="/members/projects"
-              theme="bg-green-0"
-              data={myProjects}
-              project={true}
-            />
+            <Cards pathname="/my-projects" theme="bg-green-0" data={myProjects} project={true} />
           </div>
         )}
 

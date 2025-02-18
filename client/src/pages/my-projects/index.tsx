@@ -3,11 +3,11 @@ import React from 'react';
 import { useAppSelector } from 'store/hooks';
 import { getReduxStateFromQuery, setQueryFromReduxState } from 'store/myProjects';
 
+import ProtectedRoute from 'hoc/protectedRoute';
+
 import MetaTags from 'containers/meta-tags';
 import MyProjectList from 'containers/my-projects/list';
 import Url from 'containers/url';
-
-import ProtectedRoute from 'hoc/protectedRoute';
 
 export const getServerSideProps = getReduxStateFromQuery();
 

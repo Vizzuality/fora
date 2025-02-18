@@ -7,7 +7,7 @@ import ProtectedRoute from 'hoc/protectedRoute';
 import MetaTags from 'containers/meta-tags';
 import ProjectForm from 'containers/my-projects/sidebar/form';
 
-import NewProjectLayout from './new/layout';
+import NewProjectLayout from '../new/layout';
 
 const TITLE_TEXT = 'Edit Project | FORA';
 const DESCRIPTION_TEXT = 'Modify your existing FORA-supported regenerative agriculture project.';
