@@ -7,8 +7,6 @@ import ProtectedRoute from 'hoc/protectedRoute';
 import MetaTags from 'containers/meta-tags';
 import ProjectForm from 'containers/my-projects/sidebar/form';
 
-import NewProjectLayout from '../new/layout';
-
 const TITLE_TEXT = 'Edit Project | FORA';
 const DESCRIPTION_TEXT = 'Modify your existing FORA-supported regenerative agriculture project.';
 const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/projects.jpg`;
@@ -26,9 +24,7 @@ const EditProjectPage: React.FC = () => {
           type="website"
           imageURL={IMAGE_URL}
         />
-        <NewProjectLayout>
-          <ProjectForm mode="edit" projectId={id as string} />
-        </NewProjectLayout>
+        <ProjectForm mode="edit" projectId={id as string} />
       </div>
     </ProtectedRoute>
   );

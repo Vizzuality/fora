@@ -10,8 +10,6 @@ import { NextPage } from 'next';
 import MetaTags from 'containers/meta-tags';
 import ProjectForm from 'containers/my-projects/sidebar/form';
 
-import NewProjectLayout from './layout';
-
 const NewProjectPage: NextPage = () => {
   return (
     <ProtectedRoute>
@@ -22,9 +20,7 @@ const NewProjectPage: NextPage = () => {
           type="website"
           imageURL={IMAGE_URL}
         />
-        <NewProjectLayout>
-          <ProjectForm mode="create" />
-        </NewProjectLayout>
+        <ProjectForm mode="create" />
       </div>
     </ProtectedRoute>
   );

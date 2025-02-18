@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import React from 'react';
 
 import { Form } from 'react-final-form';
@@ -7,6 +7,7 @@ import ContactDetails from 'containers/my-projects/sidebar/contactDetails';
 import FocusAreas from 'containers/my-projects/sidebar/focus_area';
 import Funding from 'containers/my-projects/sidebar/funding';
 
+import FormHeaderComponent from './formheader';
 import ProjectDetails from './projectDetails';
 
 interface ProjectFormProps {
@@ -62,12 +63,13 @@ const ProjectForm = ({ initialData }: ProjectFormProps) => {
   };
 
   const handleSubmit = (values) => {
-    // Log the values of the form when the last step is submitted
+    console.log('Current Form Values:', values);
+
     if (currentStep === STEPS[STEPS.length - 1].id) {
-      alert(`Form submitted successfully! ${JSON.stringify(values)}`);
-      // You can send a POST request here if necessary, like a mutation or API call
+      console.log('Form submitted successfully!', values);
+      // You can replace this with an API call if needed
     } else {
-      // If not the last step, save the current values and go to the next step
+      // Save the current values and go to the next step
       handleNextStep(values);
       const nextStepIndex = STEPS.findIndex((step) => step.id === currentStep) + 1;
       setCurrentStep(STEPS[nextStepIndex].id);
@@ -75,22 +77,29 @@ const ProjectForm = ({ initialData }: ProjectFormProps) => {
   };
 
   const StepComponent = STEPS.find((step) => step.id === currentStep)?.component;
+  const formSubmitRef = useRef<(() => void) | null>(null);
 
   return (
-    <div className="flex flex-col gap-8 lg:p-4 md:flex-row my-2">
-      <SideNavigation currentStep={currentStep} setCurrentStep={setCurrentStep} />
-      <div className="flex-1 max-w-3xl">
-        {StepComponent && (
-          <Form
-            onSubmit={handleSubmit}
-            initialValues={formValues}
-            render={({ handleSubmit: finalFormHandleSubmit }) => (
-              <form onSubmit={finalFormHandleSubmit}>
-                <StepComponent setCurrentStep={setCurrentStep} />
-              </form>
-            )}
-          />
-        )}
+    <div>
+      <FormHeaderComponent onSubmit={() => formSubmitRef.current?.()} />
+      <div className="flex flex-col gap-8 lg:p-4 md:flex-row my-3 mx-10 lg:mx-0">
+        <SideNavigation currentStep={currentStep} setCurrentStep={setCurrentStep} />
+        <div className="flex-1 max-w-3xl">
+          {StepComponent && (
+            <Form
+              onSubmit={handleSubmit}
+              initialValues={formValues}
+              render={({ handleSubmit: finalFormHandleSubmit }) => {
+                formSubmitRef.current = finalFormHandleSubmit;
+                return (
+                  <form onSubmit={finalFormHandleSubmit}>
+                    <StepComponent setCurrentStep={setCurrentStep} />
+                  </form>
+                );
+              }}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
