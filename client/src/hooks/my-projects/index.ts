@@ -106,3 +106,35 @@ export function useCreateMemberProject() {
     },
   });
 }
+
+export const updateMemberProject = async ({
+  projectId,
+  projectData,
+}: {
+  projectId: string;
+  projectData: FormData;
+}) => {
+  return API.request({
+    method: 'PUT',
+    url: `/members/projects/${projectId}`,
+    data: projectData,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  }).then((res) => res.data);
+};
+
+export function useUpdateMemberProject() {
+  const queryClient = useQueryClient();
+
+  return useMutation(updateMemberProject, {
+    onSuccess: (data, { projectId }) => {
+      queryClient.invalidateQueries(['myProjects']); // Refresh project list
+      queryClient.invalidateQueries(['project', projectId]); // Refresh specific project details
+      console.info('Project updated successfully:', data);
+    },
+    onError: (error) => {
+      console.error('Error updating project:', error);
+    },
+  });
+}
