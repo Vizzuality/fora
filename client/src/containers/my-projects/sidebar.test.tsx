@@ -40,7 +40,7 @@ describe('sidebar', () => {
     expect(sections[0].querySelector('a')?.textContent).toBe(TEST_SECTIONS[0].label);
   });
 
-  it('renders a section the correct href', () => {
+  it('renders a section with the correct href', () => {
     expect(sections[0].querySelector('a')).toHaveAttribute(
       'href',
       `${TEST_PATHNAME}?step=${TEST_SECTIONS[0].value}`
