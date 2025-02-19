@@ -1,12 +1,9 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -24,6 +21,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.test.*",
     "**/*.d.ts"
   ],
   "exclude": [

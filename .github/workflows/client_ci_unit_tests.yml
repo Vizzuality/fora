@@ -1,0 +1,33 @@
+name: Client Unit Tests
+on:
+  push:
+    paths:
+      - '.github/workflows/client_ci_unit_tests.yml'
+      - 'package.json'
+      - 'client/**'
+  workflow_dispatch:
+defaults:
+  run:
+    working-directory: client
+jobs:
+  client-unit-tests:
+    name: Client Unit Tests
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Node setup
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: 'client/.nvmrc'
+
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: 'client/package.json'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run unit tests
+        run: pnpm vitest

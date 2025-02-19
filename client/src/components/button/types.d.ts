@@ -5,6 +5,7 @@ import { LinkProps } from 'next/link';
 export interface AnchorButtonProps {
   theme?:
     | 'transparent'
+    | 'transparent-alt'
     | 'outline'
     | 'green'
     | 'green-alt'
