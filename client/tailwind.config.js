@@ -63,6 +63,12 @@ module.exports = {
           lineHeight: '2rem',
         },
       ],
+      '2.5xl': [
+        '2rem',
+        {
+          lineHeight: '2.5rem',
+        },
+      ],
       '3xl': [
         '2.5rem',
         {
