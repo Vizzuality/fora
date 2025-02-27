@@ -23,24 +23,32 @@ const TEST_SECTIONS: ComponentProps<typeof Sidebar>['sections'] = [
 const TEST_PATHNAME = '/test-pathname';
 const ACTIVE_CLASS = 'bg-green-80';
 
+const mockedHook = vi.hoisted(() => vi.fn());
+
 vi.mock('next/navigation', () => ({
   usePathname: () => TEST_PATHNAME,
-  useSearchParams: () => new URLSearchParams({ step: TEST_SECTIONS[0].value }),
+  useSearchParams: mockedHook.mockReturnValue(new URLSearchParams()),
 }));
 
 describe('sidebar', () => {
-  const { container } = render(<Sidebar sections={TEST_SECTIONS} />);
-  const sections = container.querySelectorAll('li');
-
   it('renders the correct number of sections', () => {
+    const { container } = render(<Sidebar sections={TEST_SECTIONS} />);
+    const sections = container.querySelectorAll('li');
+
     expect(sections).toHaveLength(TEST_SECTIONS.length);
   });
 
   it('renders a section with the correct name', () => {
+    const { container } = render(<Sidebar sections={TEST_SECTIONS} />);
+    const sections = container.querySelectorAll('li');
+
     expect(sections[0].querySelector('a')?.textContent).toBe(TEST_SECTIONS[0].label);
   });
 
   it('renders a section with the correct href', () => {
+    const { container } = render(<Sidebar sections={TEST_SECTIONS} />);
+    const sections = container.querySelectorAll('li');
+
     expect(sections[0].querySelector('a')).toHaveAttribute(
       'href',
       `${TEST_PATHNAME}?step=${TEST_SECTIONS[0].value}`
@@ -48,11 +56,28 @@ describe('sidebar', () => {
   });
 
   it('expects the selected section to have the active class applied', () => {
+    mockedHook.mockReturnValue(new URLSearchParams({ step: TEST_SECTIONS[0].value }));
+
+    const { container } = render(<Sidebar sections={TEST_SECTIONS} />);
+    const sections = container.querySelectorAll('li');
+
     expect(sections[0].querySelector('a')).toHaveClass(ACTIVE_CLASS);
   });
 
   it('expects other sections (not the selected one) to not have the active class applied ', () => {
+    const { container } = render(<Sidebar sections={TEST_SECTIONS} />);
+    const sections = container.querySelectorAll('li');
+
     expect(sections[1].querySelector('a')).not.toHaveClass(ACTIVE_CLASS);
     expect(sections[2].querySelector('a')).not.toHaveClass(ACTIVE_CLASS);
+  });
+
+  it('if no query params are present, the sidebar defaults to the first section', () => {
+    mockedHook.mockReturnValue(new URLSearchParams());
+
+    const { container } = render(<Sidebar sections={TEST_SECTIONS} />);
+    const sections = container.querySelectorAll('li');
+
+    expect(sections[0].querySelector('a')).toHaveClass(ACTIVE_CLASS);
   });
 });
