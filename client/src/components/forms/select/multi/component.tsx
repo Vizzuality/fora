@@ -27,6 +27,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
     size = 'base',
     theme,
     values,
+    id,
     onSelect,
   } = props;
   const ref = useRef(null);
@@ -98,6 +99,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
         value={selected}
         multiple
         onChange={handleSelect}
+        id={id as string}
       >
         {({ open }) => (
           <>
@@ -196,6 +198,8 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                               className="cursor-pointer focus:text-black focus:ring-black checked:bg-black"
                               checked={selected.includes(opt.value)}
                               readOnly
+                              name={opt.value}
+                              id={opt.value}
                             />
 
                             <span

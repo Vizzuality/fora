@@ -18,6 +18,11 @@ export default defineConfig({
     alias: {
       lib: path.resolve(__dirname, './src/lib'),
       components: path.resolve(__dirname, './src/components'),
+      svgs: path.resolve(__dirname, './src/svgs'),
+      hooks: path.resolve(__dirname, './src/hooks'),
+      services: path.resolve(__dirname, './src/services'),
+      tests: path.resolve(__dirname, './src/tests'),
+      types: path.resolve(__dirname, './src/types'),
     },
   },
 });

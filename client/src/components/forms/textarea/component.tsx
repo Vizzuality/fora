@@ -8,7 +8,7 @@ import type { TextareaProps } from './types';
 
 const THEME = {
   dark: {
-    base: 'leading-tight text-white bg-transparent border rounded',
+    base: 'leading-tight text-white bg-transparent border rounded placeholder:text-sm',
     status: {
       none: 'border-gray-500',
       valid: 'border-green-500',
@@ -17,7 +17,7 @@ const THEME = {
     },
   },
   light: {
-    base: 'leading-tight text-grey-0 bg-white border rounded',
+    base: 'leading-tight text-grey-0 bg-white border rounded placeholder:text-sm',
     status: {
       none: 'border-gray-500',
       valid: 'border-green-500',

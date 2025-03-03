@@ -1,23 +1,25 @@
-import { ComponentProps, useState } from 'react';
+import { useState } from 'react';
 
-import { useDropzone } from 'react-dropzone';
+import { DropzoneOptions } from 'react-dropzone';
 import { Field as FieldRFF, useField, useFormState } from 'react-final-form';
 
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-import { useDemographics } from 'hooks/demographics';
-import { useProjectLegalStatuses } from 'hooks/project-legal-statuses';
-
 import LinkButton from 'components/button';
-import { Input, Radio, Select, MultiSelect } from 'components/forms';
+import DragNDrop from 'components/drag-n-drop';
+import { Input, Radio } from 'components/forms';
 import Textarea from 'components/forms/textarea';
 import Icon from 'components/icon';
 
 import ARROW_RIGHT_SVG from 'svgs/ui/arrow-right.svg?sprite';
 
-import VisibilityLabel from '../label';
-import FormLegend from '../legend';
-import { ProjectSchema } from '../validations';
+import VisibilityLabel from '../../label';
+import FormLegend from '../../legend';
+import { ProjectSchema } from '../../validations';
+
+import DemographicsSelector from './demographics';
+import LegalStatusSelector from './legal-status';
 
 export default function ProjectDetailsStep() {
   const [collectsInformation, setCollectsInformation] = useState('yes');
@@ -39,7 +41,7 @@ export default function ProjectDetailsStep() {
     reader.readAsDataURL(file);
   };
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const dropZoneOptions: DropzoneOptions = {
     onDropAccepted: onDrop,
     maxFiles: 1,
     accept: {
@@ -48,25 +50,7 @@ export default function ProjectDetailsStep() {
     },
     multiple: false,
     maxSize: 375000,
-  });
-
-  const {
-    data: legalStatuses,
-    isFetching: legalStatusFetching,
-    isFetched: legalStatusFetched,
-  } = useProjectLegalStatuses();
-
-  const {
-    data: demographics,
-    isFetching: demographicsFetching,
-    isFetched: demographicsFetched,
-  } = useDemographics();
-
-  const legalStatusesOptions: ComponentProps<typeof Select>['options'] =
-    legalStatuses?.map(({ id, name }) => ({ value: id, label: name })) || [];
-
-  const demographicsOptions: ComponentProps<typeof Select>['options'] =
-    demographics?.map(({ id, name }) => ({ value: id, label: name })) || [];
+  };
 
   return (
     <div className="flex flex-col gap-10 pb-10">
@@ -98,7 +82,7 @@ export default function ProjectDetailsStep() {
           Project Name
         </VisibilityLabel>
         <FieldRFF<ProjectSchema['name']> name="name" type="text">
-          {({ input }) => <Input {...input} id={input.name} required />}
+          {({ input }) => <Input {...input} id={input.name} required className="h-[46px]" />}
         </FieldRFF>
       </div>
 
@@ -129,7 +113,7 @@ export default function ProjectDetailsStep() {
               Website
             </VisibilityLabel>
             <FieldRFF<ProjectSchema['name']> name="website" type="text">
-              {({ input }) => <Input {...input} id={input.name} />}
+              {({ input }) => <Input {...input} id={input.name} className="h-[46px]" />}
             </FieldRFF>
           </div>
         </div>
@@ -143,21 +127,7 @@ export default function ProjectDetailsStep() {
             >
               Legal Status
             </VisibilityLabel>
-            <FieldRFF<ProjectSchema['name']> name="recipient_legal_status">
-              {({ input }) => (
-                <Select
-                  id="recipient_legal_status"
-                  placeholder="Select an option"
-                  theme="light"
-                  size="base"
-                  className="h-[38px]"
-                  options={legalStatusesOptions}
-                  value={input.value}
-                  loading={legalStatusFetching && !legalStatusFetched}
-                  onSelect={input.onChange}
-                />
-              )}
-            </FieldRFF>
+            <LegalStatusSelector />
           </div>
         </div>
       </div>
@@ -170,20 +140,16 @@ export default function ProjectDetailsStep() {
         >
           Logo
         </VisibilityLabel>
-        <div {...getRootProps()}>
-          <input {...getInputProps()} />
-          {imageSrc && <img src={imageSrc} alt="Uploaded" />}
-          {isDragActive ? (
-            <p>Drop the files here ...</p>
-          ) : (
-            <p>Drag &apos;n&apos; drop some files here, or click to select files</p>
+        <DragNDrop {...dropZoneOptions}>
+          {() => (
+            <>{imageSrc && <Image src={imageSrc} width={500} height={500} alt="Uploaded" />}</>
           )}
-        </div>
+        </DragNDrop>
       </div>
       <div className="space-y-2">
         <VisibilityLabel
           labelProps={{
-            htmlFor: 'logo',
+            htmlFor: 'internal-demographics',
             className: 'normal-case',
           }}
           required
@@ -225,21 +191,7 @@ export default function ProjectDetailsStep() {
             >
               If yes, what is the leadership demographic of this partner organization?
             </VisibilityLabel>
-            <FieldRFF<ProjectSchema['demographics']> name="demographics">
-              {({ input }) => (
-                <MultiSelect
-                  id="leadership_demographics"
-                  placeholder="Select all that apply"
-                  theme="light"
-                  size="base"
-                  className="h-[38px]"
-                  options={demographicsOptions}
-                  values={input.value}
-                  loading={demographicsFetching && !demographicsFetched}
-                  onSelect={input.onChange}
-                />
-              )}
-            </FieldRFF>
+            <DemographicsSelector />
           </div>
           {demographicsFormValues?.includes('other') && (
             <div className="space-y-2">
