@@ -6,13 +6,12 @@ import { Field as FieldRFF, useField, useFormState } from 'react-final-form';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
+import { HiOutlineArrowRight } from 'react-icons/hi';
+
 import LinkButton from 'components/button';
 import DragNDrop from 'components/drag-n-drop';
 import { Input, Radio } from 'components/forms';
 import Textarea from 'components/forms/textarea';
-import Icon from 'components/icon';
-
-import ARROW_RIGHT_SVG from 'svgs/ui/arrow-right.svg?sprite';
 
 import VisibilityLabel from '../../label';
 import FormLegend from '../../legend';
@@ -25,7 +24,7 @@ export default function ProjectDetailsStep() {
   const [collectsInformation, setCollectsInformation] = useState('yes');
   const pathname = usePathname();
   const {
-    values: { demographics: demographicsFormValues },
+    values: { leadership_demographics: demographicsFormValues },
   } = useFormState<ProjectSchema>();
   const logoField = useField('logo');
   const [imageSrc, setImageSrc] = useState<string | null>(null);
@@ -197,7 +196,7 @@ export default function ProjectDetailsStep() {
             <div className="space-y-2">
               <VisibilityLabel
                 labelProps={{
-                  htmlFor: 'demographics_other',
+                  htmlFor: 'leadership_demographics_other',
                   className: 'normal-case',
                   'aria-required': true,
                 }}
@@ -205,7 +204,10 @@ export default function ProjectDetailsStep() {
               >
                 Other demographics
               </VisibilityLabel>
-              <FieldRFF<ProjectSchema['demographics_other']> name="demographics_other" type="text">
+              <FieldRFF<ProjectSchema['leadership_demographics_other']>
+                name="leadership_demographics_other"
+                type="text"
+              >
                 {({ input }) => <Input required {...input} />}
               </FieldRFF>
             </div>
@@ -219,7 +221,7 @@ export default function ProjectDetailsStep() {
           className="flex items-center gap-1"
         >
           <span>Contact Details</span>
-          <Icon icon={ARROW_RIGHT_SVG} className="w-[14px] h-[14px]" />
+          <HiOutlineArrowRight className="w-[20px] h-[20px]" />
         </LinkButton>
       </footer>
     </div>

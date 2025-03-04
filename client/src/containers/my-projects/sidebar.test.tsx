@@ -17,6 +17,7 @@ const TEST_SECTIONS: ComponentProps<typeof Sidebar>['sections'] = [
   {
     label: 'Test label 3',
     value: 'test-3',
+    disabled: true,
   },
 ];
 
@@ -64,7 +65,7 @@ describe('sidebar', () => {
     expect(sections[0].querySelector('a')).toHaveClass(ACTIVE_CLASS);
   });
 
-  it('expects other sections (not the selected one) to not have the active class applied ', () => {
+  it('expects other sections (not the selected one) to not have the active class applied', () => {
     const { container } = render(<Sidebar sections={TEST_SECTIONS} />);
     const sections = container.querySelectorAll('li');
 
@@ -79,5 +80,12 @@ describe('sidebar', () => {
     const sections = container.querySelectorAll('li');
 
     expect(sections[0].querySelector('a')).toHaveClass(ACTIVE_CLASS);
+  });
+
+  it('if a section is disabled, the disabled styles should be applied', () => {
+    const { container } = render(<Sidebar sections={TEST_SECTIONS} />);
+    const sections = container.querySelectorAll('li');
+
+    expect(sections[2].querySelector('a')).toHaveClass('opacity-50 pointer-events-none');
   });
 });

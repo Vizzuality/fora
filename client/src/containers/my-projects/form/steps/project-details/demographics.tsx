@@ -21,7 +21,7 @@ export default function DemographicsSelector() {
     demographics?.map(({ id, name }) => ({ value: id, label: name })) || [];
 
   return (
-    <FieldRFF<ProjectSchema['demographics']> name="demographics">
+    <FieldRFF<ProjectSchema['leadership_demographics']> name="leadership_demographics">
       {({ input }) => (
         <MultiSelect
           id="leadership_demographics"

@@ -4,7 +4,6 @@ import { jsonAPIAdapter } from 'lib/adapters/json-api-adapter';
 import { ParamsProps } from 'lib/adapters/types';
 
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import type { FeatureCollection } from 'geojson';
 
 import { Geographic, SubGeographic } from 'types/geographics';
 
@@ -47,84 +46,26 @@ export function useGeographics(queryOptions: UseQueryOptions<Geographic[], unkno
 
 export function useSubGeographics(
   params: ParamsProps = {},
-  queryOptions: UseQueryOptions<SubGeographic[], unknown> = {}
+  queryOptions: UseQueryOptions<{ data: SubGeographic[] }, unknown, SubGeographic[]> = {}
 ) {
   const fetchSubgeographics = () =>
-    API.request({
+    API.request<{ data: SubGeographic[] }>({
       method: 'GET',
       url: '/subgeographics',
       params: jsonAPIAdapter(params),
     }).then((response) => response.data);
 
-  const query = useQuery(['subgeographics', JSON.stringify(params)], fetchSubgeographics, {
+  return useQuery(['subgeographics', JSON.stringify(params)], fetchSubgeographics, {
     placeholderData: {
-      data: [],
+      data: [] as SubGeographic[],
     },
+    select: ({ data }) =>
+      data.map((subgeographic) => {
+        return {
+          ...subgeographic,
+          id: subgeographic.abbreviation,
+        };
+      }),
     ...queryOptions,
   });
-
-  const { data } = query;
-
-  const DATA = useMemo(() => {
-    if (!data) {
-      return [];
-    }
-
-    // Work with abbreviations instead of ids
-    return data.map((subgeographic) => {
-      return {
-        ...subgeographic,
-        id: subgeographic.abbreviation,
-      };
-    });
-  }, [data]);
-
-  return useMemo(() => {
-    return {
-      ...query,
-      data: DATA,
-    };
-  }, [query, DATA]);
-}
-
-export function useSubGeographicsGeojson(
-  params: ParamsProps = {},
-  queryOptions: UseQueryOptions<FeatureCollection, unknown> = {}
-) {
-  const fetchSubgeographicsGeojson = () =>
-    API.request({
-      method: 'GET',
-      url: '/subgeographics/geojson',
-      transformResponse: (data) => JSON.parse(data),
-      params: jsonAPIAdapter(params),
-    }).then((response) => response.data);
-
-  const query = useQuery(
-    ['subgeographics-geojson', JSON.stringify(params)],
-    fetchSubgeographicsGeojson,
-    {
-      placeholderData: {
-        type: 'FeatureCollection',
-        features: [],
-      },
-      ...queryOptions,
-    }
-  );
-
-  const { data } = query;
-
-  const DATA = useMemo(() => {
-    if (!data) {
-      return {};
-    }
-
-    return data;
-  }, [data]);
-
-  return useMemo(() => {
-    return {
-      ...query,
-      data: DATA,
-    };
-  }, [query, DATA]);
 }

@@ -10,6 +10,7 @@ export default function MyProjectsSidebar({
   sections: {
     label: string;
     value: string;
+    disabled?: boolean;
   }[];
 }) {
   const pathname = usePathname();
@@ -28,6 +29,7 @@ export default function MyProjectsSidebar({
                   queryParams.get('step')?.includes(step.value) ??
                   sections?.[0].value === step.value,
               })}
+              disabled={step.disabled}
             >
               {step.label}
             </LinkButton>

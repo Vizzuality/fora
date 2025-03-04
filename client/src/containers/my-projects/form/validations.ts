@@ -4,9 +4,13 @@ const ZodProjectSchema = z.object({
   name: z.string().nonempty().min(3),
   website: z.string().url().optional(),
   description: z.string().nonempty(),
+  recipient_legal_status: z.string(),
   logo: z.instanceof(File).optional(),
-  demographics: z.array(z.string()).nonempty(),
-  demographics_other: z.string().optional(),
+  leadership_demographics: z.array(z.string()).nonempty(),
+  leadership_demographics_other: z.string().optional(),
+  country_id: z.string(),
+  state_id: z.string().optional(),
+  city: z.string(),
 });
 
 export type ProjectSchema = z.infer<typeof ZodProjectSchema>;
