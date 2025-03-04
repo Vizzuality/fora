@@ -94,6 +94,8 @@ describe('project form', () => {
     fireEvent.click(OptionOther);
 
     expect(OptionOther).toBeChecked();
-    expect(container.querySelector('input[name="demographics_other"]')).toBeInTheDocument();
+    expect(
+      container.querySelector('input[name="leadership_demographics_other"]')
+    ).toBeInTheDocument();
   });
 });
