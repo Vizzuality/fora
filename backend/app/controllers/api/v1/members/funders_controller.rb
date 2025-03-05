@@ -31,7 +31,7 @@ module API
         private
 
         def funder_params
-          p = params.fetch(:funder_params, {}).permit(
+          p = params.fetch(:funder_params, params).permit(
             :name,
             :description,
             :logo,

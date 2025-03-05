@@ -81,7 +81,7 @@ module API
         end
 
         def recipient_params
-          params.fetch(:project_params, {}).permit(
+          params.fetch(:project_params, params).permit(
             :name,
             :description,
             :logo,
