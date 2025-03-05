@@ -13,7 +13,8 @@ module API
         :demographics_other,
         :capital_types,
         :capital_type_other,
-        :recipient_legal_status
+        :recipient_legal_status,
+        :city
 
       belongs_to_restricted :state, serializer: :subgeographic
       belongs_to_restricted :country, serializer: :subgeographic

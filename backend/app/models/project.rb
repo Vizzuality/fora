@@ -24,6 +24,7 @@ class Project < ApplicationRecord
     :state_id,
     :country,
     :country_id,
+    :city,
     :logo,
     to: :recipient
 
