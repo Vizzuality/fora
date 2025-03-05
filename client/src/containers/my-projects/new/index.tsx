@@ -53,46 +53,48 @@ export default function NewProject() {
   }, [mutation]);
 
   return (
-    <Wrapper className="w-full flex grow">
-      <FormWrapper
-        onSubmit={(data) => {
-          const formData = new FormData();
+    <div className="bg-grey-60">
+      <Wrapper className="w-full flex grow">
+        <FormWrapper
+          onSubmit={(data) => {
+            const formData = new FormData();
 
-          for (const key in data) {
-            if (data.hasOwnProperty(key)) {
-              const value = data[key];
+            for (const key in data) {
+              if (data.hasOwnProperty(key)) {
+                const value = data[key];
 
-              if (Array.isArray(value)) {
-                value.forEach((v) => {
-                  formData.append(`${key}[]`, v);
-                });
-              } else {
-                formData.append(key, value);
+                if (Array.isArray(value)) {
+                  value.forEach((v) => {
+                    formData.append(`${key}[]`, v);
+                  });
+                } else {
+                  formData.append(key, value);
+                }
               }
             }
-          }
 
-          formData.append('contact_first_name', me?.name.split(' ')[0]);
-          formData.append('contact_last_name', me?.name.split(' ')[1]);
+            formData.append('contact_first_name', me?.name.split(' ')[0]);
+            formData.append('contact_last_name', me?.name.split(' ')[1]);
 
-          mutation.mutate(formData);
-        }}
-        render={({ handleSubmit }) => {
-          return (
-            <div className="flex flex-col gap-14 grow">
-              <NewProjectHeader />
-              <div className="grid grid-cols-12 gap-16 h-full">
-                <div className="col-span-3">
-                  <MyProjectsSidebar sections={formSteps} />
-                </div>
-                <div className="col-span-9 flex">
-                  <Form handleSubmit={handleSubmit} />
+            mutation.mutate(formData);
+          }}
+          render={({ handleSubmit }) => {
+            return (
+              <div className="flex flex-col gap-14 grow">
+                <NewProjectHeader />
+                <div className="grid grid-cols-12 gap-16 h-full">
+                  <div className="col-span-3">
+                    <MyProjectsSidebar sections={formSteps} />
+                  </div>
+                  <div className="col-span-9 flex">
+                    <Form handleSubmit={handleSubmit} />
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        }}
-      />
-    </Wrapper>
+            );
+          }}
+        />
+      </Wrapper>
+    </div>
   );
 }
