@@ -17,6 +17,7 @@ export default defineConfig({
   resolve: {
     alias: {
       lib: path.resolve(__dirname, './src/lib'),
+      containers: path.resolve(__dirname, './src/containers'),
       components: path.resolve(__dirname, './src/components'),
       svgs: path.resolve(__dirname, './src/svgs'),
       hooks: path.resolve(__dirname, './src/hooks'),
