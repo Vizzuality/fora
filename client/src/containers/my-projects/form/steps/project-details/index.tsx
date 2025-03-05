@@ -96,7 +96,12 @@ export default function ProjectDetailsStep() {
         </VisibilityLabel>
         <FieldRFF<ProjectSchema['name']> name="description">
           {({ input }) => (
-            <Textarea placeholder="Type the description here" onChange={input.onChange} required />
+            <Textarea
+              placeholder="Type the description here"
+              {...input}
+              onChange={input.onChange}
+              required
+            />
           )}
         </FieldRFF>
       </div>
