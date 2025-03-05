@@ -18,7 +18,7 @@ const THEME = {
   light: {
     container: 'text-gray-600 text-sm',
     button:
-      'relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out cursor-pointer sm:text-sm sm:leading-5 border border-grey-0 rounded-lg',
+      'relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out cursor-pointer sm:text-sm sm:leading-5 border border-grey-40 rounded-lg',
     menu: 'bg-white',
     item: {
       base: 'text-sm',

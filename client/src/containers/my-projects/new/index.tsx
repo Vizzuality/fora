@@ -5,13 +5,14 @@ import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 
+import { useMe } from 'hooks/members';
+
 import Wrapper from 'containers/wrapper';
 
 import API from 'services/api';
 
 import { FORM_STEPS } from '../constants';
 import Form from '../form';
-import { ProjectSchema } from '../form/validations';
 import FormWrapper from '../form/wrapper';
 import MyProjectsSidebar from '../sidebar';
 
@@ -22,9 +23,11 @@ export const NEW_PROJECT_QUERY_KEY = ['newProject'];
 export default function NewProject() {
   const { data: session } = useSession();
   const { push } = useRouter();
+  const { data: me } = useMe();
+
   const mutation = useMutation({
     mutationKey: NEW_PROJECT_QUERY_KEY,
-    mutationFn: (data: ProjectSchema) => {
+    mutationFn: (data: FormData) => {
       return API.request({
         method: 'POST',
         url: '/members/projects',
@@ -45,7 +48,7 @@ export default function NewProject() {
       if (index === 2) {
         return { ...step, disabled: mutation.isLoading || mutation.isIdle };
       }
-      return step;
+      return { ...step, disabled: mutation.isSuccess };
     });
   }, [mutation]);
 
@@ -53,7 +56,26 @@ export default function NewProject() {
     <Wrapper className="w-full flex grow">
       <FormWrapper
         onSubmit={(data) => {
-          mutation.mutate(data);
+          const formData = new FormData();
+
+          for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+              const value = data[key];
+
+              if (Array.isArray(value)) {
+                value.forEach((v) => {
+                  formData.append(`${key}[]`, v);
+                });
+              } else {
+                formData.append(key, value);
+              }
+            }
+          }
+
+          formData.append('contact_first_name', me?.name.split(' ')[0]);
+          formData.append('contact_last_name', me?.name.split(' ')[1]);
+
+          mutation.mutate(formData);
         }}
         render={({ handleSubmit }) => {
           return (

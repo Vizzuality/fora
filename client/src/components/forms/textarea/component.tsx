@@ -19,7 +19,7 @@ const THEME = {
   light: {
     base: 'leading-tight text-grey-0 bg-white border rounded placeholder:text-sm',
     status: {
-      none: 'border-gray-500',
+      none: 'border-grey-40',
       valid: 'border-green-500',
       error: 'border-red-500',
       disabled: 'border-grey-20 opacity-50',

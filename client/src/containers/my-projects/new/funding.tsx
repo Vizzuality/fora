@@ -1,6 +1,18 @@
+import { useQueryClient } from '@tanstack/react-query';
+
 import LinkButton from 'components/button';
 
+import { Project } from 'types/project';
+
+import { NEW_PROJECT_QUERY_KEY } from './index';
+
 export default function FundingStep() {
+  const queryClient = useQueryClient();
+  const mutationCache = queryClient.getMutationCache();
+  const newProjectMutationState = mutationCache.find<{ data: { data: Project } }>({
+    mutationKey: NEW_PROJECT_QUERY_KEY,
+  })?.state;
+
   return (
     <div className="grid-cols-12 grid justify-center items-center">
       <div className="col-span-6 flex flex-col text-center gap-4 col-start-4 items-center">
@@ -9,7 +21,10 @@ export default function FundingStep() {
           Lorem ipsum dolor sit amet consectetur. Convallis fusce neque odio nunc elementum habitant
           sit sagittis.
         </p>
-        <LinkButton href="/my-fundings?project=${projectId}" theme="green">
+        <LinkButton
+          href={`/my-fundings?project=${newProjectMutationState?.data.data.data.id}`}
+          theme="green"
+        >
           Report Funding
         </LinkButton>
       </div>

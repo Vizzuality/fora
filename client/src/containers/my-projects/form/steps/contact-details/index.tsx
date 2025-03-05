@@ -83,6 +83,10 @@ export default function ContactDetailsStep() {
           theme="outline"
           href={`${pathname}?step=project-details`}
           className="flex items-center gap-2"
+          anchorLinkProps={{
+            href: `${pathname}?step=project-details`,
+            replace: true,
+          }}
         >
           <HiOutlineArrowLeft className="w-[20px] h-[20px]" />
           <span>Project Details</span>

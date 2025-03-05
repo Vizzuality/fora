@@ -217,8 +217,12 @@ export default function ProjectDetailsStep() {
       <footer className="flex justify-end">
         <LinkButton
           theme="outline"
-          href={`${pathname}?step=contact-details`}
           className="flex items-center gap-1"
+          href={`${pathname}?step=contact-details`}
+          anchorLinkProps={{
+            href: `${pathname}?step=contact-details`,
+            replace: true,
+          }}
         >
           <span>Contact Details</span>
           <HiOutlineArrowRight className="w-[20px] h-[20px]" />
