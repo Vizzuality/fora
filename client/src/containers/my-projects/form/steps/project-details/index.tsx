@@ -81,7 +81,9 @@ export default function ProjectDetailsStep() {
           Project Name
         </VisibilityLabel>
         <FieldRFF<ProjectSchema['name']> name="name" type="text">
-          {({ input }) => <Input {...input} id={input.name} required className="h-[46px]" />}
+          {({ input }) => (
+            <Input {...input} id={input.name} required theme="transparent" className="h-[46px]" />
+          )}
         </FieldRFF>
       </div>
 
@@ -98,6 +100,7 @@ export default function ProjectDetailsStep() {
           {({ input }) => (
             <Textarea
               placeholder="Type the description here"
+              theme="transparent"
               {...input}
               onChange={input.onChange}
               required
@@ -117,7 +120,9 @@ export default function ProjectDetailsStep() {
               Website
             </VisibilityLabel>
             <FieldRFF<ProjectSchema['name']> name="website" type="text">
-              {({ input }) => <Input {...input} id={input.name} className="h-[46px]" />}
+              {({ input }) => (
+                <Input {...input} id={input.name} theme="transparent" className="h-[46px]" />
+              )}
             </FieldRFF>
           </div>
         </div>

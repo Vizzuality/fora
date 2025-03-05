@@ -5,7 +5,7 @@ export interface SingleSelectProps extends SelectStatusProps, SelectDataProps, S
   placeholder?: string;
   disabled?: boolean;
   size: 'base' | 's' | 'none';
-  theme: 'dark' | 'light' | 'none';
+  theme: 'dark' | 'light' | 'none' | 'gray';
   value: string;
   loading?: boolean;
   clearable?: boolean;

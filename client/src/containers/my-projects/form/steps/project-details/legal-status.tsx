@@ -26,7 +26,7 @@ export default function LegalStatusSelector() {
         <Select
           id="recipient_legal_status"
           placeholder="Select an option"
-          theme="light"
+          theme="gray"
           size="base"
           options={legalStatusesOptions}
           value={input.value}

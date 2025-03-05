@@ -28,4 +28,18 @@ export const THEME = {
       dashed: 'border-dashed border-b',
     },
   },
+  transparent: {
+    base: 'w-full leading-tight text-grey-0 bg-transparent focus:border-grey-40',
+    status: {
+      none: 'border-grey-40',
+      valid: 'border-green-0',
+      error: 'border-red-500',
+      disabled: 'border-grey-40 opacity-50',
+    },
+    icon: 'text-grey-0 text-opacity-50',
+    mode: {
+      normal: 'border rounded-lg',
+      dashed: 'border-dashed border-b',
+    },
+  },
 };

@@ -38,7 +38,7 @@ export default function NewProjectHeader() {
             Project Page
           </LinkButton>
         )}
-        {currentStep === 'contact-details' && (
+        {currentStep !== 'funding' && (
           <Button
             type="submit"
             theme="green"

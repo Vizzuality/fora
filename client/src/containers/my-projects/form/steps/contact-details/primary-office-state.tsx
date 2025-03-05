@@ -60,7 +60,7 @@ export default function PrimaryOfficeStateSelector() {
         <Select
           id="state_id"
           placeholder="Select an option"
-          theme="light"
+          theme="gray"
           size="base"
           options={statesOptions}
           value={input.value}

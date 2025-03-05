@@ -26,7 +26,7 @@ export default function DemographicsSelector() {
         <MultiSelect
           id="leadership_demographics"
           placeholder="Select all that apply"
-          theme="light"
+          theme="gray"
           size="base"
           options={demographicsOptions}
           values={input.value}

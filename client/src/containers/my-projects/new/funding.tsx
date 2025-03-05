@@ -1,8 +1,8 @@
 import { useQueryClient } from '@tanstack/react-query';
 
-import LinkButton from 'components/button';
-
 import { Project } from 'types/project';
+
+import LinkButton from 'components/button';
 
 import { NEW_PROJECT_QUERY_KEY } from './index';
 

@@ -16,15 +16,31 @@ const THEME = {
     loading: 'relative flex items-center w-full h-full',
   },
   light: {
-    container: 'text-gray-600 text-sm',
+    container: 'text-grey-0 text-sm',
     button:
-      'relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out cursor-pointer sm:text-sm sm:leading-5 border border-grey-40 rounded-lg',
+      'relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out cursor-pointer sm:text-sm sm:leading-5 border border-grey-0 rounded-lg',
     menu: 'bg-white',
     item: {
       base: 'text-sm',
       active: 'bg-black/30 text-black',
       selected: 'bg-black/40 text-black',
-      disabled: 'opacity-40 text-black',
+      disabled: 'opacity-40 text-grey-20',
+    },
+    open: {
+      button: 'bg-transparent',
+    },
+    loading: 'relative flex items-center w-full h-full',
+  },
+  gray: {
+    container: 'text-grey-0 text-sm',
+    button:
+      'relative w-full py-2 pl-3 pr-10 text-left text-grey-20 text-grey-20 transition duration-150 ease-in-out cursor-pointer sm:text-sm sm:leading-5 border border-grey-40 rounded-lg',
+    menu: 'bg-white',
+    item: {
+      base: 'text-sm ',
+      active: 'bg-black/30 text-black',
+      selected: 'bg-black/40 text-black',
+      disabled: 'opacity-40',
     },
     open: {
       button: 'bg-transparent',

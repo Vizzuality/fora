@@ -8,7 +8,7 @@ import type { TextareaProps } from './types';
 
 const THEME = {
   dark: {
-    base: 'leading-tight text-white bg-transparent border rounded placeholder:text-sm',
+    base: 'leading-tight text-white bg-transparent border rounded-lg placeholder:text-sm',
     status: {
       none: 'border-gray-500',
       valid: 'border-green-500',
@@ -17,7 +17,16 @@ const THEME = {
     },
   },
   light: {
-    base: 'leading-tight text-grey-0 bg-white border rounded placeholder:text-sm',
+    base: 'leading-tight text-grey-0 bg-white border rounded-lg placeholder:text-sm',
+    status: {
+      none: 'border-grey-40',
+      valid: 'border-green-500',
+      error: 'border-red-500',
+      disabled: 'border-grey-20 opacity-50',
+    },
+  },
+  transparent: {
+    base: 'leading-tight text-grey-0 bg-transparent border rounded-lg placeholder:text-sm',
     status: {
       none: 'border-grey-40',
       valid: 'border-green-500',

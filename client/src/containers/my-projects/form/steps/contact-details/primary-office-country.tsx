@@ -33,7 +33,7 @@ export default function PrimaryOfficeCountrySelector() {
         <Select
           id="country_id"
           placeholder="Select an option"
-          theme="light"
+          theme="gray"
           size="base"
           options={countriesOptions}
           value={input.value}
