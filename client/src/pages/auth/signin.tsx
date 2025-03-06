@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { Form as FormRFF, Field as FieldRFF } from 'react-final-form';
 
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { FORM_ERROR } from 'final-form';
 import { signIn } from 'next-auth/react';
@@ -16,6 +16,8 @@ import { withAuth } from 'hoc/auth';
 
 const SignInPage: React.FC = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl');
 
   const handleFormSubmit = useCallback(
     async ({ email, password }: { email: string; password: string }) => {
@@ -27,7 +29,7 @@ const SignInPage: React.FC = () => {
         });
 
         if (res?.ok) {
-          router.push('/projects');
+          router.push(callbackUrl ?? '/auth/details');
         } else {
           throw new Error(res?.error || 'Failed to login');
         }
@@ -37,7 +39,7 @@ const SignInPage: React.FC = () => {
         };
       }
     },
-    [router]
+    [router, callbackUrl]
   );
 
   return (

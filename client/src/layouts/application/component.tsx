@@ -1,35 +1,33 @@
-import cx from 'classnames';
+import { PropsWithChildren } from 'react';
 
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
+
+import { cn } from 'lib/utils';
 
 import Footer from 'containers/footer';
 import Header from 'containers/header';
 
-type ApplicationLayoutProps = {
-  children: React.ReactNode;
-};
-
-const ApplicationLayout: React.FC<ApplicationLayoutProps> = (props: ApplicationLayoutProps) => {
-  const { children } = props;
-  const { pathname } = useRouter();
+export default function ApplicationLayout({ children }: PropsWithChildren) {
+  const pathname = usePathname();
+  const isAuthRoute = pathname.includes('/auth');
 
   return (
     <div
-      className={cx({
+      className={cn({
         'flex flex-col lg:min-h-screen': true,
-        'bg-grey-60': pathname.includes('/auth'),
+        'bg-grey-60': isAuthRoute,
       })}
     >
       <Header />
-
-      <main className="flex flex-col grow">
-        {/* Content */}
+      <main
+        className={cn({
+          'flex flex-col grow': true,
+          'bg-grey-60': isAuthRoute,
+        })}
+      >
         {children}
       </main>
-
       <Footer />
     </div>
   );
-};
-
-export default ApplicationLayout;
+}

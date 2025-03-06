@@ -1,42 +1,43 @@
 import React, { useCallback, useMemo } from 'react';
 
-import cx from 'classnames';
-
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
+
+import { cn } from 'lib/utils';
 
 import { useSession } from 'next-auth/react';
 
-import { NAV } from 'constants/nav';
+import { NAV, NAV_AUTH } from 'constants/nav';
 
 import Wrapper from 'containers/wrapper';
 
 import { Button } from 'components/button/component';
 import CircleUserIcon from 'components/icons/circle-user';
+import { isPrivatePath } from 'middleware';
 
 import LOGO_SVG from 'svgs/logo.svg';
 
 const Header = () => {
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   const { data: session } = useSession();
-  const isAuthPath = useMemo(() => pathname.includes('/auth'), [pathname]);
+  const isAuthPath = isPrivatePath(pathname);
+
   const NAV_ITEMS = useMemo(() => {
+    if (isAuthPath) return NAV_AUTH;
     return NAV.filter((n) => !n.footer && !(session && n.auth));
-  }, [session]);
+  }, [session, isAuthPath]);
 
   const isActiveNavItem = useCallback(
     (href: string) => {
-      if (isAuthPath) return false;
-
       return pathname.includes(href) && pathname !== '/';
     },
-    [pathname, isAuthPath]
+    [pathname]
   );
 
   return (
     <header
-      className={cx({
+      className={cn({
         'py-6': true,
         'bg-white': !isAuthPath,
         'bg-grey-60': isAuthPath,
@@ -68,7 +69,7 @@ const Header = () => {
                         href={href}
                         target={target}
                         rel={rel}
-                        className={cx({
+                        className={cn({
                           'text-base font-semibold py-2 px-7': true,
                           'hover:rounded-lg hover:bg-grey-60/75': pathname !== href,
                           'rounded-lg bg-green-0': isActiveNavItem(href),
@@ -81,13 +82,13 @@ const Header = () => {
                     {!target && (
                       <Link
                         href={href}
-                        className={cx(
+                        className={cn(
                           'text-base font-semibold py-2 px-7',
                           {
                             'hover:rounded-lg hover:bg-grey-60/75': !pathname.includes(href),
                             'rounded-lg bg-green-0': isActiveNavItem(href),
-                            'pointer-events-none select-none':
-                              pathname.includes(href) && pathname !== '/',
+                            // 'pointer-events-none select-none':
+                            //   pathname.includes(href) && pathname !== '/',
                           },
                           className
                         )}
@@ -99,7 +100,7 @@ const Header = () => {
                 );
               })}
               {session && (
-                <Button type="button" theme="transparent">
+                <Button type="button" theme="transparent" className="px-0">
                   <CircleUserIcon />
                 </Button>
               )}

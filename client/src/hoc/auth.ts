@@ -21,7 +21,7 @@ export function withAuth(gssp?: GetServerSideProps) {
       // Public route (auth pages) with session -> redirect to projects
       return {
         redirect: {
-          destination: '/projects',
+          destination: '/auth/details',
           permanent: false,
         },
       };

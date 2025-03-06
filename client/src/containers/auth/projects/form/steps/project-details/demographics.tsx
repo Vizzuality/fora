@@ -6,7 +6,7 @@ import { Field as FieldRFF } from 'react-final-form';
 
 import { useDemographics } from 'hooks/demographics';
 
-import { ProjectSchema } from 'containers/my-projects/form/validations';
+import { ProjectSchema } from 'containers/auth/projects/form/validations';
 
 import { MultiSelect, Select } from 'components/forms';
 
