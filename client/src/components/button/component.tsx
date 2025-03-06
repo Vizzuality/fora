@@ -1,17 +1,18 @@
 import { FC } from 'react';
 
-import cx from 'classnames';
+import Link, { LinkProps } from 'next/link';
 
-import Link from 'next/link';
+import { cn } from 'lib/utils';
 
 import { THEME, SIZE } from './constants';
 import type { ButtonProps, AnchorProps, Overload } from './types';
 
 // Guard to check if href exists in props
-const hasHref = (props: ButtonProps | AnchorProps): props is AnchorProps => 'href' in props;
+const hasHref = (props: ButtonProps | AnchorProps | LinkProps): props is AnchorProps =>
+  'href' in props;
 
 function buildClassName({ className, disabled, size, theme }) {
-  return cx({
+  return cn({
     'relative flex items-center justify-center font-semibold rounded-lg transition-colors': true,
     [THEME[theme]]: true,
     [SIZE[size]]: true,

@@ -5,7 +5,7 @@ export interface MultiSelectProps extends SelectStatusProps, SelectDataProps, Se
   placeholder?: string;
   disabled?: boolean;
   size: 'base' | 's';
-  theme: 'dark' | 'light';
+  theme: 'dark' | 'light' | 'none' | 'gray';
   values?: string[];
   loading?: boolean;
   batchSelectionActive?: boolean;
