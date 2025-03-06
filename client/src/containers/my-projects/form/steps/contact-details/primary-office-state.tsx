@@ -41,7 +41,6 @@ export default function PrimaryOfficeStateSelector() {
     },
     {
       select: ({ data }) => data,
-      enabled: isUSA,
     }
   );
 

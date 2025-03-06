@@ -1,17 +1,15 @@
-import Icon from 'components/icon';
+import { ComponentProps, PropsWithChildren, ReactNode } from 'react';
 
-import FORA_MEMBERS_SVG from 'svgs/form/fora-members.svg?sprite';
-import PRIVATE_SVG from 'svgs/form/private.svg?sprite';
-import PUBLIC_SVG from 'svgs/form/public.svg?sprite';
-import { ComponentProps, PropsWithChildren } from 'react';
-import { cn } from '../../../lib/utils';
+import { cn } from 'lib/utils';
 
-function renderIcon(
-  icon: ComponentProps<typeof VisibilityLabel>['icon']
-): ComponentProps<typeof Icon>['icon'] {
-  if (icon === 'private') return PRIVATE_SVG;
-  if (icon === 'fora-members') return FORA_MEMBERS_SVG;
-  return PUBLIC_SVG;
+import { LuLockKeyhole, LuEye, LuUsers } from 'react-icons/lu';
+
+const ICON_CLASSES = 'w-4 h-4';
+
+function renderIcon(icon: ComponentProps<typeof VisibilityLabel>['icon']): ReactNode {
+  if (icon === 'private') return <LuLockKeyhole className={ICON_CLASSES} />;
+  if (icon === 'fora-members') return <LuUsers className={ICON_CLASSES} />;
+  return <LuEye className={ICON_CLASSES} />;
 }
 
 export default function VisibilityLabel({
@@ -32,7 +30,7 @@ export default function VisibilityLabel({
         labelProps.className
       )}
     >
-      <Icon icon={renderIcon(icon)} />
+      {renderIcon(icon)}
       {children}
       {required && <span className="text-red-0">*</span>}
     </label>

@@ -1,28 +1,26 @@
-import { ComponentProps } from 'react';
+import { ReactNode } from 'react';
 
 import { cn } from 'lib/utils';
 
-import Icon from 'components/icon';
+import { LuLockKeyhole, LuEye, LuUsers } from 'react-icons/lu';
 
-import FORA_MEMBERS_SVG from 'svgs/form/fora-members.svg?sprite';
-import PRIVATE_SVG from 'svgs/form/private.svg?sprite';
-import PUBLIC_SVG from 'svgs/form/public.svg?sprite';
+const ICON_CLASSES = 'w-4 h-4';
 
 const LEGEND_ITEMS: {
   label: string;
-  icon: ComponentProps<typeof Icon>['icon'];
+  icon: ReactNode;
 }[] = [
   {
     label: 'Private Information',
-    icon: PRIVATE_SVG,
+    icon: <LuLockKeyhole className={ICON_CLASSES} />,
   },
   {
     label: 'Public Information',
-    icon: PUBLIC_SVG,
+    icon: <LuEye className={ICON_CLASSES} />,
   },
   {
     label: 'Only FORA members',
-    icon: FORA_MEMBERS_SVG,
+    icon: <LuUsers className={ICON_CLASSES} />,
   },
 ];
 
@@ -31,7 +29,7 @@ export default function FormLegend({ className }: { className?: HTMLUListElement
     <ul className={cn('flex gap-4 p-3 bg-grey-60', className)}>
       {LEGEND_ITEMS.map(({ label, icon }) => (
         <li key={label} className="flex items-center gap-1 text-grey-20 font-semibold">
-          <Icon icon={icon} />
+          {icon}
           {label}
         </li>
       ))}

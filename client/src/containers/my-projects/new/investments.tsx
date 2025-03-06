@@ -6,7 +6,7 @@ import LinkButton from 'components/button';
 
 import { NEW_PROJECT_QUERY_KEY } from './index';
 
-export default function FundingStep() {
+export default function InvestmentsStep() {
   const queryClient = useQueryClient();
   const mutationCache = queryClient.getMutationCache();
   const newProjectMutationState = mutationCache.find<{ data: { data: Project } }>({
@@ -16,16 +16,19 @@ export default function FundingStep() {
   return (
     <div className="grid-cols-12 grid justify-center items-center">
       <div className="col-span-6 flex flex-col text-center gap-4 col-start-4 items-center">
-        <h3 className="font-display text-2.5xl">You have no funding reported for this project.</h3>
+        <h3 className="font-display text-2.5xl">
+          You have no investments reported for this project.
+        </h3>
+        {/*@todo: update text*/}
         <p>
           Lorem ipsum dolor sit amet consectetur. Convallis fusce neque odio nunc elementum habitant
           sit sagittis.
         </p>
         <LinkButton
-          href={`/my-fundings?project=${newProjectMutationState?.data.data.data.id}`}
+          href={`/my-investments?project=${newProjectMutationState?.data.data.data.id}`}
           theme="green"
         >
-          Report Funding
+          Report Investment
         </LinkButton>
       </div>
     </div>

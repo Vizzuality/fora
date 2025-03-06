@@ -10,8 +10,8 @@ export const FORM_STEPS = [
     disabled: false,
   },
   {
-    label: 'Funding',
-    value: 'funding',
+    label: 'Investments',
+    value: 'investments',
     disabled: false,
   },
 ] as const;

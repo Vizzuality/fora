@@ -39,7 +39,7 @@ export default function NewProject() {
       });
     },
     onSuccess: () => {
-      push('/my-projects/new?step=funding');
+      push('/my-projects/new?step=investments');
     },
   });
 

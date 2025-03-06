@@ -29,7 +29,7 @@ export default function NewProjectHeader() {
     <header className="flex justify-between items-center">
       <h2 className="text-3xl font-display">New project</h2>
       <div className="flex gap-4">
-        {currentStep === 'funding' && newProjectMutationState?.status === 'success' && (
+        {currentStep === 'investments' && newProjectMutationState?.status === 'success' && (
           <LinkButton
             theme="outline"
             size="xs"
@@ -38,7 +38,7 @@ export default function NewProjectHeader() {
             Project Page
           </LinkButton>
         )}
-        {currentStep !== 'funding' && (
+        {currentStep !== 'investments' && (
           <Button
             type="submit"
             theme="green"

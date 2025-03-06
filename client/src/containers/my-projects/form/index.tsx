@@ -2,16 +2,16 @@ import { FormRenderProps } from 'react-final-form';
 
 import { useSearchParams } from 'next/navigation';
 
-import FundingStep from '../new/funding';
+import { FORM_STEPS } from '../constants';
+import InvestmentsStep from '../new/investments';
 
 import ContactDetailsStep from './steps/contact-details';
 import ProjectDetailsStep from './steps/project-details';
 
-type STEP = 'project-details' | 'contact-details' | 'funding';
-
 export default function Form({ handleSubmit }: { handleSubmit: FormRenderProps['handleSubmit'] }) {
   const searchParams = useSearchParams();
-  const currentStep = (searchParams.get('step') as STEP) || 'project-details';
+  const currentStep =
+    (searchParams.get('step') as typeof FORM_STEPS[number]['value']) || FORM_STEPS[0].value;
 
   return (
     <>
@@ -21,7 +21,7 @@ export default function Form({ handleSubmit }: { handleSubmit: FormRenderProps['
           {currentStep === 'contact-details' && <ContactDetailsStep />}
         </form>
       )}
-      {currentStep === 'funding' && <FundingStep />}
+      {currentStep === 'investments' && <InvestmentsStep />}
     </>
   );
 }
