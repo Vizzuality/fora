@@ -15,7 +15,9 @@ module API
         :capital_type,
         :capital_type_other,
         :submitting_organization_contact_name,
-        :privacy
+        :privacy,
+        :updated_at,
+        :created_at
 
       belongs_to_restricted :project
       belongs_to_restricted :funder

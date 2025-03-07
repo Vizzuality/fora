@@ -24,7 +24,9 @@
         "capital_type": "re_grants",
         "capital_type_other": "Enim repellat pariatur est.",
         "submitting_organization_contact_name": "Otha Kemmer",
-        "privacy": "visible_only_to_staff"
+        "privacy": "visible_only_to_staff",
+        "updated_at": "2025-03-07T00:38:18.288Z",
+        "created_at": "2025-03-07T00:38:18.288Z"
       },
       "relationships": {
         "project": {
@@ -65,7 +67,9 @@
         "capital_type": "other",
         "capital_type_other": "Placeat commodi libero et.",
         "submitting_organization_contact_name": "Msgr. Genaro Cronin",
-        "privacy": "all"
+        "privacy": "all",
+        "updated_at": "2025-03-07T00:38:18.303Z",
+        "created_at": "2025-03-07T00:38:18.303Z"
       },
       "relationships": {
         "project": {
@@ -106,7 +110,9 @@
         "capital_type": "other",
         "capital_type_other": "Et quaerat omnis veniam.",
         "submitting_organization_contact_name": "Raymon Wisoky",
-        "privacy": "amount_funded_visible_only_to_members"
+        "privacy": "amount_funded_visible_only_to_members",
+        "updated_at": "2025-03-07T00:38:18.320Z",
+        "created_at": "2025-03-07T00:38:18.320Z"
       },
       "relationships": {
         "project": {

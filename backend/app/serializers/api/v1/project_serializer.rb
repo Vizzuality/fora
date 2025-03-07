@@ -14,7 +14,9 @@ module API
         :capital_types,
         :capital_type_other,
         :recipient_legal_status,
-        :city
+        :city,
+        :updated_at,
+        :created_at
 
       belongs_to_restricted :state, serializer: :subgeographic
       belongs_to_restricted :country, serializer: :subgeographic

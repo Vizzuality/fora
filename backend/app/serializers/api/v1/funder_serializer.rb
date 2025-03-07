@@ -24,7 +24,9 @@ module API
         :areas,
         :areas_other,
         :demographics,
-        :demographics_other
+        :demographics_other,
+        :updated_at,
+        :created_at
 
       belongs_to_restricted :primary_office_state, serializer: :subgeographic
       belongs_to_restricted :primary_office_country, serializer: :subgeographic

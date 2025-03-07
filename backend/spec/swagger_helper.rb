@@ -60,7 +60,9 @@ RSpec.configure do |config|
                   demographics: {type: :array, items: {type: :string, enum: Demographic::TYPES}},
                   demographics_other: {type: :string, nullable: true},
                   contact_email: {type: :string},
-                  logo: {"$ref" => "#/components/schemas/image_blob", :nullable => true}
+                  logo: {"$ref" => "#/components/schemas/image_blob", :nullable => true},
+                  updated_at: {type: :string},
+                  created_at: {type: :string}
                 }
               },
               relationships: {
@@ -93,7 +95,9 @@ RSpec.configure do |config|
                   demographics_other: {type: :string, nullable: true},
                   recipient_legal_status: {type: :string, enum: RecipientLegalStatus::TYPES, nullable: true},
                   areas: {type: :array, items: {type: :string, enum: Area::TYPES}},
-                  logo: {"$ref" => "#/components/schemas/image_blob", :nullable => true}
+                  logo: {"$ref" => "#/components/schemas/image_blob", :nullable => true},
+                  updated_at: {type: :string},
+                  created_at: {type: :string}
                 }
               },
               relationships: {
@@ -131,7 +135,9 @@ RSpec.configure do |config|
                   capital_type: {type: :string, enum: CapitalType::TYPES},
                   capital_type_other: {type: :string, nullable: true},
                   submitting_organization_contact_name: {type: :string},
-                  privacy: {type: :string}
+                  privacy: {type: :string},
+                  updated_at: {type: :string},
+                  created_at: {type: :string}
                 }
               },
               relationships: {
