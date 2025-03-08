@@ -23,6 +23,7 @@ class Ability
     unless @admin.is_super_admin?
       cannot %i[create update destroy], Admin
       cannot %i[destroy], Member
+      cannot %i[destroy], Project
     end
     can %i[update], Admin, id: @admin.id
   end
