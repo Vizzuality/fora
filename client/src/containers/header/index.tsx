@@ -10,13 +10,12 @@ import { useSession } from 'next-auth/react';
 
 import { NAV, NAV_AUTH } from 'constants/nav';
 
-import Wrapper from 'containers/wrapper';
-
-import { Button } from 'components/button/component';
-import CircleUserIcon from 'components/icons/circle-user';
 import { isPrivatePath } from 'middleware';
 
 import LOGO_SVG from 'svgs/logo.svg';
+
+import UserMenu from '@/containers/header/user-menu';
+import Wrapper from '@/containers/wrapper';
 
 const Header = () => {
   const pathname = usePathname();
@@ -99,11 +98,7 @@ const Header = () => {
                   </li>
                 );
               })}
-              {session && (
-                <Button type="button" theme="transparent" className="px-0">
-                  <CircleUserIcon />
-                </Button>
-              )}
+              {session && <UserMenu />}
             </ul>
           </nav>
         </div>
