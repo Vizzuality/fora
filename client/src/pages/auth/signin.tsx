@@ -29,7 +29,7 @@ const SignInPage: React.FC = () => {
         });
 
         if (res?.ok) {
-          router.push(callbackUrl ?? `${process.env.NEXT_PUBLIC_BASE_PATH}/auth/details`);
+          router.push(callbackUrl ?? '/auth/details');
         } else {
           throw new Error(res?.error || 'Failed to login');
         }
