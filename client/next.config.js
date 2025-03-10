@@ -13,6 +13,15 @@ const nextConfig = {
     ],
   },
   output: 'standalone',
+  async redirects() {
+    return [
+      {
+        source: '/auth',
+        destination: '/auth/details',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = withPlugins(

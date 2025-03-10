@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
+import NewProject from 'containers/auth/projects/new';
 import MetaTags from 'containers/meta-tags';
-import NewProject from 'containers/my-projects/new';
 
 const TITLE_TEXT = 'FORA My projects | An initiative in support of regenerative agriculture';
 // @todo: update description

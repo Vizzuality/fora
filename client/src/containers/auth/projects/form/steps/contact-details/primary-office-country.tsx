@@ -6,7 +6,7 @@ import { Field as FieldRFF } from 'react-final-form';
 
 import { useSubGeographics } from 'hooks/geographics';
 
-import { ProjectSchema } from 'containers/my-projects/form/validations';
+import { ProjectSchema } from 'containers/auth/projects/form/validations';
 
 import { Select } from 'components/forms';
 

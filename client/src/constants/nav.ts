@@ -1,4 +1,15 @@
-export const NAV = [
+type NavItem = {
+  label: string;
+  href: string;
+  filled?: boolean;
+  target?: string;
+  rel?: string;
+  className?: string;
+  auth?: boolean;
+  footer?: boolean;
+};
+
+export const NAV: NavItem[] = [
   {
     label: 'Home',
     href: '/',
@@ -37,8 +48,23 @@ export const NAV = [
   {
     label: 'Log In',
     href: '/auth/signin',
-    className: 'border border-grey-0 rounded-lg !bg-white',
+    className: 'border border-grey-0 rounded-lg bg-white',
     auth: true,
+  },
+];
+
+export const NAV_AUTH: NavItem[] = [
+  {
+    label: 'My details',
+    href: '/auth/details',
+  },
+  {
+    label: 'My projects',
+    href: '/auth/projects',
+  },
+  {
+    label: 'My investments',
+    href: '/auth/investments',
   },
 ];
 

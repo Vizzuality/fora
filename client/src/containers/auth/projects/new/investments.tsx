@@ -25,7 +25,7 @@ export default function InvestmentsStep() {
           sit sagittis.
         </p>
         <LinkButton
-          href={`/my-investments?project=${newProjectMutationState?.data.data.data.id}`}
+          href={`/investments?project=${newProjectMutationState?.data.data.data.id}`}
           theme="green"
         >
           Report Investment
