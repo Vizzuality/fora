@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from 'lib/utils';
 
 import Footer from 'containers/footer';
-import Header from 'containers/header';
+import Header from '@/containers/header';
 
 export default function ApplicationLayout({ children }: PropsWithChildren) {
   const pathname = usePathname();

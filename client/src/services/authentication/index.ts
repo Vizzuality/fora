@@ -15,7 +15,10 @@ class AuthenticationService {
 
   async signIn(email: string, password: string) {
     try {
-      return await this.api.post('/member/sign_in', { email, password });
+      return await this.api.post('/member/sign_in', {
+        email,
+        password,
+      });
     } catch (err) {
       this.handleApiError(err, 'Failed to sign in');
     }

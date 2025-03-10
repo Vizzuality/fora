@@ -2,17 +2,17 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { GetServerSidePropsContext } from 'next';
 import NextAuth, { getServerSession } from 'next-auth';
 import type { NextAuthOptions } from 'next-auth';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { JWT } from 'next-auth/jwt';
 import Credentials from 'next-auth/providers/credentials';
 
-import authenticationService from 'services/authentication';
+import API from '@/services/api';
+import authenticationService from '@/services/authentication';
+import { Funder } from '@/types/funder';
 
 const MAX_AGE = 2 * 60 * 60; // 2 hours
 
 declare module 'next-auth' {
-  interface User {
-    token: string;
+  interface User extends Funder {
+    accessToken: string;
   }
 }
 
@@ -42,7 +42,19 @@ export const authOptions: NextAuthOptions = {
         const { email, password } = credentials;
         const { data } = await authenticationService.signIn(email, password);
 
-        return data;
+        const user = await API.request<{ data: Funder }>({
+          method: 'GET',
+          url: '/members/funder',
+          headers: {
+            Authorization: `Bearer ${data.token}`,
+          },
+        }).then((response) => response.data);
+
+        return {
+          ...user.data,
+          // token: data.token,
+          accessToken: data.token,
+        };
       },
     }),
   ],
@@ -52,8 +64,9 @@ export const authOptions: NextAuthOptions = {
       const newToken = { ...token };
 
       if (user) {
-        const { token: apiToken } = user;
+        const { accessToken: apiToken } = user;
         newToken.accessToken = apiToken;
+        newToken.user = user;
       }
 
       return newToken;
@@ -62,6 +75,7 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       const newSession = session;
       newSession.accessToken = token.accessToken;
+      newSession.user = token.user;
       return newSession;
     },
   },
