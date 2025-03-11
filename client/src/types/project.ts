@@ -23,6 +23,8 @@ export interface Project {
   };
   subgeographics: SubGeographic[];
   subgeographic_ancestors: SubGeographic[];
+  created_at: string;
+  updated_at: string;
 }
 
 export type InifiniteProject = {

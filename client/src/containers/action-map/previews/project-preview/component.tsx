@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 
 import { useAppSelector } from 'store/hooks';
 
+import { format } from 'date-fns';
+
 import { useAreas } from 'hooks/areas';
 import { useDemographics } from 'hooks/demographics';
 import { useProject } from 'hooks/projects';
@@ -24,7 +26,7 @@ const ProjectPreview = () => {
     isFetching: projectIsFetching,
   } = useProject(projectSelected);
 
-  const { id, description, name, funders = [] } = projectData;
+  const { id, description, name, funders = [], updated_at: updatedAt } = projectData;
 
   const GEOGRAPHIC_SCOPE = useMemo(() => {
     const projSubgeographics = funders.map((proj) => proj.subgeographics);
@@ -94,7 +96,9 @@ const ProjectPreview = () => {
         <div className="w-full space-y-16">
           <div className="space-y-9">
             <div className="space-y-1">
-              <div className="text-base font-normal text-grey-20">Last updated: 30 March 2022</div>
+              <div className="text-base font-normal text-grey-20">
+                Last updated: {format(new Date(updatedAt), 'dd MMMM yyyy')}
+              </div>
               <h2 className="text-3xl font-normal capitalize line-clamp-2 text-ellipsis">{name}</h2>
             </div>
 

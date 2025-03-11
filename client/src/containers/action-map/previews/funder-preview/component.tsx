@@ -2,6 +2,8 @@ import React, { useMemo } from 'react';
 
 import { useAppSelector } from 'store/hooks';
 
+import { format } from 'date-fns';
+
 import { useAreas } from 'hooks/areas';
 import { useDemographics } from 'hooks/demographics';
 import { useFunder } from 'hooks/funders';
@@ -24,7 +26,7 @@ const FunderPreview = () => {
     isFetched: funderIsFetched,
   } = useFunder(funderSelected);
 
-  const { id, description, name, website, projects = [] } = funderData;
+  const { id, description, name, website, projects = [], updated_at: updatedAt } = funderData;
 
   const GEOGRAPHIC_SCOPE = useMemo(() => {
     const projSubgeographics = projects.map((proj) => proj.subgeographics);
@@ -96,7 +98,9 @@ const FunderPreview = () => {
           <div className="space-y-9">
             <div className="space-y-1">
               <h2 className="text-3xl font-normal capitalize line-clamp-2 text-ellipsis">{name}</h2>
-              <div className="text-base font-normal text-grey-20">Last updated: 30 March 2022</div>
+              <div className="text-base font-normal text-grey-20">
+                Last updated: {format(new Date(updatedAt), 'dd MMMM yyyy')}
+              </div>
             </div>
             <p className="font-semibold underline">
               <a href={website} target="_blank" rel="noopener noreferrer">

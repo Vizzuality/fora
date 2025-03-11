@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import { format } from 'date-fns';
 import { usePlausible } from 'next-plausible';
 
 import { useAreas } from 'hooks/areas';
@@ -43,6 +44,7 @@ const FunderOverview = () => {
     areas,
     projects,
     capital_types: capitalTypes,
+    updated_at: updatedAt,
   } = funderData;
 
   const GEOGRAPHIC_SCOPE = useMemo(() => {
@@ -127,7 +129,9 @@ const FunderOverview = () => {
     <div className="flex space-x-32">
       <div className="flex-1 space-y-9">
         <div className="space-y-1">
-          <div className="text-base font-normal text-grey-20">Last updated: 30 March 2022</div>
+          <div className="text-base font-normal text-grey-20">
+            Last updated: {format(new Date(updatedAt), 'dd MMMM yyyy')}
+          </div>
           <h2 className="text-3xl font-normal capitalize line-clamp-2 text-ellipsis">{name}</h2>
         </div>
 
