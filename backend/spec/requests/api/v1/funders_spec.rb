@@ -182,11 +182,15 @@ RSpec.describe "API V1 Funders", type: :request do
         end
 
         context "with relationships" do
-          let("fields[funder]") { "name,primary_office_country,nonexisting" }
-          let(:includes) { "primary_office_country" }
+          let("fields[funder]") { "name,primary_office_country,investments,nonexisting" }
+          let(:includes) { "primary_office_country,investments" }
 
           it "matches snapshot" do
             expect(response.body).to match_snapshot("api/v1/get-funder-include-relationships")
+          end
+
+          it "does not allow you to see investment as not logged in user" do
+            expect(response_json["data"]["relationships"]["investments"]["data"]).to be_empty
           end
         end
       end

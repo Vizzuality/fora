@@ -24,6 +24,7 @@ module API
       has_many_restricted :subgeographics
       has_many_restricted :subgeographic_ancestors, serializer: :subgeographic
       has_many_restricted :funders
+      has_many_restricted :investments
 
       attribute :logo do |object|
         image_links_for object.logo

@@ -3,7 +3,7 @@
     "id": "f468e915-28ef-483c-84a3-773f62b70763",
     "type": "funder",
     "attributes": {
-      "name": "Otha Kemmer"
+      "name": "Msgr. Genaro Cronin"
     },
     "relationships": {
       "primary_office_country": {
@@ -11,6 +11,14 @@
           "id": "f00ea382-c051-4acb-8ce8-18f02f56fa4d",
           "type": "subgeographic"
         }
+      },
+      "investments": {
+        "data": [
+          {
+            "id": "1d062c06-4445-41c1-a3a5-f81c2a511a52",
+            "type": "investment"
+          }
+        ]
       }
     }
   },
@@ -19,10 +27,10 @@
       "id": "f00ea382-c051-4acb-8ce8-18f02f56fa4d",
       "type": "subgeographic",
       "attributes": {
-        "name": "Papua New Guinea",
-        "code": "NPL",
+        "name": "Libyan Arab Jamahiriya",
+        "code": "KOR",
         "geographic": "countries",
-        "abbreviation": "C-NPL",
+        "abbreviation": "C-KOR",
         "created_at": "2025-01-31T11:56:46.763Z",
         "updated_at": "2025-01-31T11:56:46.763Z"
       },
@@ -34,6 +42,49 @@
           "data": [
 
           ]
+        }
+      }
+    },
+    {
+      "id": "1d062c06-4445-41c1-a3a5-f81c2a511a52",
+      "type": "investment",
+      "attributes": {
+        "amount": "68.96",
+        "year_invested": 2023,
+        "initial_funded_year": 2023,
+        "funding_type": "sponsorship",
+        "funding_type_other": "Enim repellat pariatur est.",
+        "areas": [
+          "climate_change_mitigation_strategies",
+          "fertilizer_efficiency"
+        ],
+        "areas_other": "Enim repellat pariatur est.",
+        "grant_duration": "multi_year",
+        "number_of_grant_years": 4,
+        "demographics": [
+          "hispanic_or_latinx",
+          "other"
+        ],
+        "demographics_other": "Enim repellat pariatur est.",
+        "capital_type": "re_grants",
+        "capital_type_other": "Enim repellat pariatur est.",
+        "submitting_organization_contact_name": "Otha Kemmer",
+        "privacy": "visible_only_to_staff",
+        "updated_at": "2025-03-13T23:25:53.466Z",
+        "created_at": "2025-03-13T23:25:53.466Z"
+      },
+      "relationships": {
+        "project": {
+          "data": {
+            "id": "d149e333-d7df-4efd-a5ea-a044eabb5a20",
+            "type": "project"
+          }
+        },
+        "funder": {
+          "data": {
+            "id": "769d3b8f-f8df-4775-bc60-9477d92c82f4",
+            "type": "funder"
+          }
         }
       }
     }

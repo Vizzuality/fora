@@ -14,6 +14,9 @@ RSpec.describe "API V1 Member Funder", type: :request do
       parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
 
       let!(:member) { create :member }
+      let!(:funder) { create :funder, member: member }
+      let!(:investment) { create :investment, funder: funder }
+      let!(:investment_of_different_member) { create :investment }
 
       response "200", :success do
         schema type: :object, properties: {data: {"$ref" => "#/components/schemas/funder"}}
@@ -35,11 +38,16 @@ RSpec.describe "API V1 Member Funder", type: :request do
         end
 
         context "with relationships" do
-          let("fields[funder]") { "name,primary_office_country,nonexisting" }
-          let(:includes) { "primary_office_country" }
+          let("fields[funder]") { "name,primary_office_country,investments,nonexisting" }
+          let(:includes) { "primary_office_country,investments" }
 
           it "matches snapshot" do
             expect(response.body).to match_snapshot("api/v1/members/get-funder-include-relationships")
+          end
+
+          it "allows you to see only investments of the current member" do
+            expect(response_json["data"]["relationships"]["investments"]["data"].size).to eq(1)
+            expect(response_json["data"]["relationships"]["investments"]["data"].first["id"]).to eq(investment.id)
           end
         end
       end

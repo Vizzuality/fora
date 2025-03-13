@@ -144,8 +144,9 @@ RSpec.describe "API V1 Member Investments", type: :request do
       parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
 
       let(:member) { create :member }
-      let!(:investment) { create :investment, funder: member.funder }
-      let!(:investment_of_other_member) { create :investment }
+      let(:project) { create :project, member: member }
+      let!(:investment) { create :investment, funder: member.funder, project: project }
+      let!(:investment_of_other_member) { create :investment, project: project }
       let(:id) { investment.id }
 
       response "200", :success do
@@ -173,10 +174,16 @@ RSpec.describe "API V1 Member Investments", type: :request do
 
         context "with relationships" do
           let("fields[investment]") { "amount,project,nonexisting" }
-          let(:includes) { "project" }
+          let(:includes) { "project,project.investments" }
 
           it "matches snapshot" do
             expect(response.body).to match_snapshot("api/v1/members/get-investment-include-relationships")
+          end
+
+          it "allows you to see only investments of the current member" do
+            investments = response_json["included"].select { |r| r["type"] == "investment" }
+            expect(investments.size).to eq(1)
+            expect(investments.first["id"]).to eq(investment.id)
           end
         end
       end

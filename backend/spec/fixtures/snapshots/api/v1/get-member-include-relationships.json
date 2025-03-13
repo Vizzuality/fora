@@ -95,6 +95,14 @@
               "type": "project"
             }
           ]
+        },
+        "investments": {
+          "data": [
+            {
+              "id": "8b2ab0ab-4882-40a2-ba6b-8a77efdff5b7",
+              "type": "investment"
+            }
+          ]
         }
       }
     }

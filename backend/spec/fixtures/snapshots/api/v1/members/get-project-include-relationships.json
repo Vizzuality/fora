@@ -13,12 +13,248 @@
       },
       "funders": {
         "data": [
-
+          {
+            "id": "8ac79661-3395-44ef-9ce7-5061e6fa0473",
+            "type": "funder"
+          },
+          {
+            "id": "d8402bc6-34b6-4e29-ac54-c888b47d933d",
+            "type": "funder"
+          }
+        ]
+      },
+      "investments": {
+        "data": [
+          {
+            "id": "386e643e-f49c-409d-a054-10c0998ae99d",
+            "type": "investment"
+          }
         ]
       }
     }
   },
   "included": [
+    {
+      "id": "386e643e-f49c-409d-a054-10c0998ae99d",
+      "type": "investment",
+      "attributes": {
+        "amount": "68.96",
+        "year_invested": 2023,
+        "initial_funded_year": 2023,
+        "funding_type": "sponsorship",
+        "funding_type_other": "Enim repellat pariatur est.",
+        "areas": [
+          "climate_change_mitigation_strategies",
+          "fertilizer_efficiency"
+        ],
+        "areas_other": "Enim repellat pariatur est.",
+        "grant_duration": "multi_year",
+        "number_of_grant_years": 4,
+        "demographics": [
+          "hispanic_or_latinx",
+          "other"
+        ],
+        "demographics_other": "Enim repellat pariatur est.",
+        "capital_type": "re_grants",
+        "capital_type_other": "Enim repellat pariatur est.",
+        "submitting_organization_contact_name": "Otha Kemmer",
+        "privacy": "visible_only_to_staff",
+        "updated_at": "2025-03-13T23:26:42.502Z",
+        "created_at": "2025-03-13T23:26:42.502Z"
+      },
+      "relationships": {
+        "project": {
+          "data": {
+            "id": "8a831b2a-9828-479d-bc90-0454e455250f",
+            "type": "project"
+          }
+        },
+        "funder": {
+          "data": {
+            "id": "8ac79661-3395-44ef-9ce7-5061e6fa0473",
+            "type": "funder"
+          }
+        }
+      }
+    },
+    {
+      "id": "8ac79661-3395-44ef-9ce7-5061e6fa0473",
+      "type": "funder",
+      "attributes": {
+        "name": "Msgr. Genaro Cronin",
+        "description": "Placeat commodi libero. Quo recusandae repellat. Sunt commodi tempore. Voluptatem et corrupti.",
+        "primary_office_city": "Lake Genarostad",
+        "website": "http://bartoletti.com/jeremiah_cronin",
+        "date_joined_fora": "2022-04-07T00:00:00.000Z",
+        "funder_type": "loan_fund",
+        "funder_type_other": "Placeat commodi libero et.",
+        "capital_acceptances": [
+          "advises_and_manages_capital",
+          "does_not_provide_funding"
+        ],
+        "capital_acceptances_other": "Placeat commodi libero et.",
+        "leadership_demographics": [
+          "no_specific_focus",
+          "other"
+        ],
+        "leadership_demographics_other": "Placeat commodi libero et.",
+        "application_status": "does_not_provide_funding",
+        "funder_legal_status": "for_profit",
+        "funder_legal_status_other": "Placeat commodi libero et.",
+        "networks": "Placeat commodi libero. Quo recusandae repellat. Sunt commodi tempore. Voluptatem et corrupti.",
+        "capital_types": [
+          "other",
+          "guarantees"
+        ],
+        "capital_types_other": "Placeat commodi libero et.",
+        "spend_down_strategy": true,
+        "areas": [
+          "journalism_training_and_education",
+          "prescription_fire"
+        ],
+        "areas_other": "Placeat commodi libero et.",
+        "demographics": [
+          "no_specific_focus",
+          "other"
+        ],
+        "demographics_other": "Placeat commodi libero et.",
+        "updated_at": "2025-03-13T23:26:42.471Z",
+        "created_at": "2025-03-13T23:26:42.467Z",
+        "contact_email": "desmond_herzog@example.org",
+        "logo": {
+          "small": "http://localhost:4000/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWsyTldJNFpESmxNeTAxTkRrMExUUm1NekV0WWpRNE15MWxaV0l6WVRFd05qUTVORElHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--955c9f0f285aac517fb0c853e294f117920aca93/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERJd01IZ3lNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--8673702c2d856505736727890dcac6a632977811/picture.jpg",
+          "medium": "http://localhost:4000/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWsyTldJNFpESmxNeTAxTkRrMExUUm1NekV0WWpRNE15MWxaV0l6WVRFd05qUTVORElHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--955c9f0f285aac517fb0c853e294f117920aca93/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERnd01IZzRNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--e82a96c0eabd93d914de4ef37febd98c36e0e275/picture.jpg",
+          "original": "http://localhost:4000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWsyTldJNFpESmxNeTAxTkRrMExUUm1NekV0WWpRNE15MWxaV0l6WVRFd05qUTVORElHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--955c9f0f285aac517fb0c853e294f117920aca93/picture.jpg"
+        }
+      },
+      "relationships": {
+        "primary_office_state": {
+          "data": {
+            "id": "90497fe9-7d98-4da9-9626-ec36642ddad2",
+            "type": "subgeographic"
+          }
+        },
+        "primary_office_country": {
+          "data": {
+            "id": "2879cd12-0d05-4861-8f3d-d872e49ff581",
+            "type": "subgeographic"
+          }
+        },
+        "subgeographics": {
+          "data": [
 
+          ]
+        },
+        "subgeographic_ancestors": {
+          "data": [
+
+          ]
+        },
+        "projects": {
+          "data": [
+            {
+              "id": "8a831b2a-9828-479d-bc90-0454e455250f",
+              "type": "project"
+            }
+          ]
+        },
+        "investments": {
+          "data": [
+            {
+              "id": "386e643e-f49c-409d-a054-10c0998ae99d",
+              "type": "investment"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "d8402bc6-34b6-4e29-ac54-c888b47d933d",
+      "type": "funder",
+      "attributes": {
+        "name": "Raymon Wisoky",
+        "description": "Et quaerat omnis. Harum voluptas atque. Quo nesciunt voluptas. Suscipit ex cum.",
+        "primary_office_city": "Raymonview",
+        "website": "http://hane.com/jules",
+        "date_joined_fora": "2023-08-16T00:00:00.000Z",
+        "funder_type": "public_foundation",
+        "funder_type_other": "Et quaerat omnis veniam.",
+        "capital_acceptances": [
+          "donations_accepted",
+          "advises_and_manages_capital"
+        ],
+        "capital_acceptances_other": "Et quaerat omnis veniam.",
+        "leadership_demographics": [
+          "i_dont_know",
+          "no_specific_focus"
+        ],
+        "leadership_demographics_other": "Et quaerat omnis veniam.",
+        "application_status": "open_invitation",
+        "funder_legal_status": "individual",
+        "funder_legal_status_other": "Et quaerat omnis veniam.",
+        "networks": "Et quaerat omnis. Harum voluptas atque. Quo nesciunt voluptas. Suscipit ex cum.",
+        "capital_types": [
+          "other",
+          "debt"
+        ],
+        "capital_types_other": "Et quaerat omnis veniam.",
+        "spend_down_strategy": false,
+        "areas": [
+          "sustainable_or_biological_inputs",
+          "biodiversity"
+        ],
+        "areas_other": "Et quaerat omnis veniam.",
+        "demographics": [
+          "i_dont_know",
+          "no_specific_focus"
+        ],
+        "demographics_other": "Et quaerat omnis veniam.",
+        "updated_at": "2025-03-13T23:26:42.517Z",
+        "created_at": "2025-03-13T23:26:42.515Z",
+        "contact_email": "jules_keeling@grimes-stokes.co",
+        "logo": {
+          "small": "http://localhost:4000/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxsTlRBeFkySTVNUzFoWkRkbUxUUm1aVFl0T1RWaE1pMDFaRGhsTWpRek1UYzVZbVFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--5731d593033809eb31074e96278c00fd8f8971d0/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERJd01IZ3lNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--8673702c2d856505736727890dcac6a632977811/picture.jpg",
+          "medium": "http://localhost:4000/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxsTlRBeFkySTVNUzFoWkRkbUxUUm1aVFl0T1RWaE1pMDFaRGhsTWpRek1UYzVZbVFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--5731d593033809eb31074e96278c00fd8f8971d0/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCem9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2QzNKbGMybDZaVWtpRERnd01IZzRNREFHT3daVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--e82a96c0eabd93d914de4ef37febd98c36e0e275/picture.jpg",
+          "original": "http://localhost:4000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxsTlRBeFkySTVNUzFoWkRkbUxUUm1aVFl0T1RWaE1pMDFaRGhsTWpRek1UYzVZbVFHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--5731d593033809eb31074e96278c00fd8f8971d0/picture.jpg"
+        }
+      },
+      "relationships": {
+        "primary_office_state": {
+          "data": {
+            "id": "e9421313-8865-47a3-90e4-5da0fed6e41f",
+            "type": "subgeographic"
+          }
+        },
+        "primary_office_country": {
+          "data": {
+            "id": "7b9a54ae-2445-42df-950a-708d94738a8f",
+            "type": "subgeographic"
+          }
+        },
+        "subgeographics": {
+          "data": [
+
+          ]
+        },
+        "subgeographic_ancestors": {
+          "data": [
+
+          ]
+        },
+        "projects": {
+          "data": [
+            {
+              "id": "8a831b2a-9828-479d-bc90-0454e455250f",
+              "type": "project"
+            }
+          ]
+        },
+        "investments": {
+          "data": [
+
+          ]
+        }
+      }
+    }
   ]
 }

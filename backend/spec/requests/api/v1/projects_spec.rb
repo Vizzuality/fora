@@ -185,11 +185,16 @@ RSpec.describe "API V1 Projects", type: :request do
         end
 
         context "with relationships" do
-          let("fields[project]") { "name,subgeographic_ancestors,nonexisting" }
-          let(:includes) { "subgeographic_ancestors" }
+          let!(:investment1) { create :investment, project: project }
+          let("fields[project]") { "name,subgeographic_ancestors,investments,nonexisting" }
+          let(:includes) { "subgeographic_ancestors,investments" }
 
           it "matches snapshot" do
             expect(response.body).to match_snapshot("api/v1/get-project-include-relationships")
+          end
+
+          it "does not allow you to see investment as not logged in user" do
+            expect(response_json["data"]["relationships"]["investments"]["data"]).to be_empty
           end
         end
       end

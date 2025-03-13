@@ -112,6 +112,14 @@
               "type": "funder"
             }
           ]
+        },
+        "investments": {
+          "data": [
+            {
+              "id": "6101be07-3d95-431b-b0e8-77013ad488ce",
+              "type": "investment"
+            }
+          ]
         }
       }
     },
@@ -180,6 +188,14 @@
               "type": "funder"
             }
           ]
+        },
+        "investments": {
+          "data": [
+            {
+              "id": "caa196ab-81ea-4a69-ad92-3cd8215f111b",
+              "type": "investment"
+            }
+          ]
         }
       }
     },
@@ -246,6 +262,14 @@
             {
               "id": "89651789-3f7a-45d7-9974-92d9571dcf9c",
               "type": "funder"
+            }
+          ]
+        },
+        "investments": {
+          "data": [
+            {
+              "id": "df429c18-1d87-449a-be53-d4fe3332be92",
+              "type": "investment"
             }
           ]
         }
