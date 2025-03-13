@@ -40,6 +40,11 @@ RSpec.describe Recipient, type: :model do
     expect(subject).to have(1).errors_on(:logo)
   end
 
+  it "should be valid with not unique name" do
+    create(:recipient, name: subject.name)
+    expect(subject).to be_valid
+  end
+
   include_examples :static_relation_validations, attribute: :leadership_demographics, presence: false
   include_examples :static_relation_validations, attribute: :recipient_legal_status, presence: true
 end
