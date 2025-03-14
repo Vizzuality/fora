@@ -1,5 +1,3 @@
-'use client';
-
 import { ComponentProps } from 'react';
 
 import { Field as FieldRFF } from 'react-final-form';
@@ -8,7 +6,8 @@ import { useSubGeographics } from 'hooks/geographics';
 
 import { ProjectSchema } from 'containers/auth/projects/form/validations';
 
-import { Select } from 'components/forms';
+import { Select } from '@/components/forms';
+import ErrorField from '@/components/forms/error-field';
 
 export default function PrimaryOfficeCountrySelector() {
   const {
@@ -28,18 +27,21 @@ export default function PrimaryOfficeCountrySelector() {
     countries?.map(({ id, name }) => ({ value: id, label: name })) || [];
 
   return (
-    <FieldRFF<ProjectSchema['name']> name="country_id">
+    <FieldRFF<ProjectSchema['country_id']> name="country_id">
       {({ input }) => (
-        <Select
-          id="country_id"
-          placeholder="Select an option"
-          theme="gray"
-          size="base"
-          options={countriesOptions}
-          value={input.value}
-          loading={countriesFetching && !countriesFetched}
-          onSelect={input.onChange}
-        />
+        <div className="space-y-2">
+          <Select
+            id="country_id"
+            placeholder="Select an option"
+            theme="gray"
+            size="base"
+            options={countriesOptions}
+            value={input.value}
+            loading={countriesFetching && !countriesFetched}
+            onSelect={input.onChange}
+          />
+          <ErrorField<ProjectSchema> name="country_id" />
+        </div>
       )}
     </FieldRFF>
   );

@@ -8,9 +8,11 @@ import { RxUpload } from 'react-icons/rx';
 
 export default function DragNDrop({
   children,
+  hasInitialValue = false,
   ...dropzoneOptions
 }: {
   children: (state: DropzoneState) => ReactNode;
+  hasInitialValue?: boolean;
 } & DropzoneOptions) {
   const state = useDropzone(dropzoneOptions);
   const { getRootProps, getInputProps, acceptedFiles } = state;
@@ -21,13 +23,13 @@ export default function DragNDrop({
       className={cn(
         'h-40 border border-dashed border-spacing-x-5 border-gray-300 rounded-lg flex items-center justify-center',
         {
-          'h-auto': acceptedFiles?.length > 0,
+          'h-auto': acceptedFiles?.length > 0 || hasInitialValue,
         }
       )}
     >
       <input {...getInputProps()} />
       <div className="flex flex-col items-center gap-2">
-        {!acceptedFiles?.length && (
+        {!acceptedFiles?.length && !hasInitialValue && (
           <>
             <div className="rounded-full  border border-grey-40 p-4">
               <RxUpload className="h-4 w-4" />
@@ -38,7 +40,7 @@ export default function DragNDrop({
           </>
         )}
       </div>
-      {acceptedFiles?.length > 0 && children(state)}
+      {(acceptedFiles?.length > 0 || hasInitialValue) && children(state)}
     </div>
   );
 }

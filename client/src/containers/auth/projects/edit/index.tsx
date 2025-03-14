@@ -1,36 +1,31 @@
-import { useMemo } from 'react';
-
-import { useRouter } from 'next/navigation';
+import { useRouter, useParams } from 'next/navigation';
 
 import { useMutation } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 
-import { useMe } from 'hooks/members';
-
-import Wrapper from 'containers/wrapper';
-
-import API from 'services/api';
-
 import { FORM_STEPS } from '../constants';
-import Form from '../form';
-import FormWrapper from '../form/wrapper';
-import MyProjectsSidebar from '../sidebar';
 
-import NewProjectHeader from './header';
+import Form from '@/containers/auth/projects/form';
+import FormWrapper from '@/containers/auth/projects/form/wrapper';
+import NewProjectHeader from '@/containers/auth/projects/new/header';
+import MyProjectsSidebar from '@/containers/auth/projects/sidebar';
+import Wrapper from '@/containers/wrapper';
+import { useMe } from '@/hooks/members';
+import API from '@/services/api';
+import { Project } from '@/types/project';
 
-export const NEW_PROJECT_QUERY_KEY = ['newProject'];
-
-export default function NewProject() {
+export default function EditProject({ project }: { project: Project }) {
   const { data: session } = useSession();
   const { push } = useRouter();
+  const { id } = useParams();
   const { data: me } = useMe();
 
   const mutation = useMutation({
-    mutationKey: NEW_PROJECT_QUERY_KEY,
+    mutationKey: ['editProject', id],
     mutationFn: (data: FormData) => {
       return API.request({
-        method: 'POST',
-        url: '/members/projects',
+        method: 'PUT',
+        url: `/members/projects/${id}`,
         data: data,
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -39,31 +34,34 @@ export default function NewProject() {
       });
     },
     onSuccess: () => {
-      push('/auth/projects/new?step=investments');
+      push(`/projects/${id}`);
     },
   });
 
-  const formSteps = useMemo(() => {
-    return FORM_STEPS.map((step, index) => {
-      if (index === 2) {
-        return { ...step, disabled: mutation.isLoading || mutation.isIdle };
-      }
-      return { ...step, disabled: mutation.isSuccess };
-    });
-  }, [mutation]);
-
   return (
     <Wrapper className="w-full flex grow">
-      <FormWrapper
+      <FormWrapper<{ imageURL: string }>
         initialValues={{
-          internal_leadership_demographics_collection: 'yes',
+          name: project.name,
+          description: project.description,
+          website: project.website ?? undefined,
+          imageURL: project.logo ? project.logo.original : undefined,
+          city: project.city,
+          country_id: project.country.id,
+          state_id: project.state ? project.state.id : undefined,
+          recipient_legal_status: project.recipient_legal_status,
+          internal_leadership_demographics_collection:
+            project.leadership_demographics?.length > 0 ? 'yes' : 'no',
+          leadership_demographics: project.leadership_demographics,
+          leadership_demographics_other: project.leadership_demographics_other ?? undefined,
         }}
         onSubmit={(data) => {
           const formData = new FormData();
-
           delete data.internal_leadership_demographics_collection;
 
-          for (const key in data) {
+          const strippedData: typeof data = JSON.parse(JSON.stringify(data));
+
+          for (const key in strippedData) {
             if (data.hasOwnProperty(key)) {
               const value = data[key];
 
@@ -88,7 +86,7 @@ export default function NewProject() {
               <NewProjectHeader />
               <div className="grid grid-cols-12 gap-16 h-full">
                 <div className="col-span-3">
-                  <MyProjectsSidebar sections={formSteps} />
+                  <MyProjectsSidebar sections={FORM_STEPS.map((l) => l)} />
                 </div>
                 <div className="col-span-9 flex">
                   <Form handleSubmit={handleSubmit} />
