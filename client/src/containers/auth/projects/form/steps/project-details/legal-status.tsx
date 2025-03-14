@@ -1,14 +1,13 @@
-'use client';
-
 import { ComponentProps } from 'react';
 
-import { Field as FieldRFF } from 'react-final-form';
+import { Field as FieldRFF, useFormState } from 'react-final-form';
 
 import { useProjectLegalStatuses } from 'hooks/project-legal-statuses';
 
 import { ProjectSchema } from 'containers/auth/projects/form/validations';
 
-import { Select } from 'components/forms';
+import { Select } from '@/components/forms';
+import ErrorField from '@/components/forms/error-field';
 
 export default function LegalStatusSelector() {
   const {
@@ -17,22 +16,32 @@ export default function LegalStatusSelector() {
     isFetched: legalStatusFetched,
   } = useProjectLegalStatuses();
 
+  const {
+    values: { recipient_legal_status: legalStatusFormValue },
+  } = useFormState<ProjectSchema>();
+
   const legalStatusesOptions: ComponentProps<typeof Select>['options'] =
     legalStatuses?.map(({ id, name }) => ({ value: id, label: name })) || [];
 
   return (
-    <FieldRFF<ProjectSchema['name']> name="recipient_legal_status">
+    <FieldRFF<ProjectSchema['recipient_legal_status']>
+      name="recipient_legal_status"
+      defaultValue={legalStatusFormValue}
+    >
       {({ input }) => (
-        <Select
-          id="recipient_legal_status"
-          placeholder="Select an option"
-          theme="gray"
-          size="base"
-          options={legalStatusesOptions}
-          value={input.value}
-          loading={legalStatusFetching && !legalStatusFetched}
-          onSelect={input.onChange}
-        />
+        <div className="space-y-2">
+          <Select
+            id="recipient_legal_status"
+            placeholder="Select an option"
+            theme="gray"
+            size="base"
+            options={legalStatusesOptions}
+            value={input.value}
+            loading={legalStatusFetching && !legalStatusFetched}
+            onSelect={input.onChange}
+          />
+          <ErrorField<ProjectSchema> name="recipient_legal_status" />
+        </div>
       )}
     </FieldRFF>
   );

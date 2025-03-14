@@ -3,7 +3,7 @@ import { FormRenderProps } from 'react-final-form';
 import { useSearchParams } from 'next/navigation';
 
 import { FORM_STEPS } from '../constants';
-import InvestmentsStep from '../new/investments';
+import InvestmentsStep from '../investments';
 
 import ContactDetailsStep from './steps/contact-details';
 import ProjectDetailsStep from './steps/project-details';

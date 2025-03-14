@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ComponentProps, useState } from 'react';
 
 import { DropzoneOptions } from 'react-dropzone';
 import { Field as FieldRFF, useField, useFormState } from 'react-final-form';
@@ -8,11 +8,6 @@ import { usePathname } from 'next/navigation';
 
 import { HiOutlineArrowRight } from 'react-icons/hi';
 
-import LinkButton from 'components/button';
-import DragNDrop from 'components/drag-n-drop';
-import { Input, Radio } from 'components/forms';
-import Textarea from 'components/forms/textarea';
-
 import VisibilityLabel from '../../label';
 import FormLegend from '../../legend';
 import { ProjectSchema } from '../../validations';
@@ -20,16 +15,25 @@ import { ProjectSchema } from '../../validations';
 import DemographicsSelector from './demographics';
 import LegalStatusSelector from './legal-status';
 
+import LinkButton from '@/components/button';
+import DragNDrop from '@/components/drag-n-drop';
+import { Input, Radio } from '@/components/forms';
+import ErrorField from '@/components/forms/error-field';
+import Textarea from '@/components/forms/textarea';
+
 export default function ProjectDetailsStep() {
-  const [collectsInformation, setCollectsInformation] = useState('yes');
   const pathname = usePathname();
   const {
-    values: { leadership_demographics: demographicsFormValues },
-  } = useFormState<ProjectSchema>();
+    values: {
+      leadership_demographics: demographicsFormValues,
+      imageURL,
+      internal_leadership_demographics_collection: collectsInformation,
+    },
+  } = useFormState<ProjectSchema & { imageURL: string }>();
   const logoField = useField('logo');
-  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [imageSrc, setImageSrc] = useState<string | null>(imageURL ?? null);
 
-  const onDrop = (files: File[]) => {
+  const onDropAccepted = (files: File[]) => {
     const file = files[0];
     logoField.input.onChange(file);
 
@@ -40,8 +44,9 @@ export default function ProjectDetailsStep() {
     reader.readAsDataURL(file);
   };
 
-  const dropZoneOptions: DropzoneOptions = {
-    onDropAccepted: onDrop,
+  const dropZoneOptions: DropzoneOptions &
+    Pick<ComponentProps<typeof DragNDrop>, 'hasInitialValue'> = {
+    onDropAccepted,
     maxFiles: 1,
     accept: {
       'image/png': ['.png'],
@@ -49,6 +54,7 @@ export default function ProjectDetailsStep() {
     },
     multiple: false,
     maxSize: 375000,
+    hasInitialValue: !!imageURL,
   };
 
   return (
@@ -82,7 +88,10 @@ export default function ProjectDetailsStep() {
         </VisibilityLabel>
         <FieldRFF<ProjectSchema['name']> name="name" type="text">
           {({ input }) => (
-            <Input {...input} id={input.name} required theme="transparent" className="h-[46px]" />
+            <div className="space-y-2">
+              <Input {...input} id={input.name} required theme="transparent" className="h-[46px]" />
+              <ErrorField<ProjectSchema> name="name" />
+            </div>
           )}
         </FieldRFF>
       </div>
@@ -96,20 +105,24 @@ export default function ProjectDetailsStep() {
         >
           Project Description
         </VisibilityLabel>
-        <FieldRFF<ProjectSchema['name']> name="description">
+        <FieldRFF<ProjectSchema['description']> name="description">
           {({ input }) => (
-            <Textarea
-              placeholder="Type the description here"
-              theme="transparent"
-              {...input}
-              onChange={input.onChange}
-              required
-            />
+            <div className="space-y-2">
+              <Textarea
+                placeholder="Type the description here"
+                theme="transparent"
+                className="min-h-[46px]"
+                {...input}
+                onChange={input.onChange}
+                required
+              />
+              <ErrorField<ProjectSchema> name="description" />
+            </div>
           )}
         </FieldRFF>
       </div>
 
-      <div className="grid grid-cols-12 gap-4 items-end">
+      <div className="grid grid-cols-12 gap-4 items-start">
         <div className="col-span-6">
           <div className="space-y-2">
             <VisibilityLabel
@@ -119,9 +132,12 @@ export default function ProjectDetailsStep() {
             >
               Website
             </VisibilityLabel>
-            <FieldRFF<ProjectSchema['name']> name="website" type="text">
+            <FieldRFF<ProjectSchema['website']> name="website" type="text">
               {({ input }) => (
-                <Input {...input} id={input.name} theme="transparent" className="h-[46px]" />
+                <div className="space-y-2">
+                  <Input {...input} id={input.name} theme="transparent" className="h-[46px]" />
+                  <ErrorField<ProjectSchema> name="website" />
+                </div>
               )}
             </FieldRFF>
           </div>
@@ -158,7 +174,7 @@ export default function ProjectDetailsStep() {
       <div className="space-y-2">
         <VisibilityLabel
           labelProps={{
-            htmlFor: 'internal-demographics',
+            htmlFor: 'internal_leadership_demographics_collection',
             className: 'normal-case',
           }}
           required
@@ -167,24 +183,29 @@ export default function ProjectDetailsStep() {
         </VisibilityLabel>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1">
-            <Radio
-              name="internal-demographics"
-              id="internal-demographics-yes"
+            <FieldRFF<ProjectSchema['internal_leadership_demographics_collection']>
+              name="internal_leadership_demographics_collection"
+              type="radio"
               value="yes"
-              defaultChecked
-              onChange={(evt) => setCollectsInformation(evt.target.value)}
-            />
-            <label htmlFor="internal-demographics-yes">Yes</label>
+            >
+              {({ input }) => (
+                <Radio {...input} id="internal_leadership_demographics_collection-yes" />
+              )}
+            </FieldRFF>
+            <label htmlFor="internal_leadership_demographics_collection-yes">Yes</label>
           </div>
 
           <div className="flex items-center gap-1">
-            <Radio
-              name="internal-demographics"
-              id="internal-demographics-no"
+            <FieldRFF<ProjectSchema['internal_leadership_demographics_collection']>
+              name="internal_leadership_demographics_collection"
+              type="radio"
               value="no"
-              onChange={(evt) => setCollectsInformation(evt.target.value)}
-            />
-            <label htmlFor="internal-demographics-no">No</label>
+            >
+              {({ input }) => (
+                <Radio {...input} id="internal_leadership_demographics_collection-no" />
+              )}
+            </FieldRFF>
+            <label htmlFor="internal_leadership_demographics_collection-no">No</label>
           </div>
         </div>
       </div>
@@ -193,7 +214,7 @@ export default function ProjectDetailsStep() {
           <div className="space-y-2">
             <VisibilityLabel
               labelProps={{
-                htmlFor: 'demographics',
+                htmlFor: 'leadership_demographics',
                 className: 'normal-case',
               }}
               required
@@ -218,7 +239,12 @@ export default function ProjectDetailsStep() {
                 name="leadership_demographics_other"
                 type="text"
               >
-                {({ input }) => <Input required {...input} />}
+                {({ input }) => (
+                  <div className="space-y-2">
+                    <Input required {...input} />
+                    <ErrorField<ProjectSchema> name="leadership_demographics_other" />
+                  </div>
+                )}
               </FieldRFF>
             </div>
           )}

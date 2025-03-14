@@ -9,11 +9,21 @@ export interface Project {
   name: string;
   description: string;
   website: string;
+  city: string;
+  country: {
+    id: string;
+    type: 'subgeographic';
+  };
+  state: {
+    id: string;
+    type: 'subgeographic';
+  };
   // Filters
   areas: Area['id'][];
   capital_types: CapitalType['id'][];
   demographics: Demographic['id'][];
   leadership_demographics: Demographic['id'][];
+  leadership_demographics_other: string;
   recipient_legal_status: string;
   funders: Partial<Funder>[];
   logo: {

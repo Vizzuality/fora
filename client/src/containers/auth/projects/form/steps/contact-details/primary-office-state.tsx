@@ -8,7 +8,8 @@ import { useSubGeographics } from 'hooks/geographics';
 
 import { ProjectSchema } from 'containers/auth/projects/form/validations';
 
-import { Select } from 'components/forms';
+import { Select } from '@/components/forms';
+import ErrorField from '@/components/forms/error-field';
 
 export default function PrimaryOfficeStateSelector() {
   const {
@@ -54,19 +55,22 @@ export default function PrimaryOfficeStateSelector() {
   }, [dirty, isUSA, change]);
 
   return (
-    <FieldRFF<ProjectSchema['name']> name="state_id">
+    <FieldRFF<ProjectSchema['state_id']> name="state_id">
       {({ input }) => (
-        <Select
-          id="state_id"
-          placeholder="Select an option"
-          theme="gray"
-          size="base"
-          options={statesOptions}
-          value={input.value}
-          loading={statesFetching && !statesFetched}
-          onSelect={input.onChange}
-          disabled={!isUSA}
-        />
+        <div className="space-y-2">
+          <Select
+            id="state_id"
+            placeholder="Select an option"
+            theme="gray"
+            size="base"
+            options={statesOptions}
+            value={input.value}
+            loading={statesFetching && !statesFetched}
+            onSelect={input.onChange}
+            disabled={!isUSA}
+          />
+          <ErrorField<ProjectSchema> name="state_id" />
+        </div>
       )}
     </FieldRFF>
   );

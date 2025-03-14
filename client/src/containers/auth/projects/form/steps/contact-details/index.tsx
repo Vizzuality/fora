@@ -4,15 +4,16 @@ import { usePathname } from 'next/navigation';
 
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 
-import LinkButton from 'components/button';
-import { Input } from 'components/forms';
-
 import VisibilityLabel from '../../label';
 import FormLegend from '../../legend';
 import { ProjectSchema } from '../../validations';
 
 import PrimaryOfficeCountrySelector from './primary-office-country';
 import PrimaryOfficeStateSelector from './primary-office-state';
+
+import LinkButton from '@/components/button';
+import { Input } from '@/components/forms';
+import ErrorField from '@/components/forms/error-field';
 
 export default function ContactDetailsStep() {
   const pathname = usePathname();
@@ -74,7 +75,12 @@ export default function ContactDetailsStep() {
           Primary Office City
         </VisibilityLabel>
         <FieldRFF<ProjectSchema['name']> name="city" type="text">
-          {({ input }) => <Input {...input} id={input.name} className="h-[46px]" />}
+          {({ input }) => (
+            <div className="space-y-2">
+              <Input {...input} id={input.name} className="h-[46px]" />
+              <ErrorField<ProjectSchema> name="city" />
+            </div>
+          )}
         </FieldRFF>
       </div>
 

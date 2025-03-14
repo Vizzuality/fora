@@ -11,6 +11,9 @@ const FormContext = () => (
   <AppWrapper>
     <FormWrapper
       onSubmit={async () => {}}
+      initialValues={{
+        internal_leadership_demographics_collection: 'yes',
+      }}
       render={({ handleSubmit }) => {
         return <Form handleSubmit={handleSubmit} />;
       }}
@@ -65,15 +68,15 @@ vi.mock('next/navigation', () => ({
 describe('project form', () => {
   it('choosing "yes" in the information collection, a selector to select the demographics appears', () => {
     const { container } = render(<FormContext />);
-    expect(container.querySelectorAll('input[name="internal-demographics"]')[0]).toHaveAttribute(
-      'checked'
-    );
+    expect(
+      container.querySelector('#internal_leadership_demographics_collection-yes')
+    ).toHaveAttribute('checked');
     expect(container.querySelector('#leadership_demographics')).toBeInTheDocument();
   });
 
   it('choosing "no" in the information collection, a selector to select the demographics won\'t appear', () => {
     const { container } = render(<FormContext />);
-    const optionNo = container.querySelectorAll('input[name="internal-demographics"]')[1];
+    const optionNo = container.querySelector('#internal_leadership_demographics_collection-no');
     fireEvent.click(optionNo);
     expect(optionNo).toBeChecked();
     expect(container.querySelector('#leadership_demographics')).not.toBeInTheDocument();
@@ -82,9 +85,9 @@ describe('project form', () => {
   it('choosing "Yes" in the information collection, and selecting "Others" in the demographic selector will make appear a new input to specify', async () => {
     const { container } = render(<FormContext />);
 
-    expect(container.querySelectorAll('input[name="internal-demographics"]')[0]).toHaveAttribute(
-      'checked'
-    );
+    expect(
+      container.querySelector('#internal_leadership_demographics_collection-yes')
+    ).toHaveAttribute('checked');
 
     const demographicSelector = container.querySelector('#leadership_demographics');
     expect(demographicSelector).toBeInTheDocument();
