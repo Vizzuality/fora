@@ -6,8 +6,6 @@ import { usePathname } from 'next/navigation';
 
 import { cn } from 'lib/utils';
 
-import { useSession } from 'next-auth/react';
-
 import { NAV, NAV_AUTH } from 'constants/nav';
 
 import { isPrivatePath } from 'middleware';
@@ -19,13 +17,12 @@ import Wrapper from '@/containers/wrapper';
 
 const Header = () => {
   const pathname = usePathname();
-  const { data: session } = useSession();
   const isAuthPath = isPrivatePath(pathname);
 
   const NAV_ITEMS = useMemo(() => {
     if (isAuthPath) return NAV_AUTH;
-    return NAV.filter((n) => !n.footer && !(session && n.auth));
-  }, [session, isAuthPath]);
+    return NAV.filter((n) => !n.footer);
+  }, [isAuthPath]);
 
   const isActiveNavItem = useCallback(
     (href: string) => {
@@ -59,46 +56,32 @@ const Header = () => {
           <nav className="flex items-center justify-between">
             <ul className="flex items-center justify-between space-x-3">
               {NAV_ITEMS.map((item) => {
-                const { href, label, filled, target, rel, className } = item;
+                const { href, label, target, rel, className } = item;
+
+                const buttonClass = cn(
+                  'text-base font-semibold p-2 relative after:bottom-0 after:h-0.5 after:w-full after:block after:absolute after:bg-transparent after:hover:bg-green-0',
+                  {
+                    'after:bg-green-0': isActiveNavItem(href),
+                  },
+                  className
+                );
 
                 return (
                   <li key={href}>
                     {target === '_blank' && (
-                      <a
-                        href={href}
-                        target={target}
-                        rel={rel}
-                        className={cn({
-                          'text-base font-semibold py-2 px-7': true,
-                          'hover:rounded-lg hover:bg-grey-60/75': pathname !== href,
-                          'rounded-lg bg-green-0': isActiveNavItem(href),
-                          'text-grey-0 hover:underline': !filled,
-                        })}
-                      >
+                      <a href={href} target={target} rel={rel} className={buttonClass}>
                         {label}
                       </a>
                     )}
                     {!target && (
-                      <Link
-                        href={href}
-                        className={cn(
-                          'text-base font-semibold py-2 px-7',
-                          {
-                            'hover:rounded-lg hover:bg-grey-60/75': !pathname.includes(href),
-                            'rounded-lg bg-green-0': isActiveNavItem(href),
-                            // 'pointer-events-none select-none':
-                            //   pathname.includes(href) && pathname !== '/',
-                          },
-                          className
-                        )}
-                      >
+                      <Link href={href} className={buttonClass}>
                         {label}
                       </Link>
                     )}
                   </li>
                 );
               })}
-              {session && <UserMenu />}
+              <UserMenu />
             </ul>
           </nav>
         </div>
