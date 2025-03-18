@@ -1,12 +1,14 @@
 import { useRouter } from 'next/router';
 
-import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { dehydrate } from '@tanstack/react-query';
 import safeJsonStringify from 'safe-json-stringify';
 
 import { fetchProject, fetchProjects, useProject } from 'hooks/projects';
 
 import MetaTags from 'containers/meta-tags';
 import Project from 'containers/project';
+
+import { getQueryClient } from '@/lib/queryclient';
 
 const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/projects.jpg`;
 
@@ -49,17 +51,16 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(ctx) {
   const { id } = ctx.params;
-  const queryClient = new QueryClient();
+  const queryClient = getQueryClient();
 
   await queryClient.prefetchQuery({
     queryKey: ['project', id],
     queryFn: () => fetchProject(id),
   });
 
-  // Props returned will be passed to the page component
   return {
     props: {
-      revalidate: 30 * 60, // 30 minutees
+      revalidate: 30 * 60, // 30 minutes
       dehydratedState: JSON.parse(safeJsonStringify(dehydrate(queryClient))) || null,
     },
   };

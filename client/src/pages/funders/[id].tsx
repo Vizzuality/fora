@@ -1,12 +1,14 @@
 import { useRouter } from 'next/router';
 
-import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { dehydrate } from '@tanstack/react-query';
 import safeJsonStringify from 'safe-json-stringify';
 
 import { fetchFunder, fetchFunders, useFunder } from 'hooks/funders';
 
 import Funder from 'containers/funder';
 import MetaTags from 'containers/meta-tags';
+
+import { getQueryClient } from '@/lib/queryclient';
 
 const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/funders.jpg`;
 
@@ -49,7 +51,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(ctx) {
   const { id } = ctx.params;
-  const queryClient = new QueryClient();
+  const queryClient = getQueryClient();
 
   await queryClient.prefetchQuery({
     queryKey: ['funder', id],

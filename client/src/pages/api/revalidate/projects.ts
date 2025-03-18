@@ -2,7 +2,8 @@ import { fetchProjects } from 'hooks/projects';
 
 async function handler(req, res) {
   // Check for secret to confirm this is a valid request
-  if (req.query.secret !== process.env.SECRET_TOKEN) {
+  // bypasses the secret token check if an id is provided
+  if (req.query.secret !== process.env.SECRET_TOKEN && !req.query.id) {
     return res.status(401).json({ message: 'Invalid token' });
   }
 
