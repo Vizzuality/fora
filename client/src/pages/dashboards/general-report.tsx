@@ -23,8 +23,10 @@ export const getStaticProps = STORE_WRAPPER.getStaticProps((store) => async () =
   const { filters } = store.getState()['/dashboards/general-report'];
 
   // Prefetch years
-  const fYears = () => fetchYears();
-  await queryClient.prefetchQuery(['report-years'], fYears);
+  await queryClient.prefetchQuery({
+    queryKey: ['report-years'],
+    queryFn: () => fetchYears(),
+  });
   const { data } = queryClient.getQueryData<{ data: any[] }>(['report-years']);
 
   // loop through years and set filter reportYear with the last year
@@ -40,8 +42,10 @@ export const getStaticProps = STORE_WRAPPER.getStaticProps((store) => async () =
   const params = {
     filters,
   };
-  const fetch = () => fetchWidgets(params);
-  await queryClient.prefetchQuery(['widgets', JSON.stringify(params)], fetch);
+  await queryClient.prefetchQuery({
+    queryKey: ['widgets', params],
+    queryFn: () => fetchWidgets(params),
+  });
 
   // Props returned will be passed to the page component
   return {

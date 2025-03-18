@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 
 import { STORE_WRAPPER } from 'store';
 
-import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
+import { QueryClientProvider, HydrationBoundary } from '@tanstack/react-query';
 import { SessionProvider } from 'next-auth/react';
 import PlausibleProvider from 'next-plausible';
 
@@ -18,24 +18,10 @@ import { MediaContextProvider } from 'components/media-query';
 
 import 'styles/globals.css';
 import 'styles/flicking.css';
+import { getQueryClient } from '@/lib/queryclient';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
-  const [queryClient] = useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            keepPreviousData: true,
-            refetchOnMount: false,
-            refetchOnWindowFocus: false,
-            structuralSharing: false,
-            select: (data: any) => {
-              return data.data;
-            },
-          },
-        },
-      })
-  );
+  const [queryClient] = useState(() => getQueryClient());
   const router = useRouter();
   const { asPath } = router;
   const [routeLoading, setRouteLoading] = useState({
@@ -88,7 +74,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
+      <HydrationBoundary state={pageProps.dehydratedState}>
         <SessionProvider
           session={pageProps.session}
           basePath={`${process.env.NEXT_PUBLIC_BASE_PATH}/api/auth`}
@@ -108,7 +94,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
             </PlausibleProvider>
           </MediaContextProvider>
         </SessionProvider>
-      </Hydrate>
+      </HydrationBoundary>
     </QueryClientProvider>
   );
 };

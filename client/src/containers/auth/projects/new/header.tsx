@@ -42,7 +42,7 @@ export default function NewProjectHeader() {
           <Button
             type="submit"
             theme="green"
-            disabled={invalid || newProjectMutationState?.status === 'loading'}
+            disabled={invalid || newProjectMutationState?.status === 'pending'}
             onClick={submit}
           >
             Save changes

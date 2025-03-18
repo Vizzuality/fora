@@ -51,9 +51,10 @@ export async function getStaticProps(ctx) {
   const { id } = ctx.params;
   const queryClient = new QueryClient();
 
-  const fetch = () => fetchFunder(id);
-
-  await queryClient.prefetchQuery(['funder', id], fetch);
+  await queryClient.prefetchQuery({
+    queryKey: ['funder', id],
+    queryFn: () => fetchFunder(id),
+  });
 
   // Props returned will be passed to the page component
   return {

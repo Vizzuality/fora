@@ -1,23 +1,25 @@
 import { useMemo } from 'react';
 
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-
-import { FunderType } from 'types/funder-type';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
 import API from 'services/api';
 
-export function useFunderTypes(queryOptions: UseQueryOptions<FunderType[], unknown> = {}) {
-  const fetchFunderTypes = () =>
+const baseQueryOptions = queryOptions({
+  queryKey: ['funder-types'],
+  queryFn: () =>
     API.request({
       method: 'GET',
       url: '/funder_types',
-    }).then((response) => response.data);
+    }).then((response) => response.data),
+  placeholderData: {
+    data: [],
+  },
+});
 
-  const query = useQuery(['funder-types'], fetchFunderTypes, {
-    placeholderData: {
-      data: [],
-    },
-    ...queryOptions,
+export function useFunderTypes(upcomingQueryOptions?: Omit<typeof baseQueryOptions, 'queryKey'>) {
+  const query = useQuery({
+    ...baseQueryOptions,
+    ...upcomingQueryOptions,
   });
 
   const { data } = query;

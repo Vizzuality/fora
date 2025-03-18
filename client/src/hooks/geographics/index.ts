@@ -3,26 +3,31 @@ import { useMemo } from 'react';
 import { jsonAPIAdapter } from 'lib/adapters/json-api-adapter';
 import { ParamsProps } from 'lib/adapters/types';
 
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
-import { Geographic, SubGeographic } from 'types/geographics';
+import { SubGeographic } from 'types/geographics';
 
 import API from 'services/api';
 
-export function useGeographics(queryOptions: UseQueryOptions<Geographic[], unknown> = {}) {
-  const fetchGeographics = () =>
+const useGeographicsBaseQueryOptions = queryOptions({
+  queryKey: ['geographics'],
+  queryFn: () =>
     API.request({
       method: 'GET',
       url: '/geographics',
-    }).then((response) => response.data);
+    }).then((response) => response.data),
+  placeholderData: {
+    data: [],
+  },
+});
 
-  const query = useQuery(['geographics'], fetchGeographics, {
-    placeholderData: {
-      data: [],
-    },
-    ...queryOptions,
+export function useGeographics(
+  upcomingQueryOptions?: Omit<typeof useGeographicsBaseQueryOptions, 'queryKey'>
+) {
+  const query = useQuery({
+    ...useGeographicsBaseQueryOptions,
+    ...upcomingQueryOptions,
   });
-
   const { data } = query;
 
   const DATA = useMemo(() => {
@@ -44,18 +49,15 @@ export function useGeographics(queryOptions: UseQueryOptions<Geographic[], unkno
   }, [query, DATA]);
 }
 
-export function useSubGeographics(
-  params: ParamsProps = {},
-  queryOptions: UseQueryOptions<{ data: SubGeographic[] }, unknown, SubGeographic[]> = {}
-) {
-  const fetchSubgeographics = () =>
-    API.request<{ data: SubGeographic[] }>({
-      method: 'GET',
-      url: '/subgeographics',
-      params: jsonAPIAdapter(params),
-    }).then((response) => response.data);
-
-  return useQuery(['subgeographics', JSON.stringify(params)], fetchSubgeographics, {
+const useSubGeographicsBaseQueryOptions = ({ params }: { params: ParamsProps }) =>
+  queryOptions({
+    queryKey: ['subgeographics', params],
+    queryFn: () =>
+      API.request<{ data: SubGeographic[] }>({
+        method: 'GET',
+        url: '/subgeographics',
+        params: jsonAPIAdapter(params),
+      }).then((response) => response.data),
     placeholderData: {
       data: [] as SubGeographic[],
     },
@@ -66,6 +68,14 @@ export function useSubGeographics(
           id: subgeographic.abbreviation,
         };
       }),
-    ...queryOptions,
+  });
+
+export function useSubGeographics(
+  params: ParamsProps = {},
+  upcomingQueryOptions?: Omit<ReturnType<typeof useSubGeographicsBaseQueryOptions>, 'queryKey'>
+) {
+  return useQuery({
+    ...useSubGeographicsBaseQueryOptions({ params }),
+    ...upcomingQueryOptions,
   });
 }

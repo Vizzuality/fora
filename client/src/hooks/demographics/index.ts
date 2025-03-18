@@ -1,23 +1,25 @@
 import { useMemo } from 'react';
 
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-
-import { Demographic } from 'types/demographic';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
 import API from 'services/api';
 
-export function useDemographics(queryOptions: UseQueryOptions<Demographic[], unknown> = {}) {
-  const fetchDemographics = () =>
+const baseQueryOptions = queryOptions({
+  queryKey: ['demographics'],
+  queryFn: () =>
     API.request({
       method: 'GET',
       url: '/demographics',
-    }).then((response) => response.data);
+    }).then((response) => response.data),
+  placeholderData: {
+    data: [],
+  },
+});
 
-  const query = useQuery(['demographics'], fetchDemographics, {
-    placeholderData: {
-      data: [],
-    },
-    ...queryOptions,
+export function useDemographics(upcomingQueryOptions?: Omit<typeof baseQueryOptions, 'queryKey'>) {
+  const query = useQuery({
+    ...baseQueryOptions,
+    ...upcomingQueryOptions,
   });
 
   const { data } = query;

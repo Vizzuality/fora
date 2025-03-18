@@ -6,14 +6,14 @@ import { ParamsProps } from 'lib/adapters/types';
 import { View } from 'store/action-map';
 
 import {
+  infiniteQueryOptions,
+  queryOptions,
   useInfiniteQuery,
-  UseInfiniteQueryOptions,
   useQuery,
-  UseQueryOptions,
 } from '@tanstack/react-query';
 import { orderBy, uniqBy } from 'lodash';
 
-import { InifiniteProject, Project } from 'types/project';
+import { Project } from 'types/project';
 
 import API from 'services/api';
 
@@ -44,24 +44,29 @@ export const fetchProject = (id: string) =>
   PROJECTS
 ****************************************
 */
-export function useProjects(
-  params: ParamsProps = {},
-  queryOptions: UseQueryOptions<Project[], unknown> = {}
-) {
-  const fetch = () =>
-    fetchProjects({
-      ...params,
-      disablePagination: true,
-    });
 
-  const query = useQuery(['projects', JSON.stringify(params)], fetch, {
+const useProjectsBaseQueryOptions = ({ params = {} }) =>
+  queryOptions({
+    queryKey: ['projects', params],
+    queryFn: () =>
+      fetchProjects({
+        ...params,
+        disablePagination: true,
+      }),
     placeholderData: {
       data: [],
     },
-    ...queryOptions,
   });
 
-  return query;
+export function useProjects(
+  // eslint-disable-next-line @typescript-eslint/default-param-last
+  params: ParamsProps = {},
+  upcomingQueryOptions?: Omit<ReturnType<typeof useProjectsBaseQueryOptions>, 'queryKey'>
+) {
+  return useQuery({
+    ...useProjectsBaseQueryOptions({ params }),
+    ...upcomingQueryOptions,
+  });
 }
 
 /**
@@ -112,31 +117,35 @@ export function useProjectsByGeographicScope(view: View, data: Project[] = []) {
   PROJECTS INFINITY
 ****************************************
 */
+
+const useProjectsInfinityBaseQueryOptions = ({ params = {} }) =>
+  infiniteQueryOptions({
+    queryKey: ['infinite-projects', params],
+    queryFn: ({ pageParam = 1 }) => fetchProjects({ ...params, page: pageParam }),
+    select: (data) => data, // override default select function
+    placeholderData: {
+      pages: [],
+      pageParams: [],
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      const { meta } = lastPage;
+      const { page = 1, pages = 10 } = meta;
+
+      const nextPage = page + 1 > pages ? null : page + 1;
+      return nextPage;
+    },
+  });
+
 export function useProjectsInfinity(
+  // eslint-disable-next-line @typescript-eslint/default-param-last
   params: ParamsProps = {},
-  queryOptions: UseInfiniteQueryOptions<InifiniteProject, unknown> = {}
+  upcomingQueryOptions?: Omit<ReturnType<typeof useProjectsInfinityBaseQueryOptions>, 'queryKey'>
 ) {
-  const fetch = ({ pageParam = 1 }) => fetchProjects({ ...params, page: pageParam });
-
-  const query = useInfiniteQuery<InifiniteProject>(
-    ['infinite-projects', JSON.stringify(params)],
-    fetch,
-    {
-      ...queryOptions,
-      select: (data) => data, // override default select function
-      placeholderData: {
-        pages: [],
-        pageParams: [],
-      },
-      getNextPageParam: (lastPage) => {
-        const { meta } = lastPage;
-        const { page = 1, pages = 10 } = meta;
-
-        const nextPage = page + 1 > pages ? null : page + 1;
-        return nextPage;
-      },
-    }
-  );
+  const query = useInfiniteQuery({
+    ...useProjectsInfinityBaseQueryOptions({ params }),
+    ...upcomingQueryOptions,
+  });
 
   const DATA = useMemo(() => {
     const { pages } = query.data;
@@ -156,14 +165,20 @@ export function useProjectsInfinity(
 ****************************************
 */
 
-export function useProject(id: string, queryOptions: UseQueryOptions<Project, unknown> = {}) {
-  const fetch = () => fetchProject(id);
-
-  const query = useQuery(['project', id], fetch, {
+const useProjectBaseQueryOptions = ({ id }: { id: Project['id'] }) =>
+  queryOptions({
+    queryKey: ['project', id],
+    queryFn: () => fetchProject(id),
     enabled: !!id,
     placeholderData: { data: {} },
-    ...queryOptions,
   });
 
-  return query;
+export function useProject(
+  id: string,
+  upcomingQueryOptions?: Omit<ReturnType<typeof useProjectBaseQueryOptions>, 'queryKey'>
+) {
+  return useQuery({
+    ...useProjectBaseQueryOptions({ id }),
+    ...upcomingQueryOptions,
+  });
 }

@@ -3,12 +3,11 @@ import { useMemo } from 'react';
 import { jsonAPIAdapter } from 'lib/adapters/json-api-adapter';
 import { ParamsProps } from 'lib/adapters/types';
 
-import { useMutation, useQuery, UseQueryOptions } from '@tanstack/react-query';
+import { queryOptions, useMutation, useQuery } from '@tanstack/react-query';
 import CHROMA from 'chroma-js';
 import { scaleOrdinal } from 'd3-scale';
 
-import { ReportYear } from 'types/dashboards';
-import { Widget, WidgetDownload } from 'types/widget';
+import { WidgetDownload } from 'types/widget';
 
 import { VISUALIZATION_RAMP } from 'constants/colors';
 
@@ -55,20 +54,23 @@ export const fetchYears = (params?: ParamsProps) => {
   WIDGETS
 ****************************************
 */
-export function useWidgets(
-  params: ParamsProps = {},
-  queryOptions: UseQueryOptions<Widget[], unknown> = {}
-) {
-  const fetch = () => fetchWidgets(params);
 
-  const query = useQuery(['widgets', JSON.stringify(params)], fetch, {
+const useWidgetsBaseQueryOptions = ({ params }: { params: ParamsProps }) =>
+  queryOptions({
+    queryKey: ['widgets', params],
+    queryFn: () => fetchWidgets(params),
     placeholderData: {
       data: [],
     },
-    ...queryOptions,
   });
-
-  return query;
+export function useWidgets(
+  params: ParamsProps = {},
+  upcomingQueryOptions?: Omit<typeof useWidgetsBaseQueryOptions, 'queryKey'>
+) {
+  return useQuery({
+    ...useWidgetsBaseQueryOptions({ params }),
+    ...upcomingQueryOptions,
+  });
 }
 
 /**
@@ -77,20 +79,26 @@ export function useWidgets(
 ****************************************
 */
 
+const useWidgetBaseQueryOptions = ({ slug, params }: { slug: string; params?: ParamsProps }) =>
+  queryOptions({
+    queryKey: ['widget', slug, JSON.stringify(params)],
+    queryFn: () => fetchWidget(slug, params),
+    enabled: !!slug,
+    placeholderData: {},
+  });
+
 export function useWidget(
   slug: string,
   params: ParamsProps = {},
-  queryOptions: UseQueryOptions<Widget, unknown> = {}
+  upcomingQueryOptions?: Omit<typeof useWidgetBaseQueryOptions, 'queryKey'>
 ) {
-  const fetch = () => fetchWidget(slug, params);
-
-  const query = useQuery(['widget', slug, JSON.stringify(params)], fetch, {
-    enabled: !!slug,
-    placeholderData: {},
-    ...queryOptions,
+  return useQuery({
+    ...useWidgetBaseQueryOptions({
+      slug,
+      params,
+    }),
+    ...upcomingQueryOptions,
   });
-
-  return query;
 }
 
 /**
@@ -122,17 +130,21 @@ export function useWidgetDownload() {
   });
 }
 
-export function useReportYears(queryOptions: UseQueryOptions<ReportYear[], unknown> = {}) {
-  const fetch = () => fetchYears();
+const useReportYearsBaseQueryOptions = queryOptions({
+  queryKey: ['report-years'],
+  queryFn: () => fetchYears(),
+  placeholderData: {
+    data: [],
+  },
+});
 
-  const query = useQuery(['report-years'], fetch, {
-    placeholderData: {
-      data: [],
-    },
-    ...queryOptions,
+export function useReportYears(
+  upcomingQueryOptions?: Omit<typeof useReportYearsBaseQueryOptions, 'queryKey'>
+) {
+  return useQuery({
+    ...useReportYearsBaseQueryOptions,
+    ...upcomingQueryOptions,
   });
-
-  return query;
 }
 
 export function useColorRamp(data) {
