@@ -1,25 +1,30 @@
 import { useMemo } from 'react';
 
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-
-import { ApplicationStatus } from 'types/application-status';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
 import API from 'services/api';
 
-export function useApplicationStatuses(
-  queryOptions: UseQueryOptions<ApplicationStatus[], unknown> = {}
-) {
-  const fetchApplicationStatuses = () =>
+const baseQueryOptions = queryOptions({
+  queryKey: ['application-statuses'],
+  queryFn: () =>
     API.request({
       method: 'GET',
       url: '/application_statuses',
-    }).then((response) => response.data);
+    }).then((response) => response.data),
 
-  const query = useQuery(['application-statuses'], fetchApplicationStatuses, {
-    placeholderData: {
-      data: [],
-    },
-    ...queryOptions,
+  placeholderData: {
+    data: [],
+  },
+
+  ...queryOptions,
+});
+
+export function useApplicationStatuses(
+  upcomingQueryOptions?: Omit<typeof baseQueryOptions, 'queryKey'>
+) {
+  const query = useQuery({
+    ...baseQueryOptions,
+    ...upcomingQueryOptions,
   });
 
   const { data } = query;

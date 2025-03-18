@@ -1,23 +1,27 @@
 import { useMemo } from 'react';
 
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-
-import { CapitalType } from 'types/capital-type';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
 import API from 'services/api';
 
-export function useCapitalTypes(queryOptions: UseQueryOptions<CapitalType[], unknown> = {}) {
-  const fetchCapitalTypes = () =>
+const baseQueryOptions = queryOptions({
+  queryKey: ['capital-types'],
+  queryFn: () =>
     API.request({
       method: 'GET',
       url: '/capital_types',
-    }).then((response) => response.data);
+    }).then((response) => response.data),
+  placeholderData: {
+    data: [],
+  },
+});
 
-  const query = useQuery(['capital-types'], fetchCapitalTypes, {
-    placeholderData: {
-      data: [],
-    },
-    ...queryOptions,
+export function useCapitalTypes(
+  upcomingQueryOptions?: Omit<Omit<typeof baseQueryOptions, 'queryKey'>, 'queryKey'>
+) {
+  const query = useQuery({
+    ...baseQueryOptions,
+    ...upcomingQueryOptions,
   });
 
   const { data } = query;

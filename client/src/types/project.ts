@@ -13,10 +13,12 @@ export interface Project {
   country: {
     id: string;
     type: 'subgeographic';
+    name: string;
   };
   state: {
     id: string;
     type: 'subgeographic';
+    name: string;
   };
   // Filters
   areas: Area['id'][];
@@ -42,5 +44,6 @@ export type InifiniteProject = {
   meta: {
     page: number;
     pages: number;
+    total: number;
   };
 };

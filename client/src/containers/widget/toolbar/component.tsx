@@ -26,7 +26,7 @@ const WidgetToolbar = ({ title, description, slug, params, toolbar }: WidgetTool
 
   const { isOpen: isOpenModal, open: openModal, close: closeModal } = useModal();
 
-  const { mutate: mutateDownload, isLoading: isDownloadLoading } = useWidgetDownload();
+  const { mutate: mutateDownload, isPending: isDownloadLoading } = useWidgetDownload();
 
   const plausible = usePlausible();
 

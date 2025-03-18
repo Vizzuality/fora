@@ -1,24 +1,32 @@
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
+import { queryOptions, useQuery } from '@tanstack/react-query';
+import { Session } from 'next-auth';
 import { useSession } from 'next-auth/react';
 
 import { Funder } from 'types/funder';
 
 import API from 'services/api';
 
-export const useMe = (queryOptions: UseQueryOptions<{ data: Funder }, unknown, Funder> = {}) => {
+const baseQueryOptions = (session: Session) =>
+  queryOptions({
+    queryKey: ['me'],
+    queryFn: () =>
+      API.request<{ data: Funder }>({
+        method: 'GET',
+        url: '/members/funder',
+        headers: {
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+      }).then((response) => response.data.data),
+    enabled: !!session?.accessToken,
+  });
+
+export const useMe = (
+  upcomingQueryOptions?: Omit<ReturnType<typeof baseQueryOptions>, 'queryKey'>
+) => {
   const { data: session } = useSession();
 
-  const fetchMe = () =>
-    API.request<{ data: Funder }>({
-      method: 'GET',
-      url: '/members/funder',
-      headers: {
-        Authorization: `Bearer ${session.accessToken}`,
-      },
-    }).then((response) => response.data);
-
-  return useQuery(['me'], fetchMe, {
-    enabled: !!session?.accessToken,
-    ...queryOptions,
+  return useQuery({
+    ...baseQueryOptions(session),
+    ...upcomingQueryOptions,
   });
 };

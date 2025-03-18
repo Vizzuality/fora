@@ -1,25 +1,27 @@
 import { useMemo } from 'react';
 
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-
-import { ProjectLegalStatus } from 'types/project-legal-status';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
 import API from 'services/api';
 
-export function useProjectLegalStatuses(
-  queryOptions: UseQueryOptions<ProjectLegalStatus[], unknown> = {}
-) {
-  const fetchProjectLegalStatuses = () =>
+const baseQueryOptions = queryOptions({
+  queryKey: ['projects-legal-status'],
+  queryFn: () =>
     API.request({
       method: 'GET',
       url: '/recipient_legal_statuses',
-    }).then((response) => response.data);
+    }).then((response) => response.data),
+  placeholderData: {
+    data: [],
+  },
+});
 
-  const query = useQuery(['projects-legal-status'], fetchProjectLegalStatuses, {
-    placeholderData: {
-      data: [],
-    },
-    ...queryOptions,
+export function useProjectLegalStatuses(
+  upcomingQueryOptions?: Omit<typeof baseQueryOptions, 'queryKey'>
+) {
+  const query = useQuery({
+    ...baseQueryOptions,
+    ...upcomingQueryOptions,
   });
 
   const { data } = query;

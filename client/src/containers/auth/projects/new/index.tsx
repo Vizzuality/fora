@@ -46,7 +46,7 @@ export default function NewProject() {
   const formSteps = useMemo(() => {
     return FORM_STEPS.map((step, index) => {
       if (index === 2) {
-        return { ...step, disabled: mutation.isLoading || mutation.isIdle };
+        return { ...step, disabled: mutation.isPending || mutation.isIdle };
       }
       return { ...step, disabled: mutation.isSuccess };
     });

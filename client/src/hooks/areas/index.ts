@@ -1,23 +1,25 @@
 import { useMemo } from 'react';
 
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-
-import { Area } from 'types/area';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
 import API from 'services/api';
 
-export function useAreas(queryOptions: UseQueryOptions<Area[], unknown> = {}) {
-  const fetchAreas = () =>
+const baseQueryOptions = queryOptions({
+  queryKey: ['areas'],
+  queryFn: () =>
     API.request({
       method: 'GET',
       url: '/areas',
-    }).then((response) => response.data);
+    }).then((response) => response.data),
+  placeholderData: {
+    data: [],
+  },
+});
 
-  const query = useQuery(['areas'], fetchAreas, {
-    placeholderData: {
-      data: [],
-    },
-    ...queryOptions,
+export function useAreas(upcomingQueryOptions?: Omit<typeof baseQueryOptions, 'queryKey'>) {
+  const query = useQuery({
+    ...baseQueryOptions,
+    ...upcomingQueryOptions,
   });
 
   const { data } = query;

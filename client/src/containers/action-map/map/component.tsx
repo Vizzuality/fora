@@ -38,15 +38,10 @@ const Map = () => {
     data: fundersData,
     isFetching: fundersIsFetching,
     isFetched: fundersIsFetched,
-  } = useFunders(
-    {
-      filters: omit(filters, ['subgeographics']),
-      includes: 'subgeographic_ancestors',
-    },
-    {
-      keepPreviousData: false,
-    }
-  );
+  } = useFunders({
+    filters: omit(filters, ['subgeographics']),
+    includes: 'subgeographic_ancestors',
+  });
   const fundersGroupedData = useFundersByGeographicScope(view, fundersData);
 
   // PROJECTS
@@ -54,15 +49,10 @@ const Map = () => {
     data: projectsData,
     isFetching: projectsIsFetching,
     isFetched: projectsIsFetched,
-  } = useProjects(
-    {
-      filters: omit(filters, ['subgeographics']),
-      includes: 'subgeographic_ancestors',
-    },
-    {
-      keepPreviousData: false,
-    }
-  );
+  } = useProjects({
+    filters: omit(filters, ['subgeographics']),
+    includes: 'subgeographic_ancestors',
+  });
   const projectsGroupedData = useProjectsByGeographicScope(view, projectsData);
 
   const PROJECTION = useMapProjection({ view });

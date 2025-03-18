@@ -6,14 +6,14 @@ import { ParamsProps } from 'lib/adapters/types';
 import { View } from 'store/action-map';
 
 import {
+  infiniteQueryOptions,
+  queryOptions,
   useInfiniteQuery,
-  UseInfiniteQueryOptions,
   useQuery,
-  UseQueryOptions,
 } from '@tanstack/react-query';
 import { orderBy, uniqBy } from 'lodash';
 
-import { Funder, InifiniteFunder } from 'types/funder';
+import { Funder } from 'types/funder';
 
 import API from 'services/api';
 
@@ -45,24 +45,29 @@ export const fetchFunder = (id: string) =>
   FUNDERS
 ****************************************
 */
-export function useFunders(
-  params: ParamsProps = {},
-  queryOptions: UseQueryOptions<Funder[], unknown> = {}
-) {
-  const fetch = () =>
-    fetchFunders({
-      disablePagination: true,
-      ...params,
-    });
 
-  const query = useQuery(['funders', JSON.stringify(params)], fetch, {
+const useFundersBaseQueryOptions = ({ params = {} }) =>
+  queryOptions({
+    queryKey: ['funders', JSON.stringify(params)],
+    queryFn: () =>
+      fetchFunders({
+        disablePagination: true,
+        ...params,
+      }),
+
     placeholderData: {
       data: [],
     },
-    ...queryOptions,
   });
 
-  return query;
+export function useFunders(
+  params: ParamsProps = {},
+  upcomingQueryOptions?: Omit<ReturnType<typeof useFundersBaseQueryOptions>, 'queryKey'>
+) {
+  return useQuery({
+    ...useFundersBaseQueryOptions({ params }),
+    ...upcomingQueryOptions,
+  });
 }
 
 /**
@@ -113,31 +118,35 @@ export function useFundersByGeographicScope(view: View, data: Funder[] = []) {
   FUNDERS INFINITY
 ****************************************
 */
+
+const useFundersInfinityBaseQueryOptions = ({ params = {} }) =>
+  infiniteQueryOptions({
+    queryKey: ['infinite-funders', params],
+    queryFn: ({ pageParam = 1 }) => fetchFunders({ ...params, page: pageParam }),
+    select: (data) => data, // override default select function
+    placeholderData: {
+      pages: [],
+      pageParams: [],
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      const { meta } = lastPage;
+      const { page = 1, pages = 10 } = meta;
+
+      const nextPage = page + 1 > pages ? null : page + 1;
+      return nextPage;
+    },
+  });
+
 export function useFundersInfinity(
+  // eslint-disable-next-line @typescript-eslint/default-param-last
   params: ParamsProps = {},
-  queryOptions: UseInfiniteQueryOptions<InifiniteFunder> = {}
+  upcomingQueryOptions?: Omit<ReturnType<typeof useFundersInfinityBaseQueryOptions>, 'queryKey'>
 ) {
-  const fetch = ({ pageParam = 1 }) => fetchFunders({ ...params, page: pageParam });
-
-  const query = useInfiniteQuery<InifiniteFunder>(
-    ['infinite-funders', JSON.stringify(params)],
-    fetch,
-    {
-      ...queryOptions,
-      select: (data) => data, // override default select function
-      placeholderData: {
-        pages: [],
-        pageParams: [],
-      },
-      getNextPageParam: (lastPage) => {
-        const { meta } = lastPage;
-        const { page = 1, pages = 10 } = meta;
-
-        const nextPage = page + 1 > pages ? null : page + 1;
-        return nextPage;
-      },
-    }
-  );
+  const query = useInfiniteQuery({
+    ...useFundersInfinityBaseQueryOptions({ params }),
+    ...upcomingQueryOptions,
+  });
 
   const DATA = useMemo(() => {
     const { pages } = query.data;
@@ -157,13 +166,20 @@ export function useFundersInfinity(
 ****************************************
 */
 
-export function useFunder(id: string, queryOptions: UseQueryOptions<Funder, unknown> = {}) {
-  const fetch = () => fetchFunder(id);
-  const query = useQuery(['funder', id], fetch, {
+const useFunderBaseQueryOptions = ({ id }: { id: Funder['id'] }) =>
+  queryOptions({
+    queryKey: ['funder', id],
+    queryFn: () => fetchFunder(id),
     enabled: !!id,
     placeholderData: { data: {} },
-    ...queryOptions,
   });
 
-  return query;
+export function useFunder(
+  id: Funder['id'],
+  upcomingQueryOptions?: Omit<ReturnType<typeof useFunderBaseQueryOptions>, 'queryKey'>
+) {
+  return useQuery({
+    ...useFunderBaseQueryOptions({ id }),
+    ...upcomingQueryOptions,
+  });
 }

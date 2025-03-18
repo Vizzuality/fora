@@ -1,25 +1,27 @@
 import { useMemo } from 'react';
 
-import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-
-import { CapitalAcceptance } from 'types/capital-acceptance';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
 import API from 'services/api';
 
-export function useCapitalAcceptances(
-  queryOptions: UseQueryOptions<CapitalAcceptance[], unknown> = {}
-) {
-  const fetchCapitalAcceptances = () =>
+const baseQueryOptions = queryOptions({
+  queryKey: ['capital-acceptances'],
+  queryFn: () =>
     API.request({
       method: 'GET',
       url: '/capital_acceptances',
-    }).then((response) => response.data);
+    }).then((response) => response.data),
+  placeholderData: {
+    data: [],
+  },
+});
 
-  const query = useQuery(['capital-acceptances'], fetchCapitalAcceptances, {
-    placeholderData: {
-      data: [],
-    },
-    ...queryOptions,
+export function useCapitalAcceptances(
+  upcomingQueryOptions?: Omit<typeof baseQueryOptions, 'queryKey'>
+) {
+  const query = useQuery({
+    ...baseQueryOptions,
+    ...upcomingQueryOptions,
   });
 
   const { data } = query;

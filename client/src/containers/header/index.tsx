@@ -34,7 +34,7 @@ const Header = () => {
   return (
     <header
       className={cn({
-        'py-6': true,
+        'py-10': true,
         'bg-white': !isAuthPath,
         'bg-grey-60': isAuthPath,
       })}
