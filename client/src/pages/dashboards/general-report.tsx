@@ -2,7 +2,7 @@ import { STORE_WRAPPER } from 'store';
 
 import { setFilters } from 'store/dashboards/general-report';
 
-import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { dehydrate } from '@tanstack/react-query';
 import safeJsonStringify from 'safe-json-stringify';
 
 import { ReportYears } from 'types/dashboards';
@@ -12,13 +12,15 @@ import { fetchWidgets, fetchYears } from 'hooks/widgets';
 import GeneralReport from 'containers/dashboards/general-report';
 import MetaTags from 'containers/meta-tags';
 
+import { getQueryClient } from '@/lib/queryclient';
+
 const TITLE_TEXT = 'FORA Dashboards | General Report';
 const DESCRIPTION_TEXT =
   'Review graphs, charts, and other visualizations in order to get a higher level and comprehensive analysis of FORA member’s collective work.';
 const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/dashboards.jpg`;
 
 export const getStaticProps = STORE_WRAPPER.getStaticProps((store) => async () => {
-  const queryClient = new QueryClient();
+  const queryClient = getQueryClient();
 
   const { filters } = store.getState()['/dashboards/general-report'];
 
@@ -47,10 +49,9 @@ export const getStaticProps = STORE_WRAPPER.getStaticProps((store) => async () =
     queryFn: () => fetchWidgets(params),
   });
 
-  // Props returned will be passed to the page component
   return {
     props: {
-      revalidate: 30 * 60, // 30 minutees
+      revalidate: 30 * 60, // 30 minutes
       dehydratedState: JSON.parse(safeJsonStringify(dehydrate(queryClient))) || null,
     },
   };

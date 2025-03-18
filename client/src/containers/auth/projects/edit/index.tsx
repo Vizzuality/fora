@@ -1,6 +1,6 @@
 import { useRouter, useParams } from 'next/navigation';
 
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 
 import { FORM_STEPS } from '../constants';
@@ -17,13 +17,14 @@ import { Project } from '@/types/project';
 export default function EditProject({ project }: { project: Project }) {
   const { data: session } = useSession();
   const { push } = useRouter();
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const { data: me } = useMe();
+  const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationKey: ['editProject', id],
     mutationFn: (data: FormData) => {
-      return API.request({
+      return API.request<{ data: Project }>({
         method: 'PUT',
         url: `/members/projects/${id}`,
         data: data,
@@ -33,7 +34,15 @@ export default function EditProject({ project }: { project: Project }) {
         },
       });
     },
-    onSuccess: () => {
+    onSuccess: async (response) => {
+      await queryClient
+        .invalidateQueries({
+          queryKey: ['project', id],
+        })
+        .then(() => {
+          queryClient.setQueryData(['project', id], response.data);
+        });
+      await fetch(`/api/revalidate/projects?id=${id}`);
       push(`/projects/${id}`);
     },
   });

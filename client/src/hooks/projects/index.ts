@@ -170,7 +170,6 @@ const useProjectBaseQueryOptions = ({ id }: { id: Project['id'] }) =>
     queryKey: ['project', id],
     queryFn: () => fetchProject(id),
     enabled: !!id,
-    placeholderData: { data: {} },
   });
 
 export function useProject(
