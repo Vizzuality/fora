@@ -8,18 +8,18 @@ import { usePathname } from 'next/navigation';
 
 import { HiOutlineArrowRight } from 'react-icons/hi';
 
-import VisibilityLabel from '../../label';
-import FormLegend from '../../legend';
-import { ProjectSchema } from '../../validations';
-
-import DemographicsSelector from './demographics';
-import LegalStatusSelector from './legal-status';
-
 import LinkButton from '@/components/button';
 import DragNDrop from '@/components/drag-n-drop';
 import { Input, Radio } from '@/components/forms';
 import ErrorField from '@/components/forms/error-field';
+import FormLegend from '@/components/forms/legend';
 import Textarea from '@/components/forms/textarea';
+
+import VisibilityLabel from '../../label';
+import { ProjectSchema } from '../../validations';
+
+import DemographicsSelector from './demographics';
+import LegalStatusSelector from './legal-status';
 
 export default function ProjectDetailsStep() {
   const pathname = usePathname();
@@ -70,8 +70,8 @@ export default function ProjectDetailsStep() {
 
       <div className="space-y-4">
         <FormLegend />
-        <p className="flex items-center gap-1 font-semibold text-grey-20">
-          <span className="align-super text-red-0">*</span>
+        <p className="flex items-start gap-1 font-semibold text-grey-20">
+          <span className="text-red-0">*</span>
           All fields marked with a red asterisk are mandatory to fill
         </p>
       </div>

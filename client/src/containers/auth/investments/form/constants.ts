@@ -1,0 +1,2 @@
+export const YEARS_INVESTMENT_RANGE = [2022, 2023];
+export const INITIAL_YEAR_FUNDED = [1981, 2022];

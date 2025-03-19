@@ -4,16 +4,16 @@ import { usePathname } from 'next/navigation';
 
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 
+import LinkButton from '@/components/button';
+import { Input } from '@/components/forms';
+import ErrorField from '@/components/forms/error-field';
+import FormLegend from '@/components/forms/legend';
+
 import VisibilityLabel from '../../label';
-import FormLegend from '../../legend';
 import { ProjectSchema } from '../../validations';
 
 import PrimaryOfficeCountrySelector from './primary-office-country';
 import PrimaryOfficeStateSelector from './primary-office-state';
-
-import LinkButton from '@/components/button';
-import { Input } from '@/components/forms';
-import ErrorField from '@/components/forms/error-field';
 
 export default function ContactDetailsStep() {
   const pathname = usePathname();
@@ -31,8 +31,8 @@ export default function ContactDetailsStep() {
 
       <div className="space-y-4">
         <FormLegend />
-        <p className="flex items-center gap-1 font-semibold text-grey-20">
-          <span className="align-super text-red-0">*</span>
+        <p className="flex items-start gap-1 font-semibold text-grey-20">
+          <span className="text-red-0">*</span>
           All fields marked with a red asterisk are mandatory to fill
         </p>
       </div>

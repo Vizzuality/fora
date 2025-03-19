@@ -2,7 +2,7 @@ import { ComponentProps, PropsWithChildren, ReactNode } from 'react';
 
 import { cn } from 'lib/utils';
 
-import { LuLockKeyhole, LuEye, LuUsers } from 'react-icons/lu';
+import { LuEye, LuLockKeyhole, LuUsers } from 'react-icons/lu';
 
 const ICON_CLASSES = 'w-4 h-4';
 
@@ -26,7 +26,7 @@ export default function VisibilityLabel({
     <label
       {...labelProps}
       className={cn(
-        'flex items-center gap-1 font-semibold uppercase text-grey-20',
+        'flex items-center gap-1 font-semibold uppercase text-grey-0',
         labelProps.className,
       )}
     >

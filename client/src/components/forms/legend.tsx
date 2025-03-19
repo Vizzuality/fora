@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
-import { cn } from 'lib/utils';
-
 import { LuLockKeyhole, LuEye, LuUsers } from 'react-icons/lu';
+
+import { cn } from '@/lib/utils';
 
 const ICON_CLASSES = 'w-4 h-4';
 
