@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Link from 'next/link';
+
 import { signOut, useSession } from 'next-auth/react';
 import { LuUser, LuLogOut } from 'react-icons/lu';
 
@@ -33,7 +35,9 @@ export default function UserMenu() {
   return (
     <div className="flex items-center gap-7 !ml-7">
       <Avatar>
-        <AvatarFallback className="bg-[#724CBC] text-white">{initials}</AvatarFallback>
+        <Link href="/auth/projects" className="w-full h-full">
+          <AvatarFallback className="bg-[#724CBC] text-white">{initials}</AvatarFallback>
+        </Link>
       </Avatar>
       <Button onClick={handleLogout} className="flex items-center gap-2 p-0" theme="transparent">
         <LuLogOut className="h-5 w-5" />
