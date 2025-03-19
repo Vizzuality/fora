@@ -32,5 +32,14 @@ RSpec.describe API::Sorting do
         end
       end
     end
+
+    context "when sorting columns are defined as hash" do
+      let(:sorting) { {attribute: :name, direction: :asc} }
+      let(:columns) { {name: "funders.name"} }
+
+      it "returns sorted result" do
+        expect(subject.call.to_a).to eq([funder_2, funder_1])
+      end
+    end
   end
 end

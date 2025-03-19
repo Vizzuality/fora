@@ -2,7 +2,7 @@ class Recipient < ApplicationRecord
   belongs_to :country, class_name: "Subgeographic"
   belongs_to :state, class_name: "Subgeographic", optional: true
 
-  has_one :project, dependent: :destroy
+  has_one :project, dependent: :destroy, touch: true
   has_many :investments, through: :project
 
   has_one_attached :logo

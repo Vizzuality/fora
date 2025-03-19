@@ -8,8 +8,15 @@ module API
 
         load_and_authorize_resource
 
+        SORTING_COLUMNS = {
+          name: "recipients.name",
+          created_at: "projects.created_at",
+          updated_at: "projects.updated_at"
+        }.freeze
+
         def index
-          @projects = @projects.where member: current_member
+          @projects = @projects.joins(:recipient).where member: current_member
+          @projects = API::Sorting.new(@projects, sorting_params, SORTING_COLUMNS).call.order :created_at
           pagy_object, @projects = pagy @projects, page: current_page, items: per_page unless params[:disable_pagination].to_s == "true"
           render json: ProjectSerializer.new(
             @projects,
@@ -95,6 +102,10 @@ module API
             :recipient_legal_status,
             leadership_demographics: []
           )
+        end
+
+        def sorting_params
+          params.fetch(:sort, {}).permit :attribute, :direction
         end
       end
     end

@@ -47,4 +47,10 @@ RSpec.describe Recipient, type: :model do
 
   include_examples :static_relation_validations, attribute: :leadership_demographics, presence: false
   include_examples :static_relation_validations, attribute: :recipient_legal_status, presence: true
+
+  it "updates project when recipient is updated" do
+    project = create :project, updated_at: 4.days.ago
+    project.recipient.touch
+    expect(project.reload.updated_at).to be_within(1.second).of(Time.current)
+  end
 end

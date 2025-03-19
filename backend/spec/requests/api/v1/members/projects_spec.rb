@@ -12,6 +12,8 @@ RSpec.describe "API V1 Member Projects", type: :request do
 
       parameter name: "page[number]", in: :query, type: :integer, description: "Page number. Default: 1", required: false
       parameter name: "page[size]", in: :query, type: :integer, description: "Per page items. Default: 10", required: false
+      parameter name: "sort[attribute]", in: :query, type: :string, enum: API::V1::Members::ProjectsController::SORTING_COLUMNS.keys, description: "Attributes usable for sorting. Default: created_at", required: false
+      parameter name: "sort[direction]", in: :query, type: :string, enum: API::Sorting::SORTING_DIRECTIONS, description: "Possible directions of sorting. Default: desc", required: false
       parameter name: :disable_pagination, in: :query, type: :boolean, description: "Turn off pagination", required: false
       parameter name: "fields[project]", in: :query, type: :string, description: "Get only required fields. Use comma to separate multiple fields", required: false
       parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
@@ -66,6 +68,46 @@ RSpec.describe "API V1 Member Projects", type: :request do
             expect(response_json["data"].size).to eq(Project.where(member: member).count)
             expect(response_json["meta"]).to be_nil
             expect(response_json["links"]).to be_nil
+          end
+        end
+
+        context "when sorting by updated_at" do
+          let(:project_1) { create :project, member: member }
+          let(:project_2) { create :project, member: member }
+          let("sort[attribute]") { "updated_at" }
+          let("sort[direction]") { "desc" }
+
+          before do
+            Project.where.not(id: [project_1.id, project_2.id]).destroy_all
+            project_1.update! updated_at: 1.day.ago
+            project_2.update! updated_at: 4.day.ago
+          end
+
+          run_test!
+
+          it "returns correctly sorted result" do
+            expect(response_json["data"].first["id"]).to eq(project_1.id)
+            expect(response_json["data"].second["id"]).to eq(project_2.id)
+          end
+        end
+
+        context "when sorting by name" do
+          let(:project_1) { create :project, member: member }
+          let(:project_2) { create :project, member: member }
+          let("sort[attribute]") { "name" }
+          let("sort[direction]") { "asc" }
+
+          before do
+            Project.where.not(id: [project_1.id, project_2.id]).destroy_all
+            project_1.recipient.update! name: "B"
+            project_2.recipient.update! name: "A"
+          end
+
+          run_test!
+
+          it "returns correctly sorted result" do
+            expect(response_json["data"].first["id"]).to eq(project_2.id)
+            expect(response_json["data"].second["id"]).to eq(project_1.id)
           end
         end
       end
