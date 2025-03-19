@@ -12,6 +12,7 @@ import { RxPlus } from 'react-icons/rx';
 
 import CHEVRON_DOWN_SVG from 'svgs/ui/chevron-down.svg?sprite';
 
+import LinkButton from '@/components/button';
 import Icon from '@/components/icon';
 import { MyProjectCard } from '@/containers/auth/projects/overview/my-project-card';
 import { CardWrapper } from '@/containers/cards/card/wrapper';
@@ -27,7 +28,7 @@ export default function MyProjectsOverview() {
     rootMargin: '0px',
   });
 
-  const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
+  const { data, fetchNextPage, hasNextPage, isFetching, isFetched } = useInfiniteQuery({
     ...myProjectsQueryOptions(session, {
       'sort[attribute]': 'name',
       'sort[direction]': sort,
@@ -56,6 +57,20 @@ export default function MyProjectsOverview() {
         <h2 className="text-3xl font-display">My projects</h2>
       </header>
 
+      {isFetched && data?.projects.length === 0 && (
+        <div className="items-center justify-center  grid-cols-12 grid h-full flex-1 mb-10">
+          <div className="col-span-8 md:col-span-6 col-start-3 md:col-start-4 flex flex-col gap-4 text-center items-center justify-center grow">
+            <h3 className="text-2xl md:text-3xl font-display">You have no projects</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur. Convallis fusce neque odio nunc elementum
+              habitant sit sagittis.
+            </p>
+            <LinkButton href="/auth/projects/new" theme="green">
+              Add project
+            </LinkButton>
+          </div>
+        </div>
+      )}
       <div className="flex justify-between">
         <span className="text-grey-20">{data?.total} projects</span>
         {isFetching && <span>Loading... </span>}

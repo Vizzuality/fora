@@ -14,7 +14,7 @@ export default function ApplicationLayout({ children }: PropsWithChildren) {
   return (
     <div
       className={cn({
-        'flex flex-col lg:min-h-screen': true,
+        'flex flex-col min-h-screen': true,
         'bg-grey-60': isAuthRoute,
       })}
     >
