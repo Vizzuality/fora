@@ -71,70 +71,74 @@ export default function MyProjectsOverview() {
           </div>
         </div>
       )}
-      <div className="flex justify-between">
-        <span className="text-grey-20">{data?.total} projects</span>
-        {isFetching && <span>Loading... </span>}
-        <Menu as="div" className="relative">
-          <Menu.Button className="flex items-center space-x-2">
-            <p className="font-semibold">Sort by</p>
-            <Icon
-              icon={CHEVRON_DOWN_SVG}
-              className={cx({
-                'w-3 h-3': true,
-              })}
-            />
-          </Menu.Button>
-          <Menu.Items className="absolute flex flex-col py-2 bg-white rounded-md shadow-lg focus:outline-none">
-            <Menu.Item>
-              {({ active }) => (
-                <button
+      {isFetched && data?.projects.length > 0 && (
+        <>
+          <div className="flex justify-between">
+            <span className="text-grey-20">{data?.total} projects</span>
+            {isFetching && <span>Loading... </span>}
+            <Menu as="div" className="relative">
+              <Menu.Button className="flex items-center space-x-2">
+                <p className="font-semibold">Sort by</p>
+                <Icon
+                  icon={CHEVRON_DOWN_SVG}
                   className={cx({
-                    'px-4 py-3': true,
-                    'bg-grey-20/20': active,
+                    'w-3 h-3': true,
                   })}
-                  type="button"
-                  onClick={() => setSort('asc')}
-                >
-                  A - Z
-                </button>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                  className={cx({
-                    'px-4 py-3': true,
-                    'bg-grey-20/20': active,
-                  })}
-                  type="button"
-                  onClick={() => setSort('desc')}
-                >
-                  Z - A
-                </button>
-              )}
-            </Menu.Item>
-          </Menu.Items>
-        </Menu>
-      </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
-        <CardWrapper className="p-0 ">
-          <Link
-            href="/auth/projects/new"
-            className="grid grid-cols-12 flex-col grow p-8 items-center"
-          >
-            <div className="col-span-6 col-start-4 flex flex-col gap-4 items-center text-center">
-              <h3 className="text-2xl font-display line-clamp-3">Add new project</h3>
-              <span className="inline-flex p-4 border border-grey-0 rounded-full">
-                <RxPlus className="h-6 w-6" />
-              </span>
-            </div>
-          </Link>
-        </CardWrapper>
-        {data?.projects.map((project) => {
-          return <MyProjectCard {...project} key={project.id} />;
-        })}
-      </div>
-      <span ref={ref} />
+                />
+              </Menu.Button>
+              <Menu.Items className="absolute flex flex-col py-2 bg-white rounded-md shadow-lg focus:outline-none">
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={cx({
+                        'px-4 py-3': true,
+                        'bg-grey-20/20': active,
+                      })}
+                      type="button"
+                      onClick={() => setSort('asc')}
+                    >
+                      A - Z
+                    </button>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={cx({
+                        'px-4 py-3': true,
+                        'bg-grey-20/20': active,
+                      })}
+                      type="button"
+                      onClick={() => setSort('desc')}
+                    >
+                      Z - A
+                    </button>
+                  )}
+                </Menu.Item>
+              </Menu.Items>
+            </Menu>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+            <CardWrapper className="p-0 ">
+              <Link
+                href="/auth/projects/new"
+                className="grid grid-cols-12 flex-col grow p-8 items-center"
+              >
+                <div className="col-span-6 col-start-4 flex flex-col gap-4 items-center text-center">
+                  <h3 className="text-2xl font-display line-clamp-3">Add new project</h3>
+                  <span className="inline-flex p-4 border border-grey-0 rounded-full">
+                    <RxPlus className="h-6 w-6" />
+                  </span>
+                </div>
+              </Link>
+            </CardWrapper>
+            {data?.projects.map((project) => {
+              return <MyProjectCard {...project} key={project.id} />;
+            })}
+          </div>
+          <span ref={ref} />
+        </>
+      )}
     </Wrapper>
   );
 }
