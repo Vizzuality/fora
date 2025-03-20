@@ -41,8 +41,7 @@ const ProjectOverview = () => {
   } = projectData;
 
   const GEOGRAPHIC_SCOPE = useMemo(() => {
-    const arraySubGeo = subgeographics?.flat().map((subg) => subg.name);
-    return arraySubGeo;
+    return subgeographics?.flat().map((subg) => subg.name);
   }, [subgeographics]);
 
   const DEMOGRAPHIC_SCOPE = useMemo(() => {
@@ -54,7 +53,7 @@ const ProjectOverview = () => {
   const DEMOGRAPHIC_LEADERSHIP_SCOPE = useMemo(() => {
     const arrayDemogr = leadershipDemographics?.flat().map((demogr) => demogr);
 
-    return demographicsData.filter((c) => arrayDemogr.includes(c.id));
+    return demographicsData.filter((c) => arrayDemogr?.includes(c.id));
   }, [demographicsData, leadershipDemographics]);
 
   const AREAS_OF_FOCUS = useMemo(() => {
@@ -129,13 +128,13 @@ const ProjectOverview = () => {
           <h2 className="text-3xl font-normal capitalize line-clamp-2 text-ellipsis">{name}</h2>
         </div>
 
-        {(logo.small || website) && (
+        {(logo.original || website) && (
           <div className="flex items-center justify-between">
             {logo.small && (
-              <div className="relative max-w-[100px] w-full shrink-0">
+              <div className="relative w-[125px] h-[75px]">
                 <Image
-                  src={logo.small || '/images/avatar.jpg'}
-                  alt={name}
+                  src={logo.original ?? '/images/avatar.jpg'}
+                  alt={`${name} logo`}
                   className="object-contain"
                   fill
                   sizes="100vw"

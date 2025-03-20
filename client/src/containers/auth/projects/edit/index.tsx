@@ -61,7 +61,7 @@ export default function EditProject({ project }: { project: Project }) {
           recipient_legal_status: project.recipient_legal_status,
           internal_leadership_demographics_collection:
             project.leadership_demographics?.length > 0 ? 'yes' : 'no',
-          leadership_demographics: project.leadership_demographics,
+          leadership_demographics: project.leadership_demographics ?? [],
           leadership_demographics_other: project.leadership_demographics_other ?? undefined,
         }}
         onSubmit={(data) => {

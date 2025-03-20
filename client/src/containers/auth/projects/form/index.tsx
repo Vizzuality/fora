@@ -11,7 +11,7 @@ import ProjectDetailsStep from './steps/project-details';
 export default function Form({ handleSubmit }: { handleSubmit: FormRenderProps['handleSubmit'] }) {
   const searchParams = useSearchParams();
   const currentStep =
-    (searchParams.get('step') as typeof FORM_STEPS[number]['value']) || FORM_STEPS[0].value;
+    (searchParams.get('step') as (typeof FORM_STEPS)[number]['value']) || FORM_STEPS[0].value;
 
   return (
     <>

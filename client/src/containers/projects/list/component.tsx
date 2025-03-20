@@ -44,7 +44,7 @@ const ProjectsList = () => {
     (value) => {
       dispatch(setSort({ field: 'name', order: value }));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const handleOnShowMore = useCallback(() => {

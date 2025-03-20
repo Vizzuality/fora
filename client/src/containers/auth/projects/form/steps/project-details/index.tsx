@@ -167,7 +167,11 @@ export default function ProjectDetailsStep() {
         </VisibilityLabel>
         <DragNDrop {...dropZoneOptions}>
           {() => (
-            <>{imageSrc && <Image src={imageSrc} width={500} height={500} alt="Uploaded" />}</>
+            <>
+              {imageSrc && (
+                <Image src={imageSrc} width={500} height={500} priority alt="Uploaded" />
+              )}
+            </>
           )}
         </DragNDrop>
       </div>
