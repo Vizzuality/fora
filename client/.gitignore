@@ -34,10 +34,6 @@ npm-debug.log*
 # vercel
 .vercel
 
-# Test with Cypress
-/cypress/screenshots
-/cypress/videos
-
 
 .pnp.*
 
