@@ -25,15 +25,15 @@ const FundersHeader = () => {
 
   const fundersCount = Math.floor(fundersData.length / 10) * 10;
   return (
-    <header className="py-16 bg-green-0 text-grey-0">
+    <header className="bg-green-0 py-16 text-grey-0">
       <Wrapper>
         <div className="space-y-5">
-          <h2 className="max-w-2xl text-4xl font-display">Explore the FORA community members</h2>
-          <h3 className="max-w-2xl text-2xl font-display">
+          <h2 className="max-w-2xl font-display text-4xl">Explore the FORA community members</h2>
+          <h3 className="max-w-2xl font-display text-2xl">
             Search our database of {fundersCount}+ funders supporting regenerative agriculture
           </h3>
         </div>
-        <div className="grid grid-cols-12 mt-11 gap-x-4">
+        <div className="mt-11 grid grid-cols-12 gap-x-4">
           <div className="col-span-8">
             <Search
               value={search}

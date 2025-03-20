@@ -17,7 +17,7 @@ export default function NewProjectHeader() {
   const { submit } = useForm();
 
   const queryParams = useSearchParams();
-  const currentStep = queryParams.get('step') as typeof FORM_STEPS[number]['value'];
+  const currentStep = queryParams.get('step') as (typeof FORM_STEPS)[number]['value'];
 
   const queryClient = useQueryClient();
   const mutationCache = queryClient.getMutationCache();
@@ -26,8 +26,8 @@ export default function NewProjectHeader() {
   })?.state;
 
   return (
-    <header className="flex justify-between items-center">
-      <h2 className="text-3xl font-display">New project</h2>
+    <header className="flex items-center justify-between">
+      <h2 className="font-display text-3xl">New project</h2>
       <div className="flex gap-4">
         {currentStep === 'investments' && newProjectMutationState?.status === 'success' && (
           <LinkButton

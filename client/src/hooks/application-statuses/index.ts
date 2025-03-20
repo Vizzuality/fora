@@ -20,7 +20,7 @@ const baseQueryOptions = queryOptions({
 });
 
 export function useApplicationStatuses(
-  upcomingQueryOptions?: Omit<typeof baseQueryOptions, 'queryKey'>
+  upcomingQueryOptions?: Omit<typeof baseQueryOptions, 'queryKey'>,
 ) {
   const query = useQuery({
     ...baseQueryOptions,

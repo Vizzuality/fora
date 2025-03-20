@@ -10,7 +10,7 @@ interface FilterModalFooterProps {
 
 const FilterModalFooter: React.FC<FilterModalFooterProps> = ({ disabled, onClose }) => {
   return (
-    <footer className="px-10 space-y-5">
+    <footer className="space-y-5 px-10">
       <div className="flex justify-center space-x-5">
         <Button theme="black-alt" size="base" className="w-full lg:w-44" onClick={onClose}>
           Cancel

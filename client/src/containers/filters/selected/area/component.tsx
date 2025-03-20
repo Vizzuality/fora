@@ -22,7 +22,7 @@ const AreaSelected: React.FC<AreaSelectedProps> = ({ type }) => {
 
   const areasOptions = useMemo(
     () => areasData.map((area) => ({ label: area.name, value: area.id })),
-    [areasData]
+    [areasData],
   );
 
   const handleSelectArea = useCallback(
@@ -36,16 +36,16 @@ const AreaSelected: React.FC<AreaSelectedProps> = ({ type }) => {
         action[type]({
           ...filters,
           areas: values,
-        })
+        }),
       );
     },
-    [dispatch, type, filters]
+    [dispatch, type, filters],
   );
 
   return (
     <div
       className={cx({
-        'font-semibold w-full': true,
+        'w-full font-semibold': true,
       })}
     >
       <MultiSelect

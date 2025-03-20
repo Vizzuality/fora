@@ -133,7 +133,7 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
           ...(capitalTypes && {
             capitalTypes: capitalTypes as string[],
           }),
-        })
+        }),
       );
     }
 
@@ -179,7 +179,7 @@ export const setQueryFromReduxState = (pathname: string, state: any) => {
     {
       arrayFormat: 'bracket-separator',
       arrayFormatSeparator: ',',
-    }
+    },
   );
 
   router.replace(url, null, { shallow: true });

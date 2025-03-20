@@ -56,10 +56,10 @@ const GeoList = () => {
   const GROUPED_DATA = useMemo(() => {
     const grouped = {
       funders: fundersGroupedData.filter(
-        (d) => !subgeographics.length || subgeographics.includes(d.id)
+        (d) => !subgeographics.length || subgeographics.includes(d.id),
       ),
       projects: projectsGroupedData.filter(
-        (d) => !subgeographics.length || subgeographics.includes(d.id)
+        (d) => !subgeographics.length || subgeographics.includes(d.id),
       ),
     };
 
@@ -88,7 +88,7 @@ const GeoList = () => {
         setFilters({
           ...filters,
           subgeographics: [id],
-        })
+        }),
       );
 
       plausible('Map - Save filter', {
@@ -97,14 +97,14 @@ const GeoList = () => {
         },
       });
     },
-    [dispatch, filters, plausible]
+    [dispatch, filters, plausible],
   );
 
   return (
     <>
       <Loading
         visible={LOADING}
-        className="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-white/75"
+        className="absolute top-0 left-0 z-10 flex h-full w-full items-center justify-center bg-white/75"
       />
 
       <div className="space-y-5">

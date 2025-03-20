@@ -7,9 +7,9 @@ import Table from './table';
 
 const ReportFunding = () => {
   return (
-    <section className="py-16 bg-grey-60">
+    <section className="bg-grey-60 py-16">
       <Wrapper>
-        <h2 className="max-w-xl text-3xl font-display">Find out how FORA members fund</h2>
+        <h2 className="max-w-xl font-display text-3xl">Find out how FORA members fund</h2>
       </Wrapper>
 
       <Table />

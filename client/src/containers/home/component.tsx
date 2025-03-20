@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <div className="py-32 space-y-32">
+      <div className="space-y-32 py-32">
         <What />
         <Why />
         <How />

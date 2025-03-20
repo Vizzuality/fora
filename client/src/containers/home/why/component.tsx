@@ -10,11 +10,11 @@ const Why = () => {
     <section id="hero" className="relative z-10">
       <Wrapper>
         <div className="space-y-10">
-          <h2 className="text-4xl text-center font-display">Why use the platform?</h2>
+          <h2 className="text-center font-display text-4xl">Why use the platform?</h2>
           <div className="grid grid-cols-12 gap-5">
             <div className="relative col-span-6">
               <AnimatedScroll
-                className="flex flex-col justify-between h-full p-16 space-y-10 bg-blue-0/10"
+                className="flex h-full flex-col justify-between space-y-10 bg-blue-0/10 p-16"
                 xOptions={{
                   start: 0,
                   end: 0,
@@ -25,7 +25,7 @@ const Why = () => {
                 }}
               >
                 <div className="space-y-5">
-                  <h3 className="text-2xl font-display text-grey-0">As a funder</h3>
+                  <h3 className="font-display text-2xl text-grey-0">As a funder</h3>
                   <p className="text-xl">
                     FORA’s members represent a diverse range of funders, investors, and partners
                     that are all deploying a variety of capital across varying issue and focus
@@ -54,7 +54,7 @@ const Why = () => {
 
             <div className="relative col-span-6">
               <AnimatedScroll
-                className="flex flex-col justify-between h-full p-16 mt-16 space-y-10 bg-blue-0/10"
+                className="mt-16 flex h-full flex-col justify-between space-y-10 bg-blue-0/10 p-16"
                 xOptions={{
                   start: 0,
                   end: 0,
@@ -65,7 +65,7 @@ const Why = () => {
                 }}
               >
                 <div className="space-y-5">
-                  <h3 className="text-2xl font-display text-grey-0">As A Practitioner</h3>
+                  <h3 className="font-display text-2xl text-grey-0">As A Practitioner</h3>
                   <p className="text-xl">
                     The platform will keep you up-to-date on the what, who, and where of the funding
                     and strategies of FORA members. As practitioners and partners in the field, we

@@ -41,7 +41,7 @@ export const FunderLegalStatus = () => {
         });
       }
     },
-    [funderLegalStatusesData, plausible]
+    [funderLegalStatusesData, plausible],
   );
 
   return (

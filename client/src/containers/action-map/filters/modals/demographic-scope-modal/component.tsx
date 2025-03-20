@@ -47,7 +47,7 @@ const DemographicScopeModal: React.FC<DemographicScopeModaProps> = ({
           ...filters,
           demographics:
             demographicsValue.length === demographicsData.length ? [] : demographicsValue,
-        })
+        }),
       );
 
       if (onClose) onClose();
@@ -59,14 +59,14 @@ const DemographicScopeModal: React.FC<DemographicScopeModaProps> = ({
         },
       });
     },
-    [dispatch, filters, demographicsData.length, onClose, plausible]
+    [dispatch, filters, demographicsData.length, onClose, plausible],
   );
 
   return (
     <FormRFF onSubmit={handleSubmit} initialValues={INITIAL_VALUES}>
       {(fprops) => (
         <form
-          className="flex flex-col py-10 overflow-hidden grow"
+          className="flex grow flex-col overflow-hidden py-10"
           onSubmit={fprops.handleSubmit}
           autoComplete="off"
         >

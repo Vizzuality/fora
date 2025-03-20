@@ -43,7 +43,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
         key: prevState.key + 1,
       }));
     },
-    [asPath]
+    [asPath],
   );
 
   const handleRouteChangeCompleted = useCallback(() => {

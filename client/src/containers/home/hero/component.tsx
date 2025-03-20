@@ -10,7 +10,7 @@ const Hero = () => {
     <section id="hero" className="relative z-10 py-32">
       <Wrapper>
         <div className="space-y-10">
-          <h2 className="text-6xl text-center font-display">What is FORA?</h2>
+          <h2 className="text-center font-display text-6xl">What is FORA?</h2>
           <div className="grid grid-cols-12">
             <div className="relative col-span-7 col-start-6">
               <p className="text-xl">
@@ -24,7 +24,7 @@ const Hero = () => {
               </p>
 
               <AnimatedScrollComponent
-                className="absolute left-0 -translate-x-1/2 translate-y-20 top-full"
+                className="absolute left-0 top-full -translate-x-1/2 translate-y-20"
                 xOptions={{ start: -200, end: -150 }}
                 yOptions={{ start: 80, end: 80 }}
               >
@@ -38,7 +38,7 @@ const Hero = () => {
               </AnimatedScrollComponent>
 
               <AnimatedScrollComponent
-                className="absolute -translate-x-10 right-full top-28"
+                className="absolute right-full top-28 -translate-x-10"
                 xOptions={{ start: -40, end: -40 }}
                 yOptions={{ start: 112, end: 0 }}
               >
@@ -53,7 +53,7 @@ const Hero = () => {
               </AnimatedScrollComponent>
 
               <AnimatedScrollComponent
-                className="absolute left-0 translate-x-20 translate-y-10 top-full"
+                className="absolute left-0 top-full translate-x-20 translate-y-10"
                 xOptions={{ start: 80, end: 200 }}
                 yOptions={{ start: 75, end: -100 }}
               >

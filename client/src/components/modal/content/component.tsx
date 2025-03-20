@@ -56,17 +56,17 @@ export const ModalContent: FC<ModalContentProps> = ({
         ref: floating,
       })}
     >
-      <div className="relative flex flex-col min-h-0 grow">
+      <div className="relative flex min-h-0 grow flex-col">
         <button
           type="button"
           onClick={() => {
             onOpenChange(false);
           }}
-          className="absolute z-10 flex items-center px-4 py-4 text-sm top-6 right-6 group"
+          className="group absolute top-6 right-6 z-10 flex items-center px-4 py-4 text-sm"
         >
           <Icon
             icon={CLOSE_SVG}
-            className="inline-block w-6 h-6 transition-colors text-grey-0 group-hover:text-grey-20"
+            className="inline-block h-6 w-6 text-grey-0 transition-colors group-hover:text-grey-20"
           />
         </button>
 

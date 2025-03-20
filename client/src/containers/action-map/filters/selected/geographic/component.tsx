@@ -76,16 +76,16 @@ const GeographicSelected: React.FC<GeographicSelectedProps> = ({}: GeographicSel
         setFilters({
           ...filters,
           subgeographics: [],
-        })
+        }),
       );
     },
-    [dispatch, filters]
+    [dispatch, filters],
   );
 
   return (
     <div
       className={cx({
-        'inline-block font-semibold max-w-full': true,
+        'inline-block max-w-full font-semibold': true,
       })}
     >
       <Selection

@@ -7,7 +7,7 @@ const FilterWarning: React.FC<FilterWarningProps> = ({ text, visible }) => {
 
   return (
     <div className="px-10">
-      <div className="px-5 mx-auto text-center rounded-lg text-red-0">{text}</div>
+      <div className="mx-auto rounded-lg px-5 text-center text-red-0">{text}</div>
     </div>
   );
 };

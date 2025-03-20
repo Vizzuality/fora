@@ -120,7 +120,7 @@ const ReportFundingTable = () => {
         },
       },
     ],
-    [geographic, geographicData, selectedWidget]
+    [geographic, geographicData, selectedWidget],
   );
 
   useMemo(() => {
@@ -139,7 +139,7 @@ const ReportFundingTable = () => {
       <Wrapper>
         <div className="space-y-10">
           <div className="flex items-center justify-between">
-            <h3 className="text-2xl font-display">
+            <h3 className="font-display text-2xl">
               Total number of projects and funders per{' '}
               <Select
                 id="total-funders-projects-select"

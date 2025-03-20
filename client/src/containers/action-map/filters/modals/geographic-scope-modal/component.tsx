@@ -57,7 +57,7 @@ const GeographicScopeModal: React.FC<GraphicScopeModaProps> = ({
           ...filters,
           geographic: geographicValue,
           subgeographics: allSubgeographicsValue ? [] : subgeographicsValue,
-        })
+        }),
       );
 
       if (onClose) onClose();
@@ -70,14 +70,14 @@ const GeographicScopeModal: React.FC<GraphicScopeModaProps> = ({
         },
       });
     },
-    [dispatch, filters, onClose, plausible]
+    [dispatch, filters, onClose, plausible],
   );
 
   return (
     <FormRFF onSubmit={handleSubmit} initialValues={INITIAL_VALUES}>
       {(fprops) => (
         <form
-          className="relative flex flex-col py-10 overflow-hidden grow"
+          className="relative flex grow flex-col overflow-hidden py-10"
           onSubmit={fprops.handleSubmit}
           autoComplete="off"
         >

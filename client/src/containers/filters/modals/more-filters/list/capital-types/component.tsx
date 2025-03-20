@@ -41,7 +41,7 @@ export const CapitalTypes = () => {
         });
       }
     },
-    [capitalTypesData, plausible]
+    [capitalTypesData, plausible],
   );
 
   return (

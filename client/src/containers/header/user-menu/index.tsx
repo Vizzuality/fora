@@ -33,9 +33,9 @@ export default function UserMenu() {
   }
 
   return (
-    <div className="flex items-center gap-7 !ml-7">
+    <div className="!ml-7 flex items-center gap-7">
       <Avatar>
-        <Link href="/auth/projects" className="w-full h-full">
+        <Link href="/auth/projects" className="h-full w-full">
           <AvatarFallback className="bg-[#724CBC] text-white">{initials}</AvatarFallback>
         </Link>
       </Avatar>

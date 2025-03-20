@@ -36,7 +36,7 @@ export const Search: React.FC<SearchProps> = ({
       setSearch(e.target.value);
       onChange?.(e.target.value);
     },
-    [onChange]
+    [onChange],
   );
 
   const handleReset = useCallback(() => {
@@ -55,7 +55,7 @@ export const Search: React.FC<SearchProps> = ({
         value={search}
         type="search"
         className={cx({
-          'w-full h-full py-3 px-4': true,
+          'h-full w-full py-3 px-4': true,
           [THEME[theme]]: true,
           '!border-grey-0': true,
         })}
@@ -64,11 +64,11 @@ export const Search: React.FC<SearchProps> = ({
 
       {!!resetable && (
         <button
-          className="absolute z-10 flex items-center self-center justify-center w-5 h-5 transform -translate-y-1/2 right-3 top-1/2 text-grey-0 hover:text-grey-20"
+          className="absolute right-3 top-1/2 z-10 flex h-5 w-5 -translate-y-1/2 transform items-center justify-center self-center text-grey-0 hover:text-grey-20"
           type="button"
           onClick={handleReset}
         >
-          <Icon icon={CLOSE_SVG} className="w-3 h-3" />
+          <Icon icon={CLOSE_SVG} className="h-3 w-3" />
         </button>
       )}
     </div>

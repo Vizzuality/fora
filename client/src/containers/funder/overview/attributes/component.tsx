@@ -100,15 +100,15 @@ const FunderAtributes = () => {
   }, [FUNDER_TYPE, APPLICATION_STATUS, CAPITAL_ACCEPTANCES, CAPITAL_TYPES]);
 
   return (
-    <div className="py-4 border-y border-grey-40/40">
-      <dl className="grid content-end grid-cols-2 grid-rows-2 gap-y-6 gap-x-11">
+    <div className="border-y border-grey-40/40 py-4">
+      <dl className="grid grid-cols-2 grid-rows-2 content-end gap-y-6 gap-x-11">
         {ATTRS.map((attr) => {
           const { id, label, tooltip, value } = attr;
 
           return (
             <div className="space-y-2" key={id}>
               <span className="inline-flex items-center text-base font-semibold uppercase text-grey-20">
-                <dt className="pr-2 uppercase whitespace-nowrap">{label}</dt>
+                <dt className="whitespace-nowrap pr-2 uppercase">{label}</dt>
                 <Tooltip
                   arrowProps={{
                     enabled: true,
@@ -116,16 +116,16 @@ const FunderAtributes = () => {
                     className: 'bg-grey-60',
                   }}
                   content={
-                    <div className="max-w-xs p-2.5 text-grey-20 rounded shadow-xl bg-grey-60 border border-grey-0/5">
+                    <div className="max-w-xs rounded border border-grey-0/5 bg-grey-60 p-2.5 text-grey-20 shadow-xl">
                       <span>{tooltip}</span>
                     </div>
                   }
                 >
-                  <div className="w-3.5 h-3.5 rounded-full bg-grey-20/30">
+                  <div className="h-3.5 w-3.5 rounded-full bg-grey-20/30">
                     <Icon
                       icon={INFO_SVG}
                       className={cx({
-                        'w-3.5 h-3.5 text-grey-20': true,
+                        'h-3.5 w-3.5 text-grey-20': true,
                       })}
                     />
                   </div>

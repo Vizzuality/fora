@@ -34,7 +34,7 @@ const WidgetDiagramHorizontalBar = ({ query, config }: Widget) => {
   }, [data]);
 
   return (
-    <div className="flex pt-10 space-x-2">
+    <div className="flex space-x-2 pt-10">
       {/* CHART */}
       <div className="shrink-0 grow">
         <HorizontalBar
@@ -83,13 +83,13 @@ const WidgetDiagramHorizontalBar = ({ query, config }: Widget) => {
       </div>
 
       {/* LEGEND */}
-      <div className="relative shrink-0 min-w-[200px]">
-        <h4 className="absolute left-0 font-semibold uppercase text-grey-20 -top-7">Legend</h4>
+      <div className="relative min-w-[200px] shrink-0">
+        <h4 className="absolute left-0 -top-7 font-semibold uppercase text-grey-20">Legend</h4>
         <ul className="space-y-2.5">
           {DATA
             //
             .map((d) => (
-              <li className="flex items-center h-3" key={d.id}>
+              <li className="flex h-3 items-center" key={d.id}>
                 <div className="text-sm font-semibold">{d.label}</div>
               </li>
             ))}

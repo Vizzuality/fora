@@ -37,34 +37,36 @@ const fetchMyProjects = async (session: Session, { pageParam = 1 }, params = {})
   return response.data;
 };
 
-
-export const myProjectsQueryOptions = (session: Session, params = {}) => infiniteQueryOptions({
-  queryKey: ['my-projects', params],
-  queryFn: (paginationParams) => fetchMyProjects(session, paginationParams, params),
-  initialPageParam: 1,
-  getNextPageParam: (lastPage) => {
-    const {
-      meta: { page, pages },
-    } = lastPage;
-    return page + 1 > pages ? undefined : page + 1;
-  },
-})
+export const myProjectsQueryOptions = (session: Session, params = {}) =>
+  infiniteQueryOptions({
+    queryKey: ['my-projects', params],
+    queryFn: (paginationParams) => fetchMyProjects(session, paginationParams, params),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      const {
+        meta: { page, pages },
+      } = lastPage;
+      return page + 1 > pages ? undefined : page + 1;
+    },
+  });
 
 export const getServerSideProps = (async (context) => {
   const session = await auth(context.req, context.res);
   const queryClient = getQueryClient();
-  await queryClient.prefetchInfiniteQuery(myProjectsQueryOptions(session, {
-    'sort[attribute]': 'name',
-    'sort[direction]': 'asc',
-  }));
+  await queryClient.prefetchInfiniteQuery(
+    myProjectsQueryOptions(session, {
+      'sort[attribute]': 'name',
+      'sort[direction]': 'asc',
+    }),
+  );
 
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
   };
-// eslint-disable-next-line prettier/prettier
-}) satisfies GetServerSideProps<{ dehydratedState: DehydratedState }> ;
+  // eslint-disable-next-line prettier/prettier
+}) satisfies GetServerSideProps<{ dehydratedState: DehydratedState }>;
 
 const MyProjectsOverviewPage: FC = () => {
   return (

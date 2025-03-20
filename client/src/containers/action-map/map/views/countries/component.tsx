@@ -56,7 +56,7 @@ const CountriesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove 
         };
       });
     },
-    [data, subgeographics]
+    [data, subgeographics],
   );
   const { geographies } = useGeographies({
     geography: DATA,

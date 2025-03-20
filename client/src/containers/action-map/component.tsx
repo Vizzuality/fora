@@ -26,15 +26,15 @@ const ActionMap = () => {
 
           <div className="grid grid-cols-12 gap-x-10">
             <div className="col-span-8">
-              <div className="relative flex flex-col w-full space-y-5">
+              <div className="relative flex w-full flex-col space-y-5">
                 <Map />
 
                 <div className="flex items-center justify-between">{/* <View /> */}</div>
               </div>
             </div>
             <div className="col-span-3 col-start-10 max-h-[500px]">
-              <div className="flex flex-col justify-between h-full space-y-4">
-                <div className="relative flex flex-col h-full min-h-0 grow">
+              <div className="flex h-full flex-col justify-between space-y-4">
+                <div className="relative flex h-full min-h-0 grow flex-col">
                   <List />
                 </div>
                 <div className="shrink-0 grow">

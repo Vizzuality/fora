@@ -30,7 +30,7 @@ export const HorizontalBarChart: FC<HorizontalBarChartProps> = ({
         <li className="flex items-center justify-end" key={d.id}>
           <div
             className={cx({
-              'flex items-center justify-end group': true,
+              'group flex items-center justify-end': true,
               'pt-2.5': i !== 0,
             })}
             style={{
@@ -50,7 +50,7 @@ export const HorizontalBarChart: FC<HorizontalBarChartProps> = ({
             }}
           >
             <div
-              className="w-full h-3 transition-transform origin-right rounded-xl group-hover:scale-y-125"
+              className="h-3 w-full origin-right rounded-xl transition-transform group-hover:scale-y-125"
               style={{
                 backgroundColor: COLOR_SCALE(d.id),
               }}

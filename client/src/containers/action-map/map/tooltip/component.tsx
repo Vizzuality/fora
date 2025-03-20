@@ -36,7 +36,7 @@ const MapTooltip = ({ rect, properties = {} }: MapTooltipProps) => {
         className: 'bg-white',
       }}
       content={
-        <div className="w-[200px] p-5 bg-white border rounded shadow-xl pointer-events-none text-grey-20 border-grey-0/5">
+        <div className="pointer-events-none w-[200px] rounded border border-grey-0/5 bg-white p-5 text-grey-20 shadow-xl">
           {CONTENT}
         </div>
       }

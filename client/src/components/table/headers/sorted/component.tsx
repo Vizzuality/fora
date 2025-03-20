@@ -11,28 +11,28 @@ export interface HeaderSortedProps<T> extends HeaderContext<T, unknown> {
 const HeaderSorted = <T extends unknown>({ children, column }: HeaderSortedProps<T>) => {
   return (
     <div
-      className="flex items-center space-x-2 cursor-pointer hover:underline"
+      className="flex cursor-pointer items-center space-x-2 hover:underline"
       onClick={column.getToggleSortingHandler()}
     >
       <span>{children}</span>
 
-      <div className="flex flex-col space-y-0.5 items-center">
+      <div className="flex flex-col items-center space-y-0.5">
         <span
           className={cx({
-            'border-t-0 border-b-4 border-solid border-b-black border-x-transparent border-x-4':
+            'border-x-4 border-t-0 border-b-4 border-solid border-x-transparent border-b-black':
               true,
             'opacity-50': !column.getIsSorted(),
             'opacity-100': column.getIsSorted() === 'asc',
-            'opacity-0 hidden': column.getIsSorted() === 'desc',
+            'hidden opacity-0': column.getIsSorted() === 'desc',
           })}
         />
         <span
           className={cx({
-            'border-t-4 border-b-0 border-solid border-t-black border-x-transparent border-x-4':
+            'border-x-4 border-t-4 border-b-0 border-solid border-x-transparent border-t-black':
               true,
             'opacity-50': !column.getIsSorted(),
             'opacity-100': column.getIsSorted() === 'desc',
-            'opacity-0 hidden': column.getIsSorted() === 'asc',
+            'hidden opacity-0': column.getIsSorted() === 'asc',
           })}
         />
       </div>

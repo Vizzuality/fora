@@ -10,9 +10,9 @@ const FilterListItem: React.FC<FilterListItemProps> = ({ id, label, name, select
   }, [id, onChange]);
 
   return (
-    <div className="flex cursor-pointer break-inside-avoid-column group">
+    <div className="group flex cursor-pointer break-inside-avoid-column">
       <Checkbox
-        className="mt-[3px] cursor-pointer group-hover:opacity-75 h-3.5 w-3.5"
+        className="mt-[3px] h-3.5 w-3.5 cursor-pointer group-hover:opacity-75"
         id={`form-checkbox-${name}-${id}`}
         theme="dark"
         checked={selected}
@@ -20,7 +20,7 @@ const FilterListItem: React.FC<FilterListItemProps> = ({ id, label, name, select
       />
       <label
         htmlFor={`form-checkbox-${name}-${id}`}
-        className="pl-2 font-normal capitalize cursor-pointer text-grey-0 group-hover:underline grow"
+        className="grow cursor-pointer pl-2 font-normal capitalize text-grey-0 group-hover:underline"
       >
         {label}
       </label>

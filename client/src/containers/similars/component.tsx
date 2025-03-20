@@ -11,7 +11,7 @@ export interface SimilarsSectionProps {
 const SimilarsSection = ({ type }: SimilarsSectionProps) => {
   return (
     <div className="space-y-9">
-      <h3 className="text-2xl font-display"> {`What are the similar ${type}?`}</h3>
+      <h3 className="font-display text-2xl"> {`What are the similar ${type}?`}</h3>
 
       <GeographicSimilars type={type} />
       {type === 'funders' && <AreasSimilars type={type} />}

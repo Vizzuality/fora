@@ -29,19 +29,19 @@ const FilterTrigger: React.FC<FilterTriggerProps> = ({
       if (o) openModal();
       if (!o) closeModal();
     },
-    [openModal, closeModal]
+    [openModal, closeModal],
   );
 
   return (
     <>
       <div
         role="button"
-        className="py-4 text-left cursor-pointer px-7 hover:bg-grey-40/5"
+        className="cursor-pointer py-4 px-7 text-left hover:bg-grey-40/5"
         onClick={handleClick}
       >
         <div className="flex flex-col space-y-1">
           <span className="inline-flex items-center text-base font-semibold uppercase text-grey-20">
-            <label className="pr-2 cursor-pointer whitespace-nowrap">{title}</label>
+            <label className="cursor-pointer whitespace-nowrap pr-2">{title}</label>
 
             {info && (
               <Tooltip
@@ -51,16 +51,16 @@ const FilterTrigger: React.FC<FilterTriggerProps> = ({
                   className: 'bg-white',
                 }}
                 content={
-                  <div className="max-w-xs p-2.5 bg-white border rounded shadow-xl pointer-events-none text-grey-20 border-grey-0/5">
+                  <div className="pointer-events-none max-w-xs rounded border border-grey-0/5 bg-white p-2.5 text-grey-20 shadow-xl">
                     <span>{info}</span>
                   </div>
                 }
               >
-                <div className="w-3.5 h-3.5 rounded-full bg-grey-20/30">
+                <div className="h-3.5 w-3.5 rounded-full bg-grey-20/30">
                   <Icon
                     icon={INFO_SVG}
                     className={cx({
-                      'w-3.5 h-3.5 text-grey-20': true,
+                      'h-3.5 w-3.5 text-grey-20': true,
                     })}
                   />
                 </div>

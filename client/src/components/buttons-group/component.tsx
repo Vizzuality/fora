@@ -15,7 +15,7 @@ const ButtonsGroup: React.FC<ButtonsGroupProps> = ({
     (id: string) => {
       if (onChange && id !== selected) onChange(id);
     },
-    [selected, onChange]
+    [selected, onChange],
   );
 
   return (
@@ -25,7 +25,7 @@ const ButtonsGroup: React.FC<ButtonsGroupProps> = ({
           key={t.value}
           type="button"
           className={cx({
-            'text-base font-semibold px-4 py-2 leading-normal text-center rounded-lg': true,
+            'rounded-lg px-4 py-2 text-center text-base font-semibold leading-normal': true,
             [THEME[theme].base]: selected !== t.value,
             [THEME[theme].active]: selected === t.value,
           })}

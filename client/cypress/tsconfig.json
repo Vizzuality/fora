@@ -5,5 +5,5 @@
     "types": ["cypress", "node"],
     "isolatedModules": false
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts"]
 }

@@ -89,7 +89,7 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
             recipientLegalStatusesValue.length === recipientLegalStatusesData.length
               ? []
               : recipientLegalStatusesValue,
-        })
+        }),
       );
 
       if (onClose) onClose();
@@ -120,14 +120,14 @@ const MoreFilters: React.FC<MoreFiltersProps> = ({ onClose }: MoreFiltersProps) 
       recipientLegalStatusesData.length,
       onClose,
       plausible,
-    ]
+    ],
   );
 
   return (
     <FormRFF onSubmit={handleSubmit} initialValues={INITIAL_VALUES}>
       {(fprops) => (
         <form
-          className="flex flex-col py-10 overflow-hidden grow"
+          className="flex grow flex-col overflow-hidden py-10"
           onSubmit={fprops.handleSubmit}
           autoComplete="off"
         >

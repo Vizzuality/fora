@@ -36,17 +36,17 @@ const GeographicSelected: React.FC<GeographicSelectedProps> = ({
     },
     {
       enabled: !!geographic,
-    }
+    },
   );
 
   const geographicOptions = useMemo(
     () => geographicData.map((geo) => ({ label: geo.name, value: geo.id })),
-    [geographicData]
+    [geographicData],
   );
 
   const subgeographicOptions = useMemo(
     () => subgeographicsData.map((subGeo) => ({ label: subGeo.name, value: subGeo.id })),
-    [subgeographicsData]
+    [subgeographicsData],
   );
 
   const handleSelectGeo = useCallback(
@@ -61,10 +61,10 @@ const GeographicSelected: React.FC<GeographicSelectedProps> = ({
           ...filters,
           geographic: value,
           subgeographics: [],
-        })
+        }),
       );
     },
-    [dispatch, type, filters]
+    [dispatch, type, filters],
   );
 
   const handleSelectSubGeo = useCallback(
@@ -78,17 +78,17 @@ const GeographicSelected: React.FC<GeographicSelectedProps> = ({
         action[type]({
           ...filters,
           subgeographics: value,
-        })
+        }),
       );
     },
-    [dispatch, type, filters]
+    [dispatch, type, filters],
   );
 
   return (
     <div className="flex space-x-4">
       <div
         className={cx({
-          'font-semibold w-1/2': true,
+          'w-1/2 font-semibold': true,
         })}
       >
         <Select
@@ -105,7 +105,7 @@ const GeographicSelected: React.FC<GeographicSelectedProps> = ({
       </div>
       <div
         className={cx({
-          'font-semibold w-1/2': true,
+          'w-1/2 font-semibold': true,
         })}
       >
         <MultiSelect

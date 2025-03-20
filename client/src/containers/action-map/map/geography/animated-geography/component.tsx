@@ -30,7 +30,7 @@ const AnimatedGeography = forwardRef<SVGPathElement, GeographyProps>(
       className = '',
       ...restProps
     },
-    ref
+    ref,
   ) => {
     const [isPressed, setPressed] = useState(false);
     const [isFocused, setFocus] = useState(false);
@@ -86,7 +86,7 @@ const AnimatedGeography = forwardRef<SVGPathElement, GeographyProps>(
         {...restProps}
       />
     );
-  }
+  },
 );
 
 AnimatedGeography.displayName = 'AnimatedGeography';

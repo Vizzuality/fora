@@ -60,9 +60,9 @@ export default function ProjectDetailsStep() {
   return (
     <div className="flex flex-col gap-10 pb-10">
       <div className="grid grid-cols-12 flex-col gap-2">
-        <h3 className="font-display text-2.5xl col-span-12">Project Details</h3>
+        <h3 className="col-span-12 font-display text-2.5xl">Project Details</h3>
         {/*@todo: update text*/}
-        <p className="font-semibold col-span-9">
+        <p className="col-span-9 font-semibold">
           Lorem ipsum dolor sit amet consectetur et fringilla pellentesque in ut congue at ultrices
           nulla nibh dolor sit amet pellentesque consectetur.
         </p>
@@ -70,7 +70,7 @@ export default function ProjectDetailsStep() {
 
       <div className="space-y-4">
         <FormLegend />
-        <p className="font-semibold text-grey-20 flex items-center gap-1">
+        <p className="flex items-center gap-1 font-semibold text-grey-20">
           <span className="align-super text-red-0">*</span>
           All fields marked with a red asterisk are mandatory to fill
         </p>
@@ -122,7 +122,7 @@ export default function ProjectDetailsStep() {
         </FieldRFF>
       </div>
 
-      <div className="grid grid-cols-12 gap-4 items-start">
+      <div className="grid grid-cols-12 items-start gap-4">
         <div className="col-span-6">
           <div className="space-y-2">
             <VisibilityLabel
@@ -265,7 +265,7 @@ export default function ProjectDetailsStep() {
           }}
         >
           <span>Contact Details</span>
-          <HiOutlineArrowRight className="w-[20px] h-[20px]" />
+          <HiOutlineArrowRight className="h-[20px] w-[20px]" />
         </LinkButton>
       </footer>
     </div>

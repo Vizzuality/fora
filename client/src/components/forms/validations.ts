@@ -6,7 +6,7 @@ export const composeValidators =
   (
     value: unknown,
     allValues: Record<string, unknown>,
-    meta?: FieldState<unknown>
+    meta?: FieldState<unknown>,
   ): FieldValidator<unknown>[] => {
     if (validations) {
       const errors = validations.map((validator: unknown) => {

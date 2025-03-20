@@ -17,7 +17,7 @@ const baseQueryOptions = queryOptions({
 });
 
 export function useCapitalTypes(
-  upcomingQueryOptions?: Omit<Omit<typeof baseQueryOptions, 'queryKey'>, 'queryKey'>
+  upcomingQueryOptions?: Omit<Omit<typeof baseQueryOptions, 'queryKey'>, 'queryKey'>,
 ) {
   const query = useQuery({
     ...baseQueryOptions,

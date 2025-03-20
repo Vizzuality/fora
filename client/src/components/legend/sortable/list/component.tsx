@@ -61,14 +61,14 @@ export const SortableList: FC<SortableListProps> = ({
 
         return null;
       }),
-    [children]
+    [children],
   );
 
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   const handleDragStart = useCallback((event) => {
@@ -89,7 +89,7 @@ export const SortableList: FC<SortableListProps> = ({
         if (onChangeOrder) onChangeOrder(arrayMove(itemsIds, oldIndex, newIndex));
       }
     },
-    [itemsIds, onChangeOrder]
+    [itemsIds, onChangeOrder],
   );
 
   return (

@@ -49,7 +49,7 @@ const AreasSimilars = ({ type }: SimilarsSectionProps) => {
       filters: { areas },
       includes: 'subgeographic_ancestors',
     },
-    { enabled: !!id && type === 'funders' }
+    { enabled: !!id && type === 'funders' },
   );
 
   // Projects
@@ -58,7 +58,7 @@ const AreasSimilars = ({ type }: SimilarsSectionProps) => {
       filters: { areas },
       includes: 'subgeographic_ancestors',
     },
-    { enabled: !!id && type === 'projects' }
+    { enabled: !!id && type === 'projects' },
   );
 
   const RANDOM_SORT = useMemo(() => {
@@ -93,7 +93,7 @@ const AreasSimilars = ({ type }: SimilarsSectionProps) => {
                 <Icon
                   icon={CHEVRON_RIGHT_SVG}
                   className={cx({
-                    'w-2 h-2 text-grey-0': true,
+                    'h-2 w-2 text-grey-0': true,
                   })}
                 />
               </Link>

@@ -14,14 +14,14 @@ export default function ApplicationLayout({ children }: PropsWithChildren) {
   return (
     <div
       className={cn({
-        'flex flex-col min-h-screen': true,
+        'flex min-h-screen flex-col': true,
         'bg-grey-60': isAuthRoute,
       })}
     >
       <Header />
       <main
         className={cn({
-          'flex flex-col grow': true,
+          'flex grow flex-col': true,
           'bg-grey-60': isAuthRoute,
         })}
       >

@@ -27,7 +27,7 @@ const DemographicSelected: React.FC<DemographicSelectedProps> = ({ type }) => {
 
   const demographicOptions = useMemo(
     () => demographicsData.map((demogr) => ({ label: demogr.name, value: demogr.id })),
-    [demographicsData]
+    [demographicsData],
   );
 
   const handleSelect = useCallback(
@@ -41,16 +41,16 @@ const DemographicSelected: React.FC<DemographicSelectedProps> = ({ type }) => {
         action[type]({
           ...filters,
           demographics: value,
-        })
+        }),
       );
     },
-    [dispatch, type, filters]
+    [dispatch, type, filters],
   );
 
   return (
     <div
       className={cx({
-        'font-semibold w-full': true,
+        'w-full font-semibold': true,
       })}
     >
       <MultiSelect

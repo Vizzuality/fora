@@ -52,7 +52,7 @@ describe('sidebar', () => {
 
     expect(sections[0].querySelector('a')).toHaveAttribute(
       'href',
-      `${TEST_PATHNAME}?step=${TEST_SECTIONS[0].value}`
+      `${TEST_PATHNAME}?step=${TEST_SECTIONS[0].value}`,
     );
   });
 

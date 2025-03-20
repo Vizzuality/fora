@@ -31,7 +31,7 @@ const ChangePassword: FC<{ token: string | undefined; isSignUp?: boolean | undef
         const res = await authenticationService.changePassword(
           token,
           password,
-          passwordConfirmation
+          passwordConfirmation,
         );
 
         if (res?.status === 200) {
@@ -45,7 +45,7 @@ const ChangePassword: FC<{ token: string | undefined; isSignUp?: boolean | undef
         };
       }
     },
-    [router, token]
+    [router, token],
   );
 
   return (
@@ -56,7 +56,7 @@ const ChangePassword: FC<{ token: string | undefined; isSignUp?: boolean | undef
       >
         {({ submitError, handleSubmit }) => (
           <form className="space-y-5" onSubmit={handleSubmit} autoComplete="off">
-            <h2 className="text-3xl text-center font-normal">
+            <h2 className="text-center text-3xl font-normal">
               {isSignUp ? 'Create password' : 'Change password'}
             </h2>
             <div>

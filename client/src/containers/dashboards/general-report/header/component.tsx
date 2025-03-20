@@ -17,7 +17,7 @@ import INFO_SVG from 'svgs/ui/info.svg?sprite';
 const ReportHeader = () => {
   const { data: yearsData } = useReportYears();
   const { reportYear, ...filters } = useAppSelector(
-    (state) => state['/dashboards/general-report'].filters
+    (state) => state['/dashboards/general-report'].filters,
   );
   const dispatch = useAppDispatch();
 
@@ -39,7 +39,7 @@ const ReportHeader = () => {
       <Wrapper>
         <div className="space-y-5">
           <div className="flex justify-between">
-            <h2 className="max-w-2xl text-4xl font-display">
+            <h2 className="max-w-2xl font-display text-4xl">
               General Report{' '}
               <strong>
                 <Select
@@ -57,16 +57,16 @@ const ReportHeader = () => {
 
             <button
               type="button"
-              className="p-3 transition-colors border rounded-lg border-grey-40 shrink-0 hover:bg-grey-40"
+              className="shrink-0 rounded-lg border border-grey-40 p-3 transition-colors hover:bg-grey-40"
               onClick={handleClickInfo}
             >
-              <div className="flex items-center justify-center w-6 h-6 border rounded-full border-grey-0">
-                <Icon icon={INFO_SVG} className="block w-5 h-5" />
+              <div className="flex h-6 w-6 items-center justify-center rounded-full border border-grey-0">
+                <Icon icon={INFO_SVG} className="block h-5 w-5" />
               </div>
             </button>
           </div>
 
-          <h3 className="max-w-2xl text-2xl font-display">
+          <h3 className="max-w-2xl font-display text-2xl">
             Discover the state of FORA and understand how FORA members fund looking and how each
             area of focus is funded.
           </h3>
@@ -74,8 +74,8 @@ const ReportHeader = () => {
       </Wrapper>
 
       <Modal size="s" title="" open={isOpenModal} onOpenChange={() => closeModal()}>
-        <div className="p-20 space-y-5">
-          <p className="mt-2 text-lg text-grey-100">
+        <div className="space-y-5 p-20">
+          <p className="text-grey-100 mt-2 text-lg">
             The information in the report below pertains exclusively to investments conducted within
             the designated year and authorized for public disclosure of financial data.
           </p>

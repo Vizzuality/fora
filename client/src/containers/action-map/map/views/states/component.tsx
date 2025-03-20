@@ -67,7 +67,7 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
         };
       });
     },
-    [data, subgeographics]
+    [data, subgeographics],
   );
 
   const { geographies } = useGeographies({
@@ -103,13 +103,13 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
                   height={150}
                   className="pointer-events-none"
                 >
-                  <div className="relative flex items-center justify-center h-full text-sm text-center">
+                  <div className="relative flex h-full items-center justify-center text-center text-sm">
                     <div
                       className={cx({
                         'py-0.5 px-2 shadow-md transition-colors': true,
-                        'text-black bg-white/30': !selected,
-                        'text-white bg-black/25': !!selected && luminance < 0.5,
-                        'text-black bg-white/25': !!selected && luminance >= 0.5,
+                        'bg-white/30 text-black': !selected,
+                        'bg-black/25 text-white': !!selected && luminance < 0.5,
+                        'bg-white/25 text-black': !!selected && luminance >= 0.5,
                       })}
                     >
                       {code}
@@ -136,10 +136,10 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
                   height={150}
                   className="pointer-events-none"
                 >
-                  <div className="relative flex items-center justify-center h-full text-sm text-center">
+                  <div className="relative flex h-full items-center justify-center text-center text-sm">
                     <div
                       className={cx({
-                        'py-0.5 px-2 text-black ml-5 cursor-pointer pointer-events-auto': true,
+                        'pointer-events-auto ml-5 cursor-pointer py-0.5 px-2 text-black': true,
                       })}
                       onClick={(e) => onClick(e, geo.properties)}
                       onMouseEnter={(e) => onMouseEnter(e, geo.properties)}

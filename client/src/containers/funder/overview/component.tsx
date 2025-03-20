@@ -132,13 +132,13 @@ const FunderOverview = () => {
           <div className="text-base font-normal text-grey-20">
             Last updated: {format(new Date(updatedAt), 'dd MMMM yyyy')}
           </div>
-          <h2 className="text-3xl font-normal capitalize line-clamp-2 text-ellipsis">{name}</h2>
+          <h2 className="text-ellipsis text-3xl font-normal capitalize line-clamp-2">{name}</h2>
         </div>
 
         {(logo.small || email) && (
           <div className="flex justify-between">
             {logo.small && (
-              <div className="relative max-w-[100px] w-full shrink-0">
+              <div className="relative w-full max-w-[100px] shrink-0">
                 <Image
                   src={logo.small || '/images/avatar.jpg'}
                   alt={name}

@@ -24,7 +24,7 @@ export default function MyProjectsSidebar({
             <LinkButton
               href={`${pathname}?step=${step.value}`}
               theme="transparent-alt"
-              className={cn('uppercase font-semibold justify-start px-4', {
+              className={cn('justify-start px-4 font-semibold uppercase', {
                 'bg-green-80':
                   queryParams.get('step')?.includes(step.value) ??
                   sections?.[0].value === step.value,

@@ -41,7 +41,7 @@ export const AreaScopeList = () => {
         });
       }
     },
-    [areasData, plausible]
+    [areasData, plausible],
   );
 
   return (

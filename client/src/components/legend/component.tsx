@@ -24,13 +24,13 @@ export const Legend: FC<LegendProps> = ({
   return (
     <div
       className={cx({
-        'bg-white rounded-3xl flex flex-col grow': true,
+        'flex grow flex-col rounded-3xl bg-white': true,
         [className]: !!className,
       })}
     >
       <button
         type="button"
-        className="relative flex items-center w-full px-5 py-3 space-x-2 text-xs uppercase font-heading"
+        className="font-heading relative flex w-full items-center space-x-2 px-5 py-3 text-xs uppercase"
         onClick={onToggleActive}
       >
         <span>Legend</span>
@@ -38,7 +38,7 @@ export const Legend: FC<LegendProps> = ({
         <Icon
           icon={CHEVRON_DOWN_SVG}
           className={cx({
-            'absolute w-3 h-3 transition-transform transform -translate-y-1/2 text-blue-500 top-1/2 right-5':
+            'absolute top-1/2 right-5 h-3 w-3 -translate-y-1/2 transform text-blue-500 transition-transform':
               true,
             'rotate-180': active,
           })}
@@ -47,16 +47,16 @@ export const Legend: FC<LegendProps> = ({
 
       {active && (
         <div
-          className="relative flex flex-col overflow-hidden grow rounded-3xl"
+          className="relative flex grow flex-col overflow-hidden rounded-3xl"
           style={{
             maxHeight,
           }}
         >
-          <div className="absolute top-0 left-0 z-10 w-full h-4 pointer-events-none bg-gradient-to-b from-white via-white" />
-          <div className="overflow-x-hidden overflow-y-auto">
+          <div className="pointer-events-none absolute top-0 left-0 z-10 h-4 w-full bg-gradient-to-b from-white via-white" />
+          <div className="overflow-y-auto overflow-x-hidden">
             <SortableList onChangeOrder={onChangeOrder}>{children}</SortableList>
           </div>
-          <div className="absolute bottom-0 left-0 z-10 w-full h-3 pointer-events-none bg-gradient-to-t from-white via-white" />
+          <div className="pointer-events-none absolute bottom-0 left-0 z-10 h-3 w-full bg-gradient-to-t from-white via-white" />
         </div>
       )}
     </div>

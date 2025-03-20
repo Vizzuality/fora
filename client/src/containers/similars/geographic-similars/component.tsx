@@ -57,7 +57,7 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
       filters: { subgeographics: SUBGEOGRAPHICS },
       includes: 'subgeographic_ancestors',
     },
-    { enabled: !!id && type === 'funders' }
+    { enabled: !!id && type === 'funders' },
   );
 
   // Projects
@@ -66,7 +66,7 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
       filters: { subgeographics: SUBGEOGRAPHICS },
       includes: 'subgeographic_ancestors',
     },
-    { enabled: !!id && type === 'projects' }
+    { enabled: !!id && type === 'projects' },
   );
 
   const RANDOM_SORT = useMemo(() => {
@@ -95,7 +95,7 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
             <div>
               <Link
                 href={`/${type}?geographic=${GEOGRAPHIC.toString()}&subgeographics[]=${SUBGEOGRAPHICS.join(
-                  ','
+                  ',',
                 )}`}
                 className="flex items-center space-x-3 font-semibold underline decoration-1"
               >
@@ -103,7 +103,7 @@ const SimilarsItem = ({ type }: SimilarsSectionProps) => {
                 <Icon
                   icon={CHEVRON_RIGHT_SVG}
                   className={cx({
-                    'w-2 h-2 text-grey-0': true,
+                    'h-2 w-2 text-grey-0': true,
                   })}
                 />
               </Link>

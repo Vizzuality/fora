@@ -19,7 +19,7 @@ const FilterList = ({ type }: FilterListProps) => {
   const FILTERS_DATA = FILTERS(type);
 
   return (
-    <div className="grid items-end grid-cols-12 gap-x-4">
+    <div className="grid grid-cols-12 items-end gap-x-4">
       {FILTERS_DATA?.map((filter) => {
         const { id, name, info, className, Selected } = filter;
         return (
@@ -28,7 +28,7 @@ const FilterList = ({ type }: FilterListProps) => {
             className={cx({ 'flex flex-col space-y-2.5': true, [className]: className })}
           >
             <span className="inline-flex items-center text-base font-semibold uppercase text-grey-0">
-              <label className="pr-2 cursor-pointer whitespace-nowrap">{name}</label>
+              <label className="cursor-pointer whitespace-nowrap pr-2">{name}</label>
 
               {info && (
                 <Tooltip
@@ -38,16 +38,16 @@ const FilterList = ({ type }: FilterListProps) => {
                     className: 'bg-white',
                   }}
                   content={
-                    <div className="max-w-xs p-2.5 bg-white border rounded shadow-xl pointer-events-none text-grey-0 border-grey-0/5">
+                    <div className="pointer-events-none max-w-xs rounded border border-grey-0/5 bg-white p-2.5 text-grey-0 shadow-xl">
                       <span>{info}</span>
                     </div>
                   }
                 >
-                  <div className="w-4 h-4 rounded-full bg-grey-0">
+                  <div className="h-4 w-4 rounded-full bg-grey-0">
                     <Icon
                       icon={INFO_SVG}
                       className={cx({
-                        'w-4 h-4 text-green-0': true,
+                        'h-4 w-4 text-green-0': true,
                       })}
                     />
                   </div>

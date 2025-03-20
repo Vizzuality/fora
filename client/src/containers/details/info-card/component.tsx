@@ -24,18 +24,18 @@ export interface InfoCardProps {
 
 const InfoCard = ({ data, count, type }: InfoCardProps) => {
   return (
-    <div className="p-12 space-y-8 bg-green-80">
+    <div className="space-y-8 bg-green-80 p-12">
       <div>
         <p className="font-semibold uppercase">{type === 'funder' ? 'funding' : 'funded by'}</p>
-        <p className="text-4xl font-display">{count}</p>
+        <p className="font-display text-4xl">{count}</p>
         <p className="font-semibold capitalize">{type === 'funder' ? 'projects' : 'funders'}</p>
       </div>
 
       <dl className="">
         {data.map(({ id, title, info, value }) => (
-          <div key={id} className="py-4 border-t border-grey-40/40">
+          <div key={id} className="border-t border-grey-40/40 py-4">
             <span className="inline-flex items-center text-base font-semibold uppercase">
-              <dt className="pr-2 uppercase whitespace-nowrap">{title}</dt>
+              <dt className="whitespace-nowrap pr-2 uppercase">{title}</dt>
               <Tooltip
                 arrowProps={{
                   enabled: true,
@@ -43,16 +43,16 @@ const InfoCard = ({ data, count, type }: InfoCardProps) => {
                   className: 'bg-grey-60',
                 }}
                 content={
-                  <div className="max-w-xs p-2.5 text-grey-20 rounded shadow-xl bg-grey-60 border border-grey-0/5">
+                  <div className="max-w-xs rounded border border-grey-0/5 bg-grey-60 p-2.5 text-grey-20 shadow-xl">
                     <span>{info}</span>
                   </div>
                 }
               >
-                <div className="w-3.5 h-3.5 rounded-full bg-grey-0">
+                <div className="h-3.5 w-3.5 rounded-full bg-grey-0">
                   <Icon
                     icon={INFO_SVG}
                     className={cx({
-                      'w-3.5 h-3.5 text-green-80': true,
+                      'h-3.5 w-3.5 text-green-80': true,
                     })}
                   />
                 </div>

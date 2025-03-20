@@ -58,19 +58,19 @@ const Cards = ({
       })}
     >
       <div className="space-y-5">
-        <h3 className="text-2xl font-display line-clamp-3">{name}</h3>
+        <h3 className="font-display text-2xl line-clamp-3">{name}</h3>
 
-        <div className="flex pb-4 space-x-2">
+        <div className="flex space-x-2 pb-4">
           <Icon
             icon={LOCATION_SVG}
             className={cx({
-              'w-5 h-5 text-black': true,
+              'h-5 w-5 text-black': true,
             })}
           />
           <p className="line-clamp-3">{ADDRESS || '-'}</p>
         </div>
       </div>
-      <div className="border-t divide-y divide-grey-40/50 border-grey-40/50">
+      <div className="divide-y divide-grey-40/50 border-t border-grey-40/50">
         <div className="py-4 leading-snug">{AREAS_OF_FOCUS.join(' • ')}</div>
 
         <div className="pt-4">

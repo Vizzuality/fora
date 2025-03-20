@@ -158,7 +158,7 @@ export const Tooltip = ({
                   },
                 }),
               }}
-              className="z-50 flex pointer-events-none"
+              className="pointer-events-none z-50 flex"
               {...getFloatingProps({
                 ref: floating,
                 style: {

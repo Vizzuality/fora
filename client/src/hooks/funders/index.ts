@@ -62,7 +62,7 @@ const useFundersBaseQueryOptions = ({ params = {} }) =>
 
 export function useFunders(
   params: ParamsProps = {},
-  upcomingQueryOptions?: Omit<ReturnType<typeof useFundersBaseQueryOptions>, 'queryKey'>
+  upcomingQueryOptions?: Omit<ReturnType<typeof useFundersBaseQueryOptions>, 'queryKey'>,
 ) {
   return useQuery({
     ...useFundersBaseQueryOptions({ params }),
@@ -88,12 +88,12 @@ export function useFundersByGeographicScope(view: View, data: Funder[] = []) {
           .map((funder) => funder.subgeographic_ancestors.map((s) => s.geographic === view && s))
           .flat()
           .filter((g) => g),
-        'id'
+        'id',
       )
         // Add funders to subgeographics
         .map((sgeo) => {
           const items = data.filter((funder) =>
-            funder.subgeographic_ancestors.find((s) => s.id === sgeo.id)
+            funder.subgeographic_ancestors.find((s) => s.id === sgeo.id),
           );
           return {
             ...sgeo,
@@ -104,7 +104,7 @@ export function useFundersByGeographicScope(view: View, data: Funder[] = []) {
         }),
       // Sort by count and name
       ['count', 'name'],
-      ['desc', 'asc']
+      ['desc', 'asc'],
     );
 
     return SUBGEOGRAPHICS;
@@ -141,7 +141,7 @@ const useFundersInfinityBaseQueryOptions = ({ params = {} }) =>
 export function useFundersInfinity(
   // eslint-disable-next-line @typescript-eslint/default-param-last
   params: ParamsProps = {},
-  upcomingQueryOptions?: Omit<ReturnType<typeof useFundersInfinityBaseQueryOptions>, 'queryKey'>
+  upcomingQueryOptions?: Omit<ReturnType<typeof useFundersInfinityBaseQueryOptions>, 'queryKey'>,
 ) {
   const query = useInfiniteQuery({
     ...useFundersInfinityBaseQueryOptions({ params }),
@@ -176,7 +176,7 @@ const useFunderBaseQueryOptions = ({ id }: { id: Funder['id'] }) =>
 
 export function useFunder(
   id: Funder['id'],
-  upcomingQueryOptions?: Omit<ReturnType<typeof useFunderBaseQueryOptions>, 'queryKey'>
+  upcomingQueryOptions?: Omit<ReturnType<typeof useFunderBaseQueryOptions>, 'queryKey'>,
 ) {
   return useQuery({
     ...useFunderBaseQueryOptions({ id }),

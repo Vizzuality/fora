@@ -7,7 +7,7 @@ const DESCRIPTION_TEXT =
 const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/home.jpg`;
 
 const TermsOfUsePage: React.FC = () => (
-  <div className="flex flex-col grow">
+  <div className="flex grow flex-col">
     <MetaTags
       title={TITLE_TEXT}
       description={DESCRIPTION_TEXT}
@@ -15,7 +15,7 @@ const TermsOfUsePage: React.FC = () => (
       imageURL={IMAGE_URL}
     />
 
-    <div className="flex flex-col items-center justify-center grow space-y-10 font-display text-3xl">
+    <div className="flex grow flex-col items-center justify-center space-y-10 font-display text-3xl">
       Coming soon
     </div>
     {/* <TermsOfUse /> */}

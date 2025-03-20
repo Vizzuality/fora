@@ -44,7 +44,7 @@ const AreaScopeModal: React.FC<AreaScopeModaProps> = ({ onClose }: AreaScopeModa
         setFilters({
           ...filters,
           areas: areasValue.length === areasData.length ? [] : areasValue,
-        })
+        }),
       );
 
       if (onClose) onClose();
@@ -56,14 +56,14 @@ const AreaScopeModal: React.FC<AreaScopeModaProps> = ({ onClose }: AreaScopeModa
         },
       });
     },
-    [dispatch, filters, areasData.length, onClose, plausible]
+    [dispatch, filters, areasData.length, onClose, plausible],
   );
 
   return (
     <FormRFF onSubmit={handleSubmit} initialValues={INITIAL_VALUES}>
       {(fprops) => (
         <form
-          className="flex flex-col py-10 overflow-hidden grow"
+          className="flex grow flex-col overflow-hidden py-10"
           onSubmit={fprops.handleSubmit}
           autoComplete="off"
         >

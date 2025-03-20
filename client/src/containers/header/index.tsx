@@ -28,7 +28,7 @@ const Header = () => {
     (href: string) => {
       return pathname.includes(href) && pathname !== '/';
     },
-    [pathname]
+    [pathname],
   );
 
   return (
@@ -63,7 +63,7 @@ const Header = () => {
                   {
                     'after:bg-green-0': isActiveNavItem(href),
                   },
-                  className
+                  className,
                 );
 
                 return (

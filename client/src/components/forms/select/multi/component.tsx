@@ -67,7 +67,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
         onSelect(v);
       }
     },
-    [onSelect]
+    [onSelect],
   );
 
   const handleSelectAll = useCallback(() => {
@@ -108,7 +108,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                 <Listbox.Button
                   className={cn({
                     [THEME[theme].button]: true,
-                    'border border-grey-0/40 text-grey-0/40 pointer-events-none': disabled,
+                    'pointer-events-none border border-grey-0/40 text-grey-0/40': disabled,
                     [THEME.sizes[size]]: true,
                     [THEME[theme].open.button]: open,
                   })}
@@ -121,7 +121,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                   >
                     {SELECTED}
                   </span>
-                  <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                     <Loading
                       visible={loading}
                       className={THEME[theme].loading}
@@ -132,7 +132,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                       <Icon
                         icon={open ? CHEVRON_UP_SVG : CHEVRON_DOWN_SVG}
                         className={cn({
-                          'w-3 h-3 shrink-0': true,
+                          'h-3 w-3 shrink-0': true,
                         })}
                       />
                     )}
@@ -147,7 +147,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
                 className={cn({
-                  'z-50 absolute w-full overflow-y-auto rounded-lg shadow-select min-w-[250px]':
+                  'absolute z-50 w-full min-w-[250px] overflow-y-auto rounded-lg shadow-select':
                     true,
                   [THEME[theme].button[size]]: true,
                 })}
@@ -155,15 +155,15 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                 <Listbox.Options
                   static
                   className={cn({
-                    'overflow-y-auto text-base leading-6 max-h-60 focus:outline-none': true,
+                    'max-h-60 overflow-y-auto text-base leading-6 focus:outline-none': true,
                     [THEME[theme].menu]: true,
                   })}
                 >
                   {(batchSelectionActive || clearSelectionActive) && (
-                    <div className="flex px-5 pt-1 space-x-5 text-sm">
+                    <div className="flex space-x-5 px-5 pt-1 text-sm">
                       {batchSelectionActive && (
                         <button
-                          className="py-2 text-left underline text-grey-20"
+                          className="py-2 text-left text-grey-20 underline"
                           type="button"
                           onClick={handleSelectAll}
                         >
@@ -194,7 +194,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                         {({ active: a, disabled: d }) => (
                           <div
                             className={cn({
-                              'flex items-center space-x-2 cursor-pointer select-none relative py-2 pl-5 pr-4':
+                              'relative flex cursor-pointer select-none items-center space-x-2 py-2 pl-5 pr-4':
                                 true,
                               [THEME[theme].item.base]: true,
                               [THEME[theme].item.active]: a,
@@ -202,7 +202,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                             })}
                           >
                             <Checkbox
-                              className="cursor-pointer focus:text-black focus:ring-black checked:bg-black"
+                              className="cursor-pointer checked:bg-black focus:text-black focus:ring-black"
                               checked={selected.includes(opt.value)}
                               readOnly
                               name={opt.value}
@@ -211,7 +211,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 
                             <span
                               className={cn({
-                                'font-semibold block line-clamp-2': true,
+                                'block font-semibold line-clamp-2': true,
                               })}
                             >
                               {opt.label}

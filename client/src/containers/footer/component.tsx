@@ -31,10 +31,10 @@ const Footer = () => {
   return (
     <footer>
       {!hideNav && (
-        <div className="py-14 bg-blue-0/5">
+        <div className="bg-blue-0/5 py-14">
           <Wrapper>
-            <div className="flex flex-col justify-between space-y-10 md:space-y-0 md:flex-row">
-              <div className="flex flex-col items-center justify-between space-y-10 md:items-start md:space-y-0 md:flex-row md:space-x-20">
+            <div className="flex flex-col justify-between space-y-10 md:flex-row md:space-y-0">
+              <div className="flex flex-col items-center justify-between space-y-10 md:flex-row md:items-start md:space-y-0 md:space-x-20">
                 <Link href="/">
                   <Image
                     src={`${process.env.NEXT_PUBLIC_BASE_PATH}${LOGO_MONOCHROME_SVG}`}
@@ -46,7 +46,7 @@ const Footer = () => {
                 </Link>
 
                 <nav className="flex">
-                  <ul className="gap-10 space-y-3 text-center md:text-left md:columns-2">
+                  <ul className="gap-10 space-y-3 text-center md:columns-2 md:text-left">
                     {NAV_ITEMS.map((item) => {
                       const { href, label, target, rel } = item;
 
@@ -77,7 +77,7 @@ const Footer = () => {
                 </nav>
               </div>
 
-              <div className="flex flex-col space-y-2.5 items-center">
+              <div className="flex flex-col items-center space-y-2.5">
                 <h3 className="text-sm font-bold text-grey-0">Follow us on:</h3>
                 <ul className="flex items-center space-x-2.5">
                   <li>
@@ -86,7 +86,7 @@ const Footer = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Icon icon={LINKEDIN_SVG} className="w-6 h-6" />
+                      <Icon icon={LINKEDIN_SVG} className="h-6 w-6" />
                     </a>
                   </li>
                   <li>
@@ -95,7 +95,7 @@ const Footer = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Icon icon={TWITTER_SVG} className="w-6 h-6" />
+                      <Icon icon={TWITTER_SVG} className="h-6 w-6" />
                     </a>
                   </li>
                 </ul>
@@ -104,11 +104,11 @@ const Footer = () => {
           </Wrapper>
         </div>
       )}
-      <div className="w-full py-5 text-sm text-white bg-blue-0">
+      <div className="w-full bg-blue-0 py-5 text-sm text-white">
         <Wrapper>
-          <div className="flex flex-col items-center justify-between space-y-5 md:space-y-0 md:flex-row">
+          <div className="flex flex-col items-center justify-between space-y-5 md:flex-row md:space-y-0">
             <div className="text-center">© Funders for Regenerative Agriculture 2022</div>
-            <ul className="flex flex-col items-center divide-y md:divide-y-0 md:divide-x md:flex-row divide-white/20">
+            <ul className="flex flex-col items-center divide-y divide-white/20 md:flex-row md:divide-y-0 md:divide-x">
               {POLICIES.map(({ href, label }, i) => (
                 <li
                   key={href}

@@ -41,7 +41,7 @@ const Table = <T extends unknown>({
               <th
                 key={header.id}
                 className={cx({
-                  'py-5 text-base font-semibold text-left': true,
+                  'py-5 text-left text-base font-semibold': true,
                   [classNames.th]: !!classNames.th,
                 })}
                 style={{

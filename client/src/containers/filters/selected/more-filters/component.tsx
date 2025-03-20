@@ -37,14 +37,14 @@ const MoreFiltersSelected: React.FC<MoreFiltersSelectedProps> = ({ type }) => {
     <>
       <button
         type="button"
-        className="relative flex items-center space-x-3 uppercase cursor-pointer px-7 text-grey-0 hover:bg-grey-40/5 whitespace-nowrap"
+        className="relative flex cursor-pointer items-center space-x-3 whitespace-nowrap px-7 uppercase text-grey-0 hover:bg-grey-40/5"
         onClick={openModal}
       >
-        <Icon icon={FILTERS_SVG} className="w-4 h-4" />
+        <Icon icon={FILTERS_SVG} className="h-4 w-4" />
         <span className="relative">
           More filters
           {!!SELECTED && (
-            <span className="absolute top-0 right-0 flex items-center justify-center w-4 h-4 -mt-1 -mr-5 text-xs text-center text-white rounded-full bg-grey-0">
+            <span className="absolute top-0 right-0 -mt-1 -mr-5 flex h-4 w-4 items-center justify-center rounded-full bg-grey-0 text-center text-xs text-white">
               {SELECTED}
             </span>
           )}

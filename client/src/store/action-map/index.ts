@@ -153,7 +153,7 @@ export function getReduxStateFromQuery(getServerSidePropsFunc?: Function) {
           ...(recipientLegalStatuses && {
             recipientLegalStatuses: recipientLegalStatuses as string[],
           }),
-        })
+        }),
       );
     }
 
@@ -199,7 +199,7 @@ export const setQueryFromReduxState = (pathname: string, state: any) => {
     {
       arrayFormat: 'bracket-separator',
       arrayFormatSeparator: ',',
-    }
+    },
   );
 
   router.replace(url, null, { shallow: true });

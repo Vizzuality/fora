@@ -37,7 +37,7 @@ export const getStaticProps = STORE_WRAPPER.getStaticProps((store) => async () =
     setFilters({
       ...filters,
       reportYear: lastYear.name as ReportYears,
-    })
+    }),
   );
 
   // Prefetch widgets

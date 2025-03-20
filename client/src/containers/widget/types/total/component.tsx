@@ -47,14 +47,14 @@ const WidgetTotal = ({ slug, config, query }: Widget) => {
     <div className="relative">
       <Loading
         visible={isFetching && !isFetched}
-        className="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-white/90"
+        className="absolute top-0 left-0 z-10 flex h-full w-full items-center justify-center bg-white/90"
         iconClassName="w-10 h-10"
       />
 
       <dl id={slug} className="grid grid-cols-12 gap-6">
         {TOTALS_DATA.map((total) => (
           <div key={total.id} className="col-span-12 md:col-span-6">
-            <div className="py-3.5 px-10 bg-grey-60 space-y-1">
+            <div className="space-y-1 bg-grey-60 py-3.5 px-10">
               <dt className="flex items-center space-x-2 text-base font-semibold uppercase text-grey-20">
                 <span>{total.label}</span>
 
@@ -65,22 +65,22 @@ const WidgetTotal = ({ slug, config, query }: Widget) => {
                     className: 'bg-white',
                   }}
                   content={
-                    <div className="max-w-xs p-2.5 bg-white border rounded shadow-xl pointer-events-none text-grey-20 border-grey-0/5">
+                    <div className="pointer-events-none max-w-xs rounded border border-grey-0/5 bg-white p-2.5 text-grey-20 shadow-xl">
                       <span>{total.info}</span>
                     </div>
                   }
                 >
-                  <div className="w-3.5 h-3.5 rounded-full bg-grey-20/30">
+                  <div className="h-3.5 w-3.5 rounded-full bg-grey-20/30">
                     <Icon
                       icon={INFO_SVG}
                       className={cx({
-                        'w-3.5 h-3.5 text-grey-20': true,
+                        'h-3.5 w-3.5 text-grey-20': true,
                       })}
                     />
                   </div>
                 </Tooltip>
               </dt>
-              <dd className="text-4xl text-grey-0 font-display">{total.value}</dd>
+              <dd className="font-display text-4xl text-grey-0">{total.value}</dd>
             </div>
           </div>
         ))}

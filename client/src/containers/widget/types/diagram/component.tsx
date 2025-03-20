@@ -53,12 +53,12 @@ const WidgetDiagram = (widget: Widget) => {
   return (
     <div
       className={cx({
-        'relative py-8 px-6 space-y-5 h-full': true,
+        'relative h-full space-y-5 py-8 px-6': true,
         [className]: !!className,
       })}
     >
       <header className="flex items-start justify-between space-x-10">
-        <h3 className="text-2xl font-display">{title}</h3>
+        <h3 className="font-display text-2xl">{title}</h3>
 
         <WidgetToolbar
           {...widget}
@@ -71,13 +71,13 @@ const WidgetDiagram = (widget: Widget) => {
 
       <Loading
         visible={isFetching && !isFetched}
-        className="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-white/90"
+        className="absolute top-0 left-0 z-10 flex h-full w-full items-center justify-center bg-white/90"
         iconClassName="w-10 h-10"
       />
 
       {NO_DATA && (
-        <div className="flex flex-col items-center justify-center flex-grow h-60 space-y-2.5">
-          <Icon icon={NO_DATA_SVG} className="w-28 h-28" />
+        <div className="flex h-60 flex-grow flex-col items-center justify-center space-y-2.5">
+          <Icon icon={NO_DATA_SVG} className="h-28 w-28" />
           <p className="font-display text-xl">No data available</p>
         </div>
       )}

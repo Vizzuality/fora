@@ -7,8 +7,8 @@ import { Project } from '@/types/project';
 export function MyProjectCard(project: Project) {
   return (
     <CardWrapper className="gap-6">
-      <h3 className="text-2xl font-display line-clamp-3">{project.name}</h3>
-      <div className="flex gap-1 items-end">
+      <h3 className="font-display text-2xl line-clamp-3">{project.name}</h3>
+      <div className="flex items-end gap-1">
         <MdLocationOn className="h-6 w-6" />
         <span>{`${project.city ?? ''}${project.state ? `, ${project.state.name}` : ''}, ${
           project.country.name

@@ -69,7 +69,7 @@ describe('project form', () => {
   it('choosing "yes" in the information collection, a selector to select the demographics appears', () => {
     const { container } = render(<FormContext />);
     expect(
-      container.querySelector('#internal_leadership_demographics_collection-yes')
+      container.querySelector('#internal_leadership_demographics_collection-yes'),
     ).toHaveAttribute('checked');
     expect(container.querySelector('#leadership_demographics')).toBeInTheDocument();
   });
@@ -86,7 +86,7 @@ describe('project form', () => {
     const { container } = render(<FormContext />);
 
     expect(
-      container.querySelector('#internal_leadership_demographics_collection-yes')
+      container.querySelector('#internal_leadership_demographics_collection-yes'),
     ).toHaveAttribute('checked');
 
     const demographicSelector = container.querySelector('#leadership_demographics');
@@ -98,7 +98,7 @@ describe('project form', () => {
 
     expect(OptionOther).toBeChecked();
     expect(
-      container.querySelector('input[name="leadership_demographics_other"]')
+      container.querySelector('input[name="leadership_demographics_other"]'),
     ).toBeInTheDocument();
   });
 });

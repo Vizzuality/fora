@@ -12,7 +12,7 @@ export const LegendItem: FC<LegendItemProps> = ({
   children,
 }: LegendItemProps) => (
   <div key={id} className="py-2.5 px-5">
-    <div className="flex mb-1">
+    <div className="mb-1 flex">
       <div
         className={cx({
           relative: true,
@@ -20,7 +20,7 @@ export const LegendItem: FC<LegendItemProps> = ({
         })}
       >
         {icon && <div className="absolute top-0 left-0">{icon}</div>}
-        <div className="text-base font-heading">{name}</div>
+        <div className="font-heading text-base">{name}</div>
       </div>
     </div>
 

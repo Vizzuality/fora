@@ -7,9 +7,9 @@ import Table from './table';
 
 const ReportTotals = () => {
   return (
-    <section className="py-16 bg-white">
+    <section className="bg-white py-16">
       <Wrapper>
-        <h2 className="max-w-xl text-3xl font-display">Explore projects and funders totals</h2>
+        <h2 className="max-w-xl font-display text-3xl">Explore projects and funders totals</h2>
       </Wrapper>
 
       <Table />

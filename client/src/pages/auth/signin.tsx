@@ -39,15 +39,15 @@ const SignInPage: React.FC = () => {
         };
       }
     },
-    [router, callbackUrl]
+    [router, callbackUrl],
   );
 
   return (
     <AuthWrapper>
       <FormRFF onSubmit={handleFormSubmit} initialValues={{ email: '', password: '' }}>
         {({ submitError, handleSubmit }) => (
-          <form className="space-y-5 mb-10" onSubmit={handleSubmit} autoComplete="off">
-            <h2 className="text-3xl text-center font-normal">Log in</h2>
+          <form className="mb-10 space-y-5" onSubmit={handleSubmit} autoComplete="off">
+            <h2 className="text-center text-3xl font-normal">Log in</h2>
             <div>
               <label>Username</label>
               <FieldRFF name="email" type="email">

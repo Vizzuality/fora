@@ -22,7 +22,7 @@ const useGeographicsBaseQueryOptions = queryOptions({
 });
 
 export function useGeographics(
-  upcomingQueryOptions?: Omit<typeof useGeographicsBaseQueryOptions, 'queryKey'>
+  upcomingQueryOptions?: Omit<typeof useGeographicsBaseQueryOptions, 'queryKey'>,
 ) {
   const query = useQuery({
     ...useGeographicsBaseQueryOptions,
@@ -72,7 +72,7 @@ const useSubGeographicsBaseQueryOptions = ({ params }: { params: ParamsProps }) 
 
 export function useSubGeographics(
   params: ParamsProps = {},
-  upcomingQueryOptions?: Omit<ReturnType<typeof useSubGeographicsBaseQueryOptions>, 'queryKey'>
+  upcomingQueryOptions?: Omit<ReturnType<typeof useSubGeographicsBaseQueryOptions>, 'queryKey'>,
 ) {
   return useQuery({
     ...useSubGeographicsBaseQueryOptions({ params }),

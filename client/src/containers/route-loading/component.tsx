@@ -22,12 +22,12 @@ export const RouteLoading: React.FC<RouteLoadingProps> = ({ loading }: RouteLoad
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className={cx({
-            'fixed z-60 w-full h-full pointer-events-none': true,
+            'z-60 pointer-events-none fixed h-full w-full': true,
           })}
         >
           <div
             className={cx({
-              'absolute top-0 left-0 h-1 transition-transform bg-gradient-to-r from-blue-0 to-blue-60 w-full':
+              'absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-blue-0 to-blue-60 transition-transform':
                 true,
             })}
             style={{

@@ -26,11 +26,11 @@ export const LegendTypeChoropleth: FC<LegendTypeChoroplethProps> = ({
       ))}
     </ul>
 
-    <ul className="flex w-full mt-1">
+    <ul className="mt-1 flex w-full">
       {items.map(({ value }) => (
         <li
           key={`${value}`}
-          className="text-xs font-bold text-center shrink-0"
+          className="shrink-0 text-center text-xs font-bold"
           style={{
             width: `${100 / items.length}%`,
           }}

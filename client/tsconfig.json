@@ -2,15 +2,8 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "target": "es6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "types": [
-      "vitest/globals",
-      "@testing-library/jest-dom"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -28,15 +21,6 @@
     }
   },
 
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.test.*",
-    "**/*.d.ts",
-  ],
-  "exclude": [
-    "node_modules",
-    "cypress"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.test.*", "**/*.d.ts"],
+  "exclude": ["node_modules", "cypress"]
 }

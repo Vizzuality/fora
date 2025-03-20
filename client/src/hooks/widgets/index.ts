@@ -65,7 +65,7 @@ const useWidgetsBaseQueryOptions = ({ params }: { params: ParamsProps }) =>
   });
 export function useWidgets(
   params: ParamsProps = {},
-  upcomingQueryOptions?: Omit<typeof useWidgetsBaseQueryOptions, 'queryKey'>
+  upcomingQueryOptions?: Omit<typeof useWidgetsBaseQueryOptions, 'queryKey'>,
 ) {
   return useQuery({
     ...useWidgetsBaseQueryOptions({ params }),
@@ -90,7 +90,7 @@ const useWidgetBaseQueryOptions = ({ slug, params }: { slug: string; params?: Pa
 export function useWidget(
   slug: string,
   params: ParamsProps = {},
-  upcomingQueryOptions?: Omit<typeof useWidgetBaseQueryOptions, 'queryKey'>
+  upcomingQueryOptions?: Omit<typeof useWidgetBaseQueryOptions, 'queryKey'>,
 ) {
   return useQuery({
     ...useWidgetBaseQueryOptions({
@@ -139,7 +139,7 @@ const useReportYearsBaseQueryOptions = queryOptions({
 });
 
 export function useReportYears(
-  upcomingQueryOptions?: Omit<typeof useReportYearsBaseQueryOptions, 'queryKey'>
+  upcomingQueryOptions?: Omit<typeof useReportYearsBaseQueryOptions, 'queryKey'>,
 ) {
   return useQuery({
     ...useReportYearsBaseQueryOptions,

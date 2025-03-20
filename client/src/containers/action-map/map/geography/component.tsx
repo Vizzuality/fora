@@ -20,28 +20,28 @@ const Geography = ({ geo, onClick, onMouseEnter, onMouseLeave, onMouseMove }) =>
     (e) => {
       if (onClick) onClick(e, { id, ...properties });
     },
-    [id, properties, onClick]
+    [id, properties, onClick],
   );
 
   const handleMouseEnter = useCallback(
     (e) => {
       if (onMouseEnter) onMouseEnter(e, { id, ...properties });
     },
-    [id, properties, onMouseEnter]
+    [id, properties, onMouseEnter],
   );
 
   const handleMouseLeave = useCallback(
     (e) => {
       if (onMouseLeave) onMouseLeave(e, { id, ...properties });
     },
-    [id, properties, onMouseLeave]
+    [id, properties, onMouseLeave],
   );
 
   const handleMouseMove = useCallback(
     (e) => {
       if (onMouseMove) onMouseMove(e, { id, ...properties });
     },
-    [id, properties, onMouseMove]
+    [id, properties, onMouseMove],
   );
 
   return (

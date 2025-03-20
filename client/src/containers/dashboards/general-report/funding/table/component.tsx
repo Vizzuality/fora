@@ -119,7 +119,7 @@ const ReportFundingTable = () => {
         },
       },
     ],
-    [geographic, geographicData, selectedWidget]
+    [geographic, geographicData, selectedWidget],
   );
 
   useMemo(() => {
@@ -138,7 +138,7 @@ const ReportFundingTable = () => {
       <Wrapper>
         <div className="space-y-10">
           <div className="flex items-center justify-between">
-            <h3 className="max-w-2xl text-2xl font-display">
+            <h3 className="max-w-2xl font-display text-2xl">
               Amount funded towards{' '}
               <Select
                 id="funded-select"

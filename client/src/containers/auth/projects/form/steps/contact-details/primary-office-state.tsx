@@ -27,7 +27,7 @@ export default function PrimaryOfficeStateSelector() {
     },
     {
       select: ({ data }) => data,
-    }
+    },
   );
 
   const isUSA = countries.find(({ id }) => id === countryId)?.code === 'USA';
@@ -42,7 +42,7 @@ export default function PrimaryOfficeStateSelector() {
     },
     {
       select: ({ data }) => data,
-    }
+    },
   );
 
   const statesOptions: ComponentProps<typeof Select>['options'] =

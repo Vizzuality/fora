@@ -17,8 +17,8 @@ const What = () => {
       <Wrapper>
         <div className="grid grid-cols-12">
           <div className="relative col-span-11 col-start-2">
-            <div className="p-16 space-y-8 bg-green-0">
-              <h2 className="max-w-xl text-4xl font-display text-grey-0">
+            <div className="space-y-8 bg-green-0 p-16">
+              <h2 className="max-w-xl font-display text-4xl text-grey-0">
                 What is regenerative agriculture?
               </h2>
               <p className="px-20 text-xl text-grey-0">
@@ -32,7 +32,7 @@ const What = () => {
             </div>
 
             <AnimatedScroll
-              className="absolute z-0 w-full h-full bg-green-0/10 top-full -left-1/2"
+              className="absolute top-full -left-1/2 z-0 h-full w-full bg-green-0/10"
               xOptions={{ start: 150, end: 150 }}
               yOptions={{ start: -250, end: 0 }}
             />
@@ -59,10 +59,10 @@ const What = () => {
               }}
             >
               <div className="flex space-x-5">
-                <Icon icon={icon} className="w-6 h-6 text-green-0 shrink-0" />
+                <Icon icon={icon} className="h-6 w-6 shrink-0 text-green-0" />
 
                 <div className="space-y-2.5">
-                  <h3 className="text-2xl font-display text-grey-0">{title}</h3>
+                  <h3 className="font-display text-2xl text-grey-0">{title}</h3>
                   <p className="text-xl text-grey-0">{description}</p>
                 </div>
               </div>
@@ -74,7 +74,7 @@ const What = () => {
         <div className="grid grid-cols-12 gap-10">
           <div className="relative col-span-6 col-start-2">
             <div className="space-y-8">
-              <h3 className="text-3xl font-display text-grey-0">
+              <h3 className="font-display text-3xl text-grey-0">
                 What does regenerative agriculture foster?
               </h3>
               <p className="pl-20 text-xl text-grey-0">
@@ -90,7 +90,7 @@ const What = () => {
           <div className="relative col-span-5 col-start-8">
             <div className="flex space-x-5">
               <AnimatedScroll
-                className="w-full mt-20"
+                className="mt-20 w-full"
                 xOptions={{ start: 0, end: 0 }}
                 yOptions={{ start: -25, end: 25 }}
               >
@@ -107,7 +107,7 @@ const What = () => {
                 />
               </AnimatedScroll>
               <AnimatedScroll
-                className="w-full mt-10"
+                className="mt-10 w-full"
                 xOptions={{ start: 0, end: 0 }}
                 yOptions={{ start: 25, end: -100 }}
               >

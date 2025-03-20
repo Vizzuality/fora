@@ -13,7 +13,7 @@ const StatesTooltip = ({ properties = {} }: StatesTooltipProps) => {
     <ul className="space-y-5">
       <li className="font-semibold">
         <h4 className="text-sm uppercase text-grey-40">Location</h4>
-        <p className="text-base max-w-[170px]">{name}</p>
+        <p className="max-w-[170px] text-base">{name}</p>
       </li>
       <li className="font-semibold">
         <h4 className="text-sm uppercase text-grey-40">{type}</h4>

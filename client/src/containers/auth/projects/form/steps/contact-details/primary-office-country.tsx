@@ -20,7 +20,7 @@ export default function PrimaryOfficeCountrySelector() {
     },
     {
       select: ({ data }) => data,
-    }
+    },
   );
 
   const countriesOptions: ComponentProps<typeof Select>['options'] =

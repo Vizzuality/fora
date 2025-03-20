@@ -28,10 +28,10 @@ const WidgetTable = (widget: Widget) => {
     <div className="relative">
       <Loading
         visible={isFetching && !isFetched}
-        className="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-white/90"
+        className="absolute top-0 left-0 z-10 flex h-full w-full items-center justify-center bg-white/90"
         iconClassName="w-10 h-10"
       />
-      <div className="relative overflow-auto h-96">
+      <div className="relative h-96 overflow-auto">
         <Table {...config} data={DATA} />
       </div>
     </div>

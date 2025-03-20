@@ -41,7 +41,7 @@ export const DemographicScopeList = () => {
         });
       }
     },
-    [demographicsData, plausible]
+    [demographicsData, plausible],
   );
 
   return (

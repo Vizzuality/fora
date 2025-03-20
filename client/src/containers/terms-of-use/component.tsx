@@ -3,7 +3,7 @@ import Wrapper from 'containers/wrapper';
 const TermsOfUse: React.FC = () => {
   return (
     <Wrapper>
-      <section className="mb-10 prose max-w-none prose-slate lg:prose-lg">
+      <section className="prose prose-slate mb-10 max-w-none lg:prose-lg">
         <h3>Cookies policy.</h3>
         <p>
           FORA may use cookies to personalize and make it as easy as possible for the User to

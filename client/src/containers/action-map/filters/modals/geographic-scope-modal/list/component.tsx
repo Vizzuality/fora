@@ -56,7 +56,7 @@ export const GeographicScopeList: React.FC<GeographicScopeListFooterProps> = ({}
       input.onChange(selection);
       form.change('allSubgeographics', selection.length === subgeographicData.length);
     },
-    [form, subgeographicData]
+    [form, subgeographicData],
   );
 
   const handleAllSubgeographic = useCallback(
@@ -65,7 +65,7 @@ export const GeographicScopeList: React.FC<GeographicScopeListFooterProps> = ({}
         input.onChange(
           subgeographicData.map((s) => {
             return s.id;
-          })
+          }),
         );
         form.change('allSubgeographics', true);
       } else {
@@ -79,13 +79,13 @@ export const GeographicScopeList: React.FC<GeographicScopeListFooterProps> = ({}
         });
       }
     },
-    [subgeographicData, form, plausible]
+    [subgeographicData, form, plausible],
   );
 
   useEffect(() => {
     form.change(
       'subgeographics',
-      subgeographicData.map((s) => s.id)
+      subgeographicData.map((s) => s.id),
     );
 
     form.change('allSubgeographics', true);

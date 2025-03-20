@@ -76,14 +76,14 @@ export const geoAlbersUsaTerritories = () => {
       y >= 0.12 && y < 0.234 && x >= -0.225 && x < -0.185
         ? alaska
         : y >= 0.166 && y < 0.234 && x >= -0.185 && x < -0.08
-        ? hawaii
-        : y >= 0.204 && y < 0.234 && x >= 0.3 && x < 0.38
-        ? puertoRico
-        : y >= 0.05 && y < 0.204 && x >= -0.415 && x < -0.225
-        ? guamMariana
-        : y >= 0.18 && y < 0.234 && x >= -0.415 && x < -0.225
-        ? americanSamoa
-        : lower48
+          ? hawaii
+          : y >= 0.204 && y < 0.234 && x >= 0.3 && x < 0.38
+            ? puertoRico
+            : y >= 0.05 && y < 0.204 && x >= -0.415 && x < -0.225
+              ? guamMariana
+              : y >= 0.18 && y < 0.234 && x >= -0.415 && x < -0.225
+                ? americanSamoa
+                : lower48
     ).invert(coordinates);
   };
 

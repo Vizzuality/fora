@@ -18,18 +18,18 @@ const FilterSelection: React.FC<FilterSelectionProps> = ({
     <>
       <div className="relative flex">
         {dataIsFetching && !dataIsFetched && (
-          <Loading visible={true} className="relative w-2 h-2" iconClassName="w-3 h-3" />
+          <Loading visible={true} className="relative h-2 w-2" iconClassName="w-3 h-3" />
         )}
 
         {dataIsFetched && (
           <>
-            <span className="underline truncate grow">{text}</span>
+            <span className="grow truncate underline">{text}</span>
 
-            {data.length > 1 && <span className="ml-1 underline shrink-0">+{data.length - 1}</span>}
+            {data.length > 1 && <span className="ml-1 shrink-0 underline">+{data.length - 1}</span>}
 
             {!!data.length && (
-              <button onClick={onReset} className="ml-3 shrink-0 group">
-                <Icon icon={CLOSE_SVG} className="w-3 h-3 group-hover:text-red-0" />
+              <button onClick={onReset} className="group ml-3 shrink-0">
+                <Icon icon={CLOSE_SVG} className="h-3 w-3 group-hover:text-red-0" />
               </button>
             )}
           </>

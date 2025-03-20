@@ -6,21 +6,21 @@ const ITEMS = [
   {
     id: 'XXX',
     name: 'Included areas',
-    icon: <Icon icon={DOWNLOAD_SVG} className="w-3.5 h-3.5 mt-0.5 text-blue-0" />,
+    icon: <Icon icon={DOWNLOAD_SVG} className="mt-0.5 h-3.5 w-3.5 text-blue-0" />,
     // description:
     //   'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus minus eligendi doloremque unde, atque maxime dolore officiis quia architecto fugiat, dolorem animi vel! Velit minus facere maxime consequuntur iure. Nisi!',
   },
   {
     id: 'YYY',
     name: 'All features',
-    icon: <div className="w-3 h-3 mt-0.5 rounded bg-blue-0" />,
+    icon: <div className="mt-0.5 h-3 w-3 rounded bg-blue-0" />,
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus minus eligendi doloremque unde, atque maxime.',
   },
   {
     id: 'ZZZ',
     name: 'Protected areas',
-    icon: <div className="w-3 h-3 mt-0.5 rounded bg-green-0" />,
+    icon: <div className="mt-0.5 h-3 w-3 rounded bg-green-0" />,
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
   },
   {

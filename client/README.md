@@ -53,7 +53,6 @@ Check out the [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 See [the root README.md file](../README.md#deploying-on-aws-servers-staging--production)
 
-
 ## Contribution rules
 
 Please, **create a PR** for any improvement or feature you want to add. Try to not commit directly anything on the `main` branch.
@@ -68,28 +67,23 @@ Here's a step by step guide on how to address vulnerabilities found in productio
 
 1. Go to the Dependabot alerts page and locate the front-end vulnerability to address
 2. Identify if the vulnerability affects production code:
-	- To do so run `yarn npm audit --recursive --environment production`
-	- If the dependency is _not_ listed by this command, then the vulnerability only affects development code. You can dismiss the alert on GitHub as “Vulnerable code is not actually used” in the top right corner of the vulnerability page.
-	- If the dependency _is_ listed, follow the steps below.
+   - To do so run `yarn npm audit --recursive --environment production`
+   - If the dependency is _not_ listed by this command, then the vulnerability only affects development code. You can dismiss the alert on GitHub as “Vulnerable code is not actually used” in the top right corner of the vulnerability page.
+   - If the dependency _is_ listed, follow the steps below.
 3. On the vulnerability page, click the “Create Dependabot security update” button
-	- This will create a Pull Request with a fix for the vulnerability. If GitHub can generate this PR, then you can merge and the security alert will disappear.
-	- If the vulnerability can't be patched automatically, follow the steps below.
+   - This will create a Pull Request with a fix for the vulnerability. If GitHub can generate this PR, then you can merge and the security alert will disappear.
+   - If the vulnerability can't be patched automatically, follow the steps below.
 4. If the action fails, then you can semi-automatically update the vulnerable dependency by running `npm_config_yes=true npx yarn-audit-fix --only prod`
-	- `yarn-audit-fix` (see [repository](https://github.com/antongolub/yarn-audit-fix)) is a tool that applies the fixes from `npm audit fix` to Yarn installations
-	- The tool might also not be able to fix the vulnerability. If so, continue with the steps below.
+   - `yarn-audit-fix` (see [repository](https://github.com/antongolub/yarn-audit-fix)) is a tool that applies the fixes from `npm audit fix` to Yarn installations
+   - The tool might also not be able to fix the vulnerability. If so, continue with the steps below.
 5. If the action fails, then you will have to manually update the dependencies until the vulnerability is solved
 
 ## Env variables
 
-
-| Variable name           | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |  Default value                      |
-|-------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------:|
-| NEXTAUTH_SECRET         | Key used to encrypt the NextAuth.js JWT, and to hash email verification tokens. Do not forget to add a secret. NextAuth can handle without it in development mode,  but it won't in production! [https://next-auth.js.org/configuration/options#secret](https://next-auth.js.org/configuration/options#secret)                                                                                                                                                                     |  |
-| NEXTAUTH_URL            | Needed by the next-auth library for [handling auth requests and callbacks](https://next-auth.js.org/configuration/options#nextauth_url). Set the environment variable to the canonical URL of your site. Not needed in Vercel deploys.                                                                                                                                                                                                                                             |  |
-| NEXT_PUBLIC_API_URL  | URL of the API.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | https://jsonplaceholder.typicode.com   |
-| NEXT_PUBLIC_GA_TRACKING_ID  | Google Analytics tracking ID. If you're working with an Google Analytics 4 property, you have a Measurement ID instead of a Tracking ID.                                                                                                                                                                                                                                                                                                                                           |    |
-| NEXT_PUBLIC_BASE_PATH  | As this project should live in a subpath of a domain, we need to specify a basePath inside the next.config.js. You may think this variable must be without the NEXT_PUBLIC but it also affects the images urls. That's why we need it at build and run time. We MUST leave it as an empty string for Vercel and local environments = "" [https://nextjs.org/docs/pages/api-reference/next-config-js/basePath](https://nextjs.org/docs/pages/api-reference/next-config-js/basePath) |    |
-
-
-
-
+| Variable name              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |                        Default value |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -----------------------------------: |
+| NEXTAUTH_SECRET            | Key used to encrypt the NextAuth.js JWT, and to hash email verification tokens. Do not forget to add a secret. NextAuth can handle without it in development mode, but it won't in production! [https://next-auth.js.org/configuration/options#secret](https://next-auth.js.org/configuration/options#secret)                                                                                                                                                                      |                                      |
+| NEXTAUTH_URL               | Needed by the next-auth library for [handling auth requests and callbacks](https://next-auth.js.org/configuration/options#nextauth_url). Set the environment variable to the canonical URL of your site. Not needed in Vercel deploys.                                                                                                                                                                                                                                             |                                      |
+| NEXT_PUBLIC_API_URL        | URL of the API.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | https://jsonplaceholder.typicode.com |
+| NEXT_PUBLIC_GA_TRACKING_ID | Google Analytics tracking ID. If you're working with an Google Analytics 4 property, you have a Measurement ID instead of a Tracking ID.                                                                                                                                                                                                                                                                                                                                           |                                      |
+| NEXT_PUBLIC_BASE_PATH      | As this project should live in a subpath of a domain, we need to specify a basePath inside the next.config.js. You may think this variable must be without the NEXT_PUBLIC but it also affects the images urls. That's why we need it at build and run time. We MUST leave it as an empty string for Vercel and local environments = "" [https://nextjs.org/docs/pages/api-reference/next-config-js/basePath](https://nextjs.org/docs/pages/api-reference/next-config-js/basePath) |                                      |

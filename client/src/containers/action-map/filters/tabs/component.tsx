@@ -36,7 +36,7 @@ const FilterTabs = () => {
         },
       });
     },
-    [dispatch, plausible]
+    [dispatch, plausible],
   );
   return (
     <div className="pr-7">

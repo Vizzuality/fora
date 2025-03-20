@@ -17,7 +17,7 @@ const baseQueryOptions = queryOptions({
 });
 
 export function useProjectLegalStatuses(
-  upcomingQueryOptions?: Omit<typeof baseQueryOptions, 'queryKey'>
+  upcomingQueryOptions?: Omit<typeof baseQueryOptions, 'queryKey'>,
 ) {
   const query = useQuery({
     ...baseQueryOptions,

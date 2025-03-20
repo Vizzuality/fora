@@ -5,5 +5,5 @@ export default function ErrorField<T = unknown>({ name }: { name: keyof T }) {
 
   if (meta.valid || !meta.modified) return null;
 
-  return <span className="text-red-700 block">{meta.error?._errors ?? meta.error}</span>;
+  return <span className="block text-red-700">{meta.error?._errors ?? meta.error}</span>;
 }

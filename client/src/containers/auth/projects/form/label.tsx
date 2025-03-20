@@ -26,8 +26,8 @@ export default function VisibilityLabel({
     <label
       {...labelProps}
       className={cn(
-        'flex items-center gap-1 text-grey-20 uppercase font-semibold',
-        labelProps.className
+        'flex items-center gap-1 font-semibold uppercase text-grey-20',
+        labelProps.className,
       )}
     >
       {renderIcon(icon)}

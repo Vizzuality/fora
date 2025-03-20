@@ -41,7 +41,7 @@ export const FunderTypes = () => {
         });
       }
     },
-    [funderTypesData, plausible]
+    [funderTypesData, plausible],
   );
 
   return (

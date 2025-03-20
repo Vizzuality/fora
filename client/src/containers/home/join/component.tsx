@@ -20,13 +20,13 @@ const Join = () => {
       <Wrapper>
         <motion.div
           ref={ref}
-          className="flex flex-col items-center justify-center py-24 space-y-10 bg-cover"
+          className="flex flex-col items-center justify-center space-y-10 bg-cover py-24"
           style={{
             backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH}/images/join/join-2.jpg)`,
             backgroundPosition: bgPosition,
           }}
         >
-          <h2 className="max-w-3xl mx-auto text-4xl text-center text-white font-display">
+          <h2 className="mx-auto max-w-3xl text-center font-display text-4xl text-white">
             Support regenerative agriculture initiatives
           </h2>
 

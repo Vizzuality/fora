@@ -18,23 +18,26 @@ const DESCRIPTION_TEXT =
 const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/home.jpg`;
 
 export const getServerSideProps = (async (context) => {
-  const { query: { id } } = context;
+  const {
+    query: { id },
+  } = context;
   const session = await auth(context.req, context.res);
 
-  const project = await API.request<{ data: Project}>({
+  const project = await API.request<{ data: Project }>({
     method: 'GET',
     url: `/members/projects/${id}`,
     headers: {
       Authorization: `Bearer ${session?.accessToken}`,
-    }
+    },
   }).then((response) => response.data.data);
 
-  return { props: { project } }
-// eslint-disable-next-line prettier/prettier
-}) satisfies GetServerSideProps<{ project: Project }>
+  return { props: { project } };
+  // eslint-disable-next-line prettier/prettier
+}) satisfies GetServerSideProps<{ project: Project }>;
 
-
-const EditProjectPage: FC = ({ project }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const EditProjectPage: FC = ({
+  project,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <>
       <MetaTags

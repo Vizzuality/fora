@@ -76,7 +76,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                 <Listbox.Button
                   className={cn({
                     [THEME[theme].button]: true,
-                    'border  text-grey-0/40 pointer-events-none': disabled,
+                    'pointer-events-none border text-grey-0/40': disabled,
                     [THEME.sizes[size]]: true,
                     [THEME[theme].open.button]: open,
                   })}
@@ -89,7 +89,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                   >
                     {SELECTED}
                   </span>
-                  <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                     <Loading
                       visible={loading}
                       className={THEME[theme].loading}
@@ -100,7 +100,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                       <Icon
                         icon={open ? CHEVRON_UP_SVG : CHEVRON_DOWN_SVG}
                         className={cn({
-                          'w-3 h-3 shrink-0': true,
+                          'h-3 w-3 shrink-0': true,
                         })}
                       />
                     )}
@@ -115,7 +115,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
                 className={cn({
-                  'z-50 absolute w-full overflow-y-auto rounded-lg shadow-select min-w-[250px]':
+                  'absolute z-50 w-full min-w-[250px] overflow-y-auto rounded-lg shadow-select':
                     true,
                   [THEME[theme].button[size]]: true,
                 })}
@@ -123,7 +123,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                 <Listbox.Options
                   static
                   className={cn({
-                    'overflow-y-auto text-base leading-6 max-h-60 focus:outline-none': true,
+                    'max-h-60 overflow-y-auto text-base leading-6 focus:outline-none': true,
                     [THEME[theme].menu]: true,
                   })}
                 >
@@ -143,7 +143,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                         {({ active: a, selected: s, disabled: d }) => (
                           <div
                             className={cn({
-                              'flex space-x-2 cursor-pointer select-none relative py-2 pl-5 pr-4':
+                              'relative flex cursor-pointer select-none space-x-2 py-2 pl-5 pr-4':
                                 true,
                               [THEME[theme].item.base]: true,
                               [THEME[theme].item.active]: a,
@@ -153,7 +153,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                           >
                             <span
                               className={cn({
-                                'font-semibold block line-clamp-2': true,
+                                'block font-semibold line-clamp-2': true,
                               })}
                             >
                               {opt.label}

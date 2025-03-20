@@ -52,7 +52,7 @@ const List = () => {
       dispatch(setProjectSelected(id));
       openModal();
     },
-    [dispatch, openModal]
+    [dispatch, openModal],
   );
 
   const handleProjectPreviewClose = useCallback(() => {
@@ -78,7 +78,7 @@ const List = () => {
     <>
       <Loading
         visible={LOADING}
-        className="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-white/75"
+        className="absolute top-0 left-0 z-10 flex h-full w-full items-center justify-center bg-white/75"
       />
 
       <div className="space-y-5">

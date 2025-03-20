@@ -60,7 +60,7 @@ const InternalNo = ProjectZodSchema.extend({
 
 export const ProjectSchemaUnion = z.discriminatedUnion(
   'internal_leadership_demographics_collection',
-  [InternalYes, InternalNo]
+  [InternalYes, InternalNo],
 );
 
 export type ProjectSchema = z.infer<typeof ProjectSchemaUnion>;

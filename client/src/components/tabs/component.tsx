@@ -10,7 +10,7 @@ const Tabs: React.FC<TabsProps> = ({ items, selected, theme = 'green', onChange 
     (id: string) => {
       if (onChange && id !== selected) onChange(id);
     },
-    [selected, onChange]
+    [selected, onChange],
   );
 
   return (
@@ -20,7 +20,7 @@ const Tabs: React.FC<TabsProps> = ({ items, selected, theme = 'green', onChange 
           key={t.id}
           type="button"
           className={cx({
-            'text-base font-semibold px-8 py-3 block leading-normal text-center': true,
+            'block px-8 py-3 text-center text-base font-semibold leading-normal': true,
             'rounded-l-lg': index === 0,
             'rounded-r-lg': index === items.length - 1,
             [THEME[theme].base]: selected !== t.id,

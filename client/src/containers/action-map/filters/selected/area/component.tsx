@@ -43,16 +43,16 @@ const AreaSelected: React.FC<AreaSelectedProps> = () => {
         setFilters({
           ...filters,
           areas: [],
-        })
+        }),
       );
     },
-    [dispatch, filters]
+    [dispatch, filters],
   );
 
   return (
     <div
       className={cx({
-        'inline-block font-semibold max-w-full text-grey-0': true,
+        'inline-block max-w-full font-semibold text-grey-0': true,
       })}
     >
       <Selection

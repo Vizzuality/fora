@@ -3,7 +3,7 @@ import Wrapper from 'containers/wrapper';
 const PrivacyPolicy: React.FC = () => {
   return (
     <Wrapper>
-      <section className="mb-10 prose max-w-none prose-slate lg:prose-lg">
+      <section className="prose prose-slate mb-10 max-w-none lg:prose-lg">
         <h3>Cookie types.</h3>
         <p>By domain management entity</p>
         <ul>

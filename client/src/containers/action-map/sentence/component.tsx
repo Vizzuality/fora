@@ -70,7 +70,7 @@ const Sentence: React.FC<SentenceProps> = () => {
   }, [plausible, dispatch]);
 
   return (
-    <div className="relative text-sm font-semibold text-grey-20 min-h-[16px]">
+    <div className="relative min-h-[16px] text-sm font-semibold text-grey-20">
       <Loading
         visible={LOADING}
         className="absolute top-0 bottom-0 left-0 right-0 z-10"
@@ -79,7 +79,7 @@ const Sentence: React.FC<SentenceProps> = () => {
 
       {!!DATA.length && (
         <>
-          <div className="inline mr-2">
+          <div className="mr-2 inline">
             You are viewing {DATA.length} {type}
             <Geographics />
             <Areas />

@@ -82,7 +82,7 @@ const Map = () => {
           setFilters({
             ...filters,
             subgeographics: [properties.abbreviation],
-          })
+          }),
         );
 
         plausible('Map - Save filter', {
@@ -136,7 +136,7 @@ const Map = () => {
     <div className="relative w-full">
       <Loading
         visible={LOADING}
-        className="absolute top-0 left-0 flex items-center justify-center w-full h-full bg-white/10"
+        className="absolute top-0 left-0 flex h-full w-full items-center justify-center bg-white/10"
         iconClassName="w-10 h-10"
       />
 

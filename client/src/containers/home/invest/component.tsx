@@ -34,8 +34,8 @@ const Invest = () => {
           <ul key={i} className="space-y-5">
             {areas.map((area) => (
               <li key={area.id} className="flex space-x-2.5 text-xl text-white">
-                <div className="flex items-center justify-center w-5 h-5 mt-1 bg-white rounded-full shrink-0">
-                  <Icon className="w-3 h-3 text-blue-0" icon={CHECK_SVG} />
+                <div className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white">
+                  <Icon className="h-3 w-3 text-blue-0" icon={CHECK_SVG} />
                 </div>
                 <span>{area.name}</span>
               </li>
@@ -57,15 +57,15 @@ const Invest = () => {
   }, [formatedAreasData]);
 
   return (
-    <section id="invest" className="pt-16 space-y-20">
+    <section id="invest" className="space-y-20 pt-16">
       <Wrapper>
         <div className="relative grid grid-cols-12">
           <div className="col-span-9 col-start-4">
-            <div className="p-16 space-y-8 bg-blue-0">
-              <h3 className="relative z-10 text-3xl text-white font-display">
+            <div className="space-y-8 bg-blue-0 p-16">
+              <h3 className="relative z-10 font-display text-3xl text-white">
                 What can you invest in?
               </h3>
-              <div className="px-20 space-y-8">
+              <div className="space-y-8 px-20">
                 <p className="text-xl text-white">
                   Browse a catalogue of over 40 areas of focus that you can support and invest in
                   and find out what current members are interested in.
@@ -88,7 +88,7 @@ const Invest = () => {
                       }}
                     />
                     <button type="button" aria-label="arrow-right" onClick={handleOnNextClick}>
-                      <Icon className="w-7 h-7 fill-white" icon={CHEVRON_RIGHT} />
+                      <Icon className="h-7 w-7 fill-white" icon={CHEVRON_RIGHT} />
                     </button>
                   </div>
                 )}
@@ -104,7 +104,7 @@ const Invest = () => {
 
           <div className="absolute top-0 left-0 z-0 col-span-4">
             <AnimatedScroll
-              className="w-full h-full"
+              className="h-full w-full"
               xOptions={{
                 start: 0,
                 end: 0,

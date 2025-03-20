@@ -61,7 +61,7 @@ const useProjectsBaseQueryOptions = ({ params = {} }) =>
 export function useProjects(
   // eslint-disable-next-line @typescript-eslint/default-param-last
   params: ParamsProps = {},
-  upcomingQueryOptions?: Omit<ReturnType<typeof useProjectsBaseQueryOptions>, 'queryKey'>
+  upcomingQueryOptions?: Omit<ReturnType<typeof useProjectsBaseQueryOptions>, 'queryKey'>,
 ) {
   return useQuery({
     ...useProjectsBaseQueryOptions({ params }),
@@ -87,12 +87,12 @@ export function useProjectsByGeographicScope(view: View, data: Project[] = []) {
           .map((project) => project.subgeographic_ancestors.map((s) => s.geographic === view && s))
           .flat()
           .filter((g) => g),
-        'id'
+        'id',
       )
         // Add projects to subgeographics
         .map((sgeo) => {
           const items = data.filter((project) =>
-            project.subgeographic_ancestors.find((s) => s.id === sgeo.id)
+            project.subgeographic_ancestors.find((s) => s.id === sgeo.id),
           );
           return {
             ...sgeo,
@@ -103,7 +103,7 @@ export function useProjectsByGeographicScope(view: View, data: Project[] = []) {
         }),
       // Sort by count and name
       ['count', 'name'],
-      ['desc', 'asc']
+      ['desc', 'asc'],
     );
 
     return SUBGEOGRAPHICS;
@@ -140,7 +140,7 @@ const useProjectsInfinityBaseQueryOptions = ({ params = {} }) =>
 export function useProjectsInfinity(
   // eslint-disable-next-line @typescript-eslint/default-param-last
   params: ParamsProps = {},
-  upcomingQueryOptions?: Omit<ReturnType<typeof useProjectsInfinityBaseQueryOptions>, 'queryKey'>
+  upcomingQueryOptions?: Omit<ReturnType<typeof useProjectsInfinityBaseQueryOptions>, 'queryKey'>,
 ) {
   const query = useInfiniteQuery({
     ...useProjectsInfinityBaseQueryOptions({ params }),
@@ -174,7 +174,7 @@ const useProjectBaseQueryOptions = ({ id }: { id: Project['id'] }) =>
 
 export function useProject(
   id: string,
-  upcomingQueryOptions?: Omit<ReturnType<typeof useProjectBaseQueryOptions>, 'queryKey'>
+  upcomingQueryOptions?: Omit<ReturnType<typeof useProjectBaseQueryOptions>, 'queryKey'>,
 ) {
   return useQuery({
     ...useProjectBaseQueryOptions({ id }),

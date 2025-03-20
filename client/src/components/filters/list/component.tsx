@@ -55,29 +55,29 @@ const FilterList: React.FC<FilterListProps> = ({
     <div
       className={cx({
         relative: true,
-        'py-px flex flex-col overflow-hidden grow': overflow,
+        'flex grow flex-col overflow-hidden py-px': overflow,
       })}
     >
       <Loading
         visible={loading}
-        className="absolute z-10 flex items-center justify-center w-full h-full bg-white/90"
+        className="absolute z-10 flex h-full w-full items-center justify-center bg-white/90"
       />
       {/* GRADIENT TOP */}
       {overflow && (
-        <div className="absolute left-0 z-10 w-full h-10 pointer-events-none -top-1 bg-gradient-to-b from-white via-white" />
+        <div className="pointer-events-none absolute left-0 -top-1 z-10 h-10 w-full bg-gradient-to-b from-white via-white" />
       )}
 
       {/* LIST */}
       <div
         className={cx({
           relative: true,
-          'flex flex-col grow overflow-hidden': overflow,
+          'flex grow flex-col overflow-hidden': overflow,
         })}
       >
         <div
           className={cx({
-            'flex flex-col space-y-5 grow': true,
-            'px-10 overflow-x-hidden overflow-y-auto': overflow,
+            'flex grow flex-col space-y-5': true,
+            'overflow-y-auto overflow-x-hidden px-10': overflow,
           })}
         >
           <div className="py-8">
@@ -89,7 +89,7 @@ const FilterList: React.FC<FilterListProps> = ({
                     aria-label="select all"
                     type="button"
                     className={cx({
-                      'font-semibold shrink-0 underline': true,
+                      'shrink-0 font-semibold underline': true,
                       'text-grey-0': !DISABLED_ALL,
                       'text-grey-20': DISABLED_ALL,
                     })}
@@ -104,7 +104,7 @@ const FilterList: React.FC<FilterListProps> = ({
                       aria-label="clear all"
                       type="button"
                       className={cx({
-                        'font-semibold shrink-0 underline': true,
+                        'shrink-0 font-semibold underline': true,
                         'text-grey-0': !DISABLED_NONE,
                         'text-grey-20': DISABLED_NONE,
                       })}
@@ -114,7 +114,7 @@ const FilterList: React.FC<FilterListProps> = ({
                       Clear all
                     </button>
 
-                    {SELECTED && <div className="font-semibold shrink-0">({SELECTED})</div>}
+                    {SELECTED && <div className="shrink-0 font-semibold">({SELECTED})</div>}
                   </div>
                 </div>
               </div>
@@ -144,7 +144,7 @@ const FilterList: React.FC<FilterListProps> = ({
       </div>
       {/* GRADIENT BOTTOM */}
       {overflow && (
-        <div className="absolute bottom-0 left-0 z-10 w-full h-10 pointer-events-none bg-gradient-to-t from-white via-white" />
+        <div className="pointer-events-none absolute bottom-0 left-0 z-10 h-10 w-full bg-gradient-to-t from-white via-white" />
       )}
     </div>
   );

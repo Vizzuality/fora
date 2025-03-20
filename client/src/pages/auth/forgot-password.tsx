@@ -50,8 +50,8 @@ const ForgotPasswordPage = () => {
             {submitSucceeded ? (
               <SuccessMessage />
             ) : (
-              <form className="space-y-5 mb-10" onSubmit={handleSubmit} autoComplete="off">
-                <h2 className="text-3xl text-center font-normal">Forgot password?</h2>
+              <form className="mb-10 space-y-5" onSubmit={handleSubmit} autoComplete="off">
+                <h2 className="text-center text-3xl font-normal">Forgot password?</h2>
                 <p>Enter your email and we&apos;ll send you a link back to your account.</p>
                 <div>
                   <label>Email</label>

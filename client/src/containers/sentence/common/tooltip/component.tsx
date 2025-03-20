@@ -20,8 +20,8 @@ const SentenceTooltip: React.FC<SentenceTooltipProps> = ({ text, list = [], pref
           className: 'bg-white',
         }}
         content={
-          <div className="max-w-xs py-2.5 bg-white border rounded shadow-xl pointer-events-auto text-grey-20 border-grey-0/5 flex flex-col max-h-full">
-            <div className="overflow-x-hidden overflow-y-auto pl-2.5 pr-5">
+          <div className="pointer-events-auto flex max-h-full max-w-xs flex-col rounded border border-grey-0/5 bg-white py-2.5 text-grey-20 shadow-xl">
+            <div className="overflow-y-auto overflow-x-hidden pl-2.5 pr-5">
               <ul className="space-y-2">
                 {list.map((i) => (
                   <li key={i.id} className="text-sm">
@@ -36,7 +36,7 @@ const SentenceTooltip: React.FC<SentenceTooltipProps> = ({ text, list = [], pref
         <span
           className={cx({
             'text-grey-0': true,
-            'hover:underline cursor-pointer': list.length > 1,
+            'cursor-pointer hover:underline': list.length > 1,
           })}
         >
           {text}

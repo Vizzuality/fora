@@ -18,14 +18,14 @@ const How = () => {
     <section id="hero" className="relative z-10 pt-16">
       <Wrapper>
         <div className="space-y-10">
-          <h2 className="text-4xl text-center font-display">How it works?</h2>
+          <h2 className="text-center font-display text-4xl">How it works?</h2>
 
           <div className="space-y-32">
             {/* DASHBOARD */}
             <div className="grid grid-cols-12 gap-5">
               <div className="relative col-span-5">
                 <AnimatedScroll
-                  className="flex items-center justify-between w-full h-full p-16 mt-16 space-y-10 bg-green-0/10"
+                  className="mt-16 flex h-full w-full items-center justify-between space-y-10 bg-green-0/10 p-16"
                   xOptions={{
                     start: 0,
                     end: 0,
@@ -51,7 +51,7 @@ const How = () => {
 
               <div className="relative col-span-7">
                 <AnimatedScroll
-                  className="flex flex-col justify-between h-full p-16 space-y-10 bg-green-0/10"
+                  className="flex h-full flex-col justify-between space-y-10 bg-green-0/10 p-16"
                   xOptions={{
                     start: 0,
                     end: 0,
@@ -62,7 +62,7 @@ const How = () => {
                   }}
                 >
                   <div className="space-y-5">
-                    <h3 className="text-2xl font-display text-grey-0">Dashboard</h3>
+                    <h3 className="font-display text-2xl text-grey-0">Dashboard</h3>
                     <p className="text-xl">
                       The dashboard provides summary graphs and charts (including aggregations of
                       collective data, exploring changes and shifts over time, highlighting
@@ -72,7 +72,7 @@ const How = () => {
                     <p className="text-xl">
                       You can filter the dashboards according to various parameters, including:
                     </p>
-                    <ul className="text-xl list-disc list-inside">
+                    <ul className="list-inside list-disc text-xl">
                       <li>
                         <div className="inline-flex items-center space-x-3 font-semibold">
                           <label>Geographic scope</label>
@@ -83,7 +83,7 @@ const How = () => {
                               className: 'bg-grey-60',
                             }}
                             content={
-                              <div className="max-w-xs p-2.5 text-grey-20 rounded shadow-xl bg-grey-60 border border-grey-0/5">
+                              <div className="max-w-xs rounded border border-grey-0/5 bg-grey-60 p-2.5 text-grey-20 shadow-xl">
                                 <span>
                                   The country, region or state a project or funder focuses on
                                   working or investing in.
@@ -91,11 +91,11 @@ const How = () => {
                               </div>
                             }
                           >
-                            <div className="w-5 h-5 bg-black rounded-full">
+                            <div className="h-5 w-5 rounded-full bg-black">
                               <Icon
                                 icon={INFO_SVG}
                                 className={cx({
-                                  'w-5 h-5 text-white': true,
+                                  'h-5 w-5 text-white': true,
                                 })}
                               />
                             </div>
@@ -112,7 +112,7 @@ const How = () => {
                               className: 'bg-grey-60',
                             }}
                             content={
-                              <div className="max-w-xs p-2.5 text-grey-20 rounded shadow-xl bg-grey-60 border border-grey-0/5">
+                              <div className="max-w-xs rounded border border-grey-0/5 bg-grey-60 p-2.5 text-grey-20 shadow-xl">
                                 <span>
                                   A regenerative agriculture related topic a project or funder
                                   focuses on working or investing in.
@@ -120,11 +120,11 @@ const How = () => {
                               </div>
                             }
                           >
-                            <div className="w-5 h-5 bg-black rounded-full">
+                            <div className="h-5 w-5 rounded-full bg-black">
                               <Icon
                                 icon={INFO_SVG}
                                 className={cx({
-                                  'w-5 h-5 text-white': true,
+                                  'h-5 w-5 text-white': true,
                                 })}
                               />
                             </div>
@@ -141,7 +141,7 @@ const How = () => {
                               className: 'bg-grey-60',
                             }}
                             content={
-                              <div className="max-w-xs p-2.5 text-grey-20 rounded shadow-xl bg-grey-60 border border-grey-0/5">
+                              <div className="max-w-xs rounded border border-grey-0/5 bg-grey-60 p-2.5 text-grey-20 shadow-xl">
                                 <span>
                                   Different demographic groups a project or funder focuses on
                                   working or investing in.
@@ -149,11 +149,11 @@ const How = () => {
                               </div>
                             }
                           >
-                            <div className="w-5 h-5 bg-black rounded-full">
+                            <div className="h-5 w-5 rounded-full bg-black">
                               <Icon
                                 icon={INFO_SVG}
                                 className={cx({
-                                  'w-5 h-5 text-white': true,
+                                  'h-5 w-5 text-white': true,
                                 })}
                               />
                             </div>
@@ -175,7 +175,7 @@ const How = () => {
             <div className="grid grid-cols-12 gap-5">
               <div className="relative col-span-7">
                 <AnimatedScroll
-                  className="flex flex-col justify-between h-full p-16 space-y-10 bg-green-0/10"
+                  className="flex h-full flex-col justify-between space-y-10 bg-green-0/10 p-16"
                   xOptions={{
                     start: 0,
                     end: 0,
@@ -186,7 +186,7 @@ const How = () => {
                   }}
                 >
                   <div className="space-y-5">
-                    <h3 className="text-2xl font-display text-grey-0">Action map</h3>
+                    <h3 className="font-display text-2xl text-grey-0">Action map</h3>
                     <p className="text-xl">
                       The Action Map allows you to view and interact with various areas of interest
                       across geographies, exploring where your colleagues are funding and better
@@ -195,7 +195,7 @@ const How = () => {
                     <p className="text-xl">
                       All data can be filtered through various filters, including:
                     </p>
-                    <ul className="text-xl list-disc list-inside">
+                    <ul className="list-inside list-disc text-xl">
                       <li>
                         <div className="inline-flex items-center space-x-3 font-semibold">
                           <label>Geographic scope</label>
@@ -206,7 +206,7 @@ const How = () => {
                               className: 'bg-grey-60',
                             }}
                             content={
-                              <div className="max-w-xs p-2.5 text-grey-20 rounded shadow-xl bg-grey-60 border border-grey-0/5">
+                              <div className="max-w-xs rounded border border-grey-0/5 bg-grey-60 p-2.5 text-grey-20 shadow-xl">
                                 <span>
                                   The country, region or state a project or funder focuses on
                                   working or investing in.
@@ -214,11 +214,11 @@ const How = () => {
                               </div>
                             }
                           >
-                            <div className="w-5 h-5 bg-black rounded-full">
+                            <div className="h-5 w-5 rounded-full bg-black">
                               <Icon
                                 icon={INFO_SVG}
                                 className={cx({
-                                  'w-5 h-5 text-white': true,
+                                  'h-5 w-5 text-white': true,
                                 })}
                               />
                             </div>
@@ -235,7 +235,7 @@ const How = () => {
                               className: 'bg-grey-60',
                             }}
                             content={
-                              <div className="max-w-xs p-2.5 text-grey-20 rounded shadow-xl bg-grey-60 border border-grey-0/5">
+                              <div className="max-w-xs rounded border border-grey-0/5 bg-grey-60 p-2.5 text-grey-20 shadow-xl">
                                 <span>
                                   A regenerative agriculture related topic a project or funder
                                   focuses on working or investing in.
@@ -243,11 +243,11 @@ const How = () => {
                               </div>
                             }
                           >
-                            <div className="w-5 h-5 bg-black rounded-full">
+                            <div className="h-5 w-5 rounded-full bg-black">
                               <Icon
                                 icon={INFO_SVG}
                                 className={cx({
-                                  'w-5 h-5 text-white': true,
+                                  'h-5 w-5 text-white': true,
                                 })}
                               />
                             </div>
@@ -264,7 +264,7 @@ const How = () => {
                               className: 'bg-grey-60',
                             }}
                             content={
-                              <div className="max-w-xs p-2.5 text-grey-20 rounded shadow-xl bg-grey-60 border border-grey-0/5">
+                              <div className="max-w-xs rounded border border-grey-0/5 bg-grey-60 p-2.5 text-grey-20 shadow-xl">
                                 <span>
                                   Different demographic groups a project or funder focuses on
                                   working or investing in.
@@ -272,11 +272,11 @@ const How = () => {
                               </div>
                             }
                           >
-                            <div className="w-5 h-5 bg-black rounded-full">
+                            <div className="h-5 w-5 rounded-full bg-black">
                               <Icon
                                 icon={INFO_SVG}
                                 className={cx({
-                                  'w-5 h-5 text-white': true,
+                                  'h-5 w-5 text-white': true,
                                 })}
                               />
                             </div>
@@ -295,7 +295,7 @@ const How = () => {
 
               <div className="relative col-span-5">
                 <AnimatedScroll
-                  className="flex items-center justify-between h-full p-5 mt-16 space-y-10 bg-green-0/10"
+                  className="mt-16 flex h-full items-center justify-between space-y-10 bg-green-0/10 p-5"
                   xOptions={{
                     start: 0,
                     end: 0,

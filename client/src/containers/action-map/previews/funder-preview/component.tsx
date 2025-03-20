@@ -89,7 +89,7 @@ const FunderPreview = () => {
     <>
       <Loading
         visible={funderIsFetching && !funderIsFetched}
-        className="absolute top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-white/75"
+        className="absolute top-0 left-0 z-10 flex h-full w-full items-center justify-center bg-white/75"
         iconClassName="w-10 h-10"
       />
 
@@ -97,7 +97,7 @@ const FunderPreview = () => {
         <div className="w-full space-y-16">
           <div className="space-y-9">
             <div className="space-y-1">
-              <h2 className="text-3xl font-normal capitalize line-clamp-2 text-ellipsis">{name}</h2>
+              <h2 className="text-ellipsis text-3xl font-normal capitalize line-clamp-2">{name}</h2>
               <div className="text-base font-normal text-grey-20">
                 Last updated: {format(new Date(updatedAt), 'dd MMMM yyyy')}
               </div>

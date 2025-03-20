@@ -62,11 +62,11 @@ const WidgetDiagramPie = ({ query }: Widget) => {
           <AnimatePresence>
             {HIGHLIGHTED && (
               <motion.div
-                className="absolute top-0 left-0 flex items-center justify-center w-full h-full pointer-events-none"
+                className="pointer-events-none absolute top-0 left-0 flex h-full w-full items-center justify-center"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
-                <div className="flex flex-col items-center justify-center w-1/2 px-2 text-center divide-y h-1/2 divide-grey-40">
+                <div className="flex h-1/2 w-1/2 flex-col items-center justify-center divide-y divide-grey-40 px-2 text-center">
                   <div className="py-1 text-xl">{HIGHLIGHTED.value}</div>
                   <div className="py-1 text-base">{HIGHLIGHTED.label}</div>
                 </div>
@@ -91,7 +91,7 @@ const WidgetDiagramPie = ({ query }: Widget) => {
                 }}
               >
                 <div
-                  className="w-3 h-3 mr-2 rounded-full"
+                  className="mr-2 h-3 w-3 rounded-full"
                   style={{
                     backgroundColor: COLOR_SCALE(d.id),
                   }}

@@ -21,21 +21,21 @@ export default function DragNDrop({
     <div
       {...getRootProps()}
       className={cn(
-        'h-40 border border-dashed border-spacing-x-5 border-gray-300 rounded-lg flex items-center justify-center',
+        'flex h-40 border-spacing-x-5 items-center justify-center rounded-lg border border-dashed border-gray-300',
         {
           'h-auto': acceptedFiles?.length > 0 || hasInitialValue,
-        }
+        },
       )}
     >
       <input {...getInputProps()} />
       <div className="flex flex-col items-center gap-2">
         {!acceptedFiles?.length && !hasInitialValue && (
           <>
-            <div className="rounded-full  border border-grey-40 p-4">
+            <div className="rounded-full border border-grey-40 p-4">
               <RxUpload className="h-4 w-4" />
             </div>
-            <span className="text-grey-20 text-center font-semibold max-w-[140px]">
-              Drop file to upload or <span className="text-green-20 flex-wrap">Browse</span>
+            <span className="max-w-[140px] text-center font-semibold text-grey-20">
+              Drop file to upload or <span className="flex-wrap text-green-20">Browse</span>
             </span>
           </>
         )}

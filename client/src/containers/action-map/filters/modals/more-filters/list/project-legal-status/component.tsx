@@ -41,7 +41,7 @@ export const ProjectLegalStatus = () => {
         });
       }
     },
-    [plausible, recipientLegalStatusesData]
+    [plausible, recipientLegalStatusesData],
   );
 
   return (

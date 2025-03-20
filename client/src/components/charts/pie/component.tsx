@@ -47,7 +47,7 @@ export const PieChart = <T extends unknown>({
       }
       return radius - thickness;
     },
-    [radius, thickness, hover]
+    [radius, thickness, hover],
   );
 
   const getOuterRadius = useCallback(
@@ -58,7 +58,7 @@ export const PieChart = <T extends unknown>({
 
       return radius;
     },
-    [radius, hover]
+    [radius, hover],
   );
 
   return (

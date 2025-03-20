@@ -44,7 +44,7 @@ const FundersList = () => {
     (value) => {
       dispatch(setSort({ field: 'name', order: value }));
     },
-    [dispatch]
+    [dispatch],
   );
 
   const handleOnShowMore = useCallback(() => {
@@ -58,18 +58,18 @@ const FundersList = () => {
           <Sentence type="funders" />
 
           {!!fundersData.length && (
-            <div className="flex justify-between mt-10">
+            <div className="mt-10 flex justify-between">
               <Menu as="div" className="relative">
                 <Menu.Button className="flex items-center space-x-2">
                   <p className="font-semibold">Sort by</p>
                   <Icon
                     icon={CHEVRON_DOWN_SVG}
                     className={cx({
-                      'w-3 h-3': true,
+                      'h-3 w-3': true,
                     })}
                   />
                 </Menu.Button>
-                <Menu.Items className="absolute flex flex-col py-2 bg-white rounded-md shadow-lg focus:outline-none">
+                <Menu.Items className="absolute flex flex-col rounded-md bg-white py-2 shadow-lg focus:outline-none">
                   <Menu.Item>
                     {({ active }) => (
                       <button
@@ -105,7 +105,7 @@ const FundersList = () => {
         </div>
 
         {!fundersData.length && !LOADING && (
-          <div className="flex flex-col items-center py-12 pb-20 space-y-4">
+          <div className="flex flex-col items-center space-y-4 py-12 pb-20">
             <p className="text-2xl font-semibold">No results found</p>
             <p className="max-w-sm text-center text-grey-20">
               Sorry, we have searched in our entire database but we couldn&apos;t find any results
@@ -132,7 +132,7 @@ const FundersList = () => {
               Show more
               <Loading
                 visible={isFetchingNextFundersPage}
-                className="absolute flex items-center justify-center w-full h-full bg-white"
+                className="absolute flex h-full w-full items-center justify-center bg-white"
               />
             </Button>
           </div>

@@ -46,15 +46,15 @@ const WidgetToolbar = ({ title, description, slug, params, toolbar }: WidgetTool
 
   return (
     <>
-      <div className="flex overflow-hidden border divide-x rounded-lg shrink-0 border-grey-40 divide-grey-40">
+      <div className="flex shrink-0 divide-x divide-grey-40 overflow-hidden rounded-lg border border-grey-40">
         {info && (
           <button
             type="button"
-            className="p-3 transition-colors shrink-0 hover:bg-grey-40"
+            className="shrink-0 p-3 transition-colors hover:bg-grey-40"
             onClick={handleClickInfo}
           >
-            <div className="flex items-center justify-center w-6 h-6 border rounded-full border-grey-0">
-              <Icon icon={INFO_SVG} className="block w-5 h-5" />
+            <div className="flex h-6 w-6 items-center justify-center rounded-full border border-grey-0">
+              <Icon icon={INFO_SVG} className="block h-5 w-5" />
             </div>
           </button>
         )}
@@ -62,21 +62,21 @@ const WidgetToolbar = ({ title, description, slug, params, toolbar }: WidgetTool
         {download && (
           <button
             type="button"
-            className="p-3 transition-colors shrink-0 hover:bg-grey-40"
+            className="shrink-0 p-3 transition-colors hover:bg-grey-40"
             onClick={handleClickDownload}
           >
-            <div className="relative flex items-center justify-center w-6 h-6">
+            <div className="relative flex h-6 w-6 items-center justify-center">
               <Loading visible={isDownloadLoading} />
-              <Icon icon={DOWNLOAD_SVG} className="block w-5 h-5" />
+              <Icon icon={DOWNLOAD_SVG} className="block h-5 w-5" />
             </div>
           </button>
         )}
       </div>
 
       <Modal size="s" title={title} open={isOpenModal} onOpenChange={() => closeModal()}>
-        <div className="p-20 space-y-5">
-          <h3 className="text-2xl font-display">{title}</h3>
-          <p className="mt-2 text-lg text-grey-100">{description}</p>
+        <div className="space-y-5 p-20">
+          <h3 className="font-display text-2xl">{title}</h3>
+          <p className="text-grey-100 mt-2 text-lg">{description}</p>
         </div>
       </Modal>
     </>
