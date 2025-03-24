@@ -108,5 +108,10 @@ class Area
     software
     soil_measurement_and_technology
     supply_equipment
+    other
   ].freeze
+
+  def parent
+    read_attribute "parent"
+  end
 end

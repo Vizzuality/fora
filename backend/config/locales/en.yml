@@ -227,212 +227,319 @@ en:
     area:
       agroforestry:
         name: Agroforestry
+        parent: Agricultural Systems, Practices, and Environmental Targets
       animal_welfare:
         name: Animal Welfare
+        parent: Agricultural Systems, Practices, and Environmental Targets
       aquaculture:
         name: Aquaculture
+        parent: Agricultural Systems, Practices, and Environmental Targets
       biodiversity:
         name: Biodiversity
+        parent: Agricultural Systems, Practices, and Environmental Targets
       climate_smart_commodities_practices:
         name: Climate Smart Commodities/Practices
+        parent: Agricultural Systems, Practices, and Environmental Targets
       climate_change:
         name: Climate Change
+        parent: Agricultural Systems, Practices, and Environmental Targets
       conservation_tillage:
         name: Conservation Tillage
+        parent: Agricultural Systems, Practices, and Environmental Targets
       cover_crops:
         name: Cover Crops
+        parent: Agricultural Systems, Practices, and Environmental Targets
       crop_diversification:
         name: Crop Diversification
+        parent: Agricultural Systems, Practices, and Environmental Targets
       crop_rotation:
         name: Crop Rotation
+        parent: Agricultural Systems, Practices, and Environmental Targets
       drainage:
         name: Drainage
+        parent: Agricultural Systems, Practices, and Environmental Targets
       feed_additives:
         name: Feed Additives
+        parent: Agricultural Systems, Practices, and Environmental Targets
       fertilizer_efficiency:
-        name: Fertilizer Efficiciency (alternatives, application, etc.)
+        name: Fertilizer Efficiency (alternatives, application, etc.)
+        parent: Agricultural Systems, Practices, and Environmental Targets
       fiber_systems:
         name: Fiber Systems
+        parent: Agricultural Systems, Practices, and Environmental Targets
       grazing_management:
         name: Grazing Management
+        parent: Agricultural Systems, Practices, and Environmental Targets
       prescription_fire:
         name: Prescription Fire
+        parent: Agricultural Systems, Practices, and Environmental Targets
       land_use_conversation:
         name: Land use Conversation
+        parent: Agricultural Systems, Practices, and Environmental Targets
       livestock_partnerships:
         name: Livestock Partnerships
+        parent: Agricultural Systems, Practices, and Environmental Targets
       methane_livestock:
         name: Methane (livestock)
+        parent: Agricultural Systems, Practices, and Environmental Targets
       methane_rice:
         name: Methane (rice)
+        parent: Agricultural Systems, Practices, and Environmental Targets
       nitrogen_management:
         name: Nitrogen Management
+        parent: Agricultural Systems, Practices, and Environmental Targets
       nutrient_quality_density:
         name: Nutrient Quality/Density
+        parent: Agricultural Systems, Practices, and Environmental Targets
       restoration_of_disturbed_lands:
         name: Restoration of Disturbed Lands
+        parent: Agricultural Systems, Practices, and Environmental Targets
       soil_health:
         name: Soil Health
+        parent: Agricultural Systems, Practices, and Environmental Targets
       sustainable_or_biological_inputs:
         name: Sustainable or Biological Inputs
+        parent: Agricultural Systems, Practices, and Environmental Targets
       toxins_reduction:
         name: Toxins Reduction (ie organics, pesticides, herbicides, etc)
+        parent: Agricultural Systems, Practices, and Environmental Targets
       organic_agriculture:
         name: Organic Agriculture
+        parent: Agricultural Systems, Practices, and Environmental Targets
       urban_farming:
         name: Urban Farming
+        parent: Agricultural Systems, Practices, and Environmental Targets
       water_quality:
         name: Water Quality
+        parent: Agricultural Systems, Practices, and Environmental Targets
       water_conservation_and_management_practices:
         name: Water Conservation and Management Practices (e.g., irrigation efficiency, water recycling)
+        parent: Agricultural Systems, Practices, and Environmental Targets
       wetlands:
         name: Wetlands
+        parent: Agricultural Systems, Practices, and Environmental Targets
       wildlife_habitat:
         name: Wildlife Habitat
+        parent: Agricultural Systems, Practices, and Environmental Targets
       reforestation_and_afforestation:
         name: Reforestation and Afforestation
+        parent: Agricultural Systems, Practices, and Environmental Targets
       regenerative_agriculture:
         name: Regenerative Agriculture
+        parent: Agricultural Systems, Practices, and Environmental Targets
       watershed_management:
         name: Watershed Management
+        parent: Agricultural Systems, Practices, and Environmental Targets
       land_conservation:
         name: Land Conservation
+        parent: Agricultural Systems, Practices, and Environmental Targets
       agrovoltaics:
         name: Agrovoltaics
+        parent: Agricultural Systems, Practices, and Environmental Targets
       climate_change_mitigation_strategies:
         name: Climate Change Mitigation Strategies (carbon offsets, climate adaptation policies)
+        parent: Agricultural Systems, Practices, and Environmental Targets
       resilient_crop_systems_development:
         name: Resilient Crop Systems Development (e.g., salt-tolerant or heat-tolerant crops)
+        parent: Agricultural Systems, Practices, and Environmental Targets
       on_farm_decarbonization:
         name: On Farm Decarbonization
+        parent: Agricultural Systems, Practices, and Environmental Targets
       journalism_training_and_education:
         name: Journalism Training and Education
+        parent: Communications
       media_communications_narrative_building:
         name: Media, Communications, Narrative Building
+        parent: Communications
       academic_institution_support_and_capacity:
         name: Academic Institution Support and Capacity
+        parent: Education & Capacity Building
       capacity_building:
         name: Capacity Building
+        parent: Education & Capacity Building
       education_legislators:
         name: Education - Legislators
+        parent: Education & Capacity Building
       education_future_farmers_young_farmers:
-        name: Education - Future Farmers, Young Farmers, etc
+        name: Education - Future Farmers, Young Farmers, etc.
+        parent: Education & Capacity Building
       education_youth:
         name: Education - Youth
+        parent: Education & Capacity Building
       education_funders:
         name: Education - Funders
+        parent: Education & Capacity Building
       leadership_development:
         name: Leadership Development
+        parent: Education & Capacity Building
       support_education_capacity_for_government_staff:
         name: Support, Education, Capacity for Government Staff
+        parent: Education & Capacity Building
       technical_assistance_and_business_planning_for_farmers:
         name: Technical Assistance and Business Planning for Farmers
+        parent: Education & Capacity Building
       business_planning_marketing_for_farmers:
         name: Business Planning & Marketing for Farmers
+        parent: Education & Capacity Building
       regenerative_agriculture_organizing_networks_or_groups:
         name: Regenerative Agriculture Organizing Networks or Groups
+        parent: Education & Capacity Building
       community_power_building:
         name: Community Power Building
+        parent: Equity, Access, and Justice
       equity_and_justice:
         name: Equity and Justice
+        parent: Equity, Access, and Justice
       farmworker_rights:
         name: Farmworker Rights
+        parent: Equity, Access, and Justice
       food_sovereignty:
         name: Food Sovereignty
+        parent: Equity, Access, and Justice
       healthy_food_access:
         name: Healthy Food Access
+        parent: Equity, Access, and Justice
       land_access:
         name: Land Access
+        parent: Equity, Access, and Justice
       land_back_initiatives:
         name: Land Back Initiatives
+        parent: Equity, Access, and Justice
       land_tenure:
         name: Land Tenure
+        parent: Equity, Access, and Justice
       land_transition:
         name: Land Transition
+        parent: Equity, Access, and Justice
       market_access_and_infrastructure:
         name: Market Access and Infrastructure
+        parent: Equity, Access, and Justice
       tribal_nations:
         name: Tribal Nations
+        parent: Equity, Access, and Justice
       approved_insurance_providers_and_warranty_products:
         name: Approved Insurance Providers and Warranty Products
+        parent: Market Development, Finance, and Infrastructure
       farm_equipment:
         name: Farm Equipment
+        parent: Market Development, Finance, and Infrastructure
       fintech:
         name: FinTech
+        parent: Market Development, Finance, and Infrastructure
       land_asset_financing:
         name: Land Asset Financing
+        parent: Market Development, Finance, and Infrastructure
       middle_of_the_supply_chain_infrastructure:
         name: Middle of the Supply Chain Infrastructure (Processing, Distribution, Transportation)
+        parent: Market Development, Finance, and Infrastructure
       regenerative_agriculture_financing:
         name: Regenerative Agriculture Financing
+        parent: Market Development, Finance, and Infrastructure
       regenerative_cpgs_brands:
         name: Regenerative CPGs & Brands
+        parent: Market Development, Finance, and Infrastructure
       rural_economic_health:
         name: Rural Economic Health
+        parent: Market Development, Finance, and Infrastructure
       supply_chain_and_market_development:
         name: Supply Chain and Market Development
+        parent: Market Development, Finance, and Infrastructure
       true_cost_accounting:
         name: True Cost Accounting
+        parent: Market Development, Finance, and Infrastructure
       farm_bill:
         name: Farm Bill
+        parent: Policy & Advocacy
       federal_policy_initiatives:
         name: Federal Policy Initiatives
+        parent: Policy & Advocacy
       fossil_fuel_based_inputs_alternatives_bioinputs:
         name: Fossil Fuel Based Inputs Alternatives/Bioinputs
+        parent: Policy & Advocacy
       insurance_reform_and_alternative_insurance_products:
         name: Insurance Reform and Alternative Insurance Products
+        parent: Policy & Advocacy
       litigation:
         name: Litigation
+        parent: Policy & Advocacy
       movement_building:
         name: Movement Building
+        parent: Policy & Advocacy
       municipal_policy_initiatives:
         name: Municipal Policy Initiatives
+        parent: Policy & Advocacy
       next_generation_policy_leadership:
         name: Next Generation Policy Leadership
+        parent: Policy & Advocacy
       policy_advocacy:
         name: Policy - Advocacy
+        parent: Policy & Advocacy
       policy_lobbying:
         name: Policy - Lobbying
+        parent: Policy & Advocacy
       public_and_private_finance_mechanisms:
         name: Public and Private Finance Mechanisms
+        parent: Policy & Advocacy
       regulatory_work_taking_on_industry:
         name: Regulatory Work - Taking on Industry
+        parent: Policy & Advocacy
       risk_management_reform:
         name: Risk Management Reform
+        parent: Policy & Advocacy
       science_informed_policy_development:
         name: Science Informed Policy Development
+        parent: Policy & Advocacy
       shareholder_advocacy:
         name: Shareholder Advocacy
+        parent: Policy & Advocacy
       state_policy_initiatives:
         name: State Policy Initiatives
+        parent: Policy & Advocacy
       tackling_fossil_fuels_in_agriculture:
         name: Tackling Fossil Fuels In Agriculture
+        parent: Policy & Advocacy
       voluntary_incentive_programs:
         name: Voluntary Incentive Programs
+        parent: Policy & Advocacy
       agtech:
         name: AgTech
+        parent: Research, Technology, & Innovation
       alternative_proteins:
         name: Alternative Proteins
+        parent: Research, Technology, & Innovation
       fermentation:
         name: Fermentation
+        parent: Research, Technology, & Innovation
       emissions_models_methane_n2o:
         name: Emissions Models (Methane, N2O)
+        parent: Research, Technology, & Innovation
       genetics:
         name: Genetics
+        parent: Research, Technology, & Innovation
       measurement_monitoring_reporting_and_verification:
         name: Measurement, Monitoring, Reporting, and Verification (MMRV)
+        parent: Research, Technology, & Innovation
       on_farm_automation:
         name: On Farm Automation
+        parent: Research, Technology, & Innovation
       research_measuring_and_validation_of_regenerative_systems_and_practices:
         name: Research (Measuring and Validation of Regenerative Systems and/or Practices)
+        parent: Research, Technology, & Innovation
       research_and_development_innovation:
         name: Research and Development (Innovation)
+        parent: Research, Technology, & Innovation
       software:
         name: Software
+        parent: Research, Technology, & Innovation
       soil_measurement_and_technology:
         name: Soil Measurement and Technology
+        parent: Research, Technology, & Innovation
       supply_equipment:
         name: Supply & Equipment
+        parent: Research, Technology, & Innovation
+      other:
+        name: Other
+        parent: Other
     geographic:
       countries:
         name: Countries

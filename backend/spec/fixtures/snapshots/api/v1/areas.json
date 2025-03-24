@@ -4,728 +4,840 @@
       "id": "academic_institution_support_and_capacity",
       "type": "area",
       "attributes": {
-        "name": "Academic Institution Support and Capacity"
+        "name": "Academic Institution Support and Capacity",
+        "parent": "Education & Capacity Building"
       }
     },
     {
       "id": "agtech",
       "type": "area",
       "attributes": {
-        "name": "AgTech"
+        "name": "AgTech",
+        "parent": "Research, Technology, & Innovation"
       }
     },
     {
       "id": "agroforestry",
       "type": "area",
       "attributes": {
-        "name": "Agroforestry"
+        "name": "Agroforestry",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "agrovoltaics",
       "type": "area",
       "attributes": {
-        "name": "Agrovoltaics"
+        "name": "Agrovoltaics",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "alternative_proteins",
       "type": "area",
       "attributes": {
-        "name": "Alternative Proteins"
+        "name": "Alternative Proteins",
+        "parent": "Research, Technology, & Innovation"
       }
     },
     {
       "id": "animal_welfare",
       "type": "area",
       "attributes": {
-        "name": "Animal Welfare"
+        "name": "Animal Welfare",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "approved_insurance_providers_and_warranty_products",
       "type": "area",
       "attributes": {
-        "name": "Approved Insurance Providers and Warranty Products"
+        "name": "Approved Insurance Providers and Warranty Products",
+        "parent": "Market Development, Finance, and Infrastructure"
       }
     },
     {
       "id": "aquaculture",
       "type": "area",
       "attributes": {
-        "name": "Aquaculture"
+        "name": "Aquaculture",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "biodiversity",
       "type": "area",
       "attributes": {
-        "name": "Biodiversity"
+        "name": "Biodiversity",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "business_planning_marketing_for_farmers",
       "type": "area",
       "attributes": {
-        "name": "Business Planning & Marketing for Farmers"
+        "name": "Business Planning & Marketing for Farmers",
+        "parent": "Education & Capacity Building"
       }
     },
     {
       "id": "capacity_building",
       "type": "area",
       "attributes": {
-        "name": "Capacity Building"
+        "name": "Capacity Building",
+        "parent": "Education & Capacity Building"
       }
     },
     {
       "id": "climate_change",
       "type": "area",
       "attributes": {
-        "name": "Climate Change"
+        "name": "Climate Change",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "climate_change_mitigation_strategies",
       "type": "area",
       "attributes": {
-        "name": "Climate Change Mitigation Strategies (carbon offsets, climate adaptation policies)"
+        "name": "Climate Change Mitigation Strategies (carbon offsets, climate adaptation policies)",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "climate_smart_commodities_practices",
       "type": "area",
       "attributes": {
-        "name": "Climate Smart Commodities/Practices"
+        "name": "Climate Smart Commodities/Practices",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "community_power_building",
       "type": "area",
       "attributes": {
-        "name": "Community Power Building"
+        "name": "Community Power Building",
+        "parent": "Equity, Access, and Justice"
       }
     },
     {
       "id": "conservation_tillage",
       "type": "area",
       "attributes": {
-        "name": "Conservation Tillage"
+        "name": "Conservation Tillage",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "cover_crops",
       "type": "area",
       "attributes": {
-        "name": "Cover Crops"
+        "name": "Cover Crops",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "crop_diversification",
       "type": "area",
       "attributes": {
-        "name": "Crop Diversification"
+        "name": "Crop Diversification",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "crop_rotation",
       "type": "area",
       "attributes": {
-        "name": "Crop Rotation"
+        "name": "Crop Rotation",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "drainage",
       "type": "area",
       "attributes": {
-        "name": "Drainage"
+        "name": "Drainage",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "education_funders",
       "type": "area",
       "attributes": {
-        "name": "Education - Funders"
+        "name": "Education - Funders",
+        "parent": "Education & Capacity Building"
       }
     },
     {
       "id": "education_future_farmers_young_farmers",
       "type": "area",
       "attributes": {
-        "name": "Education - Future Farmers, Young Farmers, etc"
+        "name": "Education - Future Farmers, Young Farmers, etc.",
+        "parent": "Education & Capacity Building"
       }
     },
     {
       "id": "education_legislators",
       "type": "area",
       "attributes": {
-        "name": "Education - Legislators"
+        "name": "Education - Legislators",
+        "parent": "Education & Capacity Building"
       }
     },
     {
       "id": "education_youth",
       "type": "area",
       "attributes": {
-        "name": "Education - Youth"
+        "name": "Education - Youth",
+        "parent": "Education & Capacity Building"
       }
     },
     {
       "id": "emissions_models_methane_n2o",
       "type": "area",
       "attributes": {
-        "name": "Emissions Models (Methane, N2O)"
+        "name": "Emissions Models (Methane, N2O)",
+        "parent": "Research, Technology, & Innovation"
       }
     },
     {
       "id": "equity_and_justice",
       "type": "area",
       "attributes": {
-        "name": "Equity and Justice"
+        "name": "Equity and Justice",
+        "parent": "Equity, Access, and Justice"
       }
     },
     {
       "id": "farm_bill",
       "type": "area",
       "attributes": {
-        "name": "Farm Bill"
+        "name": "Farm Bill",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "farm_equipment",
       "type": "area",
       "attributes": {
-        "name": "Farm Equipment"
+        "name": "Farm Equipment",
+        "parent": "Market Development, Finance, and Infrastructure"
       }
     },
     {
       "id": "farmworker_rights",
       "type": "area",
       "attributes": {
-        "name": "Farmworker Rights"
+        "name": "Farmworker Rights",
+        "parent": "Equity, Access, and Justice"
       }
     },
     {
       "id": "federal_policy_initiatives",
       "type": "area",
       "attributes": {
-        "name": "Federal Policy Initiatives"
+        "name": "Federal Policy Initiatives",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "feed_additives",
       "type": "area",
       "attributes": {
-        "name": "Feed Additives"
+        "name": "Feed Additives",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "fermentation",
       "type": "area",
       "attributes": {
-        "name": "Fermentation"
+        "name": "Fermentation",
+        "parent": "Research, Technology, & Innovation"
       }
     },
     {
       "id": "fertilizer_efficiency",
       "type": "area",
       "attributes": {
-        "name": "Fertilizer Efficiciency (alternatives, application, etc.)"
+        "name": "Fertilizer Efficiency (alternatives, application, etc.)",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "fiber_systems",
       "type": "area",
       "attributes": {
-        "name": "Fiber Systems"
+        "name": "Fiber Systems",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "fintech",
       "type": "area",
       "attributes": {
-        "name": "FinTech"
+        "name": "FinTech",
+        "parent": "Market Development, Finance, and Infrastructure"
       }
     },
     {
       "id": "food_sovereignty",
       "type": "area",
       "attributes": {
-        "name": "Food Sovereignty"
+        "name": "Food Sovereignty",
+        "parent": "Equity, Access, and Justice"
       }
     },
     {
       "id": "fossil_fuel_based_inputs_alternatives_bioinputs",
       "type": "area",
       "attributes": {
-        "name": "Fossil Fuel Based Inputs Alternatives/Bioinputs"
+        "name": "Fossil Fuel Based Inputs Alternatives/Bioinputs",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "genetics",
       "type": "area",
       "attributes": {
-        "name": "Genetics"
+        "name": "Genetics",
+        "parent": "Research, Technology, & Innovation"
       }
     },
     {
       "id": "grazing_management",
       "type": "area",
       "attributes": {
-        "name": "Grazing Management"
+        "name": "Grazing Management",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "healthy_food_access",
       "type": "area",
       "attributes": {
-        "name": "Healthy Food Access"
+        "name": "Healthy Food Access",
+        "parent": "Equity, Access, and Justice"
       }
     },
     {
       "id": "insurance_reform_and_alternative_insurance_products",
       "type": "area",
       "attributes": {
-        "name": "Insurance Reform and Alternative Insurance Products"
+        "name": "Insurance Reform and Alternative Insurance Products",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "journalism_training_and_education",
       "type": "area",
       "attributes": {
-        "name": "Journalism Training and Education"
+        "name": "Journalism Training and Education",
+        "parent": "Communications"
       }
     },
     {
       "id": "land_access",
       "type": "area",
       "attributes": {
-        "name": "Land Access"
+        "name": "Land Access",
+        "parent": "Equity, Access, and Justice"
       }
     },
     {
       "id": "land_asset_financing",
       "type": "area",
       "attributes": {
-        "name": "Land Asset Financing"
+        "name": "Land Asset Financing",
+        "parent": "Market Development, Finance, and Infrastructure"
       }
     },
     {
       "id": "land_back_initiatives",
       "type": "area",
       "attributes": {
-        "name": "Land Back Initiatives"
+        "name": "Land Back Initiatives",
+        "parent": "Equity, Access, and Justice"
       }
     },
     {
       "id": "land_conservation",
       "type": "area",
       "attributes": {
-        "name": "Land Conservation"
+        "name": "Land Conservation",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "land_tenure",
       "type": "area",
       "attributes": {
-        "name": "Land Tenure"
+        "name": "Land Tenure",
+        "parent": "Equity, Access, and Justice"
       }
     },
     {
       "id": "land_transition",
       "type": "area",
       "attributes": {
-        "name": "Land Transition"
+        "name": "Land Transition",
+        "parent": "Equity, Access, and Justice"
       }
     },
     {
       "id": "land_use_conversation",
       "type": "area",
       "attributes": {
-        "name": "Land use Conversation"
+        "name": "Land use Conversation",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "leadership_development",
       "type": "area",
       "attributes": {
-        "name": "Leadership Development"
+        "name": "Leadership Development",
+        "parent": "Education & Capacity Building"
       }
     },
     {
       "id": "litigation",
       "type": "area",
       "attributes": {
-        "name": "Litigation"
+        "name": "Litigation",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "livestock_partnerships",
       "type": "area",
       "attributes": {
-        "name": "Livestock Partnerships"
+        "name": "Livestock Partnerships",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "market_access_and_infrastructure",
       "type": "area",
       "attributes": {
-        "name": "Market Access and Infrastructure"
+        "name": "Market Access and Infrastructure",
+        "parent": "Equity, Access, and Justice"
       }
     },
     {
       "id": "measurement_monitoring_reporting_and_verification",
       "type": "area",
       "attributes": {
-        "name": "Measurement, Monitoring, Reporting, and Verification (MMRV)"
+        "name": "Measurement, Monitoring, Reporting, and Verification (MMRV)",
+        "parent": "Research, Technology, & Innovation"
       }
     },
     {
       "id": "media_communications_narrative_building",
       "type": "area",
       "attributes": {
-        "name": "Media, Communications, Narrative Building"
+        "name": "Media, Communications, Narrative Building",
+        "parent": "Communications"
       }
     },
     {
       "id": "methane_livestock",
       "type": "area",
       "attributes": {
-        "name": "Methane (livestock)"
+        "name": "Methane (livestock)",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "methane_rice",
       "type": "area",
       "attributes": {
-        "name": "Methane (rice)"
+        "name": "Methane (rice)",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "middle_of_the_supply_chain_infrastructure",
       "type": "area",
       "attributes": {
-        "name": "Middle of the Supply Chain Infrastructure (Processing, Distribution, Transportation)"
+        "name": "Middle of the Supply Chain Infrastructure (Processing, Distribution, Transportation)",
+        "parent": "Market Development, Finance, and Infrastructure"
       }
     },
     {
       "id": "movement_building",
       "type": "area",
       "attributes": {
-        "name": "Movement Building"
+        "name": "Movement Building",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "municipal_policy_initiatives",
       "type": "area",
       "attributes": {
-        "name": "Municipal Policy Initiatives"
+        "name": "Municipal Policy Initiatives",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "next_generation_policy_leadership",
       "type": "area",
       "attributes": {
-        "name": "Next Generation Policy Leadership"
+        "name": "Next Generation Policy Leadership",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "nitrogen_management",
       "type": "area",
       "attributes": {
-        "name": "Nitrogen Management"
+        "name": "Nitrogen Management",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "nutrient_quality_density",
       "type": "area",
       "attributes": {
-        "name": "Nutrient Quality/Density"
+        "name": "Nutrient Quality/Density",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "on_farm_automation",
       "type": "area",
       "attributes": {
-        "name": "On Farm Automation"
+        "name": "On Farm Automation",
+        "parent": "Research, Technology, & Innovation"
       }
     },
     {
       "id": "on_farm_decarbonization",
       "type": "area",
       "attributes": {
-        "name": "On Farm Decarbonization"
+        "name": "On Farm Decarbonization",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "organic_agriculture",
       "type": "area",
       "attributes": {
-        "name": "Organic Agriculture"
+        "name": "Organic Agriculture",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
+      }
+    },
+    {
+      "id": "other",
+      "type": "area",
+      "attributes": {
+        "name": "Other",
+        "parent": "Other"
       }
     },
     {
       "id": "policy_advocacy",
       "type": "area",
       "attributes": {
-        "name": "Policy - Advocacy"
+        "name": "Policy - Advocacy",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "policy_lobbying",
       "type": "area",
       "attributes": {
-        "name": "Policy - Lobbying"
+        "name": "Policy - Lobbying",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "prescription_fire",
       "type": "area",
       "attributes": {
-        "name": "Prescription Fire"
+        "name": "Prescription Fire",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "public_and_private_finance_mechanisms",
       "type": "area",
       "attributes": {
-        "name": "Public and Private Finance Mechanisms"
+        "name": "Public and Private Finance Mechanisms",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "reforestation_and_afforestation",
       "type": "area",
       "attributes": {
-        "name": "Reforestation and Afforestation"
+        "name": "Reforestation and Afforestation",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "regenerative_agriculture",
       "type": "area",
       "attributes": {
-        "name": "Regenerative Agriculture"
+        "name": "Regenerative Agriculture",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "regenerative_agriculture_financing",
       "type": "area",
       "attributes": {
-        "name": "Regenerative Agriculture Financing"
+        "name": "Regenerative Agriculture Financing",
+        "parent": "Market Development, Finance, and Infrastructure"
       }
     },
     {
       "id": "regenerative_agriculture_organizing_networks_or_groups",
       "type": "area",
       "attributes": {
-        "name": "Regenerative Agriculture Organizing Networks or Groups"
+        "name": "Regenerative Agriculture Organizing Networks or Groups",
+        "parent": "Education & Capacity Building"
       }
     },
     {
       "id": "regenerative_cpgs_brands",
       "type": "area",
       "attributes": {
-        "name": "Regenerative CPGs & Brands"
+        "name": "Regenerative CPGs & Brands",
+        "parent": "Market Development, Finance, and Infrastructure"
       }
     },
     {
       "id": "regulatory_work_taking_on_industry",
       "type": "area",
       "attributes": {
-        "name": "Regulatory Work - Taking on Industry"
+        "name": "Regulatory Work - Taking on Industry",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "research_measuring_and_validation_of_regenerative_systems_and_practices",
       "type": "area",
       "attributes": {
-        "name": "Research (Measuring and Validation of Regenerative Systems and/or Practices)"
+        "name": "Research (Measuring and Validation of Regenerative Systems and/or Practices)",
+        "parent": "Research, Technology, & Innovation"
       }
     },
     {
       "id": "research_and_development_innovation",
       "type": "area",
       "attributes": {
-        "name": "Research and Development (Innovation)"
+        "name": "Research and Development (Innovation)",
+        "parent": "Research, Technology, & Innovation"
       }
     },
     {
       "id": "resilient_crop_systems_development",
       "type": "area",
       "attributes": {
-        "name": "Resilient Crop Systems Development (e.g., salt-tolerant or heat-tolerant crops)"
+        "name": "Resilient Crop Systems Development (e.g., salt-tolerant or heat-tolerant crops)",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "restoration_of_disturbed_lands",
       "type": "area",
       "attributes": {
-        "name": "Restoration of Disturbed Lands"
+        "name": "Restoration of Disturbed Lands",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "risk_management_reform",
       "type": "area",
       "attributes": {
-        "name": "Risk Management Reform"
+        "name": "Risk Management Reform",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "rural_economic_health",
       "type": "area",
       "attributes": {
-        "name": "Rural Economic Health"
+        "name": "Rural Economic Health",
+        "parent": "Market Development, Finance, and Infrastructure"
       }
     },
     {
       "id": "science_informed_policy_development",
       "type": "area",
       "attributes": {
-        "name": "Science Informed Policy Development"
+        "name": "Science Informed Policy Development",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "shareholder_advocacy",
       "type": "area",
       "attributes": {
-        "name": "Shareholder Advocacy"
+        "name": "Shareholder Advocacy",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "software",
       "type": "area",
       "attributes": {
-        "name": "Software"
+        "name": "Software",
+        "parent": "Research, Technology, & Innovation"
       }
     },
     {
       "id": "soil_health",
       "type": "area",
       "attributes": {
-        "name": "Soil Health"
+        "name": "Soil Health",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "soil_measurement_and_technology",
       "type": "area",
       "attributes": {
-        "name": "Soil Measurement and Technology"
+        "name": "Soil Measurement and Technology",
+        "parent": "Research, Technology, & Innovation"
       }
     },
     {
       "id": "state_policy_initiatives",
       "type": "area",
       "attributes": {
-        "name": "State Policy Initiatives"
+        "name": "State Policy Initiatives",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "supply_equipment",
       "type": "area",
       "attributes": {
-        "name": "Supply & Equipment"
+        "name": "Supply & Equipment",
+        "parent": "Research, Technology, & Innovation"
       }
     },
     {
       "id": "supply_chain_and_market_development",
       "type": "area",
       "attributes": {
-        "name": "Supply Chain and Market Development"
+        "name": "Supply Chain and Market Development",
+        "parent": "Market Development, Finance, and Infrastructure"
       }
     },
     {
       "id": "support_education_capacity_for_government_staff",
       "type": "area",
       "attributes": {
-        "name": "Support, Education, Capacity for Government Staff"
+        "name": "Support, Education, Capacity for Government Staff",
+        "parent": "Education & Capacity Building"
       }
     },
     {
       "id": "sustainable_or_biological_inputs",
       "type": "area",
       "attributes": {
-        "name": "Sustainable or Biological Inputs"
+        "name": "Sustainable or Biological Inputs",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "tackling_fossil_fuels_in_agriculture",
       "type": "area",
       "attributes": {
-        "name": "Tackling Fossil Fuels In Agriculture"
+        "name": "Tackling Fossil Fuels In Agriculture",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "technical_assistance_and_business_planning_for_farmers",
       "type": "area",
       "attributes": {
-        "name": "Technical Assistance and Business Planning for Farmers"
+        "name": "Technical Assistance and Business Planning for Farmers",
+        "parent": "Education & Capacity Building"
       }
     },
     {
       "id": "toxins_reduction",
       "type": "area",
       "attributes": {
-        "name": "Toxins Reduction (ie organics, pesticides, herbicides, etc)"
+        "name": "Toxins Reduction (ie organics, pesticides, herbicides, etc)",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "tribal_nations",
       "type": "area",
       "attributes": {
-        "name": "Tribal Nations"
+        "name": "Tribal Nations",
+        "parent": "Equity, Access, and Justice"
       }
     },
     {
       "id": "true_cost_accounting",
       "type": "area",
       "attributes": {
-        "name": "True Cost Accounting"
+        "name": "True Cost Accounting",
+        "parent": "Market Development, Finance, and Infrastructure"
       }
     },
     {
       "id": "urban_farming",
       "type": "area",
       "attributes": {
-        "name": "Urban Farming"
+        "name": "Urban Farming",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "voluntary_incentive_programs",
       "type": "area",
       "attributes": {
-        "name": "Voluntary Incentive Programs"
+        "name": "Voluntary Incentive Programs",
+        "parent": "Policy & Advocacy"
       }
     },
     {
       "id": "water_conservation_and_management_practices",
       "type": "area",
       "attributes": {
-        "name": "Water Conservation and Management Practices (e.g., irrigation efficiency, water recycling)"
+        "name": "Water Conservation and Management Practices (e.g., irrigation efficiency, water recycling)",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "water_quality",
       "type": "area",
       "attributes": {
-        "name": "Water Quality"
+        "name": "Water Quality",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "watershed_management",
       "type": "area",
       "attributes": {
-        "name": "Watershed Management"
+        "name": "Watershed Management",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "wetlands",
       "type": "area",
       "attributes": {
-        "name": "Wetlands"
+        "name": "Wetlands",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     },
     {
       "id": "wildlife_habitat",
       "type": "area",
       "attributes": {
-        "name": "Wildlife Habitat"
+        "name": "Wildlife Habitat",
+        "parent": "Agricultural Systems, Practices, and Environmental Targets"
       }
     }
   ]

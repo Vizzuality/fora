@@ -5,6 +5,8 @@ module API
     module Enums
       class AreaSerializer
         include EnumSerializer
+
+        attributes :name, :parent
       end
     end
   end
