@@ -85,7 +85,8 @@ module API
             :privacy,
             :project_id,
             areas: [],
-            demographics: []
+            demographics: [],
+            subgeographic_ids: []
           )
         end
       end

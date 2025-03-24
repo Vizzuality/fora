@@ -39,6 +39,16 @@
           "id": "dda31fd4-037e-414c-8a8b-a81b25398d4a",
           "type": "funder"
         }
+      },
+      "subgeographics": {
+        "data": [
+
+        ]
+      },
+      "subgeographic_ancestors": {
+        "data": [
+
+        ]
       }
     }
   }

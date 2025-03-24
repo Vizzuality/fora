@@ -40,6 +40,16 @@
             "id": "2b96127f-26e8-4bdf-aff5-47050d28d269",
             "type": "funder"
           }
+        },
+        "subgeographics": {
+          "data": [
+
+          ]
+        },
+        "subgeographic_ancestors": {
+          "data": [
+
+          ]
         }
       }
     },
@@ -83,6 +93,16 @@
             "id": "2b96127f-26e8-4bdf-aff5-47050d28d269",
             "type": "funder"
           }
+        },
+        "subgeographics": {
+          "data": [
+
+          ]
+        },
+        "subgeographic_ancestors": {
+          "data": [
+
+          ]
         }
       }
     },
@@ -126,6 +146,16 @@
             "id": "2b96127f-26e8-4bdf-aff5-47050d28d269",
             "type": "funder"
           }
+        },
+        "subgeographics": {
+          "data": [
+
+          ]
+        },
+        "subgeographic_ancestors": {
+          "data": [
+
+          ]
         }
       }
     }

@@ -95,7 +95,8 @@ RSpec.describe "API V1 Member Investments", type: :request do
           capital_type: {type: :string},
           capital_type_other: {type: :string, nullable: true},
           submitting_organization_contact_name: {type: :string},
-          privacy: {type: :string}
+          privacy: {type: :string},
+          subgeographic_ids: {type: :array, items: {type: :string}}
         },
         required: %w[amount project_id year_invested initial_funded_year areas grant_duration capital_type privacy]
       }
@@ -108,12 +109,20 @@ RSpec.describe "API V1 Member Investments", type: :request do
 
         let(:Authorization) { "Bearer #{JWTAuth.encode(member)}" }
         let(:project) { create :project }
-        let(:investment_params) { build(:investment).attributes.merge project_id: project.id }
+        let(:country) { create :subgeographic, geographic: :countries }
+        let(:investment_params) {
+          build(:investment).attributes.merge project_id: project.id, subgeographic_ids: [country.id]
+        }
 
         run_test!
 
         it "matches snapshot", generate_swagger_example: true do
           expect(response.body).to match_snapshot("api/v1/members/create-investment")
+        end
+
+        it "creates a new investment with correct subgeographics" do
+          expect(response_json["data"]["relationships"]["subgeographics"]["data"].size).to eq(1)
+          expect(response_json["data"]["relationships"]["subgeographics"]["data"].first["id"]).to eq(country.id)
         end
       end
 
@@ -216,7 +225,8 @@ RSpec.describe "API V1 Member Investments", type: :request do
           capital_type: {type: :string},
           capital_type_other: {type: :string, nullable: true},
           submitting_organization_contact_name: {type: :string},
-          privacy: {type: :string}
+          privacy: {type: :string},
+          subgeographic_ids: {type: :array, items: {type: :string}}
         }
       }
 

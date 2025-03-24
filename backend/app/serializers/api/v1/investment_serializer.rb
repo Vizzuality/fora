@@ -21,6 +21,9 @@ module API
 
       belongs_to_restricted :project
       belongs_to_restricted :funder
+
+      has_many_restricted :subgeographics
+      has_many_restricted :subgeographic_ancestors, serializer: :subgeographic
     end
   end
 end

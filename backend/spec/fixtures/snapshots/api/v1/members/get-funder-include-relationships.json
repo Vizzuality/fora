@@ -85,6 +85,16 @@
             "id": "769d3b8f-f8df-4775-bc60-9477d92c82f4",
             "type": "funder"
           }
+        },
+        "subgeographics": {
+          "data": [
+
+          ]
+        },
+        "subgeographic_ancestors": {
+          "data": [
+
+          ]
         }
       }
     }

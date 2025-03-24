@@ -144,7 +144,9 @@ RSpec.configure do |config|
                 type: :object,
                 properties: {
                   project: {"$ref" => "#/components/schemas/response_relation"},
-                  funder: {"$ref" => "#/components/schemas/response_relation"}
+                  funder: {"$ref" => "#/components/schemas/response_relation"},
+                  subgeographics: {"$ref" => "#/components/schemas/response_relations"},
+                  subgeographic_ancestors: {"$ref" => "#/components/schemas/response_relations"}
                 }
               }
             },

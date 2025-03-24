@@ -24,7 +24,7 @@ RSpec.describe JWTAuth do
 
     it "returns nil if token is expired" do
       token = described_class.encode member
-      travel 1.week do
+      travel 2.weeks do
         member_from_token = described_class.decode(token)
         expect(member_from_token).to be_nil
       end

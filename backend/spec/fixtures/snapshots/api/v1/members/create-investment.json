@@ -39,6 +39,22 @@
           "id": "779cb1a6-50c8-4a41-b50a-8b22b817c226",
           "type": "funder"
         }
+      },
+      "subgeographics": {
+        "data": [
+          {
+            "id": "7f56a592-2307-4245-bea7-fbfc8cc6b09f",
+            "type": "subgeographic"
+          }
+        ]
+      },
+      "subgeographic_ancestors": {
+        "data": [
+          {
+            "id": "7f56a592-2307-4245-bea7-fbfc8cc6b09f",
+            "type": "subgeographic"
+          }
+        ]
       }
     }
   }
