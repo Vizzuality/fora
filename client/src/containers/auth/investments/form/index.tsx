@@ -55,10 +55,7 @@ export default function InvestmentForm({
       areas: areasFormValues,
     },
     invalid,
-    errors,
   } = getState();
-
-  console.log({ errors, values: getState().values });
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-8 pb-10">
