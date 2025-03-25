@@ -1,6 +1,6 @@
 import { useParams, useRouter } from 'next/navigation';
 
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 
 import Form from '@/containers/auth/investments/form';
@@ -15,7 +15,6 @@ export default function EditInvestment({ investment }: { investment: Investment 
   const { data: session } = useSession();
   const { push } = useRouter();
   const { id } = useParams<{ id: string }>();
-  const queryClient = useQueryClient();
 
   const { data: subgeographics } = useQuery({
     queryKey: ['subgeographics'],
@@ -39,14 +38,7 @@ export default function EditInvestment({ investment }: { investment: Investment 
         },
       });
     },
-    onSuccess: async (response) => {
-      await queryClient
-        .invalidateQueries({
-          queryKey: ['investment', id],
-        })
-        .then(() => {
-          queryClient.setQueryData(['investment', id], response.data);
-        });
+    onSuccess: async () => {
       push(`/auth/investments`);
     },
   });
@@ -78,7 +70,7 @@ export default function EditInvestment({ investment }: { investment: Investment 
           year_invested: Number(investment.year_invested),
           initial_funded_year: Number(investment.initial_funded_year),
           grant_duration: investment.grant_duration,
-          number_of_grant_years: investment.number_of_grant_years,
+          number_of_grant_years: investment.number_of_grant_years ?? undefined,
           capital_type: investment.capital_type,
           capital_type_other: investment.capital_type_other ?? '',
           funding_type: investment.funding_type ?? undefined,

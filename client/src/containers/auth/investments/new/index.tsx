@@ -46,6 +46,7 @@ export default function NewInvestment() {
             subgeographic_ids: [...data.countries, ...data.states],
           });
         }}
+        keepDirtyOnReinitialize
         initialValues={{
           privacy: PrivacyEnum.All,
           countries: [],

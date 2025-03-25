@@ -1,14 +1,14 @@
 import { FC } from 'react';
 
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { dehydrate } from '@tanstack/react-query';
+import { GetServerSideProps } from 'next';
+import safeJsonStringify from 'safe-json-stringify';
 
 import MetaTags from 'containers/meta-tags';
 
-import { auth } from 'pages/api/auth/[...nextauth]';
-
 import EditProject from '@/containers/auth/projects/edit';
-import API from '@/services/api';
-import { Project } from '@/types/project';
+import { fetchProject } from '@/hooks/projects';
+import { getQueryClient } from '@/lib/queryclient';
 
 const TITLE_TEXT = 'FORA Edit project | An initiative in support of regenerative agriculture';
 // @todo: update description
@@ -21,23 +21,22 @@ export const getServerSideProps = (async (context) => {
   const {
     query: { id },
   } = context;
-  const session = await auth(context.req, context.res);
+  const queryClient = getQueryClient();
 
-  const project = await API.request<{ data: Project }>({
-    method: 'GET',
-    url: `/members/projects/${id}`,
-    headers: {
-      Authorization: `Bearer ${session?.accessToken}`,
+  await queryClient.prefetchQuery({
+    queryKey: ['project', id],
+    queryFn: () => fetchProject(id as string),
+  });
+
+  return {
+    props: {
+      dehydratedState: JSON.parse(safeJsonStringify(dehydrate(queryClient))) || null,
     },
-  }).then((response) => response.data.data);
-
-  return { props: { project } };
+  };
   // eslint-disable-next-line prettier/prettier
-}) satisfies GetServerSideProps<{ project: Project }>;
+}) satisfies GetServerSideProps;
 
-const EditProjectPage: FC = ({
-  project,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const EditProjectPage: FC = () => {
   return (
     <>
       <MetaTags
@@ -47,7 +46,7 @@ const EditProjectPage: FC = ({
         imageURL={IMAGE_URL}
       />
 
-      <EditProject project={project} />
+      <EditProject />
     </>
   );
 };

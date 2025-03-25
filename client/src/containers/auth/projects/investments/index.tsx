@@ -1,15 +1,43 @@
+import { useState } from 'react';
+
 import { useParams, usePathname } from 'next/navigation';
 
-import { useQueryClient } from '@tanstack/react-query';
+import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-query';
+import { SortingState } from '@tanstack/react-table';
+import { useSession } from 'next-auth/react';
 
+import InvestmentsTable from '@/containers/auth/investments/table';
 import InvestmentsNotFound from '@/containers/auth/projects/investments/not-found';
 import { NEW_PROJECT_QUERY_KEY } from '@/containers/auth/projects/new';
+import { myInvestmentsQueryOptions } from '@/pages/auth/investments';
 import { Project } from '@/types/project';
 
 export default function InvestmentsStep() {
   const pathname = usePathname();
   const { id } = useParams<{ id: string }>();
   const isCreatePage = pathname.includes('/auth/projects/new');
+  const { data: session } = useSession();
+  const [sort, setSort] = useState<SortingState>([
+    {
+      id: 'project_name',
+      desc: false,
+    },
+  ]);
+
+  const { data } = useQuery({
+    ...myInvestmentsQueryOptions(session, {
+      project: id,
+      ...(sort[0]
+        ? {
+            'sort[attribute]': sort[0].id,
+            'sort[direction]': sort[0].desc ? 'desc' : 'asc',
+          }
+        : {}),
+    }),
+    enabled: !!session,
+    select: (d) => d.data,
+    placeholderData: keepPreviousData,
+  });
 
   const queryClient = useQueryClient();
   const mutationCache = queryClient.getMutationCache();
@@ -19,5 +47,21 @@ export default function InvestmentsStep() {
 
   const projectId = isCreatePage ? newProjectMutationState?.data?.data?.data?.id : id;
 
-  return <>{isCreatePage && <InvestmentsNotFound id={projectId} />}</>;
+  if (isCreatePage) {
+    return <InvestmentsNotFound id={projectId} />;
+  }
+
+  return (
+    <div className="flex flex-col gap-10">
+      <h2 className="font-display text-2.5xl">
+        There are <span className="font-semibold">{data?.length ?? '-'}</span> investments for this
+        project
+      </h2>
+      <InvestmentsTable
+        data={data || []}
+        sorting={sort}
+        onSorting={(sortingState) => setSort(sortingState)}
+      />
+    </div>
+  );
 }

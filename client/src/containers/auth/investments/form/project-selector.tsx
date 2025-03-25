@@ -44,15 +44,19 @@ export function ProjectSelector() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[300px] justify-between border-none pl-0 text-2.5xl shadow-none hover:bg-transparent"
+          className="max-w-full justify-between border-none pl-0 text-2.5xl shadow-none hover:bg-transparent"
         >
-          {value
-            ? projects.find((project) => project.value === value)?.label
-            : 'Select a project...'}
+          {value ? (
+            <span className="truncate">
+              {projects.find((project) => project.value === value)?.label}
+            </span>
+          ) : (
+            'Select a project...'
+          )}
           <ChevronDown className="ml-2 h-8 w-8 shrink-0" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-full min-w-[325px] p-0">
+      <PopoverContent className="w-full min-w-[325px] p-0" align="start">
         <Command>
           <CommandInput placeholder="Search by project name" />
           <CommandList>
