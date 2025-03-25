@@ -108,7 +108,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                 <Listbox.Button
                   className={cn({
                     [THEME[theme].button]: true,
-                    'pointer-events-none border border-grey-0/40 text-grey-0/40': disabled,
+                    'pointer-events-none border text-grey-0/40': disabled,
                     [THEME.sizes[size]]: true,
                     [THEME[theme].open.button]: open,
                   })}

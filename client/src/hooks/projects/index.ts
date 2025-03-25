@@ -18,11 +18,11 @@ import { Project } from 'types/project';
 import API from 'services/api';
 
 /**
-****************************************
-  FETCH FUNCTIONS
-****************************************
-*/
-export const fetchProjects = (params: ParamsProps) => {
+ ****************************************
+ FETCH FUNCTIONS
+ ****************************************
+ */
+export const fetchProjects = async (params: ParamsProps) => {
   return API.request({
     method: 'GET',
     url: '/projects',
@@ -40,10 +40,10 @@ export const fetchProject = (id: string) =>
   }).then((response) => response.data);
 
 /**
-****************************************
-  PROJECTS
-****************************************
-*/
+ ****************************************
+ PROJECTS
+ ****************************************
+ */
 
 const useProjectsBaseQueryOptions = ({ params = {} }) =>
   queryOptions({
@@ -70,10 +70,10 @@ export function useProjects(
 }
 
 /**
-****************************************
-  PROJECTS FILTERED BY GEOGRAPHIC SCOPE
-****************************************
-*/
+ ****************************************
+ PROJECTS FILTERED BY GEOGRAPHIC SCOPE
+ ****************************************
+ */
 export function useProjectsByGeographicScope(view: View, data: Project[] = []) {
   const DATA = useMemo(() => {
     if (!data) {
@@ -113,10 +113,10 @@ export function useProjectsByGeographicScope(view: View, data: Project[] = []) {
 }
 
 /**
-****************************************
-  PROJECTS INFINITY
-****************************************
-*/
+ ****************************************
+ PROJECTS INFINITY
+ ****************************************
+ */
 
 const useProjectsInfinityBaseQueryOptions = ({ params = {} }) =>
   infiniteQueryOptions({
@@ -160,10 +160,10 @@ export function useProjectsInfinity(
 }
 
 /**
-****************************************
-  PROJECT [ID]
-****************************************
-*/
+ ****************************************
+ PROJECT [ID]
+ ****************************************
+ */
 
 const useProjectBaseQueryOptions = ({ id }: { id: Project['id'] }) =>
   queryOptions({
