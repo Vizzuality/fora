@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { useSearchParams } from 'next/navigation';
-
 import { Check, ChevronDown } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -19,11 +17,10 @@ import { useProjects } from '@/hooks/projects';
 import { cn } from '@/lib/utils';
 
 export function ProjectSelector() {
-  const searchParams = useSearchParams();
-  const selectedProject = searchParams.get('project');
-  const [open, setOpen] = useState(false);
   const form = useInvestmentForm();
-  const [value, setValue] = useState(selectedProject ?? null);
+  const { project_id: projectId } = form.getState().values;
+  const [value, setValue] = useState(projectId ?? null);
+  const [open, setOpen] = useState(false);
 
   const { data: projects } = useProjects(
     {},
@@ -37,8 +34,8 @@ export function ProjectSelector() {
   );
 
   useEffect(() => {
-    setValue(selectedProject);
-  }, [selectedProject]);
+    setValue(projectId);
+  }, [projectId]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
