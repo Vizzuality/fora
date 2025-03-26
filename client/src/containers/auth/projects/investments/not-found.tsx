@@ -14,7 +14,7 @@ export default function InvestmentsNotFound({ id }: { id: Project['id'] }) {
           Lorem ipsum dolor sit amet consectetur. Convallis fusce neque odio nunc elementum habitant
           sit sagittis.
         </p>
-        <LinkButton href={`/investments?project=${id}`} theme="green">
+        <LinkButton href={`/auth/investments/new?project=${id}`} theme="green">
           Report Investment
         </LinkButton>
       </div>
