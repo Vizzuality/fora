@@ -48,6 +48,7 @@ class Funder < ApplicationRecord
     :primary_office_country,
     if: :published
 
+  scope :published, -> { where(published: true) }
   scope :for_subgeographics, ->(abbreviations) { joins(:subgeographic_ancestors).where(subgeographics: {abbreviation: abbreviations}) }
   scope :for_geographics, ->(geographics) { joins(:subgeographic_ancestors).where(subgeographics: {geographic: geographics}) }
   scope :with_projects_count, -> {

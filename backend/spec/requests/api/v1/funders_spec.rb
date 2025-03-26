@@ -26,6 +26,7 @@ RSpec.describe "API V1 Funders", type: :request do
       let!(:national) { create :subgeographic, geographic: :national, parent: country }
       let!(:funders) { create_list :funder, 3, areas: ["equity_and_justice"], funder_type: "advisory" }
       let!(:funder) { create :funder, subgeographics: [national], areas: ["food_sovereignty"], funder_type: "accelerator" }
+      let!(:not_published_funder) { create :funder, published: false }
 
       response "200", :success do
         schema type: :object, properties: {
@@ -42,6 +43,10 @@ RSpec.describe "API V1 Funders", type: :request do
 
         it "matches snapshot", generate_swagger_example: true do
           expect(response.body).to match_snapshot("api/v1/funders")
+        end
+
+        it "does not return not published funders" do
+          expect(response_json["data"].pluck("id")).not_to include(not_published_funder.id)
         end
 
         context "with sparse fieldset" do
@@ -66,7 +71,7 @@ RSpec.describe "API V1 Funders", type: :request do
           let(:disable_pagination) { true }
 
           it "shows all records" do
-            expect(response_json["data"].size).to eq(Funder.count)
+            expect(response_json["data"].size).to eq(Funder.published.count)
             expect(response_json["meta"]).to be_nil
             expect(response_json["links"]).to be_nil
           end

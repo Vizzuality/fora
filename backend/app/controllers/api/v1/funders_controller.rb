@@ -9,6 +9,7 @@ module API
       SORTING_COLUMNS = %i[name projects_count]
 
       def index
+        @funders = @funders.published
         @funders = @funders.for_subgeographics filter_params[:subgeographics].split(",") if filter_params[:subgeographics].present?
         @funders = @funders.for_geographics filter_params[:geographic] if filter_params[:geographic].present?
         @funders = @funders.search filter_params[:full_text] if filter_params[:full_text].present?

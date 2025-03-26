@@ -21,6 +21,9 @@
       </th>
       <th>
       </th>
+      <th class="opacity-25">
+        <%= svg "menu" %>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -31,6 +34,17 @@
         <td><%= I18n.l resource.updated_at.to_date %></td>
         <td><%= I18n.l resource.created_at.to_date %></td>
         <td><%= link_to t("backoffice.actions.show"), backoffice_funder_path(resource), class: "link-button" %></td>
+        <td>
+          <%= render "menu" do %>
+            <%= render "backoffice/base/menu/item", action: :destroy do %>
+              <%= link_to t("backoffice.actions.delete"), backoffice_funder_path(resource),
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: t("backoffice.messages.delete_confirmation", model: resource_class.model_name.human.downcase)
+                } %>
+            <% end %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

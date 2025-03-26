@@ -25,6 +25,18 @@ RSpec.describe "Backoffice: Funders", type: :system do
         expect(page).to have_text(I18n.l(funder.created_at.to_date))
       end
     end
+
+    context "when deleting upload via menu" do
+      it "deletes upload" do
+        within_row(funder.id) do
+          find("button.rounded-full").click
+          accept_confirm do
+            click_on t("backoffice.actions.delete")
+          end
+        end
+        expect(page).not_to have_text(funder.id)
+      end
+    end
   end
 
   describe "Show" do
@@ -74,6 +86,24 @@ RSpec.describe "Backoffice: Funders", type: :system do
         expect(page).to have_text(t("simple_form.error_notification.default_message"))
         expect(page).to have_text("Name can't be blank")
       end
+    end
+  end
+
+  describe "Delete" do
+    let!(:funder) { create :funder, investments: [create(:investment)] }
+
+    before do
+      visit "/backoffice/funders"
+      within_row(funder.id) do
+        click_on t("backoffice.actions.show")
+      end
+    end
+
+    it "deletes funder" do
+      accept_confirm do
+        click_on t("backoffice.actions.delete")
+      end
+      expect(page).not_to have_text(funder.id)
     end
   end
 end

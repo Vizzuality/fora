@@ -24,6 +24,8 @@ class Ability
       cannot %i[create update destroy], Admin
       cannot %i[destroy], Member
       cannot %i[destroy], Project
+      cannot %i[destroy], Funder
+      cannot %i[destroy], Investment
     end
     can %i[update], Admin, id: @admin.id
   end
@@ -57,7 +59,7 @@ class Ability
 
     can %i[index show geojson], Subgeographic
     can %i[index show], SubgeographicGeometry
-    can %i[index show], Funder
+    can %i[index show], Funder, published: true
     can %i[index show], FunderSubgeographic
     can %i[index show], Project
     can %i[index show], Recipient
