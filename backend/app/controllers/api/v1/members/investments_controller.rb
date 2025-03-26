@@ -6,8 +6,17 @@ module API
 
         load_and_authorize_resource
 
+        SORTING_COLUMNS = {
+          project_name: "recipients.name",
+          amount: "investments.amount",
+          year_invested: "investments.year_invested",
+          funding_type: "investments.funding_type",
+          capital_type: "investments.capital_type"
+        }.freeze
+
         def index
-          @investments = current_member.investments
+          @investments = current_member.investments.joins(project: :recipient)
+          @investments = API::Sorting.new(@investments, sorting_params, SORTING_COLUMNS).call.order :created_at
           pagy_object, @investments = pagy @investments, page: current_page, items: per_page unless params[:disable_pagination].to_s == "true"
           render json: InvestmentSerializer.new(
             @investments,
@@ -88,6 +97,10 @@ module API
             demographics: [],
             subgeographic_ids: []
           )
+        end
+
+        def sorting_params
+          params.fetch(:sort, {}).permit :attribute, :direction
         end
       end
     end

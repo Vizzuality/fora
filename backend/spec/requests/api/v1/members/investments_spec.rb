@@ -12,6 +12,8 @@ RSpec.describe "API V1 Member Investments", type: :request do
 
       parameter name: "page[number]", in: :query, type: :integer, description: "Page number. Default: 1", required: false
       parameter name: "page[size]", in: :query, type: :integer, description: "Per page items. Default: 10", required: false
+      parameter name: "sort[attribute]", in: :query, type: :string, enum: API::V1::Members::InvestmentsController::SORTING_COLUMNS.keys, description: "Attributes usable for sorting. Default: created_at", required: false
+      parameter name: "sort[direction]", in: :query, type: :string, enum: API::Sorting::SORTING_DIRECTIONS, description: "Possible directions of sorting. Default: desc", required: false
       parameter name: :disable_pagination, in: :query, type: :boolean, description: "Turn off pagination", required: false
       parameter name: "fields[investment]", in: :query, type: :string, description: "Get only required fields. Use comma to separate multiple fields", required: false
       parameter name: :includes, in: :query, type: :string, description: "Include relationships. Use comma to separate multiple fields", required: false
@@ -64,6 +66,46 @@ RSpec.describe "API V1 Member Investments", type: :request do
             expect(response_json["data"].size).to eq(member.investments.count)
             expect(response_json["meta"]).to be_nil
             expect(response_json["links"]).to be_nil
+          end
+        end
+
+        context "when sorting by year" do
+          let(:investment_1) { create :investment, funder: member.funder }
+          let(:investment_2) { create :investment, funder: member.funder }
+          let("sort[attribute]") { "year_invested" }
+          let("sort[direction]") { "desc" }
+
+          before do
+            Investment.where.not(id: [investment_1.id, investment_2.id]).destroy_all
+            investment_1.update! year_invested: 2020
+            investment_2.update! year_invested: 2019
+          end
+
+          run_test!
+
+          it "returns correctly sorted result" do
+            expect(response_json["data"].first["id"]).to eq(investment_1.id)
+            expect(response_json["data"].second["id"]).to eq(investment_2.id)
+          end
+        end
+
+        context "when sorting by project name" do
+          let(:investment_1) { create :investment, funder: member.funder }
+          let(:investment_2) { create :investment, funder: member.funder }
+          let("sort[attribute]") { "project_name" }
+          let("sort[direction]") { "asc" }
+
+          before do
+            Investment.where.not(id: [investment_1.id, investment_2.id]).destroy_all
+            investment_1.project.recipient.update! name: "B"
+            investment_2.project.recipient.update! name: "A"
+          end
+
+          run_test!
+
+          it "returns correctly sorted result" do
+            expect(response_json["data"].first["id"]).to eq(investment_2.id)
+            expect(response_json["data"].second["id"]).to eq(investment_1.id)
           end
         end
       end
