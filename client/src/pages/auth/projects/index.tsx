@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { dehydrate, DehydratedState, infiniteQueryOptions } from '@tanstack/react-query';
 import { GetServerSideProps } from 'next';
 import { Session } from 'next-auth';
+import safeJsonStringify from 'safe-json-stringify';
 
 import MyProjectsOverview from 'containers/auth/projects/overview';
 import MetaTags from 'containers/meta-tags';
@@ -62,7 +63,7 @@ export const getServerSideProps = (async (context) => {
 
   return {
     props: {
-      dehydratedState: dehydrate(queryClient),
+      dehydratedState: JSON.parse(safeJsonStringify(dehydrate(queryClient))) || null,
     },
   };
   // eslint-disable-next-line prettier/prettier
