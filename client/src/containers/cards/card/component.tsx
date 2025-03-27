@@ -57,7 +57,7 @@ const Cards = ({
       })}
     >
       <div className="space-y-5">
-        <h3 className="line-clamp-3 font-display text-2xl">{name}</h3>
+        <h3 className="font-display text-2xl line-clamp-3">{name}</h3>
 
         <div className="flex space-x-2 pb-4">
           <Icon

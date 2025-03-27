@@ -124,7 +124,7 @@ export default function MyProjectsOverview() {
                 className="grid grow grid-cols-12 flex-col items-center p-8"
               >
                 <div className="col-span-6 col-start-4 flex flex-col items-center gap-4 text-center">
-                  <h3 className="line-clamp-3 font-display text-2xl">Add new project</h3>
+                  <h3 className="font-display text-2xl line-clamp-3">Add new project</h3>
                   <span className="inline-flex rounded-full border border-grey-0 p-4">
                     <RxPlus className="h-6 w-6" />
                   </span>
