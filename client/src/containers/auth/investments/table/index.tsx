@@ -1,6 +1,7 @@
 import { getCoreRowModel, SortingState } from '@tanstack/react-table';
 
 import Table from '@/components/table';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { Investment } from '@/types/investment';
 
 import { columns } from './columns';
@@ -15,19 +16,24 @@ export default function InvestmentsTable({
   onSorting: (sorting: SortingState) => void;
 }) {
   return (
-    <Table
-      columns={columns}
-      data={data}
-      classNames={{
-        thead: 'border-b border-grey-40',
-        td: 'py-6',
-      }}
-      state={{
-        sorting,
-      }}
-      getCoreRowModel={getCoreRowModel()}
-      onSortingChange={onSorting}
-      manualSorting
-    />
+    <ScrollArea className="h-full">
+      <div className="table h-full w-full table-fixed">
+        <Table
+          columns={columns}
+          data={data}
+          classNames={{
+            table: 'h-full w-full',
+            thead: 'border-b border-grey-40 sticky top-0 bg-white',
+            td: 'py-6',
+          }}
+          state={{
+            sorting,
+          }}
+          getCoreRowModel={getCoreRowModel()}
+          onSortingChange={onSorting}
+          manualSorting
+        />
+      </div>
+    </ScrollArea>
   );
 }

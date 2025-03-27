@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 import { cn } from 'lib/utils';
 
@@ -10,12 +10,17 @@ import Header from '@/containers/header';
 export default function ApplicationLayout({ children }: PropsWithChildren) {
   const pathname = usePathname();
   const isAuthRoute = pathname.includes('/auth');
+  const searchParams = useSearchParams();
+  const isInvestments =
+    pathname.includes('/auth/investments') ||
+    (pathname.includes('/auth/projects') && searchParams.get('step') === 'investments');
 
   return (
     <div
       className={cn({
         'flex min-h-screen flex-col': true,
         'bg-grey-60': isAuthRoute,
+        'h-screen': isInvestments,
       })}
     >
       <Header />
@@ -23,6 +28,7 @@ export default function ApplicationLayout({ children }: PropsWithChildren) {
         className={cn({
           'flex grow flex-col': true,
           'bg-grey-60': isAuthRoute,
+          'h-full overflow-hidden': isInvestments,
         })}
       >
         {children}

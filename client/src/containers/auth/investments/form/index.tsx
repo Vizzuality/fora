@@ -107,12 +107,12 @@ export default function InvestmentForm({
             {({ input }) => (
               <div className="space-y-2">
                 <Input
-                  {...input}
                   id={input.name}
                   required
                   type="number"
                   theme="transparent"
                   className="h-[46px]"
+                  defaultValue={input.value}
                   onChange={(evt) => {
                     input.onChange(Number(evt.target.value));
                   }}
@@ -273,7 +273,7 @@ export default function InvestmentForm({
                   >
                     {({ input }) => (
                       <div className="space-y-2">
-                        <Input required {...input} />
+                        <Input required {...input} className="h-[46px]" />
                         <ErrorField<InvestmentSchema> name="funding_type_other" />
                       </div>
                     )}

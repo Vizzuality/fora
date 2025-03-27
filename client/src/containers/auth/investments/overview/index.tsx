@@ -33,7 +33,7 @@ export default function MyInvestmentsOverview() {
   });
 
   return (
-    <Wrapper className="flex w-full grow flex-col gap-6">
+    <Wrapper className="flex h-full w-full grow flex-col gap-6 pb-20">
       <header className="flex items-center justify-between">
         <h2 className="font-display text-3xl">
           You have <span className="font-semibold">{data?.length}</span> investments

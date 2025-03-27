@@ -52,7 +52,7 @@ export default function InvestmentsStep() {
   }
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex h-full flex-col gap-10 pb-10">
       <h2 className="font-display text-2.5xl">
         There are <span className="font-semibold">{data?.length ?? '-'}</span> investments for this
         project

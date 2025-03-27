@@ -51,7 +51,7 @@ export default function EditProject() {
   });
 
   return (
-    <Wrapper className="flex w-full grow">
+    <Wrapper className="flex h-full w-full grow">
       <FormWrapper<{ imageURL: string }>
         initialValues={{
           name: project.name,
@@ -96,11 +96,11 @@ export default function EditProject() {
           return (
             <div className="flex grow flex-col gap-14">
               <EditProjectHeader />
-              <div className="grid h-full grid-cols-12 gap-16">
+              <div className="grid h-full grid-cols-12 gap-16 overflow-hidden">
                 <div className="col-span-3">
                   <MyProjectsSidebar sections={FORM_STEPS.map((l) => l)} />
                 </div>
-                <div className="col-span-9 flex">
+                <div className="col-span-9 flex h-full overflow-hidden">
                   <Form handleSubmit={handleSubmit} />
                 </div>
               </div>
