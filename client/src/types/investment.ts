@@ -4,6 +4,7 @@ import {
   FundingTypeEnum,
   PrivacyEnum,
 } from '@/containers/auth/investments/form/types';
+import { Project } from '@/types/project';
 
 export interface Investment {
   id: string;
@@ -24,10 +25,7 @@ export interface Investment {
   privacy: PrivacyEnum;
   updated_at: string;
   created_at: string;
-  project: {
-    type: 'project';
-    id: string;
-  };
+  project: Project;
   subgeographic_ancestors: {
     type: 'subgeographic';
     id: string;
@@ -36,6 +34,14 @@ export interface Investment {
     type: 'subgeographic';
     id: string;
   }[];
-  // funder: Partial<Funder>;
-  // project: Partial<Project>;
 }
+
+export type InifiniteInvestments = {
+  data: Investment[];
+  meta: {
+    page: number;
+    pages: number;
+    total: number;
+    to: number;
+  };
+};

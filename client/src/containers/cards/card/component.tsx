@@ -14,7 +14,9 @@ import Icon from 'components/icon';
 import LOCATION_SVG from 'svgs/ui/location.svg?sprite';
 
 import { THEME } from './constants';
+
 type T = Project & Funder;
+
 export interface CardProps extends Partial<T> {
   href?: string;
   theme?: 'green' | 'grey';
@@ -28,6 +30,7 @@ const Cards = ({
   subgeographics,
 }: CardProps) => {
   const { data: areasData } = useAreas();
+  console.log({ areasData, areas });
 
   const FORMAT_LINK_TEXT = useMemo(() => {
     if (href.includes('project')) {
@@ -38,7 +41,7 @@ const Cards = ({
   }, [href]);
 
   const AREAS_OF_FOCUS = useMemo(() => {
-    const filteredAreas = areasData.filter((c) => areas.includes(c.id));
+    const filteredAreas = areasData?.filter((c) => areas.includes(c.id));
 
     return filteredAreas.map((a) => a.name);
   }, [areas, areasData]);

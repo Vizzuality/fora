@@ -6,6 +6,7 @@ const queryClient = new QueryClient({
       select: (data: any) => {
         return data.data;
       },
+      structuralSharing: false,
     },
   },
 });

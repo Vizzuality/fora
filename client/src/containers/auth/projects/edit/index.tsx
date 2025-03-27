@@ -1,25 +1,28 @@
-import { useRouter, useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 
-import { FORM_STEPS } from '../constants';
-
+import EditProjectHeader from '@/containers/auth/projects/edit/header';
 import Form from '@/containers/auth/projects/form';
 import FormWrapper from '@/containers/auth/projects/form/wrapper';
-import NewProjectHeader from '@/containers/auth/projects/new/header';
 import MyProjectsSidebar from '@/containers/auth/projects/sidebar';
 import Wrapper from '@/containers/wrapper';
 import { useMe } from '@/hooks/members';
+import { useProject } from '@/hooks/projects';
 import API from '@/services/api';
 import { Project } from '@/types/project';
 
-export default function EditProject({ project }: { project: Project }) {
+import { FORM_STEPS } from '../constants';
+
+export default function EditProject() {
   const { data: session } = useSession();
   const { push } = useRouter();
   const { id } = useParams<{ id: string }>();
   const { data: me } = useMe();
   const queryClient = useQueryClient();
+
+  const { data: project } = useProject(id);
 
   const mutation = useMutation({
     mutationKey: ['editProject', id],
@@ -92,7 +95,7 @@ export default function EditProject({ project }: { project: Project }) {
         render={({ handleSubmit }) => {
           return (
             <div className="flex grow flex-col gap-14">
-              <NewProjectHeader />
+              <EditProjectHeader />
               <div className="grid h-full grid-cols-12 gap-16">
                 <div className="col-span-3">
                   <MyProjectsSidebar sections={FORM_STEPS.map((l) => l)} />

@@ -6,6 +6,9 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { ChevronDownIcon, ChevronsUpDownIcon, ChevronUpIcon } from 'lucide-react';
+
+import { cn } from '@/lib/utils';
 
 import { TableProps } from './types';
 
@@ -48,7 +51,31 @@ const Table = <T extends unknown>({
                   width: header.getSize(),
                 }}
               >
-                {flexRender(header.column.columnDef.header, header.getContext())}
+                <div
+                  className={cn({
+                    'flex items-center space-x-2': true,
+                    'cursor-pointer select-none': header.column.getCanSort(),
+                  })}
+                  onClick={header.column.getToggleSortingHandler()}
+                  title={
+                    header.column.getCanSort()
+                      ? header.column.getNextSortingOrder() === 'asc'
+                        ? 'Sort ascending'
+                        : header.column.getNextSortingOrder() === 'desc'
+                          ? 'Sort descending'
+                          : 'Clear sort'
+                      : undefined
+                  }
+                >
+                  {flexRender(header.column.columnDef.header, header.getContext())}
+                  {{
+                    asc: <ChevronUpIcon className="h-4 w-4 text-grey-20" />,
+                    desc: <ChevronDownIcon className="h-4 w-4 text-grey-20" />,
+                  }[header.column.getIsSorted() as string] ??
+                    (header.column.getCanSort() && (
+                      <ChevronsUpDownIcon className="h-4 w-4 text-grey-20" />
+                    ))}
+                </div>
               </th>
             ))}
           </tr>

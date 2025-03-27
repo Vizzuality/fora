@@ -19,7 +19,6 @@ const FormContext = () => (
         areas: [],
         demographics: [],
         internal_demographics_collection: 'yes',
-        // project_id: selectedProject ?? '',
       }}
       render={({ handleSubmit }) => {
         return <Form handleSubmit={handleSubmit} />;
