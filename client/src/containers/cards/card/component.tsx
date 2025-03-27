@@ -4,14 +4,11 @@ import cx from 'classnames';
 
 import Link from 'next/link';
 
-import { Funder } from 'types/funder';
-import { Project } from 'types/project';
-
-import { useAreas } from 'hooks/areas';
-
-import Icon from 'components/icon';
-
-import LOCATION_SVG from 'svgs/ui/location.svg?sprite';
+import Icon from '@/components/icon';
+import { useAreas } from '@/hooks/areas';
+import LOCATION_SVG from '@/svgs/ui/location.svg?sprite';
+import { Funder } from '@/types/funder';
+import { Project } from '@/types/project';
 
 import { THEME } from './constants';
 
@@ -30,7 +27,6 @@ const Cards = ({
   subgeographics,
 }: CardProps) => {
   const { data: areasData } = useAreas();
-  console.log({ areasData, areas });
 
   const FORMAT_LINK_TEXT = useMemo(() => {
     if (href.includes('project')) {
@@ -61,7 +57,7 @@ const Cards = ({
       })}
     >
       <div className="space-y-5">
-        <h3 className="font-display text-2xl line-clamp-3">{name}</h3>
+        <h3 className="line-clamp-3 font-display text-2xl">{name}</h3>
 
         <div className="flex space-x-2 pb-4">
           <Icon

@@ -10,14 +10,13 @@ import { useIntersectionObserver } from '@uidotdev/usehooks';
 import { useSession } from 'next-auth/react';
 import { RxPlus } from 'react-icons/rx';
 
-import CHEVRON_DOWN_SVG from 'svgs/ui/chevron-down.svg?sprite';
-
 import LinkButton from '@/components/button';
 import Icon from '@/components/icon';
 import { MyProjectCard } from '@/containers/auth/projects/overview/my-project-card';
 import { CardWrapper } from '@/containers/cards/card/wrapper';
 import Wrapper from '@/containers/wrapper';
 import { myProjectsQueryOptions } from '@/pages/auth/projects';
+import CHEVRON_DOWN_SVG from '@/svgs/ui/chevron-down.svg?sprite';
 
 export default function MyProjectsOverview() {
   const [sort, setSort] = React.useState<'asc' | 'desc'>('asc');
@@ -125,7 +124,7 @@ export default function MyProjectsOverview() {
                 className="grid grow grid-cols-12 flex-col items-center p-8"
               >
                 <div className="col-span-6 col-start-4 flex flex-col items-center gap-4 text-center">
-                  <h3 className="font-display text-2xl line-clamp-3">Add new project</h3>
+                  <h3 className="line-clamp-3 font-display text-2xl">Add new project</h3>
                   <span className="inline-flex rounded-full border border-grey-0 p-4">
                     <RxPlus className="h-6 w-6" />
                   </span>

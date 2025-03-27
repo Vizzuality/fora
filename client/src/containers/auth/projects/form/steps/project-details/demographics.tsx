@@ -2,13 +2,10 @@ import { ComponentProps } from 'react';
 
 import { Field as FieldRFF, useFormState } from 'react-final-form';
 
-import { useDemographics } from 'hooks/demographics';
-
-import { ProjectSchema } from 'containers/auth/projects/form/validations';
-
-import { MultiSelect, Select } from 'components/forms';
-
+import { MultiSelect, Select } from '@/components/forms';
 import ErrorField from '@/components/forms/error-field';
+import { ProjectSchema } from '@/containers/auth/projects/form/validations';
+import { useDemographics } from '@/hooks/demographics';
 
 export default function DemographicsSelector() {
   const {

@@ -1,10 +1,10 @@
 import { render, renderHook } from '@testing-library/react';
 import { expect } from 'vitest';
 
-import ProjectOverview from './component';
-
 import { useProject } from '@/hooks/projects';
 import { AppWrapper } from '@/tests/utils';
+
+import ProjectOverview from './component';
 
 const mocks = vi.hoisted(() => {
   return {

@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 
 import { cn } from '@/lib/utils';

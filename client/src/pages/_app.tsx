@@ -5,17 +5,14 @@ import { useRouter } from 'next/router';
 
 import { STORE_WRAPPER } from 'store';
 
-import { QueryClientProvider, HydrationBoundary } from '@tanstack/react-query';
+import { HydrationBoundary, QueryClientProvider } from '@tanstack/react-query';
 import { SessionProvider } from 'next-auth/react';
 import PlausibleProvider from 'next-plausible';
 
-import ApplicationLayout from 'layouts/application';
-
-import MetaIcons from 'containers/meta-icons';
-import RouteLoading from 'containers/route-loading';
-
-import { MediaContextProvider } from 'components/media-query';
-
+import { MediaContextProvider } from '@/components/media-query';
+import MetaIcons from '@/containers/meta-icons';
+import RouteLoading from '@/containers/route-loading';
+import ApplicationLayout from '@/layouts/application';
 import 'styles/globals.css';
 import 'styles/flicking.css';
 import { getQueryClient } from '@/lib/queryclient';

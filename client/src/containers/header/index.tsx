@@ -4,16 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { cn } from 'lib/utils';
-
-import { NAV, NAV_AUTH } from 'constants/nav';
-
-import { isPrivatePath } from 'middleware';
-
-import LOGO_SVG from 'svgs/logo.svg';
-
+import { NAV, NAV_AUTH } from '@/constants/nav';
 import UserMenu from '@/containers/header/user-menu';
 import Wrapper from '@/containers/wrapper';
+import { cn } from '@/lib/utils';
+import LOGO_SVG from '@/svgs/logo.svg';
+import { isPrivatePath } from 'middleware';
 
 const Header = () => {
   const pathname = usePathname();

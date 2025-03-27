@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import { signOut, useSession } from 'next-auth/react';
-import { LuUser, LuLogOut } from 'react-icons/lu';
+import { LuLogOut, LuUser } from 'react-icons/lu';
 
 import { Button, LinkButton } from '@/components/button/component';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
