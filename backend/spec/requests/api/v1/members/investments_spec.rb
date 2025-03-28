@@ -10,6 +10,7 @@ RSpec.describe "API V1 Member Investments", type: :request do
 
       include_context "with authorization"
 
+      parameter name: "filter[project_id]", in: :query, type: :string, description: "Filter results only for specified project", required: false
       parameter name: "page[number]", in: :query, type: :integer, description: "Page number. Default: 1", required: false
       parameter name: "page[size]", in: :query, type: :integer, description: "Per page items. Default: 10", required: false
       parameter name: "sort[attribute]", in: :query, type: :string, enum: API::V1::Members::InvestmentsController::SORTING_COLUMNS.keys, description: "Attributes usable for sorting. Default: created_at", required: false
@@ -55,6 +56,16 @@ RSpec.describe "API V1 Member Investments", type: :request do
 
           it "matches snapshot" do
             expect(response.body).to match_snapshot("api/v1/members/investments-include-relationships")
+          end
+        end
+
+        context "when filtering investments by project" do
+          let(:investment) { investments.first }
+          let("filter[project_id]") { investment.project_id }
+
+          it "returns only investments for the specified project" do
+            expect(response_json["data"].count).to eq(1)
+            expect(response_json["data"].first["id"]).to eq(investment.id)
           end
         end
 

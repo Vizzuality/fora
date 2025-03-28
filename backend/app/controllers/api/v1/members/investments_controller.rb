@@ -16,6 +16,7 @@ module API
 
         def index
           @investments = current_member.investments.joins(project: :recipient)
+          @investments = @investments.where project_id: filter_params[:project_id] if filter_params[:project_id].present?
           @investments = API::Sorting.new(@investments, sorting_params, SORTING_COLUMNS).call.order :created_at
           pagy_object, @investments = pagy @investments, page: current_page, items: per_page unless params[:disable_pagination].to_s == "true"
           render json: InvestmentSerializer.new(
@@ -101,6 +102,10 @@ module API
 
         def sorting_params
           params.fetch(:sort, {}).permit :attribute, :direction
+        end
+
+        def filter_params
+          params.fetch(:filter, {}).permit :project_id
         end
       end
     end
