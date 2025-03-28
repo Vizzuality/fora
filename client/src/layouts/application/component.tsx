@@ -12,7 +12,7 @@ export default function ApplicationLayout({ children }: PropsWithChildren) {
   const isAuthRoute = pathname.includes('/auth');
   const searchParams = useSearchParams();
   const isInvestments =
-    pathname.includes('/auth/investments') ||
+    pathname === '/auth/investments' ||
     (pathname.includes('/auth/projects') && searchParams.get('step') === 'investments');
 
   return (

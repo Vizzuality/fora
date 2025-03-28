@@ -20,7 +20,7 @@ const DESCRIPTION_TEXT =
 // @todo: update image
 const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/home.jpg`;
 
-const fetchMyInvestments = async (session: Session, params = {}) => {
+export const fetchMyInvestments = async (session: Session, params = {}) => {
   const response = await API.request<{ data: Investment[] }>({
     method: 'GET',
     url: 'members/investments',

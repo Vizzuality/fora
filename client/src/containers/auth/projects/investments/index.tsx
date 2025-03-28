@@ -24,9 +24,9 @@ export default function InvestmentsStep() {
     },
   ]);
 
-  const { data } = useQuery({
+  const { data, isFetched } = useQuery({
     ...myInvestmentsQueryOptions(session, {
-      project: id,
+      'filter[project_id]': id,
       ...(sort[0]
         ? {
             'sort[attribute]': sort[0].id,
@@ -47,7 +47,7 @@ export default function InvestmentsStep() {
 
   const projectId = isCreatePage ? newProjectMutationState?.data?.data?.data?.id : id;
 
-  if (isCreatePage) {
+  if (isCreatePage || (isFetched && !data?.length)) {
     return <InvestmentsNotFound id={projectId} />;
   }
 
@@ -58,7 +58,7 @@ export default function InvestmentsStep() {
         project
       </h2>
       <InvestmentsTable
-        data={data || []}
+        data={data}
         sorting={sort}
         onSorting={(sortingState) => setSort(sortingState)}
       />

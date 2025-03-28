@@ -9,6 +9,8 @@ import MetaTags from 'containers/meta-tags';
 import EditProject from '@/containers/auth/projects/edit';
 import { fetchProject } from '@/hooks/projects';
 import { getQueryClient } from '@/lib/queryclient';
+import { auth } from '@/pages/api/auth/[...nextauth]';
+import { myInvestmentsQueryOptions } from '@/pages/auth/investments';
 
 const TITLE_TEXT = 'FORA Edit project | An initiative in support of regenerative agriculture';
 // @todo: update description
@@ -18,6 +20,7 @@ const DESCRIPTION_TEXT =
 const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/home.jpg`;
 
 export const getServerSideProps = (async (context) => {
+  const session = await auth(context.req, context.res);
   const {
     query: { id },
   } = context;
@@ -26,6 +29,14 @@ export const getServerSideProps = (async (context) => {
   await queryClient.prefetchQuery({
     queryKey: ['project', id],
     queryFn: () => fetchProject(id as string),
+  });
+
+  await queryClient.prefetchQuery({
+    ...myInvestmentsQueryOptions(session, {
+      'filter[project_id]': id,
+      'sort[attribute]': 'project_name',
+      'sort[direction]': 'asc',
+    }),
   });
 
   return {
