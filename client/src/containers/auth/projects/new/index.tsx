@@ -9,12 +9,13 @@ import { useMe } from 'hooks/members';
 
 import Wrapper from 'containers/wrapper';
 
+import Sidebar from '@/containers/auth/sidebar';
+
 import API from 'services/api';
 
 import { FORM_STEPS } from '../constants';
 import Form from '../form';
 import FormWrapper from '../form/wrapper';
-import MyProjectsSidebar from '../sidebar';
 
 import NewProjectHeader from './header';
 
@@ -88,7 +89,7 @@ export default function NewProject() {
               <NewProjectHeader />
               <div className="grid h-full grid-cols-12 gap-16">
                 <div className="col-span-3">
-                  <MyProjectsSidebar sections={formSteps} />
+                  <Sidebar sections={formSteps} />
                 </div>
                 <div className="col-span-9 flex">
                   <Form handleSubmit={handleSubmit} />

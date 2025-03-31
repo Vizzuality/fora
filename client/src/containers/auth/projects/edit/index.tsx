@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react';
 import EditProjectHeader from '@/containers/auth/projects/edit/header';
 import Form from '@/containers/auth/projects/form';
 import FormWrapper from '@/containers/auth/projects/form/wrapper';
-import MyProjectsSidebar from '@/containers/auth/projects/sidebar';
+import Sidebar from '@/containers/auth/sidebar';
 import Wrapper from '@/containers/wrapper';
 import { useMe } from '@/hooks/members';
 import { useProject } from '@/hooks/projects';
@@ -98,7 +98,7 @@ export default function EditProject() {
               <EditProjectHeader />
               <div className="grid h-full grid-cols-12 gap-16 overflow-hidden">
                 <div className="col-span-3">
-                  <MyProjectsSidebar sections={FORM_STEPS.map((l) => l)} />
+                  <Sidebar sections={FORM_STEPS.map((l) => l)} />
                 </div>
                 <div className="col-span-9 flex h-full overflow-hidden">
                   <Form handleSubmit={handleSubmit} />

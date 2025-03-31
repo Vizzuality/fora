@@ -1,10 +1,9 @@
 import { usePathname, useSearchParams } from 'next/navigation';
 
-import { cn } from 'lib/utils';
+import LinkButton from '@/components/button';
+import { cn } from '@/lib/utils';
 
-import LinkButton from 'components/button';
-
-export default function MyProjectsSidebar({
+export default function Sidebar({
   sections,
 }: {
   sections: {
