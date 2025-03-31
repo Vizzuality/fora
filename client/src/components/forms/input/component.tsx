@@ -40,7 +40,7 @@ export const Input: FC<InputProps> = ({
         type={type}
         disabled={disabled}
         className={cx({
-          'form-input': true,
+          'form-input focus:shadow-none focus:ring-0': true,
           [THEME[theme].base]: true,
           [THEME[theme].status[st]]: true,
           [THEME[theme].mode[mode]]: true,

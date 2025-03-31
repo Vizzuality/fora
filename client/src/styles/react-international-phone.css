@@ -1,0 +1,23 @@
+@import 'react-international-phone/style.css';
+
+.react-international-phone-country-selector-button {
+  border: none;
+  height: auto;
+}
+
+.react-international-phone-country-selector {
+  padding: 0 8px;
+}
+
+.react-international-phone-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 46px;
+}
+
+.react-international-phone-input-container .react-international-phone-input {
+  border: none;
+  width: 100%;
+}

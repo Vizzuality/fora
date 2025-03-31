@@ -186,7 +186,7 @@ export default function ProjectDetailsStep() {
           Do you collect information on the leadership demographics of partner organizations?
         </VisibilityLabel>
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             <FieldRFF<ProjectSchema['internal_leadership_demographics_collection']>
               name="internal_leadership_demographics_collection"
               type="radio"
@@ -199,7 +199,7 @@ export default function ProjectDetailsStep() {
             <label htmlFor="internal_leadership_demographics_collection-yes">Yes</label>
           </div>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             <FieldRFF<ProjectSchema['internal_leadership_demographics_collection']>
               name="internal_leadership_demographics_collection"
               type="radio"

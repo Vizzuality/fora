@@ -26,7 +26,7 @@ export function Privacy() {
         Can funding information be shared on the platform?
       </label>
       <div className="col-span-8 flex flex-col items-start gap-4">
-        <div className="flex items-start gap-1">
+        <div className="flex items-start gap-1.5">
           <FieldRFF<InvestmentSchema['privacy']>
             name="privacy"
             type="radio"
@@ -36,7 +36,7 @@ export function Privacy() {
           </FieldRFF>
           <label htmlFor="privacy-all">{PRIVACY_TEXTS.all}</label>
         </div>
-        <div className="flex items-start gap-1">
+        <div className="flex items-start gap-1.5">
           <FieldRFF<InvestmentSchema['privacy']>
             name="privacy"
             type="radio"
@@ -48,7 +48,7 @@ export function Privacy() {
             {PRIVACY_TEXTS.aggregate_amount_funded}
           </label>
         </div>
-        <div className="flex items-start gap-1">
+        <div className="flex items-start gap-1.5">
           <FieldRFF<InvestmentSchema['privacy']>
             name="privacy"
             type="radio"
@@ -61,7 +61,7 @@ export function Privacy() {
             <span className="text-red-0">**</span>
           </label>
         </div>
-        <div className="flex items-start gap-1">
+        <div className="flex items-start gap-1.5">
           <FieldRFF<InvestmentSchema['privacy']>
             name="privacy"
             type="radio"
@@ -74,7 +74,7 @@ export function Privacy() {
             <span className="text-red-0">**</span>
           </label>
         </div>
-        <div className="flex items-start gap-1">
+        <div className="flex items-start gap-1.5">
           <FieldRFF<InvestmentSchema['privacy']>
             name="privacy"
             type="radio"
@@ -86,7 +86,7 @@ export function Privacy() {
             {PRIVACY_TEXTS.visible_only_to_members}
           </label>
         </div>
-        <div className="flex items-start gap-1">
+        <div className="flex items-start gap-1.5">
           <FieldRFF<InvestmentSchema['privacy']>
             name="privacy"
             type="radio"

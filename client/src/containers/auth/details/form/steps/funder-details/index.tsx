@@ -239,7 +239,7 @@ export default function FunderDetailsStep() {
           <FieldRFF<FunderSchema['website']> name="website" type="text">
             {({ input }) => (
               <div className="space-y-2">
-                <Input {...input} id={input.name} className="h-[46px]" />
+                <Input {...input} id={input.name} theme="transparent" className="h-[46px]" />
                 <ErrorField<FunderSchema> name="website" />
               </div>
             )}

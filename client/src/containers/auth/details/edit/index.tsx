@@ -67,6 +67,15 @@ export default function EditFunder() {
           funder_legal_status_other: funder.funder_legal_status_other ?? undefined,
           description: funder.description,
           imageURL: funder.logo?.original ?? undefined,
+          primary_contact_first_name: funder.name?.split(' ')?.[0] ?? undefined,
+          primary_contact_last_name: funder.name?.split(' ')?.[1] ?? undefined,
+          primary_contact_email: funder.contact_email ?? undefined,
+          show_primary_email: funder.secondary_email_which_can_be_shared ? 'no' : 'yes',
+          secondary_email_which_can_be_shared:
+            funder.secondary_email_which_can_be_shared ?? undefined,
+          primary_contact_phone: funder.primary_contact_phone ?? undefined,
+          primary_contact_role: funder.primary_contact_role ?? undefined,
+          primary_contact_location: funder.primary_contact_location ?? undefined,
         }}
         onSubmit={(data) => {
           mutation.mutate(data);

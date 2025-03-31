@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/prefer-default-export
 export const THEME = {
   dark: {
-    base: 'bg-grey-0 border rounded-full text-blue-500',
+    base: 'bg-grey-0 border rounded-full',
     status: {
       none: 'border-grey-0',
       valid: 'border-green-800',
@@ -10,7 +10,7 @@ export const THEME = {
     },
   },
   light: {
-    base: 'bg-white border rounded-full text-blue-500',
+    base: 'bg-white border rounded-full',
     status: {
       none: 'border-grey-0',
       valid: 'border-green-800',

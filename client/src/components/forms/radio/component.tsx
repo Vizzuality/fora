@@ -24,7 +24,7 @@ export const Radio: FC<RadioProps> = ({
       type="radio"
       disabled={disabled}
       className={cx({
-        'form-radio': true,
+        'form-radio text-green-0': true,
         [THEME[theme].base]: true,
         [THEME[theme].status[st]]: true,
         [className]: !!className,
