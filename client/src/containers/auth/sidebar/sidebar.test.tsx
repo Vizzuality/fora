@@ -3,7 +3,7 @@ import { ComponentProps } from 'react';
 import { render } from '@testing-library/react';
 import { expect } from 'vitest';
 
-import Sidebar from './sidebar';
+import Sidebar from './index';
 
 const TEST_SECTIONS: ComponentProps<typeof Sidebar>['sections'] = [
   {

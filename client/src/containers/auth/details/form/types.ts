@@ -1,0 +1,15 @@
+export enum OrganizationType {
+  Accelerator = 'accelerator',
+  Advisory = 'advisory',
+  Bank = 'bank',
+  EducationalLandBased = 'educational_land_based',
+  FamilyOffice = 'family_office',
+  FunderCollaborativeNetwork = 'funder_collaborative_network',
+  Individual = 'individual',
+  Initiative = 'initiative',
+  LoanFund = 'loan_fund',
+  Other = 'other',
+  PrivateFoundation = 'private_foundation',
+  PublicFoundation = 'public_foundation',
+  Regrantor = 'regrantor',
+}

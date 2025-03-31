@@ -55,7 +55,7 @@ export default function ContactDetailsStep() {
           <div className="space-y-2">
             <VisibilityLabel
               labelProps={{
-                htmlFor: 'stated_id',
+                htmlFor: 'state_id',
               }}
             >
               Primary Office State

@@ -110,7 +110,7 @@ export default function ProjectDetailsStep() {
             <div className="space-y-2">
               <Textarea
                 placeholder="Type the description here"
-                theme="transparent"
+                theme="light"
                 className="min-h-[46px]"
                 {...input}
                 onChange={input.onChange}
