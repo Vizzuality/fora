@@ -30,7 +30,12 @@ export default function EditFunder() {
       return API.request<{ data: Funder }>({
         method: 'PUT',
         url: '/members/funder',
-        data: data,
+        data: {
+          ...data,
+          //@todo review this
+          show_primary_email: data.show_primary_email === 'yes',
+          new_to_regenerative_ag: data.new_to_regenerative_ag === 'yes',
+        },
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${session.accessToken}`,
