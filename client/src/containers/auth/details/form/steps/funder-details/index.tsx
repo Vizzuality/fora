@@ -17,10 +17,11 @@ import Textarea from '@/components/forms/textarea';
 import { useFunderForm } from '@/containers/auth/details/form';
 import { YEARS_JOINED_FORA_RANGE } from '@/containers/auth/details/form/constants';
 import VisibilityLabel from '@/containers/auth/details/form/label';
+import FunderTypeSelector from '@/containers/auth/details/form/steps/funder-details/funder-type';
 import LegalStatusSelector from '@/containers/auth/details/form/steps/funder-details/legal-status';
-import OrganizationTypeSelector from '@/containers/auth/details/form/steps/funder-details/organization-type';
 import PrimaryOfficeCountrySelector from '@/containers/auth/details/form/steps/funder-details/primary-office-country';
 import PrimaryOfficeStateSelector from '@/containers/auth/details/form/steps/funder-details/primary-office-state';
+import { FunderType } from '@/containers/auth/details/form/types';
 import { FunderSchema } from '@/containers/auth/details/form/validations';
 import { cn } from '@/lib/utils';
 
@@ -43,7 +44,7 @@ export default function FunderDetailsStep() {
     values: {
       imageURL,
       funder_legal_status: legalStatusFormValue,
-      organization_type: organizationTypeFormValue,
+      funder_type: funderTypeFormValue,
     },
   } = getState();
   const logoField = useField('logo');
@@ -248,41 +249,38 @@ export default function FunderDetailsStep() {
       <div className="grid grid-cols-12 items-end gap-4">
         <div
           className={cn('col-span-12', {
-            'col-span-6': organizationTypeFormValue === 'other',
+            'col-span-6': funderTypeFormValue === FunderType.Other,
           })}
         >
           <div className="space-y-2">
             <VisibilityLabel
               labelProps={{
-                htmlFor: 'organization_type',
+                htmlFor: 'funder_type',
               }}
               required
             >
               Organization Type
             </VisibilityLabel>
-            <OrganizationTypeSelector />
+            <FunderTypeSelector />
           </div>
         </div>
-        {organizationTypeFormValue === 'other' && (
+        {funderTypeFormValue === FunderType.Other && (
           <div className="col-span-6">
             <div className="space-y-2">
               <VisibilityLabel
                 labelProps={{
-                  htmlFor: 'organization_type_other',
+                  htmlFor: 'funder_type_other',
                   'aria-required': true,
                 }}
                 required
               >
-                Other Organization Type
+                Organization Type - Others
               </VisibilityLabel>
-              <FieldRFF<FunderSchema['organization_type_other']>
-                name="organization_type_other"
-                type="text"
-              >
+              <FieldRFF<FunderSchema['funder_type']> name="funder_type_other" type="text">
                 {({ input }) => (
                   <div className="space-y-2">
                     <Input required {...input} className="h-[46px]" />
-                    <ErrorField<FunderSchema> name="organization_type_other" />
+                    <ErrorField<FunderSchema> name="funder_type_other" />
                   </div>
                 )}
               </FieldRFF>

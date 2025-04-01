@@ -1,10 +1,10 @@
-export enum OrganizationType {
+export enum FunderType {
   Accelerator = 'accelerator',
   Advisory = 'advisory',
   Bank = 'bank',
   EducationalLandBased = 'educational_land_based',
   FamilyOffice = 'family_office',
-  FunderCollaborativeNetwork = 'funder_collaborative_network',
+  FunderCollaborativeNetwork = 'funder_collaborative_or_network',
   Individual = 'individual',
   Initiative = 'initiative',
   LoanFund = 'loan_fund',

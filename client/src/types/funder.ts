@@ -1,9 +1,8 @@
-import { OrganizationType } from '@/containers/auth/details/form/types';
+import { FunderType as FunderTypeEnum } from '@/containers/auth/details/form/types';
 import { Area } from '@/types/area';
 import { CapitalType } from '@/types/capital-type';
 import { Demographic } from '@/types/demographic';
 import { FunderLegalStatus } from '@/types/funder-legal-status';
-import { FunderType } from '@/types/funder-type';
 import { SubGeographic } from '@/types/geographics';
 import { Project } from '@/types/project';
 
@@ -21,7 +20,8 @@ export interface Funder {
   demographics: Demographic['id'][];
   funder_legal_status: FunderLegalStatus['id'];
   funder_legal_status_other: string;
-  funder_type: FunderType['id'];
+  funder_type: FunderTypeEnum;
+  funder_type_other: string | undefined;
   leadership_demographics: Demographic['id'][];
   primary_office_city: string;
   primary_office_state: SubGeographic;
@@ -32,8 +32,6 @@ export interface Funder {
   primary_contact_role: string | undefined;
   primary_contact_location: string | undefined;
   projects: Partial<Project>[];
-  organization_type: OrganizationType;
-  organization_type_other: string;
   logo: {
     small: string;
     medium: string;

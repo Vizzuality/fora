@@ -3,7 +3,7 @@ import { z } from 'zod';
 import {
   ApplicationStatus,
   CapitalAcceptances,
-  OrganizationType,
+  FunderType,
 } from '@/containers/auth/details/form/types';
 
 const LegalStatusSchema = z
@@ -23,19 +23,17 @@ const LegalStatusSchema = z
     }
   });
 
-const OrganizationTypeSchema = z
+const FunderTypeSchema = z
   .object({
-    // @todo confirm with API. This property is not implemented yet
-    organization_type: z.nativeEnum(OrganizationType),
-    // @todo confirm with API. This property is not implemented yet
-    organization_type_other: z.string().optional(),
+    funder_type: z.nativeEnum(FunderType),
+    funder_type_other: z.string().optional(),
   })
   .superRefine((data, ctx) => {
-    if (data.organization_type === 'other' && !data.organization_type_other) {
+    if (data.funder_type === FunderType.Other && !data.funder_type_other) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: 'Please provide a value for other',
-        path: ['organization_type_other'],
+        path: ['funder_type_other'],
       });
     }
   });
@@ -136,7 +134,7 @@ const FunderZodSchema = z
   })
   .extend({
     ...LegalStatusSchema.innerType().shape,
-    ...OrganizationTypeSchema.innerType().shape,
+    ...FunderTypeSchema.innerType().shape,
     ...ShowPrimaryEmailTypeSchema.innerType().shape,
     ...CapitalAcceptancesSchema.innerType().shape,
     ...LeadershipDemographicsSchema.innerType().shape,
