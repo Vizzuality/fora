@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { Demographic } from '@/types/api/demographic';
+
 const ProjectZodSchema = z.object({
   name: z
     .string({
@@ -38,7 +40,10 @@ const LeadershipDemographicsSchema = z
     leadership_demographics_other: z.string().optional(),
   })
   .superRefine((data, ctx) => {
-    if (data.leadership_demographics.includes('other') && !data.leadership_demographics_other) {
+    if (
+      data.leadership_demographics.includes(Demographic.Other) &&
+      !data.leadership_demographics_other
+    ) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: 'Please provide a value for other',

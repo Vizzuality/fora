@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react';
 
-import { Widget } from 'types/widget';
-
+import { Widget } from '@/types/api/widget';
 import HorizontalBar from 'components/charts/horizontal-bar';
 
 import HorizonalBarTooltip from './tooltip/component';

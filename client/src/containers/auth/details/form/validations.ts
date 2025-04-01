@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
-import {
-  ApplicationStatus,
-  CapitalAcceptances,
-  FunderType,
-} from '@/containers/auth/details/form/types';
+import { ApplicationStatus } from '@/containers/auth/details/form/types';
+import { CapitalAcceptances } from '@/types/api/capital-acceptance';
+import { Demographic } from '@/types/api/demographic';
+import { FunderLegalStatus } from '@/types/api/funder-legal-status';
+import { FunderType } from '@/types/api/funder-type';
 
 const LegalStatusSchema = z
   .object({
@@ -14,7 +14,7 @@ const LegalStatusSchema = z
     funder_legal_status_other: z.string().optional(),
   })
   .superRefine((data, ctx) => {
-    if (data.funder_legal_status === 'other' && !data.funder_legal_status_other) {
+    if (data.funder_legal_status === FunderLegalStatus.Other && !data.funder_legal_status_other) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: 'Please provide a value for other',
@@ -79,7 +79,10 @@ const LeadershipDemographicsSchema = z
     leadership_demographics_other: z.string().optional(),
   })
   .superRefine((data, ctx) => {
-    if (data.leadership_demographics.includes('other') && !data.leadership_demographics_other) {
+    if (
+      data.leadership_demographics.includes(Demographic.Other) &&
+      !data.leadership_demographics_other
+    ) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: 'Please provide a value for other',

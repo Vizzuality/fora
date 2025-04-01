@@ -2,7 +2,7 @@ import { getCoreRowModel, SortingState } from '@tanstack/react-table';
 
 import Table from '@/components/table';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Investment } from '@/types/investment';
+import { Investment } from '@/types/api/investment';
 
 import { columns } from './columns';
 

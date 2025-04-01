@@ -4,8 +4,8 @@ import { Field as FieldRFF, useFormState } from 'react-final-form';
 
 import { Select } from '@/components/forms';
 import ErrorField from '@/components/forms/error-field';
-import { DurationGranInvestment } from '@/containers/auth/investments/form/types';
 import { InvestmentSchema } from '@/containers/auth/investments/form/validations';
+import { DurationGranInvestment } from '@/types/api/grant-duration';
 
 const DurationOptions: ComponentProps<typeof Select>['options'] = [
   {

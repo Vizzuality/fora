@@ -7,8 +7,8 @@ import Link from 'next/link';
 import Icon from '@/components/icon';
 import { useAreas } from '@/hooks/areas';
 import LOCATION_SVG from '@/svgs/ui/location.svg?sprite';
-import { Funder } from '@/types/funder';
-import { Project } from '@/types/project';
+import { Funder } from '@/types/api/funder';
+import { Project } from '@/types/api/project';
 
 import { THEME } from './constants';
 

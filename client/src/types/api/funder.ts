@@ -1,10 +1,11 @@
-import { FunderType as FunderTypeEnum } from '@/containers/auth/details/form/types';
-import { Area } from '@/types/area';
-import { CapitalType } from '@/types/capital-type';
-import { Demographic } from '@/types/demographic';
-import { FunderLegalStatus } from '@/types/funder-legal-status';
-import { SubGeographic } from '@/types/geographics';
-import { Project } from '@/types/project';
+import { Area } from '@/types/api/area';
+import { CapitalAcceptances } from '@/types/api/capital-acceptance';
+import { CapitalType } from '@/types/api/capital-type';
+import { Demographic } from '@/types/api/demographic';
+import { FunderLegalStatus } from '@/types/api/funder-legal-status';
+import { FunderType } from '@/types/api/funder-type';
+import { SubGeographic } from '@/types/api/geographics';
+import { Project } from '@/types/api/project';
 
 export interface Funder {
   id: string;
@@ -13,16 +14,18 @@ export interface Funder {
   website: string;
   application_status: string;
   areas: Area['id'][];
-  capital_acceptances: string[];
-  capital_types: CapitalType['id'][];
+  capital_acceptances: CapitalAcceptances[];
+  capital_acceptances_other: string | undefined;
+  capital_types: CapitalType[];
   contact_email: string;
   date_joined_fora: string;
-  demographics: Demographic['id'][];
-  funder_legal_status: FunderLegalStatus['id'];
+  demographics: Demographic[];
+  funder_legal_status: FunderLegalStatus;
   funder_legal_status_other: string;
-  funder_type: FunderTypeEnum;
+  funder_type: FunderType;
   funder_type_other: string | undefined;
-  leadership_demographics: Demographic['id'][];
+  leadership_demographics: Demographic[];
+  leadership_demographics_other: string | undefined;
   primary_office_city: string;
   primary_office_state: SubGeographic;
   primary_office_country: SubGeographic;

@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 
-import { Widget } from 'types/widget';
-
+import { Widget } from '@/types/api/widget';
 import Loading from 'components/loading';
 import Table from 'components/table';
 

@@ -1,11 +1,10 @@
 import { z } from 'zod';
 
-import {
-  CapitalTypeEnum,
-  DurationGranInvestment,
-  FundingTypeEnum,
-  PrivacyEnum,
-} from '@/containers/auth/investments/form/types';
+import { CapitalType } from '@/types/api/capital-type';
+import { Demographic } from '@/types/api/demographic';
+import { FundingType } from '@/types/api/funding-type';
+import { DurationGranInvestment } from '@/types/api/grant-duration';
+import { Privacy } from '@/types/api/privacy';
 
 const BaseInvestmentZodSchema = z.object({
   project_id: z
@@ -20,7 +19,7 @@ const BaseInvestmentZodSchema = z.object({
     message: 'Please select at least one area',
   }),
   areas_other: z.string().optional(),
-  privacy: z.nativeEnum(PrivacyEnum).default(PrivacyEnum.All),
+  privacy: z.nativeEnum(Privacy).default(Privacy.All),
   countries: z.array(z.string()).min(1),
   states: z.array(z.string()).optional(),
 });
@@ -42,9 +41,9 @@ const GrantSchema = z
 
 const CapitalTypeAndFundingTypeSchema = z
   .object({
-    capital_type: z.nativeEnum(CapitalTypeEnum),
+    capital_type: z.nativeEnum(CapitalType),
     capital_type_other: z.string().optional(),
-    funding_type: z.nativeEnum(FundingTypeEnum).optional(),
+    funding_type: z.nativeEnum(FundingType).optional(),
     funding_type_other: z.string().optional(),
   })
   .superRefine((data, ctx) => {
@@ -56,7 +55,7 @@ const CapitalTypeAndFundingTypeSchema = z
       });
     }
 
-    if (data.capital_type === 'other' && !data.capital_type_other) {
+    if (data.capital_type === CapitalType.Other && !data.capital_type_other) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: 'Please provide a capital',
@@ -64,7 +63,7 @@ const CapitalTypeAndFundingTypeSchema = z
       });
     }
 
-    if (data.funding_type === 'other' && !data.funding_type_other) {
+    if (data.funding_type === FundingType.Other && !data.funding_type_other) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: 'Please provide a value for other',
@@ -75,11 +74,11 @@ const CapitalTypeAndFundingTypeSchema = z
 
 const FundingSchema = z
   .object({
-    funding_type: z.nativeEnum(FundingTypeEnum),
+    funding_type: z.nativeEnum(FundingType),
     funding_type_other: z.string().optional(),
   })
   .superRefine((data, ctx) => {
-    if (data.funding_type === 'other' && !data.funding_type_other) {
+    if (data.funding_type === FundingType.Other && !data.funding_type_other) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: 'Please provide a value for other',
@@ -96,7 +95,7 @@ const DemographicsSchema = z
     demographics_other: z.string().optional(),
   })
   .superRefine((data, ctx) => {
-    if (data.demographics.includes('other') && !data.demographics_other) {
+    if (data.demographics.includes(Demographic.Other) && !data.demographics_other) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: 'Please provide a value for other',

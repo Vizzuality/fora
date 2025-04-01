@@ -5,7 +5,7 @@ import { ParamsProps } from 'lib/adapters/types';
 
 import { queryOptions, useQuery } from '@tanstack/react-query';
 
-import { SubGeographic } from 'types/geographics';
+import { SubGeographic } from '@/types/api/geographics';
 
 import API from 'services/api';
 

@@ -5,14 +5,13 @@ import { setFilters } from 'store/dashboards/general-report';
 import { dehydrate } from '@tanstack/react-query';
 import safeJsonStringify from 'safe-json-stringify';
 
-import { ReportYears } from 'types/dashboards';
-
 import { fetchWidgets, fetchYears } from 'hooks/widgets';
 
 import GeneralReport from 'containers/dashboards/general-report';
 import MetaTags from 'containers/meta-tags';
 
 import { getQueryClient } from '@/lib/queryclient';
+import { ReportYears } from '@/types/api/dashboards';
 
 const TITLE_TEXT = 'FORA Dashboards | General Report';
 const DESCRIPTION_TEXT =

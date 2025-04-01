@@ -22,9 +22,9 @@ export interface Project {
   };
   // Filters
   areas: Area['id'][];
-  capital_types: CapitalType['id'][];
-  demographics: Demographic['id'][];
-  leadership_demographics: Demographic['id'][];
+  capital_types: CapitalType[];
+  demographics: Demographic[];
+  leadership_demographics: Demographic[];
   leadership_demographics_other: string;
   recipient_legal_status: string;
   funders: Partial<Funder>[];

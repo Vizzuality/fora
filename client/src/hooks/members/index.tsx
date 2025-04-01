@@ -2,7 +2,7 @@ import { queryOptions, useQuery } from '@tanstack/react-query';
 import { Session } from 'next-auth';
 import { useSession } from 'next-auth/react';
 
-import { Funder } from 'types/funder';
+import { Funder } from '@/types/api/funder';
 
 import API from 'services/api';
 

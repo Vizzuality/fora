@@ -1,5 +1,4 @@
-import { Widget } from 'types/widget';
-
+import { Widget } from '@/types/api/widget';
 import Tooltip from 'components/tooltip';
 
 export interface HorizonalBarTooltipProps {

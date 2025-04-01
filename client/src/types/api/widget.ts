@@ -1,6 +1,6 @@
-import { ParamsProps } from 'lib/adapters/types';
-
 import { UseQueryResult } from '@tanstack/react-query';
+
+import { ParamsProps } from '@/lib/adapters/types';
 
 import { ReportPages, ReportYears } from './dashboards';
 

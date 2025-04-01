@@ -4,8 +4,7 @@ import { useSearchParams } from 'next/navigation';
 
 import { useQueryClient } from '@tanstack/react-query';
 
-import { Project } from 'types/project';
-
+import { Project } from '@/types/api/project';
 import { Button, LinkButton } from 'components/button/component';
 
 import { FORM_STEPS } from '../constants';

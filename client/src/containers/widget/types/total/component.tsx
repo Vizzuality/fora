@@ -2,8 +2,7 @@ import React, { useMemo } from 'react';
 
 import cx from 'classnames';
 
-import { Widget } from 'types/widget';
-
+import { Widget } from '@/types/api/widget';
 import Icon from 'components/icon';
 import Loading from 'components/loading';
 import Tooltip from 'components/tooltip';

@@ -21,9 +21,10 @@ import FunderTypeSelector from '@/containers/auth/details/form/steps/funder-deta
 import LegalStatusSelector from '@/containers/auth/details/form/steps/funder-details/legal-status';
 import PrimaryOfficeCountrySelector from '@/containers/auth/details/form/steps/funder-details/primary-office-country';
 import PrimaryOfficeStateSelector from '@/containers/auth/details/form/steps/funder-details/primary-office-state';
-import { FunderType } from '@/containers/auth/details/form/types';
 import { FunderSchema } from '@/containers/auth/details/form/validations';
 import { cn } from '@/lib/utils';
+import { FunderLegalStatus } from '@/types/api/funder-legal-status';
+import { FunderType } from '@/types/api/funder-type';
 
 const joinedForaOptions = Array.from(
   {
@@ -292,7 +293,7 @@ export default function FunderDetailsStep() {
       <div className="grid grid-cols-12 items-end gap-4">
         <div
           className={cn('col-span-12', {
-            'col-span-6': legalStatusFormValue === 'other',
+            'col-span-6': legalStatusFormValue === FunderLegalStatus.Other,
           })}
         >
           <div className="space-y-2">
@@ -307,7 +308,7 @@ export default function FunderDetailsStep() {
             <LegalStatusSelector />
           </div>
         </div>
-        {legalStatusFormValue === 'other' && (
+        {legalStatusFormValue === FunderLegalStatus.Other && (
           <div className="col-span-6">
             <div className="space-y-2">
               <VisibilityLabel

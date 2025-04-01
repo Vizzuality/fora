@@ -9,8 +9,8 @@ import MetaTags from 'containers/meta-tags';
 import EditInvestment from '@/containers/auth/investments/edit';
 import { getQueryClient } from '@/lib/queryclient';
 import API from '@/services/api';
-import { SubGeographic } from '@/types/geographics';
-import { Investment } from '@/types/investment';
+import { SubGeographic } from '@/types/api/geographics';
+import { Investment } from '@/types/api/investment';
 import { auth } from 'pages/api/auth/[...nextauth]';
 
 const TITLE_TEXT = 'FORA Edit investment | An initiative in support of regenerative agriculture';

@@ -2,7 +2,7 @@ import { MdLocationOn } from 'react-icons/md';
 
 import { LinkButton } from '@/components/button/component';
 import { CardWrapper } from '@/containers/cards/card/wrapper';
-import { Project } from '@/types/project';
+import { Project } from '@/types/api/project';
 
 export function MyProjectCard(project: Project) {
   return (

@@ -13,7 +13,7 @@ import {
 } from '@tanstack/react-query';
 import { orderBy, uniqBy } from 'lodash';
 
-import { Project } from 'types/project';
+import { Project } from '@/types/api/project';
 
 import API from 'services/api';
 

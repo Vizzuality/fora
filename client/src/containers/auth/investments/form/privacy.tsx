@@ -1,8 +1,8 @@
 import { Field as FieldRFF } from 'react-final-form';
 
 import { Radio } from '@/components/forms';
-import { PrivacyEnum } from '@/containers/auth/investments/form/types';
 import { InvestmentSchema } from '@/containers/auth/investments/form/validations';
+import { Privacy as PrivacyEnum } from '@/types/api/privacy';
 
 const PRIVACY_TEXTS: Record<PrivacyEnum, string> = {
   [PrivacyEnum.All]:

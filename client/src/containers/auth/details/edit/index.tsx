@@ -12,7 +12,7 @@ import Sidebar from '@/containers/auth/sidebar';
 import Wrapper from '@/containers/wrapper';
 import { myDetailsQueryOptions } from '@/pages/auth/details';
 import API from '@/services/api';
-import { Funder } from '@/types/funder';
+import { Funder } from '@/types/api/funder';
 
 export default function EditFunder() {
   const { data: session } = useSession();
@@ -81,6 +81,10 @@ export default function EditFunder() {
           primary_contact_phone: funder.primary_contact_phone ?? undefined,
           primary_contact_role: funder.primary_contact_role ?? undefined,
           primary_contact_location: funder.primary_contact_location ?? undefined,
+          capital_acceptances: funder.capital_acceptances ?? undefined,
+          capital_acceptances_other: funder.capital_acceptances_other ?? undefined,
+          leadership_demographics: funder.leadership_demographics ?? undefined,
+          leadership_demographics_other: funder.leadership_demographics_other ?? undefined,
         }}
         onSubmit={(data) => {
           mutation.mutate(data);

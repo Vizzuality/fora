@@ -2,11 +2,11 @@ import { createElement, useMemo } from 'react';
 
 import { ParamsProps } from 'lib/adapters/types';
 
-import { Widget } from 'types/widget';
-
 import { useWidget } from 'hooks/widgets';
 
 import { WidgetDiagram, WidgetTable, WidgetTotal } from 'containers/widget/types';
+
+import { Widget } from '@/types/api/widget';
 
 const WIDGETS_TYPES = {
   table: WidgetTable,

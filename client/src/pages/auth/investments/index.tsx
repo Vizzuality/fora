@@ -11,7 +11,7 @@ import MetaTags from 'containers/meta-tags';
 import { getQueryClient } from '@/lib/queryclient';
 import { auth } from '@/pages/api/auth/[...nextauth]';
 import API from '@/services/api';
-import { Investment } from '@/types/investment';
+import { Investment } from '@/types/api/investment';
 
 const TITLE_TEXT = 'FORA My investments | An initiative in support of regenerative agriculture';
 // @todo: update description

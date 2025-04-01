@@ -5,14 +5,13 @@ import cx from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import { Funder } from 'types/funder';
-import { Project } from 'types/project';
-
 import { useFunder, useFunders } from 'hooks/funders';
 import { useProject, useProjects } from 'hooks/projects';
 
 import Cards from 'containers/cards';
 
+import { Funder } from '@/types/api/funder';
+import { Project } from '@/types/api/project';
 import Icon from 'components/icon';
 
 import CHEVRON_RIGHT_SVG from 'svgs/ui/chevron-right.svg?sprite';

@@ -2,31 +2,32 @@ import Link from 'next/link';
 
 import { createColumnHelper } from '@tanstack/react-table';
 
-import { CapitalTypeEnum, FundingTypeEnum } from '@/containers/auth/investments/form/types';
 import InvestmentActions from '@/containers/auth/investments/table/actions';
 import { formatDollar } from '@/lib/formats';
-import { Investment } from '@/types/investment';
+import { CapitalType } from '@/types/api/capital-type';
+import { FundingType } from '@/types/api/funding-type';
+import { Investment } from '@/types/api/investment';
 
 const columnHelper = createColumnHelper<Investment>();
 
-const CAPITAL_TYPES_LABELS: Record<CapitalTypeEnum, string> = {
-  [CapitalTypeEnum.Grants]: 'Grants',
-  [CapitalTypeEnum.Debt]: 'Debt',
-  [CapitalTypeEnum.Equity]: 'Equity',
-  [CapitalTypeEnum.ForgivableLoans]: 'Forgivable Loans',
-  [CapitalTypeEnum.Guarantees]: 'Guarantees',
-  [CapitalTypeEnum.Mris]: 'MRIs',
-  [CapitalTypeEnum.Pris]: 'PRIs',
-  [CapitalTypeEnum.ReGrants]: 'Re-grants',
-  [CapitalTypeEnum.Other]: 'Other',
+const CAPITAL_TYPES_LABELS: Record<CapitalType, string> = {
+  [CapitalType.Grants]: 'Grants',
+  [CapitalType.Debt]: 'Debt',
+  [CapitalType.Equity]: 'Equity',
+  [CapitalType.ForgivableLoans]: 'Forgivable Loans',
+  [CapitalType.Guarantees]: 'Guarantees',
+  [CapitalType.Mris]: 'MRIs',
+  [CapitalType.Pris]: 'PRIs',
+  [CapitalType.ReGrants]: 'Re-grants',
+  [CapitalType.Other]: 'Other',
 };
 
-const FUNDING_TYPES_LABELS: Record<FundingTypeEnum, string> = {
-  [FundingTypeEnum.GeneralOperatingSupport]: 'General Operating Support',
-  [FundingTypeEnum.MediaAndCommunications]: 'Media and Communications',
-  [FundingTypeEnum.Other]: 'Other',
-  [FundingTypeEnum.ProgramOrProjectSpecific]: 'Program or Project Specific',
-  [FundingTypeEnum.Sponsorship]: 'Sponsorship',
+const FUNDING_TYPES_LABELS: Record<FundingType, string> = {
+  [FundingType.GeneralOperatingSupport]: 'General Operating Support',
+  [FundingType.MediaAndCommunications]: 'Media and Communications',
+  [FundingType.Other]: 'Other',
+  [FundingType.ProgramOrProjectSpecific]: 'Program or Project Specific',
+  [FundingType.Sponsorship]: 'Sponsorship',
 };
 
 export const columns = [
@@ -65,7 +66,7 @@ export const columns = [
     enableSorting: true,
     cell: ({ cell }) => (
       <span>
-        {cell.getValue() === 'other'
+        {cell.getValue() === CapitalType.Other
           ? `${CAPITAL_TYPES_LABELS[cell.getValue()]} (${cell.row.original.capital_type_other})`
           : CAPITAL_TYPES_LABELS[cell.getValue()]}
       </span>
@@ -78,7 +79,7 @@ export const columns = [
       <span>
         {cell.getValue() ? (
           <>
-            {cell.getValue() === 'other'
+            {cell.getValue() === FundingType.Other
               ? `${FUNDING_TYPES_LABELS[cell.getValue()]} (${cell.row.original.funding_type_other})`
               : FUNDING_TYPES_LABELS[cell.getValue()]}
           </>

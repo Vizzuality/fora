@@ -13,15 +13,15 @@ import {
 } from '@tanstack/react-query';
 import { orderBy, uniqBy } from 'lodash';
 
-import { Funder } from 'types/funder';
+import { Funder } from '@/types/api/funder';
 
 import API from 'services/api';
 
 /**
-****************************************
-  FETCH FUNCTIONS
-****************************************
-*/
+ ****************************************
+ FETCH FUNCTIONS
+ ****************************************
+ */
 
 export const fetchFunders = (params: ParamsProps) => {
   return API.request({
@@ -41,10 +41,10 @@ export const fetchFunder = (id: string) =>
     }),
   }).then((response) => response.data);
 /**
-****************************************
-  FUNDERS
-****************************************
-*/
+ ****************************************
+ FUNDERS
+ ****************************************
+ */
 
 const useFundersBaseQueryOptions = ({ params = {} }) =>
   queryOptions({
@@ -71,10 +71,10 @@ export function useFunders(
 }
 
 /**
-****************************************
-  FUNDERS FILTERED BY GEOGRAPHIC SCOPE
-****************************************
-*/
+ ****************************************
+ FUNDERS FILTERED BY GEOGRAPHIC SCOPE
+ ****************************************
+ */
 export function useFundersByGeographicScope(view: View, data: Funder[] = []) {
   const DATA = useMemo(() => {
     if (!data) {
@@ -114,10 +114,10 @@ export function useFundersByGeographicScope(view: View, data: Funder[] = []) {
 }
 
 /**
-****************************************
-  FUNDERS INFINITY
-****************************************
-*/
+ ****************************************
+ FUNDERS INFINITY
+ ****************************************
+ */
 
 const useFundersInfinityBaseQueryOptions = ({ params = {} }) =>
   infiniteQueryOptions({
@@ -161,10 +161,10 @@ export function useFundersInfinity(
 }
 
 /**
-****************************************
-  FUNDER [ID]
-****************************************
-*/
+ ****************************************
+ FUNDER [ID]
+ ****************************************
+ */
 
 const useFunderBaseQueryOptions = ({ id }: { id: Funder['id'] }) =>
   queryOptions({

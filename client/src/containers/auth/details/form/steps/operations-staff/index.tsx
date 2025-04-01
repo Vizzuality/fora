@@ -13,9 +13,9 @@ import VisibilityLabel from '@/containers/auth/details/form/label';
 import ApplicationStatusSelector from '@/containers/auth/details/form/steps/operations-staff/application-status';
 import CapitalAcceptanceSelector from '@/containers/auth/details/form/steps/operations-staff/capital-acceptance';
 import DemographicsSelector from '@/containers/auth/details/form/steps/operations-staff/demographics';
-import { CapitalAcceptances } from '@/containers/auth/details/form/types';
 import { FunderSchema } from '@/containers/auth/details/form/validations';
 import { cn } from '@/lib/utils';
+import { CapitalAcceptances } from '@/types/api/capital-acceptance';
 
 export default function OperationsStaffStep() {
   const pathname = usePathname();

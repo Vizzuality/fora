@@ -7,17 +7,17 @@ import { queryOptions, useMutation, useQuery } from '@tanstack/react-query';
 import CHROMA from 'chroma-js';
 import { scaleOrdinal } from 'd3-scale';
 
-import { WidgetDownload } from 'types/widget';
-
 import { VISUALIZATION_RAMP } from 'constants/colors';
+
+import { WidgetDownload } from '@/types/api/widget';
 
 import API from 'services/api';
 
 /**
-****************************************
-  FETCH FUNCTIONS
-****************************************
-*/
+ ****************************************
+ FETCH FUNCTIONS
+ ****************************************
+ */
 
 export const fetchWidgets = (params?: ParamsProps) => {
   return API.request({
@@ -50,10 +50,10 @@ export const fetchYears = (params?: ParamsProps) => {
 };
 
 /**
-****************************************
-  WIDGETS
-****************************************
-*/
+ ****************************************
+ WIDGETS
+ ****************************************
+ */
 
 const useWidgetsBaseQueryOptions = ({ params }: { params: ParamsProps }) =>
   queryOptions({
@@ -63,6 +63,7 @@ const useWidgetsBaseQueryOptions = ({ params }: { params: ParamsProps }) =>
       data: [],
     },
   });
+
 export function useWidgets(
   params: ParamsProps = {},
   upcomingQueryOptions?: Omit<typeof useWidgetsBaseQueryOptions, 'queryKey'>,
@@ -74,10 +75,10 @@ export function useWidgets(
 }
 
 /**
-****************************************
-  WIDGET [ID]
-****************************************
-*/
+ ****************************************
+ WIDGET [ID]
+ ****************************************
+ */
 
 const useWidgetBaseQueryOptions = ({ slug, params }: { slug: string; params?: ParamsProps }) =>
   queryOptions({
@@ -102,10 +103,10 @@ export function useWidget(
 }
 
 /**
-****************************************
-  WIDGET [ID] DOWNLOAD
-****************************************
-*/
+ ****************************************
+ WIDGET [ID] DOWNLOAD
+ ****************************************
+ */
 
 export function useWidgetDownload() {
   const fetch = ({ slug, params }) => downloadWidget(slug, params);

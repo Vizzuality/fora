@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Funder } from 'types/funder';
-import { Project } from 'types/project';
+import { Funder } from '@/types/api/funder';
+import { Project } from '@/types/api/project';
 
 import Card from './card';
 

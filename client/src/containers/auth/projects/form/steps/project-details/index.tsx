@@ -14,6 +14,7 @@ import { Input, Radio } from '@/components/forms';
 import ErrorField from '@/components/forms/error-field';
 import FormLegend from '@/components/forms/legend';
 import Textarea from '@/components/forms/textarea';
+import { Demographic } from '@/types/api/demographic';
 
 import VisibilityLabel from '../../label';
 import { ProjectSchema } from '../../validations';
@@ -227,7 +228,7 @@ export default function ProjectDetailsStep() {
             </VisibilityLabel>
             <DemographicsSelector />
           </div>
-          {demographicsFormValues?.includes('other') && (
+          {demographicsFormValues?.includes(Demographic.Other) && (
             <div className="space-y-2">
               <VisibilityLabel
                 labelProps={{

@@ -2,10 +2,9 @@ import { useMemo, useState } from 'react';
 
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { Widget } from 'types/widget';
-
 import { useColorRamp } from 'hooks/widgets';
 
+import { Widget } from '@/types/api/widget';
 import Pie from 'components/charts/pie';
 
 type PieData = {

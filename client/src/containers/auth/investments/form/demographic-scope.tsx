@@ -7,6 +7,7 @@ import { useDemographics } from 'hooks/demographics';
 import ErrorField from '@/components/forms/error-field';
 import { InvestmentSchema } from '@/containers/auth/investments/form/validations';
 import VisibilityLabel from '@/containers/auth/projects/form/label';
+import { Demographic } from '@/types/api/demographic';
 import { Input, MultiSelect, Radio, Select } from 'components/forms';
 
 export default function DemographicScope() {
@@ -95,7 +96,7 @@ export default function DemographicScope() {
               )}
             </FieldRFF>
           </div>
-          {demographicsFormValues?.includes('other') && (
+          {demographicsFormValues?.includes(Demographic.Other) && (
             <div className="space-y-2">
               <VisibilityLabel
                 labelProps={{

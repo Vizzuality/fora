@@ -20,6 +20,8 @@ import { ProjectSelector } from '@/containers/auth/investments/form/project-sele
 import { InvestmentSchema } from '@/containers/auth/investments/form/validations';
 import VisibilityLabel from '@/containers/auth/projects/form/label';
 import { cn } from '@/lib/utils';
+import { CapitalType } from '@/types/api/capital-type';
+import { FundingType } from '@/types/api/funding-type';
 
 export const useInvestmentForm = () => useForm<InvestmentSchema>();
 
@@ -190,7 +192,7 @@ export default function InvestmentForm({
         <div className="grid grid-cols-12 items-start gap-4">
           <div
             className={cn('col-span-12', {
-              'col-span-6': capitalTypeFormValue === 'other',
+              'col-span-6': capitalTypeFormValue === CapitalType.Other,
             })}
           >
             <div className="space-y-2">
@@ -207,7 +209,7 @@ export default function InvestmentForm({
             </div>
           </div>
 
-          {capitalTypeFormValue === 'other' && (
+          {capitalTypeFormValue === CapitalType.Other && (
             <div className="col-span-6">
               <div className="space-y-2">
                 <VisibilityLabel
@@ -238,7 +240,7 @@ export default function InvestmentForm({
           <div className="grid grid-cols-12 items-start gap-4">
             <div
               className={cn('col-span-12', {
-                'col-span-6': fundingTypeFormValue === 'other',
+                'col-span-6': fundingTypeFormValue === FundingType.Other,
               })}
             >
               <div className="space-y-2">
@@ -255,7 +257,7 @@ export default function InvestmentForm({
               </div>
             </div>
 
-            {fundingTypeFormValue === 'other' && (
+            {fundingTypeFormValue === FundingType.Other && (
               <div className="col-span-6">
                 <div className="space-y-2">
                   <VisibilityLabel

@@ -2,11 +2,10 @@ import { useCallback } from 'react';
 
 import { usePlausible } from 'next-plausible';
 
-import { Widget } from 'types/widget';
-
 import { useModal } from 'hooks/modals';
 import { useWidgetDownload } from 'hooks/widgets';
 
+import { Widget } from '@/types/api/widget';
 import Icon from 'components/icon';
 import Loading from 'components/loading';
 import Modal from 'components/modal';

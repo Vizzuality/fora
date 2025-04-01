@@ -6,7 +6,7 @@ import Credentials from 'next-auth/providers/credentials';
 
 import API from '@/services/api';
 import authenticationService from '@/services/authentication';
-import { Funder } from '@/types/funder';
+import { Funder } from '@/types/api/funder';
 
 const MAX_AGE = 2 * 60 * 60; // 2 hours
 

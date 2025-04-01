@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import { expect } from 'vitest';
 
-import { PrivacyEnum } from '@/containers/auth/investments/form/types';
+import { Privacy } from '@/types/api/privacy';
 import { AppWrapper } from 'tests/utils';
 
 import FormWrapper from './wrapper';
@@ -13,7 +13,7 @@ const FormContext = () => (
     <FormWrapper
       onSubmit={async () => {}}
       initialValues={{
-        privacy: PrivacyEnum.All,
+        privacy: Privacy.All,
         countries: [],
         states: [],
         areas: [],

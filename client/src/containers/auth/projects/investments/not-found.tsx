@@ -1,5 +1,4 @@
-import { Project } from 'types/project';
-
+import { Project } from '@/types/api/project';
 import LinkButton from 'components/button';
 
 export default function InvestmentsNotFound({ id }: { id: Project['id'] }) {

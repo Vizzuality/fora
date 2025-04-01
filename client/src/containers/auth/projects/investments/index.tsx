@@ -10,7 +10,7 @@ import InvestmentsTable from '@/containers/auth/investments/table';
 import InvestmentsNotFound from '@/containers/auth/projects/investments/not-found';
 import { NEW_PROJECT_QUERY_KEY } from '@/containers/auth/projects/new';
 import { myInvestmentsQueryOptions } from '@/pages/auth/investments';
-import { Project } from '@/types/project';
+import { Project } from '@/types/api/project';
 
 export default function InvestmentsStep() {
   const pathname = usePathname();

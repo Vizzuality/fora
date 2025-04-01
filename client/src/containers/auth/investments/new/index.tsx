@@ -4,11 +4,11 @@ import { useMutation } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 
 import Form from '@/containers/auth/investments/form';
-import { PrivacyEnum } from '@/containers/auth/investments/form/types';
 import { InvestmentSchema } from '@/containers/auth/investments/form/validations';
 import FormWrapper from '@/containers/auth/investments/form/wrapper';
 import Wrapper from '@/containers/wrapper';
 import API from '@/services/api';
+import { Privacy } from '@/types/api/privacy';
 
 export default function NewInvestment() {
   const { data: session } = useSession();
@@ -48,7 +48,7 @@ export default function NewInvestment() {
         }}
         keepDirtyOnReinitialize
         initialValues={{
-          privacy: PrivacyEnum.All,
+          privacy: Privacy.All,
           countries: [],
           states: [],
           areas: [],

@@ -11,7 +11,7 @@ import Wrapper from '@/containers/wrapper';
 import { useMe } from '@/hooks/members';
 import { useProject } from '@/hooks/projects';
 import API from '@/services/api';
-import { Project } from '@/types/project';
+import { Project } from '@/types/api/project';
 
 import { FORM_STEPS } from '../constants';
 

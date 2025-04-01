@@ -8,8 +8,8 @@ import { InvestmentSchema } from '@/containers/auth/investments/form/validations
 import FormWrapper from '@/containers/auth/investments/form/wrapper';
 import Wrapper from '@/containers/wrapper';
 import API from '@/services/api';
-import { SubGeographic } from '@/types/geographics';
-import { Investment } from '@/types/investment';
+import { SubGeographic } from '@/types/api/geographics';
+import { Investment } from '@/types/api/investment';
 
 export default function EditInvestment({ investment }: { investment: Investment }) {
   const { data: session } = useSession();

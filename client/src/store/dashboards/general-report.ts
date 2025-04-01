@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
-import { ReportPages, ReportYears } from 'types/dashboards';
+import { ReportPages, ReportYears } from '@/types/api/dashboards';
 
 interface DashboardsGeneralReportState {
   filters: {

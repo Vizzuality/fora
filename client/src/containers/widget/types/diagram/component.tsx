@@ -2,10 +2,9 @@ import { createElement, useMemo } from 'react';
 
 import cx from 'classnames';
 
-import { Widget } from 'types/widget';
-
 import WidgetToolbar from 'containers/widget/toolbar';
 
+import { Widget } from '@/types/api/widget';
 import Icon from 'components/icon';
 import Loading from 'components/loading';
 
