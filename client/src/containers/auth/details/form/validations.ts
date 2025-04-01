@@ -1,6 +1,10 @@
 import { z } from 'zod';
 
-import { OrganizationType } from '@/containers/auth/details/form/types';
+import {
+  ApplicationStatus,
+  CapitalAcceptances,
+  OrganizationType,
+} from '@/containers/auth/details/form/types';
 
 const LegalStatusSchema = z
   .object({
@@ -36,7 +40,7 @@ const OrganizationTypeSchema = z
     }
   });
 
-const showPrimaryEmailTypeSchema = z
+const ShowPrimaryEmailTypeSchema = z
   .object({
     show_primary_email: z.union([z.literal('yes'), z.literal('no')]).default('yes'),
     secondary_email_which_can_be_shared: z.string().optional(),
@@ -47,6 +51,41 @@ const showPrimaryEmailTypeSchema = z
         code: z.ZodIssueCode.custom,
         message: 'A secondary email must be provided',
         path: ['secondary_email_which_can_be_shared'],
+      });
+    }
+  });
+
+const CapitalAcceptancesSchema = z
+  .object({
+    capital_acceptances: z.array(z.nativeEnum(CapitalAcceptances)),
+    capital_acceptances_other: z.string().optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (
+      data.capital_acceptances.includes(CapitalAcceptances.Other) &&
+      !data.capital_acceptances_other
+    ) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Please provide a value for other',
+        path: ['capital_acceptances_other'],
+      });
+    }
+  });
+
+const LeadershipDemographicsSchema = z
+  .object({
+    leadership_demographics: z.array(z.string()).min(1, {
+      message: 'Please select at least one demography',
+    }),
+    leadership_demographics_other: z.string().optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.leadership_demographics.includes('other') && !data.leadership_demographics_other) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Please provide a value for other',
+        path: ['leadership_demographics_other'],
       });
     }
   });
@@ -77,7 +116,6 @@ const FunderZodSchema = z
         message: `Website must be a valid URL starting with http(s)://`,
       })
       .optional(),
-
     description: z.string({
       message: `Description cannot be empty`,
     }),
@@ -92,45 +130,17 @@ const FunderZodSchema = z
     primary_contact_phone: z.string().optional(),
     primary_contact_role: z.string().optional(),
     primary_contact_location: z.string().optional(),
+    number_staff_employees: z.number().min(1),
+    application_status: z.nativeEnum(ApplicationStatus),
+    new_to_regenerative_ag: z.union([z.literal('yes'), z.literal('no')]).default('yes'),
   })
   .extend({
     ...LegalStatusSchema.innerType().shape,
     ...OrganizationTypeSchema.innerType().shape,
-    ...showPrimaryEmailTypeSchema.innerType().shape,
+    ...ShowPrimaryEmailTypeSchema.innerType().shape,
+    ...CapitalAcceptancesSchema.innerType().shape,
+    ...LeadershipDemographicsSchema.innerType().shape,
   });
-
-// const LeadershipDemographicsSchema = z
-//   .object({
-//     leadership_demographics: z.array(z.string()).min(1, {
-//       message: 'Please select at least one demography',
-//     }),
-//     leadership_demographics_other: z.string().optional(),
-//   })
-//   .superRefine((data, ctx) => {
-//     if (data.leadership_demographics.includes('other') && !data.leadership_demographics_other) {
-//       ctx.addIssue({
-//         code: z.ZodIssueCode.custom,
-//         message: 'Please provide a value for other',
-//         path: ['leadership_demographics_other'],
-//       });
-//     }
-//   });
-//
-// const InternalYes = FunderZodSchema.extend({
-//   internal_leadership_demographics_collection: z.literal('yes'),
-//   ...LeadershipDemographicsSchema.innerType().shape,
-// });
-//
-// const InternalNo = FunderZodSchema.extend({
-//   internal_leadership_demographics_collection: z.literal('no'),
-//   leadership_demographics: z.array(z.string()).optional(),
-//   leadership_demographics_other: z.string().optional(),
-// });
-
-// export const ProjectSchemaUnion = z.discriminatedUnion(
-//   'internal_leadership_demographics_collection',
-//   [InternalYes, InternalNo],
-// );
 
 export type FunderSchema = z.infer<typeof FunderZodSchema>;
 
@@ -140,39 +150,4 @@ export const validator = (formValues: FunderSchema) => {
   if (success) return {};
 
   return error.format();
-
-  // const validationMap: {
-  //   projects: ReturnType<typeof ProjectSchemaUnion.safeParse>;
-  //   demographics: ReturnType<typeof LeadershipDemographicsSchema.safeParse>;
-  // } = {
-  //   projects: null,
-  //   demographics: null,
-  // };
-  //
-  // validationMap.projects = ProjectSchemaUnion.safeParse(formValues);
-  //
-  // Object.keys(validationMap).forEach((key) => {
-  //   if (validationMap[key] === null) {
-  //     delete validationMap[key];
-  //   }
-  // });
-  //
-  // if (formValues.internal_leadership_demographics_collection === 'yes') {
-  //   validationMap.demographics = LeadershipDemographicsSchema.safeParse(formValues);
-  // }
-  //
-  // if (Object.values(validationMap).every((v) => v.success)) {
-  //   return {};
-  // }
-  //
-  // return Object.values(validationMap).reduce((acc, validation) => {
-  //   if (!validation.error) {
-  //     return acc;
-  //   }
-  //
-  //   return {
-  //     ...acc,
-  //     ...validation.error.format(),
-  //   };
-  // }, {});
 };

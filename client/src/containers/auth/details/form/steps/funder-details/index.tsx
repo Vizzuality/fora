@@ -227,24 +227,22 @@ export default function FunderDetailsStep() {
           </div>
         </div>
       </div>
-      <div className="col-span-full">
-        <div className="space-y-2">
-          <VisibilityLabel
-            labelProps={{
-              htmlFor: 'website',
-            }}
-          >
-            Organization Website
-          </VisibilityLabel>
-          <FieldRFF<FunderSchema['website']> name="website" type="text">
-            {({ input }) => (
-              <div className="space-y-2">
-                <Input {...input} id={input.name} theme="transparent" className="h-[46px]" />
-                <ErrorField<FunderSchema> name="website" />
-              </div>
-            )}
-          </FieldRFF>
-        </div>
+      <div className="space-y-2">
+        <VisibilityLabel
+          labelProps={{
+            htmlFor: 'website',
+          }}
+        >
+          Organization Website
+        </VisibilityLabel>
+        <FieldRFF<FunderSchema['website']> name="website" type="text">
+          {({ input }) => (
+            <div className="space-y-2">
+              <Input {...input} id={input.name} theme="transparent" className="h-[46px]" />
+              <ErrorField<FunderSchema> name="website" />
+            </div>
+          )}
+        </FieldRFF>
       </div>
 
       <div className="grid grid-cols-12 items-end gap-4">

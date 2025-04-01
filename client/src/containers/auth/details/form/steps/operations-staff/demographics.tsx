@@ -1,10 +1,11 @@
 import { ComponentProps } from 'react';
 
-import { Field as FieldRFF, useFormState } from 'react-final-form';
+import { Field as FieldRFF } from 'react-final-form';
 
 import { MultiSelect, Select } from '@/components/forms';
 import ErrorField from '@/components/forms/error-field';
-import { ProjectSchema } from '@/containers/auth/projects/form/validations';
+import { useFunderForm } from '@/containers/auth/details/form';
+import { FunderSchema } from '@/containers/auth/details/form/validations';
 import { useDemographics } from '@/hooks/demographics';
 
 export default function DemographicsSelector() {
@@ -14,15 +15,16 @@ export default function DemographicsSelector() {
     isFetched: demographicsFetched,
   } = useDemographics();
 
+  const { getState } = useFunderForm();
   const {
     values: { leadership_demographics: demographicsFormValues },
-  } = useFormState<ProjectSchema>();
+  } = getState();
 
   const demographicsOptions: ComponentProps<typeof Select>['options'] =
     demographics?.map(({ id, name }) => ({ value: id, label: name })) || [];
 
   return (
-    <FieldRFF<ProjectSchema['leadership_demographics']>
+    <FieldRFF<FunderSchema['leadership_demographics']>
       name="leadership_demographics"
       defaultValue={demographicsFormValues}
     >
@@ -38,7 +40,7 @@ export default function DemographicsSelector() {
             loading={demographicsFetching && !demographicsFetched}
             onSelect={input.onChange}
           />
-          <ErrorField<ProjectSchema> name="leadership_demographics" />
+          <ErrorField<FunderSchema> name="leadership_demographics" />
         </div>
       )}
     </FieldRFF>

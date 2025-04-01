@@ -13,3 +13,18 @@ export enum OrganizationType {
   PublicFoundation = 'public_foundation',
   Regrantor = 'regrantor',
 }
+
+export enum ApplicationStatus {
+  DoesNotProvideFunding = 'does_not_provide_funding',
+  InvitationOnly = 'invitation_only',
+  OpenInvitation = 'open_invitation',
+}
+
+export enum CapitalAcceptances {
+  AdvisesManagesCapital = 'advises_and_manages_capital',
+  DoesNotProvideFunding = 'does_not_provide_funding',
+  DonationsAccepted = 'donations_accepted',
+  InvestmentsAccepted = 'investments_accepted',
+  PrivateCapital = 'private_capital',
+  Other = 'other',
+}
