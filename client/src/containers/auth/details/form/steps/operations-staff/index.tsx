@@ -237,7 +237,7 @@ export default function OperationsStaffStep() {
             >
               {({ input }) => <Radio {...input} id="new_to_regenerative_ag-no" />}
             </FieldRFF>
-            <label htmlFor="internal_demographics_collection-no">No</label>
+            <label htmlFor="new_to_regenerative_ag-no">No</label>
           </div>
         </div>
       </div>

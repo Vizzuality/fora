@@ -35,6 +35,7 @@ export default function EditFunder() {
           //@todo review this
           show_primary_email: data.show_primary_email === 'yes',
           new_to_regenerative_ag: data.new_to_regenerative_ag === 'yes',
+          spend_down_strategy: data.spend_down_strategy === 'yes',
         },
         headers: {
           'Content-Type': 'application/json',
@@ -85,6 +86,7 @@ export default function EditFunder() {
           capital_acceptances_other: funder.capital_acceptances_other ?? undefined,
           leadership_demographics: funder.leadership_demographics ?? undefined,
           leadership_demographics_other: funder.leadership_demographics_other ?? undefined,
+          spend_down_strategy: funder.spend_down_strategy ? 'yes' : 'no',
         }}
         onSubmit={(data) => {
           mutation.mutate(data);

@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 import { ApplicationStatus } from '@/containers/auth/details/form/types';
 import { CapitalAcceptances } from '@/types/api/capital-acceptance';
+import { CapitalType } from '@/types/api/capital-type';
 import { Demographic } from '@/types/api/demographic';
 import { FunderLegalStatus } from '@/types/api/funder-legal-status';
 import { FunderType } from '@/types/api/funder-type';
@@ -71,6 +72,21 @@ const CapitalAcceptancesSchema = z
     }
   });
 
+const CapitalTypeSchema = z
+  .object({
+    capital_types: z.array(z.nativeEnum(CapitalType)),
+    capital_types_other: z.string().optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.capital_types.includes(CapitalType.Other) && !data.capital_types_other) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Please provide a value for other',
+        path: ['capital_type_other'],
+      });
+    }
+  });
+
 const LeadershipDemographicsSchema = z
   .object({
     leadership_demographics: z.array(z.string()).min(1, {
@@ -134,6 +150,7 @@ const FunderZodSchema = z
     number_staff_employees: z.number().min(1),
     application_status: z.nativeEnum(ApplicationStatus),
     new_to_regenerative_ag: z.union([z.literal('yes'), z.literal('no')]).default('yes'),
+    spend_down_strategy: z.union([z.literal('yes'), z.literal('no')]).default('yes'),
   })
   .extend({
     ...LegalStatusSchema.innerType().shape,
@@ -141,6 +158,7 @@ const FunderZodSchema = z
     ...ShowPrimaryEmailTypeSchema.innerType().shape,
     ...CapitalAcceptancesSchema.innerType().shape,
     ...LeadershipDemographicsSchema.innerType().shape,
+    ...CapitalTypeSchema.innerType().shape,
   });
 
 export type FunderSchema = z.infer<typeof FunderZodSchema>;
