@@ -68,6 +68,7 @@
     "react-dropzone": "14.3.5",
     "react-final-form": "6.5.9",
     "react-icons": "5.4.0",
+    "react-international-phone": "4.5.0",
     "react-redux": "7.2.9",
     "react-simple-maps": "3.0.0",
     "react-use-cookie": "1.4.0",

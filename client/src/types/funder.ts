@@ -27,6 +27,10 @@ export interface Funder {
   primary_office_state: SubGeographic;
   primary_office_country: SubGeographic;
   primary_office_address: string;
+  secondary_email_which_can_be_shared: string | undefined;
+  primary_contact_phone: string | undefined;
+  primary_contact_role: string | undefined;
+  primary_contact_location: string | undefined;
   projects: Partial<Project>[];
   organization_type: OrganizationType;
   organization_type_other: string;

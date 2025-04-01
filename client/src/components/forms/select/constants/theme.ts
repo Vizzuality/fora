@@ -34,7 +34,7 @@ const THEME = {
   gray: {
     container: 'text-grey-0 text-sm',
     button:
-      'relative w-full py-2 pl-3 pr-10 text-left text-grey-20 text-grey-20 transition duration-150 ease-in-out cursor-pointer sm:text-sm sm:leading-5 border border-grey-40 rounded-lg',
+      'relative w-full py-2 pl-3 pr-10 text-left text-grey-20 text-grey-20 transition duration-150 ease-in-out cursor-pointer sm:text-sm sm:leading-5 border border-grey-40 rounded-lg focus:border-green-0',
     menu: 'bg-white',
     item: {
       base: 'text-sm ',

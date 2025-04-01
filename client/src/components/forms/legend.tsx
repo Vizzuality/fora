@@ -27,7 +27,10 @@ const LEGEND_ITEMS: {
 export default function FormLegend({ className }: { className?: HTMLUListElement['className'] }) {
   return (
     <ul
-      className={cn('inline-flex gap-4 rounded-lg border border-grey-0 bg-grey-60 p-3', className)}
+      className={cn(
+        'inline-flex gap-4 justify-self-start rounded-lg border border-grey-0 bg-grey-60 p-3',
+        className,
+      )}
     >
       {LEGEND_ITEMS.map(({ label, icon }) => (
         <li key={label} className="flex items-center gap-1 font-semibold text-grey-0">

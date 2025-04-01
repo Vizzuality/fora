@@ -39,7 +39,7 @@ export default function DemographicScope() {
           Do you collect information on the demographic scope of your partner organizations?
         </VisibilityLabel>
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             <FieldRFF<InvestmentSchema['internal_demographics_collection']>
               name="internal_demographics_collection"
               type="radio"
@@ -50,7 +50,7 @@ export default function DemographicScope() {
             <label htmlFor="internal_demographics_collection-yes">Yes</label>
           </div>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             <FieldRFF<InvestmentSchema['internal_demographics_collection']>
               name="internal_demographics_collection"
               type="radio"

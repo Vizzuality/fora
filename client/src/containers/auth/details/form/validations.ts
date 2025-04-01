@@ -36,6 +36,21 @@ const OrganizationTypeSchema = z
     }
   });
 
+const showPrimaryEmailTypeSchema = z
+  .object({
+    show_primary_email: z.union([z.literal('yes'), z.literal('no')]).default('yes'),
+    secondary_email_which_can_be_shared: z.string().optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.show_primary_email === 'no' && !data.secondary_email_which_can_be_shared) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'A secondary email must be provided',
+        path: ['secondary_email_which_can_be_shared'],
+      });
+    }
+  });
+
 const FunderZodSchema = z
   .object({
     name: z
@@ -67,10 +82,21 @@ const FunderZodSchema = z
       message: `Description cannot be empty`,
     }),
     logo: z.instanceof(File).optional(),
+    primary_contact_first_name: z.string({
+      message: 'First name cannot be empty',
+    }),
+    primary_contact_last_name: z.string().optional(),
+    primary_contact_email: z.string().email({
+      message: 'Email must be a valid email address',
+    }),
+    primary_contact_phone: z.string().optional(),
+    primary_contact_role: z.string().optional(),
+    primary_contact_location: z.string().optional(),
   })
   .extend({
     ...LegalStatusSchema.innerType().shape,
     ...OrganizationTypeSchema.innerType().shape,
+    ...showPrimaryEmailTypeSchema.innerType().shape,
   });
 
 // const LeadershipDemographicsSchema = z

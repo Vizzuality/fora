@@ -15,6 +15,7 @@ import RouteLoading from '@/containers/route-loading';
 import ApplicationLayout from '@/layouts/application';
 import 'styles/globals.css';
 import 'styles/flicking.css';
+import 'styles/react-international-phone.css';
 import { getQueryClient } from '@/lib/queryclient';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {

@@ -36,6 +36,7 @@ export const myDetailsQueryOptions = (session: Session) =>
   queryOptions({
     queryKey: ['my-details'],
     queryFn: () => fetchMyProjects(session),
+    enabled: !!session,
   });
 
 export const getServerSideProps = (async (context) => {
