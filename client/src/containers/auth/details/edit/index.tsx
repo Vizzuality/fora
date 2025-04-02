@@ -13,6 +13,7 @@ import Wrapper from '@/containers/wrapper';
 import { myDetailsQueryOptions } from '@/pages/auth/details';
 import API from '@/services/api';
 import { Funder } from '@/types/api/funder';
+import { SubGeographic } from '@/types/api/geographics';
 
 export default function EditFunder() {
   const { data: session } = useSession();
@@ -24,15 +25,27 @@ export default function EditFunder() {
     ...myDetailsQueryOptions(session),
   });
 
+  const { data: subgeographics } = useQuery({
+    queryKey: ['subgeographics'],
+    queryFn: () =>
+      API.request<SubGeographic[]>({
+        method: 'GET',
+        url: '/subgeographics',
+      }).then((response) => response.data),
+  });
+
   const mutation = useMutation({
     mutationKey: ['editProject', id],
     mutationFn: (data: FunderSchema) => {
+      delete data.internal_networks;
+
       return API.request<{ data: Funder }>({
         method: 'PUT',
         url: '/members/funder',
         data: {
-          ...data,
+          // countries and states are merged into a single array
           //@todo review this
+          subgeographic_ids: [...data.countries, ...data.states],
           show_primary_email: data.show_primary_email === 'yes',
           new_to_regenerative_ag: data.new_to_regenerative_ag === 'yes',
           spend_down_strategy: data.spend_down_strategy === 'yes',
@@ -55,6 +68,23 @@ export default function EditFunder() {
       push('/auth/projects');
     },
   });
+
+  const investmentSubgeographicsIds = funder.subgeographics?.map(({ id: subgeoId }) => subgeoId);
+  const countriesIds =
+    subgeographics
+      ?.filter(
+        ({ id: subgeoId, geographic }) =>
+          investmentSubgeographicsIds.includes(subgeoId) && geographic === 'countries',
+      )
+      .map(({ id: countryId }) => countryId) || [];
+
+  const statesIds =
+    subgeographics
+      ?.filter(
+        ({ id: subgeoId, geographic }) =>
+          investmentSubgeographicsIds.includes(subgeoId) && geographic === 'states',
+      )
+      .map(({ id: countryId }) => countryId) || [];
 
   return (
     <Wrapper className="flex h-full w-full grow">
@@ -82,10 +112,23 @@ export default function EditFunder() {
           primary_contact_phone: funder.primary_contact_phone ?? undefined,
           primary_contact_role: funder.primary_contact_role ?? undefined,
           primary_contact_location: funder.primary_contact_location ?? undefined,
+          number_staff_employees: funder.number_staff_employees ?? undefined,
+          application_status: funder.application_status ?? undefined,
           capital_acceptances: funder.capital_acceptances ?? undefined,
           capital_acceptances_other: funder.capital_acceptances_other ?? undefined,
           leadership_demographics: funder.leadership_demographics ?? undefined,
           leadership_demographics_other: funder.leadership_demographics_other ?? undefined,
+          new_to_regenerative_ag: funder.new_to_regenerative_ag ? 'yes' : 'no',
+          areas: funder.areas ?? undefined,
+          areas_other: funder.areas_other ?? undefined,
+          demographics: funder.demographics ?? undefined,
+          demographics_other: funder.demographics_other ?? undefined,
+          countries: countriesIds,
+          states: statesIds,
+          internal_networks: funder.networks ? 'yes' : 'no',
+          networks: funder.networks ?? undefined,
+          capital_types: funder.capital_types ?? undefined,
+          capital_types_other: funder.capital_types_other ?? undefined,
           spend_down_strategy: funder.spend_down_strategy ? 'yes' : 'no',
         }}
         onSubmit={(data) => {

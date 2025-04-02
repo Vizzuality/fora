@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
-import { ApplicationStatus } from '@/containers/auth/details/form/types';
+import { ApplicationStatus } from '@/types/api/application-status';
+import { AreaEnum } from '@/types/api/area';
 import { CapitalAcceptances } from '@/types/api/capital-acceptance';
 import { CapitalType } from '@/types/api/capital-type';
 import { Demographic } from '@/types/api/demographic';
@@ -107,6 +108,55 @@ const LeadershipDemographicsSchema = z
     }
   });
 
+const DemographicsSchema = z
+  .object({
+    demographics: z.array(z.string()).min(1, {
+      message: 'Please select at least one demography',
+    }),
+    demographics_other: z.string().optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.demographics.includes(Demographic.Other) && !data.demographics_other) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Please provide a value for other',
+        path: ['demographics_other'],
+      });
+    }
+  });
+
+const AreasSchema = z
+  .object({
+    areas: z.array(z.string()).min(1, {
+      message: 'Please select at least one area',
+    }),
+    areas_other: z.string().optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.areas.includes(AreaEnum.Other) && !data.areas_other) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Please provide a value for other',
+        path: ['areas_other'],
+      });
+    }
+  });
+
+const NetworksSchema = z
+  .object({
+    internal_networks: z.union([z.literal('yes'), z.literal('no')]).default('yes'),
+    networks: z.string().optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.internal_networks === 'yes' && !data.networks) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'A network/membership organization must be provided',
+        path: ['networks'],
+      });
+    }
+  });
+
 const FunderZodSchema = z
   .object({
     name: z
@@ -151,6 +201,8 @@ const FunderZodSchema = z
     application_status: z.nativeEnum(ApplicationStatus),
     new_to_regenerative_ag: z.union([z.literal('yes'), z.literal('no')]).default('yes'),
     spend_down_strategy: z.union([z.literal('yes'), z.literal('no')]).default('yes'),
+    countries: z.array(z.string()).min(1),
+    states: z.array(z.string()).optional(),
   })
   .extend({
     ...LegalStatusSchema.innerType().shape,
@@ -159,6 +211,9 @@ const FunderZodSchema = z
     ...CapitalAcceptancesSchema.innerType().shape,
     ...LeadershipDemographicsSchema.innerType().shape,
     ...CapitalTypeSchema.innerType().shape,
+    ...AreasSchema.innerType().shape,
+    ...NetworksSchema.innerType().shape,
+    ...DemographicsSchema.innerType().shape,
   });
 
 export type FunderSchema = z.infer<typeof FunderZodSchema>;
