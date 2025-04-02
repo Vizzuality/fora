@@ -220,7 +220,7 @@ export default function OperationsStaffStep() {
         <div className="flex items-center gap-4 pl-1">
           <div className="flex items-center gap-1.5">
             <FieldRFF<FunderSchema['new_to_regenerative_ag']>
-              name="show_primary_email"
+              name="new_to_regenerative_ag"
               type="radio"
               value="yes"
             >
@@ -246,26 +246,26 @@ export default function OperationsStaffStep() {
         <LinkButton
           theme="outline"
           className="flex items-center gap-1"
-          href={`${pathname}?step=funder-details`}
+          href={`${pathname}?step=contact-details`}
           anchorLinkProps={{
-            href: `${pathname}?step=funder-details`,
+            href: `${pathname}?step=contact-details`,
             replace: true,
           }}
         >
           <HiOutlineArrowLeft className="h-[20px] w-[20px]" />
-          <span>Funder Details</span>
+          <span>Contact Details</span>
         </LinkButton>
 
         <LinkButton
           theme="outline"
           className="flex items-center gap-1"
-          href={`${pathname}?step=operations-staff`}
+          href={`${pathname}?step=focus-collaboration`}
           anchorLinkProps={{
-            href: `${pathname}?step=operations-staff`,
+            href: `${pathname}?step=focus-collaboration`,
             replace: true,
           }}
         >
-          <span>Operations & Staff</span>
+          <span>Focus & Collaboration</span>
           <HiOutlineArrowRight className="h-[20px] w-[20px]" />
         </LinkButton>
       </footer>
