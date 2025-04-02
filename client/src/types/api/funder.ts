@@ -31,6 +31,7 @@ export interface Funder {
   primary_office_country: SubGeographic;
   primary_office_address: string;
   secondary_email_which_can_be_shared: string | undefined;
+  spend_down_strategy: boolean;
   primary_contact_phone: string | undefined;
   primary_contact_role: string | undefined;
   primary_contact_location: string | undefined;
