@@ -1,22 +1,24 @@
 import { ComponentProps } from 'react';
 
-import { Field as FieldRFF, useFormState } from 'react-final-form';
+import { Field as FieldRFF } from 'react-final-form';
 
 import { Select } from '@/components/forms';
 import ErrorField from '@/components/forms/error-field';
+import { useFunderForm } from '@/containers/auth/details/form';
 import { FunderSchema } from '@/containers/auth/details/form/validations';
-import { useProjectLegalStatuses } from '@/hooks/project-legal-statuses';
+import { useFunderLegalStatuses } from '@/hooks/funder-legal-statuses';
 
 export default function LegalStatusSelector() {
   const {
     data: legalStatuses,
     isFetching: legalStatusFetching,
     isFetched: legalStatusFetched,
-  } = useProjectLegalStatuses();
+  } = useFunderLegalStatuses();
 
+  const { getState } = useFunderForm();
   const {
     values: { funder_legal_status: legalStatusFormValue },
-  } = useFormState<FunderSchema>();
+  } = getState();
 
   const legalStatusesOptions: ComponentProps<typeof Select>['options'] =
     legalStatuses?.map(({ id, name }) => ({ value: id, label: name })) || [];
