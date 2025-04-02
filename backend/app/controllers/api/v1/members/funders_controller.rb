@@ -67,7 +67,8 @@ module API
             leadership_demographics: [],
             capital_types: [],
             areas: [],
-            demographics: []
+            demographics: [],
+            subgeographic_ids: []
           )
           p.merge published: true
         end

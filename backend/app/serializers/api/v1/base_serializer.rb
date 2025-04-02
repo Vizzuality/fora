@@ -22,6 +22,14 @@ module API
             end
           end
         end
+
+        def attribute_visible_for_member(attribute_name, options = {})
+          attribute attribute_name, options do |object, params|
+            next nil if params[:current_member].blank? || params[:current_member].id != object.member&.id
+
+            object.public_send(attribute_name)
+          end
+        end
       end
     end
   end

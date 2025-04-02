@@ -99,7 +99,8 @@ RSpec.describe "API V1 Member Funder", type: :request do
           leadership_demographics: {type: :array, items: {type: :string}},
           capital_types: {type: :array, items: {type: :string}},
           areas: {type: :array, items: {type: :string}},
-          demographics: {type: :array, items: {type: :string}}
+          demographics: {type: :array, items: {type: :string}},
+          subgeographic_ids: {type: :array, items: {type: :string}}
         },
         required: %w[name description primary_office_city primary_contact_first_name primary_contact_last_name" \
           "primary_contact_email date_joined_fora number_staff_employees funder_type capital_acceptances" \
@@ -117,10 +118,12 @@ RSpec.describe "API V1 Member Funder", type: :request do
 
         let(:Authorization) { "Bearer #{JWTAuth.encode(member)}" }
         let(:funder) { create :funder }
+        let(:country) { create :subgeographic, geographic: :countries }
         let(:funder_params) {
           funder.attributes.except("id").merge(
             name: "New name",
-            logo: fixture_file_upload("spec/fixtures/files/picture.jpg")
+            logo: fixture_file_upload("spec/fixtures/files/picture.jpg"),
+            subgeographic_ids: [country.id]
           )
         }
 
@@ -128,6 +131,11 @@ RSpec.describe "API V1 Member Funder", type: :request do
 
         it "matches snapshot", generate_swagger_example: true do
           expect(response.body).to match_snapshot("api/v1/members/update-funder")
+        end
+
+        it "creates a new funder with correct subgeographics" do
+          expect(response_json["data"]["relationships"]["subgeographics"]["data"].size).to eq(1)
+          expect(response_json["data"]["relationships"]["subgeographics"]["data"].first["id"]).to eq(country.id)
         end
 
         context "with sparse fieldset" do

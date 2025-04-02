@@ -5,7 +5,11 @@ module API
 
       attributes :name,
         :description,
+        :primary_office_address,
         :primary_office_city,
+        :secondary_email_which_can_be_shared,
+        :number_staff_employees,
+        :new_to_regenerative_ag,
         :website,
         :date_joined_fora,
         :funder_type,
@@ -27,6 +31,10 @@ module API
         :demographics_other,
         :updated_at,
         :created_at
+
+      attribute_visible_for_member :primary_contact_email
+      attribute_visible_for_member :primary_contact_phone
+      attribute_visible_for_member :primary_contact_role
 
       belongs_to_restricted :primary_office_state, serializer: :subgeographic
       belongs_to_restricted :primary_office_country, serializer: :subgeographic

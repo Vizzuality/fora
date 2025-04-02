@@ -47,7 +47,14 @@
         "original": "http://localhost:4000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWsyWVRJMlkyTTBOQzB4T0RNNExUUTFNR1V0T1RNeE5pMHhZVEUzTjJSak56QTBaVFVHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--feb12a512cedfbdcbe1a13ab6bca44d36a16a7b6/picture.jpg"
       },
       "updated_at": "2025-03-07T00:37:55.596Z",
-      "created_at": "2025-03-07T00:37:55.592Z"
+      "created_at": "2025-03-07T00:37:55.592Z",
+      "primary_office_address": "9950 Sachiko Courts",
+      "primary_contact_email": null,
+      "primary_contact_phone": null,
+      "secondary_email_which_can_be_shared": "amelia.gorczany@shields-metz.info",
+      "primary_contact_role": null,
+      "number_staff_employees": 38,
+      "new_to_regenerative_ag": true
     },
     "relationships": {
       "primary_office_state": {

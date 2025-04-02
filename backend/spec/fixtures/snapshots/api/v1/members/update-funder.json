@@ -47,7 +47,14 @@
         "original": "http://localhost:4000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxoWlRKbFlqQTJZeTB4WlRrNExUUTJaVGN0WVRSa01pMHdPV0kyT1RJNE1XTTRPVE1HT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--dab3c5072e105cb00f2a01d1524559eada4e8530/picture.jpg"
       },
       "updated_at": "2025-03-07T00:37:18.420Z",
-      "created_at": "2025-03-07T00:37:18.384Z"
+      "created_at": "2025-03-07T00:37:18.384Z",
+      "primary_office_address": "96287 Leo Ferry",
+      "primary_contact_email": "desmond_herzog@example.org",
+      "primary_contact_phone": "962-872-1544",
+      "secondary_email_which_can_be_shared": "reyna_hegmann@bradtke-pagac.co",
+      "primary_contact_role": "cum",
+      "number_staff_employees": 41,
+      "new_to_regenerative_ag": true
     },
     "relationships": {
       "primary_office_state": {
@@ -64,12 +71,18 @@
       },
       "subgeographics": {
         "data": [
-
+          {
+            "id": "e9dee10b-b5c7-41a6-a493-f38534fd8c3a",
+            "type": "subgeographic"
+          }
         ]
       },
       "subgeographic_ancestors": {
         "data": [
-
+          {
+            "id": "e9dee10b-b5c7-41a6-a493-f38534fd8c3a",
+            "type": "subgeographic"
+          }
         ]
       },
       "projects": {

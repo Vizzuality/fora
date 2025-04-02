@@ -164,7 +164,14 @@
           "original": "http://localhost:4000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxoT1RkbE5UUXdZUzB6WVdKaUxUUmxNVGt0WWpWbU1TMHdPRGt5Tm1Oa04yTmpNV0lHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--0705070c834304dd6445d976207e8560e6f4935d/picture.jpg"
         },
         "updated_at": "2025-03-07T00:37:18.294Z",
-        "created_at": "2025-03-07T00:37:18.291Z"
+        "created_at": "2025-03-07T00:37:18.291Z",
+        "primary_office_address": "9950 Sachiko Courts",
+        "primary_contact_email": null,
+        "primary_contact_phone": null,
+        "secondary_email_which_can_be_shared": "amelia.gorczany@shields-metz.info",
+        "primary_contact_role": null,
+        "number_staff_employees": 38,
+        "new_to_regenerative_ag": true
       },
       "relationships": {
         "primary_office_state": {
@@ -252,7 +259,14 @@
           "original": "http://localhost:4000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWt4Wm1ZM1ltVTBNQzFtTmpBNExUUTBOemd0T1dNd05TMDBOakprTWpSaU16Y3paVGNHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--2c66a30e5f5a242f81fdc3290ddbb6292bc40772/picture.jpg"
         },
         "updated_at": "2025-03-07T00:37:18.336Z",
-        "created_at": "2025-03-07T00:37:18.333Z"
+        "created_at": "2025-03-07T00:37:18.333Z",
+        "primary_office_address": "993 Jules Turnpike",
+        "primary_contact_email": null,
+        "primary_contact_phone": null,
+        "secondary_email_which_can_be_shared": "jules_keeling@grimes-stokes.co",
+        "primary_contact_role": null,
+        "number_staff_employees": 25,
+        "new_to_regenerative_ag": false
       },
       "relationships": {
         "primary_office_state": {
@@ -340,7 +354,14 @@
           "original": "http://localhost:4000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWt6TWpJNFlqRTFaUzFrWkRJM0xUUXpNRGN0T0RnelpTMDBZVGhpWlRJd1pUSTBaV01HT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--99d97ca2c4ed2893d56d7eaa6b91fcc64e428a24/picture.jpg"
         },
         "updated_at": "2025-03-07T00:37:18.316Z",
-        "created_at": "2025-03-07T00:37:18.313Z"
+        "created_at": "2025-03-07T00:37:18.313Z",
+        "primary_office_address": "96287 Leo Ferry",
+        "primary_contact_email": null,
+        "primary_contact_phone": null,
+        "secondary_email_which_can_be_shared": "reyna_hegmann@bradtke-pagac.co",
+        "primary_contact_role": null,
+        "number_staff_employees": 41,
+        "new_to_regenerative_ag": true
       },
       "relationships": {
         "primary_office_state": {

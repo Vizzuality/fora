@@ -47,7 +47,14 @@
           "original": "http://localhost:4000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWsyT1RKaU1URmhOQzFrTmpRMExUUmtPRGt0WW1RMU55MDRPVEZtWkdFd09UVTJOMklHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--372b6888a32235008fd91b6aa2f952c3bce458be/picture.jpg"
         },
         "updated_at": "2025-03-07T00:37:54.084Z",
-        "created_at": "2025-03-07T00:37:54.081Z"
+        "created_at": "2025-03-07T00:37:54.081Z",
+        "primary_office_address": "851 Drusilla Lodge",
+        "primary_contact_email": null,
+        "primary_contact_phone": null,
+        "secondary_email_which_can_be_shared": "lauren@ruecker.io",
+        "primary_contact_role": null,
+        "number_staff_employees": 47,
+        "new_to_regenerative_ag": false
       },
       "relationships": {
         "primary_office_state": {
@@ -141,7 +148,14 @@
           "original": "http://localhost:4000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWsyTVRJek9UQTJOUzB6WWpFMExUUTVOakV0WW1VNE55MDNaRGhtTldVMlpEVXpORFlHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--bee23c4f2e85240d91588bf0c97aa187f824d753/picture.jpg"
         },
         "updated_at": "2025-03-07T00:37:54.049Z",
-        "created_at": "2025-03-07T00:37:54.046Z"
+        "created_at": "2025-03-07T00:37:54.046Z",
+        "primary_office_address": "96287 Leo Ferry",
+        "primary_contact_email": null,
+        "primary_contact_phone": null,
+        "secondary_email_which_can_be_shared": "reyna_hegmann@bradtke-pagac.co",
+        "primary_contact_role": null,
+        "number_staff_employees": 41,
+        "new_to_regenerative_ag": true
       },
       "relationships": {
         "primary_office_state": {
@@ -225,7 +239,14 @@
           "original": "http://localhost:4000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxpTWpFNE5HVmpaUzAzT0RZd0xUUXpaall0WVRKa015MWtPV00wWVRZNFpUWXdPR0VHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--685f9d4226ec56a250b6aeaff14114cc06322434/picture.jpg"
         },
         "updated_at": "2025-03-07T00:37:54.032Z",
-        "created_at": "2025-03-07T00:37:54.029Z"
+        "created_at": "2025-03-07T00:37:54.029Z",
+        "primary_office_address": "9950 Sachiko Courts",
+        "primary_contact_email": null,
+        "primary_contact_phone": null,
+        "secondary_email_which_can_be_shared": "amelia.gorczany@shields-metz.info",
+        "primary_contact_role": null,
+        "number_staff_employees": 38,
+        "new_to_regenerative_ag": true
       },
       "relationships": {
         "primary_office_state": {
@@ -309,7 +330,14 @@
           "original": "http://localhost:4000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaWxsTm1Vek5qazFNQzB5TlRSaExUUmtNamN0T0Rrd1lpMHpPVGMzWXpOa1pEaGxNMk1HT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6ImJsb2JfaWQifX0=--d57aa357d78b35da8474c5626cd5f9ea4321e2cf/picture.jpg"
         },
         "updated_at": "2025-03-07T00:37:54.065Z",
-        "created_at": "2025-03-07T00:37:54.062Z"
+        "created_at": "2025-03-07T00:37:54.062Z",
+        "primary_office_address": "993 Jules Turnpike",
+        "primary_contact_email": null,
+        "primary_contact_phone": null,
+        "secondary_email_which_can_be_shared": "jules_keeling@grimes-stokes.co",
+        "primary_contact_role": null,
+        "number_staff_employees": 25,
+        "new_to_regenerative_ag": false
       },
       "relationships": {
         "primary_office_state": {
