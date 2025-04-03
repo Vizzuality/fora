@@ -32,6 +32,8 @@ module API
         :updated_at,
         :created_at
 
+      attribute_visible_for_member :primary_contact_first_name
+      attribute_visible_for_member :primary_contact_last_name
       attribute_visible_for_member :primary_contact_email
       attribute_visible_for_member :primary_contact_phone
       attribute_visible_for_member :primary_contact_role
