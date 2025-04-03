@@ -142,7 +142,9 @@
         "secondary_email_which_can_be_shared": "reyna_hegmann@bradtke-pagac.co",
         "primary_contact_role": "cum",
         "number_staff_employees": 41,
-        "new_to_regenerative_ag": true
+        "new_to_regenerative_ag": true,
+        "primary_contact_first_name": "Desmond",
+        "primary_contact_last_name": "Herzog"
       },
       "relationships": {
         "primary_office_state": {
@@ -240,7 +242,9 @@
         "secondary_email_which_can_be_shared": "jules_keeling@grimes-stokes.co",
         "primary_contact_role": null,
         "number_staff_employees": 25,
-        "new_to_regenerative_ag": false
+        "new_to_regenerative_ag": false,
+        "primary_contact_first_name": null,
+        "primary_contact_last_name": null
       },
       "relationships": {
         "primary_office_state": {
