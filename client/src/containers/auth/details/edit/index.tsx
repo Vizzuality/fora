@@ -1,5 +1,3 @@
-import { useRouter } from 'next/navigation';
-
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 
@@ -17,7 +15,6 @@ import { SubGeographic } from '@/types/api/geographics';
 
 export default function EditFunder() {
   const { data: session } = useSession();
-  const { push } = useRouter();
   const queryClient = useQueryClient();
 
   const { data: funder } = useQuery({
