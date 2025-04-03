@@ -67,7 +67,6 @@ export default function EditFunder() {
           queryClient.setQueryData(['funder', session.accessToken], response.data);
         });
       await fetch(`/api/revalidate/funders?id=${response.data.data.id}`);
-      push('/auth/projects');
     },
   });
 
