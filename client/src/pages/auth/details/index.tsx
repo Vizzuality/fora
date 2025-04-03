@@ -20,29 +20,34 @@ const DESCRIPTION_TEXT =
 // @todo: update image
 const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/home.jpg`;
 
-const fetchMyProjects = async (session: Session) => {
+const fetchMyProjects = async (session: Session, params = {}) => {
   const response = await API.request<Funder>({
     method: 'GET',
     url: 'members/funder',
     headers: {
       Authorization: `Bearer ${session?.accessToken}`,
     },
+    params,
   });
 
   return response.data;
 };
 
-export const myDetailsQueryOptions = (session: Session) =>
+export const myDetailsQueryOptions = (session: Session, params = {}) =>
   queryOptions({
     queryKey: ['my-details'],
-    queryFn: () => fetchMyProjects(session),
+    queryFn: () => fetchMyProjects(session, params),
     enabled: !!session,
   });
 
 export const getServerSideProps = (async (context) => {
   const session = await auth(context.req, context.res);
   const queryClient = getQueryClient();
-  await queryClient.prefetchQuery(myDetailsQueryOptions(session));
+  await queryClient.prefetchQuery(
+    myDetailsQueryOptions(session, {
+      includes: 'subgeographics',
+    }),
+  );
 
   return {
     props: {

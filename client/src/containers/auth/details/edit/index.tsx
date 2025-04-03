@@ -1,4 +1,4 @@
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
@@ -18,11 +18,12 @@ import { SubGeographic } from '@/types/api/geographics';
 export default function EditFunder() {
   const { data: session } = useSession();
   const { push } = useRouter();
-  const { id } = useParams<{ id: string }>();
   const queryClient = useQueryClient();
 
   const { data: funder } = useQuery({
-    ...myDetailsQueryOptions(session),
+    ...myDetailsQueryOptions(session, {
+      includes: 'subgeographics',
+    }),
   });
 
   const { data: subgeographics } = useQuery({
@@ -35,7 +36,7 @@ export default function EditFunder() {
   });
 
   const mutation = useMutation({
-    mutationKey: ['editProject', id],
+    mutationKey: ['editFunder', session?.accessToken],
     mutationFn: (data: FunderSchema) => {
       delete data.internal_networks;
 
@@ -43,8 +44,9 @@ export default function EditFunder() {
         method: 'PUT',
         url: '/members/funder',
         data: {
-          // countries and states are merged into a single array
+          ...data,
           //@todo review this
+          // countries and states are merged into a single array
           subgeographic_ids: [...data.countries, ...data.states],
           show_primary_email: data.show_primary_email === 'yes',
           new_to_regenerative_ag: data.new_to_regenerative_ag === 'yes',
@@ -59,22 +61,23 @@ export default function EditFunder() {
     onSuccess: async (response) => {
       await queryClient
         .invalidateQueries({
-          queryKey: ['funder', id],
+          queryKey: ['funder', response.data.data.id],
         })
         .then(() => {
-          queryClient.setQueryData(['funder', id], response.data);
+          queryClient.setQueryData(['funder', session.accessToken], response.data);
         });
-      await fetch(`/api/revalidate/funders?id=${id}`);
+      await fetch(`/api/revalidate/funders?id=${response.data.data.id}`);
       push('/auth/projects');
     },
   });
 
-  const investmentSubgeographicsIds = funder.subgeographics?.map(({ id: subgeoId }) => subgeoId);
+  const funderSubgeographicsIds = funder.subgeographics?.map(({ id: subgeoId }) => subgeoId);
+
   const countriesIds =
     subgeographics
       ?.filter(
         ({ id: subgeoId, geographic }) =>
-          investmentSubgeographicsIds.includes(subgeoId) && geographic === 'countries',
+          funderSubgeographicsIds.includes(subgeoId) && geographic === 'countries',
       )
       .map(({ id: countryId }) => countryId) || [];
 
@@ -82,7 +85,7 @@ export default function EditFunder() {
     subgeographics
       ?.filter(
         ({ id: subgeoId, geographic }) =>
-          investmentSubgeographicsIds.includes(subgeoId) && geographic === 'states',
+          funderSubgeographicsIds.includes(subgeoId) && geographic === 'states',
       )
       .map(({ id: countryId }) => countryId) || [];
 
@@ -90,18 +93,18 @@ export default function EditFunder() {
     <Wrapper className="flex h-full w-full grow">
       <FormWrapper<{ imageURL: string }>
         initialValues={{
-          name: funder.name,
-          date_joined_fora: funder.date_joined_fora,
-          primary_office_country_id: funder.primary_office_country.id,
+          name: funder.name ?? undefined,
+          date_joined_fora: funder.date_joined_fora ?? undefined,
+          primary_office_country_id: funder.primary_office_country.id ?? undefined,
           primary_office_state_id: funder.primary_office_state?.id ?? undefined,
           primary_office_city: funder.primary_office_city,
-          primary_office_address: funder.primary_office_address,
-          website: funder.website,
-          funder_type: funder.funder_type,
-          funder_type_other: funder.funder_type_other,
-          funder_legal_status: funder.funder_legal_status,
+          primary_office_address: funder.primary_office_address ?? undefined,
+          website: funder.website ?? undefined,
+          funder_type: funder.funder_type ?? undefined,
+          funder_type_other: funder.funder_type_other ?? undefined,
+          funder_legal_status: funder.funder_legal_status ?? undefined,
           funder_legal_status_other: funder.funder_legal_status_other ?? undefined,
-          description: funder.description,
+          description: funder.description ?? undefined,
           imageURL: funder.logo?.original ?? undefined,
           primary_contact_first_name: funder.name?.split(' ')?.[0] ?? undefined,
           primary_contact_last_name: funder.name?.split(' ')?.[1] ?? undefined,
