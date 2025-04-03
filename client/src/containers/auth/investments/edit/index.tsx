@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { useParams, useRouter } from 'next/navigation';
 
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -44,21 +46,27 @@ export default function EditInvestment({ investment }: { investment: Investment 
   });
 
   const investmentSubgeographicsIds = investment.subgeographics.map(({ id: subgeoId }) => subgeoId);
-  const countriesIds =
-    subgeographics
-      ?.filter(
-        ({ id: subgeoId, geographic }) =>
-          investmentSubgeographicsIds.includes(subgeoId) && geographic === 'countries',
-      )
-      .map(({ id: countryId }) => countryId) || [];
+  const countriesIds = useMemo(
+    () =>
+      subgeographics
+        ?.filter(
+          ({ id: subgeoId, geographic }) =>
+            investmentSubgeographicsIds.includes(subgeoId) && geographic === 'countries',
+        )
+        .map(({ id: countryId }) => countryId) || [],
+    [subgeographics, investmentSubgeographicsIds],
+  );
 
-  const statesIds =
-    subgeographics
-      ?.filter(
-        ({ id: subgeoId, geographic }) =>
-          investmentSubgeographicsIds.includes(subgeoId) && geographic === 'states',
-      )
-      .map(({ id: countryId }) => countryId) || [];
+  const statesIds = useMemo(
+    () =>
+      subgeographics
+        ?.filter(
+          ({ id: subgeoId, geographic }) =>
+            investmentSubgeographicsIds.includes(subgeoId) && geographic === 'states',
+        )
+        .map(({ id: countryId }) => countryId) || [],
+    [subgeographics, investmentSubgeographicsIds],
+  );
 
   return (
     <Wrapper className="flex w-full grow">

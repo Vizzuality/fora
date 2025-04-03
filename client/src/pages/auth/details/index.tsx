@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { dehydrate, DehydratedState, queryOptions } from '@tanstack/react-query';
+import { dehydrate, DehydratedState, keepPreviousData, queryOptions } from '@tanstack/react-query';
 import { GetServerSideProps } from 'next';
 import { Session } from 'next-auth';
 import safeJsonStringify from 'safe-json-stringify';
@@ -38,6 +38,8 @@ export const myDetailsQueryOptions = (session: Session, params = {}) =>
     queryKey: ['my-details'],
     queryFn: () => fetchMyProjects(session, params),
     enabled: !!session,
+    placeholderData: keepPreviousData,
+    refetchOnWindowFocus: false,
   });
 
 export const getServerSideProps = (async (context) => {

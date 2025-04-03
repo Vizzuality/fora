@@ -1,6 +1,6 @@
 import { useParams, useRouter } from 'next/navigation';
 
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { keepPreviousData, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 
 import EditProjectHeader from '@/containers/auth/projects/edit/header';
@@ -15,6 +15,8 @@ import { Project } from '@/types/api/project';
 
 import { FORM_STEPS } from '../constants';
 
+const EMPTY_ARRAY = [];
+
 export default function EditProject() {
   const { data: session } = useSession();
   const { push } = useRouter();
@@ -22,7 +24,9 @@ export default function EditProject() {
   const { data: me } = useMe();
   const queryClient = useQueryClient();
 
-  const { data: project } = useProject(id);
+  const { data: project } = useProject(id, {
+    placeholderData: keepPreviousData,
+  });
 
   const mutation = useMutation({
     mutationKey: ['editProject', id],
@@ -54,17 +58,17 @@ export default function EditProject() {
     <Wrapper className="flex h-full w-full grow">
       <FormWrapper<{ imageURL: string }>
         initialValues={{
-          name: project.name,
-          description: project.description,
+          name: project.name ?? undefined,
+          description: project.description ?? undefined,
           website: project.website ?? undefined,
           imageURL: project.logo ? project.logo.original : undefined,
-          city: project.city,
-          country_id: project.country.id,
+          city: project.city ?? undefined,
+          country_id: project.country?.id ?? undefined,
           state_id: project.state ? project.state.id : undefined,
-          recipient_legal_status: project.recipient_legal_status,
+          recipient_legal_status: project.recipient_legal_status ?? undefined,
           internal_leadership_demographics_collection:
             project.leadership_demographics?.length > 0 ? 'yes' : 'no',
-          leadership_demographics: project.leadership_demographics ?? [],
+          leadership_demographics: project.leadership_demographics ?? EMPTY_ARRAY,
           leadership_demographics_other: project.leadership_demographics_other ?? undefined,
         }}
         onSubmit={(data) => {

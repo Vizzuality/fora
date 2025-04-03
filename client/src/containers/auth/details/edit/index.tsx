@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 
@@ -58,10 +60,10 @@ export default function EditFunder() {
     onSuccess: async (response) => {
       await queryClient
         .invalidateQueries({
-          queryKey: ['funder', response.data.data.id],
+          queryKey: ['my-details'],
         })
         .then(() => {
-          queryClient.setQueryData(['funder', session.accessToken], response.data);
+          queryClient.setQueryData(['my-details'], response.data);
         });
       await fetch(`/api/revalidate/funders?id=${response.data.data.id}`);
     },
@@ -69,21 +71,27 @@ export default function EditFunder() {
 
   const funderSubgeographicsIds = funder.subgeographics?.map(({ id: subgeoId }) => subgeoId);
 
-  const countriesIds =
-    subgeographics
-      ?.filter(
-        ({ id: subgeoId, geographic }) =>
-          funderSubgeographicsIds.includes(subgeoId) && geographic === 'countries',
-      )
-      .map(({ id: countryId }) => countryId) || [];
+  const countriesIds = useMemo(
+    () =>
+      subgeographics
+        ?.filter(
+          ({ id: subgeoId, geographic }) =>
+            funderSubgeographicsIds.includes(subgeoId) && geographic === 'countries',
+        )
+        .map(({ id: countryId }) => countryId) || [],
+    [funderSubgeographicsIds, subgeographics],
+  );
 
-  const statesIds =
-    subgeographics
-      ?.filter(
-        ({ id: subgeoId, geographic }) =>
-          funderSubgeographicsIds.includes(subgeoId) && geographic === 'states',
-      )
-      .map(({ id: countryId }) => countryId) || [];
+  const statesIds = useMemo(
+    () =>
+      subgeographics
+        ?.filter(
+          ({ id: subgeoId, geographic }) =>
+            funderSubgeographicsIds.includes(subgeoId) && geographic === 'states',
+        )
+        .map(({ id: countryId }) => countryId) || [],
+    [funderSubgeographicsIds, subgeographics],
+  );
 
   return (
     <Wrapper className="flex h-full w-full grow">

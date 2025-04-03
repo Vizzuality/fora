@@ -73,8 +73,10 @@ export default function ContactDetailsStep() {
             <VisibilityLabel
               labelProps={{
                 htmlFor: 'primary_contact_last_name',
+                'aria-required': true,
               }}
               icon="fora-members"
+              required
             >
               Primary Contact - Last Name
             </VisibilityLabel>
