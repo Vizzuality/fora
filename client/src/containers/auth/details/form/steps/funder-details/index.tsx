@@ -62,6 +62,8 @@ export default function FunderDetailsStep() {
     reader.readAsDataURL(file);
   };
 
+  console.log({ values: getState().values });
+
   const dropZoneOptions: DropzoneOptions &
     Pick<ComponentProps<typeof DragNDrop>, 'hasInitialValue'> = {
     onDropAccepted,
@@ -143,7 +145,7 @@ export default function FunderDetailsStep() {
                     theme="gray"
                     size="base"
                     options={joinedForaOptions}
-                    value={new Date(input.value).getFullYear().toString()}
+                    value={input.value ? new Date(input.value).getFullYear().toString() : undefined}
                     onSelect={(year) => {
                       input.onChange(new Date(`${year}-01-01`).toISOString());
                     }}

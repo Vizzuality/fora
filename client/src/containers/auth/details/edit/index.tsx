@@ -90,10 +90,10 @@ export default function EditFunder() {
       <FormWrapper<{ imageURL: string }>
         initialValues={{
           name: funder.name ?? undefined,
-          date_joined_fora: funder.date_joined_fora ?? undefined,
-          primary_office_country_id: funder.primary_office_country.id ?? undefined,
+          date_joined_fora: funder.date_joined_fora ?? '',
+          primary_office_country_id: funder.primary_office_country?.id ?? undefined,
           primary_office_state_id: funder.primary_office_state?.id ?? undefined,
-          primary_office_city: funder.primary_office_city,
+          primary_office_city: funder.primary_office_city ?? undefined,
           primary_office_address: funder.primary_office_address ?? undefined,
           website: funder.website ?? undefined,
           funder_type: funder.funder_type ?? undefined,
