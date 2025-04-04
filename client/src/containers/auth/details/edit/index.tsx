@@ -15,6 +15,8 @@ import API from '@/services/api';
 import { Funder } from '@/types/api/funder';
 import { SubGeographic } from '@/types/api/geographics';
 
+const EMPTY_ARRAY = [];
+
 export default function EditFunder() {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
@@ -78,7 +80,7 @@ export default function EditFunder() {
           ({ id: subgeoId, geographic }) =>
             funderSubgeographicsIds.includes(subgeoId) && geographic === 'countries',
         )
-        .map(({ id: countryId }) => countryId) || [],
+        .map(({ id: countryId }) => countryId) || EMPTY_ARRAY,
     [funderSubgeographicsIds, subgeographics],
   );
 
@@ -89,55 +91,59 @@ export default function EditFunder() {
           ({ id: subgeoId, geographic }) =>
             funderSubgeographicsIds.includes(subgeoId) && geographic === 'states',
         )
-        .map(({ id: countryId }) => countryId) || [],
+        .map(({ id: countryId }) => countryId) || EMPTY_ARRAY,
     [funderSubgeographicsIds, subgeographics],
+  );
+
+  const formInitialValues: FunderSchema = useMemo(
+    () => ({
+      name: funder.name ?? undefined,
+      date_joined_fora: funder.date_joined_fora ?? '',
+      primary_office_country_id: funder.primary_office_country?.id ?? undefined,
+      primary_office_state_id: funder.primary_office_state?.id ?? undefined,
+      primary_office_city: funder.primary_office_city ?? undefined,
+      primary_office_address: funder.primary_office_address ?? undefined,
+      website: funder.website ?? undefined,
+      funder_type: funder.funder_type ?? undefined,
+      funder_type_other: funder.funder_type_other ?? undefined,
+      funder_legal_status: funder.funder_legal_status ?? undefined,
+      funder_legal_status_other: funder.funder_legal_status_other ?? undefined,
+      description: funder.description ?? undefined,
+      imageURL: funder.logo?.original ?? undefined,
+      primary_contact_first_name: funder.primary_contact_first_name ?? undefined,
+      primary_contact_last_name: funder.primary_contact_last_name ?? undefined,
+      primary_contact_email: funder.contact_email ?? undefined,
+      show_primary_email: funder.secondary_email_which_can_be_shared ? 'no' : 'yes',
+      secondary_email_which_can_be_shared: funder.secondary_email_which_can_be_shared ?? undefined,
+      primary_contact_phone: funder.primary_contact_phone ?? undefined,
+      primary_contact_role: funder.primary_contact_role ?? undefined,
+      primary_contact_location: funder.primary_contact_location ?? undefined,
+      number_staff_employees: funder.number_staff_employees ?? undefined,
+      application_status: funder.application_status ?? undefined,
+      capital_acceptances: funder.capital_acceptances ?? undefined,
+      capital_acceptances_other: funder.capital_acceptances_other ?? undefined,
+      leadership_demographics: funder.leadership_demographics ?? undefined,
+      leadership_demographics_other: funder.leadership_demographics_other ?? undefined,
+      new_to_regenerative_ag: funder.new_to_regenerative_ag ? 'yes' : 'no',
+      areas: funder.areas ?? undefined,
+      areas_other: funder.areas_other ?? undefined,
+      demographics: funder.demographics ?? undefined,
+      demographics_other: funder.demographics_other ?? undefined,
+      countries: countriesIds,
+      states: statesIds,
+      internal_networks: funder.networks ? 'yes' : 'no',
+      networks: funder.networks ?? undefined,
+      capital_types: funder.capital_types ?? undefined,
+      capital_types_other: funder.capital_types_other ?? undefined,
+      spend_down_strategy: funder.spend_down_strategy ? 'yes' : 'no',
+    }),
+    [funder],
   );
 
   return (
     <Wrapper className="flex h-full w-full grow">
       <FormWrapper<{ imageURL: string }>
-        initialValues={{
-          name: funder.name ?? undefined,
-          date_joined_fora: funder.date_joined_fora ?? '',
-          primary_office_country_id: funder.primary_office_country?.id ?? undefined,
-          primary_office_state_id: funder.primary_office_state?.id ?? undefined,
-          primary_office_city: funder.primary_office_city ?? undefined,
-          primary_office_address: funder.primary_office_address ?? undefined,
-          website: funder.website ?? undefined,
-          funder_type: funder.funder_type ?? undefined,
-          funder_type_other: funder.funder_type_other ?? undefined,
-          funder_legal_status: funder.funder_legal_status ?? undefined,
-          funder_legal_status_other: funder.funder_legal_status_other ?? undefined,
-          description: funder.description ?? undefined,
-          imageURL: funder.logo?.original ?? undefined,
-          primary_contact_first_name: funder.name?.split(' ')?.[0] ?? undefined,
-          primary_contact_last_name: funder.name?.split(' ')?.[1] ?? undefined,
-          primary_contact_email: funder.contact_email ?? undefined,
-          show_primary_email: funder.secondary_email_which_can_be_shared ? 'no' : 'yes',
-          secondary_email_which_can_be_shared:
-            funder.secondary_email_which_can_be_shared ?? undefined,
-          primary_contact_phone: funder.primary_contact_phone ?? undefined,
-          primary_contact_role: funder.primary_contact_role ?? undefined,
-          primary_contact_location: funder.primary_contact_location ?? undefined,
-          number_staff_employees: funder.number_staff_employees ?? undefined,
-          application_status: funder.application_status ?? undefined,
-          capital_acceptances: funder.capital_acceptances ?? undefined,
-          capital_acceptances_other: funder.capital_acceptances_other ?? undefined,
-          leadership_demographics: funder.leadership_demographics ?? undefined,
-          leadership_demographics_other: funder.leadership_demographics_other ?? undefined,
-          new_to_regenerative_ag: funder.new_to_regenerative_ag ? 'yes' : 'no',
-          areas: funder.areas ?? undefined,
-          areas_other: funder.areas_other ?? undefined,
-          demographics: funder.demographics ?? undefined,
-          demographics_other: funder.demographics_other ?? undefined,
-          countries: countriesIds,
-          states: statesIds,
-          internal_networks: funder.networks ? 'yes' : 'no',
-          networks: funder.networks ?? undefined,
-          capital_types: funder.capital_types ?? undefined,
-          capital_types_other: funder.capital_types_other ?? undefined,
-          spend_down_strategy: funder.spend_down_strategy ? 'yes' : 'no',
-        }}
+        initialValues={formInitialValues}
         onSubmit={(data) => {
           mutation.mutate(data);
         }}

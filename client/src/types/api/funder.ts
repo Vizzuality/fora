@@ -31,6 +31,8 @@ export interface Funder {
   leadership_demographics: Demographic[];
   leadership_demographics_other: string | undefined;
   new_to_regenerative_ag: boolean;
+  primary_contact_first_name: string;
+  primary_contact_last_name: string | undefined;
   primary_office_city: string;
   primary_office_state: SubGeographic;
   primary_office_country: SubGeographic;
