@@ -70,7 +70,9 @@
         "secondary_email_which_can_be_shared": "amelia.gorczany@shields-metz.info",
         "primary_contact_role": "voluptatem",
         "number_staff_employees": 38,
-        "new_to_regenerative_ag": true
+        "new_to_regenerative_ag": true,
+        "primary_contact_first_name": "Dawna",
+        "primary_contact_last_name": "Block"
       },
       "relationships": {
         "primary_office_state": {
