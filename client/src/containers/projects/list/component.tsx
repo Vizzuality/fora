@@ -57,7 +57,7 @@ const ProjectsList = () => {
         <div className="py-8">
           <Sentence type="projects" />
 
-          {!!projectsData.length && (
+          {!!projectsData?.length && (
             <div className="mt-10 flex justify-between">
               <Menu as="div" className="relative">
                 <Menu.Button className="flex items-center space-x-2">
@@ -104,7 +104,7 @@ const ProjectsList = () => {
           )}
         </div>
 
-        {!projectsData.length && !LOADING && (
+        {!projectsData?.length && !LOADING && (
           <div className="flex flex-col items-center space-y-4 py-12 pb-20">
             <p className="text-2xl font-semibold">No results found</p>
             <p className="max-w-sm text-center text-grey-20">
@@ -114,7 +114,7 @@ const ProjectsList = () => {
           </div>
         )}
 
-        {!!projectsData.length && (
+        {!!projectsData?.length && (
           <div className="pb-10">
             <Cards pathname="/projects" data={projectsData} />
           </div>

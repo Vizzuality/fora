@@ -111,6 +111,10 @@
 
 
   input, textarea, select {
-    @apply focus:border-green-0 focus:ring-green-0 !important;
+    @apply focus:border-green-0 focus:ring-green-0 text-sm !important;
+  }
+
+  input[type='checkbox'] {
+    @apply rounded-sm text-green-0 checked:bg-green-0 hover:checked:bg-green-0 focus-visible:outline-green-0 focus-visible:outline-offset-4;
   }
 }

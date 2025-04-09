@@ -65,7 +65,7 @@ export default function FocusCollaborationStep() {
               }}
               required
             >
-              Areas of Interest
+              Areas of focus
             </VisibilityLabel>
             <AreasSelector />
           </div>
@@ -230,7 +230,7 @@ export default function FocusCollaborationStep() {
             <FieldRFF<FunderSchema['networks']> name="networks" type="text">
               {({ input }) => (
                 <div className="space-y-2">
-                  <Input required {...input} />
+                  <Input required {...input} theme="transparent" className="h-[46px]" />
                   <ErrorField<FunderSchema> name="networks" />
                 </div>
               )}

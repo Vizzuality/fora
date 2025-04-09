@@ -34,20 +34,40 @@ export default function MyInvestmentsOverview() {
 
   return (
     <Wrapper className="flex h-full w-full grow flex-col gap-6 pb-20">
-      <header className="flex items-center justify-between">
-        <h2 className="font-display text-3xl">
-          You have <span className="font-semibold">{data?.length}</span> investments
-        </h2>
-        <LinkButton href="/auth/investments/new" theme="green">
-          Report new investment
-        </LinkButton>
-      </header>
+      {data?.length > 0 && (
+        <>
+          <header className="flex items-center justify-between">
+            <h2 className="font-display text-3xl">
+              You have <span className="font-semibold">{data?.length}</span> investments
+            </h2>
+            <LinkButton href="/auth/investments/new" theme="green">
+              Report new investment
+            </LinkButton>
+          </header>
 
-      <InvestmentsTable
-        data={data || []}
-        sorting={sort}
-        onSorting={(sortingState) => setSort(sortingState)}
-      />
+          <InvestmentsTable
+            data={data || []}
+            sorting={sort}
+            onSorting={(sortingState) => setSort(sortingState)}
+          />
+        </>
+      )}
+
+      {!data.length && (
+        <div className="grid h-full grid-cols-12 items-center justify-center">
+          <div className="col-span-6 col-start-4 flex flex-col items-center gap-4 text-center">
+            <h3 className="font-display text-2.5xl">You have no investments.</h3>
+            {/*@todo: update text*/}
+            <p>
+              Lorem ipsum dolor sit amet consectetur. Convallis fusce neque odio nunc elementum
+              habitant sit sagittis.
+            </p>
+            <LinkButton href={`/auth/investments/new`} theme="green">
+              Report Investment
+            </LinkButton>
+          </div>
+        </div>
+      )}
     </Wrapper>
   );
 }

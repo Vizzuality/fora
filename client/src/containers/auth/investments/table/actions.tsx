@@ -31,7 +31,7 @@ export default function InvestmentActions({ investmentId }: { investmentId: stri
   });
 
   return (
-    <ul className="flex items-center justify-end gap-1 pr-5">
+    <ul className="flex items-center justify-end gap-2 pr-5">
       <li className="flex">
         <Link href={`/auth/investments/${investmentId}/edit`}>
           <HiOutlinePencilAlt className="h-6 w-6 text-grey-20" />

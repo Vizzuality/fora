@@ -23,7 +23,7 @@ export default function InvestmentsTable({
           data={data}
           classNames={{
             table: 'h-full w-full',
-            thead: 'border-b border-grey-40 sticky top-0 bg-white',
+            thead: 'border-b border-grey-40 sticky top-0 bg-transparent',
             td: 'py-6',
           }}
           state={{

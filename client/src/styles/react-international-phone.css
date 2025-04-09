@@ -9,6 +9,10 @@
   padding: 0 8px;
 }
 
+.react-international-phone-country-selector button {
+  background: transparent;
+}
+
 .react-international-phone-input-container {
   display: flex;
   align-items: center;
@@ -20,4 +24,5 @@
 .react-international-phone-input-container .react-international-phone-input {
   border: none;
   width: 100%;
+  background: transparent;
 }
