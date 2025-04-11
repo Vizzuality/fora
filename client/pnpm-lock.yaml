@@ -67,16 +67,16 @@ importers:
         version: 1.5.1
       '@tailwindcss/aspect-ratio':
         specifier: 0.4.0
-        version: 0.4.0(tailwindcss@3.1.7(postcss@8.4.13))
+        version: 0.4.0(tailwindcss@3.1.7(postcss@8.5.3))
       '@tailwindcss/forms':
         specifier: 0.5.3
-        version: 0.5.3(tailwindcss@3.1.7(postcss@8.4.13))
+        version: 0.5.3(tailwindcss@3.1.7(postcss@8.5.3))
       '@tailwindcss/line-clamp':
         specifier: 0.4.0
-        version: 0.4.0(tailwindcss@3.1.7(postcss@8.4.13))
+        version: 0.4.0(tailwindcss@3.1.7(postcss@8.5.3))
       '@tailwindcss/typography':
         specifier: 0.5.7
-        version: 0.5.7(tailwindcss@3.1.7(postcss@8.4.13))
+        version: 0.5.7(tailwindcss@3.1.7(postcss@8.5.3))
       '@tanem/react-nprogress':
         specifier: 5.0.11
         version: 5.0.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -106,7 +106,7 @@ importers:
         version: 2.18.0(react@18.3.1)
       autoprefixer:
         specifier: 10.4.7
-        version: 10.4.7(postcss@8.4.13)
+        version: 10.4.7(postcss@8.5.3)
       axios:
         specifier: 0.30.0
         version: 0.30.0
@@ -174,8 +174,8 @@ importers:
         specifier: 7.0.5
         version: 7.0.5(next@14.2.25(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-redux@7.2.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       postcss:
-        specifier: 8.4.13
-        version: 8.4.13
+        specifier: 8.5.3
+        version: 8.5.3
       prettier-plugin-tailwindcss:
         specifier: 0.6.11
         version: 0.6.11(prettier@3.5.3)
@@ -223,10 +223,10 @@ importers:
         version: 3.0.1
       tailwindcss:
         specifier: 3.1.7
-        version: 3.1.7(postcss@8.4.13)
+        version: 3.1.7(postcss@8.5.3)
       tailwindcss-animate:
         specifier: 1.0.7
-        version: 1.0.7(tailwindcss@3.1.7(postcss@8.4.13))
+        version: 1.0.7(tailwindcss@3.1.7(postcss@8.5.3))
       validate.js:
         specifier: 0.13.1
         version: 0.13.1
@@ -4153,8 +4153,8 @@ packages:
   nan@2.22.2:
     resolution: {integrity: sha512-DANghxFkS1plDdRsX0X9pm0Z6SJNN6gBdtXfanwoZ8hooC5gosGFSBGRYHUVPz1asKA/kMRqDRdHrluZ61SpBQ==}
 
-  nanoid@3.3.8:
-    resolution: {integrity: sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==}
+  nanoid@3.3.11:
+    resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -4523,16 +4523,12 @@ packages:
     resolution: {integrity: sha512-zrUjRRe1bpXKsX1qAJNJjqZViErVuyEkMTRrwu4ud4sbTtIBRmtaYDrHmcGgmrbsW3MHfmtIf+vJumgQn+PrXg==}
     engines: {node: '>=0.12'}
 
-  postcss@8.4.13:
-    resolution: {integrity: sha512-jtL6eTBrza5MPzy8oJLFuUscHDXTV5KcLlqAWHl5q5WYRfnNRGSmOZmOZ1T6Gy7A99mOZfqungmZMpMmCVJ8ZA==}
-    engines: {node: ^10 || ^12 || >=14}
-
   postcss@8.4.31:
     resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
     engines: {node: ^10 || ^12 || >=14}
 
-  postcss@8.5.2:
-    resolution: {integrity: sha512-MjOadfU3Ys9KYoX0AdkBlFEF1Vx37uCCeN4ZHnmwm9FfpbsGWMZeBLMmmpY+6Ocqod7mkdZ0DT31OlbsFrLlkA==}
+  postcss@8.5.3:
+    resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
     engines: {node: ^10 || ^12 || >=14}
 
   posthtml-parser@0.2.1:
@@ -6988,26 +6984,26 @@ snapshots:
       '@swc/counter': 0.1.3
       tslib: 2.8.1
 
-  '@tailwindcss/aspect-ratio@0.4.0(tailwindcss@3.1.7(postcss@8.4.13))':
+  '@tailwindcss/aspect-ratio@0.4.0(tailwindcss@3.1.7(postcss@8.5.3))':
     dependencies:
-      tailwindcss: 3.1.7(postcss@8.4.13)
+      tailwindcss: 3.1.7(postcss@8.5.3)
 
-  '@tailwindcss/forms@0.5.3(tailwindcss@3.1.7(postcss@8.4.13))':
+  '@tailwindcss/forms@0.5.3(tailwindcss@3.1.7(postcss@8.5.3))':
     dependencies:
       mini-svg-data-uri: 1.4.4
-      tailwindcss: 3.1.7(postcss@8.4.13)
+      tailwindcss: 3.1.7(postcss@8.5.3)
 
-  '@tailwindcss/line-clamp@0.4.0(tailwindcss@3.1.7(postcss@8.4.13))':
+  '@tailwindcss/line-clamp@0.4.0(tailwindcss@3.1.7(postcss@8.5.3))':
     dependencies:
-      tailwindcss: 3.1.7(postcss@8.4.13)
+      tailwindcss: 3.1.7(postcss@8.5.3)
 
-  '@tailwindcss/typography@0.5.7(tailwindcss@3.1.7(postcss@8.4.13))':
+  '@tailwindcss/typography@0.5.7(tailwindcss@3.1.7(postcss@8.5.3))':
     dependencies:
       lodash.castarray: 4.4.0
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
-      tailwindcss: 3.1.7(postcss@8.4.13)
+      tailwindcss: 3.1.7(postcss@8.5.3)
 
   '@tanem/react-nprogress@5.0.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -7785,14 +7781,14 @@ snapshots:
 
   attr-accept@2.2.5: {}
 
-  autoprefixer@10.4.7(postcss@8.4.13):
+  autoprefixer@10.4.7(postcss@8.5.3):
     dependencies:
       browserslist: 4.24.2
       caniuse-lite: 1.0.30001684
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
-      postcss: 8.4.13
+      postcss: 8.5.3
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.7:
@@ -10274,7 +10270,7 @@ snapshots:
   nan@2.22.2:
     optional: true
 
-  nanoid@3.3.8: {}
+  nanoid@3.3.11: {}
 
   nanomatch@1.2.13:
     dependencies:
@@ -10641,28 +10637,28 @@ snapshots:
 
   possible-typed-array-names@1.1.0: {}
 
-  postcss-import@14.1.0(postcss@8.4.13):
+  postcss-import@14.1.0(postcss@8.5.3):
     dependencies:
-      postcss: 8.4.13
+      postcss: 8.5.3
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.8
 
-  postcss-js@4.0.1(postcss@8.4.13):
+  postcss-js@4.0.1(postcss@8.5.3):
     dependencies:
       camelcase-css: 2.0.1
-      postcss: 8.4.13
+      postcss: 8.5.3
 
-  postcss-load-config@3.1.4(postcss@8.4.13):
+  postcss-load-config@3.1.4(postcss@8.5.3):
     dependencies:
       lilconfig: 2.1.0
       yaml: 1.10.2
     optionalDependencies:
-      postcss: 8.4.13
+      postcss: 8.5.3
 
-  postcss-nested@5.0.6(postcss@8.4.13):
+  postcss-nested@5.0.6(postcss@8.5.3):
     dependencies:
-      postcss: 8.4.13
+      postcss: 8.5.3
       postcss-selector-parser: 6.1.2
 
   postcss-prefix-selector@1.16.1(postcss@5.2.18):
@@ -10688,21 +10684,15 @@ snapshots:
       source-map: 0.5.7
       supports-color: 3.2.3
 
-  postcss@8.4.13:
-    dependencies:
-      nanoid: 3.3.8
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
-
   postcss@8.4.31:
     dependencies:
-      nanoid: 3.3.8
+      nanoid: 3.3.11
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  postcss@8.5.2:
+  postcss@8.5.3:
     dependencies:
-      nanoid: 3.3.8
+      nanoid: 3.3.11
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
@@ -11631,11 +11621,11 @@ snapshots:
 
   tailwind-merge@3.0.1: {}
 
-  tailwindcss-animate@1.0.7(tailwindcss@3.1.7(postcss@8.4.13)):
+  tailwindcss-animate@1.0.7(tailwindcss@3.1.7(postcss@8.5.3)):
     dependencies:
-      tailwindcss: 3.1.7(postcss@8.4.13)
+      tailwindcss: 3.1.7(postcss@8.5.3)
 
-  tailwindcss@3.1.7(postcss@8.4.13):
+  tailwindcss@3.1.7(postcss@8.5.3):
     dependencies:
       arg: 5.0.2
       chokidar: 3.6.0
@@ -11650,11 +11640,11 @@ snapshots:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.4.13
-      postcss-import: 14.1.0(postcss@8.4.13)
-      postcss-js: 4.0.1(postcss@8.4.13)
-      postcss-load-config: 3.1.4(postcss@8.4.13)
-      postcss-nested: 5.0.6(postcss@8.4.13)
+      postcss: 8.5.3
+      postcss-import: 14.1.0(postcss@8.5.3)
+      postcss-js: 4.0.1(postcss@8.5.3)
+      postcss-load-config: 3.1.4(postcss@8.5.3)
+      postcss-nested: 5.0.6(postcss@8.5.3)
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
       quick-lru: 5.1.1
@@ -11988,7 +11978,7 @@ snapshots:
   vite@6.1.1(@types/node@22.13.10):
     dependencies:
       esbuild: 0.24.2
-      postcss: 8.5.2
+      postcss: 8.5.3
       rollup: 4.34.8
     optionalDependencies:
       '@types/node': 22.13.10
