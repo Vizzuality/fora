@@ -44,7 +44,7 @@ export function ProjectSelector() {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="max-w-full justify-between border-none pl-0 text-2.5xl shadow-none hover:bg-transparent"
+          className="max-w-full justify-between border-none bg-transparent pl-0 text-2.5xl shadow-none hover:bg-transparent"
         >
           {value ? (
             <span className="truncate">

@@ -77,7 +77,7 @@ export default function ContactDetailsStep() {
         <FieldRFF<ProjectSchema['name']> name="city" type="text">
           {({ input }) => (
             <div className="space-y-2">
-              <Input {...input} id={input.name} className="h-[46px]" />
+              <Input {...input} id={input.name} theme="transparent" className="h-[46px]" />
               <ErrorField<ProjectSchema> name="city" />
             </div>
           )}

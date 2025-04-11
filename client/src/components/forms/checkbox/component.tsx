@@ -24,7 +24,6 @@ export const Checkbox: FC<CheckboxProps> = ({
       type="checkbox"
       disabled={disabled}
       className={cx({
-        'form-checkbox': true,
         [THEME[theme].base]: true,
         [THEME[theme].status[st]]: true,
         [className]: !!className,

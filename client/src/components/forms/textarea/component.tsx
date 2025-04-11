@@ -8,7 +8,7 @@ import type { TextareaProps } from './types';
 
 const THEME = {
   dark: {
-    base: 'leading-tight text-white bg-transparent border rounded-lg placeholder:text-sm',
+    base: 'leading-tight text-white border rounded-lg placeholder:text-sm',
     status: {
       none: 'border-gray-500',
       valid: 'border-green-500',
@@ -17,7 +17,7 @@ const THEME = {
     },
   },
   light: {
-    base: 'leading-tight text-grey-0 bg-white border rounded-lg placeholder:text-sm',
+    base: 'leading-tight text-grey-0 border rounded-lg placeholder:text-sm',
     status: {
       none: 'border-grey-40',
       valid: 'border-green-500',
@@ -26,7 +26,7 @@ const THEME = {
     },
   },
   transparent: {
-    base: 'leading-tight text-grey-0 bg-transparent border rounded-lg placeholder:text-sm',
+    base: 'leading-tight text-grey-0 border rounded-lg placeholder:text-sm',
     status: {
       none: 'border-grey-40',
       valid: 'border-green-500',
@@ -52,7 +52,7 @@ export const Textarea: FC<TextareaProps> = ({
       {...props}
       disabled={disabled}
       className={cx({
-        'form-textarea w-full': true,
+        'form-textarea w-full bg-transparent': true,
         [THEME[theme].base]: true,
         [THEME[theme].status[st]]: true,
         [className]: !!className,

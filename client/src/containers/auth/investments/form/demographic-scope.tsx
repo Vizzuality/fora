@@ -114,7 +114,7 @@ export default function DemographicScope() {
               >
                 {({ input }) => (
                   <div className="space-y-2">
-                    <Input required {...input} />
+                    <Input required {...input} theme="transparent" className="h-[46px]" />
                     <ErrorField<InvestmentSchema> name="demographics_other" />
                   </div>
                 )}

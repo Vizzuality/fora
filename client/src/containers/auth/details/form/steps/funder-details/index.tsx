@@ -62,8 +62,6 @@ export default function FunderDetailsStep() {
     reader.readAsDataURL(file);
   };
 
-  console.log({ values: getState().values });
-
   const dropZoneOptions: DropzoneOptions &
     Pick<ComponentProps<typeof DragNDrop>, 'hasInitialValue'> = {
     onDropAccepted,
@@ -200,7 +198,7 @@ export default function FunderDetailsStep() {
             <FieldRFF<FunderSchema['primary_office_city']> name="primary_office_city" type="text">
               {({ input }) => (
                 <div className="space-y-2">
-                  <Input {...input} id={input.name} className="h-[46px]" />
+                  <Input {...input} id={input.name} theme="transparent" className="h-[46px]" />
                   <ErrorField<FunderSchema> name="primary_office_city" />
                 </div>
               )}
@@ -223,7 +221,7 @@ export default function FunderDetailsStep() {
             >
               {({ input }) => (
                 <div className="space-y-2">
-                  <Input {...input} id={input.name} className="h-[46px]" />
+                  <Input {...input} id={input.name} theme="transparent" className="h-[46px]" />
                   <ErrorField<FunderSchema> name="primary_office_address" />
                 </div>
               )}
@@ -282,7 +280,7 @@ export default function FunderDetailsStep() {
               <FieldRFF<FunderSchema['funder_type']> name="funder_type_other" type="text">
                 {({ input }) => (
                   <div className="space-y-2">
-                    <Input required {...input} className="h-[46px]" />
+                    <Input required {...input} theme="transparent" className="h-[46px]" />
                     <ErrorField<FunderSchema> name="funder_type_other" />
                   </div>
                 )}

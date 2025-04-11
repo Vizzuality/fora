@@ -28,7 +28,7 @@ export default function FormLegend({ className }: { className?: HTMLUListElement
   return (
     <ul
       className={cn(
-        'inline-flex gap-4 justify-self-start rounded-lg border border-grey-0 bg-grey-60 p-3',
+        'inline-flex gap-6 justify-self-start rounded-lg border border-grey-0 p-3',
         className,
       )}
     >

@@ -7,6 +7,7 @@ import { View } from 'store/action-map';
 
 import {
   infiniteQueryOptions,
+  keepPreviousData,
   queryOptions,
   useInfiniteQuery,
   useQuery,
@@ -123,10 +124,11 @@ const useProjectsInfinityBaseQueryOptions = ({ params = {} }) =>
     queryKey: ['infinite-projects', params],
     queryFn: ({ pageParam = 1 }) => fetchProjects({ ...params, page: pageParam }),
     select: (data) => data, // override default select function
-    placeholderData: {
-      pages: [],
-      pageParams: [],
-    },
+    // placeholderData: {
+    //   pages: [],
+    //   pageParams: [],
+    // },
+    placeholderData: keepPreviousData,
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
       const { meta } = lastPage;
@@ -148,9 +150,10 @@ export function useProjectsInfinity(
   });
 
   const DATA = useMemo(() => {
-    const { pages } = query.data;
+    if (!query.data) return undefined;
+    const { pages } = query.data || {};
 
-    return pages.flatMap((page) => page.data);
+    return pages?.flatMap((page) => page.data);
   }, [query]);
 
   return {

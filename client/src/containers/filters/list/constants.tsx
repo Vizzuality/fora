@@ -1,4 +1,4 @@
-import { DemographicSelected, GeographicSelected, AreaSelected } from 'containers/filters/selected';
+import { AreaSelected, DemographicSelected, GeographicSelected } from 'containers/filters/selected';
 
 export const FILTERS = (type) => {
   return [
@@ -15,9 +15,9 @@ export const FILTERS = (type) => {
     },
     {
       id: 'areas',
-      name: 'Area of Focus',
+      name: 'Areas of Focus',
       info: 'A regenerative agriculture related topic a project or funder focuses on working or investing in.',
-      className: 'col-span-2',
+      className: 'col-span-4',
       Selected: <AreaSelected type={type} />,
     },
     {
