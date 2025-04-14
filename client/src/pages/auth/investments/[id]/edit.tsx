@@ -6,6 +6,7 @@ import safeJsonStringify from 'safe-json-stringify';
 
 import MetaTags from 'containers/meta-tags';
 
+import FormModal from '@/containers/auth/form-modal';
 import EditInvestment from '@/containers/auth/investments/edit';
 import { getQueryClient } from '@/lib/queryclient';
 import API from '@/services/api';
@@ -66,7 +67,10 @@ const EditInvestmentPage: FC = ({
         imageURL={IMAGE_URL}
       />
 
-      <EditInvestment investment={investment} />
+      <>
+        <FormModal />
+        <EditInvestment investment={investment} />
+      </>
     </>
   );
 };

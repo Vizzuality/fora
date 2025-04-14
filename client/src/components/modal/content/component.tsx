@@ -19,6 +19,7 @@ export const ModalContent: FC<ModalContentProps> = ({
   floating,
   getFloatingProps,
   onOpenChange,
+  dismissable,
 }: ModalContentProps) => {
   const contentFramerVariants = {
     initial: {
@@ -57,19 +58,20 @@ export const ModalContent: FC<ModalContentProps> = ({
       })}
     >
       <div className="relative flex min-h-0 grow flex-col">
-        <button
-          type="button"
-          onClick={() => {
-            onOpenChange(false);
-          }}
-          className="group absolute top-6 right-6 z-10 flex items-center px-4 py-4 text-sm"
-        >
-          <Icon
-            icon={CLOSE_SVG}
-            className="inline-block h-6 w-6 text-grey-0 transition-colors group-hover:text-grey-20"
-          />
-        </button>
-
+        {dismissable && (
+          <button
+            type="button"
+            onClick={() => {
+              onOpenChange(false);
+            }}
+            className="group absolute top-6 right-6 z-10 flex items-center px-4 py-4 text-sm"
+          >
+            <Icon
+              icon={CLOSE_SVG}
+              className="inline-block h-6 w-6 text-grey-0 transition-colors group-hover:text-grey-20"
+            />
+          </button>
+        )}
         {children}
       </div>
     </motion.div>

@@ -2,7 +2,11 @@ import { useForm, useFormState } from 'react-final-form';
 
 import { useParams, useSearchParams } from 'next/navigation';
 
+import { useSetAtom } from 'jotai/react';
+import { LuCircleHelp } from 'react-icons/lu';
+
 import { FORM_STEPS } from '@/containers/auth/projects/constants';
+import { formModalAtom } from '@/containers/auth/store';
 import { useProject } from '@/hooks/projects';
 import { Button, LinkButton } from 'components/button/component';
 
@@ -13,6 +17,7 @@ export default function EditProjectHeader() {
 
   const queryParams = useSearchParams();
   const currentStep = queryParams.get('step') as (typeof FORM_STEPS)[number]['value'];
+  const setFormModal = useSetAtom(formModalAtom);
 
   const { data: project } = useProject(id);
 
@@ -28,9 +33,28 @@ export default function EditProjectHeader() {
           </LinkButton>
         )}
         {currentStep !== 'investments' && (
-          <Button type="submit" theme="green" disabled={invalid} onClick={submit}>
-            Save changes
-          </Button>
+          <div className="col-span-2 flex items-center justify-end gap-4">
+            <Button
+              type="submit"
+              theme="green"
+              disabled={invalid}
+              onClick={submit}
+              className="shrink-0"
+            >
+              Save changes
+            </Button>
+
+            <button
+              type="button"
+              className="flex items-center gap-2 font-semibold text-grey-0"
+              onClick={() => {
+                setFormModal(true);
+              }}
+            >
+              <LuCircleHelp className="h-5 w-5" />
+              <span>Help</span>
+            </button>
+          </div>
         )}
       </div>
     </header>

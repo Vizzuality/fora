@@ -1,4 +1,4 @@
-import type { FieldValidator, FieldState } from 'final-form';
+import type { FieldState, FieldValidator } from 'final-form';
 import validate from 'validate.js';
 
 export const composeValidators =

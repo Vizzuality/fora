@@ -1,5 +1,8 @@
 import { Field as FieldRFF, FormRenderProps, useForm } from 'react-final-form';
 
+import { useSetAtom } from 'jotai/react';
+import { LuCircleHelp } from 'react-icons/lu';
+
 import { Button } from '@/components/button/component';
 import { Input, Select } from '@/components/forms';
 import ErrorField from '@/components/forms/error-field';
@@ -19,6 +22,7 @@ import { Privacy } from '@/containers/auth/investments/form/privacy';
 import { ProjectSelector } from '@/containers/auth/investments/form/project-selector';
 import { InvestmentSchema } from '@/containers/auth/investments/form/validations';
 import VisibilityLabel from '@/containers/auth/projects/form/label';
+import { formModalAtom } from '@/containers/auth/store';
 import { cn } from '@/lib/utils';
 import { CapitalType } from '@/types/api/capital-type';
 import { FundingType } from '@/types/api/funding-type';
@@ -58,6 +62,7 @@ export default function InvestmentForm({
     },
     invalid,
   } = getState();
+  const setFormModal = useSetAtom(formModalAtom);
 
   return (
     <div className="flex flex-col gap-8">
@@ -66,9 +71,28 @@ export default function InvestmentForm({
           <ProjectSelector />
         </div>
         <div className="col-span-3 flex justify-end">
-          <Button type="submit" theme="green" disabled={invalid} onClick={submit}>
-            Save changes
-          </Button>
+          <div className="col-span-2 flex items-center justify-end gap-4">
+            <Button
+              type="submit"
+              theme="green"
+              disabled={invalid}
+              onClick={submit}
+              className="shrink-0"
+            >
+              Save changes
+            </Button>
+
+            <button
+              type="button"
+              className="flex items-center gap-2 font-semibold text-grey-0"
+              onClick={() => {
+                setFormModal(true);
+              }}
+            >
+              <LuCircleHelp className="h-5 w-5" />
+              <span>Help</span>
+            </button>
+          </div>
         </div>
       </header>
 
