@@ -64,7 +64,7 @@
     "next-auth": "4.24.10",
     "next-compose-plugins": "2.2.1",
     "next-optimized-images": "2.6.2",
-    "next-plausible": "3.10.1",
+    "next-plausible": "3.12.4",
     "next-redux-wrapper": "7.0.5",
     "postcss": "8.5.3",
     "prettier-plugin-tailwindcss": "0.6.11",
