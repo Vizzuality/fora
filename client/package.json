@@ -78,7 +78,7 @@
     "react-international-phone": "4.5.0",
     "react-redux": "7.2.9",
     "react-simple-maps": "3.0.0",
-    "react-use-cookie": "1.4.0",
+    "react-use-cookie": "1.6.1",
     "rooks": "8.0.0",
     "safe-json-stringify": "1.2.0",
     "tailwind-merge": "3.0.1",
