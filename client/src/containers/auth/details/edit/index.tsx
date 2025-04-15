@@ -71,7 +71,10 @@ export default function EditFunder() {
     },
   });
 
-  const funderSubgeographicsIds = funder.subgeographics?.map(({ id: subgeoId }) => subgeoId);
+  const funderSubgeographicsIds = useMemo(
+    () => funder.subgeographics?.map(({ id: subgeoId }) => subgeoId),
+    [funder],
+  );
 
   const countriesIds = useMemo(
     () =>
@@ -137,7 +140,7 @@ export default function EditFunder() {
       capital_types_other: funder.capital_types_other ?? undefined,
       spend_down_strategy: funder.spend_down_strategy ? 'yes' : 'no',
     }),
-    [funder],
+    [funder, countriesIds, statesIds],
   );
 
   return (
