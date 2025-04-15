@@ -1,7 +1,6 @@
 import { FC } from 'react';
 
 import { dehydrate } from '@tanstack/react-query';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import safeJsonStringify from 'safe-json-stringify';
 
 import MetaTags from 'containers/meta-tags';
@@ -21,7 +20,7 @@ const DESCRIPTION_TEXT =
 // @todo: update image
 const IMAGE_URL = `${process.env.NEXT_PUBLIC_BASE_PATH}images/meta/home.jpg`;
 
-export const getServerSideProps = (async (context) => {
+export const getServerSideProps = async (context) => {
   const {
     query: { id },
   } = context;
@@ -29,13 +28,17 @@ export const getServerSideProps = (async (context) => {
 
   const queryClient = getQueryClient();
 
-  const investment = await API.request<{ data: Investment }>({
-    method: 'GET',
-    url: `/members/investments/${id}`,
-    headers: {
-      Authorization: `Bearer ${session?.accessToken}`,
-    },
-  }).then((response) => response.data.data);
+  await queryClient.prefetchQuery({
+    queryKey: ['investments', id],
+    queryFn: () =>
+      API.request<{ data: Investment }>({
+        method: 'GET',
+        url: `/members/investments/${id}`,
+        headers: {
+          Authorization: `Bearer ${session?.accessToken}`,
+        },
+      }).then((response) => response.data),
+  });
 
   await queryClient.prefetchQuery({
     queryKey: ['subgeographics'],
@@ -48,16 +51,12 @@ export const getServerSideProps = (async (context) => {
 
   return {
     props: {
-      investment,
       dehydratedState: JSON.parse(safeJsonStringify(dehydrate(queryClient))) || null,
     },
   };
-  // eslint-disable-next-line prettier/prettier
-}) satisfies GetServerSideProps<{ investment: Investment }>;
+};
 
-const EditInvestmentPage: FC = ({
-  investment,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const EditInvestmentPage: FC = () => {
   return (
     <>
       <MetaTags
@@ -69,7 +68,7 @@ const EditInvestmentPage: FC = ({
 
       <>
         <FormModal />
-        <EditInvestment investment={investment} />
+        <EditInvestment />
       </>
     </>
   );

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 import { useParams, useRouter } from 'next/navigation';
 
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 
 import Form from '@/containers/auth/investments/form';
@@ -13,10 +13,25 @@ import API from '@/services/api';
 import { SubGeographic } from '@/types/api/geographics';
 import { Investment } from '@/types/api/investment';
 
-export default function EditInvestment({ investment }: { investment: Investment }) {
+const EMPTY_ARRAY = [];
+
+export default function EditInvestment() {
   const { data: session } = useSession();
   const { push } = useRouter();
   const { id } = useParams<{ id: string }>();
+
+  const { data: investment } = useQuery({
+    queryKey: ['investments', id],
+    queryFn: () =>
+      API.request<Investment>({
+        method: 'GET',
+        url: `/members/investments/${id}`,
+        headers: {
+          Authorization: `Bearer ${session?.accessToken}`,
+        },
+      }).then((response) => response.data),
+    placeholderData: keepPreviousData,
+  });
 
   const { data: subgeographics } = useQuery({
     queryKey: ['subgeographics'],
@@ -45,7 +60,10 @@ export default function EditInvestment({ investment }: { investment: Investment 
     },
   });
 
-  const investmentSubgeographicsIds = investment.subgeographics.map(({ id: subgeoId }) => subgeoId);
+  const investmentSubgeographicsIds = useMemo(
+    () => investment.subgeographics.map(({ id: subgeoId }) => subgeoId) || EMPTY_ARRAY,
+    [investment],
+  );
   const countriesIds = useMemo(
     () =>
       subgeographics
@@ -53,7 +71,7 @@ export default function EditInvestment({ investment }: { investment: Investment 
           ({ id: subgeoId, geographic }) =>
             investmentSubgeographicsIds.includes(subgeoId) && geographic === 'countries',
         )
-        .map(({ id: countryId }) => countryId) || [],
+        .map(({ id: countryId }) => countryId) || EMPTY_ARRAY,
     [subgeographics, investmentSubgeographicsIds],
   );
 
@@ -64,7 +82,7 @@ export default function EditInvestment({ investment }: { investment: Investment 
           ({ id: subgeoId, geographic }) =>
             investmentSubgeographicsIds.includes(subgeoId) && geographic === 'states',
         )
-        .map(({ id: countryId }) => countryId) || [],
+        .map(({ id: countryId }) => countryId) || EMPTY_ARRAY,
     [subgeographics, investmentSubgeographicsIds],
   );
 
@@ -72,24 +90,24 @@ export default function EditInvestment({ investment }: { investment: Investment 
     <Wrapper className="flex w-full grow">
       <FormWrapper
         initialValues={{
-          project_id: investment.project.id,
-          privacy: investment.privacy,
-          amount: Number(investment.amount),
-          year_invested: Number(investment.year_invested),
-          initial_funded_year: Number(investment.initial_funded_year),
-          grant_duration: investment.grant_duration,
+          project_id: investment.project.id ?? undefined,
+          privacy: investment.privacy ?? undefined,
+          amount: Number(investment.amount) ?? undefined,
+          year_invested: Number(investment.year_invested) ?? undefined,
+          initial_funded_year: Number(investment.initial_funded_year) ?? undefined,
+          grant_duration: investment.grant_duration ?? undefined,
           number_of_grant_years: investment.number_of_grant_years ?? undefined,
-          capital_type: investment.capital_type,
-          capital_type_other: investment.capital_type_other ?? '',
+          capital_type: investment.capital_type ?? undefined,
+          capital_type_other: investment.capital_type_other ?? undefined,
           funding_type: investment.funding_type ?? undefined,
-          funding_type_other: investment.funding_type_other ?? '',
+          funding_type_other: investment.funding_type_other ?? undefined,
           countries: countriesIds,
           states: statesIds,
-          areas: investment.areas,
-          areas_other: investment.areas_other ?? '',
+          areas: investment.areas ?? undefined,
+          areas_other: investment.areas_other ?? undefined,
           internal_demographics_collection: investment.demographics?.length > 0 ? 'yes' : 'no',
-          demographics: investment.demographics,
-          demographics_other: investment.demographics_other ?? '',
+          demographics: investment.demographics ?? undefined,
+          demographics_other: investment.demographics_other ?? undefined,
         }}
         onSubmit={(data) => {
           delete data.internal_demographics_collection;

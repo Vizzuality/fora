@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Check, ChevronDown } from 'lucide-react';
 
@@ -19,7 +19,6 @@ import { cn } from '@/lib/utils';
 export function ProjectSelector() {
   const form = useInvestmentForm();
   const { project_id: projectId } = form.getState().values;
-  const [value, setValue] = useState(projectId ?? null);
   const [open, setOpen] = useState(false);
 
   const { data: projects } = useProjects(
@@ -33,10 +32,6 @@ export function ProjectSelector() {
     },
   );
 
-  useEffect(() => {
-    setValue(projectId);
-  }, [projectId]);
-
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -46,9 +41,9 @@ export function ProjectSelector() {
           aria-expanded={open}
           className="max-w-full justify-between border-none bg-transparent pl-0 text-2.5xl shadow-none hover:bg-transparent"
         >
-          {value ? (
+          {projectId ? (
             <span className="truncate">
-              {projects.find((project) => project.value === value)?.label}
+              {projects.find((project) => project.value === projectId)?.label}
             </span>
           ) : (
             'Select a project...'
@@ -67,7 +62,6 @@ export function ProjectSelector() {
                   key={project.value}
                   value={project.label}
                   onSelect={() => {
-                    setValue(project.value);
                     form.change('project_id', project.value);
                     setOpen(false);
                   }}
@@ -75,7 +69,7 @@ export function ProjectSelector() {
                   <Check
                     className={cn(
                       'mr-2 h-4 w-4',
-                      value === project.value ? 'opacity-100' : 'opacity-0',
+                      projectId === project.value ? 'opacity-100' : 'opacity-0',
                     )}
                   />
                   {project.label}

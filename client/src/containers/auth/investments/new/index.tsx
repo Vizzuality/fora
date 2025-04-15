@@ -10,6 +10,8 @@ import Wrapper from '@/containers/wrapper';
 import API from '@/services/api';
 import { Privacy } from '@/types/api/privacy';
 
+const EMPTY_ARRAY = [];
+
 export default function NewInvestment() {
   const { data: session } = useSession();
   const { push } = useRouter();
@@ -49,12 +51,12 @@ export default function NewInvestment() {
         keepDirtyOnReinitialize
         initialValues={{
           privacy: Privacy.All,
-          countries: [],
-          states: [],
-          areas: [],
-          demographics: [],
+          countries: EMPTY_ARRAY,
+          states: EMPTY_ARRAY,
+          areas: EMPTY_ARRAY,
+          demographics: EMPTY_ARRAY,
           internal_demographics_collection: 'yes',
-          project_id: selectedProject ?? '',
+          project_id: selectedProject ?? undefined,
         }}
         render={({ handleSubmit }) => <Form handleSubmit={handleSubmit} />}
       />
