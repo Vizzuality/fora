@@ -8,6 +8,7 @@ import safeJsonStringify from 'safe-json-stringify';
 import Mydetails from 'containers/auth/details/edit';
 import MetaTags from 'containers/meta-tags';
 
+import FormModal from '@/containers/auth/form-modal';
 import { getQueryClient } from '@/lib/queryclient';
 import { auth } from '@/pages/api/auth/[...nextauth]';
 import API from '@/services/api';
@@ -69,7 +70,10 @@ const MyDetailsPage: FC = () => {
         imageURL={IMAGE_URL}
       />
 
-      <Mydetails />
+      <>
+        <FormModal />
+        <Mydetails />
+      </>
     </>
   );
 };

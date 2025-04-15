@@ -3,6 +3,8 @@ import { FC } from 'react';
 import NewInvestment from 'containers/auth/investments/new';
 import MetaTags from 'containers/meta-tags';
 
+import FormModal from '@/containers/auth/form-modal';
+
 const TITLE_TEXT = 'New investment | FORA - An initiative in support of regenerative agriculture';
 // @todo: update description
 const DESCRIPTION_TEXT =
@@ -20,7 +22,10 @@ const NewInvestmentPage: FC = () => {
         imageURL={IMAGE_URL}
       />
 
-      <NewInvestment />
+      <>
+        <FormModal />
+        <NewInvestment />
+      </>
     </>
   );
 };

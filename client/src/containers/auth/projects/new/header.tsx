@@ -3,7 +3,10 @@ import { useForm, useFormState } from 'react-final-form';
 import { useSearchParams } from 'next/navigation';
 
 import { useQueryClient } from '@tanstack/react-query';
+import { useSetAtom } from 'jotai/react';
+import { LuCircleHelp } from 'react-icons/lu';
 
+import { formModalAtom } from '@/containers/auth/store';
 import { Project } from '@/types/api/project';
 import { Button, LinkButton } from 'components/button/component';
 
@@ -23,6 +26,7 @@ export default function NewProjectHeader() {
   const newProjectMutationState = mutationCache.find<{ data: { data: Project } }>({
     mutationKey: NEW_PROJECT_QUERY_KEY,
   })?.state;
+  const setFormModal = useSetAtom(formModalAtom);
 
   return (
     <header className="flex items-center justify-between">
@@ -38,14 +42,27 @@ export default function NewProjectHeader() {
           </LinkButton>
         )}
         {currentStep !== 'investments' && (
-          <Button
-            type="submit"
-            theme="green"
-            disabled={invalid || newProjectMutationState?.status === 'pending'}
-            onClick={submit}
-          >
-            Save changes
-          </Button>
+          <div className="col-span-2 flex items-center justify-end gap-4">
+            <Button
+              type="submit"
+              theme="green"
+              disabled={invalid || newProjectMutationState?.status === 'pending'}
+              onClick={submit}
+            >
+              Save changes
+            </Button>
+
+            <button
+              type="button"
+              className="flex items-center gap-2 font-semibold text-grey-0"
+              onClick={() => {
+                setFormModal(true);
+              }}
+            >
+              <LuCircleHelp className="h-5 w-5" />
+              <span>Help</span>
+            </button>
+          </div>
         )}
       </div>
     </header>

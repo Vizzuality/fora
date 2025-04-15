@@ -6,6 +6,7 @@ import safeJsonStringify from 'safe-json-stringify';
 
 import MetaTags from 'containers/meta-tags';
 
+import FormModal from '@/containers/auth/form-modal';
 import EditProject from '@/containers/auth/projects/edit';
 import { fetchProject } from '@/hooks/projects';
 import { getQueryClient } from '@/lib/queryclient';
@@ -57,7 +58,10 @@ const EditProjectPage: FC = () => {
         imageURL={IMAGE_URL}
       />
 
-      <EditProject />
+      <>
+        <FormModal />
+        <EditProject />
+      </>
     </>
   );
 };
