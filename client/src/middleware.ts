@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { NextRequestWithAuth, withAuth } from 'next-auth/middleware';
 
-const PRIVATE_PAGES = /^(\/auth(?!\/signin|\/signup|\/forgot-password))/;
+const PRIVATE_PAGES = /^(\/auth(?!\/signin|\/signup|\/forgot-password|\/change-password))/;
 
 export const isPrivatePath = (pathname: string) => {
   return PRIVATE_PAGES.test(pathname);
