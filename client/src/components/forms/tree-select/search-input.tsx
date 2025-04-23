@@ -2,7 +2,7 @@ import type { InputHTMLAttributes } from 'react';
 
 import classNames from 'classnames';
 
-import { HiX } from 'react-icons/hi';
+import { LuX } from 'react-icons/lu';
 
 import type { CommonTreeProps } from './types';
 
@@ -41,7 +41,7 @@ const SearchInput = ({
       />
       {value && (
         <button type="button" onClick={resetSearch} className="flex-shrink-0">
-          <HiX className="h-4 w-4 text-grey-0" />
+          <LuX className="h-4 w-4 text-grey-0" />
         </button>
       )}
     </>

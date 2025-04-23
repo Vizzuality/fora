@@ -2,7 +2,7 @@ import { Field as FieldRFF } from 'react-final-form';
 
 import { usePathname } from 'next/navigation';
 
-import { HiOutlineArrowLeft, HiOutlineArrowRight } from 'react-icons/hi';
+import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
 
 import LinkButton from '@/components/button';
 import { Input } from '@/components/forms';
@@ -222,7 +222,7 @@ export default function ContactDetailsStep() {
             replace: true,
           }}
         >
-          <HiOutlineArrowLeft className="h-[20px] w-[20px]" />
+          <LuArrowLeft className="h-[20px] w-[20px]" />
           <span>Funder Details</span>
         </LinkButton>
 
@@ -236,7 +236,7 @@ export default function ContactDetailsStep() {
           }}
         >
           <span>Operations & Staff</span>
-          <HiOutlineArrowRight className="h-[20px] w-[20px]" />
+          <LuArrowRight className="h-[20px] w-[20px]" />
         </LinkButton>
       </footer>
     </div>

@@ -2,7 +2,7 @@ import { Field as FieldRFF } from 'react-final-form';
 
 import { usePathname } from 'next/navigation';
 
-import { HiOutlineArrowLeft, HiOutlineArrowRight } from 'react-icons/hi';
+import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
 
 import LinkButton from '@/components/button';
 import { Input, Radio } from '@/components/forms';
@@ -249,7 +249,7 @@ export default function FocusCollaborationStep() {
             replace: true,
           }}
         >
-          <HiOutlineArrowLeft className="h-[20px] w-[20px]" />
+          <LuArrowLeft className="h-[20px] w-[20px]" />
           <span>Operations & Staff</span>
         </LinkButton>
 
@@ -263,7 +263,7 @@ export default function FocusCollaborationStep() {
           }}
         >
           <span>Capital & Strategy</span>
-          <HiOutlineArrowRight className="h-[20px] w-[20px]" />
+          <LuArrowRight className="h-[20px] w-[20px]" />
         </LinkButton>
       </footer>
     </div>

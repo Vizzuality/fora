@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
-import { HiOutlinePencilAlt, HiOutlineTrash } from 'react-icons/hi';
+import { LuPencil, LuTrash2 } from 'react-icons/lu';
 
 import API from '@/services/api';
 
@@ -34,12 +34,12 @@ export default function InvestmentActions({ investmentId }: { investmentId: stri
     <ul className="flex items-center justify-end gap-2 pr-5">
       <li className="flex">
         <Link href={`/auth/investments/${investmentId}/edit`}>
-          <HiOutlinePencilAlt className="h-6 w-6 text-grey-20" />
+          <LuPencil className="h-5 w-5 text-grey-20" />
         </Link>
       </li>
       <li className="flex">
         <button type="button" onClick={() => mutation.mutate()}>
-          <HiOutlineTrash className="h-6 w-6 text-grey-20" />
+          <LuTrash2 className="h-5 w-5 text-grey-20" />
         </button>
       </li>
     </ul>

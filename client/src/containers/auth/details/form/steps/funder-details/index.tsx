@@ -6,7 +6,7 @@ import { Field as FieldRFF, useField } from 'react-final-form';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-import { HiOutlineArrowRight } from 'react-icons/hi';
+import { LuArrowRight } from 'react-icons/lu';
 
 import LinkButton from '@/components/button';
 import DragNDrop from '@/components/drag-n-drop';
@@ -392,7 +392,7 @@ export default function FunderDetailsStep() {
           }}
         >
           <span>Contact Details</span>
-          <HiOutlineArrowRight className="h-[20px] w-[20px]" />
+          <LuArrowRight className="h-[20px] w-[20px]" />
         </LinkButton>
       </footer>
     </div>

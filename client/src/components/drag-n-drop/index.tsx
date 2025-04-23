@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 
-import { useDropzone, DropzoneOptions, DropzoneState } from 'react-dropzone';
+import { DropzoneOptions, DropzoneState, useDropzone } from 'react-dropzone';
 
 import { cn } from 'lib/utils';
 
-import { RxUpload } from 'react-icons/rx';
+import { LuUpload } from 'react-icons/lu';
 
 export default function DragNDrop({
   children,
@@ -32,7 +32,7 @@ export default function DragNDrop({
         {!acceptedFiles?.length && !hasInitialValue && (
           <>
             <div className="rounded-full border border-grey-40 p-4">
-              <RxUpload className="h-4 w-4" />
+              <LuUpload className="h-4 w-4" />
             </div>
             <span className="max-w-[140px] text-center font-semibold text-grey-20">
               Drop file to upload or <span className="flex-wrap text-green-20">Browse</span>
