@@ -93,7 +93,7 @@
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.2.0",
     "@types/geojson": "7946.0.14",
-    "@types/gtag.js": "0.0.5",
+    "@types/gtag.js": "0.0.20",
     "@types/lodash": "4.17.16",
     "@types/node": "22.13.10",
     "@types/react": "18.0.15",
