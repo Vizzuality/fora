@@ -24,7 +24,7 @@ import type { TreeProps } from 'rc-tree';
 import Tree from 'rc-tree';
 import type { Key } from 'rc-tree/lib/interface';
 import { flattenTreeData } from 'rc-tree/lib/utils/treeUtil';
-import { HiChevronDown, HiX } from 'react-icons/hi'; // eslint-disable-next-line import/no-extraneous-dependencies
+import { LuChevronDown, LuX } from 'react-icons/lu'; // eslint-disable-next-line import/no-extraneous-dependencies
 import { useDebouncedValue, useEffectOnceWhen } from 'rooks';
 
 import { Checkbox } from '@/components/forms';
@@ -449,7 +449,7 @@ const InnerTreeSelect = <IsMulti extends boolean>(
               )}
               {selected && (
                 <button type="button" onClick={handleReset} className="shrink-0 px-2 py-0">
-                  <HiX className="h-4 w-4 text-grey-0" />
+                  <LuX className="h-4 w-4 text-grey-0" />
                 </button>
               )}
             </div>
@@ -480,7 +480,7 @@ const InnerTreeSelect = <IsMulti extends boolean>(
         </div>
 
         <span className="absolute right-0 pr-3">
-          <HiChevronDown
+          <LuChevronDown
             className={cn('h-5 w-5 text-grey-0', {
               'rotate-180': isOpen,
               'text-gray-300': disabled,

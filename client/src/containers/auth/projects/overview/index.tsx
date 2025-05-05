@@ -8,7 +8,7 @@ import { Menu } from '@headlessui/react';
 import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query';
 import { useIntersectionObserver } from '@uidotdev/usehooks';
 import { useSession } from 'next-auth/react';
-import { RxPlus } from 'react-icons/rx';
+import { LuPlus } from 'react-icons/lu';
 
 import LinkButton from '@/components/button';
 import Icon from '@/components/icon';
@@ -126,7 +126,7 @@ export default function MyProjectsOverview() {
                 <div className="col-span-6 col-start-4 flex flex-col items-center gap-4 text-center">
                   <h3 className="font-display text-2xl line-clamp-3">Add new project</h3>
                   <span className="inline-flex rounded-full border border-grey-0 p-4">
-                    <RxPlus className="h-6 w-6" />
+                    <LuPlus className="h-6 w-6" />
                   </span>
                 </div>
               </Link>

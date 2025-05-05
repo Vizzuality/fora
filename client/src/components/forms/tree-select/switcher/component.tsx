@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 import type { TreeProps } from 'rc-tree';
-import { HiChevronDown } from 'react-icons/hi';
+import { LuChevronDown } from 'react-icons/lu';
 
 import type { TreeDataNode } from '../types';
 
@@ -15,7 +15,7 @@ const CustomSwitcherIcon: TreeProps<TreeDataNode>['switcherIcon'] = ({
   const allChildrenDisabled = data.children.some(({ disabled }) => disabled);
 
   return (
-    <HiChevronDown
+    <LuChevronDown
       className={classNames('h-4 w-4 cursor-pointer', {
         '-rotate-90': !expanded,
         'fill-gray-900': !allChildrenDisabled,

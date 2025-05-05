@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
-import { MdArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md';
+import { LuChevronLeft, LuChevronRight } from 'react-icons/lu';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -197,7 +197,7 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
         onClick={scrollPrev}
         {...props}
       >
-        <MdArrowBackIosNew className="h-5 w-5" />
+        <LuChevronLeft className="h-5 w-5" />
         <span className="sr-only">Previous slide</span>
       </Button>
     );
@@ -226,7 +226,7 @@ const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
         onClick={scrollNext}
         {...props}
       >
-        <MdArrowForwardIos className="h-5 w-5" />
+        <LuChevronRight className="h-5 w-5" />
         <span className="sr-only">Next slide</span>
       </Button>
     );
