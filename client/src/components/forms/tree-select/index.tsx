@@ -460,6 +460,7 @@ const InnerTreeSelect = <IsMulti extends boolean>(
                 value={searchTerm}
                 placeholder={selected === null ? placeholder : null}
                 theme={theme}
+                className="pl-0"
                 autoFocus={autoFocus}
                 onClick={(e) => {
                   e.stopPropagation();

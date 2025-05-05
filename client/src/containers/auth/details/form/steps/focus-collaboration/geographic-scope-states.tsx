@@ -31,7 +31,7 @@ export default function GeographicScopeStatesSelector() {
   );
 
   const isUSA = countries
-    .filter((country) => countriesFormValues.includes(country.id))
+    ?.filter((country) => countriesFormValues?.includes(country.id))
     .some((country) => country.code === 'USA');
 
   const {

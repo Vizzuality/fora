@@ -1,8 +1,8 @@
 import type { InputHTMLAttributes } from 'react';
 
-import classNames from 'classnames';
-
 import { LuX } from 'react-icons/lu';
+
+import { cn } from '@/lib/utils';
 
 import type { CommonTreeProps } from './types';
 
@@ -28,16 +28,16 @@ const SearchInput = ({
         value={value}
         placeholder={placeholder}
         disabled={disabled}
-        className={classNames(
-          'h-[32px] w-full appearance-none truncate border-none bg-transparent p-0 py-2 pl-2 text-sm focus:ring-0',
-          {
-            // 'pl-2': multiple,
-            'placeholder:text-gray-300': disabled,
-            'placeholder:text-grey-0': !disabled,
-          },
-        )}
         autoComplete="off"
         {...inputProps}
+        className={cn(
+          'h-[32px] w-full appearance-none truncate border-none bg-transparent p-0 py-2 pl-2 text-sm focus:ring-0',
+          {
+            'placeholder:text-gray-300': disabled,
+            'placeholder:text-grey-0': !disabled,
+            [inputProps.className]: !!inputProps.className,
+          },
+        )}
       />
       {value && (
         <button type="button" onClick={resetSearch} className="flex-shrink-0">

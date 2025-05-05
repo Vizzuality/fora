@@ -33,7 +33,7 @@ export default function AreasSelector() {
     if (!areas) return;
 
     const selected = areas
-      .filter((area) => areasFormValues.some((selectedValue) => selectedValue === area.id))
+      .filter((area) => areasFormValues?.some((selectedValue) => selectedValue === area.id))
       .map((area) => ({
         label: area.name,
         value: area.id,
