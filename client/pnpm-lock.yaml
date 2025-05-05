@@ -24,8 +24,8 @@ importers:
         specifier: 3.2.0
         version: 3.2.0(react@18.3.1)
       '@egjs/react-flicking':
-        specifier: 4.9.4
-        version: 4.9.4
+        specifier: 4.12.0
+        version: 4.12.0
       '@floating-ui/react':
         specifier: 0.27.6
         version: 0.27.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -516,8 +516,8 @@ packages:
   '@egjs/component@3.0.5':
     resolution: {integrity: sha512-cLcGizTrrUNA2EYE3MBmEDt2tQv1joVP1Q3oDisZ5nw0MZDx2kcgEXM+/kZpfa/PAkFvYVhRUZwytIQWoN3V/w==}
 
-  '@egjs/flicking@4.9.3':
-    resolution: {integrity: sha512-QRe/6iN7TgE3yu0vMLmDWgjpwacjSqhAwmCG+8qLN3qJ31BaHgvieRSJnq49LQX2OZtREWrS39HCECvfXc6Qmg==}
+  '@egjs/flicking@4.12.0':
+    resolution: {integrity: sha512-HSducaQozc24HAxR5RfI2pRSqxZI1GxudAL52I7yoUj2yYCmY76Vhld9QzrTSWHFLfj7muv+XXB7Lv85HwZahg==}
 
   '@egjs/imready@1.4.1':
     resolution: {integrity: sha512-JIOBs4lB7FYdsKi5uvz2j3SObX8eShtZjtqlOH41tm185aJOQZwiKBK8+V4MxzG4X6DqVhpdN8UcuVwBbElfsg==}
@@ -525,8 +525,8 @@ packages:
   '@egjs/list-differ@1.0.1':
     resolution: {integrity: sha512-OTFTDQcWS+1ZREOdCWuk5hCBgYO4OsD30lXcOCyVOAjXMhgL5rBRDnt/otb6Nz8CzU0L/igdcaQBDLWc4t9gvg==}
 
-  '@egjs/react-flicking@4.9.4':
-    resolution: {integrity: sha512-5q2jqzpIfs1SOx+3ScMoR/DhcylQn8Vs4wujuYFA6grFRzvYoTvjinMzwCJnyA0VGHBg4hDJAAu0AdO5Aovt4g==}
+  '@egjs/react-flicking@4.12.0':
+    resolution: {integrity: sha512-GyyzG/YOQ39r4fAy3MP2qHcshBipnWdIEbnGV50dVrmdtiy2ZADx9MhyIqlx6093lrK4Q35R0Qix+CNdGwV5GQ==}
 
   '@emotion/is-prop-valid@0.8.8':
     resolution: {integrity: sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==}
@@ -6102,7 +6102,7 @@ snapshots:
 
   '@egjs/component@3.0.5': {}
 
-  '@egjs/flicking@4.9.3':
+  '@egjs/flicking@4.12.0':
     dependencies:
       '@egjs/axes': 3.9.1
       '@egjs/component': 3.0.5
@@ -6116,9 +6116,10 @@ snapshots:
 
   '@egjs/list-differ@1.0.1': {}
 
-  '@egjs/react-flicking@4.9.4':
+  '@egjs/react-flicking@4.12.0':
     dependencies:
-      '@egjs/flicking': 4.9.3
+      '@egjs/component': 3.0.5
+      '@egjs/flicking': 4.12.0
       '@egjs/list-differ': 1.0.1
 
   '@emotion/is-prop-valid@0.8.8':
