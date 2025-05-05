@@ -73,7 +73,7 @@ export default function InvestmentForm({
         <div className="col-span-3 flex justify-end">
           <div className="col-span-2 flex items-center justify-end gap-4">
             <Button
-              type="submit"
+              type="button"
               theme="green"
               disabled={invalid}
               onClick={submit}
@@ -436,6 +436,12 @@ export default function InvestmentForm({
           )}
         </div>
         <DemographicScope />
+
+        <div className="flex justify-end">
+          <Button type="submit" theme="green" disabled={invalid}>
+            Save changes
+          </Button>
+        </div>
       </form>
     </div>
   );

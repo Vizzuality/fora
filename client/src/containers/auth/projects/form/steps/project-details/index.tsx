@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 import { LuArrowRight } from 'react-icons/lu';
 
 import LinkButton from '@/components/button';
+import { Button } from '@/components/button/component';
 import DragNDrop from '@/components/drag-n-drop';
 import { Input, Radio } from '@/components/forms';
 import ErrorField from '@/components/forms/error-field';
@@ -25,6 +26,7 @@ import LegalStatusSelector from './legal-status';
 export default function ProjectDetailsStep() {
   const pathname = usePathname();
   const {
+    invalid,
     values: {
       leadership_demographics: demographicsFormValues,
       imageURL,
@@ -255,7 +257,10 @@ export default function ProjectDetailsStep() {
           )}
         </>
       )}
-      <footer className="flex justify-end">
+      <footer className="flex justify-between">
+        <Button type="submit" theme="green" disabled={invalid}>
+          Save changes
+        </Button>
         <LinkButton
           theme="outline"
           className="flex items-center gap-1"

@@ -1,4 +1,4 @@
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 import { keepPreviousData, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
@@ -10,6 +10,7 @@ import Sidebar from '@/containers/auth/sidebar';
 import Wrapper from '@/containers/wrapper';
 import { useMe } from '@/hooks/members';
 import { useProject } from '@/hooks/projects';
+import { useToast } from '@/hooks/use-toast';
 import API from '@/services/api';
 import { Project } from '@/types/api/project';
 
@@ -19,10 +20,10 @@ const EMPTY_ARRAY = [];
 
 export default function EditProject() {
   const { data: session } = useSession();
-  const { push } = useRouter();
   const { id } = useParams<{ id: string }>();
   const { data: me } = useMe();
   const queryClient = useQueryClient();
+  const { toast } = useToast();
 
   const { data: project } = useProject(id, {
     placeholderData: keepPreviousData,
@@ -42,6 +43,9 @@ export default function EditProject() {
       });
     },
     onSuccess: async (response) => {
+      toast({
+        description: 'The project has been updated successfully.',
+      });
       await queryClient
         .invalidateQueries({
           queryKey: ['project', id],
@@ -50,7 +54,6 @@ export default function EditProject() {
           queryClient.setQueryData(['project', id], response.data);
         });
       await fetch(`/api/revalidate/projects?id=${id}`);
-      push(`/projects/${id}`);
     },
   });
 

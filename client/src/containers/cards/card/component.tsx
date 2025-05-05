@@ -44,9 +44,9 @@ const Cards = ({
 
   const ADDRESS = useMemo(() => {
     const subgeoTypes = ['states', 'national', 'countries', 'regions'];
-    const filteredSubgeo = subgeographics.filter((s) => subgeoTypes.includes(s.geographic));
+    const filteredSubgeo = subgeographics?.filter((s) => subgeoTypes.includes(s.geographic));
 
-    return !!filteredSubgeo.length && filteredSubgeo[0].name;
+    return !!filteredSubgeo?.length && filteredSubgeo[0].name;
   }, [subgeographics]);
 
   return (

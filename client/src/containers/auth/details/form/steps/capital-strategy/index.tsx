@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { LuArrowLeft } from 'react-icons/lu';
 
 import LinkButton from '@/components/button';
+import { Button } from '@/components/button/component';
 import { Input, Radio } from '@/components/forms';
 import ErrorField from '@/components/forms/error-field';
 import FormLegend from '@/components/forms/legend';
@@ -20,6 +21,7 @@ export default function CapitalStrategyStep() {
 
   const { getState } = useFunderForm();
   const {
+    invalid,
     values: { capital_types: capitalTypesFormValues },
   } = getState();
 
@@ -126,7 +128,11 @@ export default function CapitalStrategyStep() {
         </div>
       </div>
 
-      <footer className="flex justify-end">
+      <footer className="flex justify-between">
+        <Button type="submit" theme="green" disabled={invalid}>
+          Save changes
+        </Button>
+
         <LinkButton
           theme="outline"
           className="flex items-center gap-1"

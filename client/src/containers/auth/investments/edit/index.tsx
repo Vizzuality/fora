@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 
 import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
@@ -9,6 +9,7 @@ import Form from '@/containers/auth/investments/form';
 import { InvestmentSchema } from '@/containers/auth/investments/form/validations';
 import FormWrapper from '@/containers/auth/investments/form/wrapper';
 import Wrapper from '@/containers/wrapper';
+import { useToast } from '@/hooks/use-toast';
 import API from '@/services/api';
 import { SubGeographic } from '@/types/api/geographics';
 import { Investment } from '@/types/api/investment';
@@ -17,8 +18,8 @@ const EMPTY_ARRAY = [];
 
 export default function EditInvestment() {
   const { data: session } = useSession();
-  const { push } = useRouter();
   const { id } = useParams<{ id: string }>();
+  const { toast } = useToast();
 
   const { data: investment } = useQuery({
     queryKey: ['investments', id],
@@ -56,7 +57,9 @@ export default function EditInvestment() {
       });
     },
     onSuccess: async () => {
-      push(`/auth/investments`);
+      toast({
+        description: 'Investment updated successfully.',
+      });
     },
   });
 

@@ -10,6 +10,7 @@ import FormWrapper from '@/containers/auth/details/form/wrapper';
 import MyDetailsHeader from '@/containers/auth/details/header';
 import Sidebar from '@/containers/auth/sidebar';
 import Wrapper from '@/containers/wrapper';
+import { useToast } from '@/hooks/use-toast';
 import { myDetailsQueryOptions } from '@/pages/auth/details';
 import API from '@/services/api';
 import { Funder } from '@/types/api/funder';
@@ -20,6 +21,7 @@ const EMPTY_ARRAY = [];
 export default function EditFunder() {
   const { data: session } = useSession();
   const queryClient = useQueryClient();
+  const { toast } = useToast();
 
   const { data: funder } = useQuery({
     ...myDetailsQueryOptions(session, {
@@ -60,6 +62,10 @@ export default function EditFunder() {
       });
     },
     onSuccess: async (response) => {
+      toast({
+        description: 'Your details have been updated successfully.',
+      });
+
       await queryClient
         .invalidateQueries({
           queryKey: ['my-details'],

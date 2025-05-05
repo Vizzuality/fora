@@ -39,7 +39,7 @@ const ReportHeader = () => {
       <Wrapper>
         <div className="space-y-5">
           <div className="flex justify-between">
-            <h2 className="max-w-2xl font-display text-4xl">
+            <h2 className="flex max-w-2xl gap-4 font-display text-4xl">
               General Report{' '}
               <strong>
                 <Select
