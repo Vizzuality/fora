@@ -5,9 +5,11 @@ import { usePathname } from 'next/navigation';
 import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
 
 import LinkButton from '@/components/button';
+import { Button } from '@/components/button/component';
 import { Input } from '@/components/forms';
 import ErrorField from '@/components/forms/error-field';
 import FormLegend from '@/components/forms/legend';
+import { useFunderForm } from '@/containers/auth/details/form';
 import VisibilityLabel from '@/containers/auth/details/form/label';
 import PrimaryContactPhone from '@/containers/auth/details/form/steps/contact-details/primary-contact-phone';
 import PrimaryEmailVisibility from '@/containers/auth/details/form/steps/contact-details/primary-email-visibility';
@@ -15,6 +17,8 @@ import { FunderSchema } from '@/containers/auth/details/form/validations';
 
 export default function ContactDetailsStep() {
   const pathname = usePathname();
+  const { getState } = useFunderForm();
+  const { invalid } = getState();
 
   return (
     <div className="flex flex-col gap-10 pb-10">
@@ -212,32 +216,37 @@ export default function ContactDetailsStep() {
 
       <PrimaryEmailVisibility />
 
-      <footer className="flex justify-end gap-4">
-        <LinkButton
-          theme="outline"
-          className="flex items-center gap-1"
-          href={`${pathname}?step=funder-details`}
-          anchorLinkProps={{
-            href: `${pathname}?step=funder-details`,
-            replace: true,
-          }}
-        >
-          <LuArrowLeft className="h-[20px] w-[20px]" />
-          <span>Funder Details</span>
-        </LinkButton>
+      <footer className="flex justify-between">
+        <Button type="submit" theme="green" disabled={invalid}>
+          Save changes
+        </Button>
+        <div className="flex justify-end gap-4">
+          <LinkButton
+            theme="outline"
+            className="flex items-center gap-1"
+            href={`${pathname}?step=funder-details`}
+            anchorLinkProps={{
+              href: `${pathname}?step=funder-details`,
+              replace: true,
+            }}
+          >
+            <LuArrowLeft className="h-[20px] w-[20px]" />
+            <span>Funder Details</span>
+          </LinkButton>
 
-        <LinkButton
-          theme="outline"
-          className="flex items-center gap-1"
-          href={`${pathname}?step=operations-staff`}
-          anchorLinkProps={{
-            href: `${pathname}?step=operations-staff`,
-            replace: true,
-          }}
-        >
-          <span>Operations & Staff</span>
-          <LuArrowRight className="h-[20px] w-[20px]" />
-        </LinkButton>
+          <LinkButton
+            theme="outline"
+            className="flex items-center gap-1"
+            href={`${pathname}?step=operations-staff`}
+            anchorLinkProps={{
+              href: `${pathname}?step=operations-staff`,
+              replace: true,
+            }}
+          >
+            <span>Operations & Staff</span>
+            <LuArrowRight className="h-[20px] w-[20px]" />
+          </LinkButton>
+        </div>
       </footer>
     </div>
   );

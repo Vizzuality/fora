@@ -1,10 +1,11 @@
-import { Field as FieldRFF } from 'react-final-form';
+import { Field as FieldRFF, useFormState } from 'react-final-form';
 
 import { usePathname } from 'next/navigation';
 
 import { LuArrowLeft } from 'react-icons/lu';
 
 import LinkButton from '@/components/button';
+import { Button } from '@/components/button/component';
 import { Input } from '@/components/forms';
 import ErrorField from '@/components/forms/error-field';
 import FormLegend from '@/components/forms/legend';
@@ -17,6 +18,8 @@ import PrimaryOfficeStateSelector from './primary-office-state';
 
 export default function ContactDetailsStep() {
   const pathname = usePathname();
+
+  const { invalid } = useFormState<ProjectSchema & { imageURL: string }>();
 
   return (
     <div className="flex flex-col gap-10 pb-10">
@@ -84,7 +87,10 @@ export default function ContactDetailsStep() {
         </FieldRFF>
       </div>
 
-      <footer className="flex justify-end">
+      <footer className="flex justify-between">
+        <Button type="submit" theme="green" disabled={invalid}>
+          Save changes
+        </Button>
         <LinkButton
           theme="outline"
           href={`${pathname}?step=project-details`}

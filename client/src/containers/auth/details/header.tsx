@@ -13,7 +13,7 @@ export default function MyDetailsHeader() {
 
   return (
     <header className="grid grid-cols-12 items-center justify-between">
-      <h2 className="col-span-10 truncate font-display text-3xl">My details</h2>
+      <h2 className="col-span-10 font-display text-3xl">My details</h2>
       <div className="col-span-2 flex items-center justify-end gap-4">
         <Button
           type="submit"

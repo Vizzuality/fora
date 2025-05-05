@@ -10,6 +10,7 @@ import { SessionProvider } from 'next-auth/react';
 import PlausibleProvider from 'next-plausible';
 
 import { MediaContextProvider } from '@/components/media-query';
+import { Toaster } from '@/components/ui/toaster';
 import MetaIcons from '@/containers/meta-icons';
 import RouteLoading from '@/containers/route-loading';
 import ApplicationLayout from '@/layouts/application';
@@ -85,6 +86,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
               {/* <ThirdParty /> */}
 
               <RouteLoading key={routeLoading.key} loading={routeLoading.loading} />
+              <Toaster />
 
               <ApplicationLayout>
                 <Component {...pageProps} />

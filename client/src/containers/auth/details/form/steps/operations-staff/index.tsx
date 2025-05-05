@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { LuArrowLeft, LuArrowRight } from 'react-icons/lu';
 
 import LinkButton from '@/components/button';
+import { Button } from '@/components/button/component';
 import { Input, Radio } from '@/components/forms';
 import ErrorField from '@/components/forms/error-field';
 import FormLegend from '@/components/forms/legend';
@@ -22,6 +23,7 @@ export default function OperationsStaffStep() {
 
   const { getState } = useFunderForm();
   const {
+    invalid,
     values: {
       capital_acceptances: capitalAcceptancesFormValues,
       leadership_demographics: leadershipDemographicsFormValues,
@@ -242,32 +244,37 @@ export default function OperationsStaffStep() {
         </div>
       </div>
 
-      <footer className="flex justify-end gap-4">
-        <LinkButton
-          theme="outline"
-          className="flex items-center gap-1"
-          href={`${pathname}?step=contact-details`}
-          anchorLinkProps={{
-            href: `${pathname}?step=contact-details`,
-            replace: true,
-          }}
-        >
-          <LuArrowLeft className="h-[20px] w-[20px]" />
-          <span>Contact Details</span>
-        </LinkButton>
+      <footer className="flex justify-between">
+        <Button type="submit" theme="green" disabled={invalid}>
+          Save changes
+        </Button>
+        <div className="flex justify-end gap-4">
+          <LinkButton
+            theme="outline"
+            className="flex items-center gap-1"
+            href={`${pathname}?step=contact-details`}
+            anchorLinkProps={{
+              href: `${pathname}?step=contact-details`,
+              replace: true,
+            }}
+          >
+            <LuArrowLeft className="h-[20px] w-[20px]" />
+            <span>Contact Details</span>
+          </LinkButton>
 
-        <LinkButton
-          theme="outline"
-          className="flex items-center gap-1"
-          href={`${pathname}?step=focus-collaboration`}
-          anchorLinkProps={{
-            href: `${pathname}?step=focus-collaboration`,
-            replace: true,
-          }}
-        >
-          <span>Focus & Collaboration</span>
-          <LuArrowRight className="h-[20px] w-[20px]" />
-        </LinkButton>
+          <LinkButton
+            theme="outline"
+            className="flex items-center gap-1"
+            href={`${pathname}?step=focus-collaboration`}
+            anchorLinkProps={{
+              href: `${pathname}?step=focus-collaboration`,
+              replace: true,
+            }}
+          >
+            <span>Focus & Collaboration</span>
+            <LuArrowRight className="h-[20px] w-[20px]" />
+          </LinkButton>
+        </div>
       </footer>
     </div>
   );

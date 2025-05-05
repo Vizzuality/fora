@@ -139,7 +139,7 @@ const ReportFundingTable = () => {
       <Wrapper>
         <div className="space-y-10">
           <div className="flex items-center justify-between">
-            <h3 className="font-display text-2xl">
+            <h3 className="flex gap-4 font-display text-2xl">
               Total number of projects and funders per{' '}
               <Select
                 id="total-funders-projects-select"

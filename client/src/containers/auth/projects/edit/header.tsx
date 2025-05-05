@@ -23,10 +23,10 @@ export default function EditProjectHeader() {
 
   return (
     <header className="grid grid-cols-12 items-center justify-between">
-      <h2 className="col-span-10 truncate font-display text-3xl" title={project?.name}>
+      <h2 className="col-span-9 truncate font-display text-3xl" title={project?.name}>
         {project?.name}
       </h2>
-      <div className="col-span-2 flex justify-end gap-4">
+      <div className="col-span-3 flex justify-end gap-4">
         {currentStep === 'investments' && (
           <LinkButton theme="outline" size="xs" href={`/projects/${project?.id}`}>
             Project Page

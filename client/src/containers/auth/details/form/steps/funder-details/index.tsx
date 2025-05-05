@@ -9,6 +9,7 @@ import { usePathname } from 'next/navigation';
 import { LuArrowRight } from 'react-icons/lu';
 
 import LinkButton from '@/components/button';
+import { Button } from '@/components/button/component';
 import DragNDrop from '@/components/drag-n-drop';
 import { Input, Select } from '@/components/forms';
 import ErrorField from '@/components/forms/error-field';
@@ -47,6 +48,7 @@ export default function FunderDetailsStep() {
       funder_legal_status: legalStatusFormValue,
       funder_type: funderTypeFormValue,
     },
+    invalid,
   } = getState();
   const logoField = useField('logo');
   const [imageSrc, setImageSrc] = useState<string | null>(imageURL ?? null);
@@ -381,7 +383,11 @@ export default function FunderDetailsStep() {
         </DragNDrop>
       </div>
 
-      <footer className="flex justify-end">
+      <footer className="flex justify-between">
+        <Button type="submit" theme="green" disabled={invalid}>
+          Save changes
+        </Button>
+
         <LinkButton
           theme="outline"
           href={`${pathname}?step=contact-details`}

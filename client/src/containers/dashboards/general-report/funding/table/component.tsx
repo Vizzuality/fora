@@ -138,7 +138,7 @@ const ReportFundingTable = () => {
       <Wrapper>
         <div className="space-y-10">
           <div className="flex items-center justify-between">
-            <h3 className="max-w-2xl font-display text-2xl">
+            <h3 className="flex max-w-2xl gap-4 font-display text-2xl">
               Amount funded towards{' '}
               <Select
                 id="funded-select"
