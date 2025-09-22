@@ -24,8 +24,8 @@ importers:
         specifier: 3.2.0
         version: 3.2.0(react@18.3.1)
       '@egjs/react-flicking':
-        specifier: 4.9.4
-        version: 4.9.4
+        specifier: 4.14.2
+        version: 4.14.2
       '@floating-ui/react':
         specifier: 0.27.6
         version: 0.27.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -450,6 +450,9 @@ packages:
   '@cfcs/core@0.1.0':
     resolution: {integrity: sha512-kvYX0RpL45XTHJ5sW7teNbKeAa7pK3nNqaJPoFfZDPTIBJOkTtRD3QhkBG+O3Hu69a8xeMoPvF6y/RtJ6JUOdA==}
 
+  '@cfcs/react@0.1.0':
+    resolution: {integrity: sha512-3IaDaE1Qn0iLZ1ZqD0cqoiX0Kjzp6/VB56409A963lQ5kK6ONNa3cNbCBqFZccCfPSnyzeSdvPlg75Af3W4raA==}
+
   '@csstools/color-helpers@5.0.1':
     resolution: {integrity: sha512-MKtmkA0BX87PKaO1NFRTFH+UnkgnmySQOvNxJubsadusqPEC2aJ9MOQiMceZJJ6oitUl/i0L6u0M1IrmAOmgBA==}
     engines: {node: '>=18'}
@@ -513,23 +516,23 @@ packages:
   '@egjs/agent@2.4.4':
     resolution: {integrity: sha512-cvAPSlUILhBBOakn2krdPnOGv5hAZq92f1YHxYcfu0p7uarix2C6Ia3AVizpS1SGRZGiEkIS5E+IVTLg1I2Iog==}
 
-  '@egjs/axes@3.9.1':
-    resolution: {integrity: sha512-vaqUe/boRDk/A4TjiPtMv+lf7c4Q2jTER/Hw4I61NiJUyPftlZjaP4cteBCQejFyZmzimmA2W0cLmYZHTjBY8A==}
+  '@egjs/axes@3.9.2':
+    resolution: {integrity: sha512-LEyJfhAdOrg672twCtH9KUloMTGCERm2tqxNLaXFjm/2rOcd4n5yrUofIjY0m/oG146XmSLeCR9+ri2kOA4BHg==}
 
   '@egjs/component@3.0.5':
     resolution: {integrity: sha512-cLcGizTrrUNA2EYE3MBmEDt2tQv1joVP1Q3oDisZ5nw0MZDx2kcgEXM+/kZpfa/PAkFvYVhRUZwytIQWoN3V/w==}
 
-  '@egjs/flicking@4.9.3':
-    resolution: {integrity: sha512-QRe/6iN7TgE3yu0vMLmDWgjpwacjSqhAwmCG+8qLN3qJ31BaHgvieRSJnq49LQX2OZtREWrS39HCECvfXc6Qmg==}
+  '@egjs/flicking@4.14.0':
+    resolution: {integrity: sha512-0FWs/3r1QFrDTv8iouN7Ml9O2IKZZkQhJzMw8BGVVnMkISg/YeQlRYHFFt4mpup/wNmvtY73HwbnLpjemsCptQ==}
 
-  '@egjs/imready@1.4.1':
-    resolution: {integrity: sha512-JIOBs4lB7FYdsKi5uvz2j3SObX8eShtZjtqlOH41tm185aJOQZwiKBK8+V4MxzG4X6DqVhpdN8UcuVwBbElfsg==}
+  '@egjs/imready@1.4.2':
+    resolution: {integrity: sha512-ckV7KlBa23Bw6iZP59W2cMZfAmV5q0BtMoOz7ZkzIvjoOtkxfLZkqVJROSgDP5Ha0hsnskyL4vtom9Bt7FZSRQ==}
 
   '@egjs/list-differ@1.0.1':
     resolution: {integrity: sha512-OTFTDQcWS+1ZREOdCWuk5hCBgYO4OsD30lXcOCyVOAjXMhgL5rBRDnt/otb6Nz8CzU0L/igdcaQBDLWc4t9gvg==}
 
-  '@egjs/react-flicking@4.9.4':
-    resolution: {integrity: sha512-5q2jqzpIfs1SOx+3ScMoR/DhcylQn8Vs4wujuYFA6grFRzvYoTvjinMzwCJnyA0VGHBg4hDJAAu0AdO5Aovt4g==}
+  '@egjs/react-flicking@4.14.2':
+    resolution: {integrity: sha512-mtPZENA0XMt2N0WcjeRwpFz3cKudC4EWZ39VkJ84vB1MvK6G9P77uXHqLVp+NMt2MOGMY+xw9Qyt60uytCqu3Q==}
 
   '@emotion/is-prop-valid@0.8.8':
     resolution: {integrity: sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==}
@@ -2143,8 +2146,8 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  acorn@8.14.1:
-    resolution: {integrity: sha512-OvQ/2pUDKmgfCg++xsTX1wGxfTaszcHVcTctW4UJB4hibJx2HXxxO5UmVgyjMa+ZDsiaf5wWLXYpRWMmBI0QHg==}
+  acorn@8.15.0:
+    resolution: {integrity: sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -2658,6 +2661,9 @@ packages:
   create-ecdh@4.0.4:
     resolution: {integrity: sha512-mf+TCx8wWc9VpuxfP2ht0iSISLZnt0JgWlrOKZiNqyUZWnjIaCIVNQArMHnCZKfEYRg6IM7A+NeJoN8gf/Ws0A==}
 
+  create-hash@1.1.3:
+    resolution: {integrity: sha512-snRpch/kwQhcdlnZKYanNF1m0RDlrCdSKQaH87w1FCFPVPNCQ/Il9QJKAX2jVBZddRdaHBMC+zXa9Gw9tmkNUA==}
+
   create-hash@1.2.0:
     resolution: {integrity: sha512-z00bCGNHDG8mHAkP7CtT1qVu+bFQUPjYq/4Iv3C3kWjTFV10zIjfSoeqXo9Asws8gwSHDGj/hl2u4OGIjapeCg==}
 
@@ -3026,8 +3032,8 @@ packages:
     resolution: {integrity: sha512-/kyM18EfinwXZbno9FyUGeFh87KC8HRQBQGildHZbEuRyWFOmv1U10o9BBp8XVZDVNNuQKyIGIu5ZYAAXJ0V2Q==}
     engines: {node: '>= 4'}
 
-  end-of-stream@1.4.4:
-    resolution: {integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==}
+  end-of-stream@1.4.5:
+    resolution: {integrity: sha512-ooEGc6HP26xXq/N+GCGOT0JKCLDGrq2bQUZrQ7gyrJiZANJ/8YDTxTpQBXGMn+WbIQXNVpyWymm7KYVICQnyOg==}
 
   enhanced-resolve@4.5.0:
     resolution: {integrity: sha512-Nv9m36S/vxpsI+Hc4/ZGRs0n9mXqSWGGq49zxb/cJfPAQMbUtttJAlNPS4AQzaBdw/pKskw5bMbekT/Y7W/Wlg==}
@@ -3667,6 +3673,9 @@ packages:
   has@1.0.4:
     resolution: {integrity: sha512-qdSAmqLF6209RFj4VVItywPMbm3vWylknmB3nvNiUIs72xAimcM8nVYxYr7ncvZq5qzk9MKIZR8ijqD/1QuYjQ==}
     engines: {node: '>= 0.4.0'}
+
+  hash-base@2.0.2:
+    resolution: {integrity: sha512-0TROgQ1/SxE6KmxWSvXHvRj90/Xo1JvZShofnYF+f6ZsGtR4eES7WfrQzPalmyagfKZCXpVnitiRebZulWsbiw==}
 
   hash-base@3.0.5:
     resolution: {integrity: sha512-vXm0l45VbcHEVlTCzs8M+s0VeYsB2lnlAaThoLKGXr3bE/VWDOelNUnycUPEhKEaXARL2TEFjBOyUiM6+55KBg==}
@@ -4343,8 +4352,8 @@ packages:
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
-  nan@2.22.2:
-    resolution: {integrity: sha512-DANghxFkS1plDdRsX0X9pm0Z6SJNN6gBdtXfanwoZ8hooC5gosGFSBGRYHUVPz1asKA/kMRqDRdHrluZ61SpBQ==}
+  nan@2.23.0:
+    resolution: {integrity: sha512-1UxuyYGdoQHcGg87Lkqm3FzefucTa0NAiOcuRsDmysep3c1LVCRK2krrUDafMWtjSG04htvAmvg96+SDknOmgQ==}
 
   nanoid@3.3.11:
     resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
@@ -4625,8 +4634,8 @@ packages:
     resolution: {integrity: sha512-vE7JKRyES09KiunauX7nd2Q9/L7lhok4smP9RZTDeD4MVs72Dp2qNFVz39Nz5a0FVEW0BJR6C0DYrq6unoziZA==}
     engines: {node: '>= 14.16'}
 
-  pbkdf2@3.1.2:
-    resolution: {integrity: sha512-iuh7L6jA7JEGu2WxDwtQP1ddOpaJNC4KlDEFfdQajSGgGPNi4OyDc2R7QnbY2bR9QjBVGwgvTdNJZoE7RaxUMA==}
+  pbkdf2@3.1.3:
+    resolution: {integrity: sha512-wfRLBZ0feWRhCIkoMB6ete7czJcnNnqRpcoWQBLqatqXXmelSRqfdDK4F3u9T2s2cXas/hQJcryI/4lAL+XTlA==}
     engines: {node: '>=0.12'}
 
   performance-now@2.1.0:
@@ -4858,8 +4867,8 @@ packages:
   pump@2.0.1:
     resolution: {integrity: sha512-ruPMNRkN3MHP1cWJc9OWr+T/xDP0jhXYCLfJcBuX54hhfIBnaQmAUMfDcG4DM5UMWByBbJY69QSphm3jtDKIkA==}
 
-  pump@3.0.2:
-    resolution: {integrity: sha512-tUPXtzlGM8FE3P0ZL6DVs/3P58k9nk8/jZeQCurTJylQA8qFYzHFfhBJkuqyE0FifOsQ0uKWekiZ5g8wtr28cw==}
+  pump@3.0.3:
+    resolution: {integrity: sha512-todwxLMY7/heScKmntwQG8CXVkWUOdYxIvY2s0VWAAMh/nd8SoYiRaKjlr7+iCs984f2P8zvrfWcDDYVb73NfA==}
 
   pumpify@1.5.1:
     resolution: {integrity: sha512-oClZI37HvuUJJxSKKrC17bZ9Cu0ZYhEAGPsPUy9KlMUmv9dKX2o77RUmq7f3XjIxbwyGwYzbzQ1L2Ks8sIradQ==}
@@ -5170,6 +5179,9 @@ packages:
     deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
+  ripemd160@2.0.1:
+    resolution: {integrity: sha512-J7f4wutN8mdbV08MJnXibYpCOPHR+yzy+iQ/AsjMv2j8cLavQ8VGagDFUwwTAdF8FmRKVeNpbTTEwNHCW1g94w==}
+
   ripemd160@2.0.2:
     resolution: {integrity: sha512-ii4iagi25WusVoiC4B4lq7pbXfAp3D9v5CwfkY33vffw2+pkDjY1D8GaN7spsxvCSx8dkPqOZCEZyfxcmJG2IA==}
 
@@ -5274,8 +5286,9 @@ packages:
   setimmediate@1.0.5:
     resolution: {integrity: sha512-MATJdZp8sLqDl/68LfQmbP8zKPLQNV6BIZoIgrscFDQ+RsvK/BxeDQOgyxKKoh0y/8h3BqVFnCqQ/gd+reiIXA==}
 
-  sha.js@2.4.11:
-    resolution: {integrity: sha512-QMEp5B7cftE7APOjk5Y6xgrbWu+WkLVQwk8JNjZ8nKRciZaByEW6MubieAiToS7+dwvrjGhH8jRXz3MVd0AYqQ==}
+  sha.js@2.4.12:
+    resolution: {integrity: sha512-8LzC5+bvI45BjpfXU8V5fdU2mfeKiQe1D1gIMn7XUlF3OTUrpdJpPPH4EMAnF0DsHHdSZqCdSss5qCmJKuiO3w==}
+    engines: {node: '>= 0.10'}
     hasBin: true
 
   shebang-command@2.0.0:
@@ -5617,6 +5630,10 @@ packages:
 
   to-arraybuffer@1.0.1:
     resolution: {integrity: sha512-okFlQcoGTi4LQBG/PgSYblw9VOyptsz2KJZqc6qtgGdes8VktzUQkj4BI2blit072iS8VODNcMA+tvnS9dnuMA==}
+
+  to-buffer@1.2.1:
+    resolution: {integrity: sha512-tB82LpAIWjhLYbqjx3X4zEeHN6M8CiuOEy2JY8SEQVdYRe3CCHOFaqrBW1doLDrfpWhplcW7BL+bO3/6S3pcDQ==}
+    engines: {node: '>= 0.4'}
 
   to-object-path@0.3.0:
     resolution: {integrity: sha512-9mWHdnGRuh3onocaHzukyvCZhzvr6tiflAy/JRFXcJX0TjgfWA9pk9t8CMbzmBE4Jfw58pXbkngtBtqYxzNEyg==}
@@ -6203,6 +6220,10 @@ snapshots:
     dependencies:
       '@egjs/component': 3.0.5
 
+  '@cfcs/react@0.1.0':
+    dependencies:
+      '@cfcs/core': 0.1.0
+
   '@csstools/color-helpers@5.0.1': {}
 
   '@csstools/css-calc@2.1.1(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)':
@@ -6263,7 +6284,7 @@ snapshots:
 
   '@egjs/agent@2.4.4': {}
 
-  '@egjs/axes@3.9.1':
+  '@egjs/axes@3.9.2':
     dependencies:
       '@cfcs/core': 0.1.0
       '@egjs/agent': 2.4.4
@@ -6271,23 +6292,27 @@ snapshots:
 
   '@egjs/component@3.0.5': {}
 
-  '@egjs/flicking@4.9.3':
+  '@egjs/flicking@4.14.0':
     dependencies:
-      '@egjs/axes': 3.9.1
+      '@cfcs/core': 0.1.0
+      '@egjs/axes': 3.9.2
       '@egjs/component': 3.0.5
-      '@egjs/imready': 1.4.1
+      '@egjs/imready': 1.4.2
       '@egjs/list-differ': 1.0.1
 
-  '@egjs/imready@1.4.1':
+  '@egjs/imready@1.4.2':
     dependencies:
       '@cfcs/core': 0.0.24
       '@egjs/component': 3.0.5
 
   '@egjs/list-differ@1.0.1': {}
 
-  '@egjs/react-flicking@4.9.4':
+  '@egjs/react-flicking@4.14.2':
     dependencies:
-      '@egjs/flicking': 4.9.3
+      '@cfcs/core': 0.1.0
+      '@cfcs/react': 0.1.0
+      '@egjs/component': 3.0.5
+      '@egjs/flicking': 4.14.0
       '@egjs/list-differ': 1.0.1
 
   '@emotion/is-prop-valid@0.8.8':
@@ -7892,7 +7917,7 @@ snapshots:
 
   acorn@8.14.0: {}
 
-  acorn@8.14.1: {}
+  acorn@8.15.0: {}
 
   agent-base@7.1.3: {}
 
@@ -8514,13 +8539,20 @@ snapshots:
       bn.js: 4.12.2
       elliptic: 6.6.1
 
+  create-hash@1.1.3:
+    dependencies:
+      cipher-base: 1.0.6
+      inherits: 2.0.4
+      ripemd160: 2.0.2
+      sha.js: 2.4.12
+
   create-hash@1.2.0:
     dependencies:
       cipher-base: 1.0.6
       inherits: 2.0.4
       md5.js: 1.3.5
       ripemd160: 2.0.2
-      sha.js: 2.4.11
+      sha.js: 2.4.12
 
   create-hmac@1.1.7:
     dependencies:
@@ -8529,7 +8561,7 @@ snapshots:
       inherits: 2.0.4
       ripemd160: 2.0.2
       safe-buffer: 5.2.1
-      sha.js: 2.4.11
+      sha.js: 2.4.12
 
   cross-spawn@7.0.6:
     dependencies:
@@ -8547,7 +8579,7 @@ snapshots:
       diffie-hellman: 5.0.3
       hash-base: 3.0.5
       inherits: 2.0.4
-      pbkdf2: 3.1.2
+      pbkdf2: 3.1.3
       public-encrypt: 4.0.3
       randombytes: 2.1.0
       randomfill: 1.0.4
@@ -8872,7 +8904,7 @@ snapshots:
 
   duplexify@3.7.1:
     dependencies:
-      end-of-stream: 1.4.4
+      end-of-stream: 1.4.5
       inherits: 2.0.4
       readable-stream: 2.3.8
       stream-shift: 1.0.3
@@ -8913,7 +8945,7 @@ snapshots:
 
   emojis-list@3.0.0: {}
 
-  end-of-stream@1.4.4:
+  end-of-stream@1.4.5:
     dependencies:
       once: 1.4.0
 
@@ -9676,7 +9708,7 @@ snapshots:
   fsevents@1.2.13:
     dependencies:
       bindings: 1.5.0
-      nan: 2.22.2
+      nan: 2.23.0
     optional: true
 
   fsevents@2.3.3:
@@ -9864,6 +9896,10 @@ snapshots:
       kind-of: 4.0.0
 
   has@1.0.4: {}
+
+  hash-base@2.0.2:
+    dependencies:
+      inherits: 2.0.4
 
   hash-base@3.0.5:
     dependencies:
@@ -10544,11 +10580,11 @@ snapshots:
     dependencies:
       concat-stream: 1.6.2
       duplexify: 3.7.1
-      end-of-stream: 1.4.4
+      end-of-stream: 1.4.5
       flush-write-stream: 1.1.1
       from2: 2.3.0
       parallel-transform: 1.2.0
-      pump: 3.0.2
+      pump: 3.0.3
       pumpify: 1.5.1
       stream-each: 1.2.3
       through2: 2.0.5
@@ -10577,7 +10613,7 @@ snapshots:
 
   ms@2.1.3: {}
 
-  nan@2.22.2:
+  nan@2.23.0:
     optional: true
 
   nanoid@3.3.11: {}
@@ -10875,7 +10911,7 @@ snapshots:
       browserify-aes: 1.2.0
       evp_bytestokey: 1.0.3
       hash-base: 3.0.5
-      pbkdf2: 3.1.2
+      pbkdf2: 3.1.3
       safe-buffer: 5.2.1
 
   parse5@7.2.1:
@@ -10913,13 +10949,14 @@ snapshots:
 
   pathval@2.0.0: {}
 
-  pbkdf2@3.1.2:
+  pbkdf2@3.1.3:
     dependencies:
-      create-hash: 1.2.0
+      create-hash: 1.1.3
       create-hmac: 1.1.7
-      ripemd160: 2.0.2
+      ripemd160: 2.0.1
       safe-buffer: 5.2.1
-      sha.js: 2.4.11
+      sha.js: 2.4.12
+      to-buffer: 1.2.1
 
   performance-now@2.1.0: {}
 
@@ -11088,12 +11125,12 @@ snapshots:
 
   pump@2.0.1:
     dependencies:
-      end-of-stream: 1.4.4
+      end-of-stream: 1.4.5
       once: 1.4.0
 
-  pump@3.0.2:
+  pump@3.0.3:
     dependencies:
-      end-of-stream: 1.4.4
+      end-of-stream: 1.4.5
       once: 1.4.0
 
   pumpify@1.5.1:
@@ -11427,6 +11464,11 @@ snapshots:
     dependencies:
       glob: 7.2.3
 
+  ripemd160@2.0.1:
+    dependencies:
+      hash-base: 2.0.2
+      inherits: 2.0.4
+
   ripemd160@2.0.2:
     dependencies:
       hash-base: 3.0.5
@@ -11571,10 +11613,11 @@ snapshots:
 
   setimmediate@1.0.5: {}
 
-  sha.js@2.4.11:
+  sha.js@2.4.12:
     dependencies:
       inherits: 2.0.4
       safe-buffer: 5.2.1
+      to-buffer: 1.2.1
 
   shebang-command@2.0.0:
     dependencies:
@@ -11694,7 +11737,7 @@ snapshots:
 
   stream-each@1.2.3:
     dependencies:
-      end-of-stream: 1.4.4
+      end-of-stream: 1.4.5
       stream-shift: 1.0.3
 
   stream-http@2.8.3:
@@ -11965,7 +12008,7 @@ snapshots:
 
   terser@4.8.1:
     dependencies:
-      acorn: 8.14.1
+      acorn: 8.15.0
       commander: 2.20.3
       source-map: 0.6.1
       source-map-support: 0.5.21
@@ -12003,6 +12046,12 @@ snapshots:
       tldts-core: 6.1.77
 
   to-arraybuffer@1.0.1: {}
+
+  to-buffer@1.2.1:
+    dependencies:
+      isarray: 2.0.5
+      safe-buffer: 5.2.1
+      typed-array-buffer: 1.0.3
 
   to-object-path@0.3.0:
     dependencies:
