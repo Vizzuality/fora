@@ -32,11 +32,20 @@ env:
 jobs:
   create-issues-for-alerts:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.DEPENDABOT_PAT }}
     steps:
+      - name: Validate token
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::DEPENDABOT_PAT secret is not set. Go to repo Settings > Secrets > Actions and add a PAT with security_events and repo scopes."
+            exit 1
+          fi
+          echo "Token is configured, validating access..."
+          gh auth status
+
       - name: Fetch open Dependabot alerts
         id: fetch
-        env:
-          GH_TOKEN: ${{ secrets.DEPENDABOT_PAT }}
         run: |
           echo "Fetching open Dependabot alerts (severity: $SEVERITY_FILTER)..."
           gh api \
@@ -61,8 +70,6 @@ jobs:
 
       - name: Create issues assigned to Copilot
         if: steps.fetch.outputs.count != '0'
-        env:
-          GH_TOKEN: ${{ secrets.DEPENDABOT_PAT }}
         run: |
           CREATED=0
           SKIPPED=0
