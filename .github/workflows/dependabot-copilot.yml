@@ -1,0 +1,47 @@
+name: Dependabot Alert → Copilot Agent
+on:
+  dependabot_alert:
+    types: [ created, reintroduced ]
+
+jobs:
+  assign-to-copilot:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      security-events: read
+
+    steps:
+      - name: Create issue and assign to Copilot
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const alert = context.payload.alert;
+
+            console.log('Full alert payload:', JSON.stringify(alert, null, 2));
+
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[Security] Dependabot alert #${alert.number}: ${alert.security_advisory.summary}`,
+              body: `
+            ## Dependabot Security Alert
+
+            A vulnerability has been detected. Full alert details below for context.
+
+            \`\`\`json
+            ${JSON.stringify(alert, null, 2)}
+            \`\`\`
+
+            ## Task
+
+            Analyze the alert above and fix the vulnerability.
+            - Update the affected dependency to the patched version if available.
+            - If no patch exists, evaluate mitigations or alternatives.
+            - Run the existing tests to confirm nothing breaks.
+            - If you need more context, the advisory URL is: ${alert.security_advisory.references?.map(r => r.url).join(', ') ?? 'N/A'}
+              `,
+              labels: ['security', 'dependabot', alert.security_advisory.severity],
+              assignees: ['copilot']
+            });
+
+            console.log('issue url:', issue.data.html_url);
