@@ -1,47 +1,220 @@
-name: Dependabot Alert → Copilot Agent
+# .github/workflows/dependabot-to-copilot.yml
+#
+# This workflow listens for new Dependabot alerts and creates GitHub Issues
+# assigned to the Copilot coding agent (copilot-swe-agent) to auto-fix them.
+#
+# Prerequisites:
+#   1. Copilot coding agent must be enabled for your repository
+#   2. Dependabot alerts must be enabled
+#   3. The GITHUB_TOKEN needs write permissions for issues
+#
+# Note: The `dependabot_alert` event requires the workflow to be on the default branch.
+
+name: Assign Dependabot Alerts to Copilot
+
 on:
+  # Trigger when a Dependabot alert is created or reopened
   dependabot_alert:
-    types: [ created, reintroduced ]
+    types: [ created, reactivated ]
+
+  # Fallback: scheduled polling (useful if webhook events are missed)
+  schedule:
+    - cron: "0 8 * * 1-5" # Every weekday at 8:00 AM UTC
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  security-events: read
 
 jobs:
-  assign-to-copilot:
+  # ──────────────────────────────────────────────
+  # Job 1: Handle webhook-triggered alerts
+  # ──────────────────────────────────────────────
+  handle-alert-event:
+    if: github.event_name == 'dependabot_alert'
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      security-events: read
-
     steps:
-      - name: Create issue and assign to Copilot
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const alert = context.payload.alert;
+      - name: Get alert details
+        id: alert
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ALERT_NUM="${{ github.event.alert.number }}"
+          PACKAGE="${{ github.event.alert.dependency.package.name }}"
+          ECOSYSTEM="${{ github.event.alert.dependency.package.ecosystem }}"
+          SEVERITY="${{ github.event.alert.security_advisory.severity }}"
+          SUMMARY="${{ github.event.alert.security_advisory.summary }}"
+          CVE="${{ github.event.alert.security_advisory.cve_id }}"
+          GHSA="${{ github.event.alert.security_advisory.ghsa_id }}"
+          MANIFEST="${{ github.event.alert.dependency.manifest_path }}"
+          VULNERABLE_RANGE="${{ github.event.alert.vulnerability.vulnerable_version_range }}"
+          PATCHED="${{ github.event.alert.vulnerability.first_patched_version.identifier }}"
 
-            console.log('Full alert payload:', JSON.stringify(alert, null, 2));
+          echo "alert_num=$ALERT_NUM" >> "$GITHUB_OUTPUT"
+          echo "package=$PACKAGE" >> "$GITHUB_OUTPUT"
+          echo "ecosystem=$ECOSYSTEM" >> "$GITHUB_OUTPUT"
+          echo "severity=$SEVERITY" >> "$GITHUB_OUTPUT"
+          echo "summary=$SUMMARY" >> "$GITHUB_OUTPUT"
+          echo "cve=$CVE" >> "$GITHUB_OUTPUT"
+          echo "ghsa=$GHSA" >> "$GITHUB_OUTPUT"
+          echo "manifest=$MANIFEST" >> "$GITHUB_OUTPUT"
+          echo "vulnerable_range=$VULNERABLE_RANGE" >> "$GITHUB_OUTPUT"
+          echo "patched=$PATCHED" >> "$GITHUB_OUTPUT"
 
-            const issue = await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: `[Security] Dependabot alert #${alert.number}: ${alert.security_advisory.summary}`,
-              body: `
-            ## Dependabot Security Alert
+      - name: Check for existing issue
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          EXISTING=$(gh issue list \
+            --repo "${{ github.repository }}" \
+            --label "dependabot-copilot" \
+            --search "Dependabot Alert #${{ steps.alert.outputs.alert_num }}" \
+            --state open \
+            --json number \
+            --jq 'length')
+          echo "exists=$EXISTING" >> "$GITHUB_OUTPUT"
 
-            A vulnerability has been detected. Full alert details below for context.
+      - name: Create issue for Copilot
+        if: steps.check.outputs.exists == '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          SEVERITY="${{ steps.alert.outputs.severity }}"
+          PRIORITY=""
+          if [ "$SEVERITY" = "critical" ] || [ "$SEVERITY" = "high" ]; then
+            PRIORITY="🔴 HIGH PRIORITY - "
+          fi
 
-            \`\`\`json
-            ${JSON.stringify(alert, null, 2)}
-            \`\`\`
+          BODY=$(cat <<'EOF'
+          ## ${PRIORITY}Dependabot Security Alert #${{ steps.alert.outputs.alert_num }}
 
-            ## Task
+          | Field | Details |
+          |-------|---------|
+          | **Package** | `${{ steps.alert.outputs.package }}` |
+          | **Ecosystem** | ${{ steps.alert.outputs.ecosystem }} |
+          | **Severity** | ${{ steps.alert.outputs.severity }} |
+          | **CVE** | ${{ steps.alert.outputs.cve }} |
+          | **GHSA** | ${{ steps.alert.outputs.ghsa }} |
+          | **Manifest** | `${{ steps.alert.outputs.manifest }}` |
+          | **Vulnerable versions** | `${{ steps.alert.outputs.vulnerable_range }}` |
+          | **Patched version** | `${{ steps.alert.outputs.patched }}` |
 
-            Analyze the alert above and fix the vulnerability.
-            - Update the affected dependency to the patched version if available.
-            - If no patch exists, evaluate mitigations or alternatives.
-            - Run the existing tests to confirm nothing breaks.
-            - If you need more context, the advisory URL is: ${alert.security_advisory.references?.map(r => r.url).join(', ') ?? 'N/A'}
-              `,
-              labels: ['security', 'dependabot', alert.security_advisory.severity],
-              assignees: ['copilot']
-            });
+          ### Summary
+          ${{ steps.alert.outputs.summary }}
 
-            console.log('issue url:', issue.data.html_url);
+          ### Instructions for Copilot
+          1. Update the dependency `${{ steps.alert.outputs.package }}` to version `${{ steps.alert.outputs.patched }}` (or later) in `${{ steps.alert.outputs.manifest }}`.
+          2. Check if any other dependencies need to be updated for compatibility.
+          3. Run the existing tests to make sure nothing breaks.
+          4. If there are breaking API changes, update the code accordingly.
+          5. Do NOT modify any unrelated code or fix unrelated warnings.
+
+          ### References
+          - [Dependabot Alert #${{ steps.alert.outputs.alert_num }}](https://github.com/${{ github.repository }}/security/dependabot/${{ steps.alert.outputs.alert_num }})
+          EOF
+          )
+
+          gh issue create \
+            --repo "${{ github.repository }}" \
+            --title "fix: upgrade ${{ steps.alert.outputs.package }} — Dependabot Alert #${{ steps.alert.outputs.alert_num }}" \
+            --body "$BODY" \
+            --assignee "copilot-swe-agent" \
+            --label "dependabot-copilot,security,${{ steps.alert.outputs.severity }}"
+
+  # ──────────────────────────────────────────────
+  # Job 2: Scheduled polling for missed alerts
+  # ──────────────────────────────────────────────
+  poll-open-alerts:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch open Dependabot alerts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Fetch open alerts, filter by severity (critical + high by default)
+          gh api \
+            "/repos/${{ github.repository }}/dependabot/alerts?state=open&severity=critical,high&per_page=10" \
+            --jq '.[] | {
+              number: .number,
+              package: .dependency.package.name,
+              ecosystem: .dependency.package.ecosystem,
+              severity: .security_advisory.severity,
+              summary: .security_advisory.summary,
+              cve: .security_advisory.cve_id,
+              ghsa: .security_advisory.ghsa_id,
+              manifest: .dependency.manifest_path,
+              vulnerable_range: .vulnerability.vulnerable_version_range,
+              patched: .vulnerability.first_patched_version.identifier
+            }' > alerts.json
+
+          echo "Found $(wc -l < alerts.json) open critical/high alerts"
+
+      - name: Create issues for untracked alerts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          while IFS= read -r alert; do
+            NUM=$(echo "$alert" | jq -r '.number')
+            PKG=$(echo "$alert" | jq -r '.package')
+            SEVERITY=$(echo "$alert" | jq -r '.severity')
+            SUMMARY=$(echo "$alert" | jq -r '.summary')
+            CVE=$(echo "$alert" | jq -r '.cve')
+            GHSA=$(echo "$alert" | jq -r '.ghsa')
+            MANIFEST=$(echo "$alert" | jq -r '.manifest')
+            VULN_RANGE=$(echo "$alert" | jq -r '.vulnerable_range')
+            PATCHED=$(echo "$alert" | jq -r '.patched')
+
+            # Skip if issue already exists
+            EXISTING=$(gh issue list \
+              --repo "${{ github.repository }}" \
+              --label "dependabot-copilot" \
+              --search "Dependabot Alert #${NUM}" \
+              --state open \
+              --json number \
+              --jq 'length')
+
+            if [ "$EXISTING" != "0" ]; then
+              echo "⏭️  Skipping alert #${NUM} ($PKG) — issue already exists"
+              continue
+            fi
+
+            echo "🔧 Creating issue for alert #${NUM} ($PKG)..."
+
+            gh issue create \
+              --repo "${{ github.repository }}" \
+              --title "fix: upgrade ${PKG} — Dependabot Alert #${NUM}" \
+              --body "## Dependabot Security Alert #${NUM}
+
+          | Field | Details |
+          |-------|---------|
+          | **Package** | \`${PKG}\` |
+          | **Severity** | ${SEVERITY} |
+          | **CVE** | ${CVE} |
+          | **GHSA** | ${GHSA} |
+          | **Manifest** | \`${MANIFEST}\` |
+          | **Vulnerable versions** | \`${VULN_RANGE}\` |
+          | **Patched version** | \`${PATCHED}\` |
+
+          ### Summary
+          ${SUMMARY}
+
+          ### Instructions for Copilot
+          1. Update \`${PKG}\` to version \`${PATCHED}\` (or later) in \`${MANIFEST}\`.
+          2. Check if other dependencies need updating for compatibility.
+          3. Run existing tests to verify nothing breaks.
+          4. Fix any breaking API changes in the codebase.
+          5. Do NOT modify unrelated code or fix unrelated warnings.
+
+          ### References
+          - [Dependabot Alert #${NUM}](https://github.com/${{ github.repository }}/security/dependabot/${NUM})" \
+              --assignee "copilot-swe-agent" \
+              --label "dependabot-copilot,security,${SEVERITY}"
+
+            # Rate limiting: wait between issue creation
+            sleep 5
+          done < alerts.json
