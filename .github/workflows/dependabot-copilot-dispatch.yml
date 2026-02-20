@@ -1,0 +1,139 @@
+# File: .github/workflows/dependabot-to-copilot.yml
+#
+# Polls Dependabot alerts via REST API and creates GitHub Issues
+# assigned to the Copilot coding agent to auto-fix them.
+#
+# Prerequisites:
+#   1. Copilot coding agent enabled for your repository
+#   2. Dependabot alerts enabled
+#   3. A PAT (classic) with security_events and repo scopes
+#      stored as secret named DEPENDABOT_PAT
+#   4. Create labels in your repo: dependabot-copilot, security
+
+name: Assign Dependabot Alerts to Copilot
+
+on:
+  schedule:
+    - cron: "0 8 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      severity_filter:
+        description: "Comma-separated severities (critical,high,medium,low)"
+        required: false
+        default: "critical,high"
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  SEVERITY_FILTER: ${{ github.event.inputs.severity_filter || 'critical,high' }}
+
+jobs:
+  create-issues-for-alerts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch open Dependabot alerts
+        id: fetch
+        env:
+          GH_TOKEN: ${{ secrets.DEPENDABOT_PAT }}
+        run: |
+          echo "Fetching open Dependabot alerts (severity: $SEVERITY_FILTER)..."
+          gh api \
+            "/repos/${{ github.repository }}/dependabot/alerts?state=open&severity=${SEVERITY_FILTER}&per_page=20&sort=created&direction=desc" \
+            > raw_alerts.json
+          jq '[.[] | {
+            number: .number,
+            package: .dependency.package.name,
+            ecosystem: .dependency.package.ecosystem,
+            severity: .security_advisory.severity,
+            summary: .security_advisory.summary,
+            cve: (.security_advisory.cve_id // "N/A"),
+            ghsa: (.security_advisory.ghsa_id // "N/A"),
+            manifest: .dependency.manifest_path,
+            vulnerable_range: (.vulnerability.vulnerable_version_range // "N/A"),
+            patched: (.vulnerability.first_patched_version.identifier // "No patch available"),
+            url: .html_url
+          }]' raw_alerts.json > alerts.json
+          ALERT_COUNT=$(jq 'length' alerts.json)
+          echo "Found $ALERT_COUNT open alerts matching severity filter"
+          echo "count=$ALERT_COUNT" >> "$GITHUB_OUTPUT"
+
+      - name: Create issues assigned to Copilot
+        if: steps.fetch.outputs.count != '0'
+        env:
+          GH_TOKEN: ${{ secrets.DEPENDABOT_PAT }}
+        run: |
+          CREATED=0
+          SKIPPED=0
+          for row in $(jq -c '.[]' alerts.json); do
+            NUM=$(echo "$row" | jq -r '.number')
+            PKG=$(echo "$row" | jq -r '.package')
+            ECOSYSTEM=$(echo "$row" | jq -r '.ecosystem')
+            SEVERITY=$(echo "$row" | jq -r '.severity')
+            SUMMARY=$(echo "$row" | jq -r '.summary')
+            CVE=$(echo "$row" | jq -r '.cve')
+            GHSA=$(echo "$row" | jq -r '.ghsa')
+            MANIFEST=$(echo "$row" | jq -r '.manifest')
+            VULN_RANGE=$(echo "$row" | jq -r '.vulnerable_range')
+            PATCHED=$(echo "$row" | jq -r '.patched')
+            ALERT_URL=$(echo "$row" | jq -r '.url')
+            EXISTING=$(gh issue list \
+              --repo "${{ github.repository }}" \
+              --label "dependabot-copilot" \
+              --search "in:title Dependabot Alert #${NUM}" \
+              --state open \
+              --json number \
+              --jq 'length' 2>/dev/null || echo "0")
+            if [ "$EXISTING" != "0" ]; then
+              echo "Skipping alert #${NUM} (${PKG}) - issue already exists"
+              SKIPPED=$((SKIPPED + 1))
+              continue
+            fi
+            echo "Creating issue for alert #${NUM} (${PKG}, ${SEVERITY})..."
+            BODY="## Dependabot Security Alert #${NUM}
+
+          | Field | Details |
+          |-------|---------|
+          | **Package** | \`${PKG}\` |
+          | **Ecosystem** | ${ECOSYSTEM} |
+          | **Severity** | ${SEVERITY} |
+          | **CVE** | ${CVE} |
+          | **GHSA** | ${GHSA} |
+          | **Manifest** | \`${MANIFEST}\` |
+          | **Vulnerable versions** | \`${VULN_RANGE}\` |
+          | **Patched version** | \`${PATCHED}\` |
+
+          ### Summary
+          ${SUMMARY}
+
+          ### Instructions
+          Please fix this security vulnerability:
+
+          1. Update the dependency \`${PKG}\` to version \`${PATCHED}\` (or the latest secure version) in \`${MANIFEST}\`.
+          2. If other dependencies need to be updated for compatibility, update them too.
+          3. Run existing tests and make sure they pass.
+          4. If there are breaking API changes from the upgrade, update the affected code.
+          5. Do NOT modify unrelated code, fix unrelated warnings, or refactor anything else.
+          6. Keep the PR focused only on this security fix.
+
+          ### References
+          - [Dependabot Alert #${NUM}](${ALERT_URL})"
+            gh issue create \
+              --repo "${{ github.repository }}" \
+              --title "fix: upgrade \`${PKG}\` - Dependabot Alert #${NUM} [${SEVERITY}]" \
+              --body "$BODY" \
+              --assignee "copilot-swe-agent" \
+              --label "dependabot-copilot,security"
+            CREATED=$((CREATED + 1))
+            sleep 3
+          done
+          echo "Done! Created: $CREATED | Skipped: $SKIPPED"
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### Dependabot to Copilot Summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Alerts found:** ${{ steps.fetch.outputs.count }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Severity filter:** ${SEVERITY_FILTER}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **Trigger:** ${{ github.event_name }}" >> "$GITHUB_STEP_SUMMARY"
