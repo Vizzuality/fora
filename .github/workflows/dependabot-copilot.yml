@@ -11,6 +11,16 @@ jobs:
       issues: write
 
     steps:
+      - name: Debug assignees
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PAT_SECURITY_EVENTS }}
+          script: |
+            const actors = await github.rest.issues.listAssignees({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            console.log('Available assignees:', JSON.stringify(actors.data.map(a => a.login), null, 2));
       - name: Fetch and process new alerts
         uses: actions/github-script@v7
         with:
