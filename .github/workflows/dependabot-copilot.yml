@@ -13,9 +13,6 @@
 name: Assign Dependabot Alerts to Copilot
 
 on:
-  # Trigger when a Dependabot alert is created or reopened
-  dependabot_alert:
-    types: [ created, reactivated ]
 
   # Fallback: scheduled polling (useful if webhook events are missed)
   schedule:
