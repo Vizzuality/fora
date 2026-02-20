@@ -1,6 +1,6 @@
 name: Client CI/CD
 
-on: [ push, workflow_dispatch ]
+on: [ push, pull_request, workflow_dispatch ]
 
 env:
   NEXT_PUBLIC_BASE_PATH: ""

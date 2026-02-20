@@ -5,6 +5,11 @@ on:
       - '.github/workflows/client_ci_unit_tests.yml'
       - 'package.json'
       - 'client/**'
+  pull_request:
+    paths:
+      - '.github/workflows/client_ci_unit_tests.yml'
+      - 'package.json'
+      - 'client/**'
   workflow_dispatch:
 defaults:
   run:
