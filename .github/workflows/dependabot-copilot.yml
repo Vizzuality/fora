@@ -65,7 +65,7 @@ jobs:
             - Advisory references: ${alert.security_advisory.references?.map(r => r.url).join(', ') ?? 'N/A'}
                 `,
                 labels: ['security', 'dependabot', alert.security_advisory.severity],
-                assignees: ['copilot']
+                assignees: ['copilot-swe-agent']
               });
 
               console.log(`Issue created for alert #${alert.number}:`, issue.data.html_url);
