@@ -66,8 +66,8 @@ importers:
         specifier: 4.0.0
         version: 4.0.0(react@18.3.1)
       '@reduxjs/toolkit':
-        specifier: 1.5.1
-        version: 1.5.1
+        specifier: 1.9.7
+        version: 1.9.7(react-redux@7.2.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@tailwindcss/aspect-ratio':
         specifier: 0.4.0
         version: 0.4.0(tailwindcss@3.1.7(postcss@8.5.3))
@@ -1601,8 +1601,16 @@ packages:
     peerDependencies:
       react: '>=16.8'
 
-  '@reduxjs/toolkit@1.5.1':
-    resolution: {integrity: sha512-PngZKuwVZsd+mimnmhiOQzoD0FiMjqVks6ituO1//Ft5UEX5Ca9of13NEjo//pU22Jk7z/mdXVsmDfgsig1osA==}
+  '@reduxjs/toolkit@1.9.7':
+    resolution: {integrity: sha512-t7v8ZPxhhKgOKtU+uyJT13lu4vL7az5aFi4IdoDs/eS548edn2M8Ik9h8fxgvMjGoAUVFSt6ZC1P5cWmQ014QQ==}
+    peerDependencies:
+      react: ^16.9.0 || ^17.0.0 || ^18
+      react-redux: ^7.2.1 || ^8.0.2
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-redux:
+        optional: true
 
   '@rollup/rollup-android-arm-eabi@4.40.1':
     resolution: {integrity: sha512-kxz0YeeCrRUHz3zyqvd7n+TVRlNyTifBsmnmNPtk3hQURUyG9eAB+usz6DAwagMusjx/zb3AjvDUvhFGDAexGw==}
@@ -3741,8 +3749,8 @@ packages:
     peerDependencies:
       imagemin: ^5.0.0 || ^6.0.0 || ^7.0.0
 
-  immer@8.0.4:
-    resolution: {integrity: sha512-jMfL18P+/6P6epANRvRk6q8t+3gGhqsJ9EuJ25AXE+9bNTYtssvzeYbEd0mXRYWCmmXSIbnlpz6vd6iJlmGGGQ==}
+  immer@9.0.21:
+    resolution: {integrity: sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==}
 
   import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -7240,12 +7248,15 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  '@reduxjs/toolkit@1.5.1':
+  '@reduxjs/toolkit@1.9.7(react-redux@7.2.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
     dependencies:
-      immer: 8.0.4
+      immer: 9.0.21
       redux: 4.2.1
       redux-thunk: 2.4.2(redux@4.2.1)
       reselect: 4.1.8
+    optionalDependencies:
+      react: 18.3.1
+      react-redux: 7.2.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
   '@rollup/rollup-android-arm-eabi@4.40.1':
     optional: true
@@ -7960,7 +7971,7 @@ snapshots:
 
   aria-query@4.2.2:
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.27.0
       '@babel/runtime-corejs3': 7.26.0
 
   aria-query@5.3.0:
@@ -9952,7 +9963,7 @@ snapshots:
       imagemin: 6.1.0
       loader-utils: 1.4.2
 
-  immer@8.0.4: {}
+  immer@9.0.21: {}
 
   import-fresh@3.3.0:
     dependencies:
