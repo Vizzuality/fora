@@ -17,6 +17,7 @@ gem "devise"
 gem "ransack"
 gem "rubyzip"
 gem "jwt"
+gem "rack", ">= 2.2.20"
 gem "rack-cors"
 
 gem "dotenv-rails"
