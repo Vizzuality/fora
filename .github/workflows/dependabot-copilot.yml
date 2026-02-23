@@ -68,15 +68,8 @@ jobs:
                 repo,
                 title: `[Security] Dependabot alert #${alert.number}: ${alert.security_advisory.summary}`,
                 body: prompt,
-                labels: ['security', 'dependabot', alert.security_advisory.severity]
-              });
-
-              // Comment @copilot so it picks up the issue and creates its own PR
-              await github.rest.issues.createComment({
-                owner,
-                repo,
-                issue_number: issue.data.number,
-                body: `@copilot\n\n${prompt}`
+                labels: ['security', 'dependabot', alert.security_advisory.severity],
+                assignees: ['copilot-swe-agent']
               });
 
               console.log(`Issue created for alert #${alert.number}:`, issue.data.html_url);
