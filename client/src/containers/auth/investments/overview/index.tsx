@@ -57,10 +57,9 @@ export default function MyInvestmentsOverview() {
         <div className="grid h-full grid-cols-12 items-center justify-center">
           <div className="col-span-6 col-start-4 flex flex-col items-center gap-4 text-center">
             <h3 className="font-display text-2.5xl">You have no investments.</h3>
-            {/*@todo: update text*/}
             <p>
-              Lorem ipsum dolor sit amet consectetur. Convallis fusce neque odio nunc elementum
-              habitant sit sagittis.
+              Provide funding information for current or recently funded projects. You will be able
+              to select what can be shared and with whom.
             </p>
             <LinkButton href={`/auth/investments/new`} theme="green">
               Report Investment
