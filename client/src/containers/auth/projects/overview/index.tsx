@@ -61,8 +61,9 @@ export default function MyProjectsOverview() {
           <div className="col-span-8 col-start-3 flex grow flex-col items-center justify-center gap-4 text-center md:col-span-6 md:col-start-4">
             <h3 className="font-display text-2xl md:text-3xl">You have no projects</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur. Convallis fusce neque odio nunc elementum
-              habitant sit sagittis.
+              Share information about each regenerative agriculture-related project or initiative
+              that your organization funds. You may add a new project or add additional details to
+              an existing project in the database that your organization also supports.
             </p>
             <LinkButton href="/auth/projects/new" theme="green">
               Add project

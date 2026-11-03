@@ -37,11 +37,10 @@ export default function FocusCollaborationStep() {
   return (
     <div className="flex flex-col gap-10 pb-10">
       <div className="grid grid-cols-12 flex-col gap-2">
-        <h3 className="col-span-12 font-display text-2.5xl">Capital and Strategy</h3>
-        {/*@todo: update text*/}
+        <h3 className="col-span-12 font-display text-2.5xl">Focus & Collaboration</h3>
         <p className="col-span-9 font-semibold">
-          Lorem ipsum dolor sit amet consectetur et fringilla pellentesque in ut congue at ultrices
-          nulla nibh dolor sit amet pellentesque consectetur.
+          Share what you fund and where. This will help funders and partners to identify areas of
+          overlap and explore opportunities for collaboration.
         </p>
       </div>
 

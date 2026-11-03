@@ -34,10 +34,9 @@ export default function OperationsStaffStep() {
     <div className="flex flex-col gap-10 pb-10">
       <div className="grid grid-cols-12 flex-col gap-2">
         <h3 className="col-span-12 font-display text-2.5xl">Operations and Staff</h3>
-        {/*@todo: update text*/}
         <p className="col-span-9 font-semibold">
-          Lorem ipsum dolor sit amet consectetur et fringilla pellentesque in ut congue at ultrices
-          nulla nibh dolor sit amet pellentesque consectetur.
+          Provide details about how your organization works–its staffing, funding approach, and
+          whether your organization is accepting capital contributions.
         </p>
       </div>
 
@@ -214,6 +213,7 @@ export default function OperationsStaffStep() {
             htmlFor: 'new_to_regenerative_ag',
             className: 'normal-case',
           }}
+          icon="fora-members"
           required
         >
           Are you new to regenerative agriculture and, as such, have not yet made any investments or
