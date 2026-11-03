@@ -99,8 +99,8 @@ export default function InvestmentForm({
       <form onSubmit={handleSubmit} className="flex flex-col gap-8 pb-10">
         <div className="grid grid-cols-12 gap-8">
           <p className="col-span-6">
-            Lorem ipsum dolor sit amet consectetur et fringilla pellentesque in ut congue at
-            ultrices nulla nibh dolor sit amet pellentesque consectetur.
+            Share funding information for this project and select what you would like to share and
+            with whom.
           </p>
           <FormLegend className="col-span-12" />
           <div className="col-span-8 flex flex-col gap-2">
@@ -323,7 +323,7 @@ export default function InvestmentForm({
                 required
                 icon="fora-members"
               >
-                Duration of Grand/Investment
+                Duration of Grant/Investment
               </VisibilityLabel>
               <DurationGranInvestmentSelector />
             </div>

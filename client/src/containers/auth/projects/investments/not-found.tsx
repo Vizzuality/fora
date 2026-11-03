@@ -8,10 +8,9 @@ export default function InvestmentsNotFound({ id }: { id: Project['id'] }) {
         <h3 className="font-display text-2.5xl">
           You have no investments reported for this project.
         </h3>
-        {/*@todo: update text*/}
         <p>
-          Lorem ipsum dolor sit amet consectetur. Convallis fusce neque odio nunc elementum habitant
-          sit sagittis.
+          Provide funding information for current or recently funded projects. You will be able to
+          select what can be shared and with whom.
         </p>
         <LinkButton href={`/auth/investments/new?project=${id}`} theme="green">
           Report Investment

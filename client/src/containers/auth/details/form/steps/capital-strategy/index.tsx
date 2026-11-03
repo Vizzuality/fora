@@ -29,10 +29,8 @@ export default function CapitalStrategyStep() {
     <div className="flex flex-col gap-10 pb-10">
       <div className="grid grid-cols-12 flex-col gap-2">
         <h3 className="col-span-12 font-display text-2.5xl">Capital and Strategy</h3>
-        {/*@todo: update text*/}
         <p className="col-span-9 font-semibold">
-          Lorem ipsum dolor sit amet consectetur et fringilla pellentesque in ut congue at ultrices
-          nulla nibh dolor sit amet pellentesque consectetur.
+          Indicate the types of capital you or your organization deploys and on what timeline.
         </p>
       </div>
 

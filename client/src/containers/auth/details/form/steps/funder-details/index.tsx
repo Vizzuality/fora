@@ -81,10 +81,9 @@ export default function FunderDetailsStep() {
     <div className="flex flex-col gap-10 pb-10">
       <div className="grid grid-cols-12 flex-col gap-2">
         <h3 className="col-span-12 font-display text-2.5xl">Funder Details</h3>
-        {/*@todo: update text*/}
         <p className="col-span-9 font-semibold">
-          Lorem ipsum dolor sit amet consectetur et fringilla pellentesque in ut congue at ultrices
-          nulla nibh dolor sit amet pellentesque consectetur.
+          Provide basic information about your organization. Icons next to each field indicate who
+          can see that information.
         </p>
       </div>
 
