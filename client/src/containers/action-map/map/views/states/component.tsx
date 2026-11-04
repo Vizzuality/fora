@@ -103,7 +103,7 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
                   height={150}
                   className="pointer-events-none"
                 >
-                  <div className="relative flex h-full items-center justify-center text-center text-sm">
+                  <div className="flex h-full items-center justify-center text-center text-sm">
                     <div
                       className={cx({
                         'py-0.5 px-2 shadow-md transition-colors': true,
@@ -136,7 +136,7 @@ const StatesView = ({ data, onClick, onMouseEnter, onMouseLeave, onMouseMove }: 
                   height={150}
                   className="pointer-events-none"
                 >
-                  <div className="relative flex h-full items-center justify-center text-center text-sm">
+                  <div className="flex h-full items-center justify-center text-center text-sm">
                     <div
                       className={cx({
                         'pointer-events-auto ml-5 cursor-pointer py-0.5 px-2 text-black': true,
