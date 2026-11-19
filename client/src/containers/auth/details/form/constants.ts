@@ -1,2 +1,2 @@
-export const YEARS_JOINED_FORA_RANGE = [2019, 2025];
+export const YEARS_JOINED_FORA_RANGE = [2019, 2026];
 export const INITIAL_YEAR_FUNDED = [1981, 2022];
